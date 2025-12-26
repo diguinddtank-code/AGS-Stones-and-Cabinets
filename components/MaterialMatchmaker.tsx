@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Flame, ShieldAlert, Sparkles, Gem, AlertTriangle, Droplets, ChevronRight, Check } from 'lucide-react';
+import { Flame, ShieldAlert, Sparkles, Gem, Droplets, ChevronRight, Check } from 'lucide-react';
 
 type MaterialType = 'quartz' | 'granite' | 'marble' | 'quartzite';
 
@@ -14,7 +14,6 @@ interface MaterialData {
     maintenance: number; // 100 = easy, 0 = hard
   };
   pros: string[];
-  cons: string[];
   bestFor: string;
   icon: React.ReactNode;
 }
@@ -25,8 +24,7 @@ const materials: Record<MaterialType, MaterialData> = {
     name: 'Quartz',
     tagline: 'Modern & Zero-Maintenance',
     stats: { heat: 60, scratch: 80, stain: 95, maintenance: 100 },
-    pros: ['Non-porous (No sealing)', 'Consistent patterns', 'Antibacterial'],
-    cons: ['Not UV resistant', 'Heat sensitive > 300°F'],
+    pros: ['Non-porous (Never needs sealing)', 'Consistent color & patterns', 'Antibacterial surface', 'Stain resistant', 'Wide variety of modern styles'],
     bestFor: 'Busy family kitchens & baths',
     icon: <Sparkles size={20} />
   },
@@ -35,8 +33,7 @@ const materials: Record<MaterialType, MaterialData> = {
     name: 'Granite',
     tagline: 'Indestructible Nature',
     stats: { heat: 100, scratch: 90, stain: 75, maintenance: 80 },
-    pros: ['100% Heat resistant', 'Unique one-of-a-kind', 'High resale value'],
-    cons: ['Requires sealing', 'Variations in pattern'],
+    pros: ['100% Heat resistant (Hot pans ok)', 'Unique one-of-a-kind patterns', 'High resale value', 'Scratch resistant', 'UV Resistant (Great for outdoors)'],
     bestFor: 'High-traffic & Outdoor kitchens',
     icon: <ShieldAlert size={20} />
   },
@@ -45,8 +42,7 @@ const materials: Record<MaterialType, MaterialData> = {
     name: 'Marble',
     tagline: 'Timeless Luxury',
     stats: { heat: 90, scratch: 40, stain: 40, maintenance: 40 },
-    pros: ['Unmatched beauty', 'Stays cool (baking)', 'Classic elegance'],
-    cons: ['Etches easily', 'High maintenance'],
+    pros: ['Unmatched natural beauty', 'Stays cool (Perfect for baking)', 'Classic elegance', 'Premium luxury appeal', 'Unique veining in every slab'],
     bestFor: 'Master baths & Fireplaces',
     icon: <Gem size={20} />
   },
@@ -55,8 +51,7 @@ const materials: Record<MaterialType, MaterialData> = {
     name: 'Quartzite',
     tagline: 'Beauty of Marble, Strength of Granite',
     stats: { heat: 100, scratch: 95, stain: 70, maintenance: 70 },
-    pros: ['Harder than glass', 'Natural look', 'UV resistant'],
-    cons: ['More expensive', 'Hard to fabricate'],
+    pros: ['Harder than glass', 'Natural stone look', 'UV resistant', 'Excellent heat resistance', 'Exotic and rare appearance'],
     bestFor: 'Luxury high-end kitchens',
     icon: <Flame size={20} />
   }
@@ -181,7 +176,7 @@ const MaterialMatchmaker: React.FC = () => {
                    <StatBar label="Ease of Maintenance" value={materials[selected].stats.maintenance} color="bg-green-500" icon={<Sparkles size={14} />} />
                 </div>
 
-                {/* Right Col: Pros & Cons */}
+                {/* Right Col: Only Pros (Cons removed) */}
                 <div className="flex flex-col justify-between">
                     <div>
                         <div className="mb-6">
@@ -189,35 +184,20 @@ const MaterialMatchmaker: React.FC = () => {
                                 <div className="w-6 h-6 rounded-full bg-green-100 flex items-center justify-center shrink-0">
                                     <Check size={14} className="text-green-600"/>
                                 </div> 
-                                Advantages
+                                Advantages & Benefits
                             </h5>
-                            <ul className="space-y-2">
+                            <ul className="space-y-3">
                                 {materials[selected].pros.map((pro, i) => (
                                     <li key={i} className="flex items-start gap-2 text-sm text-gray-600 ml-2">
-                                        <span className="w-1.5 h-1.5 bg-green-400 rounded-full mt-1.5 shrink-0"></span> {pro}
-                                    </li>
-                                ))}
-                            </ul>
-                        </div>
-
-                        <div>
-                            <h5 className="font-bold text-orange-700 mb-3 flex items-center gap-2 text-sm md:text-base">
-                                <div className="w-6 h-6 rounded-full bg-orange-100 flex items-center justify-center shrink-0">
-                                    <AlertTriangle size={14} className="text-orange-600"/>
-                                </div> 
-                                Considerations
-                            </h5>
-                            <ul className="space-y-2">
-                                {materials[selected].cons.map((con, i) => (
-                                    <li key={i} className="flex items-start gap-2 text-sm text-gray-600 ml-2">
-                                        <span className="w-1.5 h-1.5 bg-orange-400 rounded-full mt-1.5 shrink-0"></span> {con}
+                                        <span className="w-1.5 h-1.5 bg-green-400 rounded-full mt-1.5 shrink-0"></span> 
+                                        <span className="leading-snug">{pro}</span>
                                     </li>
                                 ))}
                             </ul>
                         </div>
                     </div>
 
-                    <div className="mt-8 pt-6 border-t border-gray-100">
+                    <div className="mt-auto pt-6 border-t border-gray-100">
                          <a href="#contact" className="flex items-center justify-center w-full text-center bg-secondary hover:bg-yellow-600 text-white font-bold py-3 md:py-4 rounded-xl transition-all shadow-lg hover:shadow-xl hover:-translate-y-1">
                              Get Quote for {materials[selected].name}
                          </a>

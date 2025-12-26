@@ -6,7 +6,8 @@ const StickyCta: React.FC = () => {
 
   if (!isOpen) {
     return (
-      <div className="fixed bottom-6 right-6 z-50 flex items-center gap-3 flex-row-reverse animate-in fade-in slide-in-from-bottom-8 duration-500">
+      // Added mb-16 md:mb-0 to move button up on mobile above the nav bar
+      <div className="fixed bottom-6 mb-16 md:mb-0 right-6 z-50 flex items-center gap-3 flex-row-reverse animate-in fade-in slide-in-from-bottom-8 duration-500">
         <button 
           onClick={() => setIsOpen(true)}
           className="bg-secondary hover:bg-yellow-600 text-white p-4 rounded-full shadow-2xl transition-transform hover:scale-110 group relative"
@@ -31,7 +32,8 @@ const StickyCta: React.FC = () => {
   }
 
   return (
-    <div className="fixed bottom-6 right-6 z-50 flex flex-col items-end animate-in slide-in-from-bottom-5 fade-in duration-300">
+    // Added mb-16 md:mb-0 to move chat window up on mobile
+    <div className="fixed bottom-6 mb-16 md:mb-0 right-6 z-50 flex flex-col items-end animate-in slide-in-from-bottom-5 fade-in duration-300">
         <button 
           onClick={() => setIsOpen(false)}
           className="mb-2 bg-gray-100 hover:bg-gray-200 text-gray-500 hover:text-gray-800 rounded-full p-2 shadow-sm transition-colors border border-gray-200"

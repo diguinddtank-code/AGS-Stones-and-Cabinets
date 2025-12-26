@@ -12,6 +12,7 @@ import Footer from './components/Footer';
 import StickyCta from './components/StickyCta';
 import ProcessTimeline from './components/ProcessTimeline';
 import MaterialMatchmaker from './components/MaterialMatchmaker';
+import MobileBottomNav from './components/MobileBottomNav';
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
         <Contact />
       </main>
       <Footer />
+      <MobileBottomNav />
       <StickyCta />
     </div>
   );
