@@ -11,7 +11,7 @@ interface MaterialData {
     heat: number;
     scratch: number;
     stain: number;
-    maintenance: number; // 100 = easy, 0 = hard
+    maintenance: number;
   };
   pros: string[];
   bestFor: string;
@@ -61,12 +61,9 @@ const MaterialMatchmaker: React.FC = () => {
   const [selected, setSelected] = useState<MaterialType>('quartz');
   const [isAnimating, setIsAnimating] = useState(false);
 
-  // Smooth transition handler
   const handleSelect = (key: MaterialType) => {
     if (key === selected) return;
     setIsAnimating(true);
-    
-    // Short delay to allow fade-out effect
     setTimeout(() => {
         setSelected(key);
         setIsAnimating(false);
@@ -76,11 +73,14 @@ const MaterialMatchmaker: React.FC = () => {
   const currentMaterial = materials[selected];
 
   return (
-    <section className="py-16 md:py-24 bg-white relative overflow-hidden">
+    // Z-30 ensures it is above decorative backgrounds but below Fixed Nav (z-40)
+    <section className="py-16 md:py-24 bg-white relative z-30 pointer-events-auto">
       {/* Background decoration */}
-      <div className="absolute top-0 right-0 w-[300px] md:w-[500px] h-[300px] md:h-[500px] bg-gray-50 rounded-full blur-3xl -z-10 translate-x-1/2 -translate-y-1/2"></div>
+      <div className="absolute inset-0 overflow-hidden pointer-events-none -z-10">
+         <div className="absolute top-0 right-0 w-[300px] md:w-[500px] h-[300px] md:h-[500px] bg-gray-50 rounded-full blur-3xl translate-x-1/2 -translate-y-1/2"></div>
+      </div>
       
-      <div className="container mx-auto px-4">
+      <div className="container mx-auto px-4 relative">
         <div className="text-center mb-10 md:mb-16">
           <h2 className="text-xs md:text-sm font-bold text-secondary uppercase tracking-widest mb-2">Interactive Guide</h2>
           <h3 className="text-3xl md:text-5xl font-bold text-primary">Find Your Perfect Stone</h3>
@@ -92,18 +92,19 @@ const MaterialMatchmaker: React.FC = () => {
         <div className="grid lg:grid-cols-12 gap-6 lg:gap-8 items-start">
           
           {/* MOBILE NAV: Horizontal Scrollable Tabs */}
-          <div className="lg:hidden col-span-12 overflow-x-auto pb-4 -mx-4 px-4 scrollbar-hide flex gap-3 snap-x">
+          <div className="lg:hidden col-span-12 overflow-x-auto pb-6 px-1 flex gap-3 snap-x relative z-40 touch-pan-x scrollbar-hide">
              {(Object.keys(materials) as MaterialType[]).map((key) => {
                  const mat = materials[key];
                  const isActive = selected === key;
                  return (
                     <button
                         key={key}
+                        type="button"
                         onClick={() => handleSelect(key)}
-                        className={`flex items-center gap-2 px-5 py-3 rounded-full whitespace-nowrap transition-all duration-300 border snap-center ${
+                        className={`flex items-center gap-2 px-5 py-3 rounded-full whitespace-nowrap transition-all duration-300 border snap-center cursor-pointer touch-manipulation shadow-sm active:scale-95 ${
                             isActive 
-                            ? 'bg-primary border-primary text-white shadow-lg scale-105' 
-                            : 'bg-white border-gray-200 text-gray-600'
+                            ? 'bg-primary border-primary text-white shadow-md scale-105 ring-2 ring-primary/20' 
+                            : 'bg-white border-gray-200 text-gray-600 active:bg-gray-100'
                         }`}
                     >
                         {mat.icon}
@@ -114,7 +115,7 @@ const MaterialMatchmaker: React.FC = () => {
           </div>
 
           {/* DESKTOP NAV: Vertical Sidebar */}
-          <div className="hidden lg:flex lg:col-span-3 flex-col gap-3">
+          <div className="hidden lg:flex lg:col-span-3 flex-col gap-3 relative z-30">
             <h4 className="text-gray-400 text-xs font-bold uppercase tracking-wider mb-2 ml-2">Select Material</h4>
             {(Object.keys(materials) as MaterialType[]).map((key) => {
               const mat = materials[key];
@@ -122,14 +123,15 @@ const MaterialMatchmaker: React.FC = () => {
               return (
                 <button
                   key={key}
+                  type="button"
                   onClick={() => handleSelect(key)}
-                  className={`relative p-4 rounded-xl text-left transition-all duration-300 border-2 group ${
+                  className={`relative p-4 rounded-xl text-left transition-all duration-200 border-2 group cursor-pointer w-full ${
                     isActive 
                       ? 'bg-primary border-primary text-white shadow-xl translate-x-2' 
                       : 'bg-white border-transparent hover:bg-gray-50 text-gray-500'
                   }`}
                 >
-                  <div className="flex items-center justify-between">
+                  <div className="flex items-center justify-between pointer-events-none">
                     <span className="font-bold text-lg flex items-center gap-3">
                        <span className={`p-2 rounded-lg transition-colors ${isActive ? 'bg-white/20' : 'bg-gray-100 text-gray-400 group-hover:text-secondary'}`}>
                          {mat.icon}
@@ -144,14 +146,13 @@ const MaterialMatchmaker: React.FC = () => {
           </div>
 
           {/* Display Area (Card) */}
-          <div className="col-span-12 lg:col-span-9">
+          <div className="col-span-12 lg:col-span-9 relative z-30">
             <div className="bg-white rounded-3xl shadow-xl border border-gray-100 overflow-hidden relative flex flex-col min-h-[550px] transition-all duration-500">
               
-              {/* Card Header with Fluid Background Transition */}
+              {/* Card Header */}
               <div className="bg-gray-900 text-white p-6 md:p-8 relative overflow-hidden shrink-0 transition-colors duration-500">
-                {/* Dynamic Background Blob */}
                 <div 
-                    className={`absolute top-0 right-0 w-64 h-64 rounded-full blur-3xl opacity-30 -translate-y-1/2 translate-x-1/4 transition-colors duration-700 ${
+                    className={`absolute top-0 right-0 w-64 h-64 rounded-full blur-3xl opacity-30 -translate-y-1/2 translate-x-1/4 transition-colors duration-700 pointer-events-none ${
                     selected === 'quartz' ? 'bg-blue-400' : 
                     selected === 'granite' ? 'bg-orange-400' : 
                     selected === 'marble' ? 'bg-purple-400' : 'bg-emerald-400'
@@ -173,12 +174,11 @@ const MaterialMatchmaker: React.FC = () => {
                 </div>
               </div>
 
-              {/* Card Body with Fade Transition */}
+              {/* Card Body */}
               <div className={`p-5 md:p-8 grid md:grid-cols-2 gap-8 md:gap-12 flex-grow transition-opacity duration-300 ${isAnimating ? 'opacity-50' : 'opacity-100'}`}>
                 
-                {/* Left Col: Stats */}
+                {/* Stats */}
                 <div className="space-y-5">
-                   {/* Mobile Only Best For Tag */}
                    <div className="md:hidden bg-gray-50 p-3 rounded-lg border border-gray-100 mb-4">
                         <span className="text-xs text-gray-400 uppercase tracking-widest block mb-1">Recommended For</span>
                         <span className="font-medium text-sm text-gray-800">{currentMaterial.bestFor}</span>
@@ -192,7 +192,7 @@ const MaterialMatchmaker: React.FC = () => {
                    <StatBar label="Ease of Maintenance" value={currentMaterial.stats.maintenance} color="bg-green-500" icon={<Sparkles size={14} />} />
                 </div>
 
-                {/* Right Col: Only Pros */}
+                {/* Pros */}
                 <div className="flex flex-col justify-between">
                     <div>
                         <div className="mb-6">
@@ -214,7 +214,7 @@ const MaterialMatchmaker: React.FC = () => {
                     </div>
 
                     <div className="mt-auto pt-6 border-t border-gray-100">
-                         <a href="#contact" className="flex items-center justify-center w-full text-center bg-secondary hover:bg-yellow-600 text-white font-bold py-3 md:py-4 rounded-xl transition-all shadow-lg hover:shadow-xl hover:-translate-y-1 active:scale-95">
+                         <a href="#contact" className="flex items-center justify-center w-full text-center bg-secondary hover:bg-yellow-600 text-white font-bold py-3 md:py-4 rounded-xl transition-all shadow-lg hover:shadow-xl hover:-translate-y-1 active:scale-95 cursor-pointer relative z-30 touch-manipulation">
                              Get Quote for {currentMaterial.name}
                          </a>
                     </div>

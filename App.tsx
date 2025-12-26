@@ -16,7 +16,8 @@ import MobileBottomNav from './components/MobileBottomNav';
 
 function App() {
   return (
-    <div className="min-h-screen flex flex-col font-sans">
+    // Increased to pb-24 on mobile to account for Nav height (16) + safe area + breathing room
+    <div className="min-h-screen flex flex-col font-sans pb-24 md:pb-0 relative">
       <Header />
       <main className="flex-grow">
         <Hero />

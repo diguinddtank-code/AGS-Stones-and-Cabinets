@@ -8,19 +8,22 @@ const Header: React.FC = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      // Header background transition
-      setIsScrolled(window.scrollY > 50);
+      // Header background transition logic
+      const scrolled = window.scrollY > 50;
+      if (isScrolled !== scrolled) {
+        setIsScrolled(scrolled);
+      }
 
       // Scroll Progress Calculation
       const totalScroll = document.documentElement.scrollTop;
       const windowHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-      const scroll = totalScroll / windowHeight;
+      const scroll = windowHeight > 0 ? totalScroll / windowHeight : 0;
       setScrollProgress(scroll);
     };
 
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  }, [isScrolled]);
 
   // Lock body scroll when mobile menu is open
   useEffect(() => {
@@ -45,19 +48,27 @@ const Header: React.FC = () => {
       {/* 
         MOBILE ONLY LOGO (Animated Flying Effect):
         Visible ONLY on Mobile (md:hidden). 
-        Moves from Center (Hero) to Top-Left (Nav).
+        
+        State 1 (Top/Small): Fixed at top-left, small height, reset transform.
+        State 2 (Hero/Big): Fixed at 20% vertical, centered horizontal, large height, negative translate to center.
       */}
-      <a href="#" className="z-[60] block md:hidden">
-        <img 
-          src="https://agsstonefabricators.com/wp-content/uploads/2024/05/Design-sem-nome-16.png" 
-          alt="AGS Stones and Cabinets" 
-          className={`fixed transition-all duration-1000 ease-[cubic-bezier(0.25,0.1,0.25,1)] z-[60] ${
+      <div className={`fixed z-[60] block md:hidden transition-all duration-700 cubic-bezier(0.4, 0, 0.2, 1) ${
             isScrolled 
-              ? 'top-3 left-4 h-10 w-auto translate-x-0 filter-none' 
-              : 'top-[20%] left-1/2 h-24 w-auto max-w-[80vw] -translate-x-1/2 -translate-y-1/2 brightness-0 invert drop-shadow-2xl'
-          }`}
-        />
-      </a>
+              ? 'top-3 left-4 w-auto translate-x-0 translate-y-0 pointer-events-none' 
+              : 'top-[20%] left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-[80vw] pointer-events-none'
+          }`}>
+        <a href="#" className="block pointer-events-auto origin-top-left">
+          <img 
+            src="https://agsstonefabricators.com/wp-content/uploads/2024/05/Design-sem-nome-16.png" 
+            alt="AGS Stones and Cabinets" 
+            className={`transition-all duration-700 w-auto ${
+              isScrolled 
+                ? 'h-10 filter-none' 
+                : 'h-24 mx-auto brightness-0 invert drop-shadow-2xl'
+            }`}
+          />
+        </a>
+      </div>
 
       <header 
         className={`fixed top-0 w-full z-50 transition-all duration-700 ease-in-out ${
@@ -107,10 +118,10 @@ const Header: React.FC = () => {
 
           {/* Mobile Menu Toggle Button */}
           <button 
-            className="md:hidden z-50 p-2"
+            className="md:hidden z-50 p-2 cursor-pointer relative rounded-md hover:bg-black/10 transition-colors"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            aria-label="Toggle menu"
           >
-            {/* We hide the X here because it's inside the drawer in the new design, or we can toggle icon */}
             <Menu size={32} className={!isScrolled && !mobileMenuOpen ? 'text-white drop-shadow-md' : 'text-gray-800'} />
           </button>
         </div>
@@ -127,18 +138,18 @@ const Header: React.FC = () => {
             MOBILE SIDE DRAWER (Nav Lateral)
             Sliding from Right to Left
         */}
-        <div className={`md:hidden fixed inset-0 z-[70] pointer-events-none`}>
+        <div className={`md:hidden fixed inset-0 z-[70] transition-all duration-300 ${mobileMenuOpen ? 'visible' : 'invisible delay-300'}`}>
             {/* Backdrop */}
             <div 
-                className={`absolute inset-0 bg-black/60 backdrop-blur-sm transition-opacity duration-500 pointer-events-auto ${
-                    mobileMenuOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'
+                className={`absolute inset-0 bg-black/60 backdrop-blur-sm transition-opacity duration-300 ${
+                    mobileMenuOpen ? 'opacity-100' : 'opacity-0'
                 }`}
                 onClick={() => setMobileMenuOpen(false)}
             ></div>
 
             {/* Sidebar Content */}
             <div 
-                className={`absolute top-0 right-0 w-[80%] max-w-[300px] h-full bg-white shadow-2xl transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] pointer-events-auto flex flex-col ${
+                className={`absolute top-0 right-0 w-[80%] max-w-[300px] h-full bg-white shadow-2xl transition-transform duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] flex flex-col ${
                     mobileMenuOpen ? 'translate-x-0' : 'translate-x-full'
                 }`}
             >
@@ -161,7 +172,7 @@ const Header: React.FC = () => {
                             href={link.href} 
                             className="text-lg font-medium text-gray-700 py-3 border-b border-gray-50 flex items-center justify-between group active:text-secondary"
                             onClick={() => setMobileMenuOpen(false)}
-                            style={{ transitionDelay: `${idx * 50}ms` }}
+                            style={{ transitionDelay: `${mobileMenuOpen ? idx * 50 : 0}ms` }}
                         >
                             {link.name}
                             <ArrowRight size={16} className="text-gray-300 group-hover:text-secondary -translate-x-2 group-hover:translate-x-0 transition-all" />
