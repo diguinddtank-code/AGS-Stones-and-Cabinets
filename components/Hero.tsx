@@ -14,7 +14,8 @@ const Hero: React.FC = () => {
   }, []);
 
   return (
-    <section className="relative h-screen min-h-[600px] flex items-center justify-center overflow-hidden bg-black">
+    // Changed h-screen to min-h-[100dvh] to account for mobile browser bars properly
+    <section className="relative min-h-[100dvh] flex items-center justify-center overflow-hidden bg-black pb-24 md:pb-0">
       {/* 
         Background Image with Parallax Effect 
         - Moves at 50% speed of scroll (scrollY * 0.5)
@@ -38,12 +39,12 @@ const Hero: React.FC = () => {
 
       {/* 
         Content Container:
-        - pt-48 on mobile (pushes content below logo)
+        - pt-32 on mobile (Reduced from 48 to prevent overlap with bottom nav)
         - Parallax Speed 0.2 (Moves slower than scroll, faster than bg)
         - Fades out opacity as user scrolls away
       */}
       <div 
-        className="relative z-10 container mx-auto px-4 h-full flex flex-col justify-center items-center text-center text-white pt-48 md:pt-0 will-change-transform"
+        className="relative z-10 container mx-auto px-4 h-full flex flex-col justify-center items-center text-center text-white pt-32 md:pt-0 will-change-transform"
         style={{ 
           transform: `translateY(${scrollY * 0.2}px)`, 
           opacity: Math.max(0, 1 - scrollY / 600) // Fades out completely after 600px scroll
@@ -59,16 +60,16 @@ const Hero: React.FC = () => {
             <span className="block md:inline mt-2 md:mt-0"> Experience quality craftsmanship from Duluth to your doorstep.</span>
             </p>
             
-            <div className="flex flex-col sm:flex-row justify-center gap-4">
+            <div className="flex flex-col sm:flex-row justify-center gap-4 relative z-20">
             <a 
                 href="#visualizer" 
-                className="bg-secondary hover:bg-yellow-600 text-white text-lg font-bold py-4 px-8 rounded-full transition-all hover:scale-105 shadow-[0_0_20px_rgba(202,138,4,0.5)] border-2 border-secondary"
+                className="bg-secondary hover:bg-yellow-600 text-white text-lg font-bold py-4 px-8 rounded-full transition-all hover:scale-105 shadow-[0_0_20px_rgba(202,138,4,0.5)] border-2 border-secondary touch-manipulation"
             >
                 Design With AI
             </a>
             <a 
                 href="#contact" 
-                className="bg-transparent hover:bg-white/10 text-white text-lg font-bold py-4 px-8 rounded-full transition-all hover:scale-105 shadow-xl border-2 border-white backdrop-blur-sm"
+                className="bg-transparent hover:bg-white/10 text-white text-lg font-bold py-4 px-8 rounded-full transition-all hover:scale-105 shadow-xl border-2 border-white backdrop-blur-sm touch-manipulation"
             >
                 Get Free Quote
             </a>
@@ -81,7 +82,7 @@ const Hero: React.FC = () => {
         Creates a smooth blend into the next section (which is bg-gray-50),
         removing the harsh line between the hero image and white content.
       */}
-      <div className="absolute bottom-0 left-0 w-full h-24 bg-gradient-to-t from-gray-50 to-transparent z-20"></div>
+      <div className="absolute bottom-0 left-0 w-full h-24 bg-gradient-to-t from-gray-50 to-transparent z-20 pointer-events-none"></div>
     </section>
   );
 };
