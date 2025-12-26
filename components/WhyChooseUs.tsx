@@ -2,25 +2,46 @@ import React, { useEffect, useState } from 'react';
 import { Clock, Award, DollarSign, Star, ChevronDown } from 'lucide-react';
 
 const WhyChooseUs: React.FC = () => {
-  // Animation logic for visual elements only
+  // Animation logic for visual elements
   useEffect(() => {
-    const observer = new IntersectionObserver(
+    // Observer for Cards (Fade Up)
+    const cardObserver = new IntersectionObserver(
         (entries) => {
             entries.forEach((entry) => {
                 if (entry.isIntersecting) {
                     entry.target.classList.remove('opacity-0', 'translate-y-10');
                     entry.target.classList.add('opacity-100', 'translate-y-0');
-                    observer.unobserve(entry.target);
+                    cardObserver.unobserve(entry.target);
                 }
             });
         },
         { threshold: 0.1 }
     );
 
-    const animatedElements = document.querySelectorAll('.animate-on-scroll');
-    animatedElements.forEach((el) => observer.observe(el));
+    const cardElements = document.querySelectorAll('.animate-on-scroll');
+    cardElements.forEach((el) => cardObserver.observe(el));
 
-    return () => observer.disconnect();
+    // Observer for Icons (Pop In with overshoot)
+    const iconObserver = new IntersectionObserver(
+        (entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.remove('opacity-0', 'scale-50', '-rotate-12');
+                    entry.target.classList.add('opacity-100', 'scale-100', 'rotate-0');
+                    iconObserver.unobserve(entry.target);
+                }
+            });
+        },
+        { threshold: 0.5 }
+    );
+
+    const iconElements = document.querySelectorAll('.animate-icon');
+    iconElements.forEach((el) => iconObserver.observe(el));
+
+    return () => {
+        cardObserver.disconnect();
+        iconObserver.disconnect();
+    };
   }, []);
 
   return (
@@ -41,10 +62,13 @@ const WhyChooseUs: React.FC = () => {
         <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 grid-rows-[auto] gap-4 lg:gap-6 mb-20">
           
           {/* Main Large Card */}
-          <div className="md:col-span-2 row-span-2 bg-primary rounded-3xl p-8 lg:p-12 relative overflow-hidden group text-white flex flex-col justify-between min-h-[400px] shadow-xl">
+          <div 
+            className="md:col-span-2 row-span-2 bg-primary rounded-3xl p-8 lg:p-12 relative overflow-hidden group text-white flex flex-col justify-between min-h-[400px] shadow-xl animate-on-scroll opacity-0 translate-y-10 transition-all duration-700"
+            style={{ transitionDelay: '100ms' }}
+          >
             <div className="absolute top-0 right-0 w-64 h-64 bg-secondary/20 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 group-hover:bg-secondary/30 transition-colors pointer-events-none"></div>
             <div className="relative z-10">
-              <div className="bg-white/10 w-16 h-16 rounded-2xl flex items-center justify-center mb-6 backdrop-blur-md">
+              <div className="bg-white/10 w-16 h-16 rounded-2xl flex items-center justify-center mb-6 backdrop-blur-md animate-icon opacity-0 scale-50 -rotate-12 transition-all duration-700 ease-[cubic-bezier(0.34,1.56,0.64,1)]">
                 <Award className="text-secondary" size={32} />
               </div>
               <h4 className="text-3xl font-bold mb-4">Master Craftsmanship</h4>
@@ -61,8 +85,11 @@ const WhyChooseUs: React.FC = () => {
           </div>
 
           {/* Speed Card */}
-          <div className="bg-gray-50 hover:bg-gray-100 transition-colors rounded-3xl p-8 border border-gray-100 flex flex-col shadow-sm">
-            <div className="mb-4">
+          <div 
+            className="bg-gray-50 hover:bg-gray-100 transition-colors rounded-3xl p-8 border border-gray-100 flex flex-col shadow-sm animate-on-scroll opacity-0 translate-y-10 transition-all duration-700"
+            style={{ transitionDelay: '200ms' }}
+          >
+            <div className="mb-4 animate-icon opacity-0 scale-50 -rotate-12 transition-all duration-700 ease-[cubic-bezier(0.34,1.56,0.64,1)] delay-100">
                 <Clock className="text-secondary" size={32} />
             </div>
             <h4 className="text-xl font-bold text-primary mb-2">5-Day Turnaround</h4>
@@ -70,8 +97,11 @@ const WhyChooseUs: React.FC = () => {
           </div>
 
           {/* Price Card */}
-          <div className="bg-gray-50 hover:bg-gray-100 transition-colors rounded-3xl p-8 border border-gray-100 flex flex-col shadow-sm">
-            <div className="mb-4">
+          <div 
+            className="bg-gray-50 hover:bg-gray-100 transition-colors rounded-3xl p-8 border border-gray-100 flex flex-col shadow-sm animate-on-scroll opacity-0 translate-y-10 transition-all duration-700"
+            style={{ transitionDelay: '300ms' }}
+          >
+            <div className="mb-4 animate-icon opacity-0 scale-50 -rotate-12 transition-all duration-700 ease-[cubic-bezier(0.34,1.56,0.64,1)] delay-200">
                 <DollarSign className="text-secondary" size={32} />
             </div>
             <h4 className="text-xl font-bold text-primary mb-2">Factory Direct</h4>
@@ -79,15 +109,21 @@ const WhyChooseUs: React.FC = () => {
           </div>
 
           {/* Experience Card */}
-          <div className="bg-secondary/10 rounded-3xl p-8 flex flex-col justify-center items-center text-center md:col-span-2 lg:col-span-1 group hover:bg-secondary/20 transition-colors shadow-sm">
-             <h4 className="text-5xl font-bold text-secondary mb-2">20+</h4>
+          <div 
+            className="bg-secondary/10 rounded-3xl p-8 flex flex-col justify-center items-center text-center md:col-span-2 lg:col-span-1 group hover:bg-secondary/20 transition-colors shadow-sm animate-on-scroll opacity-0 translate-y-10 transition-all duration-700"
+            style={{ transitionDelay: '400ms' }}
+          >
+             <h4 className="text-5xl font-bold text-secondary mb-2 animate-icon opacity-0 scale-50 transition-all duration-700 ease-[cubic-bezier(0.34,1.56,0.64,1)] delay-300">20+</h4>
              <p className="font-bold text-primary">Years Experience</p>
              <p className="text-xs text-gray-500 mt-2">Serving Metro Atlanta</p>
           </div>
 
           {/* Wide Bottom Card */}
-          <div className="md:col-span-3 lg:col-span-1 bg-primary text-white rounded-3xl p-8 flex flex-col justify-center shadow-xl">
-             <div className="flex items-center gap-4 mb-4">
+          <div 
+            className="md:col-span-3 lg:col-span-1 bg-primary text-white rounded-3xl p-8 flex flex-col justify-center shadow-xl animate-on-scroll opacity-0 translate-y-10 transition-all duration-700"
+            style={{ transitionDelay: '500ms' }}
+          >
+             <div className="flex items-center gap-4 mb-4 animate-icon opacity-0 scale-50 transition-all duration-700 ease-[cubic-bezier(0.34,1.56,0.64,1)] delay-300">
                 {[1,2,3,4,5].map(i => (
                     <Star key={i} className="text-yellow-400 fill-yellow-400" />
                 ))}
@@ -98,7 +134,10 @@ const WhyChooseUs: React.FC = () => {
         </div>
 
         {/* FAQ Section */}
-        <div className="max-w-3xl mx-auto border-t border-gray-200 pt-16 relative z-20 pointer-events-auto">
+        <div 
+            className="max-w-3xl mx-auto border-t border-gray-200 pt-16 relative z-20 pointer-events-auto animate-on-scroll opacity-0 translate-y-10 transition-all duration-700"
+            style={{ transitionDelay: '600ms' }}
+        >
           <h4 className="text-2xl font-bold text-center text-primary mb-8">Frequently Asked Questions</h4>
           
           <div className="space-y-4">
@@ -134,29 +173,47 @@ const WhyChooseUs: React.FC = () => {
   );
 };
 
-// Robust controlled component
+// Robust controlled component with smooth animations
 const FaqItem: React.FC<{ question: string; answer: string }> = ({ question, answer }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <div className={`bg-gray-50 rounded-xl overflow-hidden border transition-colors duration-300 ${isOpen ? 'border-gray-200 bg-white shadow-sm' : 'border-gray-100'}`}>
+    <div 
+      className={`group rounded-xl overflow-hidden border transition-all duration-300 ease-[cubic-bezier(0.4,0,0.2,1)] ${
+        isOpen 
+          ? 'bg-white border-secondary/40 shadow-lg scale-[1.01]' 
+          : 'bg-gray-50 border-gray-100 hover:border-gray-200'
+      }`}
+    >
       <button 
         onClick={() => setIsOpen(!isOpen)}
-        className="w-full flex items-center justify-between p-6 font-medium text-gray-900 hover:bg-gray-100 transition-colors text-left touch-manipulation cursor-pointer active:bg-gray-100"
+        className="w-full flex items-center justify-between p-6 font-medium text-left touch-manipulation cursor-pointer focus:outline-none"
         type="button"
         aria-expanded={isOpen}
       >
-        <span className="text-base md:text-lg pr-4">{question}</span>
-        <span className={`transition-transform duration-300 text-gray-400 shrink-0 ${isOpen ? 'rotate-180' : ''}`}>
+        <span className={`text-base md:text-lg pr-4 transition-colors duration-300 ${
+          isOpen ? 'text-secondary font-bold' : 'text-gray-900 group-hover:text-primary'
+        }`}>
+          {question}
+        </span>
+        <span className={`transition-transform duration-300 ease-[cubic-bezier(0.4,0,0.2,1)] shrink-0 ${
+          isOpen ? 'rotate-180 text-secondary' : 'rotate-0 text-gray-400 group-hover:text-gray-600'
+        }`}>
            <ChevronDown size={24} />
         </span>
       </button>
       
-      {/* Content */}
+      {/* Content Wrapper for smooth height animation */}
       <div 
-        className={`px-6 text-gray-600 text-sm md:text-base leading-relaxed overflow-hidden transition-all duration-300 ease-in-out ${isOpen ? 'max-h-96 pb-6 opacity-100' : 'max-h-0 pb-0 opacity-0'}`}
+        className={`px-6 overflow-hidden transition-all duration-500 ease-[cubic-bezier(0.4,0,0.2,1)] ${
+          isOpen 
+            ? 'max-h-[500px] opacity-100 pb-6' 
+            : 'max-h-0 opacity-0 pb-0'
+        }`}
       >
-        {answer}
+        <div className="text-gray-600 text-sm md:text-base leading-relaxed border-t border-gray-100 pt-4 animate-in fade-in slide-in-from-top-2 duration-300">
+          {answer}
+        </div>
       </div>
     </div>
   );

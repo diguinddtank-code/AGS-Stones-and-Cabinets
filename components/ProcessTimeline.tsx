@@ -104,6 +104,27 @@ const ProcessTimeline: React.FC = () => {
     }
   }, [activeStep]);
 
+  // Scroll Animations for Timeline Steps
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.remove('opacity-0', 'translate-y-8');
+            entry.target.classList.add('opacity-100', 'translate-y-0');
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.2, rootMargin: '0px 0px -50px 0px' }
+    );
+
+    const stepElements = document.querySelectorAll('.timeline-step-anim');
+    stepElements.forEach((el) => observer.observe(el));
+
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <section className="py-16 md:py-20 bg-white border-t border-gray-100 overflow-hidden relative">
       <div className="container mx-auto px-4">
@@ -125,10 +146,11 @@ const ProcessTimeline: React.FC = () => {
             className="flex md:justify-between items-start md:items-center relative z-10 gap-2 md:gap-4 overflow-x-auto pb-4 md:pb-0 scrollbar-hide snap-x snap-mandatory px-4 md:px-0 w-full"
             style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
           >
-            {steps.map((step) => (
+            {steps.map((step, index) => (
               <div 
                 key={step.id}
-                className="flex flex-col items-center cursor-pointer group min-w-[85px] md:min-w-0 snap-center shrink-0 pt-2"
+                className="timeline-step-anim opacity-0 translate-y-8 transition-all duration-700 ease-out flex flex-col items-center cursor-pointer group min-w-[85px] md:min-w-0 snap-center shrink-0 pt-2"
+                style={{ transitionDelay: `${index * 150}ms` }}
                 onClick={() => setActiveStep(step.id)}
               >
                 {/* Dot/Icon */}
