@@ -4,7 +4,7 @@ import { DesignState, VisualizerMode } from "../types";
 // ======================================================
 // ⚠️ COLE SUA CHAVE API ABAIXO (MANTENHA AS ASPAS) ⚠️
 // ======================================================
-const API_KEY = "PASTE_YOUR_API_KEY_HERE"; 
+const API_KEY = "AIzaSyArrRftYNITbDwRSs6HEzTVrnbepXlaw2Q"; 
 
 // Helper to get the AI instance safely
 const getAiClient = () => {
@@ -12,11 +12,11 @@ const getAiClient = () => {
   // We use typeof process check to prevent "process is not defined" error in browsers
   let key = API_KEY;
   
-  if ((!key || key === "PASTE_YOUR_API_KEY_HERE") && typeof process !== 'undefined' && process.env && process.env.API_KEY) {
+  if ((!key || key === "AIzaSyArrRftYNITbDwRSs6HEzTVrnbepXlaw2Q") && typeof process !== 'undefined' && process.env && process.env.API_KEY) {
     key = process.env.API_KEY;
   }
 
-  if (!key || key === "PASTE_YOUR_API_KEY_HERE") {
+  if (!key || key === "AIzaSyArrRftYNITbDwRSs6HEzTVrnbepXlaw2Q") {
     console.error("CRITICAL: API_KEY is missing.");
     throw new Error("Google Gemini API Key is missing. Please open services/geminiService.ts and paste your API Key in the API_KEY constant.");
   }
