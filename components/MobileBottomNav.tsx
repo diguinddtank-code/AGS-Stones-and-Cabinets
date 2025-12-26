@@ -40,7 +40,7 @@ const MobileBottomNav: React.FC = () => {
   }, []);
 
   return (
-    <div className="md:hidden fixed bottom-0 left-0 w-full bg-white border-t border-gray-200 z-[60] pb-safe">
+    <div className="md:hidden fixed bottom-0 left-0 w-full bg-white/90 backdrop-blur-md border-t border-gray-200 z-[60] pb-safe shadow-lg">
       <div className="flex justify-around items-center h-16 px-2">
         {navItems.map((item) => {
           const isActive = activeSection === item.id;

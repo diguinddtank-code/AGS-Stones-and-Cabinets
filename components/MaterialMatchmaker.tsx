@@ -59,6 +59,21 @@ const materials: Record<MaterialType, MaterialData> = {
 
 const MaterialMatchmaker: React.FC = () => {
   const [selected, setSelected] = useState<MaterialType>('quartz');
+  const [isAnimating, setIsAnimating] = useState(false);
+
+  // Smooth transition handler
+  const handleSelect = (key: MaterialType) => {
+    if (key === selected) return;
+    setIsAnimating(true);
+    
+    // Short delay to allow fade-out effect
+    setTimeout(() => {
+        setSelected(key);
+        setIsAnimating(false);
+    }, 200);
+  };
+
+  const currentMaterial = materials[selected];
 
   return (
     <section className="py-16 md:py-24 bg-white relative overflow-hidden">
@@ -84,8 +99,8 @@ const MaterialMatchmaker: React.FC = () => {
                  return (
                     <button
                         key={key}
-                        onClick={() => setSelected(key)}
-                        className={`flex items-center gap-2 px-5 py-3 rounded-full whitespace-nowrap transition-all border snap-center ${
+                        onClick={() => handleSelect(key)}
+                        className={`flex items-center gap-2 px-5 py-3 rounded-full whitespace-nowrap transition-all duration-300 border snap-center ${
                             isActive 
                             ? 'bg-primary border-primary text-white shadow-lg scale-105' 
                             : 'bg-white border-gray-200 text-gray-600'
@@ -107,7 +122,7 @@ const MaterialMatchmaker: React.FC = () => {
               return (
                 <button
                   key={key}
-                  onClick={() => setSelected(key)}
+                  onClick={() => handleSelect(key)}
                   className={`relative p-4 rounded-xl text-left transition-all duration-300 border-2 group ${
                     isActive 
                       ? 'bg-primary border-primary text-white shadow-xl translate-x-2' 
@@ -130,53 +145,54 @@ const MaterialMatchmaker: React.FC = () => {
 
           {/* Display Area (Card) */}
           <div className="col-span-12 lg:col-span-9">
-            <div className="bg-white rounded-3xl shadow-xl border border-gray-100 overflow-hidden relative flex flex-col min-h-[500px] transition-all duration-500">
+            <div className="bg-white rounded-3xl shadow-xl border border-gray-100 overflow-hidden relative flex flex-col min-h-[550px] transition-all duration-500">
               
-              {/* Card Header */}
-              <div className="bg-gray-900 text-white p-6 md:p-8 relative overflow-hidden shrink-0">
+              {/* Card Header with Fluid Background Transition */}
+              <div className="bg-gray-900 text-white p-6 md:p-8 relative overflow-hidden shrink-0 transition-colors duration-500">
                 {/* Dynamic Background Blob */}
-                <div className={`absolute top-0 right-0 w-64 h-64 rounded-full blur-3xl opacity-30 -translate-y-1/2 translate-x-1/4 transition-colors duration-500 ${
+                <div 
+                    className={`absolute top-0 right-0 w-64 h-64 rounded-full blur-3xl opacity-30 -translate-y-1/2 translate-x-1/4 transition-colors duration-700 ${
                     selected === 'quartz' ? 'bg-blue-400' : 
                     selected === 'granite' ? 'bg-orange-400' : 
                     selected === 'marble' ? 'bg-purple-400' : 'bg-emerald-400'
                 }`}></div>
 
-                <div className="relative z-10 flex flex-col md:flex-row md:items-end justify-between gap-4">
+                <div className={`relative z-10 flex flex-col md:flex-row md:items-end justify-between gap-4 transition-opacity duration-300 ${isAnimating ? 'opacity-0' : 'opacity-100'}`}>
                     <div>
                         <div className="flex items-center gap-2 mb-2 text-secondary/80 text-sm font-bold uppercase tracking-wider">
-                            {materials[selected].icon} {materials[selected].name}
+                            {currentMaterial.icon} {currentMaterial.name}
                         </div>
-                        <h4 className="text-2xl md:text-4xl font-bold leading-tight animate-in slide-in-from-bottom-2 fade-in duration-300 key={selected}">
-                            {materials[selected].tagline}
+                        <h4 className="text-2xl md:text-4xl font-bold leading-tight">
+                            {currentMaterial.tagline}
                         </h4>
                     </div>
                     <div className="hidden md:block bg-white/10 backdrop-blur-md px-4 py-2 rounded-lg border border-white/20 text-right">
                          <span className="text-xs text-gray-400 uppercase tracking-widest block">Recommended For</span>
-                         <span className="font-medium text-sm text-white">{materials[selected].bestFor}</span>
+                         <span className="font-medium text-sm text-white">{currentMaterial.bestFor}</span>
                     </div>
                 </div>
               </div>
 
-              {/* Card Body */}
-              <div className="p-5 md:p-8 grid md:grid-cols-2 gap-8 md:gap-12 flex-grow">
+              {/* Card Body with Fade Transition */}
+              <div className={`p-5 md:p-8 grid md:grid-cols-2 gap-8 md:gap-12 flex-grow transition-opacity duration-300 ${isAnimating ? 'opacity-50' : 'opacity-100'}`}>
                 
                 {/* Left Col: Stats */}
                 <div className="space-y-5">
                    {/* Mobile Only Best For Tag */}
                    <div className="md:hidden bg-gray-50 p-3 rounded-lg border border-gray-100 mb-4">
                         <span className="text-xs text-gray-400 uppercase tracking-widest block mb-1">Recommended For</span>
-                        <span className="font-medium text-sm text-gray-800">{materials[selected].bestFor}</span>
+                        <span className="font-medium text-sm text-gray-800">{currentMaterial.bestFor}</span>
                    </div>
 
                    <h5 className="font-bold text-gray-900 text-sm md:text-base border-b border-gray-100 pb-2">Performance Score</h5>
                    
-                   <StatBar label="Heat Resistance" value={materials[selected].stats.heat} color="bg-red-500" icon={<Flame size={14} />} />
-                   <StatBar label="Scratch Resistance" value={materials[selected].stats.scratch} color="bg-slate-600" icon={<ShieldAlert size={14} />} />
-                   <StatBar label="Stain Resistance" value={materials[selected].stats.stain} color="bg-blue-500" icon={<Droplets size={14} />} />
-                   <StatBar label="Ease of Maintenance" value={materials[selected].stats.maintenance} color="bg-green-500" icon={<Sparkles size={14} />} />
+                   <StatBar label="Heat Resistance" value={currentMaterial.stats.heat} color="bg-red-500" icon={<Flame size={14} />} />
+                   <StatBar label="Scratch Resistance" value={currentMaterial.stats.scratch} color="bg-slate-600" icon={<ShieldAlert size={14} />} />
+                   <StatBar label="Stain Resistance" value={currentMaterial.stats.stain} color="bg-blue-500" icon={<Droplets size={14} />} />
+                   <StatBar label="Ease of Maintenance" value={currentMaterial.stats.maintenance} color="bg-green-500" icon={<Sparkles size={14} />} />
                 </div>
 
-                {/* Right Col: Only Pros (Cons removed) */}
+                {/* Right Col: Only Pros */}
                 <div className="flex flex-col justify-between">
                     <div>
                         <div className="mb-6">
@@ -187,8 +203,8 @@ const MaterialMatchmaker: React.FC = () => {
                                 Advantages & Benefits
                             </h5>
                             <ul className="space-y-3">
-                                {materials[selected].pros.map((pro, i) => (
-                                    <li key={i} className="flex items-start gap-2 text-sm text-gray-600 ml-2">
+                                {currentMaterial.pros.map((pro, i) => (
+                                    <li key={i} className="flex items-start gap-2 text-sm text-gray-600 ml-2 animate-fade-in" style={{ animationDelay: `${i * 100}ms` }}>
                                         <span className="w-1.5 h-1.5 bg-green-400 rounded-full mt-1.5 shrink-0"></span> 
                                         <span className="leading-snug">{pro}</span>
                                     </li>
@@ -198,8 +214,8 @@ const MaterialMatchmaker: React.FC = () => {
                     </div>
 
                     <div className="mt-auto pt-6 border-t border-gray-100">
-                         <a href="#contact" className="flex items-center justify-center w-full text-center bg-secondary hover:bg-yellow-600 text-white font-bold py-3 md:py-4 rounded-xl transition-all shadow-lg hover:shadow-xl hover:-translate-y-1">
-                             Get Quote for {materials[selected].name}
+                         <a href="#contact" className="flex items-center justify-center w-full text-center bg-secondary hover:bg-yellow-600 text-white font-bold py-3 md:py-4 rounded-xl transition-all shadow-lg hover:shadow-xl hover:-translate-y-1 active:scale-95">
+                             Get Quote for {currentMaterial.name}
                          </a>
                     </div>
                 </div>
