@@ -39,12 +39,12 @@ const Hero: React.FC = () => {
 
       {/* 
         Content Container:
-        - pt-32 on mobile (Reduced from 48 to prevent overlap with bottom nav)
+        - pt-44 on mobile (Increased from 32 to push text down further below the logo)
         - Parallax Speed 0.2 (Moves slower than scroll, faster than bg)
         - Fades out opacity as user scrolls away
       */}
       <div 
-        className="relative z-10 container mx-auto px-4 h-full flex flex-col justify-center items-center text-center text-white pt-32 md:pt-0 will-change-transform"
+        className="relative z-10 container mx-auto px-4 h-full flex flex-col justify-center items-center text-center text-white pt-44 md:pt-0 will-change-transform"
         style={{ 
           transform: `translateY(${scrollY * 0.2}px)`, 
           opacity: Math.max(0, 1 - scrollY / 600) // Fades out completely after 600px scroll

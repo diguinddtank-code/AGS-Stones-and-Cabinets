@@ -50,12 +50,12 @@ const Header: React.FC = () => {
         Visible ONLY on Mobile (md:hidden). 
         
         State 1 (Top/Small): Fixed at top-left, small height, reset transform.
-        State 2 (Hero/Big): Fixed at 20% vertical, centered horizontal, large height, negative translate to center.
+        State 2 (Hero/Big): Fixed at 15% vertical (moved up from 20%), centered horizontal, large height.
       */}
       <div className={`fixed z-[60] block md:hidden transition-all duration-700 cubic-bezier(0.4, 0, 0.2, 1) ${
             isScrolled 
               ? 'top-3 left-4 w-auto translate-x-0 translate-y-0 pointer-events-none' 
-              : 'top-[20%] left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-[80vw] pointer-events-none'
+              : 'top-[15%] left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-[80vw] pointer-events-none'
           }`}>
         <a href="#" className="block pointer-events-auto origin-top-left">
           <img 
