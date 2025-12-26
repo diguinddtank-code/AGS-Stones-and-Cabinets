@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Flame, ShieldAlert, Sparkles, Gem, AlertTriangle, Droplets } from 'lucide-react';
+import { Flame, ShieldAlert, Sparkles, Gem, AlertTriangle, Droplets, ChevronRight, Check } from 'lucide-react';
 
 type MaterialType = 'quartz' | 'granite' | 'marble' | 'quartzite';
 
@@ -23,42 +23,42 @@ const materials: Record<MaterialType, MaterialData> = {
   quartz: {
     id: 'quartz',
     name: 'Quartz',
-    tagline: 'The Modern, Zero-Maintenance Choice',
+    tagline: 'Modern & Zero-Maintenance',
     stats: { heat: 60, scratch: 80, stain: 95, maintenance: 100 },
-    pros: ['Non-porous (No sealing needed)', 'Consistent patterns', 'Antibacterial'],
-    cons: ['Not UV resistant (Indoor only)', 'Can be damaged by extreme heat'],
-    bestFor: 'Busy kitchens, bathrooms, and modern designs.',
-    icon: <Sparkles size={24} />
+    pros: ['Non-porous (No sealing)', 'Consistent patterns', 'Antibacterial'],
+    cons: ['Not UV resistant', 'Heat sensitive > 300°F'],
+    bestFor: 'Busy family kitchens & baths',
+    icon: <Sparkles size={20} />
   },
   granite: {
     id: 'granite',
     name: 'Granite',
-    tagline: 'Natural Beauty & Indestructible Durability',
+    tagline: 'Indestructible Nature',
     stats: { heat: 100, scratch: 90, stain: 75, maintenance: 80 },
-    pros: ['100% Heat resistant', 'Unique natural patterns', 'Adds high resale value'],
-    cons: ['Requires sealing (every 1-2 years)', 'Patterns vary (no two slabs alike)'],
-    bestFor: 'Culinary enthusiasts, outdoor kitchens, and high-traffic areas.',
-    icon: <ShieldAlert size={24} />
+    pros: ['100% Heat resistant', 'Unique one-of-a-kind', 'High resale value'],
+    cons: ['Requires sealing', 'Variations in pattern'],
+    bestFor: 'High-traffic & Outdoor kitchens',
+    icon: <ShieldAlert size={20} />
   },
   marble: {
     id: 'marble',
     name: 'Marble',
-    tagline: 'Timeless Luxury & Elegance',
+    tagline: 'Timeless Luxury',
     stats: { heat: 90, scratch: 40, stain: 40, maintenance: 40 },
-    pros: ['Unmatched aesthetic beauty', 'Stays cool (great for baking)', 'Classic luxury look'],
-    cons: ['Etches and scratches easily', 'Porous (stains if not sealed often)'],
-    bestFor: 'Master baths, fireplace surrounds, and baking stations.',
-    icon: <Gem size={24} />
+    pros: ['Unmatched beauty', 'Stays cool (baking)', 'Classic elegance'],
+    cons: ['Etches easily', 'High maintenance'],
+    bestFor: 'Master baths & Fireplaces',
+    icon: <Gem size={20} />
   },
   quartzite: {
     id: 'quartzite',
     name: 'Quartzite',
-    tagline: 'Look of Marble, Strength of Granite',
+    tagline: 'Beauty of Marble, Strength of Granite',
     stats: { heat: 100, scratch: 95, stain: 70, maintenance: 70 },
-    pros: ['Harder than glass', 'Natural marble look', 'UV resistant'],
-    cons: ['More expensive', 'Hard to fabricate (higher labor cost)'],
-    bestFor: 'Luxury kitchens that want the marble look without the fragility.',
-    icon: <Flame size={24} />
+    pros: ['Harder than glass', 'Natural look', 'UV resistant'],
+    cons: ['More expensive', 'Hard to fabricate'],
+    bestFor: 'Luxury high-end kitchens',
+    icon: <Flame size={20} />
   }
 };
 
@@ -66,23 +66,46 @@ const MaterialMatchmaker: React.FC = () => {
   const [selected, setSelected] = useState<MaterialType>('quartz');
 
   return (
-    <section className="py-24 bg-white relative overflow-hidden">
+    <section className="py-16 md:py-24 bg-white relative overflow-hidden">
       {/* Background decoration */}
-      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-gray-50 rounded-full blur-3xl -z-10 translate-x-1/2 -translate-y-1/2"></div>
+      <div className="absolute top-0 right-0 w-[300px] md:w-[500px] h-[300px] md:h-[500px] bg-gray-50 rounded-full blur-3xl -z-10 translate-x-1/2 -translate-y-1/2"></div>
       
       <div className="container mx-auto px-4">
-        <div className="text-center mb-16">
-          <h2 className="text-sm font-bold text-secondary uppercase tracking-widest mb-2">Interactive Guide</h2>
+        <div className="text-center mb-10 md:mb-16">
+          <h2 className="text-xs md:text-sm font-bold text-secondary uppercase tracking-widest mb-2">Interactive Guide</h2>
           <h3 className="text-3xl md:text-5xl font-bold text-primary">Find Your Perfect Stone</h3>
-          <p className="mt-4 text-gray-600 max-w-2xl mx-auto">
-            Not sure which material is right for your lifestyle? Select a stone type below to see how they stack up.
+          <p className="mt-4 text-gray-600 max-w-2xl mx-auto text-sm md:text-base">
+            Compare materials side-by-side to find the best fit for your lifestyle.
           </p>
         </div>
 
-        <div className="grid lg:grid-cols-12 gap-8 items-start">
+        <div className="grid lg:grid-cols-12 gap-6 lg:gap-8 items-start">
           
-          {/* Sidebar / Tabs */}
-          <div className="lg:col-span-4 flex flex-col gap-3">
+          {/* MOBILE NAV: Horizontal Scrollable Tabs */}
+          <div className="lg:hidden col-span-12 overflow-x-auto pb-4 -mx-4 px-4 scrollbar-hide flex gap-3 snap-x">
+             {(Object.keys(materials) as MaterialType[]).map((key) => {
+                 const mat = materials[key];
+                 const isActive = selected === key;
+                 return (
+                    <button
+                        key={key}
+                        onClick={() => setSelected(key)}
+                        className={`flex items-center gap-2 px-5 py-3 rounded-full whitespace-nowrap transition-all border snap-center ${
+                            isActive 
+                            ? 'bg-primary border-primary text-white shadow-lg scale-105' 
+                            : 'bg-white border-gray-200 text-gray-600'
+                        }`}
+                    >
+                        {mat.icon}
+                        <span className="font-bold text-sm">{mat.name}</span>
+                    </button>
+                 );
+             })}
+          </div>
+
+          {/* DESKTOP NAV: Vertical Sidebar */}
+          <div className="hidden lg:flex lg:col-span-3 flex-col gap-3">
+            <h4 className="text-gray-400 text-xs font-bold uppercase tracking-wider mb-2 ml-2">Select Material</h4>
             {(Object.keys(materials) as MaterialType[]).map((key) => {
               const mat = materials[key];
               const isActive = selected === key;
@@ -90,59 +113,67 @@ const MaterialMatchmaker: React.FC = () => {
                 <button
                   key={key}
                   onClick={() => setSelected(key)}
-                  className={`relative p-4 rounded-xl text-left transition-all duration-300 border-2 ${
+                  className={`relative p-4 rounded-xl text-left transition-all duration-300 border-2 group ${
                     isActive 
-                      ? 'bg-primary border-primary text-white shadow-xl scale-105 z-10' 
-                      : 'bg-white border-gray-100 text-gray-600 hover:border-gray-200 hover:bg-gray-50'
+                      ? 'bg-primary border-primary text-white shadow-xl translate-x-2' 
+                      : 'bg-white border-transparent hover:bg-gray-50 text-gray-500'
                   }`}
                 >
-                  <div className="flex items-center justify-between mb-1">
+                  <div className="flex items-center justify-between">
                     <span className="font-bold text-lg flex items-center gap-3">
-                       <span className={`p-2 rounded-lg ${isActive ? 'bg-white/20' : 'bg-gray-100 text-secondary'}`}>
+                       <span className={`p-2 rounded-lg transition-colors ${isActive ? 'bg-white/20' : 'bg-gray-100 text-gray-400 group-hover:text-secondary'}`}>
                          {mat.icon}
                        </span>
                        {mat.name}
                     </span>
-                    {isActive && <div className="w-3 h-3 bg-secondary rounded-full animate-pulse shadow-[0_0_10px_#ca8a04]"></div>}
+                    {isActive && <ChevronRight size={16} />}
                   </div>
-                  <p className={`text-xs ml-12 ${isActive ? 'text-gray-300' : 'text-gray-400'}`}>
-                    {mat.tagline}
-                  </p>
                 </button>
               );
             })}
           </div>
 
-          {/* Display Area */}
-          <div className="lg:col-span-8">
-            <div className="bg-white rounded-3xl shadow-2xl border border-gray-100 overflow-hidden relative min-h-[500px] flex flex-col">
+          {/* Display Area (Card) */}
+          <div className="col-span-12 lg:col-span-9">
+            <div className="bg-white rounded-3xl shadow-xl border border-gray-100 overflow-hidden relative flex flex-col min-h-[500px] transition-all duration-500">
               
-              {/* Header with gradient based on selection */}
-              <div className="bg-gray-900 text-white p-8 relative overflow-hidden">
-                <div className={`absolute top-0 right-0 w-64 h-64 rounded-full blur-3xl opacity-20 -translate-y-1/2 translate-x-1/4 transition-colors duration-500 ${
+              {/* Card Header */}
+              <div className="bg-gray-900 text-white p-6 md:p-8 relative overflow-hidden shrink-0">
+                {/* Dynamic Background Blob */}
+                <div className={`absolute top-0 right-0 w-64 h-64 rounded-full blur-3xl opacity-30 -translate-y-1/2 translate-x-1/4 transition-colors duration-500 ${
                     selected === 'quartz' ? 'bg-blue-400' : 
                     selected === 'granite' ? 'bg-orange-400' : 
-                    selected === 'marble' ? 'bg-white' : 'bg-green-400'
+                    selected === 'marble' ? 'bg-purple-400' : 'bg-emerald-400'
                 }`}></div>
 
                 <div className="relative z-10 flex flex-col md:flex-row md:items-end justify-between gap-4">
                     <div>
-                        <h4 className="text-4xl font-bold mb-2 animate-in slide-in-from-left-4 duration-300 key={selected}">{materials[selected].name}</h4>
-                        <p className="text-gray-300 italic">{materials[selected].tagline}</p>
+                        <div className="flex items-center gap-2 mb-2 text-secondary/80 text-sm font-bold uppercase tracking-wider">
+                            {materials[selected].icon} {materials[selected].name}
+                        </div>
+                        <h4 className="text-2xl md:text-4xl font-bold leading-tight animate-in slide-in-from-bottom-2 fade-in duration-300 key={selected}">
+                            {materials[selected].tagline}
+                        </h4>
                     </div>
-                    <div className="bg-white/10 backdrop-blur-md px-4 py-2 rounded-lg border border-white/20">
-                         <span className="text-xs text-gray-400 uppercase tracking-widest block">Best Application</span>
-                         <span className="font-medium text-sm">{materials[selected].bestFor}</span>
+                    <div className="hidden md:block bg-white/10 backdrop-blur-md px-4 py-2 rounded-lg border border-white/20 text-right">
+                         <span className="text-xs text-gray-400 uppercase tracking-widest block">Recommended For</span>
+                         <span className="font-medium text-sm text-white">{materials[selected].bestFor}</span>
                     </div>
                 </div>
               </div>
 
-              {/* Stats Grid */}
-              <div className="p-8 flex-grow grid md:grid-cols-2 gap-12">
+              {/* Card Body */}
+              <div className="p-5 md:p-8 grid md:grid-cols-2 gap-8 md:gap-12 flex-grow">
                 
-                {/* Progress Bars */}
-                <div className="space-y-6">
-                   <h5 className="font-bold text-gray-900 border-b border-gray-100 pb-2">Performance Stats</h5>
+                {/* Left Col: Stats */}
+                <div className="space-y-5">
+                   {/* Mobile Only Best For Tag */}
+                   <div className="md:hidden bg-gray-50 p-3 rounded-lg border border-gray-100 mb-4">
+                        <span className="text-xs text-gray-400 uppercase tracking-widest block mb-1">Recommended For</span>
+                        <span className="font-medium text-sm text-gray-800">{materials[selected].bestFor}</span>
+                   </div>
+
+                   <h5 className="font-bold text-gray-900 text-sm md:text-base border-b border-gray-100 pb-2">Performance Score</h5>
                    
                    <StatBar label="Heat Resistance" value={materials[selected].stats.heat} color="bg-red-500" icon={<Flame size={14} />} />
                    <StatBar label="Scratch Resistance" value={materials[selected].stats.scratch} color="bg-slate-600" icon={<ShieldAlert size={14} />} />
@@ -150,35 +181,45 @@ const MaterialMatchmaker: React.FC = () => {
                    <StatBar label="Ease of Maintenance" value={materials[selected].stats.maintenance} color="bg-green-500" icon={<Sparkles size={14} />} />
                 </div>
 
-                {/* Pros & Cons */}
+                {/* Right Col: Pros & Cons */}
                 <div className="flex flex-col justify-between">
                     <div>
-                        <h5 className="font-bold text-green-700 mb-3 flex items-center gap-2">
-                             <div className="w-2 h-2 rounded-full bg-green-500"></div> Why you'll love it
-                        </h5>
-                        <ul className="space-y-2 mb-6">
-                            {materials[selected].pros.map((pro, i) => (
-                                <li key={i} className="flex items-start gap-2 text-sm text-gray-600">
-                                    <span className="text-green-500 font-bold">✓</span> {pro}
-                                </li>
-                            ))}
-                        </ul>
+                        <div className="mb-6">
+                            <h5 className="font-bold text-green-700 mb-3 flex items-center gap-2 text-sm md:text-base">
+                                <div className="w-6 h-6 rounded-full bg-green-100 flex items-center justify-center shrink-0">
+                                    <Check size={14} className="text-green-600"/>
+                                </div> 
+                                Advantages
+                            </h5>
+                            <ul className="space-y-2">
+                                {materials[selected].pros.map((pro, i) => (
+                                    <li key={i} className="flex items-start gap-2 text-sm text-gray-600 ml-2">
+                                        <span className="w-1.5 h-1.5 bg-green-400 rounded-full mt-1.5 shrink-0"></span> {pro}
+                                    </li>
+                                ))}
+                            </ul>
+                        </div>
 
-                        <h5 className="font-bold text-orange-700 mb-3 flex items-center gap-2">
-                             <div className="w-2 h-2 rounded-full bg-orange-500"></div> Things to consider
-                        </h5>
-                        <ul className="space-y-2">
-                            {materials[selected].cons.map((con, i) => (
-                                <li key={i} className="flex items-start gap-2 text-sm text-gray-600">
-                                    <AlertTriangle size={14} className="text-orange-500 mt-0.5 shrink-0" /> {con}
-                                </li>
-                            ))}
-                        </ul>
+                        <div>
+                            <h5 className="font-bold text-orange-700 mb-3 flex items-center gap-2 text-sm md:text-base">
+                                <div className="w-6 h-6 rounded-full bg-orange-100 flex items-center justify-center shrink-0">
+                                    <AlertTriangle size={14} className="text-orange-600"/>
+                                </div> 
+                                Considerations
+                            </h5>
+                            <ul className="space-y-2">
+                                {materials[selected].cons.map((con, i) => (
+                                    <li key={i} className="flex items-start gap-2 text-sm text-gray-600 ml-2">
+                                        <span className="w-1.5 h-1.5 bg-orange-400 rounded-full mt-1.5 shrink-0"></span> {con}
+                                    </li>
+                                ))}
+                            </ul>
+                        </div>
                     </div>
 
                     <div className="mt-8 pt-6 border-t border-gray-100">
-                         <a href="#contact" className="block w-full text-center bg-gray-100 hover:bg-secondary hover:text-white text-gray-800 font-bold py-3 rounded-xl transition-colors">
-                             Get a Quote for {materials[selected].name}
+                         <a href="#contact" className="flex items-center justify-center w-full text-center bg-secondary hover:bg-yellow-600 text-white font-bold py-3 md:py-4 rounded-xl transition-all shadow-lg hover:shadow-xl hover:-translate-y-1">
+                             Get Quote for {materials[selected].name}
                          </a>
                     </div>
                 </div>
@@ -195,11 +236,11 @@ const MaterialMatchmaker: React.FC = () => {
 
 const StatBar: React.FC<{ label: string; value: number; color: string; icon: React.ReactNode }> = ({ label, value, color, icon }) => (
     <div>
-        <div className="flex justify-between text-xs font-bold text-gray-500 mb-1">
-            <span className="flex items-center gap-1">{icon} {label}</span>
-            <span>{value}%</span>
+        <div className="flex justify-between text-xs font-bold text-gray-500 mb-1.5">
+            <span className="flex items-center gap-1.5">{icon} {label}</span>
+            <span>{value === 100 ? 'Perfect' : `${value}/100`}</span>
         </div>
-        <div className="h-3 bg-gray-100 rounded-full overflow-hidden">
+        <div className="h-2.5 bg-gray-100 rounded-full overflow-hidden">
             <div 
                 className={`h-full ${color} transition-all duration-1000 ease-out`} 
                 style={{ width: `${value}%` }}

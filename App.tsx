@@ -20,9 +20,9 @@ function App() {
       <main className="flex-grow">
         <Hero />
         <Services />
-        <MaterialMatchmaker />
         <ProcessTimeline />
         <WhyChooseUs />
+        <MaterialMatchmaker />
         <AiVisualizer />
         <BeforeAfter />
         <Showroom />
