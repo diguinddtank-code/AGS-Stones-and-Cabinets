@@ -1,30 +1,20 @@
 import { GoogleGenAI } from "@google/genai";
 import { DesignState, VisualizerMode } from "../types";
 
-// ======================================================
-// ⚠️ COLE SUA CHAVE API ABAIXO (MANTENHA AS ASPAS) ⚠️
-// ======================================================
-const API_KEY = "AIzaSyArrRftYNITbDwRSs6HEzTVrnbepXlaw2Q"; 
-
 // Helper to get the AI instance safely
 const getAiClient = () => {
-  // Check if we have a hardcoded key, otherwise try environment variable safely
-  // We use typeof process check to prevent "process is not defined" error in browsers
-  let key = API_KEY;
-  
-  if ((!key || key === "AIzaSyArrRftYNITbDwRSs6HEzTVrnbepXlaw2Q") && typeof process !== 'undefined' && process.env && process.env.API_KEY) {
-    key = process.env.API_KEY;
+  const apiKey = process.env.API_KEY;
+  if (!apiKey) {
+    console.error("CRITICAL: API_KEY is missing from environment variables.");
+    throw new Error("Google Gemini API Key is missing. Please create a .env file with API_KEY=your_key");
   }
-
-  if (!key || key === "AIzaSyArrRftYNITbDwRSs6HEzTVrnbepXlaw2Q") {
-    console.error("CRITICAL: API_KEY is missing.");
-    throw new Error("Google Gemini API Key is missing. Please open services/geminiService.ts and paste your API Key in the API_KEY constant.");
-  }
-  return new GoogleGenAI({ apiKey: key });
+  return new GoogleGenAI({ apiKey });
 };
 
 export const generateDesignImage = async (design: DesignState): Promise<string | null> => {
   try {
+    // We initialize the client inside the function to ensure we capture the env var 
+    // at the moment of execution, and to catch missing keys gracefully.
     const ai = getAiClient();
 
     let prompt = "";
@@ -55,12 +45,10 @@ export const generateDesignImage = async (design: DesignState): Promise<string |
       },
     });
 
-    if (response.candidates && response.candidates[0] && response.candidates[0].content && response.candidates[0].content.parts) {
-      for (const part of response.candidates[0].content.parts) {
-        if (part.inlineData) {
-          const base64EncodeString: string = part.inlineData.data;
-          return `data:image/png;base64,${base64EncodeString}`;
-        }
+    for (const part of response.candidates[0].content.parts) {
+      if (part.inlineData) {
+        const base64EncodeString: string = part.inlineData.data;
+        return `data:image/png;base64,${base64EncodeString}`;
       }
     }
 
@@ -68,6 +56,7 @@ export const generateDesignImage = async (design: DesignState): Promise<string |
 
   } catch (error) {
     console.error("Error generating design:", error);
+    // Rethrow so the UI can catch it and alert the user
     throw error;
   }
 };
