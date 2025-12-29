@@ -3,7 +3,6 @@ import Header from './components/Header';
 import Hero from './components/Hero';
 import Services from './components/Services';
 import WhyChooseUs from './components/WhyChooseUs';
-import AiVisualizer from './components/AiVisualizer';
 import BeforeAfter from './components/BeforeAfter';
 import Showroom from './components/Showroom';
 import Testimonials from './components/Testimonials';
@@ -13,6 +12,8 @@ import StickyCta from './components/StickyCta';
 import ProcessTimeline from './components/ProcessTimeline';
 import MaterialMatchmaker from './components/MaterialMatchmaker';
 import MobileBottomNav from './components/MobileBottomNav';
+import StoneGallery from './components/StoneGallery';
+import ExitIntentPopup from './components/ExitIntentPopup';
 
 function App() {
   return (
@@ -24,8 +25,8 @@ function App() {
         <Services />
         <ProcessTimeline />
         <WhyChooseUs />
+        <StoneGallery />
         <MaterialMatchmaker />
-        <AiVisualizer />
         <BeforeAfter />
         <Showroom />
         <Testimonials />
@@ -34,6 +35,7 @@ function App() {
       <Footer />
       <MobileBottomNav />
       <StickyCta />
+      <ExitIntentPopup />
     </div>
   );
 }

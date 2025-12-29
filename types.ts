@@ -9,6 +9,7 @@ export interface Testimonial {
   location: string;
   text: string;
   rating: number;
+  image: string; // Added user profile image
 }
 
 export enum VisualizerMode {

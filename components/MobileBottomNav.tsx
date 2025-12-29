@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Home, Layers, Wand2, Phone, MapPin } from 'lucide-react';
+import { Home, Layers, Phone, MapPin } from 'lucide-react';
 
 const MobileBottomNav: React.FC = () => {
   const [activeSection, setActiveSection] = useState('hero');
@@ -7,7 +7,6 @@ const MobileBottomNav: React.FC = () => {
   const navItems = [
     { id: 'hero', icon: <Home size={20} />, label: 'Home', href: '#' },
     { id: 'services', icon: <Layers size={20} />, label: 'Services', href: '#services' },
-    { id: 'visualizer', icon: <Wand2 size={20} />, label: 'Design', href: '#visualizer' },
     { id: 'showroom', icon: <MapPin size={20} />, label: 'Visit', href: '#showroom' },
     { id: 'contact', icon: <Phone size={20} />, label: 'Contact', href: '#contact' },
   ];

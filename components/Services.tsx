@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Layers, Box, Hammer, Droplet, ChefHat, Grid, ArrowRight, X, Check, Bath, Phone, Navigation, PlusCircle } from 'lucide-react';
+import { Layers, Box, Hammer, Droplet, ChefHat, Grid, ArrowRight, X, Check, Bath, Phone, Plus } from 'lucide-react';
 
 interface ServiceDetail {
   icon: React.ReactNode;
@@ -13,72 +13,65 @@ interface ServiceDetail {
 
 const services: ServiceDetail[] = [
   {
-    icon: <Layers size={24} className="text-white" />,
+    icon: <Layers size={24} className="text-secondary" />,
     title: "Premium Countertops",
     shortDesc: "Exquisite Granite, Marble, and Quartz fabrication.",
-    // Updated to specific Unsplash image for Stone/Countertops
     image: "https://agsstonefabricators.com/wp-content/uploads/2025/03/blue-mare-quartz-countertop-1024x602.jpg-768x452.webp", 
-    longDesc: "We are the leading fabricators of Granite, Marble, Quartzite, and Quartz countertops in Duluth and Metro Atlanta. Our state-of-the-art facility uses laser templating for precision fitting. Whether you want the timeless elegance of Carrara Marble or the durability of Cambria Quartz, we have the perfect slab for your kitchen island or perimeter counters.",
+    longDesc: "We are the leading fabricators of Granite, Marble, Quartzite, and Quartz countertops in Duluth and Metro Atlanta. Our state-of-the-art facility uses laser templating for precision fitting.",
     features: ["Laser Templating Precision", "In-House Fabrication", "Seam Matching Technology", "15-Year Sealer Options"],
     keywords: ["granite countertops atlanta", "quartz kitchen island", "marble fabrication duluth"]
   },
   {
-    icon: <Box size={24} className="text-white" />,
+    icon: <Box size={24} className="text-secondary" />,
     title: "Custom Cabinets",
     shortDesc: "Tailor-made cabinetry to fit your space perfectly.",
-    // Updated to specific Unsplash image for Cabinets
     image: "https://agsstonefabricators.com/wp-content/uploads/2025/11/Untitled.jpg",
-    longDesc: "Upgrade your storage with our custom and semi-custom cabinetry solutions. We offer solid wood construction, soft-close hinges, and dovetail drawers. From modern frameless European styles to traditional shaker cabinets, we design layouts that maximize functionality in your kitchen remodeling project.",
+    longDesc: "Upgrade your storage with our custom and semi-custom cabinetry solutions. We offer solid wood construction, soft-close hinges, and dovetail drawers.",
     features: ["Solid Wood Construction", "Soft-Close Hardware", "3D Cabinet Design", "Custom Colors & Finishes"],
     keywords: ["custom cabinets near me", "kitchen cabinet installation", "modern shaker cabinets"]
   },
   {
-    icon: <ChefHat size={24} className="text-white" />,
+    icon: <ChefHat size={24} className="text-secondary" />,
     title: "Kitchen Remodeling",
     shortDesc: "Full-scale kitchen renovations from start to finish.",
-    // Updated to specific Unsplash image for Luxury Kitchen Remodel
     image: "https://agsstonefabricators.com/wp-content/uploads/2025/11/Custom-vs.-Pre-Fabricated-Kitchen-Cabinets-1-1-522x600.jpg",
-    longDesc: "AGS Stones offers complete turnkey kitchen remodeling services. We handle demolition, plumbing, electrical adjustments, and installation. Stop searching for multiple contractors; we manage the entire project timeline to deliver your dream kitchen faster and within budget.",
+    longDesc: "AGS Stones offers complete turnkey kitchen remodeling services. We handle demolition, plumbing, electrical adjustments, and installation.",
     features: ["Turnkey Project Management", "Demolition & Disposal", "Plumbing & Electrical Prep", "Backsplash & Lighting"],
     keywords: ["kitchen remodel near me", "turnkey renovation atlanta", "kitchen design services"]
   },
   {
-    icon: <Bath size={24} className="text-white" />,
+    icon: <Bath size={24} className="text-secondary" />,
     title: "Bathroom Remodeling",
     shortDesc: "Create a spa-like retreat in your own home.",
-    // New Service added as requested
     image: "https://www.dfwimproved.com/wp-content/uploads/2021/12/How-to-plan-a-bathroom-remodel-scaled.jpg",
-    longDesc: "Transform your outdated bathroom into a luxurious sanctuary. We handle everything from shower conversions and freestanding tub installations to custom tile work and lighting. Our team ensures proper waterproofing and a flawless finish for your master bath or guest suite.",
+    longDesc: "Transform your outdated bathroom into a luxurious sanctuary. We handle everything from shower conversions and freestanding tub installations to custom tile work.",
     features: ["Walk-in Shower Conversions", "Freestanding Tub Installation", "Custom Tile & Grout", "Complete Demolition & Rebuild"],
     keywords: ["bathroom remodel atlanta", "master bath renovation", "custom shower installation"]
   },
   {
-    icon: <Droplet size={24} className="text-white" />,
+    icon: <Droplet size={24} className="text-secondary" />,
     title: "Bath Vanities",
     shortDesc: "Transform your bathroom into a spa experience.",
-    // Updated to specific Unsplash image for Bathroom Vanity
     image: "https://agsstonefabricators.com/wp-content/uploads/2025/11/Custom-vs.-Pre-Fabricated-Kitchen-Cabinets-1-2.jpg",
-    longDesc: "Elevate your master bath or powder room with our custom vanity tops and cabinets. We specialize in fabricating vanity tops from remnants or full slabs, offering porcelain sinks, modern faucets, and expert installation for a spa-like retreat.",
+    longDesc: "Elevate your master bath or powder room with our custom vanity tops and cabinets. We specialize in fabricating vanity tops from remnants or full slabs.",
     features: ["Custom Vanity Tops", "Undermount Sinks", "Master Bath Renovation", "Remnant Program for Small Projects"],
     keywords: ["bathroom vanity tops", "bathroom remodel alpharetta", "custom quartz vanity"]
   },
   {
-    icon: <Hammer size={24} className="text-white" />,
+    icon: <Hammer size={24} className="text-secondary" />,
     title: "Outdoor Kitchens",
     shortDesc: "Durable and stylish outdoor cooking spaces.",
-    // Updated to specific Unsplash image for Outdoor Kitchen
     image: "https://agsstonefabricators.com/wp-content/uploads/2025/11/Custom-vs.-Pre-Fabricated-Kitchen-Cabinets-1-3.jpg",
-    longDesc: "Take the party outside with a custom outdoor kitchen. We use UV-resistant stones like Granite and Dekton that withstand Georgia's weather. From built-in BBQ grills to outdoor bar tops, we create the ultimate entertainment zone.",
+    longDesc: "Take the party outside with a custom outdoor kitchen. We use UV-resistant stones like Granite and Dekton that withstand Georgia's weather.",
     features: ["Weather-Resistant Materials", "Built-in BBQ Stations", "Outdoor Bar Tops", "Dekton & Granite Options"],
     keywords: ["outdoor kitchen builder", "granite bbq countertops", "patio kitchen design"]
   },
   {
-    icon: <Grid size={24} className="text-white" />,
+    icon: <Grid size={24} className="text-secondary" />,
     title: "Tile Work & Backsplash",
     shortDesc: "Professional flooring and backsplash installation.",
-    // Updated to specific Unsplash image for Tile/Backsplash
     image: "https://howtonestforless.com/wp-content/uploads/2014/10/kitchen-backsplash-tutorial.jpg",
-    longDesc: "The perfect kitchen needs the perfect backsplash. Our skilled tile setters install subway tile, mosaics, herringbone patterns, and large format porcelain flooring. We ensure proper waterproofing and grout sealing for longevity.",
+    longDesc: "The perfect kitchen needs the perfect backsplash. Our skilled tile setters install subway tile, mosaics, herringbone patterns, and large format porcelain flooring.",
     features: ["Backsplash Installation", "Porcelain & Ceramic Tile", "Shower Walls", "Custom Mosaics"],
     keywords: ["backsplash installation", "tile contractors duluth", "kitchen flooring"]
   }
@@ -86,20 +79,15 @@ const services: ServiceDetail[] = [
 
 const Services: React.FC = () => {
   const [selectedService, setSelectedService] = useState<ServiceDetail | null>(null);
-  
-  // Ref for the container of cards
   const containerRef = useRef<HTMLDivElement>(null);
 
-  // Scroll Animation Logic
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            // Updated animation classes for a faster entrance
             entry.target.classList.remove('opacity-0', 'translate-y-16', 'scale-95');
             entry.target.classList.add('opacity-100', 'translate-y-0', 'scale-100');
-            // Stop observing once animated
             observer.unobserve(entry.target);
           }
         });
@@ -113,163 +101,159 @@ const Services: React.FC = () => {
     return () => observer.disconnect();
   }, []);
 
+  // Lock body scroll when modal is open
+  useEffect(() => {
+    if (selectedService) {
+        document.body.style.overflow = 'hidden';
+    } else {
+        document.body.style.overflow = 'unset';
+    }
+    return () => { document.body.style.overflow = 'unset'; }
+  }, [selectedService]);
+
   return (
-    <section id="services" className="py-24 bg-gray-50 relative">
-      <div className="container mx-auto px-4">
-        <div className="text-center mb-16">
-          <h2 className="text-sm font-bold text-secondary uppercase tracking-widest mb-2">Our Expertise</h2>
-          <h3 className="text-3xl md:text-5xl font-bold text-primary">Services We Offer</h3>
-          <p className="mt-4 text-gray-600 max-w-2xl mx-auto">
-            Click on any service below to learn more about our process and materials.
+    <section id="services" className="py-24 bg-gray-50 relative overflow-hidden">
+        {/* Decorative Background Elements */}
+        <div className="absolute top-0 left-0 w-full h-full pointer-events-none">
+            <div className="absolute top-[10%] left-[-5%] w-96 h-96 bg-gray-200/50 rounded-full blur-3xl"></div>
+            <div className="absolute bottom-[10%] right-[-5%] w-96 h-96 bg-secondary/5 rounded-full blur-3xl"></div>
+        </div>
+
+      <div className="container mx-auto px-4 relative z-10">
+        <div className="text-center mb-20">
+          <h2 className="text-sm font-bold text-secondary uppercase tracking-[0.2em] mb-3">Our Expertise</h2>
+          <h3 className="text-4xl md:text-6xl font-serif font-medium text-primary mb-6">Mastering the Art of Stone</h3>
+          <p className="mt-4 text-gray-500 max-w-2xl mx-auto text-lg font-light leading-relaxed">
+            From precision laser cuts to hand-polished finishes, explore our premium services designed for the discerning homeowner.
           </p>
         </div>
 
         <div ref={containerRef} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {services.map((service, index) => {
-            // Logic to center the last item if it's an orphan
-            // On md (2 columns), item 7 is odd, so we can make it span 2 columns to center it.
-            // On lg (3 columns), item 7 is 3,3,1. We place it in col-start-2 to center it.
             const isLast = index === services.length - 1;
-            const gridClasses = isLast 
-                ? "md:col-span-2 lg:col-span-1 lg:col-start-2" 
-                : "";
+            const gridClasses = isLast ? "md:col-span-2 lg:col-span-1 lg:col-start-2" : "";
 
             return (
                 <div 
                 key={index} 
                 onClick={() => setSelectedService(service)}
-                className={`service-card-anim ${gridClasses} opacity-0 translate-y-16 scale-95 transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group bg-white rounded-2xl shadow-lg hover:shadow-2xl overflow-hidden flex flex-col h-full hover:-translate-y-2 cursor-pointer border border-gray-100`}
-                style={{ transitionDelay: `${index * 50}ms` }}
+                className={`service-card-anim ${gridClasses} opacity-0 translate-y-16 scale-95 transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] group relative h-[420px] cursor-pointer perspective-1000`}
+                style={{ transitionDelay: `${index * 80}ms` }}
                 >
-                {/* Image Area */}
-                <div className="relative h-56 overflow-hidden">
-                    <div className="absolute inset-0 bg-black/20 group-hover:bg-black/0 transition-colors z-10"></div>
-                    <img 
-                    src={service.image} 
-                    alt={service.title} 
-                    className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700"
-                    />
-                    <div className="absolute top-4 right-4 bg-secondary p-3 rounded-xl z-20 shadow-lg rotate-3 group-hover:rotate-0 transition-transform">
-                    {service.icon}
+                    <div className="relative h-full w-full bg-white rounded-[2rem] shadow-sm hover:shadow-[0_20px_50px_rgba(0,0,0,0.1)] border border-gray-100 transition-all duration-500 overflow-hidden group-hover:-translate-y-2">
+                        
+                        {/* Image Half */}
+                        <div className="h-1/2 overflow-hidden relative">
+                            <div className="absolute inset-0 bg-primary/10 group-hover:bg-transparent transition-colors duration-500 z-10"></div>
+                            <img 
+                                src={service.image} 
+                                alt={service.title} 
+                                className="w-full h-full object-cover transform scale-100 group-hover:scale-110 transition-transform duration-1000 ease-out"
+                            />
+                            {/* Floating Icon Badge */}
+                            <div className="absolute -bottom-6 right-8 w-14 h-14 bg-white rounded-full shadow-lg flex items-center justify-center z-20 border border-gray-50 group-hover:scale-110 transition-transform duration-300">
+                                {service.icon}
+                            </div>
+                        </div>
+
+                        {/* Text Half */}
+                        <div className="h-1/2 p-8 pt-10 flex flex-col relative">
+                            <h4 className="text-2xl font-serif font-medium text-primary mb-3 group-hover:text-secondary transition-colors duration-300">{service.title}</h4>
+                            <p className="text-gray-500 text-sm leading-relaxed mb-6 line-clamp-3 font-light">
+                                {service.shortDesc}
+                            </p>
+                            
+                            <div className="mt-auto flex items-center justify-between">
+                                <span className="text-xs font-bold uppercase tracking-wider text-gray-400 group-hover:text-primary transition-colors">Explore</span>
+                                <div className="w-8 h-8 rounded-full border border-gray-200 flex items-center justify-center group-hover:bg-secondary group-hover:border-secondary transition-all">
+                                    <Plus size={14} className="text-gray-400 group-hover:text-white transition-colors" />
+                                </div>
+                            </div>
+
+                            {/* Hover Border Effect */}
+                            <div className="absolute inset-0 border-2 border-transparent group-hover:border-secondary/10 rounded-[2rem] pointer-events-none transition-colors duration-500"></div>
+                        </div>
                     </div>
-                </div>
-                
-                {/* Content Area */}
-                <div className="p-8 flex-grow flex flex-col">
-                    <h4 className="text-xl font-bold text-primary mb-3 group-hover:text-secondary transition-colors">{service.title}</h4>
-                    <p className="text-gray-600 leading-relaxed mb-6 flex-grow">{service.shortDesc}</p>
-                    
-                    {/* 
-                    Action Area 
-                    Changed from invisible link to a clearly visible clickable area 
-                    */}
-                    <div className="mt-auto flex items-center justify-between border-t border-gray-100 pt-4 group/btn">
-                    <span className="text-sm font-bold text-secondary flex items-center gap-2">
-                        <PlusCircle size={16} />
-                        View Details
-                    </span>
-                    
-                    {/* Separate Link for Direct Quote to avoid propagation issues */}
-                    <a 
-                        href="#contact"
-                        onClick={(e) => {
-                        e.stopPropagation();
-                        }}
-                        className="flex items-center text-sm font-bold text-gray-400 hover:text-primary transition-colors gap-1"
-                    >
-                        Get Quote <ArrowRight size={14} className="opacity-0 -translate-x-2 group-hover/btn:opacity-100 group-hover/btn:translate-x-0 transition-all duration-300" />
-                    </a>
-                    </div>
-                </div>
                 </div>
             );
           })}
         </div>
       </div>
 
-      {/* Detail Modal */}
+      {/* Improved Detail Modal */}
       {selectedService && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-md animate-in fade-in duration-300" onClick={() => setSelectedService(null)}>
+        <div className="fixed inset-0 z-[100] flex items-end md:items-center justify-center p-0 md:p-4" onClick={() => setSelectedService(null)}>
+          {/* Backdrop */}
+          <div className="absolute inset-0 bg-black/60 backdrop-blur-md animate-in fade-in duration-300"></div>
+          
           <div 
-            className="bg-white w-full max-w-4xl max-h-[90vh] overflow-y-auto rounded-3xl shadow-2xl flex flex-col md:flex-row relative animate-in zoom-in-95 slide-in-from-bottom-8 duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]" 
+            className="bg-white w-full max-w-6xl max-h-[95vh] h-full md:h-auto md:rounded-3xl shadow-2xl flex flex-col md:flex-row relative animate-in slide-in-from-bottom-10 duration-500 z-10 overflow-hidden" 
             onClick={e => e.stopPropagation()}
           >
             <button 
               onClick={() => setSelectedService(null)}
-              className="absolute top-4 right-4 z-10 bg-white/80 hover:bg-white text-gray-800 p-2 rounded-full shadow-lg transition-colors"
+              className="absolute top-4 right-4 z-50 bg-white/20 hover:bg-white/40 backdrop-blur-md text-white md:text-gray-800 md:bg-white md:hover:bg-gray-100 p-2 rounded-full shadow-lg transition-colors border border-white/20 md:border-gray-100"
             >
               <X size={24} />
             </button>
 
-            {/* Modal Image Side */}
-            <div className="md:w-1/2 h-64 md:h-auto relative">
+            {/* Modal Image Side - Editorial Style */}
+            <div className="h-[40vh] md:h-auto md:w-5/12 relative overflow-hidden group">
               <img 
                 src={selectedService.image} 
                 alt={selectedService.title} 
-                className="w-full h-full object-cover"
+                className="w-full h-full object-cover transition-transform duration-[20s] ease-linear scale-110 group-hover:scale-100"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end p-8 md:hidden">
-                <h3 className="text-3xl font-bold text-white">{selectedService.title}</h3>
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+              
+              <div className="absolute bottom-0 left-0 p-8 w-full">
+                 <div className="inline-flex items-center gap-2 text-secondary font-bold uppercase tracking-widest text-xs mb-2">
+                    {selectedService.icon}
+                    <span>Service Detail</span>
+                 </div>
+                 <h3 className="text-3xl md:text-4xl font-serif font-bold text-white leading-none">{selectedService.title}</h3>
               </div>
             </div>
 
             {/* Modal Content Side */}
-            <div className="md:w-1/2 p-8 md:p-12">
-              <h3 className="text-3xl font-bold text-primary mb-4 hidden md:block">{selectedService.title}</h3>
-              <p className="text-gray-600 leading-relaxed mb-8 text-lg">
+            <div className="flex-1 p-8 md:p-12 lg:p-16 flex flex-col overflow-y-auto bg-white">
+              <div className="hidden md:block mb-8">
+                 <span className="text-5xl font-serif text-gray-100 font-bold -ml-1">0{services.indexOf(selectedService) + 1}</span>
+              </div>
+
+              <h4 className="font-bold text-primary text-xl mb-4">Overview</h4>
+              <p className="text-gray-600 leading-relaxed mb-10 text-lg font-light">
                 {selectedService.longDesc}
               </p>
 
-              <div className="mb-8">
-                <h4 className="font-bold text-secondary uppercase tracking-wider text-sm mb-4">What's Included</h4>
-                <ul className="space-y-3">
+              <div className="mb-12">
+                <h4 className="font-bold text-gray-900 text-sm uppercase tracking-wider mb-6 border-b border-gray-100 pb-2">What's Included</h4>
+                <div className="grid grid-cols-1 gap-4">
                   {selectedService.features.map((feature, i) => (
-                    <li key={i} className="flex items-center gap-3 text-gray-700">
-                      <div className="bg-green-100 text-green-600 p-1 rounded-full">
-                        <Check size={16} />
+                    <div key={i} className="flex items-start gap-4 p-4 rounded-xl bg-gray-50 hover:bg-gray-100 transition-colors">
+                      <div className="bg-white p-1 rounded-full text-secondary shadow-sm mt-0.5">
+                          <Check size={14} />
                       </div>
-                      {feature}
-                    </li>
+                      <span className="text-gray-700 font-medium">{feature}</span>
+                    </div>
                   ))}
-                </ul>
+                </div>
               </div>
 
-              {/* Two Buttons: Free Estimate & Direction */}
-              <div className="grid sm:grid-cols-2 gap-4">
+              {/* Sticky Action Bar for Mobile / Regular for Desktop */}
+              <div className="mt-auto border-t border-gray-100 pt-6 flex flex-col sm:flex-row gap-4 sticky bottom-0 bg-white md:static p-4 md:p-0 -mx-8 md:mx-0 shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.05)] md:shadow-none">
                 <a 
-                  href="tel:4049524534" 
-                  className="flex items-center justify-center gap-2 bg-secondary hover:bg-yellow-600 text-white font-bold py-3 px-4 rounded-xl transition-all shadow-lg hover:shadow-xl text-center"
+                  href="#contact"
+                  className="flex-1 flex items-center justify-center gap-2 bg-primary hover:bg-gray-800 text-white font-bold py-4 px-6 rounded-xl transition-all shadow-lg hover:-translate-y-1"
                 >
-                  <Phone size={18} />
-                  Free Estimate
+                  Book Consultation
                 </a>
-
                 <a 
-                  href="https://maps.google.com/?q=4579+Abbotts+Bridge+Rd,+Duluth,+GA+30097" 
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center justify-center gap-2 bg-primary hover:bg-slate-800 text-white font-bold py-3 px-4 rounded-xl transition-all shadow-lg hover:shadow-xl text-center"
+                   href="tel:4049524534"
+                   className="flex-1 flex items-center justify-center gap-2 border border-gray-200 hover:border-secondary hover:text-secondary text-gray-600 font-bold py-4 px-6 rounded-xl transition-all"
                 >
-                  <Navigation size={18} />
-                  Get Directions
+                   <Phone size={18} /> Call Specialist
                 </a>
-              </div>
-              
-              {/* Subtle SEO keywords at bottom of modal */}
-              <div className="mt-6 pt-6 border-t border-gray-100">
-                <p className="text-xs text-gray-400">
-                  Related: {selectedService.keywords.join(", ")}
-                </p>
-              </div>
-
-              {/* Hidden SEO Section */}
-              <div className="hidden">
-                 <h3>SEO Keywords for {selectedService.title}</h3>
-                 <ul>
-                    {selectedService.keywords.map((keyword, idx) => (
-                        <li key={idx}>{keyword}</li>
-                    ))}
-                 </ul>
               </div>
             </div>
           </div>

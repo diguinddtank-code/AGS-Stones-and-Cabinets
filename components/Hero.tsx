@@ -5,7 +5,6 @@ const Hero: React.FC = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      // Use requestAnimationFrame for smooth performance on mobile
       requestAnimationFrame(() => setScrollY(window.scrollY));
     };
 
@@ -14,12 +13,9 @@ const Hero: React.FC = () => {
   }, []);
 
   return (
-    // Changed h-screen to min-h-[100dvh] to account for mobile browser bars properly
-    <section className="relative min-h-[100dvh] flex items-center justify-center overflow-hidden bg-black pb-24 md:pb-0">
+    <section className="relative min-h-[100dvh] flex items-center justify-center overflow-hidden bg-primary pb-0">
       {/* 
         Background Image with Parallax Effect 
-        - Moves at 50% speed of scroll (scrollY * 0.5)
-        - Blurs slightly as user scrolls down for depth
       */}
       <div 
         className="absolute inset-0 z-0 will-change-transform"
@@ -33,56 +29,47 @@ const Hero: React.FC = () => {
           alt="Luxury Kitchen Remodel in Atlanta" 
           className="w-full h-full object-cover animate-in fade-in zoom-in duration-1000"
         />
-        {/* Gradient Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/70"></div>
+        {/* Cinematic Gradient Overlay */}
+        <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/40 to-primary/90"></div>
       </div>
 
-      {/* 
-        Content Container:
-        - pt-44 on mobile (Increased from 32 to push text down further below the logo)
-        - Parallax Speed 0.2 (Moves slower than scroll, faster than bg)
-        - Fades out opacity as user scrolls away
-      */}
       <div 
-        className="relative z-10 container mx-auto px-4 h-full flex flex-col justify-center items-center text-center text-white pt-44 md:pt-0 will-change-transform"
+        className="relative z-10 container mx-auto px-4 h-full flex flex-col justify-center items-center text-center text-white pt-32 md:pt-0 will-change-transform"
         style={{ 
           transform: `translateY(${scrollY * 0.2}px)`, 
-          opacity: Math.max(0, 1 - scrollY / 600) // Fades out completely after 600px scroll
+          opacity: Math.max(0, 1 - scrollY / 600)
         }}
       >
-        <div className="animate-in slide-in-from-bottom-10 fade-in duration-1000 delay-300 max-w-4xl">
-            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 drop-shadow-2xl leading-tight tracking-tight">
-            Crafting Your Dream <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-secondary to-yellow-300">Kitchen & Bath</span>
+        <div className="animate-in slide-in-from-bottom-10 fade-in duration-1000 delay-300 max-w-5xl">
+            <span className="inline-block py-1 px-3 rounded-full border border-white/30 bg-white/10 backdrop-blur-sm text-xs md:text-sm uppercase tracking-widest mb-6 font-medium">
+                Atlanta's Premier Stone Fabricator
+            </span>
+            <h1 className="text-5xl md:text-7xl lg:text-8xl font-serif font-bold mb-6 drop-shadow-2xl leading-tight tracking-tight">
+            Elevate Your <br />
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#eab308] via-[#fde047] to-[#eab308]">Living Space</span>
             </h1>
-            <p className="text-lg md:text-2xl mb-10 max-w-3xl mx-auto drop-shadow-lg text-gray-100 leading-relaxed font-light">
-            Premier granite, marble, quartz countertops and custom cabinetry in Metro Atlanta. 
-            <span className="block md:inline mt-2 md:mt-0"> Experience quality craftsmanship from Duluth to your doorstep.</span>
+            <p className="text-lg md:text-2xl mb-12 max-w-3xl mx-auto drop-shadow-lg text-gray-200 leading-relaxed font-light">
+            Exquisite granite, marble, and quartz craftsmanship. <br className="hidden md:block"/>
+            Bringing luxury to Duluth, Alpharetta, and beyond.
             </p>
             
-            <div className="flex flex-col sm:flex-row justify-center gap-4 relative z-20">
+            <div className="flex flex-col sm:flex-row justify-center gap-5 relative z-20">
             <a 
-                href="#visualizer" 
-                className="bg-secondary hover:bg-yellow-600 text-white text-lg font-bold py-4 px-8 rounded-full transition-all hover:scale-105 shadow-[0_0_20px_rgba(202,138,4,0.5)] border-2 border-secondary touch-manipulation"
+                href="#showroom" 
+                className="group relative bg-secondary hover:bg-[#b47a03] text-white text-lg font-bold py-4 px-10 rounded-full transition-all hover:scale-105 shadow-[0_0_30px_rgba(202,138,4,0.4)] overflow-hidden"
             >
-                Design With AI
+                <span className="relative z-10">Visit Showroom</span>
+                <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300"></div>
             </a>
             <a 
                 href="#contact" 
-                className="bg-transparent hover:bg-white/10 text-white text-lg font-bold py-4 px-8 rounded-full transition-all hover:scale-105 shadow-xl border-2 border-white backdrop-blur-sm touch-manipulation"
+                className="bg-white/5 hover:bg-white/10 text-white text-lg font-bold py-4 px-10 rounded-full transition-all hover:scale-105 border border-white/30 backdrop-blur-md"
             >
                 Get Free Quote
             </a>
             </div>
         </div>
       </div>
-
-      {/* 
-        Bottom Transition Gradient:
-        Creates a smooth blend into the next section (which is bg-gray-50),
-        removing the harsh line between the hero image and white content.
-      */}
-      <div className="absolute bottom-0 left-0 w-full h-24 bg-gradient-to-t from-gray-50 to-transparent z-20 pointer-events-none"></div>
     </section>
   );
 };
