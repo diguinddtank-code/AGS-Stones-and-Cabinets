@@ -8,35 +8,35 @@ const reviews: Testimonial[] = [
     location: "Duluth, GA",
     text: "AGS transformed our outdated kitchen into a modern masterpiece. The quartz countertops are flawless, and the team was incredibly professional.",
     rating: 5,
-    image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&w=200&auto=format&fit=crop"
+    image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&w=200&fm=webp&fit=crop"
   },
   {
     name: "Michael Ross",
     location: "Alpharetta, GA",
     text: "Best prices in Atlanta hands down. I got quotes from 4 other places and AGS beat them all without sacrificing quality. Highly recommend!",
     rating: 5,
-    image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=200&auto=format&fit=crop"
+    image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=200&fm=webp&fit=crop"
   },
   {
     name: "Emily Dao",
     location: "Johns Creek, GA",
     text: "Love my new vanity! They helped me pick the perfect marble slab. The installation was quick and clean.",
     rating: 5,
-    image: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=200&auto=format&fit=crop"
+    image: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=200&fm=webp&fit=crop"
   },
   {
     name: "David Thompson",
     location: "Roswell, GA",
     text: "The 3D templating was impressive. The fit was perfect against our uneven walls. True professionals.",
     rating: 5,
-    image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=200&auto=format&fit=crop"
+    image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=200&fm=webp&fit=crop"
   },
   {
     name: "Jessica Alverez",
     location: "Suwanee, GA",
     text: "Fantastic selection of quartz. They installed everything in one day and left the place spotless.",
     rating: 5,
-    image: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=200&auto=format&fit=crop"
+    image: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=200&fm=webp&fit=crop"
   }
 ];
 
@@ -89,6 +89,9 @@ const Testimonials: React.FC = () => {
                     src={review.image} 
                     alt={review.name} 
                     className="w-12 h-12 rounded-full object-cover border-2 border-white shadow-md"
+                    loading="lazy"
+                    width="48"
+                    height="48"
                   />
                   <div>
                     <p className="font-bold text-gray-900 text-sm">{review.name}</p>

@@ -7,10 +7,12 @@ const Showroom: React.FC = () => {
         {/* Parallax Background */}
         <div className="absolute inset-0 z-0">
              <img 
-                src="https://images.unsplash.com/photo-1618221639263-d656c1f52576?q=80&w=1920&auto=format&fit=crop" 
+                src="https://images.unsplash.com/photo-1618221639263-d656c1f52576?q=80&w=1920&fm=webp&fit=crop" 
                 alt="AGS Stone Showroom Gallery" 
                 className="w-full h-full object-cover opacity-40"
                 loading="lazy"
+                width="1920"
+                height="1080"
              />
              <div className="absolute inset-0 bg-gradient-to-r from-gray-900 via-gray-900/80 to-transparent"></div>
         </div>

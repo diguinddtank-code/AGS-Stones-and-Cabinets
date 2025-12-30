@@ -29,6 +29,9 @@ const Hero: React.FC = () => {
           src="https://kitchenandbathshop.com/wp-content/uploads/2020/11/5d7ff4ab763f7-scaled.jpg" 
           alt="Luxury Kitchen Remodel, Granite Countertops and Custom Cabinets in Atlanta" 
           className="w-full h-full object-cover animate-in fade-in zoom-in duration-1000"
+          fetchPriority="high" // Vital for LCP score
+          width="1920"
+          height="1080"
         />
         {/* Cinematic Gradient Overlay */}
         <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/40 to-primary/90"></div>
