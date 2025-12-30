@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Layers, Box, Hammer, Droplet, ChefHat, Grid, ArrowRight, X, Check, Bath, Phone, Plus } from 'lucide-react';
+import { Layers, Box, Hammer, Droplet, ChefHat, Grid, X, Check, Bath, Phone, Plus, ArrowUpRight, Calendar } from 'lucide-react';
 
 interface ServiceDetail {
   icon: React.ReactNode;
@@ -86,7 +86,7 @@ const Services: React.FC = () => {
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            entry.target.classList.remove('opacity-0', 'translate-y-16', 'scale-95');
+            entry.target.classList.remove('opacity-0', 'translate-y-12', 'scale-95');
             entry.target.classList.add('opacity-100', 'translate-y-0', 'scale-100');
             observer.unobserve(entry.target);
           }
@@ -115,8 +115,8 @@ const Services: React.FC = () => {
     <section id="services" className="py-24 bg-gray-50 relative overflow-hidden">
         {/* Decorative Background Elements */}
         <div className="absolute top-0 left-0 w-full h-full pointer-events-none">
-            <div className="absolute top-[10%] left-[-5%] w-96 h-96 bg-gray-200/50 rounded-full blur-3xl"></div>
-            <div className="absolute bottom-[10%] right-[-5%] w-96 h-96 bg-secondary/5 rounded-full blur-3xl"></div>
+            <div className="absolute top-[10%] left-[-5%] w-96 h-96 bg-gray-200/50 rounded-full blur-3xl mix-blend-multiply"></div>
+            <div className="absolute bottom-[10%] right-[-5%] w-96 h-96 bg-secondary/5 rounded-full blur-3xl mix-blend-multiply"></div>
         </div>
 
       <div className="container mx-auto px-4 relative z-10">
@@ -137,41 +137,38 @@ const Services: React.FC = () => {
                 <div 
                 key={index} 
                 onClick={() => setSelectedService(service)}
-                className={`service-card-anim ${gridClasses} opacity-0 translate-y-16 scale-95 transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] group relative h-[420px] cursor-pointer perspective-1000`}
+                className={`service-card-anim ${gridClasses} opacity-0 translate-y-12 scale-95 transition-all duration-1000 ease-[cubic-bezier(0.16,1,0.3,1)] group relative h-[420px] cursor-pointer`}
                 style={{ transitionDelay: `${index * 80}ms` }}
                 >
-                    <div className="relative h-full w-full bg-white rounded-[2rem] shadow-sm hover:shadow-[0_20px_50px_rgba(0,0,0,0.1)] border border-gray-100 transition-all duration-500 overflow-hidden group-hover:-translate-y-2">
+                    <div className="relative h-full w-full bg-white rounded-[2.5rem] shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:shadow-[0_30px_60px_rgb(0,0,0,0.08)] border border-white transition-all duration-500 overflow-hidden group-hover:-translate-y-2 group-hover:scale-[1.02]">
                         
                         {/* Image Half */}
                         <div className="h-1/2 overflow-hidden relative">
-                            <div className="absolute inset-0 bg-primary/10 group-hover:bg-transparent transition-colors duration-500 z-10"></div>
+                            <div className="absolute inset-0 bg-primary/5 group-hover:bg-transparent transition-colors duration-500 z-10"></div>
                             <img 
                                 src={service.image} 
-                                alt={service.title} 
-                                className="w-full h-full object-cover transform scale-100 group-hover:scale-110 transition-transform duration-1000 ease-out"
+                                alt={`${service.title} Services in Atlanta GA`}
+                                className="w-full h-full object-cover transform scale-105 group-hover:scale-110 transition-transform duration-[1.5s] ease-out"
                             />
                             {/* Floating Icon Badge */}
-                            <div className="absolute -bottom-6 right-8 w-14 h-14 bg-white rounded-full shadow-lg flex items-center justify-center z-20 border border-gray-50 group-hover:scale-110 transition-transform duration-300">
+                            <div className="absolute -bottom-7 right-8 w-16 h-16 bg-white rounded-2xl shadow-xl flex items-center justify-center z-20 border border-gray-50 group-hover:scale-110 group-hover:rotate-3 transition-all duration-500 ease-[cubic-bezier(0.34,1.56,0.64,1)]">
                                 {service.icon}
                             </div>
                         </div>
 
                         {/* Text Half */}
-                        <div className="h-1/2 p-8 pt-10 flex flex-col relative">
+                        <div className="h-1/2 p-8 pt-12 flex flex-col relative">
                             <h4 className="text-2xl font-serif font-medium text-primary mb-3 group-hover:text-secondary transition-colors duration-300">{service.title}</h4>
                             <p className="text-gray-500 text-sm leading-relaxed mb-6 line-clamp-3 font-light">
                                 {service.shortDesc}
                             </p>
                             
                             <div className="mt-auto flex items-center justify-between">
-                                <span className="text-xs font-bold uppercase tracking-wider text-gray-400 group-hover:text-primary transition-colors">Explore</span>
-                                <div className="w-8 h-8 rounded-full border border-gray-200 flex items-center justify-center group-hover:bg-secondary group-hover:border-secondary transition-all">
-                                    <Plus size={14} className="text-gray-400 group-hover:text-white transition-colors" />
+                                <span className="text-xs font-bold uppercase tracking-wider text-gray-400 group-hover:text-primary transition-colors">View Details</span>
+                                <div className="w-10 h-10 rounded-full bg-gray-50 group-hover:bg-secondary flex items-center justify-center transition-all duration-300">
+                                    <ArrowUpRight size={18} className="text-gray-400 group-hover:text-white transition-colors" />
                                 </div>
                             </div>
-
-                            {/* Hover Border Effect */}
-                            <div className="absolute inset-0 border-2 border-transparent group-hover:border-secondary/10 rounded-[2rem] pointer-events-none transition-colors duration-500"></div>
                         </div>
                     </div>
                 </div>
@@ -180,81 +177,123 @@ const Services: React.FC = () => {
         </div>
       </div>
 
-      {/* Improved Detail Modal */}
+      {/* 
+        ----------------------------------------------------
+        REFINED LUXURY MODAL
+        ----------------------------------------------------
+      */}
       {selectedService && (
-        <div className="fixed inset-0 z-[100] flex items-end md:items-center justify-center p-0 md:p-4" onClick={() => setSelectedService(null)}>
-          {/* Backdrop */}
-          <div className="absolute inset-0 bg-black/60 backdrop-blur-md animate-in fade-in duration-300"></div>
+        <div 
+            className="fixed inset-0 z-[100] flex items-end md:items-center justify-center"
+            role="dialog"
+            aria-modal="true"
+        >
+          {/* Backdrop with stronger blur for focus */}
+          <div 
+            className="absolute inset-0 bg-primary/60 backdrop-blur-md animate-in fade-in duration-500"
+            onClick={() => setSelectedService(null)}
+          ></div>
           
           <div 
-            className="bg-white w-full max-w-6xl max-h-[95vh] h-full md:h-auto md:rounded-3xl shadow-2xl flex flex-col md:flex-row relative animate-in slide-in-from-bottom-10 duration-500 z-10 overflow-hidden" 
+            className="bg-white w-full md:w-[90%] md:max-w-6xl max-h-[90dvh] h-[90dvh] md:h-[85vh] rounded-t-[2rem] md:rounded-[2rem] shadow-2xl flex flex-col md:flex-row relative animate-in slide-in-from-bottom-12 duration-500 ease-[cubic-bezier(0.19,1,0.22,1)] z-10 overflow-hidden" 
             onClick={e => e.stopPropagation()}
           >
+            {/* Close Button - Floats nicely above everything */}
             <button 
               onClick={() => setSelectedService(null)}
-              className="absolute top-4 right-4 z-50 bg-white/20 hover:bg-white/40 backdrop-blur-md text-white md:text-gray-800 md:bg-white md:hover:bg-gray-100 p-2 rounded-full shadow-lg transition-colors border border-white/20 md:border-gray-100"
+              className="absolute top-4 right-4 z-50 bg-white/50 hover:bg-white backdrop-blur-md text-primary p-2.5 rounded-full shadow-sm transition-all border border-white/40 hover:scale-110"
             >
-              <X size={24} />
+              <X size={22} />
             </button>
 
-            {/* Modal Image Side - Editorial Style */}
-            <div className="h-[40vh] md:h-auto md:w-5/12 relative overflow-hidden group">
+            {/* Left Side: Visuals (Top on Mobile) */}
+            <div className="h-64 md:h-auto md:w-5/12 relative overflow-hidden group shrink-0">
               <img 
                 src={selectedService.image} 
-                alt={selectedService.title} 
-                className="w-full h-full object-cover transition-transform duration-[20s] ease-linear scale-110 group-hover:scale-100"
+                alt={`${selectedService.title} - Best in Atlanta & Duluth`}
+                className="w-full h-full object-cover transition-transform duration-[3s] ease-linear scale-105 group-hover:scale-110"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+              <div className="absolute inset-0 bg-gradient-to-t from-primary/90 via-primary/20 to-transparent md:bg-gradient-to-r md:from-transparent md:to-transparent"></div>
               
-              <div className="absolute bottom-0 left-0 p-8 w-full">
-                 <div className="inline-flex items-center gap-2 text-secondary font-bold uppercase tracking-widest text-xs mb-2">
+              {/* Mobile Only overlay Text */}
+              <div className="absolute bottom-0 left-0 p-6 w-full md:hidden">
+                 <div className="inline-flex items-center gap-2 bg-white/20 backdrop-blur-md px-3 py-1 rounded-full text-white font-bold uppercase tracking-widest text-[10px] mb-2 border border-white/10">
                     {selectedService.icon}
-                    <span>Service Detail</span>
+                    <span>Service</span>
                  </div>
-                 <h3 className="text-3xl md:text-4xl font-serif font-bold text-white leading-none">{selectedService.title}</h3>
+                 <h3 className="text-2xl font-serif font-bold text-white leading-none drop-shadow-md">{selectedService.title}</h3>
               </div>
             </div>
 
-            {/* Modal Content Side */}
-            <div className="flex-1 p-8 md:p-12 lg:p-16 flex flex-col overflow-y-auto bg-white">
-              <div className="hidden md:block mb-8">
-                 <span className="text-5xl font-serif text-gray-100 font-bold -ml-1">0{services.indexOf(selectedService) + 1}</span>
-              </div>
+            {/* Right Side: Content & Actions (Bottom on Mobile) */}
+            <div className="flex-1 flex flex-col bg-white relative overflow-hidden">
+              
+              {/* Scrollable Content Area */}
+              <div className="flex-1 overflow-y-auto p-6 md:p-12 pb-24 md:pb-28 custom-scrollbar">
+                
+                {/* Desktop Title (Hidden on Mobile) */}
+                <div className="hidden md:block mb-8">
+                     <div className="inline-flex items-center gap-2 bg-primary/5 px-3 py-1 rounded-full text-primary font-bold uppercase tracking-widest text-[10px] mb-4">
+                        {selectedService.icon}
+                        <span>Service Detail</span>
+                     </div>
+                    <h3 className="text-4xl lg:text-5xl font-serif font-bold text-primary leading-tight">{selectedService.title}</h3>
+                </div>
 
-              <h4 className="font-bold text-primary text-xl mb-4">Overview</h4>
-              <p className="text-gray-600 leading-relaxed mb-10 text-lg font-light">
-                {selectedService.longDesc}
-              </p>
+                <div className="mb-8">
+                    <h4 className="font-bold text-primary text-lg mb-3">Overview</h4>
+                    <p className="text-gray-600 leading-relaxed text-base font-light">
+                        {selectedService.longDesc}
+                    </p>
+                </div>
 
-              <div className="mb-12">
-                <h4 className="font-bold text-gray-900 text-sm uppercase tracking-wider mb-6 border-b border-gray-100 pb-2">What's Included</h4>
-                <div className="grid grid-cols-1 gap-4">
-                  {selectedService.features.map((feature, i) => (
-                    <div key={i} className="flex items-start gap-4 p-4 rounded-xl bg-gray-50 hover:bg-gray-100 transition-colors">
-                      <div className="bg-white p-1 rounded-full text-secondary shadow-sm mt-0.5">
-                          <Check size={14} />
-                      </div>
-                      <span className="text-gray-700 font-medium">{feature}</span>
+                <div>
+                    <h4 className="font-bold text-gray-900 text-xs uppercase tracking-widest mb-6 border-b border-gray-100 pb-2 flex justify-between items-center">
+                        What's Included
+                        <span className="text-secondary normal-case tracking-normal text-[10px] bg-secondary/10 px-2 py-0.5 rounded-full">All Inclusive</span>
+                    </h4>
+                    <div className="grid grid-cols-1 gap-3">
+                        {selectedService.features.map((feature, i) => (
+                        <div key={i} className="flex items-center gap-4 p-3 rounded-2xl bg-gray-50 border border-transparent hover:border-gray-200 hover:bg-white transition-all group/item">
+                            <div className="bg-white p-1.5 rounded-full text-secondary shadow-sm group-hover/item:scale-110 transition-transform border border-gray-100">
+                                <Check size={14} strokeWidth={3} />
+                            </div>
+                            <span className="text-gray-700 font-medium text-sm md:text-base">{feature}</span>
+                        </div>
+                        ))}
                     </div>
-                  ))}
                 </div>
               </div>
 
-              {/* Sticky Action Bar for Mobile / Regular for Desktop */}
-              <div className="mt-auto border-t border-gray-100 pt-6 flex flex-col sm:flex-row gap-4 sticky bottom-0 bg-white md:static p-4 md:p-0 -mx-8 md:mx-0 shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.05)] md:shadow-none">
-                <a 
-                  href="#contact"
-                  className="flex-1 flex items-center justify-center gap-2 bg-primary hover:bg-gray-800 text-white font-bold py-4 px-6 rounded-xl transition-all shadow-lg hover:-translate-y-1"
-                >
-                  Book Consultation
-                </a>
-                <a 
-                   href="tel:4049524534"
-                   className="flex-1 flex items-center justify-center gap-2 border border-gray-200 hover:border-secondary hover:text-secondary text-gray-600 font-bold py-4 px-6 rounded-xl transition-all"
-                >
-                   <Phone size={18} /> Call Specialist
-                </a>
+              {/* 
+                THE "ACTION BAR" 
+                Sticks to the bottom, creates a unified control area 
+              */}
+              <div className="absolute bottom-0 left-0 w-full z-20">
+                {/* Fade mask to smooth text scrolling behind the bar */}
+                <div className="h-12 bg-gradient-to-t from-white to-transparent pointer-events-none"></div>
+                
+                {/* Glassmorphic Bar */}
+                <div className="bg-white/80 backdrop-blur-xl border-t border-gray-200/50 p-4 md:p-6 flex flex-row gap-3 md:gap-4 items-center shadow-[0_-10px_40px_-15px_rgba(0,0,0,0.1)]">
+                    <a 
+                        href="#contact"
+                        className="flex-1 flex items-center justify-center gap-2 bg-primary hover:bg-gray-800 text-white font-bold py-3.5 md:py-4 px-6 rounded-xl transition-all hover:shadow-lg hover:-translate-y-0.5 active:scale-95 text-sm md:text-base"
+                    >
+                        <Calendar size={18} />
+                        <span>Book Consultation</span>
+                    </a>
+                    
+                    <a 
+                        href="tel:4049524534"
+                        className="flex-none flex items-center justify-center gap-2 bg-white hover:bg-gray-50 text-gray-700 font-bold py-3.5 md:py-4 px-5 rounded-xl border border-gray-200 transition-all hover:border-secondary hover:text-secondary active:scale-95"
+                        title="Call Specialist"
+                    >
+                        <Phone size={20} />
+                        <span className="hidden md:inline">Call Now</span>
+                    </a>
+                </div>
               </div>
+
             </div>
           </div>
         </div>
