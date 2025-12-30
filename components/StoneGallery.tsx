@@ -93,6 +93,7 @@ const StoneGallery: React.FC = () => {
                             src={stone.image} 
                             alt={`${stone.name} ${stone.category} slab in Atlanta`} 
                             className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-90 group-hover:opacity-100"
+                            loading="lazy"
                         />
                         
                         {/* Dark Overlay Gradient */}

@@ -16,49 +16,83 @@ const Contact: React.FC = () => {
           {/* Contact Form Section */}
           <div className="lg:w-1/2 p-8 md:p-12 lg:p-16 bg-white z-10">
             <h4 className="text-2xl font-bold text-primary mb-6">Send us a message</h4>
-            <form className="space-y-6">
+            
+            {/* 
+                FormSubmit Configuration:
+                1. action: points to the service with your email.
+                2. method: POST.
+                3. hidden inputs: configure subject and behavior.
+            */}
+            <form 
+                action="https://formsubmit.co/agsstonesandcabinets@gmail.com" 
+                method="POST" 
+                className="space-y-6"
+            >
+              {/* FormSubmit Configuration Fields */}
+              <input type="hidden" name="_subject" value="New Lead from AGS Website!" />
+              <input type="hidden" name="_captcha" value="false" />
+              <input type="hidden" name="_template" value="table" />
+              {/* Optional: Redirect to a thank you page (if you had one, otherwise it shows default success) */}
+              {/* <input type="hidden" name="_next" value="https://yourwebsite.com/thanks" /> */}
+
               <div className="grid md:grid-cols-2 gap-6">
                 <div>
-                  <label className="block text-xs font-bold text-gray-500 uppercase tracking-wide mb-2">First Name</label>
+                  <label htmlFor="firstName" className="block text-xs font-bold text-gray-500 uppercase tracking-wide mb-2">First Name</label>
                   <input 
+                    id="firstName"
+                    name="firstName"
                     type="text" 
                     className="w-full px-4 py-3 rounded-lg bg-gray-50 border border-gray-200 focus:border-secondary focus:ring-2 focus:ring-secondary/20 outline-none transition-all placeholder-gray-400" 
                     placeholder="Jane" 
+                    required
                   />
                 </div>
                 <div>
-                  <label className="block text-xs font-bold text-gray-500 uppercase tracking-wide mb-2">Last Name</label>
+                  <label htmlFor="lastName" className="block text-xs font-bold text-gray-500 uppercase tracking-wide mb-2">Last Name</label>
                   <input 
+                    id="lastName"
+                    name="lastName"
                     type="text" 
                     className="w-full px-4 py-3 rounded-lg bg-gray-50 border border-gray-200 focus:border-secondary focus:ring-2 focus:ring-secondary/20 outline-none transition-all placeholder-gray-400" 
                     placeholder="Doe" 
+                    required
                   />
                 </div>
               </div>
 
               <div className="grid md:grid-cols-2 gap-6">
                  <div>
-                    <label className="block text-xs font-bold text-gray-500 uppercase tracking-wide mb-2">Phone</label>
+                    <label htmlFor="phone" className="block text-xs font-bold text-gray-500 uppercase tracking-wide mb-2">Phone</label>
                     <input 
+                        id="phone"
+                        name="phone"
                         type="tel" 
                         className="w-full px-4 py-3 rounded-lg bg-gray-50 border border-gray-200 focus:border-secondary focus:ring-2 focus:ring-secondary/20 outline-none transition-all placeholder-gray-400" 
                         placeholder="(404) 555-0123" 
+                        required
                     />
                  </div>
                  <div>
-                    <label className="block text-xs font-bold text-gray-500 uppercase tracking-wide mb-2">Email</label>
+                    <label htmlFor="email" className="block text-xs font-bold text-gray-500 uppercase tracking-wide mb-2">Email</label>
                     <input 
+                        id="email"
+                        name="email"
                         type="email" 
                         className="w-full px-4 py-3 rounded-lg bg-gray-50 border border-gray-200 focus:border-secondary focus:ring-2 focus:ring-secondary/20 outline-none transition-all placeholder-gray-400" 
                         placeholder="jane@example.com" 
+                        required
                     />
                  </div>
               </div>
 
               <div>
-                <label className="block text-xs font-bold text-gray-500 uppercase tracking-wide mb-2">Service Needed</label>
+                <label htmlFor="service" className="block text-xs font-bold text-gray-500 uppercase tracking-wide mb-2">Service Needed</label>
                 <div className="relative">
-                    <select className="w-full px-4 py-3 rounded-lg bg-gray-50 border border-gray-200 focus:border-secondary focus:ring-2 focus:ring-secondary/20 outline-none transition-all appearance-none">
+                    <select 
+                        id="service"
+                        name="service"
+                        className="w-full px-4 py-3 rounded-lg bg-gray-50 border border-gray-200 focus:border-secondary focus:ring-2 focus:ring-secondary/20 outline-none transition-all appearance-none"
+                    >
                         <option>Kitchen Remodeling</option>
                         <option>Countertops (Granite/Quartz)</option>
                         <option>Bathroom Vanity</option>
@@ -73,8 +107,10 @@ const Contact: React.FC = () => {
               </div>
 
               <div>
-                <label className="block text-xs font-bold text-gray-500 uppercase tracking-wide mb-2">Project Details</label>
+                <label htmlFor="details" className="block text-xs font-bold text-gray-500 uppercase tracking-wide mb-2">Project Details</label>
                 <textarea 
+                    id="details"
+                    name="details"
                     rows={4} 
                     className="w-full px-4 py-3 rounded-lg bg-gray-50 border border-gray-200 focus:border-secondary focus:ring-2 focus:ring-secondary/20 outline-none transition-all placeholder-gray-400 resize-none" 
                     placeholder="Tell us about your space, timeline, and any specific stones you are interested in..."
@@ -86,7 +122,7 @@ const Contact: React.FC = () => {
                  <p>We typically respond within 24 hours. For immediate assistance, please call us directly.</p>
               </div>
 
-              <button className="w-full bg-primary hover:bg-slate-800 text-white font-bold py-4 rounded-xl transition-all hover:scale-[1.01] flex items-center justify-center gap-2 shadow-lg hover:shadow-xl">
+              <button type="submit" className="w-full bg-primary hover:bg-slate-800 text-white font-bold py-4 rounded-xl transition-all hover:scale-[1.01] flex items-center justify-center gap-2 shadow-lg hover:shadow-xl">
                 <Send size={20} /> Request Free Quote
               </button>
             </form>
@@ -103,6 +139,7 @@ const Contact: React.FC = () => {
                 loading="lazy" 
                 referrerPolicy="no-referrer-when-downgrade"
                 className="absolute inset-0"
+                title="Google Map of AGS Stones Location"
             ></iframe>
             
             {/* Overlay Info Card - Improved Design */}

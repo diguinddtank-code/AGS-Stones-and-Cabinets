@@ -39,7 +39,7 @@ const Hero: React.FC = () => {
         Moves at 0.3 speed (slower than background's 0.5 relative to viewport, creating depth)
       */}
       <div 
-        className="relative z-10 container mx-auto px-4 h-full flex flex-col justify-center items-center text-center text-white pt-24 pb-28 md:py-0 will-change-transform"
+        className="relative z-10 container mx-auto px-4 h-full flex flex-col justify-center items-center text-center text-white pt-32 pb-28 md:py-0 will-change-transform"
         style={{ 
           transform: `translateY(${scrollY * 0.3}px)`, 
           opacity: Math.max(0, 1 - scrollY / 700)

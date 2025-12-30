@@ -142,26 +142,32 @@ const WhyChooseUs: React.FC = () => {
           
           <div className="space-y-4">
             <FaqItem 
+              id="faq-1"
               question="How much do Granite countertops cost in Atlanta?" 
               answer="Granite prices vary by level (rarity) and thickness. At AGS Stones in Duluth, we offer factory-direct pricing starting as low as $35/sqft installed for Level 1 granite. We service all of Metro Atlanta including Johns Creek, Alpharetta, and Roswell with competitive rates." 
             />
             <FaqItem 
+              id="faq-2"
               question="Do you install Kitchen Cabinets near me?" 
               answer="Yes! We are a full-service kitchen remodeling company. We install custom and semi-custom cabinets throughout the Atlanta area. Whether you need a simple vanity replacement in Suwanee or a full chef's kitchen in Sandy Springs, our team handles the design and installation." 
             />
             <FaqItem 
+              id="faq-3"
               question="What is the difference between Quartz and Granite?" 
               answer="Granite is a 100% natural stone cut from the earth, offering unique patterns and heat resistance. Quartz is an engineered stone (typically 93% natural quartz and 7% resin), which makes it non-porous and maintenance-free." 
             />
             <FaqItem 
+              id="faq-4"
               question="Do I need to seal my Quartz countertops?" 
               answer="No, one of the main benefits of Quartz is that it is non-porous and does not require sealing. Natural stones like Granite and Marble, however, should be sealed. We apply a 15-year industrial-grade sealer to all our natural stone installations." 
             />
             <FaqItem 
+              id="faq-5"
               question="How long does countertop installation take?" 
               answer="Once we have your template, fabrication typically takes 3-5 days. The actual installation in your home is usually completed in just one day, often within 4-6 hours." 
             />
             <FaqItem 
+              id="faq-6"
               question="What areas in Georgia do you serve?" 
               answer="We are based in Duluth but serve the entire Metro Atlanta area, including Alpharetta, Roswell, Johns Creek, Milton, Suwanee, Sandy Springs, Dunwoody, Norcross, and Lawrenceville." 
             />
@@ -173,8 +179,8 @@ const WhyChooseUs: React.FC = () => {
   );
 };
 
-// Robust controlled component with smooth animations
-const FaqItem: React.FC<{ question: string; answer: string }> = ({ question, answer }) => {
+// Robust controlled component with smooth animations and ARIA attributes
+const FaqItem: React.FC<{ id: string; question: string; answer: string }> = ({ id, question, answer }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
@@ -190,6 +196,8 @@ const FaqItem: React.FC<{ question: string; answer: string }> = ({ question, ans
         className="w-full flex items-center justify-between p-6 font-medium text-left touch-manipulation cursor-pointer focus:outline-none"
         type="button"
         aria-expanded={isOpen}
+        aria-controls={`${id}-content`}
+        id={`${id}-header`}
       >
         <span className={`text-base md:text-lg pr-4 transition-colors duration-300 ${
           isOpen ? 'text-secondary font-bold' : 'text-gray-900 group-hover:text-primary'
@@ -205,6 +213,9 @@ const FaqItem: React.FC<{ question: string; answer: string }> = ({ question, ans
       
       {/* Content Wrapper for smooth height animation */}
       <div 
+        id={`${id}-content`}
+        role="region"
+        aria-labelledby={`${id}-header`}
         className={`px-6 overflow-hidden transition-all duration-500 ease-[cubic-bezier(0.4,0,0.2,1)] ${
           isOpen 
             ? 'max-h-[500px] opacity-100 pb-6' 

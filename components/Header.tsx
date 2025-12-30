@@ -44,42 +44,22 @@ const Header: React.FC = () => {
 
   return (
     <>
-      {/* 
-        MOBILE LOGO
-      */}
-      <div className={`fixed z-[60] block md:hidden transition-all duration-700 cubic-bezier(0.4, 0, 0.2, 1) ${
-            isScrolled 
-              ? 'top-3 left-4 w-auto translate-x-0 translate-y-0 pointer-events-none' 
-              : 'top-[15%] left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-[80vw] pointer-events-none'
-          }`}>
-        <a href="#" className="block pointer-events-auto origin-top-left">
-          <img 
-            src="https://agsstonefabricators.com/wp-content/uploads/2024/05/Design-sem-nome-16.png" 
-            alt="AGS Stones and Cabinets" 
-            className={`transition-all duration-700 w-auto ${
-              isScrolled 
-                ? 'h-10 filter-none' 
-                : 'h-24 mx-auto brightness-0 invert drop-shadow-2xl'
-            }`}
-          />
-        </a>
-      </div>
-
       <header 
+        role="banner"
         className={`fixed top-0 w-full z-50 transition-all duration-500 border-b ${
           isScrolled 
-            ? 'bg-white/80 backdrop-blur-md shadow-sm border-white/20 py-3' // Glassmorphism
-            : 'bg-transparent border-transparent py-6'
+            ? 'bg-white/90 backdrop-blur-md shadow-sm border-gray-200/50 py-3' 
+            : 'bg-transparent border-transparent py-4 md:py-6'
         }`}
       >
-        <div className="container mx-auto px-4 md:px-6 flex justify-end md:justify-between items-center h-12 md:h-16 relative">
+        <div className="container mx-auto px-4 md:px-6 flex justify-between items-center h-12 md:h-16 relative">
           
-          {/* DESKTOP ONLY LOGO */}
-          <a href="#" className="hidden md:block group">
+          {/* LOGO (Visible on Mobile & Desktop) */}
+          <a href="#" className="block group z-50 relative" aria-label="AGS Stones Home">
              <img 
               src="https://agsstonefabricators.com/wp-content/uploads/2024/05/Design-sem-nome-16.png" 
-              alt="AGS Stones and Cabinets" 
-              className={`h-12 w-auto transition-all duration-300 ${
+              alt="AGS Stones and Cabinets Logo" 
+              className={`h-10 md:h-12 w-auto transition-all duration-300 ${
                 isScrolled 
                   ? 'filter-none' // Original Colors
                   : 'brightness-0 invert drop-shadow-lg' // White Logo
@@ -88,7 +68,7 @@ const Header: React.FC = () => {
           </a>
 
           {/* Desktop Nav */}
-          <nav className="hidden md:flex items-center gap-8">
+          <nav className="hidden md:flex items-center gap-8" role="navigation" aria-label="Main Desktop Navigation">
             {navLinks.map((link) => (
               <a 
                 key={link.name} 
@@ -107,8 +87,9 @@ const Header: React.FC = () => {
                   ? 'bg-primary text-white hover:bg-gray-800' 
                   : 'bg-white text-primary hover:bg-gray-100'
               }`}
+              aria-label="Call AGS Stones at 404-952-4534"
             >
-              <Phone size={16} />
+              <Phone size={16} aria-hidden="true" />
               (404) 952-4534
             </a>
           </nav>
@@ -117,9 +98,11 @@ const Header: React.FC = () => {
           <button 
             className="md:hidden z-50 p-2 cursor-pointer relative rounded-md transition-colors"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            aria-label="Toggle menu"
+            aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
+            aria-expanded={mobileMenuOpen}
+            aria-controls="mobile-navigation-drawer"
           >
-            <Menu size={32} className={!isScrolled && !mobileMenuOpen ? 'text-white drop-shadow-md' : 'text-gray-800'} />
+            <Menu size={28} className={!isScrolled && !mobileMenuOpen ? 'text-white drop-shadow-md' : 'text-gray-800'} />
           </button>
         </div>
 
@@ -134,30 +117,36 @@ const Header: React.FC = () => {
         {/* 
             MOBILE SIDE DRAWER
         */}
-        <div className={`md:hidden fixed inset-0 z-[70] transition-all duration-300 ${mobileMenuOpen ? 'visible' : 'invisible delay-300'}`}>
+        <div 
+            id="mobile-navigation-drawer"
+            className={`md:hidden fixed inset-0 z-[40] transition-all duration-300 ${mobileMenuOpen ? 'visible' : 'invisible delay-300'}`}
+            role="dialog"
+            aria-modal="true"
+            aria-label="Mobile Navigation"
+        >
             <div 
                 className={`absolute inset-0 bg-black/60 backdrop-blur-sm transition-opacity duration-300 ${
                     mobileMenuOpen ? 'opacity-100' : 'opacity-0'
                 }`}
                 onClick={() => setMobileMenuOpen(false)}
+                aria-hidden="true"
             ></div>
 
             <div 
-                className={`absolute top-0 right-0 w-[85%] max-w-[320px] h-full bg-white shadow-2xl transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] flex flex-col ${
+                className={`absolute top-0 right-0 w-[85%] max-w-[320px] h-full bg-white shadow-2xl transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] flex flex-col pt-24 ${
                     mobileMenuOpen ? 'translate-x-0' : 'translate-x-full'
                 }`}
             >
-                <div className="p-6 flex justify-between items-center border-b border-gray-100 bg-gray-50/50">
-                    <span className="font-serif font-bold text-xl text-primary tracking-tight">AGS Stones</span>
-                    <button 
-                        onClick={() => setMobileMenuOpen(false)}
-                        className="p-2 bg-white border border-gray-200 rounded-full hover:bg-gray-100 text-gray-600 transition-colors"
-                    >
-                        <X size={20} />
-                    </button>
-                </div>
+                {/* Close button inside drawer */}
+                <button 
+                    onClick={() => setMobileMenuOpen(false)}
+                    className="absolute top-6 right-4 p-2 bg-gray-50 border border-gray-200 rounded-full text-gray-600"
+                    aria-label="Close menu"
+                >
+                    <X size={20} aria-hidden="true" />
+                </button>
 
-                <div className="flex-grow overflow-y-auto py-6 px-6 flex flex-col gap-4">
+                <nav className="flex-grow overflow-y-auto py-4 px-6 flex flex-col gap-4">
                     {navLinks.map((link, idx) => (
                         <a 
                             key={link.name} 
@@ -167,10 +156,10 @@ const Header: React.FC = () => {
                             style={{ transitionDelay: `${mobileMenuOpen ? idx * 50 : 0}ms` }}
                         >
                             {link.name}
-                            <ArrowRight size={18} className="text-gray-300 group-hover:text-secondary -translate-x-2 group-hover:translate-x-0 transition-all" />
+                            <ArrowRight size={18} className="text-gray-300 group-hover:text-secondary -translate-x-2 group-hover:translate-x-0 transition-all" aria-hidden="true" />
                         </a>
                     ))}
-                </div>
+                </nav>
 
                 <div className="p-6 bg-gray-900 text-white mt-auto relative overflow-hidden">
                     <div className="absolute top-0 right-0 w-32 h-32 bg-secondary/20 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2"></div>
@@ -182,8 +171,8 @@ const Header: React.FC = () => {
                     </a>
                     
                     <div className="flex justify-center gap-6 text-gray-400 relative z-10">
-                        <a href="#" className="hover:text-white transition-colors"><Instagram size={24} /></a>
-                        <a href="#" className="hover:text-white transition-colors"><Facebook size={24} /></a>
+                        <a href="#" className="hover:text-white transition-colors" aria-label="Visit our Instagram"><Instagram size={24} /></a>
+                        <a href="#" className="hover:text-white transition-colors" aria-label="Visit our Facebook"><Facebook size={24} /></a>
                     </div>
                 </div>
             </div>

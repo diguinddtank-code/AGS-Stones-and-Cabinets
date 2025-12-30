@@ -12,6 +12,10 @@
     <meta name="robots" content="index, follow" />
     <meta name="language" content="English" />
     <meta name="author" content="AGS Stones & Cabinets" />
+    <meta name="geo.region" content="US-GA" />
+    <meta name="geo.placename" content="Duluth" />
+    <meta name="geo.position" content="34.032232;-84.179575" />
+    <meta name="ICBM" content="34.032232, -84.179575" />
     <link rel="canonical" href="https://agsstonefabricators.com" />
 
     <!-- OPEN GRAPH / FACEBOOK / WHATSAPP -->
@@ -28,7 +32,7 @@
     <meta property="twitter:description" content="Factory-direct prices on Granite, Marble, and Quartz. Full kitchen and bathroom remodeling services." />
     <meta property="twitter:image" content="https://kitchenandbathshop.com/wp-content/uploads/2020/11/5d7ff4ab763f7-scaled.jpg" />
 
-    <!-- STRUCTURED DATA (JSON-LD) - CRITICAL FOR LOCAL SEO -->
+    <!-- STRUCTURED DATA (JSON-LD) - LOCAL BUSINESS + REVIEWS -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -52,6 +56,11 @@
         "latitude": 34.0322319,
         "longitude": -84.1795749
       },
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.9",
+        "reviewCount": "128"
+      },
       "openingHoursSpecification": {
         "@type": "OpeningHoursSpecification",
         "dayOfWeek": [
@@ -64,6 +73,7 @@
         "opens": "08:00",
         "closes": "18:00"
       },
+      "hasMap": "https://maps.google.com/?q=4579+Abbotts+Bridge+Rd,+Duluth,+GA+30097",
       "sameAs": [
         "https://www.facebook.com/agsstones",
         "https://www.instagram.com/agsstones"
@@ -78,41 +88,44 @@
         "Sandy Springs",
         "Norcross",
         "Lawrenceville"
-      ],
-      "hasOfferCatalog": {
-        "@type": "OfferCatalog",
-        "name": "Kitchen and Bath Services",
-        "itemListElement": [
-          {
-            "@type": "Offer",
-            "itemOffered": {
-              "@type": "Service",
-              "name": "Granite Fabricator"
-            }
-          },
-          {
-            "@type": "Offer",
-            "itemOffered": {
-              "@type": "Service",
-              "name": "Quartz Countertops Installation"
-            }
-          },
-          {
-            "@type": "Offer",
-            "itemOffered": {
-              "@type": "Service",
-              "name": "Custom Cabinet Maker"
-            }
-          },
-          {
-            "@type": "Offer",
-            "itemOffered": {
-              "@type": "Service",
-              "name": "Bathroom Renovation Services"
-            }
-          }
-        ]
-      }
+      ]
+    }
+    </script>
+
+    <!-- STRUCTURED DATA (JSON-LD) - FAQ PAGE (Boosts SERP Real Estate) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [{
+        "@type": "Question",
+        "name": "How much do Granite countertops cost in Atlanta?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Granite prices vary by level and thickness. At AGS Stones in Duluth, we offer factory-direct pricing starting as low as $35/sqft installed for Level 1 granite."
+        }
+      }, {
+        "@type": "Question",
+        "name": "Do you install Kitchen Cabinets near me?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes! We are a full-service kitchen remodeling company. We install custom and semi-custom cabinets throughout the Atlanta area."
+        }
+      }, {
+        "@type": "Question",
+        "name": "What is the difference between Quartz and Granite?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Granite is a 100% natural stone cut from the earth, offering unique patterns. Quartz is an engineered stone, which makes it non-porous and maintenance-free."
+        }
+      }, {
+        "@type": "Question",
+        "name": "How long does countertop installation take?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Once we have your template, fabrication typically takes 3-5 days. The actual installation in your home is usually completed in just one day."
+        }
+      }]
     }
     </script>
 

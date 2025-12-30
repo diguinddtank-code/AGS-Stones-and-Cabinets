@@ -139,6 +139,14 @@ const Services: React.FC = () => {
                 onClick={() => setSelectedService(service)}
                 className={`service-card-anim ${gridClasses} opacity-0 translate-y-12 scale-95 transition-all duration-1000 ease-[cubic-bezier(0.16,1,0.3,1)] group relative h-[420px] cursor-pointer`}
                 style={{ transitionDelay: `${index * 80}ms` }}
+                role="button"
+                tabIndex={0}
+                aria-label={`View details for ${service.title}`}
+                onKeyDown={(e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        setSelectedService(service);
+                    }
+                }}
                 >
                     <div className="relative h-full w-full bg-white rounded-[2.5rem] shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:shadow-[0_30px_60px_rgb(0,0,0,0.08)] border border-white transition-all duration-500 overflow-hidden group-hover:-translate-y-2 group-hover:scale-[1.02]">
                         
@@ -149,6 +157,7 @@ const Services: React.FC = () => {
                                 src={service.image} 
                                 alt={`${service.title} Services in Atlanta GA`}
                                 className="w-full h-full object-cover transform scale-105 group-hover:scale-110 transition-transform duration-[1.5s] ease-out"
+                                loading="lazy"
                             />
                             {/* Floating Icon Badge */}
                             <div className="absolute -bottom-7 right-8 w-16 h-16 bg-white rounded-2xl shadow-xl flex items-center justify-center z-20 border border-gray-50 group-hover:scale-110 group-hover:rotate-3 transition-all duration-500 ease-[cubic-bezier(0.34,1.56,0.64,1)]">
@@ -179,7 +188,7 @@ const Services: React.FC = () => {
 
       {/* 
         ----------------------------------------------------
-        REFINED LUXURY MODAL
+        REFINED LUXURY MODAL (ACCESSIBLE)
         ----------------------------------------------------
       */}
       {selectedService && (
@@ -187,11 +196,13 @@ const Services: React.FC = () => {
             className="fixed inset-0 z-[100] flex items-end md:items-center justify-center"
             role="dialog"
             aria-modal="true"
+            aria-labelledby="modal-title"
         >
           {/* Backdrop with stronger blur for focus */}
           <div 
             className="absolute inset-0 bg-primary/60 backdrop-blur-md animate-in fade-in duration-500"
             onClick={() => setSelectedService(null)}
+            aria-hidden="true"
           ></div>
           
           <div 
@@ -202,6 +213,7 @@ const Services: React.FC = () => {
             <button 
               onClick={() => setSelectedService(null)}
               className="absolute top-4 right-4 z-50 bg-white/50 hover:bg-white backdrop-blur-md text-primary p-2.5 rounded-full shadow-sm transition-all border border-white/40 hover:scale-110"
+              aria-label="Close details"
             >
               <X size={22} />
             </button>
@@ -237,7 +249,7 @@ const Services: React.FC = () => {
                         {selectedService.icon}
                         <span>Service Detail</span>
                      </div>
-                    <h3 className="text-4xl lg:text-5xl font-serif font-bold text-primary leading-tight">{selectedService.title}</h3>
+                    <h3 id="modal-title" className="text-4xl lg:text-5xl font-serif font-bold text-primary leading-tight">{selectedService.title}</h3>
                 </div>
 
                 <div className="mb-8">
@@ -287,6 +299,7 @@ const Services: React.FC = () => {
                         href="tel:4049524534"
                         className="flex-none flex items-center justify-center gap-2 bg-white hover:bg-gray-50 text-gray-700 font-bold py-3.5 md:py-4 px-5 rounded-xl border border-gray-200 transition-all hover:border-secondary hover:text-secondary active:scale-95"
                         title="Call Specialist"
+                        aria-label="Call Specialist"
                     >
                         <Phone size={20} />
                         <span className="hidden md:inline">Call Now</span>
