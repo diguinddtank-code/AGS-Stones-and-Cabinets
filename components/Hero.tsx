@@ -15,26 +15,31 @@ const Hero: React.FC = () => {
   return (
     <section className="relative min-h-[100dvh] flex items-center justify-center overflow-hidden bg-primary pb-0">
       {/* 
-        Background Image with Parallax Effect 
+        Background Video with Parallax Effect 
         Moves at 0.5 speed relative to scroll
       */}
       <div 
         className="absolute inset-0 z-0 will-change-transform"
         style={{ 
           transform: `translateY(${scrollY * 0.5}px)`,
-          filter: `blur(${scrollY * 0.005}px)`
+          filter: `brightness(0.6)` // Adjusted brightness for better video visibility while keeping text readable
         }}
       >
-        <img 
-          src="https://kitchenandbathshop.com/wp-content/uploads/2020/11/5d7ff4ab763f7-scaled.jpg" 
-          alt="Luxury Kitchen Remodel, Granite Countertops and Custom Cabinets in Atlanta" 
-          className="w-full h-full object-cover animate-in fade-in zoom-in duration-1000"
-          fetchPriority="high" // Vital for LCP score
-          width="1920"
-          height="1080"
-        />
-        {/* Cinematic Gradient Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/40 to-primary/90"></div>
+        <video
+            className="w-full h-full object-cover animate-in fade-in zoom-in duration-1000"
+            autoPlay
+            muted
+            loop
+            playsInline
+            poster="https://kitchenandbathshop.com/wp-content/uploads/2020/11/5d7ff4ab763f7-scaled.jpg"
+        >
+            {/* Cinematic Luxury Kitchen Video - High Quality 4K */}
+            <source src="https://videos.pexels.com/video-files/7578552/7578552-uhd_3840_2160_30fps.mp4" type="video/mp4" />
+            Your browser does not support the video tag.
+        </video>
+
+        {/* Cinematic Gradient Overlay - Subtle to let video shine through */}
+        <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-primary/90"></div>
       </div>
 
       {/* 
@@ -49,7 +54,7 @@ const Hero: React.FC = () => {
         }}
       >
         <div className="animate-in slide-in-from-bottom-10 fade-in duration-1000 delay-300 max-w-5xl w-full">
-            <span className="inline-block py-1 px-3 rounded-full border border-white/30 bg-white/10 backdrop-blur-sm text-xs md:text-sm uppercase tracking-widest mb-4 md:mb-6 font-medium">
+            <span className="inline-block py-1 px-3 rounded-full border border-white/30 bg-white/10 backdrop-blur-sm text-xs md:text-sm uppercase tracking-widest mb-4 md:mb-6 font-medium shadow-sm">
                 Atlanta's #1 Granite Fabricator & Cabinet Maker
             </span>
             <h1 className="text-4xl md:text-7xl lg:text-8xl font-serif font-bold mb-4 md:mb-6 drop-shadow-2xl leading-tight tracking-tight">
