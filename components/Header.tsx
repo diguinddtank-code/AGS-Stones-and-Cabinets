@@ -7,23 +7,37 @@ const Header: React.FC = () => {
   const [scrollProgress, setScrollProgress] = useState(0);
 
   useEffect(() => {
-    const handleScroll = () => {
-      // Header background transition logic
-      const scrolled = window.scrollY > 20;
-      if (isScrolled !== scrolled) {
-        setIsScrolled(scrolled);
-      }
+    let ticking = false;
 
-      // Scroll Progress Calculation
-      const totalScroll = document.documentElement.scrollTop;
-      const windowHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-      const scroll = windowHeight > 0 ? totalScroll / windowHeight : 0;
-      setScrollProgress(scroll);
+    const handleScroll = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          // Optimized: Only update state if the boolean value actually changes
+          const scrollTop = window.scrollY;
+          const scrolled = scrollTop > 20;
+          
+          // Using callback to access latest state without dependency array issue
+          setIsScrolled(prev => {
+             if (prev !== scrolled) return scrolled;
+             return prev;
+          });
+
+          // Scroll Progress Calculation
+          const totalHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+          if (totalHeight > 0) {
+            setScrollProgress(scrollTop / totalHeight);
+          }
+          
+          ticking = false;
+        });
+        
+        ticking = true;
+      }
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
-  }, [isScrolled]);
+  }, []);
 
   // Lock body scroll when mobile menu is open
   useEffect(() => {
@@ -46,7 +60,7 @@ const Header: React.FC = () => {
     <>
       <header 
         role="banner"
-        className={`fixed top-0 w-full z-50 transition-all duration-500 border-b ${
+        className={`fixed top-0 w-full z-50 transition-all duration-500 border-b will-change-transform ${
           isScrolled 
             ? 'bg-white/90 backdrop-blur-md shadow-sm border-gray-200/50 py-3' 
             : 'bg-transparent border-transparent py-4 md:py-6'
@@ -112,7 +126,7 @@ const Header: React.FC = () => {
         {/* Scroll Progress Bar - Hidden on Mobile */}
         <div className={`hidden md:block absolute bottom-0 left-0 h-[2px] bg-transparent w-full`}>
             <div 
-                className="h-full bg-secondary shadow-[0_0_10px_#ca8a04]"
+                className="h-full bg-secondary shadow-[0_0_10px_#ca8a04] will-change-transform"
                 style={{ width: `${scrollProgress * 100}%`, opacity: isScrolled ? 1 : 0 }}
             ></div>
         </div>

@@ -1,28 +1,52 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef } from 'react';
 
 const Hero: React.FC = () => {
-  const [scrollY, setScrollY] = useState(0);
+  const bgRef = useRef<HTMLDivElement>(null);
+  const textRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    let requestThumb: number;
+
     const handleScroll = () => {
-      requestAnimationFrame(() => setScrollY(window.scrollY));
+      // Use requestAnimationFrame to sync with screen refresh rate
+      requestThumb = requestAnimationFrame(() => {
+        const scrollY = window.scrollY;
+        
+        // Stop animating if element is out of view to save resources
+        if (scrollY > window.innerHeight) return;
+
+        // Direct DOM manipulation avoids React Re-renders (Huge Performance Win)
+        if (bgRef.current) {
+          bgRef.current.style.transform = `translateY(${scrollY * 0.5}px)`;
+          // Use opacity only if needed, calculation is cheap but style commit needs composition
+        }
+        
+        if (textRef.current) {
+          textRef.current.style.transform = `translateY(${scrollY * 0.3}px)`;
+          textRef.current.style.opacity = String(Math.max(0, 1 - scrollY / 700));
+        }
+      });
     };
 
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      cancelAnimationFrame(requestThumb);
+    };
   }, []);
 
   return (
     <section className="relative min-h-[100dvh] flex items-center justify-center overflow-hidden bg-primary pb-0">
       {/* 
         Background Video with Parallax Effect 
-        Moves at 0.5 speed relative to scroll
+        Updated to use ref for performance
       */}
       <div 
+        ref={bgRef}
         className="absolute inset-0 z-0 will-change-transform"
         style={{ 
-          transform: `translateY(${scrollY * 0.5}px)`,
-          filter: `brightness(0.6)` // Adjusted brightness for better video visibility while keeping text readable
+          filter: `brightness(0.6)`
         }}
       >
         <video
@@ -38,20 +62,17 @@ const Hero: React.FC = () => {
             Your browser does not support the video tag.
         </video>
 
-        {/* Cinematic Gradient Overlay - Subtle to let video shine through */}
+        {/* Cinematic Gradient Overlay */}
         <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-primary/90"></div>
       </div>
 
       {/* 
         Text Content Parallax 
-        Moves at 0.3 speed (slower than background's 0.5 relative to viewport, creating depth)
+        Updated to use ref for performance
       */}
       <div 
+        ref={textRef}
         className="relative z-10 container mx-auto px-4 h-full flex flex-col justify-center items-center text-center text-white pt-32 pb-28 md:py-0 will-change-transform"
-        style={{ 
-          transform: `translateY(${scrollY * 0.3}px)`, 
-          opacity: Math.max(0, 1 - scrollY / 700)
-        }}
       >
         <div className="animate-in slide-in-from-bottom-10 fade-in duration-1000 delay-300 max-w-5xl w-full">
             <span className="inline-block py-1 px-3 rounded-full border border-white/30 bg-white/10 backdrop-blur-sm text-xs md:text-sm uppercase tracking-widest mb-4 md:mb-6 font-medium shadow-sm">
