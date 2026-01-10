@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react';
-import { Star, CheckCircle2, ArrowRight, ShieldCheck, MapPin, Phone } from 'lucide-react';
+import { Star, CheckCircle2, ArrowRight, ShieldCheck, Phone } from 'lucide-react';
 
 const Hero: React.FC = () => {
   const bgRef = useRef<HTMLDivElement>(null);
@@ -48,35 +48,36 @@ const Hero: React.FC = () => {
             Your browser does not support the video tag.
         </video>
 
-        {/* Cinematic Gradient Overlay - Darker on Mobile for readability */}
-        <div className="absolute inset-0 bg-gradient-to-r from-primary/95 via-primary/70 to-primary/40 md:to-transparent"></div>
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-primary/90 md:to-primary/0"></div>
+        {/* Cinematic Gradient Overlay */}
+        <div className="absolute inset-0 bg-gradient-to-r from-primary/95 via-primary/80 to-primary/40 lg:to-transparent"></div>
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-primary/90 lg:to-primary/0"></div>
       </div>
 
       {/* 
         Main Content Grid
       */}
-      <div className="relative z-10 container mx-auto px-4 h-full flex flex-col justify-center py-24 md:py-0 min-h-[100dvh]">
-        <div className="grid md:grid-cols-12 gap-8 md:gap-16 items-center">
+      <div className="relative z-10 container mx-auto px-4 md:px-8 h-full flex flex-col justify-center py-24 lg:py-0 min-h-[100dvh]">
+        <div className="grid lg:grid-cols-12 gap-12 lg:gap-8 items-center">
             
             {/* LEFT COLUMN: Text Content */}
-            <div className="md:col-span-7 text-center md:text-left pt-6 md:pt-0 animate-in slide-in-from-bottom-10 duration-1000">
-                <div className="inline-flex items-center gap-2 py-1.5 px-4 rounded-full border border-white/20 bg-white/5 backdrop-blur-md text-xs md:text-sm uppercase tracking-widest mb-6 font-medium shadow-sm text-white mx-auto md:mx-0">
+            <div className="lg:col-span-7 text-center lg:text-left pt-6 lg:pt-0 animate-in slide-in-from-bottom-10 duration-1000">
+                <div className="inline-flex items-center gap-2 py-1.5 px-4 rounded-full border border-white/20 bg-white/5 backdrop-blur-md text-xs md:text-sm uppercase tracking-widest mb-6 font-medium shadow-sm text-white mx-auto lg:mx-0">
                     <Star size={12} className="text-secondary fill-secondary" />
                     Atlanta's #1 Granite Fabricator
                 </div>
 
-                <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-serif font-bold mb-6 drop-shadow-2xl leading-[1.1] tracking-tight text-white">
+                {/* Typography optimized for 15" screens (xl breakpoint added) */}
+                <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-serif font-bold mb-6 drop-shadow-2xl leading-[1.1] tracking-tight text-white max-w-4xl mx-auto lg:mx-0">
                   Premium <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#eab308] via-[#fde047] to-[#eab308]">Granite & Cabinets</span><br />
                   in Metro Atlanta
                 </h1>
 
-                <p className="text-base sm:text-lg md:text-xl text-gray-200 mb-8 max-w-lg mx-auto md:mx-0 font-light leading-relaxed">
+                <p className="text-base sm:text-lg lg:text-xl text-gray-200 mb-8 max-w-2xl mx-auto lg:mx-0 font-light leading-relaxed">
                    Transforming homes with <strong>Precision Stone Fabrication</strong> and <strong>Custom Cabinetry</strong>. Experience 5-star quality, factory-direct pricing, and 5-day turnaround.
                 </p>
 
-                {/* MOBILE ONLY CTA BUTTONS (Since form is hidden) */}
-                <div className="flex flex-col sm:flex-row gap-4 mb-10 md:hidden px-4 sm:px-0">
+                {/* CTA BUTTONS: Visible on Mobile AND Tablet (Hidden on large desktops where form exists) */}
+                <div className="flex flex-col sm:flex-row gap-4 mb-10 lg:hidden px-4 sm:px-0 justify-center lg:justify-start">
                      <a href="#contact" className="w-full sm:w-auto bg-secondary hover:bg-yellow-600 text-white font-bold py-4 px-8 rounded-xl shadow-lg flex items-center justify-center gap-2">
                         Get Free Quote <ArrowRight size={18} />
                      </a>
@@ -85,24 +86,24 @@ const Hero: React.FC = () => {
                      </a>
                 </div>
 
-                {/* Key Benefits List (Desktop & Tablet) */}
-                <div className="hidden md:flex flex-col gap-4 mb-10 text-white/90">
+                {/* Key Benefits List (Visible on Desktop) */}
+                <div className="hidden lg:flex flex-col gap-4 mb-10 text-white/90">
                     <div className="flex items-center gap-3">
                         <div className="bg-secondary/20 p-1 rounded-full"><CheckCircle2 className="text-secondary" size={20} /></div>
-                        <span className="font-medium">Factory Direct Pricing (Save up to 30%)</span>
+                        <span className="font-medium text-lg">Factory Direct Pricing (Save up to 30%)</span>
                     </div>
                     <div className="flex items-center gap-3">
                         <div className="bg-secondary/20 p-1 rounded-full"><CheckCircle2 className="text-secondary" size={20} /></div>
-                        <span className="font-medium">Huge Indoor Slab Yard in Duluth</span>
+                        <span className="font-medium text-lg">Huge Indoor Slab Yard in Duluth</span>
                     </div>
                      <div className="flex items-center gap-3">
                         <div className="bg-secondary/20 p-1 rounded-full"><CheckCircle2 className="text-secondary" size={20} /></div>
-                        <span className="font-medium">Turnkey Installation in 5 Days</span>
+                        <span className="font-medium text-lg">Turnkey Installation in 5 Days</span>
                     </div>
                 </div>
 
                 {/* Social Proof */}
-                <div className="flex flex-col md:flex-row items-center justify-center md:justify-start gap-4 md:gap-6">
+                <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 sm:gap-6">
                      <div className="flex -space-x-3">
                          {[
                              "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=64&h=64&fit=crop",
@@ -113,17 +114,17 @@ const Hero: React.FC = () => {
                              <img key={i} src={img} alt="Happy Customer" className="w-10 h-10 rounded-full border-2 border-primary object-cover" />
                          ))}
                      </div>
-                     <div className="text-center md:text-left">
-                        <div className="flex text-yellow-400 justify-center md:justify-start gap-0.5 mb-1">
+                     <div className="text-center sm:text-left">
+                        <div className="flex text-yellow-400 justify-center sm:justify-start gap-0.5 mb-1">
                             {[1,2,3,4,5].map(i => <Star key={i} fill="currentColor" size={16} />)}
                         </div>
-                        <p className="text-gray-300 text-xs font-medium">4.9/5 Rating from 120+ Homeowners</p>
+                        <p className="text-gray-300 text-sm font-medium">4.9/5 Rating from 120+ Homeowners</p>
                      </div>
                 </div>
             </div>
 
-            {/* RIGHT COLUMN: Lead Gen Form (HIDDEN ON MOBILE) */}
-            <div className="hidden md:block md:col-span-5 relative mt-8 md:mt-0">
+            {/* RIGHT COLUMN: Lead Gen Form (VISIBLE ONLY ON LARGE DESKTOPS) */}
+            <div className="hidden lg:block lg:col-span-5 relative mt-8 lg:mt-0">
                  {/* Floating Badge */}
                  <div className="flex absolute -top-6 -right-6 z-20 bg-white text-primary p-4 rounded-2xl shadow-xl items-center gap-3 animate-bounce" style={{ animationDuration: '3s' }}>
                     <ShieldCheck size={28} className="text-secondary" />
@@ -133,13 +134,13 @@ const Hero: React.FC = () => {
                     </div>
                  </div>
 
-                 <div className="bg-white/95 backdrop-blur-sm rounded-2xl md:rounded-3xl shadow-[0_20px_50px_rgba(0,0,0,0.5)] p-6 md:p-8 border border-white/20 animate-in slide-in-from-bottom-8 fade-in duration-700 delay-200">
-                    <div className="mb-6 text-center md:text-left">
+                 <div className="bg-white/95 backdrop-blur-md rounded-2xl lg:rounded-3xl shadow-[0_20px_50px_rgba(0,0,0,0.5)] p-6 xl:p-8 border border-white/20 animate-in slide-in-from-bottom-8 fade-in duration-700 delay-200 max-w-md mx-auto">
+                    <div className="mb-6">
                         <h3 className="text-2xl font-serif font-bold text-primary mb-2">Get Your Free Estimate</h3>
                         <p className="text-gray-500 text-sm">Fill out the form below to lock in this month's special pricing.</p>
                     </div>
 
-                    <form action="https://formsubmit.co/agsstonesandcabinets@gmail.com" method="POST" className="space-y-4">
+                    <form action="https://formsubmit.co/agsstonesandcabinets@gmail.com" method="POST" className="space-y-3">
                         <input type="hidden" name="_subject" value="Hero Section Lead (High Intent)" />
                         <input type="hidden" name="_next" value="https://agsstonefabricators.com" />
                         
@@ -200,7 +201,7 @@ const Hero: React.FC = () => {
                             <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
                         </button>
                         
-                        <p className="text-[10px] text-center text-gray-400 mt-3 flex items-center justify-center gap-1">
+                        <p className="text-[10px] text-center text-gray-400 mt-2 flex items-center justify-center gap-1">
                             <ShieldCheck size={10} /> No obligation. Your privacy is 100% protected.
                         </p>
                     </form>
