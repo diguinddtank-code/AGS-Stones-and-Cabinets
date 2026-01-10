@@ -42,6 +42,7 @@
       "url": "https://agsstonefabricators.com",
       "telephone": "+14049524534",
       "priceRange": "$$",
+      "hasMap": "https://maps.google.com/?q=4579+Abbotts+Bridge+Rd,+Duluth,+GA+30097",
       "address": {
         "@type": "PostalAddress",
         "streetAddress": "4579 Abbotts Bridge Rd Suite -10",
@@ -60,27 +61,36 @@
         "ratingValue": "4.9",
         "reviewCount": "128"
       },
-      "openingHoursSpecification": {
-        "@type": "OpeningHoursSpecification",
-        "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
-        "opens": "08:00",
-        "closes": "18:00"
-      },
+      "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+          "opens": "08:00",
+          "closes": "18:00"
+        },
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Saturday"],
+          "opens": "09:00",
+          "closes": "15:00"
+        }
+      ],
       "areaServed": [
-        { "@type": "City", "name": "Atlanta" },
-        { "@type": "City", "name": "Duluth" },
-        { "@type": "City", "name": "Alpharetta" },
-        { "@type": "City", "name": "Marietta" },
-        { "@type": "City", "name": "Sandy Springs" },
-        { "@type": "City", "name": "Roswell" },
-        { "@type": "City", "name": "Johns Creek" },
-        { "@type": "City", "name": "Lawrenceville" },
-        { "@type": "City", "name": "Suwanee" },
-        { "@type": "City", "name": "Brookhaven" }
+        { "@type": "City", "name": "Atlanta", "sameAs": "https://en.wikipedia.org/wiki/Atlanta" },
+        { "@type": "City", "name": "Duluth", "sameAs": "https://en.wikipedia.org/wiki/Duluth,_Georgia" },
+        { "@type": "City", "name": "Alpharetta", "sameAs": "https://en.wikipedia.org/wiki/Alpharetta,_Georgia" },
+        { "@type": "City", "name": "Marietta", "sameAs": "https://en.wikipedia.org/wiki/Marietta,_Georgia" },
+        { "@type": "City", "name": "Sandy Springs", "sameAs": "https://en.wikipedia.org/wiki/Sandy_Springs,_Georgia" },
+        { "@type": "City", "name": "Roswell", "sameAs": "https://en.wikipedia.org/wiki/Roswell,_Georgia" },
+        { "@type": "City", "name": "Johns Creek", "sameAs": "https://en.wikipedia.org/wiki/Johns_Creek,_Georgia" },
+        { "@type": "City", "name": "Lawrenceville", "sameAs": "https://en.wikipedia.org/wiki/Lawrenceville,_Georgia" },
+        { "@type": "City", "name": "Suwanee", "sameAs": "https://en.wikipedia.org/wiki/Suwanee,_Georgia" },
+        { "@type": "City", "name": "Brookhaven", "sameAs": "https://en.wikipedia.org/wiki/Brookhaven,_Georgia" }
       ],
       "sameAs": [
         "https://www.facebook.com/agsstones",
-        "https://www.instagram.com/agsstones"
+        "https://www.instagram.com/agsstones",
+        "https://twitter.com/agsstones"
       ]
     }
     </script>

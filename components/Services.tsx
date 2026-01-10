@@ -112,7 +112,7 @@ const Services: React.FC = () => {
   }, [selectedService]);
 
   return (
-    <section id="services" className="py-24 bg-gray-50 relative overflow-hidden">
+    <section id="services" className="py-24 bg-gradient-to-br from-gray-50 via-gray-100 to-gray-200 relative overflow-hidden">
         {/* Decorative Background Elements */}
         <div className="absolute top-0 left-0 w-full h-full pointer-events-none">
             <div className="absolute top-[10%] left-[-5%] w-96 h-96 bg-gray-200/50 rounded-full blur-3xl mix-blend-multiply"></div>
@@ -148,7 +148,8 @@ const Services: React.FC = () => {
                     }
                 }}
                 >
-                    <div className="relative h-full w-full bg-white rounded-[2.5rem] shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:shadow-[0_30px_60px_rgb(0,0,0,0.08)] border border-white transition-all duration-500 overflow-hidden group-hover:-translate-y-2 group-hover:scale-[1.02]">
+                    {/* Glassmorphism Effect Applied Here */}
+                    <div className="relative h-full w-full bg-white/60 backdrop-blur-xl rounded-[2.5rem] shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:shadow-[0_20px_40px_rgb(0,0,0,0.1)] border border-white/50 transition-all duration-500 overflow-hidden group-hover:-translate-y-2 group-hover:scale-[1.02]">
                         
                         {/* Image Half */}
                         <div className="h-1/2 overflow-hidden relative">
@@ -159,8 +160,8 @@ const Services: React.FC = () => {
                                 className="w-full h-full object-cover transform scale-105 group-hover:scale-110 transition-transform duration-[1.5s] ease-out"
                                 loading="lazy"
                             />
-                            {/* Floating Icon Badge */}
-                            <div className="absolute -bottom-7 right-8 w-16 h-16 bg-white rounded-2xl shadow-xl flex items-center justify-center z-20 border border-gray-50 group-hover:scale-110 group-hover:rotate-3 transition-all duration-500 ease-[cubic-bezier(0.34,1.56,0.64,1)]">
+                            {/* Floating Icon Badge - Glass Style */}
+                            <div className="absolute -bottom-7 right-8 w-16 h-16 bg-white/80 backdrop-blur-md rounded-2xl shadow-xl flex items-center justify-center z-20 border border-white/50 group-hover:scale-110 group-hover:rotate-3 transition-all duration-500 ease-[cubic-bezier(0.34,1.56,0.64,1)]">
                                 {service.icon}
                             </div>
                         </div>
@@ -168,13 +169,13 @@ const Services: React.FC = () => {
                         {/* Text Half */}
                         <div className="h-1/2 p-8 pt-12 flex flex-col relative">
                             <h4 className="text-2xl font-serif font-medium text-primary mb-3 group-hover:text-secondary transition-colors duration-300">{service.title}</h4>
-                            <p className="text-gray-500 text-sm leading-relaxed mb-6 line-clamp-3 font-light">
+                            <p className="text-gray-600 text-sm leading-relaxed mb-6 line-clamp-3 font-light">
                                 {service.shortDesc}
                             </p>
                             
                             <div className="mt-auto flex items-center justify-between">
                                 <span className="text-xs font-bold uppercase tracking-wider text-gray-400 group-hover:text-primary transition-colors">View Details</span>
-                                <div className="w-10 h-10 rounded-full bg-gray-50 group-hover:bg-secondary flex items-center justify-center transition-all duration-300">
+                                <div className="w-10 h-10 rounded-full bg-white/50 border border-white/40 group-hover:bg-secondary group-hover:border-secondary flex items-center justify-center transition-all duration-300">
                                     <ArrowUpRight size={18} className="text-gray-400 group-hover:text-white transition-colors" />
                                 </div>
                             </div>
@@ -206,7 +207,7 @@ const Services: React.FC = () => {
           ></div>
           
           <div 
-            className="bg-white w-full md:w-[90%] md:max-w-6xl max-h-[90dvh] h-[90dvh] md:h-[85vh] rounded-t-[2rem] md:rounded-[2rem] shadow-2xl flex flex-col md:flex-row relative animate-in slide-in-from-bottom-12 duration-500 ease-[cubic-bezier(0.19,1,0.22,1)] z-10 overflow-hidden" 
+            className="bg-white/95 backdrop-blur-xl w-full md:w-[90%] md:max-w-6xl max-h-[90dvh] h-[90dvh] md:h-[85vh] rounded-t-[2rem] md:rounded-[2rem] shadow-2xl flex flex-col md:flex-row relative animate-in slide-in-from-bottom-12 duration-500 ease-[cubic-bezier(0.19,1,0.22,1)] z-10 overflow-hidden border border-white/20" 
             onClick={e => e.stopPropagation()}
           >
             {/* Close Button - Floats nicely above everything */}
@@ -238,7 +239,7 @@ const Services: React.FC = () => {
             </div>
 
             {/* Right Side: Content & Actions (Bottom on Mobile) */}
-            <div className="flex-1 flex flex-col bg-white relative overflow-hidden">
+            <div className="flex-1 flex flex-col bg-white/60 relative overflow-hidden">
               
               {/* Scrollable Content Area */}
               <div className="flex-1 overflow-y-auto p-6 md:p-12 pb-24 md:pb-28 custom-scrollbar">
@@ -266,7 +267,7 @@ const Services: React.FC = () => {
                     </h4>
                     <div className="grid grid-cols-1 gap-3">
                         {selectedService.features.map((feature, i) => (
-                        <div key={i} className="flex items-center gap-4 p-3 rounded-2xl bg-gray-50 border border-transparent hover:border-gray-200 hover:bg-white transition-all group/item">
+                        <div key={i} className="flex items-center gap-4 p-3 rounded-2xl bg-white/50 border border-transparent hover:border-gray-200 hover:bg-white/80 transition-all group/item">
                             <div className="bg-white p-1.5 rounded-full text-secondary shadow-sm group-hover/item:scale-110 transition-transform border border-gray-100">
                                 <Check size={14} strokeWidth={3} />
                             </div>
