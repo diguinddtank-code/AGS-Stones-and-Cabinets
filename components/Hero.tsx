@@ -34,7 +34,7 @@ const Hero: React.FC = () => {
       <div 
         ref={bgRef}
         className="absolute inset-0 z-0 will-change-transform"
-        style={{ filter: `brightness(0.55)` }}
+        style={{ filter: `brightness(0.8)` }}
       >
         <video
             className="w-full h-full object-cover animate-in fade-in zoom-in duration-1000"
@@ -48,9 +48,9 @@ const Hero: React.FC = () => {
             Your browser does not support the video tag.
         </video>
 
-        {/* Cinematic Gradient Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-r from-primary/95 via-primary/80 to-primary/40 lg:to-transparent"></div>
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-primary/90 lg:to-primary/0"></div>
+        {/* Cinematic Gradient Overlay - Significantly reduced opacity for clarity */}
+        <div className="absolute inset-0 bg-gradient-to-r from-primary/70 via-primary/25 to-transparent"></div>
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-primary/60 lg:to-primary/0"></div>
       </div>
 
       {/* 
@@ -63,18 +63,18 @@ const Hero: React.FC = () => {
             
             {/* LEFT COLUMN: Text Content */}
             <div className="lg:col-span-7 text-center lg:text-left pt-6 lg:pt-0 animate-in slide-in-from-bottom-10 duration-1000">
-                <div className="inline-flex items-center gap-2 py-1.5 px-4 rounded-full border border-white/20 bg-white/5 backdrop-blur-md text-xs md:text-sm uppercase tracking-widest mb-6 font-medium shadow-sm text-white mx-auto lg:mx-0">
+                <div className="inline-flex items-center gap-2 py-1.5 px-4 rounded-full border border-white/30 bg-black/20 backdrop-blur-md text-xs md:text-sm uppercase tracking-widest mb-6 font-medium shadow-sm text-white mx-auto lg:mx-0">
                     <Star size={12} className="text-secondary fill-secondary" />
                     Atlanta's #1 Granite Fabricator
                 </div>
 
                 {/* Typography optimized for compact desktop look (slightly smaller than previous giant text) */}
-                <h1 className="text-4xl sm:text-5xl lg:text-5xl xl:text-6xl font-serif font-bold mb-6 drop-shadow-2xl leading-[1.15] tracking-tight text-white max-w-4xl mx-auto lg:mx-0">
-                  Premium <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#eab308] via-[#fde047] to-[#eab308]">Granite & Cabinets</span><br />
+                <h1 className="text-4xl sm:text-5xl lg:text-5xl xl:text-6xl font-serif font-bold mb-6 drop-shadow-xl leading-[1.15] tracking-tight text-white max-w-4xl mx-auto lg:mx-0 shadow-black/10">
+                  Premium <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#eab308] via-[#fde047] to-[#eab308] drop-shadow-md">Granite & Cabinets</span><br />
                   in Metro Atlanta
                 </h1>
 
-                <p className="text-base sm:text-lg lg:text-xl text-gray-200 mb-8 max-w-2xl mx-auto lg:mx-0 font-light leading-relaxed">
+                <p className="text-base sm:text-lg lg:text-xl text-white mb-8 max-w-2xl mx-auto lg:mx-0 font-medium leading-relaxed drop-shadow-md">
                    Transforming homes with <strong>Precision Stone Fabrication</strong> and <strong>Custom Cabinetry</strong>. Experience 5-star quality, factory-direct pricing, and 5-day turnaround.
                 </p>
 
@@ -83,24 +83,24 @@ const Hero: React.FC = () => {
                      <a href="#contact" className="w-full sm:w-auto bg-secondary hover:bg-yellow-600 text-white font-bold py-4 px-8 rounded-xl shadow-lg flex items-center justify-center gap-2">
                         Get Free Quote <ArrowRight size={18} />
                      </a>
-                     <a href="tel:4049524534" className="w-full sm:w-auto bg-white/10 backdrop-blur-md border border-white/30 text-white font-bold py-4 px-8 rounded-xl flex items-center justify-center gap-2">
+                     <a href="tel:4049524534" className="w-full sm:w-auto bg-black/30 backdrop-blur-md border border-white/40 text-white font-bold py-4 px-8 rounded-xl flex items-center justify-center gap-2">
                         <Phone size={18} /> Call Now
                      </a>
                 </div>
 
                 {/* Key Benefits List (Visible on Desktop) */}
-                <div className="hidden lg:flex flex-col gap-3 mb-10 text-white/90">
+                <div className="hidden lg:flex flex-col gap-3 mb-10 text-white drop-shadow-md">
                     <div className="flex items-center gap-3">
-                        <div className="bg-secondary/20 p-1 rounded-full"><CheckCircle2 className="text-secondary" size={18} /></div>
-                        <span className="font-medium text-lg">Factory Direct Pricing (Save up to 30%)</span>
+                        <div className="bg-secondary/20 p-1 rounded-full backdrop-blur-sm border border-white/10"><CheckCircle2 className="text-secondary" size={18} /></div>
+                        <span className="font-semibold text-lg">Factory Direct Pricing (Save up to 30%)</span>
                     </div>
                     <div className="flex items-center gap-3">
-                        <div className="bg-secondary/20 p-1 rounded-full"><CheckCircle2 className="text-secondary" size={18} /></div>
-                        <span className="font-medium text-lg">Huge Indoor Slab Yard in Duluth</span>
+                        <div className="bg-secondary/20 p-1 rounded-full backdrop-blur-sm border border-white/10"><CheckCircle2 className="text-secondary" size={18} /></div>
+                        <span className="font-semibold text-lg">Huge Indoor Slab Yard in Duluth</span>
                     </div>
                      <div className="flex items-center gap-3">
-                        <div className="bg-secondary/20 p-1 rounded-full"><CheckCircle2 className="text-secondary" size={18} /></div>
-                        <span className="font-medium text-lg">Turnkey Installation in 5 Days</span>
+                        <div className="bg-secondary/20 p-1 rounded-full backdrop-blur-sm border border-white/10"><CheckCircle2 className="text-secondary" size={18} /></div>
+                        <span className="font-semibold text-lg">Turnkey Installation in 5 Days</span>
                     </div>
                 </div>
 
@@ -113,14 +113,14 @@ const Hero: React.FC = () => {
                              "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=64&h=64&fit=crop",
                              "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=64&h=64&fit=crop"
                          ].map((img, i) => (
-                             <img key={i} src={img} alt="Happy Customer" className="w-10 h-10 rounded-full border-2 border-primary object-cover" />
+                             <img key={i} src={img} alt="Happy Customer" className="w-10 h-10 rounded-full border-2 border-white object-cover" />
                          ))}
                      </div>
                      <div className="text-center sm:text-left">
-                        <div className="flex text-yellow-400 justify-center sm:justify-start gap-0.5 mb-1">
+                        <div className="flex text-yellow-400 justify-center sm:justify-start gap-0.5 mb-1 drop-shadow-sm">
                             {[1,2,3,4,5].map(i => <Star key={i} fill="currentColor" size={16} />)}
                         </div>
-                        <p className="text-gray-300 text-sm font-medium">4.9/5 Rating from 120+ Homeowners</p>
+                        <p className="text-white text-sm font-bold drop-shadow-md">4.9/5 Rating from 120+ Homeowners</p>
                      </div>
                 </div>
             </div>
