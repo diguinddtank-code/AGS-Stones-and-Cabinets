@@ -130,72 +130,73 @@ const Header: React.FC = () => {
                 style={{ width: `${scrollProgress * 100}%`, opacity: isScrolled ? 1 : 0 }}
             ></div>
         </div>
-
-        {/* 
-            MOBILE SIDE DRAWER
-        */}
-        <div 
-            id="mobile-navigation-drawer"
-            className={`md:hidden fixed inset-0 z-[40] transition-all duration-300 ${mobileMenuOpen ? 'visible' : 'invisible delay-300'}`}
-            role="dialog"
-            aria-modal="true"
-            aria-label="Mobile Navigation"
-        >
-            <div 
-                className={`absolute inset-0 bg-black/60 backdrop-blur-sm transition-opacity duration-300 ${
-                    mobileMenuOpen ? 'opacity-100' : 'opacity-0'
-                }`}
-                onClick={() => setMobileMenuOpen(false)}
-                aria-hidden="true"
-            ></div>
-
-            <div 
-                className={`absolute top-0 right-0 w-[85%] max-w-[320px] h-full bg-white shadow-2xl transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] flex flex-col pt-24 ${
-                    mobileMenuOpen ? 'translate-x-0' : 'translate-x-full'
-                }`}
-            >
-                {/* Close button inside drawer */}
-                <button 
-                    onClick={() => setMobileMenuOpen(false)}
-                    className="absolute top-6 right-4 p-2 bg-gray-50 border border-gray-200 rounded-full text-gray-600"
-                    aria-label="Close menu"
-                >
-                    <X size={20} aria-hidden="true" />
-                </button>
-
-                <nav className="flex-grow overflow-y-auto py-4 px-6 flex flex-col gap-4">
-                    {navLinks.map((link, idx) => (
-                        <a 
-                            key={link.name} 
-                            href={link.href} 
-                            className="text-xl font-serif text-gray-800 py-3 border-b border-gray-50 flex items-center justify-between group active:text-secondary"
-                            onClick={() => setMobileMenuOpen(false)}
-                            style={{ transitionDelay: `${mobileMenuOpen ? idx * 50 : 0}ms` }}
-                        >
-                            {link.name}
-                            <ArrowRight size={18} className="text-gray-300 group-hover:text-secondary -translate-x-2 group-hover:translate-x-0 transition-all" aria-hidden="true" />
-                        </a>
-                    ))}
-                </nav>
-
-                <div className="p-6 bg-gray-900 text-white mt-auto relative overflow-hidden">
-                    <div className="absolute top-0 right-0 w-32 h-32 bg-secondary/20 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2"></div>
-                    <a 
-                        href="tel:4049524534" 
-                        className="flex items-center justify-center gap-2 bg-secondary text-white py-4 rounded-xl font-bold shadow-lg mb-6 active:scale-95 transition-transform relative z-10"
-                    >
-                        <Phone size={20} /> Call for Estimate
-                    </a>
-                    
-                    <div className="flex justify-center gap-6 text-gray-400 relative z-10">
-                        <a href="#" className="hover:text-white transition-colors" aria-label="Visit our Instagram"><Instagram size={24} /></a>
-                        <a href="#" className="hover:text-white transition-colors" aria-label="Visit our Facebook"><Facebook size={24} /></a>
-                    </div>
-                </div>
-            </div>
-        </div>
-
       </header>
+
+      {/* 
+          MOBILE SIDE DRAWER
+          Moved OUTSIDE the header to prevent z-index/stacking context clipping issues.
+          Now sits at z-[100] to cover everything including StickyCta.
+      */}
+      <div 
+          id="mobile-navigation-drawer"
+          className={`md:hidden fixed inset-0 z-[100] transition-all duration-300 ${mobileMenuOpen ? 'visible' : 'invisible delay-300'}`}
+          role="dialog"
+          aria-modal="true"
+          aria-label="Mobile Navigation"
+      >
+          <div 
+              className={`absolute inset-0 bg-primary/40 backdrop-blur-sm transition-opacity duration-300 ${
+                  mobileMenuOpen ? 'opacity-100' : 'opacity-0'
+              }`}
+              onClick={() => setMobileMenuOpen(false)}
+              aria-hidden="true"
+          ></div>
+
+          <div 
+              className={`absolute top-0 right-0 w-[85%] max-w-[320px] h-full bg-white/95 backdrop-blur-xl shadow-2xl transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] flex flex-col pt-24 border-l border-white/20 ${
+                  mobileMenuOpen ? 'translate-x-0' : 'translate-x-full'
+              }`}
+          >
+              {/* Close button inside drawer */}
+              <button 
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="absolute top-6 right-4 p-2 bg-gray-50/50 border border-gray-200 rounded-full text-gray-600 hover:bg-red-50 hover:text-red-500 transition-colors"
+                  aria-label="Close menu"
+              >
+                  <X size={20} aria-hidden="true" />
+              </button>
+
+              <nav className="flex-grow overflow-y-auto py-4 px-6 flex flex-col gap-4">
+                  {navLinks.map((link, idx) => (
+                      <a 
+                          key={link.name} 
+                          href={link.href} 
+                          className="text-xl font-serif text-gray-800 py-3 border-b border-gray-100 flex items-center justify-between group active:text-secondary"
+                          onClick={() => setMobileMenuOpen(false)}
+                          style={{ transitionDelay: `${mobileMenuOpen ? idx * 50 : 0}ms` }}
+                      >
+                          {link.name}
+                          <ArrowRight size={18} className="text-gray-300 group-hover:text-secondary -translate-x-2 group-hover:translate-x-0 transition-all" aria-hidden="true" />
+                      </a>
+                  ))}
+              </nav>
+
+              <div className="p-6 bg-gray-900 text-white mt-auto relative overflow-hidden">
+                  <div className="absolute top-0 right-0 w-32 h-32 bg-secondary/20 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2"></div>
+                  <a 
+                      href="tel:4049524534" 
+                      className="flex items-center justify-center gap-2 bg-secondary text-white py-4 rounded-xl font-bold shadow-lg mb-6 active:scale-95 transition-transform relative z-10"
+                  >
+                      <Phone size={20} /> Call for Estimate
+                  </a>
+                  
+                  <div className="flex justify-center gap-6 text-gray-400 relative z-10">
+                      <a href="#" className="hover:text-white transition-colors" aria-label="Visit our Instagram"><Instagram size={24} /></a>
+                      <a href="#" className="hover:text-white transition-colors" aria-label="Visit our Facebook"><Facebook size={24} /></a>
+                  </div>
+              </div>
+          </div>
+      </div>
     </>
   );
 };

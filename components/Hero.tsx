@@ -3,6 +3,7 @@ import { Star, CheckCircle2, ArrowRight, ShieldCheck, Phone } from 'lucide-react
 
 const Hero: React.FC = () => {
   const bgRef = useRef<HTMLDivElement>(null);
+  const contentRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     let requestThumb: number;
@@ -10,10 +11,30 @@ const Hero: React.FC = () => {
     const handleScroll = () => {
       requestThumb = requestAnimationFrame(() => {
         const scrollY = window.scrollY;
+        // Stop calculating if scrolled past the hero to save resources
         if (scrollY > window.innerHeight) return;
 
+        // 1. Background Parallax (Slower movement)
         if (bgRef.current) {
           bgRef.current.style.transform = `translateY(${scrollY * 0.5}px)`;
+        }
+
+        // 2. Content Exit Effect (Fade out + Parallax + Scale Down)
+        if (contentRef.current) {
+            // Fade out completely by the time user scrolls 60% of the screen height
+            const opacity = Math.max(0, 1 - (scrollY / (window.innerHeight * 0.6)));
+            
+            // Move text down slightly (parallax) to create depth
+            const yOffset = scrollY * 0.3;
+            
+            // Subtle scale down effect (1 -> 0.95)
+            const scale = Math.max(0.95, 1 - (scrollY / (window.innerHeight * 4)));
+
+            contentRef.current.style.opacity = opacity.toString();
+            contentRef.current.style.transform = `translateY(${yOffset}px) scale(${scale})`;
+            
+            // Optional: Add blur for a "cinematic focus" loss effect (might be heavy on older phones, keeping it subtle)
+            // contentRef.current.style.filter = `blur(${scrollY * 0.01}px)`; 
         }
       });
     };
@@ -27,7 +48,7 @@ const Hero: React.FC = () => {
   }, []);
 
   return (
-    <section className="relative min-h-screen flex items-center bg-primary overflow-hidden pt-24 lg:pt-28 pb-12">
+    <section className="relative min-h-screen flex items-center bg-primary overflow-hidden pt-24 lg:pt-28 pb-32 md:pb-12">
       {/* 
         Background Video with Parallax Effect 
       */}
@@ -58,7 +79,10 @@ const Hero: React.FC = () => {
         - Increased px (padding-x) for desktop to prevent edge hugging
         - Added max-w-7xl to constrain content width (Compact Look)
       */}
-      <div className="relative z-10 container mx-auto px-6 md:px-12 lg:px-16 xl:px-24 h-full flex flex-col justify-center">
+      <div 
+        ref={contentRef}
+        className="relative z-10 container mx-auto px-6 md:px-12 lg:px-16 xl:px-24 h-full flex flex-col justify-center will-change-transform origin-center"
+      >
         <div className="grid lg:grid-cols-12 gap-10 lg:gap-16 items-center max-w-7xl mx-auto w-full">
             
             {/* LEFT COLUMN: Text Content */}

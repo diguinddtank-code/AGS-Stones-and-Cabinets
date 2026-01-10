@@ -13,7 +13,7 @@ interface ServiceDetail {
 
 const services: ServiceDetail[] = [
   {
-    icon: <Layers size={24} className="text-secondary" />,
+    icon: <Layers size={24} />,
     title: "Premium Countertops",
     shortDesc: "Exquisite Granite, Marble, and Quartz fabrication.",
     image: "https://agsstonefabricators.com/wp-content/uploads/2025/03/blue-mare-quartz-countertop-1024x602.jpg-768x452.webp", 
@@ -22,7 +22,7 @@ const services: ServiceDetail[] = [
     keywords: ["granite countertops atlanta", "quartz kitchen island", "marble fabrication duluth"]
   },
   {
-    icon: <Box size={24} className="text-secondary" />,
+    icon: <Box size={24} />,
     title: "Custom Cabinets",
     shortDesc: "Tailor-made cabinetry to fit your space perfectly.",
     image: "https://agsstonefabricators.com/wp-content/uploads/2025/11/Untitled.jpg",
@@ -31,7 +31,7 @@ const services: ServiceDetail[] = [
     keywords: ["custom cabinets near me", "kitchen cabinet installation", "modern shaker cabinets"]
   },
   {
-    icon: <ChefHat size={24} className="text-secondary" />,
+    icon: <ChefHat size={24} />,
     title: "Kitchen Remodeling",
     shortDesc: "Full-scale kitchen renovations from start to finish.",
     image: "https://agsstonefabricators.com/wp-content/uploads/2025/11/Custom-vs.-Pre-Fabricated-Kitchen-Cabinets-1-1-522x600.jpg",
@@ -40,7 +40,7 @@ const services: ServiceDetail[] = [
     keywords: ["kitchen remodel near me", "turnkey renovation atlanta", "kitchen design services"]
   },
   {
-    icon: <Bath size={24} className="text-secondary" />,
+    icon: <Bath size={24} />,
     title: "Bathroom Remodeling",
     shortDesc: "Create a spa-like retreat in your own home.",
     image: "https://www.dfwimproved.com/wp-content/uploads/2021/12/How-to-plan-a-bathroom-remodel-scaled.jpg",
@@ -49,7 +49,7 @@ const services: ServiceDetail[] = [
     keywords: ["bathroom remodel atlanta", "master bath renovation", "custom shower installation"]
   },
   {
-    icon: <Droplet size={24} className="text-secondary" />,
+    icon: <Droplet size={24} />,
     title: "Bath Vanities",
     shortDesc: "Transform your bathroom into a spa experience.",
     image: "https://agsstonefabricators.com/wp-content/uploads/2025/11/Custom-vs.-Pre-Fabricated-Kitchen-Cabinets-1-2.jpg",
@@ -58,7 +58,7 @@ const services: ServiceDetail[] = [
     keywords: ["bathroom vanity tops", "bathroom remodel alpharetta", "custom quartz vanity"]
   },
   {
-    icon: <Hammer size={24} className="text-secondary" />,
+    icon: <Hammer size={24} />,
     title: "Outdoor Kitchens",
     shortDesc: "Durable and stylish outdoor cooking spaces.",
     image: "https://agsstonefabricators.com/wp-content/uploads/2025/11/Custom-vs.-Pre-Fabricated-Kitchen-Cabinets-1-3.jpg",
@@ -67,7 +67,7 @@ const services: ServiceDetail[] = [
     keywords: ["outdoor kitchen builder", "granite bbq countertops", "patio kitchen design"]
   },
   {
-    icon: <Grid size={24} className="text-secondary" />,
+    icon: <Grid size={24} />,
     title: "Tile Work & Backsplash",
     shortDesc: "Professional flooring and backsplash installation.",
     image: "https://howtonestforless.com/wp-content/uploads/2014/10/kitchen-backsplash-tutorial.jpg",
@@ -128,7 +128,7 @@ const Services: React.FC = () => {
           </p>
         </div>
 
-        <div ref={containerRef} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div ref={containerRef} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
           {services.map((service, index) => {
             const isLast = index === services.length - 1;
             const gridClasses = isLast ? "md:col-span-2 lg:col-span-1 lg:col-start-2" : "";
@@ -137,7 +137,7 @@ const Services: React.FC = () => {
                 <div 
                 key={index} 
                 onClick={() => setSelectedService(service)}
-                className={`service-card-anim ${gridClasses} opacity-0 translate-y-12 scale-95 transition-all duration-1000 ease-[cubic-bezier(0.16,1,0.3,1)] group relative h-[420px] cursor-pointer`}
+                className={`service-card-anim ${gridClasses} opacity-0 translate-y-12 scale-95 transition-all duration-1000 ease-[cubic-bezier(0.16,1,0.3,1)] group relative h-[320px] md:h-[400px] cursor-pointer rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl ring-1 ring-black/5`}
                 style={{ transitionDelay: `${index * 80}ms` }}
                 role="button"
                 tabIndex={0}
@@ -148,37 +148,46 @@ const Services: React.FC = () => {
                     }
                 }}
                 >
-                    {/* Glassmorphism Effect Applied Here */}
-                    <div className="relative h-full w-full bg-white/60 backdrop-blur-xl rounded-[2.5rem] shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:shadow-[0_20px_40px_rgb(0,0,0,0.1)] border border-white/50 transition-all duration-500 overflow-hidden group-hover:-translate-y-2 group-hover:scale-[1.02]">
+                    {/* 1. Full Background Image */}
+                    <img 
+                        src={service.image} 
+                        alt={`${service.title} Services in Atlanta GA`}
+                        className="absolute inset-0 w-full h-full object-cover transform scale-100 group-hover:scale-110 transition-transform duration-[1.5s] ease-out"
+                        loading="lazy"
+                    />
+                    
+                    {/* 2. Gradient Overlay for Text Readability */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent opacity-70 group-hover:opacity-85 transition-opacity duration-500"></div>
+
+                    {/* 3. Border Glow on Hover */}
+                    <div className="absolute inset-0 border-2 border-white/0 group-hover:border-white/10 rounded-3xl transition-colors duration-500 pointer-events-none"></div>
+
+                    {/* 4. Content Content (Bottom aligned) */}
+                    <div className="absolute bottom-0 left-0 w-full p-6 md:p-8 flex flex-col justify-end h-full">
                         
-                        {/* Image Half */}
-                        <div className="h-1/2 overflow-hidden relative">
-                            <div className="absolute inset-0 bg-primary/5 group-hover:bg-transparent transition-colors duration-500 z-10"></div>
-                            <img 
-                                src={service.image} 
-                                alt={`${service.title} Services in Atlanta GA`}
-                                className="w-full h-full object-cover transform scale-105 group-hover:scale-110 transition-transform duration-[1.5s] ease-out"
-                                loading="lazy"
-                            />
-                            {/* Floating Icon Badge - Glass Style */}
-                            <div className="absolute -bottom-7 right-8 w-16 h-16 bg-white/80 backdrop-blur-md rounded-2xl shadow-xl flex items-center justify-center z-20 border border-white/50 group-hover:scale-110 group-hover:rotate-3 transition-all duration-500 ease-[cubic-bezier(0.34,1.56,0.64,1)]">
+                        {/* Icon & Title Group */}
+                        <div className="transform translate-y-2 group-hover:translate-y-0 transition-transform duration-500 delay-75">
+                            {/* Icon */}
+                            <div className="mb-3 text-secondary bg-white/10 backdrop-blur-md w-12 h-12 rounded-xl flex items-center justify-center border border-white/10 shadow-lg">
                                 {service.icon}
                             </div>
+
+                            {/* Title */}
+                            <h4 className="text-2xl md:text-3xl font-serif font-bold text-white mb-2 drop-shadow-lg tracking-wide">
+                                {service.title}
+                            </h4>
                         </div>
 
-                        {/* Text Half */}
-                        <div className="h-1/2 p-8 pt-12 flex flex-col relative">
-                            <h4 className="text-2xl font-serif font-medium text-primary mb-3 group-hover:text-secondary transition-colors duration-300">{service.title}</h4>
-                            <p className="text-gray-600 text-sm leading-relaxed mb-6 line-clamp-3 font-light">
+                        {/* Expandable Description */}
+                        <div className="max-h-0 overflow-hidden group-hover:max-h-24 transition-[max-height] duration-500 ease-in-out">
+                            <p className="text-gray-200 text-sm leading-relaxed opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100 pb-2 border-l-2 border-secondary pl-3 mt-2">
                                 {service.shortDesc}
                             </p>
-                            
-                            <div className="mt-auto flex items-center justify-between">
-                                <span className="text-xs font-bold uppercase tracking-wider text-gray-400 group-hover:text-primary transition-colors">View Details</span>
-                                <div className="w-10 h-10 rounded-full bg-white/50 border border-white/40 group-hover:bg-secondary group-hover:border-secondary flex items-center justify-center transition-all duration-300">
-                                    <ArrowUpRight size={18} className="text-gray-400 group-hover:text-white transition-colors" />
-                                </div>
-                            </div>
+                        </div>
+                        
+                        {/* Animated Bottom Line */}
+                        <div className="w-full h-[3px] bg-white/10 mt-4 relative overflow-hidden rounded-full">
+                            <div className="absolute top-0 left-0 w-full h-full bg-secondary -translate-x-full group-hover:translate-x-0 transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)]"></div>
                         </div>
                     </div>
                 </div>
