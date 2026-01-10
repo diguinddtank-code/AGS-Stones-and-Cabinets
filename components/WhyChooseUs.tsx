@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { Clock, Award, DollarSign, Star, ChevronDown } from 'lucide-react';
 
 const WhyChooseUs: React.FC = () => {
@@ -45,7 +45,6 @@ const WhyChooseUs: React.FC = () => {
   }, []);
 
   return (
-    // Z-index 30 ensures it's above normal content (z-0 to z-10) but below sticky navs (z-40+)
     <section id="why-us" className="py-24 bg-white relative z-30 pointer-events-auto">
       <div className="container mx-auto px-4">
         
@@ -133,7 +132,7 @@ const WhyChooseUs: React.FC = () => {
           </div>
         </div>
 
-        {/* FAQ Section */}
+        {/* FAQ Section - Using Semantic <details> for SEO */}
         <div 
             className="max-w-3xl mx-auto border-t border-gray-200 pt-16 relative z-20 pointer-events-auto animate-on-scroll opacity-0 translate-y-10 transition-all duration-700"
             style={{ transitionDelay: '600ms' }}
@@ -142,32 +141,26 @@ const WhyChooseUs: React.FC = () => {
           
           <div className="space-y-4">
             <FaqItem 
-              id="faq-1"
               question="How much do Granite countertops cost in Atlanta?" 
               answer="Granite prices vary by level (rarity) and thickness. At AGS Stones in Duluth, we offer factory-direct pricing starting as low as $35/sqft installed for Level 1 granite. We service all of Metro Atlanta including Johns Creek, Alpharetta, and Roswell with competitive rates." 
             />
             <FaqItem 
-              id="faq-2"
               question="Do you install Kitchen Cabinets near me?" 
               answer="Yes! We are a full-service kitchen remodeling company. We install custom and semi-custom cabinets throughout the Atlanta area. Whether you need a simple vanity replacement in Suwanee or a full chef's kitchen in Sandy Springs, our team handles the design and installation." 
             />
             <FaqItem 
-              id="faq-3"
               question="What is the difference between Quartz and Granite?" 
               answer="Granite is a 100% natural stone cut from the earth, offering unique patterns and heat resistance. Quartz is an engineered stone (typically 93% natural quartz and 7% resin), which makes it non-porous and maintenance-free." 
             />
             <FaqItem 
-              id="faq-4"
               question="Do I need to seal my Quartz countertops?" 
               answer="No, one of the main benefits of Quartz is that it is non-porous and does not require sealing. Natural stones like Granite and Marble, however, should be sealed. We apply a 15-year industrial-grade sealer to all our natural stone installations." 
             />
             <FaqItem 
-              id="faq-5"
               question="How long does countertop installation take?" 
               answer="Once we have your template, fabrication typically takes 3-5 days. The actual installation in your home is usually completed in just one day, often within 4-6 hours." 
             />
             <FaqItem 
-              id="faq-6"
               question="What areas in Georgia do you serve?" 
               answer="We are based in Duluth but serve the entire Metro Atlanta area, including Alpharetta, Roswell, Johns Creek, Milton, Suwanee, Sandy Springs, Dunwoody, Norcross, and Lawrenceville." 
             />
@@ -179,54 +172,23 @@ const WhyChooseUs: React.FC = () => {
   );
 };
 
-// Robust controlled component with smooth animations and ARIA attributes
-const FaqItem: React.FC<{ id: string; question: string; answer: string }> = ({ id, question, answer }) => {
-  const [isOpen, setIsOpen] = useState(false);
-
+// Refactored to use semantic HTML5 <details> for better Google crawling
+const FaqItem: React.FC<{ question: string; answer: string }> = ({ question, answer }) => {
   return (
-    <div 
-      className={`group rounded-xl overflow-hidden border transition-all duration-300 ease-[cubic-bezier(0.4,0,0.2,1)] ${
-        isOpen 
-          ? 'bg-white border-secondary/40 shadow-lg scale-[1.01]' 
-          : 'bg-gray-50 border-gray-100 hover:border-gray-200'
-      }`}
-    >
-      <button 
-        onClick={() => setIsOpen(!isOpen)}
-        className="w-full flex items-center justify-between p-6 font-medium text-left touch-manipulation cursor-pointer focus:outline-none"
-        type="button"
-        aria-expanded={isOpen}
-        aria-controls={`${id}-content`}
-        id={`${id}-header`}
-      >
-        <span className={`text-base md:text-lg pr-4 transition-colors duration-300 ${
-          isOpen ? 'text-secondary font-bold' : 'text-gray-900 group-hover:text-primary'
-        }`}>
+    <details className="group rounded-xl overflow-hidden border border-gray-100 bg-gray-50 open:bg-white open:border-secondary/40 open:shadow-lg transition-all duration-300">
+      <summary className="flex items-center justify-between p-6 font-medium cursor-pointer list-none focus:outline-none">
+        <span className="text-base md:text-lg text-gray-900 group-hover:text-primary group-open:text-secondary group-open:font-bold transition-colors">
           {question}
         </span>
-        <span className={`transition-transform duration-300 ease-[cubic-bezier(0.4,0,0.2,1)] shrink-0 ${
-          isOpen ? 'rotate-180 text-secondary' : 'rotate-0 text-gray-400 group-hover:text-gray-600'
-        }`}>
+        <span className="transition-transform duration-300 group-open:rotate-180 text-gray-400 group-open:text-secondary">
            <ChevronDown size={24} />
         </span>
-      </button>
+      </summary>
       
-      {/* Content Wrapper for smooth height animation */}
-      <div 
-        id={`${id}-content`}
-        role="region"
-        aria-labelledby={`${id}-header`}
-        className={`px-6 overflow-hidden transition-all duration-500 ease-[cubic-bezier(0.4,0,0.2,1)] ${
-          isOpen 
-            ? 'max-h-[500px] opacity-100 pb-6' 
-            : 'max-h-0 opacity-0 pb-0'
-        }`}
-      >
-        <div className="text-gray-600 text-sm md:text-base leading-relaxed border-t border-gray-100 pt-4 animate-in fade-in slide-in-from-top-2 duration-300">
-          {answer}
-        </div>
+      <div className="px-6 pb-6 text-gray-600 text-sm md:text-base leading-relaxed border-t border-transparent group-open:border-gray-100 group-open:pt-4 animate-in fade-in slide-in-from-top-2 duration-300">
+        {answer}
       </div>
-    </div>
+    </details>
   );
 };
 
