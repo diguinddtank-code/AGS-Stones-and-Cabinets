@@ -1,5 +1,5 @@
 import React from 'react';
-import { Star, Quote } from 'lucide-react';
+import { Star, Quote, Phone, ArrowRight } from 'lucide-react';
 import { Testimonial } from '../types';
 
 const reviews: Testimonial[] = [
@@ -56,7 +56,7 @@ const Testimonials: React.FC = () => {
         - We duplicate the reviews array to ensure seamless looping
         - 'group-hover:paused' allows users to stop and read
       */}
-      <div className="relative w-full">
+      <div className="relative w-full mb-16">
         {/* Left fade */}
         <div className="absolute top-0 left-0 w-16 md:w-32 h-full bg-gradient-to-r from-gray-50 to-transparent z-10 pointer-events-none"></div>
         {/* Right fade */}
@@ -105,6 +105,41 @@ const Testimonials: React.FC = () => {
           ))}
         </div>
       </div>
+
+      {/* 
+        NEW CTA SECTION 
+        Placed directly below testimonials to convert interest into action
+      */}
+      <div className="container mx-auto px-4 relative z-20">
+        <div className="max-w-4xl mx-auto bg-white rounded-2xl shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-gray-100 p-8 md:p-10 flex flex-col md:flex-row items-center justify-between gap-8">
+            <div className="text-center md:text-left">
+                <h4 className="text-2xl font-serif font-bold text-primary mb-2">Ready to start your project?</h4>
+                <p className="text-gray-500">Join hundreds of happy customers in Atlanta today.</p>
+            </div>
+            
+            <div className="flex flex-col sm:flex-row items-center gap-4 w-full md:w-auto">
+                <a 
+                    href="#contact" 
+                    className="w-full sm:w-auto bg-secondary hover:bg-yellow-600 text-white font-bold py-4 px-8 rounded-full shadow-lg hover:shadow-xl transition-all hover:-translate-y-1 flex items-center justify-center gap-2 group whitespace-nowrap"
+                >
+                    <span>Request Free Estimate</span>
+                    <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
+                </a>
+                
+                <a 
+                    href="tel:4049524534" 
+                    className="w-full sm:w-auto bg-white hover:bg-gray-50 text-primary font-bold py-4 px-8 rounded-full border border-gray-200 hover:border-secondary transition-all shadow-sm hover:shadow-md flex items-center justify-center gap-2 whitespace-nowrap"
+                >
+                    <Phone size={20} className="text-secondary" />
+                    <span>Get Fast Quote</span>
+                </a>
+            </div>
+        </div>
+        <p className="text-center text-xs text-gray-400 mt-6 animate-pulse">
+            No obligation. 100% Free Consultation.
+        </p>
+      </div>
+
     </section>
   );
 };
