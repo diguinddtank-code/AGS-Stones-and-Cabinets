@@ -42,6 +42,11 @@ function App() {
           <Services />
         </Suspense>
 
+        {/* Testimonials moved immediately after Services for social proof */}
+        <Suspense fallback={<SectionLoader />}>
+          <Testimonials />
+        </Suspense>
+
         {/* Stone Gallery (Stones para escolher) moved above Process Timeline (Jornada) */}
         <Suspense fallback={<SectionLoader />}>
           <StoneGallery />
@@ -53,11 +58,6 @@ function App() {
 
         <Suspense fallback={<SectionLoader />}>
           <WhyChooseUs />
-        </Suspense>
-
-        {/* Testimonials moved above FAQ */}
-        <Suspense fallback={<SectionLoader />}>
-          <Testimonials />
         </Suspense>
         
         {/* New separate FAQ component */}
