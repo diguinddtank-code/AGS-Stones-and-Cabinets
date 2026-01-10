@@ -198,7 +198,7 @@ const Services: React.FC = () => {
 
       {/* 
         ----------------------------------------------------
-        REFINED LUXURY MODAL (ACCESSIBLE)
+        REFINED LUXURY MODAL (ACCESSIBLE) WITH STAGGERED ANIMATIONS
         ----------------------------------------------------
       */}
       {selectedService && (
@@ -216,20 +216,20 @@ const Services: React.FC = () => {
           ></div>
           
           <div 
-            className="bg-white/95 backdrop-blur-xl w-full md:w-[90%] md:max-w-6xl max-h-[90dvh] h-[90dvh] md:h-[85vh] rounded-t-[2rem] md:rounded-[2rem] shadow-2xl flex flex-col md:flex-row relative animate-in slide-in-from-bottom-12 duration-500 ease-[cubic-bezier(0.19,1,0.22,1)] z-10 overflow-hidden border border-white/20" 
+            className="bg-white/95 backdrop-blur-xl w-full md:w-[90%] md:max-w-6xl max-h-[90dvh] h-[90dvh] md:h-[85vh] rounded-t-[2rem] md:rounded-[2rem] shadow-2xl flex flex-col md:flex-row relative animate-in zoom-in-95 slide-in-from-bottom-16 duration-700 ease-[cubic-bezier(0.19,1,0.22,1)] z-10 overflow-hidden border border-white/20" 
             onClick={e => e.stopPropagation()}
           >
-            {/* Close Button - Floats nicely above everything */}
+            {/* Close Button - Floats nicely above everything - Delayed Appearance */}
             <button 
               onClick={() => setSelectedService(null)}
-              className="absolute top-4 right-4 z-50 bg-white/50 hover:bg-white backdrop-blur-md text-primary p-2.5 rounded-full shadow-sm transition-all border border-white/40 hover:scale-110"
+              className="absolute top-4 right-4 z-50 bg-white/50 hover:bg-white backdrop-blur-md text-primary p-2.5 rounded-full shadow-sm transition-all border border-white/40 hover:scale-110 animate-in fade-in zoom-in duration-500 delay-700 fill-mode-both"
               aria-label="Close details"
             >
               <X size={22} />
             </button>
 
             {/* Left Side: Visuals (Top on Mobile) */}
-            <div className="h-64 md:h-auto md:w-5/12 relative overflow-hidden group shrink-0">
+            <div className="h-64 md:h-auto md:w-5/12 relative overflow-hidden group shrink-0 animate-in fade-in slide-in-from-top-10 md:slide-in-from-left-10 duration-700 delay-150 fill-mode-backwards">
               <img 
                 src={selectedService.image} 
                 alt={`${selectedService.title} - Best in Atlanta & Duluth`}
@@ -239,11 +239,11 @@ const Services: React.FC = () => {
               
               {/* Mobile Only overlay Text */}
               <div className="absolute bottom-0 left-0 p-6 w-full md:hidden">
-                 <div className="inline-flex items-center gap-2 bg-white/20 backdrop-blur-md px-3 py-1 rounded-full text-white font-bold uppercase tracking-widest text-[10px] mb-2 border border-white/10">
+                 <div className="inline-flex items-center gap-2 bg-white/20 backdrop-blur-md px-3 py-1 rounded-full text-white font-bold uppercase tracking-widest text-[10px] mb-2 border border-white/10 animate-in slide-in-from-bottom-4 fade-in duration-500 delay-300 fill-mode-backwards">
                     {selectedService.icon}
                     <span>Service</span>
                  </div>
-                 <h3 className="text-2xl font-serif font-bold text-white leading-none drop-shadow-md">{selectedService.title}</h3>
+                 <h3 className="text-2xl font-serif font-bold text-white leading-none drop-shadow-md animate-in slide-in-from-bottom-4 fade-in duration-500 delay-500 fill-mode-backwards">{selectedService.title}</h3>
               </div>
             </div>
 
@@ -255,28 +255,32 @@ const Services: React.FC = () => {
                 
                 {/* Desktop Title (Hidden on Mobile) */}
                 <div className="hidden md:block mb-8">
-                     <div className="inline-flex items-center gap-2 bg-primary/5 px-3 py-1 rounded-full text-primary font-bold uppercase tracking-widest text-[10px] mb-4">
+                     <div className="inline-flex items-center gap-2 bg-primary/5 px-3 py-1 rounded-full text-primary font-bold uppercase tracking-widest text-[10px] mb-4 animate-in slide-in-from-bottom-4 fade-in duration-500 delay-300 fill-mode-backwards">
                         {selectedService.icon}
                         <span>Service Detail</span>
                      </div>
-                    <h3 id="modal-title" className="text-4xl lg:text-5xl font-serif font-bold text-primary leading-tight">{selectedService.title}</h3>
+                    <h3 id="modal-title" className="text-4xl lg:text-5xl font-serif font-bold text-primary leading-tight animate-in slide-in-from-bottom-6 fade-in duration-500 delay-500 fill-mode-backwards">{selectedService.title}</h3>
                 </div>
 
-                <div className="mb-8">
+                <div className="mb-8 animate-in slide-in-from-bottom-6 fade-in duration-500 delay-500 fill-mode-backwards">
                     <h4 className="font-bold text-primary text-lg mb-3">Overview</h4>
                     <p className="text-gray-600 leading-relaxed text-base font-light">
                         {selectedService.longDesc}
                     </p>
                 </div>
 
-                <div>
+                <div className="animate-in slide-in-from-bottom-8 fade-in duration-500 delay-700 fill-mode-backwards">
                     <h4 className="font-bold text-gray-900 text-xs uppercase tracking-widest mb-6 border-b border-gray-100 pb-2 flex justify-between items-center">
                         What's Included
                         <span className="text-secondary normal-case tracking-normal text-[10px] bg-secondary/10 px-2 py-0.5 rounded-full">All Inclusive</span>
                     </h4>
                     <div className="grid grid-cols-1 gap-3">
                         {selectedService.features.map((feature, i) => (
-                        <div key={i} className="flex items-center gap-4 p-3 rounded-2xl bg-white/50 border border-transparent hover:border-gray-200 hover:bg-white/80 transition-all group/item">
+                        <div 
+                            key={i} 
+                            className="flex items-center gap-4 p-3 rounded-2xl bg-white/50 border border-transparent hover:border-gray-200 hover:bg-white/80 transition-all group/item animate-in slide-in-from-bottom-4 fade-in duration-500 fill-mode-backwards"
+                            style={{ animationDelay: `${800 + (i * 100)}ms` }}
+                        >
                             <div className="bg-white p-1.5 rounded-full text-secondary shadow-sm group-hover/item:scale-110 transition-transform border border-gray-100">
                                 <Check size={14} strokeWidth={3} />
                             </div>
@@ -291,7 +295,7 @@ const Services: React.FC = () => {
                 THE "ACTION BAR" 
                 Sticks to the bottom, creates a unified control area 
               */}
-              <div className="absolute bottom-0 left-0 w-full z-20">
+              <div className="absolute bottom-0 left-0 w-full z-20 animate-in slide-in-from-bottom-full fade-in duration-700 delay-1000 fill-mode-backwards">
                 {/* Fade mask to smooth text scrolling behind the bar */}
                 <div className="h-12 bg-gradient-to-t from-white to-transparent pointer-events-none"></div>
                 
