@@ -18,6 +18,7 @@ const Showroom = lazy(() => import('./components/Showroom'));
 const Testimonials = lazy(() => import('./components/Testimonials'));
 const Contact = lazy(() => import('./components/Contact'));
 const Footer = lazy(() => import('./components/Footer'));
+const Faq = lazy(() => import('./components/Faq'));
 
 // Simple loading fallback
 const SectionLoader = () => (
@@ -41,6 +42,11 @@ function App() {
           <Services />
         </Suspense>
 
+        {/* Stone Gallery (Stones para escolher) moved above Process Timeline (Jornada) */}
+        <Suspense fallback={<SectionLoader />}>
+          <StoneGallery />
+        </Suspense>
+
         <Suspense fallback={<SectionLoader />}>
           <ProcessTimeline />
         </Suspense>
@@ -49,8 +55,14 @@ function App() {
           <WhyChooseUs />
         </Suspense>
 
+        {/* Testimonials moved above FAQ */}
         <Suspense fallback={<SectionLoader />}>
-          <StoneGallery />
+          <Testimonials />
+        </Suspense>
+        
+        {/* New separate FAQ component */}
+        <Suspense fallback={<SectionLoader />}>
+          <Faq />
         </Suspense>
 
         <Suspense fallback={<SectionLoader />}>
@@ -63,10 +75,6 @@ function App() {
 
         <Suspense fallback={<SectionLoader />}>
           <Showroom />
-        </Suspense>
-
-        <Suspense fallback={<SectionLoader />}>
-          <Testimonials />
         </Suspense>
 
         <Suspense fallback={<SectionLoader />}>

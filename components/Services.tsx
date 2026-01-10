@@ -137,7 +137,7 @@ const Services: React.FC = () => {
                 <div 
                 key={index} 
                 onClick={() => setSelectedService(service)}
-                className={`service-card-anim ${gridClasses} opacity-0 translate-y-12 scale-95 transition-all duration-1000 ease-[cubic-bezier(0.16,1,0.3,1)] group relative h-[320px] md:h-[400px] cursor-pointer rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl ring-1 ring-black/5`}
+                className={`service-card-anim ${gridClasses} opacity-0 translate-y-12 scale-95 transition-all duration-1000 ease-[cubic-bezier(0.16,1,0.3,1)] group relative h-[180px] md:h-[400px] cursor-pointer rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl ring-1 ring-black/5`}
                 style={{ transitionDelay: `${index * 80}ms` }}
                 role="button"
                 tabIndex={0}
