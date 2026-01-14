@@ -128,24 +128,43 @@ const Hero: React.FC = () => {
                     </div>
                 </div>
 
-                {/* Social Proof */}
-                <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 sm:gap-6">
-                     <div className="flex -space-x-3">
-                         {[
-                             "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=64&h=64&fit=crop",
-                             "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=64&h=64&fit=crop",
-                             "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=64&h=64&fit=crop",
-                             "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=64&h=64&fit=crop"
-                         ].map((img, i) => (
-                             <img key={i} src={img} alt="Happy Customer" className="w-10 h-10 rounded-full border-2 border-white object-cover" />
-                         ))}
-                     </div>
-                     <div className="text-center sm:text-left">
-                        <div className="flex text-yellow-400 justify-center sm:justify-start gap-0.5 mb-1 drop-shadow-sm">
-                            {[1,2,3,4,5].map(i => <Star key={i} fill="currentColor" size={16} />)}
+                {/* 
+                   SOCIAL PROOF - MINIMALIST GOOGLE BADGE
+                   Small, sleek, glassmorphic pill that fits the hero aesthetic.
+                */}
+                <div className="flex justify-center lg:justify-start">
+                     <a 
+                        href="https://www.google.com/search?q=AGS+Stones+and+Cabinets"
+                        target="_blank"
+                        rel="noopener noreferrer" 
+                        className="inline-flex items-center gap-3 bg-black/40 hover:bg-black/50 backdrop-blur-md border border-white/15 rounded-full pr-5 pl-1.5 py-1.5 transition-all group hover:scale-[1.02] cursor-pointer"
+                     >
+                        {/* Google Icon Circle */}
+                        <div className="w-8 h-8 bg-white rounded-full flex items-center justify-center shadow-sm shrink-0">
+                             <img 
+                                src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg" 
+                                alt="Google Review" 
+                                className="w-5 h-5" 
+                                width="20"
+                                height="20"
+                             />
                         </div>
-                        <p className="text-white text-sm font-bold drop-shadow-md">4.9/5 Rating from 120+ Homeowners</p>
-                     </div>
+                        
+                        {/* Text Info */}
+                        <div className="flex flex-col justify-center">
+                            <div className="flex items-center gap-1.5">
+                                <span className="font-bold text-white text-sm leading-none">5.0</span>
+                                <div className="flex gap-0.5">
+                                    {[1,2,3,4,5].map(i => (
+                                        <Star key={i} size={12} className="fill-[#FBBC05] text-[#FBBC05]" />
+                                    ))}
+                                </div>
+                            </div>
+                            <p className="text-[10px] font-medium text-gray-300 leading-none mt-1 group-hover:text-white transition-colors">
+                                120+ Excellent Reviews
+                            </p>
+                        </div>
+                     </a>
                 </div>
             </div>
 
