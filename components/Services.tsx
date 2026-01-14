@@ -14,66 +14,66 @@ interface ServiceDetail {
 const services: ServiceDetail[] = [
   {
     icon: <Layers size={24} />,
-    title: "Premium Countertops",
-    shortDesc: "Exquisite Granite, Marble, and Quartz fabrication.",
+    title: "Granite & Quartz Countertops",
+    shortDesc: "Factory-direct fabrication of premium stone surfaces.",
     image: "https://agsstonefabricators.com/wp-content/uploads/2025/03/blue-mare-quartz-countertop-1024x602.jpg-768x452.webp", 
-    longDesc: "We are the leading fabricators of Granite, Marble, Quartzite, and Quartz countertops in Duluth and Metro Atlanta. Our state-of-the-art facility uses laser templating for precision fitting.",
-    features: ["Laser Templating Precision", "In-House Fabrication", "Seam Matching Technology", "15-Year Sealer Options"],
-    keywords: ["granite countertops atlanta", "quartz kitchen island", "marble fabrication duluth"]
+    longDesc: "As Atlanta's premier stone fabricator, we import slabs directly to save you money. Whether you want the natural beauty of Granite or the zero-maintenance appeal of Quartz, we precision-cut everything in our Duluth facility using laser templating.",
+    features: ["Factory Direct Pricing (No Middlemen)", "Laser Templating Precision", "In-House Fabrication", "15-Year Stain Protection"],
+    keywords: ["granite countertops atlanta", "quartz installers duluth", "marble fabricator near me"]
   },
   {
     icon: <Box size={24} />,
-    title: "Custom Cabinets",
-    shortDesc: "Tailor-made cabinetry to fit your space perfectly.",
+    title: "Custom Kitchen Cabinets",
+    shortDesc: "Solid wood cabinetry tailored to your space.",
     image: "https://agsstonefabricators.com/wp-content/uploads/2025/11/Untitled.jpg",
-    longDesc: "Upgrade your storage with our custom and semi-custom cabinetry solutions. We offer solid wood construction, soft-close hinges, and dovetail drawers.",
-    features: ["Solid Wood Construction", "Soft-Close Hardware", "3D Cabinet Design", "Custom Colors & Finishes"],
-    keywords: ["custom cabinets near me", "kitchen cabinet installation", "modern shaker cabinets"]
+    longDesc: "Don't settle for big-box store quality. Our custom and semi-custom kitchen cabinets feature solid wood construction, dovetail drawers, and soft-close hardware. We design layouts that maximize storage and workflow.",
+    features: ["Solid Wood & Plywood (No Particle Board)", "Soft-Close Hinges & Slides", "3D Kitchen Design Service", "Custom Colors & Finishes"],
+    keywords: ["custom cabinets atlanta", "kitchen cabinet replacement", "shaker style cabinets"]
   },
   {
     icon: <ChefHat size={24} />,
-    title: "Kitchen Remodeling",
-    shortDesc: "Full-scale kitchen renovations from start to finish.",
+    title: "Full Kitchen Remodeling",
+    shortDesc: "Complete turnkey renovation from demo to done.",
     image: "https://agsstonefabricators.com/wp-content/uploads/2025/11/Custom-vs.-Pre-Fabricated-Kitchen-Cabinets-1-1-522x600.jpg",
-    longDesc: "AGS Stones offers complete turnkey kitchen remodeling services. We handle demolition, plumbing, electrical adjustments, and installation.",
-    features: ["Turnkey Project Management", "Demolition & Disposal", "Plumbing & Electrical Prep", "Backsplash & Lighting"],
-    keywords: ["kitchen remodel near me", "turnkey renovation atlanta", "kitchen design services"]
+    longDesc: "We handle your entire kitchen renovation project. From demolition and disposal to plumbing, electrical, and backsplash installation. Get a chef-worthy kitchen in weeks, not months.",
+    features: ["Project Management (A-Z)", "Demolition & Haul Away", "Plumbing & Electrical Prep", "Backsplash & Lighting Installation"],
+    keywords: ["kitchen remodel contractors", "turnkey kitchen renovation", "kitchen design atlanta"]
   },
   {
     icon: <Bath size={24} />,
-    title: "Bathroom Remodeling",
-    shortDesc: "Create a spa-like retreat in your own home.",
+    title: "Bathroom Renovations",
+    shortDesc: "Spa-like master bath retreats and vanities.",
     image: "https://www.dfwimproved.com/wp-content/uploads/2021/12/How-to-plan-a-bathroom-remodel-scaled.jpg",
-    longDesc: "Transform your outdated bathroom into a luxurious sanctuary. We handle everything from shower conversions and freestanding tub installations to custom tile work.",
-    features: ["Walk-in Shower Conversions", "Freestanding Tub Installation", "Custom Tile & Grout", "Complete Demolition & Rebuild"],
-    keywords: ["bathroom remodel atlanta", "master bath renovation", "custom shower installation"]
+    longDesc: "Upgrade your master bathroom or powder room. We specialize in walk-in shower conversions, freestanding tub installations, and custom double vanities with stone tops.",
+    features: ["Shower Conversions", "Freestanding Tub Install", "Custom Tile Work", "Double Vanity Fabrication"],
+    keywords: ["bathroom remodel alpharetta", "master bath renovation", "custom shower installers"]
   },
   {
     icon: <Droplet size={24} />,
-    title: "Bath Vanities",
-    shortDesc: "Transform your bathroom into a spa experience.",
+    title: "Vanity Tops & Remnants",
+    shortDesc: "Affordable stone upgrades for smaller spaces.",
     image: "https://agsstonefabricators.com/wp-content/uploads/2025/11/Custom-vs.-Pre-Fabricated-Kitchen-Cabinets-1-2.jpg",
-    longDesc: "Elevate your master bath or powder room with our custom vanity tops and cabinets. We specialize in fabricating vanity tops from remnants or full slabs.",
-    features: ["Custom Vanity Tops", "Undermount Sinks", "Master Bath Renovation", "Remnant Program for Small Projects"],
-    keywords: ["bathroom vanity tops", "bathroom remodel alpharetta", "custom quartz vanity"]
+    longDesc: "Looking for a budget-friendly upgrade? Visit our 'Bone Yard' in Duluth to pick from hundreds of high-quality stone remnants perfect for bathroom vanities, laundry rooms, and fireplaces.",
+    features: ["Discounted Stone Remnants", "Quick Turnaround", "Perfect for Small Projects", "Undermount Sink Included"],
+    keywords: ["bathroom vanity tops", "cheap granite remnants", "quartz vanity top"]
   },
   {
     icon: <Hammer size={24} />,
     title: "Outdoor Kitchens",
-    shortDesc: "Durable and stylish outdoor cooking spaces.",
+    shortDesc: "Durable granite for your patio or BBQ station.",
     image: "https://agsstonefabricators.com/wp-content/uploads/2025/11/Custom-vs.-Pre-Fabricated-Kitchen-Cabinets-1-3.jpg",
-    longDesc: "Take the party outside with a custom outdoor kitchen. We use UV-resistant stones like Granite and Dekton that withstand Georgia's weather.",
-    features: ["Weather-Resistant Materials", "Built-in BBQ Stations", "Outdoor Bar Tops", "Dekton & Granite Options"],
+    longDesc: "Take the party outside. We fabricate UV-resistant stone countertops like Granite and Dekton that withstand Georgia summers. Perfect for BBQ islands and patio bars.",
+    features: ["UV & Weather Resistant Stone", "Built-in Grill Cutouts", "Outdoor Bar Tops", "Leathered & Honed Finishes"],
     keywords: ["outdoor kitchen builder", "granite bbq countertops", "patio kitchen design"]
   },
   {
     icon: <Grid size={24} />,
-    title: "Tile Work & Backsplash",
-    shortDesc: "Professional flooring and backsplash installation.",
+    title: "Backsplash & Tile",
+    shortDesc: "Expert installation of subway, mosaic, and floor tile.",
     image: "https://howtonestforless.com/wp-content/uploads/2014/10/kitchen-backsplash-tutorial.jpg",
-    longDesc: "The perfect kitchen needs the perfect backsplash. Our skilled tile setters install subway tile, mosaics, herringbone patterns, and large format porcelain flooring.",
-    features: ["Backsplash Installation", "Porcelain & Ceramic Tile", "Shower Walls", "Custom Mosaics"],
-    keywords: ["backsplash installation", "tile contractors duluth", "kitchen flooring"]
+    longDesc: "Complete the look with professional tile installation. Whether you want a classic subway tile backsplash or a complex herringbone floor pattern, our tile setters deliver perfection.",
+    features: ["Kitchen Backsplash", "Shower Walls & Floors", "Large Format Porcelain", "Custom Mosaics"],
+    keywords: ["backsplash installers", "kitchen tile installation", "tile contractors duluth"]
   }
 ];
 
@@ -101,7 +101,6 @@ const Services: React.FC = () => {
     return () => observer.disconnect();
   }, []);
 
-  // Lock body scroll when modal is open
   useEffect(() => {
     if (selectedService) {
         document.body.style.overflow = 'hidden';
@@ -113,7 +112,6 @@ const Services: React.FC = () => {
 
   return (
     <section id="services" className="py-24 bg-gradient-to-br from-gray-50 via-gray-100 to-gray-200 relative overflow-hidden">
-        {/* Decorative Background Elements */}
         <div className="absolute top-0 left-0 w-full h-full pointer-events-none">
             <div className="absolute top-[10%] left-[-5%] w-96 h-96 bg-gray-200/50 rounded-full blur-3xl mix-blend-multiply"></div>
             <div className="absolute bottom-[10%] right-[-5%] w-96 h-96 bg-secondary/5 rounded-full blur-3xl mix-blend-multiply"></div>
@@ -148,7 +146,6 @@ const Services: React.FC = () => {
                     }
                 }}
                 >
-                    {/* 1. Full Background Image */}
                     <img 
                         src={service.image} 
                         alt={`${service.title} Services in Atlanta GA`}
@@ -156,36 +153,28 @@ const Services: React.FC = () => {
                         loading="lazy"
                     />
                     
-                    {/* 2. Gradient Overlay for Text Readability */}
                     <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent opacity-70 group-hover:opacity-85 transition-opacity duration-500"></div>
 
-                    {/* 3. Border Glow on Hover */}
                     <div className="absolute inset-0 border-2 border-white/0 group-hover:border-white/10 rounded-3xl transition-colors duration-500 pointer-events-none"></div>
 
-                    {/* 4. Content Content (Bottom aligned) */}
                     <div className="absolute bottom-0 left-0 w-full p-6 md:p-8 flex flex-col justify-end h-full">
                         
-                        {/* Icon & Title Group */}
                         <div className="transform translate-y-2 group-hover:translate-y-0 transition-transform duration-500 delay-75">
-                            {/* Icon */}
                             <div className="mb-3 text-secondary bg-white/10 backdrop-blur-md w-12 h-12 rounded-xl flex items-center justify-center border border-white/10 shadow-lg">
                                 {service.icon}
                             </div>
 
-                            {/* Title */}
                             <h4 className="text-2xl md:text-3xl font-serif font-bold text-white mb-2 drop-shadow-lg tracking-wide">
                                 {service.title}
                             </h4>
                         </div>
 
-                        {/* Expandable Description */}
                         <div className="max-h-0 overflow-hidden group-hover:max-h-24 transition-[max-height] duration-500 ease-in-out">
                             <p className="text-gray-200 text-sm leading-relaxed opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100 pb-2 border-l-2 border-secondary pl-3 mt-2">
                                 {service.shortDesc}
                             </p>
                         </div>
                         
-                        {/* Animated Bottom Line */}
                         <div className="w-full h-[3px] bg-white/10 mt-4 relative overflow-hidden rounded-full">
                             <div className="absolute top-0 left-0 w-full h-full bg-secondary -translate-x-full group-hover:translate-x-0 transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)]"></div>
                         </div>
@@ -196,11 +185,6 @@ const Services: React.FC = () => {
         </div>
       </div>
 
-      {/* 
-        ----------------------------------------------------
-        REFINED LUXURY MODAL (ACCESSIBLE) WITH STAGGERED ANIMATIONS
-        ----------------------------------------------------
-      */}
       {selectedService && (
         <div 
             className="fixed inset-0 z-[100] flex items-end md:items-center justify-center"
@@ -208,7 +192,6 @@ const Services: React.FC = () => {
             aria-modal="true"
             aria-labelledby="modal-title"
         >
-          {/* Backdrop with fade-in */}
           <div 
             className="absolute inset-0 bg-primary/60 backdrop-blur-md animate-fade-in"
             onClick={() => setSelectedService(null)}
@@ -219,7 +202,6 @@ const Services: React.FC = () => {
             className="bg-white/95 backdrop-blur-xl w-full md:w-[90%] md:max-w-6xl max-h-[90dvh] h-[90dvh] md:h-[85vh] rounded-t-[2rem] md:rounded-[2rem] shadow-2xl flex flex-col md:flex-row relative animate-modal-enter z-10 overflow-hidden border border-white/20" 
             onClick={e => e.stopPropagation()}
           >
-            {/* Close Button - Staggered entrance */}
             <button 
               onClick={() => setSelectedService(null)}
               className="absolute top-4 right-4 z-50 bg-white/50 hover:bg-white backdrop-blur-md text-primary p-2.5 rounded-full shadow-sm transition-all border border-white/40 hover:scale-110 animate-fade-in-up opacity-0"
@@ -229,7 +211,6 @@ const Services: React.FC = () => {
               <X size={22} />
             </button>
 
-            {/* Left Side: Visuals (Top on Mobile) */}
             <div className="h-64 md:h-auto md:w-5/12 relative overflow-hidden group shrink-0 animate-fade-in-up opacity-0" style={{ animationDelay: '100ms', animationFillMode: 'forwards' }}>
               <img 
                 src={selectedService.image} 
@@ -238,7 +219,6 @@ const Services: React.FC = () => {
               />
               <div className="absolute inset-0 bg-gradient-to-t from-primary/90 via-primary/20 to-transparent md:bg-gradient-to-r md:from-transparent md:to-transparent"></div>
               
-              {/* Mobile Only overlay Text */}
               <div className="absolute bottom-0 left-0 p-6 w-full md:hidden">
                  <div className="inline-flex items-center gap-2 bg-white/20 backdrop-blur-md px-3 py-1 rounded-full text-white font-bold uppercase tracking-widest text-[10px] mb-2 border border-white/10 animate-fade-in-up opacity-0" style={{ animationDelay: '300ms', animationFillMode: 'forwards' }}>
                     {selectedService.icon}
@@ -248,13 +228,10 @@ const Services: React.FC = () => {
               </div>
             </div>
 
-            {/* Right Side: Content & Actions (Bottom on Mobile) */}
             <div className="flex-1 flex flex-col bg-white/60 relative overflow-hidden">
               
-              {/* Scrollable Content Area */}
               <div className="flex-1 overflow-y-auto p-6 md:p-12 pb-24 md:pb-28 custom-scrollbar">
                 
-                {/* Desktop Title (Hidden on Mobile) */}
                 <div className="hidden md:block mb-8">
                      <div className="inline-flex items-center gap-2 bg-primary/5 px-3 py-1 rounded-full text-primary font-bold uppercase tracking-widest text-[10px] mb-4 animate-fade-in-up opacity-0" style={{ animationDelay: '300ms', animationFillMode: 'forwards' }}>
                         {selectedService.icon}
@@ -292,15 +269,9 @@ const Services: React.FC = () => {
                 </div>
               </div>
 
-              {/* 
-                THE "ACTION BAR" 
-                Sticks to the bottom, creates a unified control area 
-              */}
               <div className="absolute bottom-0 left-0 w-full z-20 animate-fade-in-up opacity-0" style={{ animationDelay: '900ms', animationFillMode: 'forwards' }}>
-                {/* Fade mask to smooth text scrolling behind the bar */}
                 <div className="h-12 bg-gradient-to-t from-white to-transparent pointer-events-none"></div>
                 
-                {/* Glassmorphic Bar */}
                 <div className="bg-white/80 backdrop-blur-xl border-t border-gray-200/50 p-4 md:p-6 flex flex-row gap-3 md:gap-4 items-center shadow-[0_-10px_40px_-15px_rgba(0,0,0,0.1)]">
                     <a 
                         href="#contact"

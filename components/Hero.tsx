@@ -11,30 +11,19 @@ const Hero: React.FC = () => {
     const handleScroll = () => {
       requestThumb = requestAnimationFrame(() => {
         const scrollY = window.scrollY;
-        // Stop calculating if scrolled past the hero to save resources
         if (scrollY > window.innerHeight) return;
 
-        // 1. Background Parallax (Slower movement)
         if (bgRef.current) {
           bgRef.current.style.transform = `translateY(${scrollY * 0.5}px)`;
         }
 
-        // 2. Content Exit Effect (Fade out + Parallax + Scale Down)
         if (contentRef.current) {
-            // Fade out completely by the time user scrolls 60% of the screen height
             const opacity = Math.max(0, 1 - (scrollY / (window.innerHeight * 0.6)));
-            
-            // Move text down slightly (parallax) to create depth
             const yOffset = scrollY * 0.3;
-            
-            // Subtle scale down effect (1 -> 0.95)
             const scale = Math.max(0.95, 1 - (scrollY / (window.innerHeight * 4)));
 
             contentRef.current.style.opacity = opacity.toString();
             contentRef.current.style.transform = `translateY(${yOffset}px) scale(${scale})`;
-            
-            // Optional: Add blur for a "cinematic focus" loss effect (might be heavy on older phones, keeping it subtle)
-            // contentRef.current.style.filter = `blur(${scrollY * 0.01}px)`; 
         }
       });
     };
@@ -49,9 +38,6 @@ const Hero: React.FC = () => {
 
   return (
     <section className="relative min-h-screen flex items-center bg-primary overflow-hidden pt-24 lg:pt-28 pb-32 md:pb-12">
-      {/* 
-        Background Video with Parallax Effect 
-      */}
       <div 
         ref={bgRef}
         className="absolute inset-0 z-0 will-change-transform"
@@ -69,40 +55,32 @@ const Hero: React.FC = () => {
             Your browser does not support the video tag.
         </video>
 
-        {/* Cinematic Gradient Overlay - Significantly reduced opacity for clarity */}
         <div className="absolute inset-0 bg-gradient-to-r from-primary/70 via-primary/25 to-transparent"></div>
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-primary/60 lg:to-primary/0"></div>
       </div>
 
-      {/* 
-        Main Content Grid
-        - Increased px (padding-x) for desktop to prevent edge hugging
-        - Added max-w-7xl to constrain content width (Compact Look)
-      */}
       <div 
         ref={contentRef}
         className="relative z-10 container mx-auto px-6 md:px-12 lg:px-16 xl:px-24 h-full flex flex-col justify-center will-change-transform origin-center"
       >
         <div className="grid lg:grid-cols-12 gap-10 lg:gap-16 items-center max-w-7xl mx-auto w-full">
             
-            {/* LEFT COLUMN: Text Content */}
             <div className="lg:col-span-7 text-center lg:text-left pt-6 lg:pt-0 animate-in slide-in-from-bottom-10 duration-1000">
                 <div className="inline-flex items-center gap-2 py-1.5 px-4 rounded-full border border-white/30 bg-black/20 backdrop-blur-md text-xs md:text-sm uppercase tracking-widest mb-6 font-medium shadow-sm text-white mx-auto lg:mx-0">
                     <Star size={12} className="text-secondary fill-secondary" />
-                    Atlanta's #1 Granite Fabricator
+                    #1 Factory Direct Fabricator in GA
                 </div>
 
-                {/* Typography optimized for compact desktop look (slightly smaller than previous giant text) */}
                 <h1 className="text-4xl sm:text-5xl lg:text-5xl xl:text-6xl font-serif font-bold mb-6 drop-shadow-xl leading-[1.15] tracking-tight text-white max-w-4xl mx-auto lg:mx-0 shadow-black/10">
-                  Premium <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#eab308] via-[#fde047] to-[#eab308] drop-shadow-md">Granite & Cabinets</span><br />
-                  in Metro Atlanta
+                  Atlanta's Premier <br/>
+                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#eab308] via-[#fde047] to-[#eab308] drop-shadow-md">Granite & Cabinet</span><br />
+                  Fabricators
                 </h1>
 
                 <p className="text-base sm:text-lg lg:text-xl text-white mb-8 max-w-2xl mx-auto lg:mx-0 font-medium leading-relaxed drop-shadow-md">
-                   Transforming homes with <strong>Precision Stone Fabrication</strong> and <strong>Custom Cabinetry</strong>. Experience 5-star quality, factory-direct pricing, and 5-day turnaround.
+                   Buy direct from the factory and save up to 30%. Expert installation of <strong>Granite, Quartz, Marble</strong>, and <strong>Custom Kitchen Cabinets</strong> in Duluth & Metro Atlanta.
                 </p>
 
-                {/* CTA BUTTONS: Visible on Mobile AND Tablet */}
                 <div className="flex flex-col sm:flex-row gap-4 mb-10 lg:hidden px-4 sm:px-0 justify-center lg:justify-start">
                      <a href="#contact" className="w-full sm:w-auto bg-secondary hover:bg-yellow-600 text-white font-bold py-4 px-8 rounded-xl shadow-lg flex items-center justify-center gap-2">
                         Get Free Quote <ArrowRight size={18} />
@@ -112,26 +90,21 @@ const Hero: React.FC = () => {
                      </a>
                 </div>
 
-                {/* Key Benefits List (Visible on Desktop) */}
                 <div className="hidden lg:flex flex-col gap-3 mb-10 text-white drop-shadow-md">
                     <div className="flex items-center gap-3">
                         <div className="bg-secondary/20 p-1 rounded-full backdrop-blur-sm border border-white/10"><CheckCircle2 className="text-secondary" size={18} /></div>
-                        <span className="font-semibold text-lg">Factory Direct Pricing (Save up to 30%)</span>
+                        <span className="font-semibold text-lg">Factory Direct Pricing (No Middlemen)</span>
                     </div>
                     <div className="flex items-center gap-3">
                         <div className="bg-secondary/20 p-1 rounded-full backdrop-blur-sm border border-white/10"><CheckCircle2 className="text-secondary" size={18} /></div>
-                        <span className="font-semibold text-lg">Huge Indoor Slab Yard in Duluth</span>
+                        <span className="font-semibold text-lg">Largest Indoor Slab Yard in Duluth</span>
                     </div>
                      <div className="flex items-center gap-3">
                         <div className="bg-secondary/20 p-1 rounded-full backdrop-blur-sm border border-white/10"><CheckCircle2 className="text-secondary" size={18} /></div>
-                        <span className="font-semibold text-lg">Turnkey Installation in 5 Days</span>
+                        <span className="font-semibold text-lg">5-Day Turnaround Guarantee</span>
                     </div>
                 </div>
 
-                {/* 
-                   SOCIAL PROOF - MINIMALIST GOOGLE BADGE
-                   Small, sleek, glassmorphic pill that fits the hero aesthetic.
-                */}
                 <div className="flex justify-center lg:justify-start">
                      <a 
                         href="https://www.google.com/search?q=AGS+Stones+and+Cabinets"
@@ -139,7 +112,6 @@ const Hero: React.FC = () => {
                         rel="noopener noreferrer" 
                         className="inline-flex items-center gap-3 bg-black/40 hover:bg-black/50 backdrop-blur-md border border-white/15 rounded-full pr-5 pl-1.5 py-1.5 transition-all group hover:scale-[1.02] cursor-pointer"
                      >
-                        {/* Google Icon Circle */}
                         <div className="w-8 h-8 bg-white rounded-full flex items-center justify-center shadow-sm shrink-0">
                              <img 
                                 src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg" 
@@ -150,7 +122,6 @@ const Hero: React.FC = () => {
                              />
                         </div>
                         
-                        {/* Text Info */}
                         <div className="flex flex-col justify-center">
                             <div className="flex items-center gap-1.5">
                                 <span className="font-bold text-white text-sm leading-none">5.0</span>
@@ -168,9 +139,7 @@ const Hero: React.FC = () => {
                 </div>
             </div>
 
-            {/* RIGHT COLUMN: Lead Gen Form (VISIBLE ONLY ON LARGE DESKTOPS) */}
             <div className="hidden lg:block lg:col-span-5 relative mt-8 lg:mt-0">
-                 {/* Floating Badge */}
                  <div className="flex absolute -top-4 -right-4 z-20 bg-white text-primary p-3 rounded-2xl shadow-xl items-center gap-3 animate-bounce" style={{ animationDuration: '3s' }}>
                     <ShieldCheck size={24} className="text-secondary" />
                     <div>
