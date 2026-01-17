@@ -1,0 +1,46 @@
+{
+  "redirects": [
+    {
+      "source": "/(.*)",
+      "has": [
+        {
+          "type": "query",
+          "key": "page_id"
+        }
+      ],
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/(.*)",
+      "has": [
+        {
+          "type": "query",
+          "key": "wpr_templates"
+        }
+      ],
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/step-by-step-guide-to-countertop-installation-what-to-expect/:path*",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/5-signs-its-time-to-replace-your-countertops/:path*",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/how-to-choose-the-best-countertop-material-for-your-kitchen/:path*",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/ngg_tag/:path*",
+      "destination": "/",
+      "permanent": true
+    }
+  ]
+}
