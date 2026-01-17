@@ -23,6 +23,11 @@
       "permanent": true
     },
     {
+      "source": "/services/:path*",
+      "destination": "/",
+      "permanent": true
+    },
+    {
       "source": "/step-by-step-guide-to-countertop-installation-what-to-expect/:path*",
       "destination": "/",
       "permanent": true
@@ -34,6 +39,26 @@
     },
     {
       "source": "/how-to-choose-the-best-countertop-material-for-your-kitchen/:path*",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/quartz-granite-countertop-installation-services/:path*",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/insurance-claims-contractors/:path*",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/feed/:path*",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/comments/feed/:path*",
       "destination": "/",
       "permanent": true
     },
