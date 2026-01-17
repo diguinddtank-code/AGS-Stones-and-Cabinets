@@ -1,49 +1,27 @@
 {
   "redirects": [
-    {
-      "source": "/step-by-step-guide-to-countertop-installation-what-to-expect/:path*",
-      "destination": "/",
-      "permanent": true
-    },
-    {
-      "source": "/5-signs-its-time-to-replace-your-countertops/:path*",
-      "destination": "/",
-      "permanent": true
-    },
-    {
-      "source": "/how-to-choose-the-best-countertop-material-for-your-kitchen/:path*",
-      "destination": "/",
-      "permanent": true
-    },
-    {
-      "source": "/quartz-granite-countertop-installation-services/:path*",
-      "destination": "/",
-      "permanent": true
-    },
-    {
-      "source": "/services/:path*",
-      "destination": "/",
-      "permanent": true
-    },
-    {
-      "source": "/ngg_tag/:path*",
-      "destination": "/",
-      "permanent": true
-    },
-    {
-      "source": "/feed/:path*",
-      "destination": "/",
-      "permanent": true
-    },
-    {
-      "source": "/comments/feed/:path*",
-      "destination": "/",
-      "permanent": true
-    },
-    {
-      "source": "/insurance-claims-contractors/",
-      "destination": "/",
-      "permanent": true
-    }
+    { "source": "/about/", "destination": "/", "permanent": true },
+    { "source": "/contact/", "destination": "/", "permanent": true },
+    { "source": "/materials/", "destination": "/", "permanent": true },
+    { "source": "/services/", "destination": "/", "permanent": true },
+    { "source": "/services/bathroom", "destination": "/", "permanent": true },
+    { "source": "/insurance-claims-contractors/", "destination": "/", "permanent": true },
+    { "source": "/ngg_tag/service/", "destination": "/", "permanent": true },
+    { "source": "/feed/", "destination": "/", "permanent": true },
+    { "source": "/feed/page/2/", "destination": "/", "permanent": true },
+    { "source": "/comments/feed/", "destination": "/", "permanent": true },
+    { "source": "/quartz-granite-countertop-installation-services/", "destination": "/", "permanent": true },
+    { "source": "/quartz-granite-countertop-installation-services/product_about-2/", "destination": "/", "permanent": true },
+    { "source": "/quartz-granite-countertop-installation-services/marble-2/", "destination": "/", "permanent": true },
+    { "source": "/quartz-granite-countertop-installation-services/istockphoto-504076064-612x612-2/", "destination": "/", "permanent": true },
+    { "source": "/step-by-step-guide-to-countertop-installation-what-to-expect/", "destination": "/", "permanent": true },
+    { "source": "/step-by-step-guide-to-countertop-installation-what-to-expect/page/2/", "destination": "/", "permanent": true },
+    { "source": "/step-by-step-guide-to-countertop-installation-what-to-expect/feed/", "destination": "/", "permanent": true },
+    { "source": "/5-signs-its-time-to-replace-your-countertops/", "destination": "/", "permanent": true },
+    { "source": "/5-signs-its-time-to-replace-your-countertops/page/2/", "destination": "/", "permanent": true },
+    { "source": "/5-signs-its-time-to-replace-your-countertops/feed/", "destination": "/", "permanent": true },
+    { "source": "/how-to-choose-the-best-countertop-material-for-your-kitchen/", "destination": "/", "permanent": true },
+    { "source": "/how-to-choose-the-best-countertop-material-for-your-kitchen/page/2/", "destination": "/", "permanent": true },
+    { "source": "/how-to-choose-the-best-countertop-material-for-your-kitchen/feed/", "destination": "/", "permanent": true }
   ]
 }
