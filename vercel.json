@@ -16,7 +16,7 @@
       "permanent": true
     },
     {
-      "source": "/ngg_tag/:path*",
+      "source": "/quartz-granite-countertop-installation-services/:path*",
       "destination": "/",
       "permanent": true
     },
@@ -26,12 +26,7 @@
       "permanent": true
     },
     {
-      "source": "/quartz-granite-countertop-installation-services/:path*",
-      "destination": "/",
-      "permanent": true
-    },
-    {
-      "source": "/insurance-claims-contractors/",
+      "source": "/ngg_tag/:path*",
       "destination": "/",
       "permanent": true
     },
@@ -41,7 +36,12 @@
       "permanent": true
     },
     {
-      "source": "/comments/feed/",
+      "source": "/comments/feed/:path*",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/insurance-claims-contractors/",
       "destination": "/",
       "permanent": true
     }
