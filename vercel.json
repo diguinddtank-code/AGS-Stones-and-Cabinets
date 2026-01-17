@@ -44,28 +44,6 @@
       "source": "/comments/feed/",
       "destination": "/",
       "permanent": true
-    },
-    {
-      "source": "/",
-      "has": [
-        {
-          "type": "query",
-          "key": "page_id"
-        }
-      ],
-      "destination": "/",
-      "permanent": true
-    },
-    {
-      "source": "/",
-      "has": [
-        {
-          "type": "query",
-          "key": "wpr_templates"
-        }
-      ],
-      "destination": "/",
-      "permanent": true
     }
   ]
 }
