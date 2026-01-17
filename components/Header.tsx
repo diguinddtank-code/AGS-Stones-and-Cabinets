@@ -71,7 +71,7 @@ const Header: React.FC = () => {
           {/* LOGO (Visible on Mobile & Desktop) */}
           <a href="#" className="block group z-50 relative" aria-label="AGS Stones Home">
              <img 
-              src="https://agsstonefabricators.com/wp-content/uploads/2024/05/Design-sem-nome-16.png" 
+              src="https://i.imgur.com/B0ZaBpN.png" 
               alt="AGS Stones and Cabinets Logo" 
               className={`h-10 md:h-12 w-auto transition-all duration-300 ${
                 isScrolled 

@@ -7,7 +7,7 @@ const Footer: React.FC = () => {
         <div className="grid md:grid-cols-4 gap-8 mb-12">
             <div className="col-span-1 md:col-span-1">
                  <img 
-                    src="https://agsstonefabricators.com/wp-content/uploads/2024/05/Design-sem-nome-16.png" 
+                    src="https://i.imgur.com/B0ZaBpN.png" 
                     alt="AGS Stones & Cabinets Logo" 
                     className="h-20 w-auto mb-4 brightness-0 invert"
                   />
