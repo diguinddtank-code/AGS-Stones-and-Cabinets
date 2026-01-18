@@ -54,6 +54,11 @@ function App() {
           <Services />
         </Suspense>
 
+        {/* MOVED TESTIMONIALS HERE AS REQUESTED */}
+        <Suspense fallback={<SectionLoader />}>
+          <Testimonials />
+        </Suspense>
+
         <Suspense fallback={<SectionLoader />}>
           <ProcessTimeline />
         </Suspense>
@@ -76,10 +81,6 @@ function App() {
 
         <Suspense fallback={<SectionLoader />}>
           <Showroom />
-        </Suspense>
-
-        <Suspense fallback={<SectionLoader />}>
-          <Testimonials />
         </Suspense>
 
         <Suspense fallback={<SectionLoader />}>
