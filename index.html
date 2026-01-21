@@ -12,30 +12,49 @@
 </script>
 
 <script>
-  // 1. Função de conversão oficial do Google
+  // Variável para evitar disparo duplo
+  var conversion_fired = false;
+
   function gtag_report_conversion(url) {
+    // Define o que acontece após o registro (ou se der erro)
     var callback = function () {
       if (typeof(url) != 'undefined') {
-        window.location = url;
+        window.location = url; // Abre o discador
       }
     };
+
+    // Tenta enviar o evento para o Google
     gtag('event', 'conversion', {
         'send_to': 'AW-16885125181/Au3NCM3fmugbEL2guvM-',
-        'event_callback': callback
+        'event_callback': function() {
+            if(!conversion_fired) {
+                conversion_fired = true;
+                callback();
+            }
+        },
+        'event_timeout': 2000 // Espera o Google no máximo 2 segundos
     });
+
+    // REDE DE SEGURANÇA: Se o Google falhar ou demorar, abre o discador em 1s de qualquer jeito
+    setTimeout(function() {
+        if(!conversion_fired) {
+            conversion_fired = true;
+            console.log("Timeout ativado: Abrindo discador via fallback");
+            callback();
+        }
+    }, 1000);
+    
     return false;
   }
 
-  // 2. Automação: Encontra todos os links 'tel:' e aplica o rastreamento
+  // Automação para links 'tel:'
   document.addEventListener("DOMContentLoaded", function() {
-    // Seleciona qualquer link que comece com 'tel:'
     var phoneLinks = document.querySelectorAll('a[href^="tel:"]');
 
     phoneLinks.forEach(function(link) {
       link.addEventListener('click', function(event) {
-        // Pausa o clique normal para registrar a conversão primeiro
-        event.preventDefault(); 
-        gtag_report_conversion(this.href); 
+        event.preventDefault(); // Pausa o clique
+        gtag_report_conversion(this.href); // Chama a função blindada
       });
     });
   });
