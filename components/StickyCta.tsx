@@ -189,6 +189,10 @@ const StickyCta: React.FC = () => {
                     <div className="space-y-3">
                         <a 
                             href="tel:4049524534" 
+                            onClick={(e) => {
+                              e.preventDefault();
+                              (window as any).gtag_report_conversion('tel:4049524534');
+                            }}
                             className="flex items-center justify-center gap-2 w-full bg-secondary hover:bg-yellow-600 text-white font-bold py-3.5 rounded-xl transition-all shadow-md hover:shadow-lg active:scale-95 group"
                         >
                             <Phone size={18} className="group-hover:animate-pulse" />

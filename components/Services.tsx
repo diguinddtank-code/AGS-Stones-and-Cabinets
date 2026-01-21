@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Layers, Box, Hammer, Droplet, ChefHat, Grid, X, Check, Bath, Phone, Plus, ArrowUpRight, Calendar } from 'lucide-react';
+import OptimizedImage from './OptimizedImage';
 
 interface ServiceDetail {
   icon: React.ReactNode;
@@ -16,7 +17,7 @@ const services: ServiceDetail[] = [
     icon: <Layers size={24} />,
     title: "Granite & Quartz Countertops",
     shortDesc: "Factory-direct fabrication of premium stone surfaces.",
-    image: "https://dam.thdstatic.com/content/production/3sJNZBkk31xe9nTrYrToTw/Y6t8wIWPcudCaKjiS8Z74g/Original%20file/quartz-vs-granite-countertops-section-6.jpg", 
+    image: "https://images.unsplash.com/photo-1596162954151-cd9d4d4b1a51",
     longDesc: "As Atlanta's premier stone fabricator, we import slabs directly to save you money. Whether you want the natural beauty of Granite or the zero-maintenance appeal of Quartz, we precision-cut everything in our Duluth facility using laser templating.",
     features: ["Factory Direct Pricing (No Middlemen)", "Laser Templating Precision", "In-House Fabrication", "15-Year Stain Protection"],
     keywords: ["granite countertops atlanta", "quartz installers duluth", "marble fabricator near me"]
@@ -25,7 +26,7 @@ const services: ServiceDetail[] = [
     icon: <Box size={24} />,
     title: "Custom Kitchen Cabinets",
     shortDesc: "Solid wood cabinetry tailored to your space.",
-    image: "https://21stcenturycd.com/wp-content/uploads/2025/02/Aspen-kitchen-2-1.webp",
+    image: "https://images.unsplash.com/photo-1556910103-1c02745a30bf",
     longDesc: "Don't settle for big-box store quality. Our custom and semi-custom kitchen cabinets feature solid wood construction, dovetail drawers, and soft-close hardware. We design layouts that maximize storage and workflow.",
     features: ["Solid Wood & Plywood (No Particle Board)", "Soft-Close Hinges & Slides", "3D Kitchen Design Service", "Custom Colors & Finishes"],
     keywords: ["custom cabinets atlanta", "kitchen cabinet replacement", "shaker style cabinets"]
@@ -34,7 +35,7 @@ const services: ServiceDetail[] = [
     icon: <ChefHat size={24} />,
     title: "Full Kitchen Remodeling",
     shortDesc: "Complete turnkey renovation from demo to done.",
-    image: "https://hamishmurray.com/wp-content/uploads/2021/06/shutterstock_1315328237-1.jpeg",
+    image: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c",
     longDesc: "We handle your entire kitchen renovation project. From demolition and disposal to plumbing, electrical, and backsplash installation. Get a chef-worthy kitchen in weeks, not months.",
     features: ["Project Management (A-Z)", "Demolition & Haul Away", "Plumbing & Electrical Prep", "Backsplash & Lighting Installation"],
     keywords: ["kitchen remodel contractors", "turnkey kitchen renovation", "kitchen design atlanta"]
@@ -43,7 +44,7 @@ const services: ServiceDetail[] = [
     icon: <Bath size={24} />,
     title: "Bathroom Renovations",
     shortDesc: "Spa-like master bath retreats and vanities.",
-    image: "https://www.dfwimproved.com/wp-content/uploads/2021/12/How-to-plan-a-bathroom-remodel-scaled.jpg",
+    image: "https://images.unsplash.com/photo-1584622650111-993a426fbf0a",
     longDesc: "Upgrade your master bathroom or powder room. We specialize in walk-in shower conversions, freestanding tub installations, and custom double vanities with stone tops.",
     features: ["Shower Conversions", "Freestanding Tub Install", "Custom Tile Work", "Double Vanity Fabrication"],
     keywords: ["bathroom remodel alpharetta", "master bath renovation", "custom shower installers"]
@@ -52,7 +53,7 @@ const services: ServiceDetail[] = [
     icon: <Droplet size={24} />,
     title: "Vanity Tops & Remnants",
     shortDesc: "Affordable stone upgrades for smaller spaces.",
-    image: "https://images.squarespace-cdn.com/content/v1/5fa9e7629998b469eb3ba0f7/53e67296-7237-4d9c-bf9a-deeb86d0f740/5929239-1.jpg",
+    image: "https://images.unsplash.com/photo-1620626012053-1c129626993b",
     longDesc: "Looking for a budget-friendly upgrade? Visit our 'Bone Yard' in Duluth to pick from hundreds of high-quality stone remnants perfect for bathroom vanities, laundry rooms, and fireplaces.",
     features: ["Discounted Stone Remnants", "Quick Turnaround", "Perfect for Small Projects", "Undermount Sink Included"],
     keywords: ["bathroom vanity tops", "cheap granite remnants", "quartz vanity top"]
@@ -61,7 +62,7 @@ const services: ServiceDetail[] = [
     icon: <Hammer size={24} />,
     title: "Outdoor Kitchens",
     shortDesc: "Durable granite for your patio or BBQ station.",
-    image: "https://rtaoutdoorliving.com/wp-content/uploads/2022/07/mike-pyles-u-shaped-outdoor-kitchen-with-pizza-oven-refrigerator-and-two-grills.png",
+    image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c",
     longDesc: "Take the party outside. We fabricate UV-resistant stone countertops like Granite and Dekton that withstand Georgia summers. Perfect for BBQ islands and patio bars.",
     features: ["UV & Weather Resistant Stone", "Built-in Grill Cutouts", "Outdoor Bar Tops", "Leathered & Honed Finishes"],
     keywords: ["outdoor kitchen builder", "granite bbq countertops", "patio kitchen design"]
@@ -70,7 +71,7 @@ const services: ServiceDetail[] = [
     icon: <Grid size={24} />,
     title: "Backsplash & Tile",
     shortDesc: "Expert installation of subway, mosaic, and floor tile.",
-    image: "https://howtonestforless.com/wp-content/uploads/2014/10/kitchen-backsplash-tutorial.jpg",
+    image: "https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b",
     longDesc: "Complete the look with professional tile installation. Whether you want a classic subway tile backsplash or a complex herringbone floor pattern, our tile setters deliver perfection.",
     features: ["Kitchen Backsplash", "Shower Walls & Floors", "Large Format Porcelain", "Custom Mosaics"],
     keywords: ["backsplash installers", "kitchen tile installation", "tile contractors duluth"]
@@ -146,11 +147,11 @@ const Services: React.FC = () => {
                     }
                 }}
                 >
-                    <img 
+                    <OptimizedImage 
                         src={service.image} 
                         alt={`${service.title} Services in Atlanta GA`}
+                        width={600}
                         className="absolute inset-0 w-full h-full object-cover transform scale-100 group-hover:scale-110 transition-transform duration-[1.5s] ease-out"
-                        loading="lazy"
                     />
                     
                     <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent opacity-70 group-hover:opacity-85 transition-opacity duration-500"></div>
@@ -187,38 +188,48 @@ const Services: React.FC = () => {
 
       {selectedService && (
         <div 
-            className="fixed inset-0 z-[100] flex items-end md:items-center justify-center"
+            className="fixed inset-0 z-[100] flex items-end md:items-center justify-center p-0 md:p-4"
             role="dialog"
             aria-modal="true"
             aria-labelledby="modal-title"
         >
+          {/* Backdrop */}
           <div 
             className="absolute inset-0 bg-primary/60 backdrop-blur-md animate-fade-in"
             onClick={() => setSelectedService(null)}
             aria-hidden="true"
           ></div>
           
+          {/* Modal Content */}
           <div 
-            className="bg-white/95 backdrop-blur-xl w-full md:w-[90%] md:max-w-6xl max-h-[90dvh] h-[90dvh] md:h-[85vh] rounded-t-[2rem] md:rounded-[2rem] shadow-2xl flex flex-col md:flex-row relative animate-modal-enter z-10 overflow-hidden border border-white/20" 
+            className="bg-white/95 backdrop-blur-xl w-full md:w-[90%] md:max-w-6xl h-[85dvh] md:h-[85vh] rounded-t-[2rem] md:rounded-[2rem] shadow-2xl flex flex-col md:flex-row relative animate-modal-enter z-10 overflow-hidden border border-white/20" 
             onClick={e => e.stopPropagation()}
           >
+            {/* Mobile Drag Handle (Visual Cue) */}
+            <div className="absolute top-3 left-1/2 -translate-x-1/2 w-12 h-1.5 bg-white/50 rounded-full z-50 md:hidden pointer-events-none mix-blend-difference opacity-80"></div>
+
+            {/* Close Button */}
             <button 
               onClick={() => setSelectedService(null)}
-              className="absolute top-4 right-4 z-50 bg-white/50 hover:bg-white backdrop-blur-md text-primary p-2.5 rounded-full shadow-sm transition-all border border-white/40 hover:scale-110 animate-fade-in-up opacity-0"
+              className="absolute top-4 right-4 z-50 bg-black/20 hover:bg-black/40 text-white md:bg-white/50 md:hover:bg-white md:text-primary backdrop-blur-md p-2.5 rounded-full shadow-sm transition-all border border-white/20 md:border-white/40 hover:scale-110 animate-fade-in-up"
               style={{ animationDelay: '600ms', animationFillMode: 'forwards' }}
               aria-label="Close details"
             >
               <X size={22} />
             </button>
 
-            <div className="h-64 md:h-auto md:w-5/12 relative overflow-hidden group shrink-0 animate-fade-in-up opacity-0" style={{ animationDelay: '100ms', animationFillMode: 'forwards' }}>
-              <img 
+            {/* Image Section */}
+            <div className="h-60 md:h-auto md:w-5/12 relative overflow-hidden group shrink-0 animate-fade-in-up opacity-0" style={{ animationDelay: '100ms', animationFillMode: 'forwards' }}>
+              <OptimizedImage 
                 src={selectedService.image} 
                 alt={`${selectedService.title} - Best in Atlanta & Duluth`}
+                width={800}
                 className="w-full h-full object-cover transition-transform duration-[3s] ease-linear scale-105 group-hover:scale-110"
               />
+              {/* Gradient Overlay */}
               <div className="absolute inset-0 bg-gradient-to-t from-primary/90 via-primary/20 to-transparent md:bg-gradient-to-r md:from-transparent md:to-transparent"></div>
               
+              {/* Mobile Only: Title Overlay on Image */}
               <div className="absolute bottom-0 left-0 p-6 w-full md:hidden">
                  <div className="inline-flex items-center gap-2 bg-white/20 backdrop-blur-md px-3 py-1 rounded-full text-white font-bold uppercase tracking-widest text-[10px] mb-2 border border-white/10 animate-fade-in-up opacity-0" style={{ animationDelay: '300ms', animationFillMode: 'forwards' }}>
                     {selectedService.icon}
@@ -228,10 +239,13 @@ const Services: React.FC = () => {
               </div>
             </div>
 
-            <div className="flex-1 flex flex-col bg-white/60 relative overflow-hidden">
+            {/* Content Section */}
+            <div className="flex-1 flex flex-col bg-white/60 relative overflow-hidden h-full">
               
+              {/* Scrollable Text Area */}
               <div className="flex-1 overflow-y-auto p-6 md:p-12 pb-24 md:pb-28 custom-scrollbar">
                 
+                {/* Desktop Only: Title */}
                 <div className="hidden md:block mb-8">
                      <div className="inline-flex items-center gap-2 bg-primary/5 px-3 py-1 rounded-full text-primary font-bold uppercase tracking-widest text-[10px] mb-4 animate-fade-in-up opacity-0" style={{ animationDelay: '300ms', animationFillMode: 'forwards' }}>
                         {selectedService.icon}
@@ -269,10 +283,11 @@ const Services: React.FC = () => {
                 </div>
               </div>
 
+              {/* Fixed Bottom CTA */}
               <div className="absolute bottom-0 left-0 w-full z-20 animate-fade-in-up opacity-0" style={{ animationDelay: '900ms', animationFillMode: 'forwards' }}>
                 <div className="h-12 bg-gradient-to-t from-white to-transparent pointer-events-none"></div>
                 
-                <div className="bg-white/80 backdrop-blur-xl border-t border-gray-200/50 p-4 md:p-6 flex flex-row gap-3 md:gap-4 items-center shadow-[0_-10px_40px_-15px_rgba(0,0,0,0.1)]">
+                <div className="bg-white/80 backdrop-blur-xl border-t border-gray-200/50 p-4 md:p-6 flex flex-row gap-3 md:gap-4 items-center shadow-[0_-10px_40px_-15px_rgba(0,0,0,0.1)] pb-safe">
                     <a 
                         href="#contact"
                         className="flex-1 flex items-center justify-center gap-2 bg-primary hover:bg-gray-800 text-white font-bold py-3.5 md:py-4 px-6 rounded-xl transition-all hover:shadow-lg hover:-translate-y-0.5 active:scale-95 text-sm md:text-base"
@@ -283,6 +298,10 @@ const Services: React.FC = () => {
                     
                     <a 
                         href="tel:4049524534"
+                        onClick={(e) => {
+                          e.preventDefault();
+                          (window as any).gtag_report_conversion('tel:4049524534');
+                        }}
                         className="flex-none flex items-center justify-center gap-2 bg-white hover:bg-gray-50 text-gray-700 font-bold py-3.5 md:py-4 px-5 rounded-xl border border-gray-200 transition-all hover:border-secondary hover:text-secondary active:scale-95"
                         title="Call Specialist"
                         aria-label="Call Specialist"

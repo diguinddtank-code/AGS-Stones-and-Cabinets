@@ -211,6 +211,10 @@ const Testimonials: React.FC = () => {
                     
                     <a 
                         href="tel:4049524534" 
+                        onClick={(e) => {
+                          e.preventDefault();
+                          (window as any).gtag_report_conversion('tel:4049524534');
+                        }}
                         className="bg-white/10 hover:bg-white/20 backdrop-blur-md text-white font-bold py-3 px-8 rounded-full border border-white/20 hover:border-white/40 transition-all flex items-center justify-center gap-2 whitespace-nowrap"
                     >
                         <Phone size={18} />

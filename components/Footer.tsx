@@ -54,7 +54,14 @@ const Footer: React.FC = () => {
                     </div>
                     <div className="flex gap-2">
                          <span className="text-secondary font-bold">Ph:</span>
-                         <a href="tel:4049524534" className="hover:text-white transition-colors">(404) 952-4534</a>
+                         <a 
+                            href="tel:4049524534" 
+                            onClick={(e) => {
+                              e.preventDefault();
+                              (window as any).gtag_report_conversion('tel:4049524534');
+                            }}
+                            className="hover:text-white transition-colors"
+                         >(404) 952-4534</a>
                     </div>
                     <div className="flex gap-2">
                          <span className="text-secondary font-bold">Em:</span>
