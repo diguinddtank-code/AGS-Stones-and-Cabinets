@@ -2,7 +2,6 @@
 <html lang="en">
   <head>
 
-<!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=AW-16885125181"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
@@ -11,15 +10,9 @@
 
   gtag('config', 'AW-16885125181');
 </script>
-<script async src="https://www.googletagmanager.com/gtag/js?id=AW-16885125181"></script>
+
 <script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'AW-16885125181');
-
-  // FUNÇÃO DE CONVERSÃO COM SEU CÓDIGO NOVO
+  // 1. A função de conversão padrão do Google
   function gtag_report_conversion(url) {
     var callback = function () {
       if (typeof(url) != 'undefined') {
@@ -32,6 +25,21 @@
     });
     return false;
   }
+
+  // 2. Script de Automação (Não precisa mexer nos botões manualmente)
+  document.addEventListener("DOMContentLoaded", function() {
+    // Procura todos os links no site que começam com "tel:"
+    var phoneLinks = document.querySelectorAll('a[href^="tel:"]');
+
+    phoneLinks.forEach(function(link) {
+      link.addEventListener('click', function(event) {
+        // Impede a ação padrão momentaneamente
+        event.preventDefault(); 
+        // Chama a conversão do Google e passa o link do telefone
+        gtag_report_conversion(this.href); 
+      });
+    });
+  });
 </script>
 
     <meta charset="UTF-8" />
