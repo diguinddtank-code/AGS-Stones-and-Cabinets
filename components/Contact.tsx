@@ -1,4 +1,6 @@
-import React from 'react';
+'use client'; // Adicionado caso use Next.js
+
+import React, { useState } from 'react';
 import { Phone, Mail, Clock, MapPin, Send, Navigation, Info, CheckCircle2 } from 'lucide-react';
 
 const locations = [
@@ -11,6 +13,38 @@ const locations = [
 ];
 
 const Contact: React.FC = () => {
+  // --- LÓGICA DE ENVIO DO FORMULÁRIO ---
+  const [status, setStatus] = useState<'loading' | 'success' | null>(null);
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault(); // Impede o redirecionamento
+    setStatus('loading');
+
+    const formData = new FormData(e.currentTarget);
+
+    try {
+      // O /ajax/ na URL garante retorno JSON
+      const res = await fetch("https://formsubmit.co/ajax/agsstonesandcabinets@gmail.com", {
+        method: "POST",
+        body: formData,
+        headers: { 
+            'Accept': 'application/json' 
+        }
+      });
+
+      if (res.ok) {
+        setStatus('success');
+      } else {
+        alert("Something went wrong with the submission. Please call us.");
+        setStatus(null);
+      }
+    } catch (error) {
+      console.error(error);
+      alert("Connection error. Please check your internet.");
+      setStatus(null);
+    }
+  };
+
   return (
     <section id="contact" className="relative bg-white pt-20">
       <div className="container mx-auto px-4 mb-20">
@@ -22,113 +56,144 @@ const Contact: React.FC = () => {
 
         <div className="bg-white rounded-3xl shadow-2xl overflow-hidden border border-gray-100 flex flex-col lg:flex-row">
           
-          {/* Contact Form Section */}
-          <div className="lg:w-1/2 p-8 md:p-12 lg:p-16 bg-white z-10">
-            <h4 className="text-2xl font-bold text-primary mb-6">Send us a message</h4>
+          {/* Contact Form Section (AGORA COM LÓGICA DE TROCA DE TELA) */}
+          <div className="lg:w-1/2 p-8 md:p-12 lg:p-16 bg-white z-10 flex flex-col justify-center">
             
-            <form 
-                action="https://formsubmit.co/agsstonesandcabinets@gmail.com" 
-                method="POST" 
-                className="space-y-6"
-            >
-              <input type="hidden" name="_subject" value="New Lead from AGS Website!" />
-              <input type="hidden" name="_captcha" value="false" />
-              <input type="hidden" name="_template" value="table" />
-
-              <div className="grid md:grid-cols-2 gap-6">
-                <div>
-                  <label htmlFor="firstName" className="block text-xs font-bold text-gray-500 uppercase tracking-wide mb-2">First Name</label>
-                  <input 
-                    id="firstName"
-                    name="firstName"
-                    type="text" 
-                    className="w-full px-4 py-3 rounded-lg bg-gray-50 border border-gray-200 focus:border-secondary focus:ring-2 focus:ring-secondary/20 outline-none transition-all placeholder-gray-400" 
-                    placeholder="Jane" 
-                    required
-                  />
+            {status === 'success' ? (
+              // --- TELA DE SUCESSO (Aparece após enviar) ---
+              <div className="flex flex-col items-center justify-center text-center animate-in fade-in zoom-in duration-500 py-10">
+                <div className="w-24 h-24 bg-green-100 rounded-full flex items-center justify-center mb-6 shadow-sm">
+                  <CheckCircle2 className="w-12 h-12 text-green-600" />
                 </div>
-                <div>
-                  <label htmlFor="lastName" className="block text-xs font-bold text-gray-500 uppercase tracking-wide mb-2">Last Name</label>
-                  <input 
-                    id="lastName"
-                    name="lastName"
-                    type="text" 
-                    className="w-full px-4 py-3 rounded-lg bg-gray-50 border border-gray-200 focus:border-secondary focus:ring-2 focus:ring-secondary/20 outline-none transition-all placeholder-gray-400" 
-                    placeholder="Doe" 
-                    required
-                  />
-                </div>
+                <h4 className="text-3xl font-bold text-primary mb-4">Request Received!</h4>
+                <p className="text-gray-600 mb-8 max-w-sm mx-auto leading-relaxed">
+                  Thank you for contacting <strong>AGS Stones</strong>. We received your details and our team will get back to you shortly with your estimate.
+                </p>
+                <button 
+                  onClick={() => setStatus(null)}
+                  className="px-8 py-3 bg-gray-100 text-primary font-bold rounded-xl hover:bg-gray-200 transition-all"
+                >
+                  Send another message
+                </button>
               </div>
 
-              <div className="grid md:grid-cols-2 gap-6">
-                 <div>
-                    <label htmlFor="phone" className="block text-xs font-bold text-gray-500 uppercase tracking-wide mb-2">Phone</label>
-                    <input 
-                        id="phone"
-                        name="phone"
-                        type="tel" 
-                        className="w-full px-4 py-3 rounded-lg bg-gray-50 border border-gray-200 focus:border-secondary focus:ring-2 focus:ring-secondary/20 outline-none transition-all placeholder-gray-400" 
-                        placeholder="(404) 555-0123" 
-                        required
-                    />
-                 </div>
-                 <div>
-                    <label htmlFor="email" className="block text-xs font-bold text-gray-500 uppercase tracking-wide mb-2">Email</label>
-                    <input 
-                        id="email"
-                        name="email"
-                        type="email" 
-                        className="w-full px-4 py-3 rounded-lg bg-gray-50 border border-gray-200 focus:border-secondary focus:ring-2 focus:ring-secondary/20 outline-none transition-all placeholder-gray-400" 
-                        placeholder="jane@example.com" 
-                        required
-                    />
-                 </div>
-              </div>
+            ) : (
+              // --- FORMULÁRIO ORIGINAL ---
+              <>
+                <h4 className="text-2xl font-bold text-primary mb-6">Send us a message</h4>
+                
+                <form onSubmit={handleSubmit} className="space-y-6">
+                  {/* Inputs ocultos do FormSubmit */}
+                  <input type="hidden" name="_subject" value="New Lead from AGS Website!" />
+                  <input type="hidden" name="_captcha" value="false" />
+                  <input type="hidden" name="_template" value="table" />
 
-              <div>
-                <label htmlFor="service" className="block text-xs font-bold text-gray-500 uppercase tracking-wide mb-2">Service Needed</label>
-                <div className="relative">
-                    <select 
-                        id="service"
-                        name="service"
-                        className="w-full px-4 py-3 rounded-lg bg-gray-50 border border-gray-200 focus:border-secondary focus:ring-2 focus:ring-secondary/20 outline-none transition-all appearance-none"
-                    >
-                        <option>Kitchen Remodeling</option>
-                        <option>Countertops (Granite/Quartz)</option>
-                        <option>Bathroom Vanity</option>
-                        <option>Custom Cabinets</option>
-                        <option>Outdoor Kitchen</option>
-                        <option>Other / General Inquiry</option>
-                    </select>
+                  <div className="grid md:grid-cols-2 gap-6">
+                    <div>
+                      <label htmlFor="firstName" className="block text-xs font-bold text-gray-500 uppercase tracking-wide mb-2">First Name</label>
+                      <input 
+                        id="firstName"
+                        name="firstName"
+                        type="text" 
+                        className="w-full px-4 py-3 rounded-lg bg-gray-50 border border-gray-200 focus:border-secondary focus:ring-2 focus:ring-secondary/20 outline-none transition-all placeholder-gray-400" 
+                        placeholder="Jane" 
+                        required
+                      />
+                    </div>
+                    <div>
+                      <label htmlFor="lastName" className="block text-xs font-bold text-gray-500 uppercase tracking-wide mb-2">Last Name</label>
+                      <input 
+                        id="lastName"
+                        name="lastName"
+                        type="text" 
+                        className="w-full px-4 py-3 rounded-lg bg-gray-50 border border-gray-200 focus:border-secondary focus:ring-2 focus:ring-secondary/20 outline-none transition-all placeholder-gray-400" 
+                        placeholder="Doe" 
+                        required
+                      />
+                    </div>
                   </div>
-              </div>
 
-              <div>
-                <label htmlFor="details" className="block text-xs font-bold text-gray-500 uppercase tracking-wide mb-2">Project Details</label>
-                <textarea 
-                    id="details"
-                    name="details"
-                    rows={4} 
-                    className="w-full px-4 py-3 rounded-lg bg-gray-50 border border-gray-200 focus:border-secondary focus:ring-2 focus:ring-secondary/20 outline-none transition-all placeholder-gray-400 resize-none" 
-                    placeholder="Tell us about your space, timeline, and any specific stones you are interested in..."
-                ></textarea>
-              </div>
+                  <div className="grid md:grid-cols-2 gap-6">
+                     <div>
+                        <label htmlFor="phone" className="block text-xs font-bold text-gray-500 uppercase tracking-wide mb-2">Phone</label>
+                        <input 
+                            id="phone"
+                            name="phone"
+                            type="tel" 
+                            className="w-full px-4 py-3 rounded-lg bg-gray-50 border border-gray-200 focus:border-secondary focus:ring-2 focus:ring-secondary/20 outline-none transition-all placeholder-gray-400" 
+                            placeholder="(404) 555-0123" 
+                            required
+                        />
+                     </div>
+                     <div>
+                        <label htmlFor="email" className="block text-xs font-bold text-gray-500 uppercase tracking-wide mb-2">Email</label>
+                        <input 
+                            id="email"
+                            name="email"
+                            type="email" 
+                            className="w-full px-4 py-3 rounded-lg bg-gray-50 border border-gray-200 focus:border-secondary focus:ring-2 focus:ring-secondary/20 outline-none transition-all placeholder-gray-400" 
+                            placeholder="jane@example.com" 
+                            required
+                        />
+                     </div>
+                  </div>
 
-              <div className="flex items-start gap-2 bg-blue-50 p-3 rounded-lg text-blue-800 text-xs mb-2">
-                 <Info size={16} className="shrink-0 mt-0.5" />
-                 <p>We typically respond within 24 hours. For immediate assistance, please call us directly.</p>
-              </div>
+                  <div>
+                    <label htmlFor="service" className="block text-xs font-bold text-gray-500 uppercase tracking-wide mb-2">Service Needed</label>
+                    <div className="relative">
+                        <select 
+                            id="service"
+                            name="service"
+                            className="w-full px-4 py-3 rounded-lg bg-gray-50 border border-gray-200 focus:border-secondary focus:ring-2 focus:ring-secondary/20 outline-none transition-all appearance-none"
+                        >
+                            <option>Kitchen Remodeling</option>
+                            <option>Countertops (Granite/Quartz)</option>
+                            <option>Bathroom Vanity</option>
+                            <option>Custom Cabinets</option>
+                            <option>Outdoor Kitchen</option>
+                            <option>Other / General Inquiry</option>
+                        </select>
+                      </div>
+                  </div>
 
-              <button type="submit" className="w-full bg-primary hover:bg-slate-800 text-white font-bold py-4 rounded-xl transition-all hover:scale-[1.01] flex items-center justify-center gap-2 shadow-lg hover:shadow-xl">
-                <Send size={20} /> Request Free Quote
-              </button>
-            </form>
+                  <div>
+                    <label htmlFor="details" className="block text-xs font-bold text-gray-500 uppercase tracking-wide mb-2">Project Details</label>
+                    <textarea 
+                        id="details"
+                        name="details"
+                        rows={4} 
+                        className="w-full px-4 py-3 rounded-lg bg-gray-50 border border-gray-200 focus:border-secondary focus:ring-2 focus:ring-secondary/20 outline-none transition-all placeholder-gray-400 resize-none" 
+                        placeholder="Tell us about your space, timeline, and any specific stones you are interested in..."
+                    ></textarea>
+                  </div>
+
+                  <div className="flex items-start gap-2 bg-blue-50 p-3 rounded-lg text-blue-800 text-xs mb-2">
+                     <Info size={16} className="shrink-0 mt-0.5" />
+                     <p>We typically respond within 24 hours. For immediate assistance, please call us directly.</p>
+                  </div>
+
+                  <button 
+                    type="submit" 
+                    disabled={status === 'loading'}
+                    className="w-full bg-primary hover:bg-slate-800 disabled:bg-gray-400 disabled:cursor-not-allowed text-white font-bold py-4 rounded-xl transition-all hover:scale-[1.01] flex items-center justify-center gap-2 shadow-lg hover:shadow-xl"
+                  >
+                    {status === 'loading' ? (
+                       <span>Sending...</span>
+                    ) : (
+                       <>
+                          <Send size={20} /> Request Free Quote
+                       </>
+                    )}
+                  </button>
+                </form>
+              </>
+            )}
           </div>
 
-          {/* Interactive Map & Service Areas Section */}
+          {/* Interactive Map & Service Areas Section (MANTIDO IDÊNTICO) */}
           <div className="lg:w-1/2 flex flex-col bg-gray-50">
             
-            {/* Map Container - Height optimized for desktop */}
+            {/* Map Container */}
             <div className="h-[300px] lg:h-[50%] relative w-full">
                 <iframe 
                     src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3307.7479717757656!2d-84.17957488478635!3d34.03223198061213!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x88f59f0f9b0b0b0b%3A0x1b0b0b0b0b0b0b0b!2s4579%20Abbotts%20Bridge%20Rd%2C%20Duluth%2C%20GA%2030097!5e0!3m2!1sen!2sus!4v1620000000000!5m2!1sen!2sus" 
@@ -142,7 +207,6 @@ const Contact: React.FC = () => {
                     title="AGS Stones Service Area Map"
                 ></iframe>
                 
-                {/* Floating Showroom Badge */}
                 <div className="absolute top-4 left-4 bg-white/95 backdrop-blur-md px-4 py-2 rounded-lg shadow-lg border border-gray-200">
                      <p className="text-xs font-bold text-gray-500 uppercase tracking-widest">Showroom</p>
                      <p className="font-bold text-primary flex items-center gap-1"><MapPin size={14} className="text-secondary" /> Duluth, GA</p>
