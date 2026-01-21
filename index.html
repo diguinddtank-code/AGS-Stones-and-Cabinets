@@ -2,29 +2,37 @@
 <html lang="en">
   <head>
 
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-16885125181"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-16885125181"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
 
-      gtag('config', 'AW-16885125181');
+  gtag('config', 'AW-16885125181');
+</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-16885125181"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
 
-      // Conversion reporting function
-      function gtag_report_conversion(url) {
-        var callback = function () {
-          if (typeof(url) != 'undefined') {
-            window.location = url;
-          }
-        };
-        gtag('event', 'conversion', {
-            'send_to': 'AW-16885125181/Au3NCM3fmugbEL2guvM-',
-            'event_callback': callback
-        });
-        return false;
+  gtag('config', 'AW-16885125181');
+
+  // FUNÇÃO DE CONVERSÃO COM SEU CÓDIGO NOVO
+  function gtag_report_conversion(url) {
+    var callback = function () {
+      if (typeof(url) != 'undefined') {
+        window.location = url;
       }
-    </script>
+    };
+    gtag('event', 'conversion', {
+        'send_to': 'AW-16885125181/Au3NCM3fmugbEL2guvM-',
+        'event_callback': callback
+    });
+    return false;
+  }
+</script>
 
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />

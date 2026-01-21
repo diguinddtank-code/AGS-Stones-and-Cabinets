@@ -85,14 +85,7 @@ const Hero: React.FC = () => {
                      <a href="#contact" className="w-full sm:w-auto bg-secondary hover:bg-yellow-600 text-white font-bold py-4 px-8 rounded-xl shadow-lg flex items-center justify-center gap-2">
                         Get Free Quote <ArrowRight size={18} />
                      </a>
-                     <a 
-                        href="tel:4049524534" 
-                        onClick={(e) => {
-                          e.preventDefault();
-                          (window as any).gtag_report_conversion('tel:4049524534');
-                        }}
-                        className="w-full sm:w-auto bg-black/30 backdrop-blur-md border border-white/40 text-white font-bold py-4 px-8 rounded-xl flex items-center justify-center gap-2"
-                     >
+                     <a href="tel:4049524534" className="w-full sm:w-auto bg-black/30 backdrop-blur-md border border-white/40 text-white font-bold py-4 px-8 rounded-xl flex items-center justify-center gap-2">
                         <Phone size={18} /> Call Now
                      </a>
                 </div>

@@ -99,10 +99,6 @@ const Header: React.FC = () => {
             ))}
             <a 
               href="tel:4049524534" 
-              onClick={(e) => {
-                e.preventDefault();
-                (window as any).gtag_report_conversion('tel:4049524534');
-              }}
               className={`flex items-center gap-2 px-5 py-2.5 rounded-full font-bold text-sm transition-all shadow-lg hover:shadow-xl hover:-translate-y-0.5 ${
                 isScrolled 
                   ? 'bg-primary text-white hover:bg-gray-800' 
@@ -189,10 +185,6 @@ const Header: React.FC = () => {
                   <div className="absolute top-0 right-0 w-32 h-32 bg-secondary/20 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2"></div>
                   <a 
                       href="tel:4049524534" 
-                      onClick={(e) => {
-                        e.preventDefault();
-                        (window as any).gtag_report_conversion('tel:4049524534');
-                      }}
                       className="flex items-center justify-center gap-2 bg-secondary text-white py-4 rounded-xl font-bold shadow-lg mb-6 active:scale-95 transition-transform relative z-10"
                   >
                       <Phone size={20} /> Call for Estimate

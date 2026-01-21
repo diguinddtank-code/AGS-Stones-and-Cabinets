@@ -51,10 +51,7 @@ const MobileBottomNav: React.FC = () => {
               key={item.id}
               href={item.href}
               onClick={(e) => {
-                 if (item.href.startsWith('tel:')) {
-                   e.preventDefault();
-                   (window as any).gtag_report_conversion(item.href);
-                 } else if(item.href.startsWith('#')) {
+                 if(item.href.startsWith('#')) {
                     setActiveSection(item.id);
                  }
               }}
