@@ -59,6 +59,22 @@
     });
   });
 </script>
+<script>
+  // Esse "vigia" funciona para todos os componentes do React de uma vez só
+  document.addEventListener('click', function(e) {
+    // Procura se o que foi clicado (ou o pai dele) é um link <a>
+    var link = e.target.closest('a');
+
+    // Se for um link E começar com "tel:"
+    if (link && link.href.startsWith('tel:')) {
+      e.preventDefault(); // Impede de ligar imediatamente
+      
+      // Chama a função do Google (que você colou no passo 1)
+      // Ela registra a conversão e DEPOIS libera a ligação
+      gtag_report_conversion(link.href);
+    }
+  }, true); // O 'true' garante que pegamos o clique antes do React
+</script>
 
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
