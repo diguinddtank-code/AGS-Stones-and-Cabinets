@@ -12,7 +12,7 @@
 </script>
 
 <script>
-  // 1. A função de conversão padrão do Google
+  // 1. Função de conversão oficial do Google
   function gtag_report_conversion(url) {
     var callback = function () {
       if (typeof(url) != 'undefined') {
@@ -26,16 +26,15 @@
     return false;
   }
 
-  // 2. Script de Automação (Não precisa mexer nos botões manualmente)
+  // 2. Automação: Encontra todos os links 'tel:' e aplica o rastreamento
   document.addEventListener("DOMContentLoaded", function() {
-    // Procura todos os links no site que começam com "tel:"
+    // Seleciona qualquer link que comece com 'tel:'
     var phoneLinks = document.querySelectorAll('a[href^="tel:"]');
 
     phoneLinks.forEach(function(link) {
       link.addEventListener('click', function(event) {
-        // Impede a ação padrão momentaneamente
+        // Pausa o clique normal para registrar a conversão primeiro
         event.preventDefault(); 
-        // Chama a conversão do Google e passa o link do telefone
         gtag_report_conversion(this.href); 
       });
     });
