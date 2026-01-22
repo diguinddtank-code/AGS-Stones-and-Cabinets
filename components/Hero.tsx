@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react';
-import { Star, CheckCircle2, ArrowRight, ShieldCheck, Phone } from 'lucide-react';
+import { Star, CheckCircle2, ArrowRight, ShieldCheck, Phone, User, Mail } from 'lucide-react';
 
 const Hero: React.FC = () => {
   const bgRef = useRef<HTMLDivElement>(null);
@@ -139,6 +139,7 @@ const Hero: React.FC = () => {
                 </div>
             </div>
 
+            {/* Compact Quick Quote Form */}
             <div className="hidden lg:block lg:col-span-5 relative mt-8 lg:mt-0">
                  <div className="flex absolute -top-4 -right-4 z-20 bg-white text-primary p-3 rounded-2xl shadow-xl items-center gap-3 animate-bounce" style={{ animationDuration: '3s' }}>
                     <ShieldCheck size={24} className="text-secondary" />
@@ -148,75 +149,68 @@ const Hero: React.FC = () => {
                     </div>
                  </div>
 
-                 <div className="bg-white/95 backdrop-blur-md rounded-2xl shadow-[0_20px_50px_rgba(0,0,0,0.5)] p-6 border border-white/20 animate-in slide-in-from-bottom-8 fade-in duration-700 delay-200 w-full max-w-[420px] ml-auto">
-                    <div className="mb-5">
-                        <h3 className="text-xl font-serif font-bold text-primary mb-1">Get Your Free Estimate</h3>
-                        <p className="text-gray-500 text-xs">Lock in this month's special pricing.</p>
+                 <div className="bg-white/95 backdrop-blur-xl rounded-2xl shadow-[0_20px_50px_rgba(0,0,0,0.5)] p-6 border border-white/20 animate-in slide-in-from-bottom-8 fade-in duration-700 delay-200 w-full max-w-[400px] ml-auto">
+                    <div className="mb-6">
+                        <div className="inline-block bg-secondary/10 text-secondary text-[10px] font-bold uppercase tracking-widest px-2 py-1 rounded mb-2">
+                           Fast Estimate
+                        </div>
+                        <h3 className="text-2xl font-serif font-bold text-primary mb-1">Quick Quote</h3>
+                        <p className="text-gray-500 text-xs">Fill out the form below to get your free estimate.</p>
                     </div>
 
-                    <form action="https://formsubmit.co/agsstonesandcabinets@gmail.com" method="POST" className="space-y-3">
-                        <input type="hidden" name="_subject" value="Hero Section Lead (High Intent)" />
+                    <form action="https://formsubmit.co/agsstonesandcabinets@gmail.com" method="POST" className="space-y-4">
+                        <input type="hidden" name="_subject" value="Hero Quick Quote (Compact)" />
                         <input type="hidden" name="_next" value="https://agsstonefabricators.com" />
                         
-                        <div className="grid grid-cols-2 gap-3">
+                        <div className="relative group">
+                            <div className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 group-focus-within:text-secondary transition-colors">
+                                <User size={18} />
+                            </div>
                             <input 
                                 type="text" 
-                                name="firstName" 
-                                placeholder="First Name" 
-                                className="w-full bg-gray-50 border border-gray-200 rounded-lg px-3 py-2.5 text-sm focus:ring-2 focus:ring-secondary focus:border-transparent outline-none transition-all" 
-                                required 
-                            />
-                            <input 
-                                type="text" 
-                                name="lastName" 
-                                placeholder="Last Name" 
-                                className="w-full bg-gray-50 border border-gray-200 rounded-lg px-3 py-2.5 text-sm focus:ring-2 focus:ring-secondary focus:border-transparent outline-none transition-all" 
+                                name="name" 
+                                placeholder="Your Name" 
+                                className="w-full bg-gray-50 border border-gray-200 rounded-xl pl-10 pr-4 py-3.5 text-sm focus:ring-2 focus:ring-secondary focus:border-transparent outline-none transition-all" 
                                 required 
                             />
                         </div>
                         
-                        <input 
-                            type="tel" 
-                            name="phone" 
-                            placeholder="Phone Number" 
-                            className="w-full bg-gray-50 border border-gray-200 rounded-lg px-3 py-2.5 text-sm focus:ring-2 focus:ring-secondary focus:border-transparent outline-none transition-all" 
-                            required 
-                        />
-                        
-                        <input 
-                            type="email" 
-                            name="email" 
-                            placeholder="Email Address" 
-                            className="w-full bg-gray-50 border border-gray-200 rounded-lg px-3 py-2.5 text-sm focus:ring-2 focus:ring-secondary focus:border-transparent outline-none transition-all" 
-                            required 
-                        />
-                        
-                        <div className="relative">
-                            <select 
-                                name="service" 
-                                className="w-full bg-gray-50 border border-gray-200 rounded-lg px-3 py-2.5 text-sm focus:ring-2 focus:ring-secondary focus:border-transparent outline-none text-gray-600 appearance-none cursor-pointer"
-                            >
-                                <option value="" disabled selected>I'm interested in...</option>
-                                <option>Granite/Quartz Countertops</option>
-                                <option>Custom Cabinets</option>
-                                <option>Full Kitchen Remodel</option>
-                                <option>Bathroom Vanity</option>
-                            </select>
-                            <div className="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-gray-400">
-                                <ArrowRight size={14} className="rotate-90" />
+                        <div className="relative group">
+                            <div className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 group-focus-within:text-secondary transition-colors">
+                                <Phone size={18} />
                             </div>
+                            <input 
+                                type="tel" 
+                                name="phone" 
+                                placeholder="Phone Number" 
+                                className="w-full bg-gray-50 border border-gray-200 rounded-xl pl-10 pr-4 py-3.5 text-sm focus:ring-2 focus:ring-secondary focus:border-transparent outline-none transition-all" 
+                                required 
+                            />
+                        </div>
+                        
+                        <div className="relative group">
+                             <div className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 group-focus-within:text-secondary transition-colors">
+                                <Mail size={18} />
+                            </div>
+                            <input 
+                                type="email" 
+                                name="email" 
+                                placeholder="Email Address" 
+                                className="w-full bg-gray-50 border border-gray-200 rounded-xl pl-10 pr-4 py-3.5 text-sm focus:ring-2 focus:ring-secondary focus:border-transparent outline-none transition-all" 
+                                required 
+                            />
                         </div>
 
                         <button 
                             type="submit" 
-                            className="w-full bg-secondary hover:bg-yellow-600 text-white font-bold py-3.5 rounded-xl shadow-lg hover:shadow-xl transition-all hover:-translate-y-1 flex items-center justify-center gap-2 group mt-2"
+                            className="w-full bg-secondary hover:bg-yellow-600 text-white font-bold py-4 rounded-xl shadow-lg hover:shadow-xl transition-all hover:-translate-y-1 flex items-center justify-center gap-2 group"
                         >
-                            <span>Get My Free Quote</span>
+                            <span>Get Free Quote</span>
                             <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
                         </button>
                         
-                        <p className="text-[10px] text-center text-gray-400 mt-2 flex items-center justify-center gap-1">
-                            <ShieldCheck size={10} /> No obligation. Privacy protected.
+                        <p className="text-[10px] text-center text-gray-400 flex items-center justify-center gap-1">
+                            <ShieldCheck size={12} /> Privacy protected. No spam.
                         </p>
                     </form>
                  </div>
