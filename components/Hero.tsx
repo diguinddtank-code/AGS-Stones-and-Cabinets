@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react';
-import { Star, CheckCircle2, ArrowRight, ShieldCheck, Phone, User, Mail } from 'lucide-react';
+import { Star, CheckCircle2, ArrowRight, ShieldCheck, Phone, User, Mail, Layers } from 'lucide-react';
 
 const Hero: React.FC = () => {
   const bgRef = useRef<HTMLDivElement>(null);
@@ -199,6 +199,28 @@ const Hero: React.FC = () => {
                                 className="w-full bg-gray-50 border border-gray-200 rounded-xl pl-10 pr-4 py-3.5 text-sm focus:ring-2 focus:ring-secondary focus:border-transparent outline-none transition-all" 
                                 required 
                             />
+                        </div>
+
+                        <div className="relative group">
+                             <div className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 group-focus-within:text-secondary transition-colors">
+                                <Layers size={18} />
+                            </div>
+                            <select 
+                                name="service_interest"
+                                className="w-full bg-gray-50 border border-gray-200 rounded-xl pl-10 pr-4 py-3.5 text-sm focus:ring-2 focus:ring-secondary focus:border-transparent outline-none transition-all appearance-none text-gray-500 invalid:text-gray-400 cursor-pointer" 
+                                required
+                                defaultValue=""
+                            >
+                                <option value="" disabled>Service Needed?</option>
+                                <option value="Countertops">Countertops (Granite/Quartz)</option>
+                                <option value="Cabinets">Kitchen Cabinets</option>
+                                <option value="Remodeling">Full Remodel</option>
+                                <option value="Bathroom">Bathroom/Vanity</option>
+                                <option value="Other">Other</option>
+                            </select>
+                            <div className="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-gray-400">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+                            </div>
                         </div>
 
                         <button 
