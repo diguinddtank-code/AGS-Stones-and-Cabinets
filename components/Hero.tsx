@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react';
-import { Star, CheckCircle2, ArrowRight, ShieldCheck, Phone, User, Mail, Layers } from 'lucide-react';
+import { Star, CheckCircle2, ArrowRight, ShieldCheck, Phone, User, Mail, Layers, MapPin } from 'lucide-react';
 
 const Hero: React.FC = () => {
   const bgRef = useRef<HTMLDivElement>(null);
@@ -66,19 +66,20 @@ const Hero: React.FC = () => {
         <div className="grid lg:grid-cols-12 gap-10 lg:gap-16 items-center max-w-7xl mx-auto w-full">
             
             <div className="lg:col-span-7 text-center lg:text-left pt-6 lg:pt-0 animate-in slide-in-from-bottom-10 duration-1000">
-                <div className="inline-flex items-center gap-2 py-1.5 px-4 rounded-full border border-white/30 bg-black/20 backdrop-blur-md text-xs md:text-sm uppercase tracking-widest mb-6 font-medium shadow-sm text-white mx-auto lg:mx-0">
-                    <Star size={12} className="text-secondary fill-secondary" />
-                    #1 Factory Direct Fabricator in GA
+                {/* Geolocation signal for "Near Me" queries */}
+                <div className="inline-flex items-center gap-2 py-1.5 px-4 rounded-full border border-white/30 bg-black/40 backdrop-blur-md text-xs md:text-sm uppercase tracking-widest mb-6 font-medium shadow-sm text-white mx-auto lg:mx-0">
+                    <MapPin size={12} className="text-secondary fill-secondary" />
+                    Serving Atlanta, Duluth & Near You
                 </div>
 
                 <h1 className="text-4xl sm:text-5xl lg:text-5xl xl:text-6xl font-serif font-bold mb-6 drop-shadow-xl leading-[1.15] tracking-tight text-white max-w-4xl mx-auto lg:mx-0 shadow-black/10">
-                  Atlanta's Premier <br/>
-                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#eab308] via-[#fde047] to-[#eab308] drop-shadow-md">Granite & Cabinet</span><br />
-                  Fabricators
+                  Top-Rated <br/>
+                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#eab308] via-[#fde047] to-[#eab308] drop-shadow-md">Granite Countertops</span><br />
+                  Fabricators Near You
                 </h1>
 
                 <p className="text-base sm:text-lg lg:text-xl text-white mb-8 max-w-2xl mx-auto lg:mx-0 font-medium leading-relaxed drop-shadow-md">
-                   Buy direct from the factory and save up to 30%. Expert installation of <strong>Granite, Quartz, Marble</strong>, and <strong>Custom Kitchen Cabinets</strong> in Duluth & Metro Atlanta.
+                   Stop searching. Buy direct from the local factory in Duluth and save 30%. Expert installation of <strong>Granite, Quartz, Marble</strong>, and <strong>Custom Cabinets</strong>.
                 </p>
 
                 <div className="flex flex-col sm:flex-row gap-4 mb-10 lg:hidden px-4 sm:px-0 justify-center lg:justify-start">

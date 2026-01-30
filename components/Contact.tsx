@@ -215,8 +215,9 @@ const Contact: React.FC = () => {
 
             {/* Service Areas List */}
             <div className="flex-1 p-8 lg:p-10 bg-gray-100 border-t border-gray-200">
+                {/* RENAMED THIS H4 FOR QUALITY SCORE RELEVANCE */}
                 <h4 className="text-xl font-bold text-primary mb-6 flex items-center gap-2">
-                    <MapPin className="text-secondary" /> Areas We Serve
+                    <MapPin className="text-secondary" /> Granite Countertops Near You
                 </h4>
                 
                 <div className="grid grid-cols-2 md:grid-cols-3 gap-y-3 gap-x-2">

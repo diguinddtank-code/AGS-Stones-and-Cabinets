@@ -2,88 +2,53 @@
 <html lang="en">
   <head>
 
-<script async src="https://www.googletagmanager.com/gtag/js?id=AW-16885125181"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-16885125181"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
 
-  gtag('config', 'AW-16885125181');
-</script>
+      gtag('config', 'AW-16885125181');
+    </script>
 
-<script>
-  // Variável para evitar disparo duplo
-  var conversion_fired = false;
-
-  function gtag_report_conversion(url) {
-    // Define o que acontece após o registro (ou se der erro)
-    var callback = function () {
-      if (typeof(url) != 'undefined') {
-        window.location = url; // Abre o discador
+    <!-- Event snippet for Clique Botao Ligar Site conversion page -->
+    <script>
+      function gtag_report_conversion(url) {
+        var callback = function () {
+          if (typeof(url) != 'undefined') {
+            window.location = url;
+          }
+        };
+        gtag('event', 'conversion', {
+            'send_to': 'AW-16885125181/Au3NCM3fmugbEL2guvM-',
+            'event_callback': callback
+        });
+        return false;
       }
-    };
 
-    // Tenta enviar o evento para o Google
-    gtag('event', 'conversion', {
-        'send_to': 'AW-16885125181/Au3NCM3fmugbEL2guvM-',
-        'event_callback': function() {
-            if(!conversion_fired) {
-                conversion_fired = true;
-                callback();
-            }
-        },
-        'event_timeout': 2000 // Espera o Google no máximo 2 segundos
-    });
-
-    // REDE DE SEGURANÇA: Se o Google falhar ou demorar, abre o discador em 1s de qualquer jeito
-    setTimeout(function() {
-        if(!conversion_fired) {
-            conversion_fired = true;
-            console.log("Timeout ativado: Abrindo discador via fallback");
-            callback();
-        }
-    }, 1000);
-    
-    return false;
-  }
-
-  // Automação para links 'tel:'
-  document.addEventListener("DOMContentLoaded", function() {
-    var phoneLinks = document.querySelectorAll('a[href^="tel:"]');
-
-    phoneLinks.forEach(function(link) {
-      link.addEventListener('click', function(event) {
-        event.preventDefault(); // Pausa o clique
-        gtag_report_conversion(this.href); // Chama a função blindada
+      // Global listener to track ALL phone clicks automatically
+      document.addEventListener('DOMContentLoaded', function() {
+        document.body.addEventListener('click', function(e) {
+          // Find the closest anchor tag with a tel: href
+          var target = e.target.closest('a[href^="tel:"]');
+          if (target) {
+            e.preventDefault(); // Prevent immediate navigation
+            gtag_report_conversion(target.href); // Report conversion, then navigate via callback
+          }
+        });
       });
-    });
-  });
-</script>
-<script>
-  // Esse "vigia" funciona para todos os componentes do React de uma vez só
-  document.addEventListener('click', function(e) {
-    // Procura se o que foi clicado (ou o pai dele) é um link <a>
-    var link = e.target.closest('a');
-
-    // Se for um link E começar com "tel:"
-    if (link && link.href.startsWith('tel:')) {
-      e.preventDefault(); // Impede de ligar imediatamente
-      
-      // Chama a função do Google (que você colou no passo 1)
-      // Ela registra a conversão e DEPOIS libera a ligação
-      gtag_report_conversion(link.href);
-    }
-  }, true); // O 'true' garante que pegamos o clique antes do React
-</script>
+    </script>
 
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     
     <!-- PRIMARY SEO - HIGH INTENT & LOCAL -->
-    <title>Granite Countertops & Custom Cabinets Atlanta | Factory Direct | AGS Stones</title>
-    <meta name="title" content="Granite Countertops & Custom Cabinets Atlanta | Factory Direct | AGS Stones">
-    <meta name="description" content="#1 Rated Granite & Quartz Fabricator in Duluth, GA. Save 30% with factory-direct pricing on custom cabinets and stone countertops. 5-Day Turnaround. Free Estimate." />
-    <meta name="keywords" content="granite fabricators atlanta, quartz countertops wholesale duluth, cheap granite installation ga, custom kitchen cabinets factory direct, marble countertops near me, kitchen remodeling contractors alpharetta, ags stones reviews" />
+    <!-- UPDATED FOR QUALITY SCORE: Explicitly including 'Near Me' and Geo-Location -->
+    <title>Granite Countertops Near Me | Atlanta & Duluth's #1 Local Fabricator | AGS Stones</title>
+    <meta name="title" content="Granite Countertops Near Me | Atlanta & Duluth's #1 Local Fabricator | AGS Stones">
+    <meta name="description" content="Looking for granite countertops near you? AGS Stones is your local factory-direct fabricator in Duluth, GA. Serving Atlanta, Alpharetta, and Roswell. Save 30% today." />
+    <meta name="keywords" content="granite countertops near me, granite fabricators near me, quartz countertops near me, stone suppliers atlanta, duluth granite company, ags stones" />
     <meta name="robots" content="index, follow" />
     <meta name="language" content="English" />
     <meta name="author" content="AGS Stones & Cabinets" />
@@ -102,8 +67,8 @@
     <!-- OPEN GRAPH -->
     <meta property="og:type" content="business.business" />
     <meta property="og:url" content="https://agsstonefabricators.com" />
-    <meta property="og:title" content="AGS Stones | Factory Direct Granite & Cabinets Atlanta" />
-    <meta property="og:description" content="Stop overpaying for countertops. Buy direct from the fabricator. Granite, Quartz, and Custom Cabinets in Duluth, GA." />
+    <meta property="og:title" content="AGS Stones | Local Granite Countertops Near You" />
+    <meta property="og:description" content="Stop searching. You found the best granite countertops near you. Buy direct from our Duluth factory and save." />
     <meta property="og:image" content="https://kitchenandbathshop.com/wp-content/uploads/2020/11/5d7ff4ab763f7-scaled.jpg" />
 
     <!-- STRUCTURED DATA (JSON-LD) - LOCAL BUSINESS + SERVICE AREA -->

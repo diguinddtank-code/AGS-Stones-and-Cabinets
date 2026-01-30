@@ -86,19 +86,19 @@ const Footer: React.FC = () => {
                 <span className="hover:text-gray-400 cursor-default">Bathroom vanity cabinets</span>
                 <span className="hover:text-gray-400 cursor-default">Shower remodeling</span>
 
-                {/* Stone & Fabricators */}
+                {/* Stone & Fabricators - HEAVY FOCUS ON 'NEAR ME' */}
+                <span className="hover:text-gray-400 cursor-default font-semibold text-gray-500">Granite countertops near me</span>
                 <span className="hover:text-gray-400 cursor-default">Granite fabricator near me</span>
                 <span className="hover:text-gray-400 cursor-default">Quartz fabricator near me</span>
                 <span className="hover:text-gray-400 cursor-default">Stone countertop installation</span>
                 <span className="hover:text-gray-400 cursor-default">Countertop installers near me</span>
-                <span className="hover:text-gray-400 cursor-default">Granite countertops Atlanta</span>
 
                 {/* Showroom & Location */}
                 <span className="hover:text-gray-400 cursor-default">Kitchen and bath showrooms</span>
                 <span className="hover:text-gray-400 cursor-default">Bathroom showroom</span>
                 <span className="hover:text-gray-400 cursor-default">Cabinets nearby</span>
                 <span className="hover:text-gray-400 cursor-default">Countertops Duluth GA</span>
-                <span className="hover:text-gray-400 cursor-default">Remodel your bathroom</span>
+                <span className="hover:text-gray-400 cursor-default">Granite Atlanta</span>
             </div>
         </div>
         
