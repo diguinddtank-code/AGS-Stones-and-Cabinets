@@ -72,14 +72,15 @@ const Hero: React.FC = () => {
                     Serving Atlanta, Duluth & Near You
                 </div>
 
+                {/* UPDATED HEADLINE: Includes Cabinets & All Stones */}
                 <h1 className="text-4xl sm:text-5xl lg:text-5xl xl:text-6xl font-serif font-bold mb-6 drop-shadow-xl leading-[1.15] tracking-tight text-white max-w-4xl mx-auto lg:mx-0 shadow-black/10">
-                  Top-Rated <br/>
-                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#eab308] via-[#fde047] to-[#eab308] drop-shadow-md">Granite Countertops</span><br />
-                  Fabricators Near You
+                  Custom Cabinets & <br/>
+                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#eab308] via-[#fde047] to-[#eab308] drop-shadow-md">Granite, Quartz & Marble</span><br />
+                  Countertops Near You
                 </h1>
 
                 <p className="text-base sm:text-lg lg:text-xl text-white mb-8 max-w-2xl mx-auto lg:mx-0 font-medium leading-relaxed drop-shadow-md">
-                   Stop searching. Buy direct from the local factory in Duluth and save 30%. Expert installation of <strong>Granite, Quartz, Marble</strong>, and <strong>Custom Cabinets</strong>.
+                   Your one-stop shop for <strong>Full Kitchen & Bath Remodeling</strong>. We fabricate and install all types of stone surfaces and custom cabinetry direct from our Duluth factory.
                 </p>
 
                 <div className="flex flex-col sm:flex-row gap-4 mb-10 lg:hidden px-4 sm:px-0 justify-center lg:justify-start">
@@ -94,7 +95,7 @@ const Hero: React.FC = () => {
                 <div className="hidden lg:flex flex-col gap-3 mb-10 text-white drop-shadow-md">
                     <div className="flex items-center gap-3">
                         <div className="bg-secondary/20 p-1 rounded-full backdrop-blur-sm border border-white/10"><CheckCircle2 className="text-secondary" size={18} /></div>
-                        <span className="font-semibold text-lg">Factory Direct Pricing (No Middlemen)</span>
+                        <span className="font-semibold text-lg">Factory Direct Pricing (Stones & Cabinets)</span>
                     </div>
                     <div className="flex items-center gap-3">
                         <div className="bg-secondary/20 p-1 rounded-full backdrop-blur-sm border border-white/10"><CheckCircle2 className="text-secondary" size={18} /></div>
@@ -102,7 +103,7 @@ const Hero: React.FC = () => {
                     </div>
                      <div className="flex items-center gap-3">
                         <div className="bg-secondary/20 p-1 rounded-full backdrop-blur-sm border border-white/10"><CheckCircle2 className="text-secondary" size={18} /></div>
-                        <span className="font-semibold text-lg">5-Day Turnaround Guarantee</span>
+                        <span className="font-semibold text-lg">Complete Kitchen & Bath Remodeling</span>
                     </div>
                 </div>
 
