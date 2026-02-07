@@ -1,9 +1,10 @@
-import React, { useEffect, useRef } from 'react';
-import { Star, CheckCircle2, ArrowRight, ShieldCheck, Phone, User, Mail, Layers, MapPin } from 'lucide-react';
+import React, { useEffect, useRef, useState } from 'react';
+import { Star, CheckCircle2, ArrowRight, ShieldCheck, Phone, User, Mail, Layers, MapPin, Loader2 } from 'lucide-react';
 
 const Hero: React.FC = () => {
   const bgRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
+  const [formStatus, setFormStatus] = useState<'idle' | 'loading' | 'success'>('idle');
 
   useEffect(() => {
     let requestThumb: number;
@@ -35,6 +36,34 @@ const Hero: React.FC = () => {
       cancelAnimationFrame(requestThumb);
     };
   }, []);
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setFormStatus('loading');
+
+    const formData = new FormData(e.currentTarget);
+
+    try {
+      const res = await fetch("https://formsubmit.co/ajax/agsstonesandcabinets@gmail.com", {
+        method: "POST",
+        body: formData,
+        headers: { 
+            'Accept': 'application/json' 
+        }
+      });
+
+      if (res.ok) {
+        setFormStatus('success');
+      } else {
+        alert("Something went wrong. Please try calling us directly.");
+        setFormStatus('idle');
+      }
+    } catch (error) {
+      console.error(error);
+      alert("Connection error. Please check your internet.");
+      setFormStatus('idle');
+    }
+  };
 
   return (
     <section className="relative min-h-screen flex items-center bg-primary overflow-hidden pt-24 lg:pt-28 pb-32 md:pb-12">
@@ -151,7 +180,33 @@ const Hero: React.FC = () => {
                     </div>
                  </div>
 
-                 <div className="bg-white/95 backdrop-blur-xl rounded-2xl shadow-[0_20px_50px_rgba(0,0,0,0.5)] p-6 border border-white/20 animate-in slide-in-from-bottom-8 fade-in duration-700 delay-200 w-full max-w-[400px] ml-auto">
+                 <div className="bg-white/95 backdrop-blur-xl rounded-2xl shadow-[0_20px_50px_rgba(0,0,0,0.5)] p-6 border border-white/20 animate-in slide-in-from-bottom-8 fade-in duration-700 delay-200 w-full max-w-[400px] ml-auto relative overflow-hidden">
+                    
+                    {/* SUCCESS OVERLAY */}
+                    {formStatus === 'success' && (
+                        <div className="absolute inset-0 bg-white/95 backdrop-blur-xl z-30 flex flex-col items-center justify-center text-center p-6 animate-in fade-in zoom-in duration-300">
+                             <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mb-4 shadow-sm animate-in zoom-in duration-500 delay-100">
+                                <CheckCircle2 className="w-10 h-10 text-green-600" />
+                            </div>
+                            <h3 className="text-2xl font-serif font-bold text-primary mb-2">Request Received!</h3>
+                            <p className="text-gray-500 text-sm mb-6 leading-relaxed">
+                                We received your details. For immediate assistance, give us a call right now.
+                            </p>
+                            <a 
+                                href="tel:4049524534" 
+                                className="w-full bg-secondary hover:bg-yellow-600 text-white font-bold py-3.5 rounded-xl shadow-lg hover:shadow-xl transition-all flex items-center justify-center gap-2 group mb-3"
+                            >
+                                <Phone size={18} className="animate-pulse" /> Call (404) 952-4534
+                            </a>
+                            <button 
+                                onClick={() => setFormStatus('idle')}
+                                className="text-gray-400 text-xs hover:text-gray-600 underline"
+                            >
+                                Send another request
+                            </button>
+                        </div>
+                    )}
+
                     <div className="mb-6">
                         <div className="inline-block bg-secondary/10 text-secondary text-[10px] font-bold uppercase tracking-widest px-2 py-1 rounded mb-2">
                            Fast Estimate
@@ -160,9 +215,10 @@ const Hero: React.FC = () => {
                         <p className="text-gray-500 text-xs">Fill out the form below to get your free estimate.</p>
                     </div>
 
-                    <form action="https://formsubmit.co/agsstonesandcabinets@gmail.com" method="POST" className="space-y-4">
+                    <form onSubmit={handleSubmit} className="space-y-4">
                         <input type="hidden" name="_subject" value="Hero Quick Quote (Compact)" />
-                        <input type="hidden" name="_next" value="https://agsstonefabricators.com" />
+                        <input type="hidden" name="_captcha" value="false" />
+                        <input type="hidden" name="_template" value="table" />
                         
                         <div className="relative group">
                             <div className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 group-focus-within:text-secondary transition-colors">
@@ -207,30 +263,25 @@ const Hero: React.FC = () => {
                              <div className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 group-focus-within:text-secondary transition-colors">
                                 <Layers size={18} />
                             </div>
-                            <select 
+                            <input
+                                type="text"
                                 name="service_interest"
-                                className="w-full bg-gray-50 border border-gray-200 rounded-xl pl-10 pr-4 py-3.5 text-sm focus:ring-2 focus:ring-secondary focus:border-transparent outline-none transition-all appearance-none text-gray-500 invalid:text-gray-400 cursor-pointer" 
+                                placeholder="What do you need? (e.g. New Kitchen)"
+                                className="w-full bg-gray-50 border border-gray-200 rounded-xl pl-10 pr-4 py-3.5 text-sm focus:ring-2 focus:ring-secondary focus:border-transparent outline-none transition-all"
                                 required
-                                defaultValue=""
-                            >
-                                <option value="" disabled>Service Needed?</option>
-                                <option value="Countertops">Countertops (Granite/Quartz)</option>
-                                <option value="Cabinets">Kitchen Cabinets</option>
-                                <option value="Remodeling">Full Remodel</option>
-                                <option value="Bathroom">Bathroom/Vanity</option>
-                                <option value="Other">Other</option>
-                            </select>
-                            <div className="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-gray-400">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m6 9 6 6 6-6"/></svg>
-                            </div>
+                            />
                         </div>
 
                         <button 
                             type="submit" 
-                            className="w-full bg-secondary hover:bg-yellow-600 text-white font-bold py-4 rounded-xl shadow-lg hover:shadow-xl transition-all hover:-translate-y-1 flex items-center justify-center gap-2 group"
+                            disabled={formStatus === 'loading'}
+                            className="w-full bg-secondary hover:bg-yellow-600 disabled:bg-gray-400 disabled:cursor-not-allowed text-white font-bold py-4 rounded-xl shadow-lg hover:shadow-xl transition-all hover:-translate-y-1 flex items-center justify-center gap-2 group"
                         >
-                            <span>Get Free Quote</span>
-                            <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
+                            {formStatus === 'loading' ? (
+                                <><Loader2 className="animate-spin" size={18} /> Sending...</>
+                            ) : (
+                                <><span>Get Free Quote</span><ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" /></>
+                            )}
                         </button>
                         
                         <p className="text-[10px] text-center text-gray-400 flex items-center justify-center gap-1">
