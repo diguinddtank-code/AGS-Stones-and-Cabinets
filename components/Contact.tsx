@@ -1,7 +1,7 @@
 'use client'; // Adicionado caso use Next.js
 
 import React, { useState } from 'react';
-import { Phone, Mail, Clock, MapPin, Send, Navigation, Info, CheckCircle2 } from 'lucide-react';
+import { MapPin, Send, Navigation, Info, CheckCircle2 } from 'lucide-react';
 
 const locations = [
   "Atlanta, GA", "Alpharetta, GA", "Brookhaven, GA", "Buford, GA", 

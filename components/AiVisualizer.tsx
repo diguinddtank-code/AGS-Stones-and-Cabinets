@@ -28,10 +28,11 @@ const AiVisualizer: React.FC = () => {
       } else {
         setError("Unable to generate image at this time. Please try again.");
       }
-    } catch (err: any) {
+    } catch (err: unknown) {
       console.error("Visualizer Logic Error:", err);
       // Check if it's the specific missing API key error
-      if (err.message && err.message.includes("API Key is missing")) {
+      const errorMessage = err instanceof Error ? err.message : String(err);
+      if (errorMessage.includes("API Key is missing")) {
         setError("API Key missing. Please configure your .env file.");
       } else {
         setError("An unexpected error occurred during generation.");

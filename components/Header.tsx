@@ -82,7 +82,7 @@ const Header: React.FC = () => {
                     ? 'filter-none' // Original Colors
                     : 'brightness-0 invert drop-shadow-lg' // White Logo
                 }`}
-                fetchPriority="high"
+                fetchpriority="high"
                 width="180"
                 height="60"
               />

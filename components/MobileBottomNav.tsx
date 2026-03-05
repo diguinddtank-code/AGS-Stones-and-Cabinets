@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { Home, Layers, Phone, MapPin } from 'lucide-react';
 
+const navItems = [
+  { id: 'hero', icon: <Home size={20} />, label: 'Home', href: '/' },
+  { id: 'services', icon: <Layers size={20} />, label: 'Services', href: '/#services' },
+  { id: 'showroom', icon: <MapPin size={20} />, label: 'Visit', href: '/#showroom' },
+  { id: 'contact', icon: <Phone size={20} />, label: 'Call Now', href: 'tel:4049524534' }, // Updated to direct Call link
+];
+
 const MobileBottomNav: React.FC = () => {
   const [activeSection, setActiveSection] = useState('hero');
-
-  const navItems = [
-    { id: 'hero', icon: <Home size={20} />, label: 'Home', href: '/' },
-    { id: 'services', icon: <Layers size={20} />, label: 'Services', href: '/#services' },
-    { id: 'showroom', icon: <MapPin size={20} />, label: 'Visit', href: '/#showroom' },
-    { id: 'contact', icon: <Phone size={20} />, label: 'Call Now', href: 'tel:4049524534' }, // Updated to direct Call link
-  ];
 
   useEffect(() => {
     // Performance Optimization: Use IntersectionObserver instead of scroll listener
@@ -50,7 +50,7 @@ const MobileBottomNav: React.FC = () => {
             <a
               key={item.id}
               href={item.href}
-              onClick={(e) => {
+              onClick={() => {
                  if(item.href.startsWith('#')) {
                     setActiveSection(item.id);
                  }

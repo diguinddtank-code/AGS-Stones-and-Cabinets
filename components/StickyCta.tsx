@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Phone, X, MessageSquare, Send, MessageCircle } from 'lucide-react';
+import { Phone, X, Send, MessageCircle } from 'lucide-react';
 
 const StickyCta: React.FC = () => {
   // Stages: 'initial' (hidden) -> 'typing' (dots) -> 'bubble' (text invitation) -> 'open' (full widget)

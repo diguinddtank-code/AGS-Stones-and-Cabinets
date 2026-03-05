@@ -1,25 +1,25 @@
 import React, { useEffect, useRef, useState } from 'react';
 import * as THREE from 'three';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
-import { Move, Loader2, Info, AlertTriangle } from 'lucide-react';
+import { Move, Loader2, Info } from 'lucide-react';
 
 const VirtualTour: React.FC = () => {
   const mountRef = useRef<HTMLDivElement>(null);
   const [isLoading, setIsLoading] = useState(true);
-  const [hasError, setHasError] = useState(false);
 
   useEffect(() => {
-    if (!mountRef.current) return;
+    const mount = mountRef.current;
+    if (!mount) return;
 
     // --- Scene Setup ---
     const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(75, mountRef.current.clientWidth / mountRef.current.clientHeight, 0.1, 1000);
+    const camera = new THREE.PerspectiveCamera(75, mount.clientWidth / mount.clientHeight, 0.1, 1000);
     camera.position.set(0, 0, 0.1); // Inside the sphere
 
     const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
-    renderer.setSize(mountRef.current.clientWidth, mountRef.current.clientHeight);
+    renderer.setSize(mount.clientWidth, mount.clientHeight);
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2)); // optimize for performance
-    mountRef.current.appendChild(renderer.domElement);
+    mount.appendChild(renderer.domElement);
 
     // --- Texture Loading ---
     const textureLoader = new THREE.TextureLoader();
@@ -93,10 +93,10 @@ const VirtualTour: React.FC = () => {
 
     // --- Resize Handler ---
     const handleResize = () => {
-      if (mountRef.current && camera && renderer) {
-        camera.aspect = mountRef.current.clientWidth / mountRef.current.clientHeight;
+      if (mount && camera && renderer) {
+        camera.aspect = mount.clientWidth / mount.clientHeight;
         camera.updateProjectionMatrix();
-        renderer.setSize(mountRef.current.clientWidth, mountRef.current.clientHeight);
+        renderer.setSize(mount.clientWidth, mount.clientHeight);
       }
     };
     window.addEventListener('resize', handleResize);
@@ -110,8 +110,8 @@ const VirtualTour: React.FC = () => {
       window.removeEventListener('resize', handleResize);
       controls.removeEventListener('start', stopRotation);
       cancelAnimationFrame(animationId);
-      if (mountRef.current && renderer.domElement) {
-        mountRef.current.removeChild(renderer.domElement);
+      if (mount && renderer.domElement) {
+        mount.removeChild(renderer.domElement);
       }
       renderer.dispose();
     };
@@ -142,16 +142,8 @@ const VirtualTour: React.FC = () => {
           </div>
         )}
 
-        {/* Error Fallback */}
-        {hasError && (
-           <div className="absolute inset-0 flex flex-col items-center justify-center bg-gray-900 z-20">
-             <AlertTriangle className="text-red-500 w-12 h-12 mb-4" />
-             <p className="text-white">Unable to load 360 view. Please refresh.</p>
-           </div>
-        )}
-
         {/* Instructions Overlay */}
-        {!isLoading && !hasError && (
+        {!isLoading && (
           <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex items-center gap-3 bg-black/60 backdrop-blur-md px-6 py-3 rounded-full text-white pointer-events-none select-none border border-white/10 shadow-xl opacity-80 hover:opacity-100 transition-opacity">
             <Move className="w-5 h-5 animate-pulse text-secondary" />
             <span className="text-sm font-medium tracking-wide">Drag to look around</span>

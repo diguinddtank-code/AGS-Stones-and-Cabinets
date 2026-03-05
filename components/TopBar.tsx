@@ -1,19 +1,17 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { X, MapPin } from 'lucide-react';
 
 const TopBar = () => {
   const [isVisible, setIsVisible] = useState(true);
-  const [promoDate, setPromoDate] = useState('');
-
-  useEffect(() => {
+  const [promoDate] = useState(() => {
     // Calculate date 2 days from now
     const date = new Date();
     date.setDate(date.getDate() + 2);
     
     // Format: "Mar 7"
     const options: Intl.DateTimeFormatOptions = { month: 'short', day: 'numeric' };
-    setPromoDate(date.toLocaleDateString('en-US', options));
-  }, []);
+    return date.toLocaleDateString('en-US', options);
+  });
 
   if (!isVisible) return null;
 

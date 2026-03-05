@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Layers, Box, Hammer, Droplet, ChefHat, Grid, X, Check, Bath, Phone, Plus, ArrowUpRight, Calendar } from 'lucide-react';
+import { Layers, Box, Hammer, Droplet, ChefHat, Grid, X, Check, Bath, Phone, Calendar } from 'lucide-react';
 
 interface ServiceDetail {
   icon: React.ReactNode;

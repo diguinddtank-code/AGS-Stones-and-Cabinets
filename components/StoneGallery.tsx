@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ZoomIn, X, ChevronRight, ArrowRight, ArrowLeft } from 'lucide-react';
+import { ZoomIn, X, ArrowRight, ArrowLeft } from 'lucide-react';
 
 interface StoneImage {
   id: number;

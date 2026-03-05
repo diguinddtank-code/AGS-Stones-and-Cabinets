@@ -16,7 +16,6 @@ const BeforeAfter: React.FC = () => {
   }, []);
 
   const onMouseDown = () => setIsDragging(true);
-  const onMouseUp = () => setIsDragging(false);
   
   const onMouseMove = (e: React.MouseEvent) => {
     if (isDragging) handleMove(e.clientX);
