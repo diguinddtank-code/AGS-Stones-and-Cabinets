@@ -5,9 +5,9 @@ const MobileBottomNav: React.FC = () => {
   const [activeSection, setActiveSection] = useState('hero');
 
   const navItems = [
-    { id: 'hero', icon: <Home size={20} />, label: 'Home', href: '#' },
-    { id: 'services', icon: <Layers size={20} />, label: 'Services', href: '#services' },
-    { id: 'showroom', icon: <MapPin size={20} />, label: 'Visit', href: '#showroom' },
+    { id: 'hero', icon: <Home size={20} />, label: 'Home', href: '/' },
+    { id: 'services', icon: <Layers size={20} />, label: 'Services', href: '/#services' },
+    { id: 'showroom', icon: <MapPin size={20} />, label: 'Visit', href: '/#showroom' },
     { id: 'contact', icon: <Phone size={20} />, label: 'Call Now', href: 'tel:4049524534' }, // Updated to direct Call link
   ];
 

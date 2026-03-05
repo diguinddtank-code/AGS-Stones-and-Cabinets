@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const Footer: React.FC = () => {
   return (
@@ -23,22 +24,23 @@ const Footer: React.FC = () => {
             <div>
                 <h4 className="text-white font-bold mb-4 uppercase tracking-wider text-xs">Navigation</h4>
                 <ul className="space-y-2">
-                    <li><a href="#services" className="hover:text-secondary transition-colors" title="Stone & Cabinet Services">Our Services</a></li>
-                    <li><a href="#visualizer" className="hover:text-secondary transition-colors" title="Kitchen Visualizer Tool">Design Visualizer</a></li>
-                    <li><a href="#showroom" className="hover:text-secondary transition-colors" title="Visit Duluth Showroom">Showroom Location</a></li>
-                    <li><a href="#contact" className="hover:text-secondary transition-colors" title="Get a Quote">Free Estimate</a></li>
+                    <li><a href="/#services" className="hover:text-secondary transition-colors" title="Stone & Cabinet Services">Our Services</a></li>
+                    <li><a href="/#visualizer" className="hover:text-secondary transition-colors" title="Kitchen Visualizer Tool">Design Visualizer</a></li>
+                    <li><a href="/#showroom" className="hover:text-secondary transition-colors" title="Visit Duluth Showroom">Showroom Location</a></li>
+                    <li><Link to="/blog" className="hover:text-secondary transition-colors" title="Read our Blog">Blog & Articles</Link></li>
+                    <li><a href="/#contact" className="hover:text-secondary transition-colors" title="Get a Quote">Free Estimate</a></li>
                 </ul>
             </div>
 
             <div>
-                <h4 className="text-white font-bold mb-4 uppercase tracking-wider text-xs">Core Services</h4>
+                <h4 className="text-white font-bold mb-4 uppercase tracking-wider text-xs">Local Services</h4>
                 <ul className="space-y-2">
-                    <li><a href="#" className="hover:text-secondary">Granite Countertops</a></li>
-                    <li><a href="#" className="hover:text-secondary">Quartz Installation</a></li>
-                    <li><a href="#" className="hover:text-secondary">Marble Fabrication</a></li>
-                    <li><a href="#" className="hover:text-secondary">Kitchen Remodeling</a></li>
-                    <li><a href="#" className="hover:text-secondary">Bathroom Renovations</a></li>
-                    <li><a href="#" className="hover:text-secondary">Custom Cabinets</a></li>
+                    <li><Link to="/granite-countertops-atlanta" className="hover:text-secondary">Granite in Atlanta</Link></li>
+                    <li><Link to="/granite-countertops-duluth" className="hover:text-secondary">Granite in Duluth</Link></li>
+                    <li><Link to="/granite-countertops-alpharetta" className="hover:text-secondary">Granite in Alpharetta</Link></li>
+                    <li><Link to="/granite-countertops-roswell" className="hover:text-secondary">Granite in Roswell</Link></li>
+                    <li><Link to="/granite-countertops-johns-creek" className="hover:text-secondary">Granite in Johns Creek</Link></li>
+                    <li><Link to="/granite-countertops-marietta" className="hover:text-secondary">Granite in Marietta</Link></li>
                 </ul>
             </div>
 

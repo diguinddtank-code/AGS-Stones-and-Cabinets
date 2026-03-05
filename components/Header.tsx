@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Menu, X, Phone, ArrowRight, Instagram, Facebook } from 'lucide-react';
+import TopBar from './TopBar';
 
 const Header: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -50,87 +51,91 @@ const Header: React.FC = () => {
   }, [mobileMenuOpen]);
 
   const navLinks = [
-    { name: 'Services', href: '#services' },
-    { name: 'Why Us', href: '#why-us' },
-    { name: 'Showroom', href: '#showroom' },
-    { name: 'Contact', href: '#contact' },
+    { name: 'Services', href: '/#services' },
+    { name: 'Why Us', href: '/#why-us' },
+    { name: 'Showroom', href: '/#showroom' },
+    { name: 'Blog', href: '/blog' },
+    { name: 'Contact', href: '/#contact' },
   ];
 
   return (
     <>
-      <header 
-        role="banner"
-        className={`fixed top-0 w-full z-50 transition-all duration-500 border-b will-change-transform ${
-          isScrolled 
-            ? 'bg-white/90 backdrop-blur-md shadow-sm border-gray-200/50 py-3' 
-            : 'bg-transparent border-transparent py-4 md:py-6'
-        }`}
-      >
-        <div className="container mx-auto px-4 md:px-6 flex justify-between items-center h-12 md:h-16 relative">
-          
-          {/* LOGO (Visible on Mobile & Desktop) */}
-          <a href="#" className="block group z-50 relative" aria-label="AGS Stones Home">
-             <img 
-              src="https://i.imgur.com/B0ZaBpN.png" 
-              alt="AGS Stones and Cabinets Logo" 
-              className={`h-10 md:h-12 w-auto transition-all duration-300 ${
-                isScrolled 
-                  ? 'filter-none' // Original Colors
-                  : 'brightness-0 invert drop-shadow-lg' // White Logo
-              }`}
-              fetchPriority="high"
-              width="180"
-              height="60"
-            />
-          </a>
-
-          {/* Desktop Nav */}
-          <nav className="hidden md:flex items-center gap-8" role="navigation" aria-label="Main Desktop Navigation">
-            {navLinks.map((link) => (
-              <a 
-                key={link.name} 
-                href={link.href} 
-                className={`font-medium tracking-wide text-sm uppercase transition-all duration-300 hover:-translate-y-0.5 ${
-                  isScrolled ? 'text-gray-700 hover:text-secondary' : 'text-white/90 hover:text-white drop-shadow-md'
+      <div className="fixed top-0 w-full z-50 flex flex-col">
+        <TopBar />
+        <header 
+          role="banner"
+          className={`w-full transition-all duration-500 border-b will-change-transform ${
+            isScrolled 
+              ? 'bg-white/90 backdrop-blur-md shadow-sm border-gray-200/50 py-3' 
+              : 'bg-transparent border-transparent py-4 md:py-6'
+          }`}
+        >
+          <div className="container mx-auto px-4 md:px-6 flex justify-between items-center h-12 md:h-16 relative">
+            
+            {/* LOGO (Visible on Mobile & Desktop) */}
+            <a href="/" className="block group z-50 relative" aria-label="AGS Stones Home">
+               <img 
+                src="https://i.imgur.com/B0ZaBpN.png" 
+                alt="AGS Stones and Cabinets Logo" 
+                className={`h-10 md:h-12 w-auto transition-all duration-300 ${
+                  isScrolled 
+                    ? 'filter-none' // Original Colors
+                    : 'brightness-0 invert drop-shadow-lg' // White Logo
                 }`}
-              >
-                {link.name}
-              </a>
-            ))}
-            <a 
-              href="tel:4049524534" 
-              className={`flex items-center gap-2 px-5 py-2.5 rounded-full font-bold text-sm transition-all shadow-lg hover:shadow-xl hover:-translate-y-0.5 ${
-                isScrolled 
-                  ? 'bg-primary text-white hover:bg-gray-800' 
-                  : 'bg-white text-primary hover:bg-gray-100'
-              }`}
-              aria-label="Call AGS Stones at 404-952-4534"
-            >
-              <Phone size={16} aria-hidden="true" />
-              (404) 952-4534
+                fetchPriority="high"
+                width="180"
+                height="60"
+              />
             </a>
-          </nav>
-
-          {/* Mobile Menu Toggle Button */}
-          <button 
-            className="md:hidden z-50 p-2 cursor-pointer relative rounded-md transition-colors"
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
-            aria-expanded={mobileMenuOpen}
-            aria-controls="mobile-navigation-drawer"
-          >
-            <Menu size={28} className={!isScrolled && !mobileMenuOpen ? 'text-white drop-shadow-md' : 'text-gray-800'} />
-          </button>
-        </div>
-
-        {/* Scroll Progress Bar - Hidden on Mobile */}
-        <div className={`hidden md:block absolute bottom-0 left-0 h-[2px] bg-transparent w-full`}>
-            <div 
-                className="h-full bg-secondary shadow-[0_0_10px_#ca8a04] will-change-transform"
-                style={{ width: `${scrollProgress * 100}%`, opacity: isScrolled ? 1 : 0 }}
-            ></div>
-        </div>
-      </header>
+  
+            {/* Desktop Nav */}
+            <nav className="hidden md:flex items-center gap-8" role="navigation" aria-label="Main Desktop Navigation">
+              {navLinks.map((link) => (
+                <a 
+                  key={link.name} 
+                  href={link.href} 
+                  className={`font-medium tracking-wide text-sm uppercase transition-all duration-300 hover:-translate-y-0.5 ${
+                    isScrolled ? 'text-gray-700 hover:text-secondary' : 'text-white/90 hover:text-white drop-shadow-md'
+                  }`}
+                >
+                  {link.name}
+                </a>
+              ))}
+              <a 
+                href="tel:4049524534" 
+                className={`flex items-center gap-2 px-5 py-2.5 rounded-full font-bold text-sm transition-all shadow-lg hover:shadow-xl hover:-translate-y-0.5 ${
+                  isScrolled 
+                    ? 'bg-primary text-white hover:bg-gray-800' 
+                    : 'bg-white text-primary hover:bg-gray-100'
+                }`}
+                aria-label="Call AGS Stones at 404-952-4534"
+              >
+                <Phone size={16} aria-hidden="true" />
+                (404) 952-4534
+              </a>
+            </nav>
+  
+            {/* Mobile Menu Toggle Button */}
+            <button 
+              className="md:hidden z-50 p-2 cursor-pointer relative rounded-md transition-colors"
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
+              aria-expanded={mobileMenuOpen}
+              aria-controls="mobile-navigation-drawer"
+            >
+              <Menu size={28} className={!isScrolled && !mobileMenuOpen ? 'text-white drop-shadow-md' : 'text-gray-800'} />
+            </button>
+          </div>
+  
+          {/* Scroll Progress Bar - Hidden on Mobile */}
+          <div className={`hidden md:block absolute bottom-0 left-0 h-[2px] bg-transparent w-full`}>
+              <div 
+                  className="h-full bg-secondary shadow-[0_0_10px_#ca8a04] will-change-transform"
+                  style={{ width: `${scrollProgress * 100}%`, opacity: isScrolled ? 1 : 0 }}
+              ></div>
+          </div>
+        </header>
+      </div>
 
       {/* 
           MOBILE SIDE DRAWER

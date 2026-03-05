@@ -88,29 +88,16 @@ const Contact: React.FC = () => {
                   <input type="hidden" name="_captcha" value="false" />
                   <input type="hidden" name="_template" value="table" />
 
-                  <div className="grid md:grid-cols-2 gap-6">
-                    <div>
-                      <label htmlFor="firstName" className="block text-xs font-bold text-gray-500 uppercase tracking-wide mb-2">First Name</label>
-                      <input 
-                        id="firstName"
-                        name="firstName"
-                        type="text" 
-                        className="w-full px-4 py-3 rounded-lg bg-gray-50 border border-gray-200 focus:border-secondary focus:ring-2 focus:ring-secondary/20 outline-none transition-all placeholder-gray-400" 
-                        placeholder="Jane" 
-                        required
-                      />
-                    </div>
-                    <div>
-                      <label htmlFor="lastName" className="block text-xs font-bold text-gray-500 uppercase tracking-wide mb-2">Last Name</label>
-                      <input 
-                        id="lastName"
-                        name="lastName"
-                        type="text" 
-                        className="w-full px-4 py-3 rounded-lg bg-gray-50 border border-gray-200 focus:border-secondary focus:ring-2 focus:ring-secondary/20 outline-none transition-all placeholder-gray-400" 
-                        placeholder="Doe" 
-                        required
-                      />
-                    </div>
+                  <div>
+                    <label htmlFor="fullName" className="block text-xs font-bold text-gray-500 uppercase tracking-wide mb-2">Full Name</label>
+                    <input 
+                      id="fullName"
+                      name="fullName"
+                      type="text" 
+                      className="w-full px-4 py-3 rounded-lg bg-gray-50 border border-gray-200 focus:border-secondary focus:ring-2 focus:ring-secondary/20 outline-none transition-all placeholder-gray-400" 
+                      placeholder="Jane Doe" 
+                      required
+                    />
                   </div>
 
                   <div className="grid md:grid-cols-2 gap-6">
@@ -136,24 +123,6 @@ const Contact: React.FC = () => {
                             required
                         />
                      </div>
-                  </div>
-
-                  <div>
-                    <label htmlFor="service" className="block text-xs font-bold text-gray-500 uppercase tracking-wide mb-2">Service Needed</label>
-                    <div className="relative">
-                        <select 
-                            id="service"
-                            name="service"
-                            className="w-full px-4 py-3 rounded-lg bg-gray-50 border border-gray-200 focus:border-secondary focus:ring-2 focus:ring-secondary/20 outline-none transition-all appearance-none"
-                        >
-                            <option>Kitchen Remodeling</option>
-                            <option>Countertops (Granite/Quartz)</option>
-                            <option>Bathroom Vanity</option>
-                            <option>Custom Cabinets</option>
-                            <option>Outdoor Kitchen</option>
-                            <option>Other / General Inquiry</option>
-                        </select>
-                      </div>
                   </div>
 
                   <div>
