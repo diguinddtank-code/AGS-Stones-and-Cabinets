@@ -136,10 +136,7 @@ const Contact: React.FC = () => {
                     ></textarea>
                   </div>
 
-                  <div className="flex items-start gap-2 bg-blue-50 p-3 rounded-lg text-blue-800 text-xs mb-2">
-                     <Info size={16} className="shrink-0 mt-0.5" />
-                     <p>We typically respond within 24 hours. For immediate assistance, please call us directly.</p>
-                  </div>
+
 
                   <button 
                     type="submit" 
