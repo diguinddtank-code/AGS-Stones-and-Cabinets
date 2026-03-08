@@ -23,8 +23,8 @@
     { "source": "/how-to-choose-the-best-countertop-material-for-your-kitchen/", "destination": "/", "permanent": true },
     { "source": "/how-to-choose-the-best-countertop-material-for-your-kitchen/page/2/", "destination": "/", "permanent": true },
     { "source": "/how-to-choose-the-best-countertop-material-for-your-kitchen/feed/", "destination": "/", "permanent": true }
-  ]
-"rewrites": [
+  ],
+  "rewrites": [
     {
       "source": "/(.*)",
       "destination": "/index.html"
