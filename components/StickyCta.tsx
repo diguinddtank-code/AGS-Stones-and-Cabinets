@@ -1,5 +1,8 @@
+'use client';
+
 import React, { useState, useEffect } from 'react';
 import { Phone, X, Send, MessageCircle } from 'lucide-react';
+import Link from 'next/link';
 
 const StickyCta: React.FC = () => {
   // Stages: 'initial' (hidden) -> 'typing' (dots) -> 'bubble' (text invitation) -> 'open' (full widget)
@@ -195,14 +198,14 @@ const StickyCta: React.FC = () => {
                             Call (404) 952-4534
                         </a>
                         
-                        <a 
+                        <Link 
                             href="/contact"
                             onClick={handleClose}
                             className="flex items-center justify-center gap-2 w-full bg-white hover:bg-gray-50 text-primary font-bold py-3.5 rounded-xl border border-gray-200 transition-all hover:border-secondary active:scale-95"
                         >
                             <Send size={18} className="text-secondary" />
                             Request Quote Online
-                        </a>
+                        </Link>
                     </div>
 
                     <div className="mt-4 pt-4 border-t border-gray-50 text-center">

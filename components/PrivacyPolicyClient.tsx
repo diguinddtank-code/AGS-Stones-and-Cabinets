@@ -1,17 +1,12 @@
-import React from 'react';
-import { Helmet } from 'react-helmet-async';
-import Header from '../components/Header';
-import Footer from '../components/Footer';
+'use client';
 
-const PrivacyPolicy = () => {
+import React from 'react';
+import Header from './Header';
+import Footer from './Footer';
+
+const PrivacyPolicyClient = () => {
   return (
     <div className="min-h-screen flex flex-col font-sans">
-      <Helmet>
-        <title>Privacy Policy | AGS Stones & Cabinets</title>
-        <meta name="description" content="Privacy Policy for AGS Stones & Cabinets. Learn how we collect, use, and protect your personal information." />
-        <link rel="canonical" href="https://agsstonefabricators.com/privacy-policy" />
-      </Helmet>
-      
       <Header />
       
       <main className="flex-grow pt-20">
@@ -83,4 +78,4 @@ const PrivacyPolicy = () => {
   );
 };
 
-export default PrivacyPolicy;
+export default PrivacyPolicyClient;

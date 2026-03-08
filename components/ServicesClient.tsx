@@ -1,10 +1,11 @@
+'use client';
+
 import React from 'react';
-import { Helmet } from 'react-helmet-async';
-import Header from '../components/Header';
-import Footer from '../components/Footer';
+import Header from './Header';
+import Footer from './Footer';
 import { CheckCircle, Hammer, Ruler, Truck, PenTool } from 'lucide-react';
 
-const ServicesPage = () => {
+const ServicesClient = () => {
   const services = [
     {
       title: "Granite Countertops",
@@ -34,12 +35,6 @@ const ServicesPage = () => {
 
   return (
     <div className="min-h-screen flex flex-col font-sans">
-      <Helmet>
-        <title>Our Services | Granite, Quartz & Cabinets in Atlanta | AGS Stones</title>
-        <meta name="description" content="Explore our full range of services including granite and quartz countertop fabrication, custom kitchen cabinets, and bathroom remodeling in Atlanta." />
-        <link rel="canonical" href="https://agsstonefabricators.com/services" />
-      </Helmet>
-      
       <Header />
       
       <main className="flex-grow">
@@ -144,4 +139,4 @@ const ServicesPage = () => {
   );
 };
 
-export default ServicesPage;
+export default ServicesClient;

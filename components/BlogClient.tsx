@@ -1,11 +1,11 @@
-import React, { Suspense, lazy, useState, useEffect } from 'react';
-import { Helmet } from 'react-helmet-async';
-import Header from '../components/Header';
-import MobileBottomNav from '../components/MobileBottomNav';
-import StickyCta from '../components/StickyCta';
-import { MapPin, Calendar, ArrowRight, Box, Ruler, X } from 'lucide-react';
+'use client';
 
-const Footer = lazy(() => import('../components/Footer'));
+import React, { Suspense, useState, useEffect } from 'react';
+import Header from './Header';
+import MobileBottomNav from './MobileBottomNav';
+import StickyCta from './StickyCta';
+import Footer from './Footer';
+import { MapPin, Calendar, ArrowRight, Box, Ruler, X } from 'lucide-react';
 
 const filters = ['All', 'Alpharetta', 'Duluth', 'Roswell', 'Marietta', 'Johns Creek', 'Suwanee', 'Atlanta'];
 
@@ -142,7 +142,7 @@ const projects = [
   }
 ];
 
-function Blog() {
+function BlogClient() {
   const [activeFilter, setActiveFilter] = useState('All');
   const [selectedProject, setSelectedProject] = useState<typeof projects[0] | null>(null);
 
@@ -161,11 +161,6 @@ function Blog() {
 
   return (
     <div className="min-h-screen flex flex-col font-sans pb-24 md:pb-0 relative bg-gray-50">
-      <Helmet>
-        <title>Our Work in Your Neighborhood | AGS Stones Portfolio</title>
-        <meta name="description" content="Browse our portfolio of stone countertops and custom cabinets completed across Metro Atlanta. Real results from recent months." />
-        <link rel="canonical" href="https://agsstonefabricators.com/blog" />
-      </Helmet>
       <Header />
 
       <main className="flex-grow pt-24 md:pt-32 pb-16">
@@ -355,14 +350,11 @@ function Blog() {
         </div>
       )}
 
-      <Suspense fallback={<div className="h-16" />}>
-        <Footer />
-      </Suspense>
-
+      <Footer />
       <MobileBottomNav />
       <StickyCta />
     </div>
   );
 }
 
-export default Blog;
+export default BlogClient;

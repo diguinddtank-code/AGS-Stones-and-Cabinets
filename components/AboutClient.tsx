@@ -1,18 +1,13 @@
+'use client';
+
 import React from 'react';
-import { Helmet } from 'react-helmet-async';
-import Header from '../components/Header';
-import Footer from '../components/Footer';
+import Header from './Header';
+import Footer from './Footer';
 import { CheckCircle, Users, Award, Clock } from 'lucide-react';
 
-const About = () => {
+const AboutClient = () => {
   return (
     <div className="min-h-screen flex flex-col font-sans">
-      <Helmet>
-        <title>About AGS Stones | Premier Granite & Cabinet Fabricators in Atlanta</title>
-        <meta name="description" content="Learn about AGS Stones, Atlanta's trusted family-owned granite and cabinet specialists. Over 15 years of experience delivering luxury kitchens and baths." />
-        <link rel="canonical" href="https://agsstonefabricators.com/about" />
-      </Helmet>
-      
       <Header />
       
       <main className="flex-grow">
@@ -146,4 +141,4 @@ const About = () => {
   );
 };
 
-export default About;
+export default AboutClient;

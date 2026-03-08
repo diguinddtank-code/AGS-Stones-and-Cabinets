@@ -1,19 +1,16 @@
-import React, { Suspense, lazy } from 'react';
-import { useParams, Link } from 'react-router-dom';
-import { Helmet } from 'react-helmet-async';
-import Header from '../components/Header';
-import MobileBottomNav from '../components/MobileBottomNav';
-import StickyCta from '../components/StickyCta';
-import { MapPin, Star, CheckCircle2, Phone } from 'lucide-react';
+'use client';
 
-const Footer = lazy(() => import('../components/Footer'));
+import React from 'react';
+import Link from 'next/link';
+import Header from './Header';
+import MobileBottomNav from './MobileBottomNav';
+import StickyCta from './StickyCta';
+import Footer from './Footer';
+import { MapPin, Star, CheckCircle2, Phone } from 'lucide-react';
 
 const locations = ['atlanta', 'duluth', 'alpharetta', 'roswell', 'johns-creek', 'suwanee', 'marietta', 'sandy-springs'];
 
-function LocationPage() {
-  const { city } = useParams<{ city: string }>();
-  
-  // Format city name: 'johns-creek' -> 'Johns Creek'
+export default function LocationClient({ city }: { city: string }) {
   const formattedCity = city 
     ? city.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ')
     : 'Atlanta';
@@ -27,23 +24,18 @@ function LocationPage() {
         <main className="flex-grow pt-32 pb-16 flex items-center justify-center">
           <div className="text-center">
             <h1 className="text-3xl font-serif text-primary mb-4">Location Not Found</h1>
-            <Link to="/" className="text-secondary hover:underline">Return Home</Link>
+            <Link href="/" className="text-secondary hover:underline">Return Home</Link>
           </div>
         </main>
-        <Suspense fallback={<div className="h-16" />}><Footer /></Suspense>
+        <Footer />
       </div>
     );
   }
 
   return (
     <div className="min-h-screen flex flex-col font-sans pb-24 md:pb-0 relative">
-      <Helmet>
-        <title>Granite Countertops in {formattedCity}, GA | AGS Stones</title>
-        <meta name="description" content={`Looking for granite countertops in ${formattedCity}? AGS Stones is your local factory-direct fabricator. Save 30% today on premium stone surfaces.`} />
-        <link rel="canonical" href={`https://agsstonefabricators.com/granite-countertops-${city}`} />
-      </Helmet>
       <Header />
-      
+
       <main className="flex-grow">
         {/* Local SEO Hero */}
         <section className="relative min-h-[50vh] flex items-center justify-center bg-gray-900 text-white overflow-hidden">
@@ -135,14 +127,9 @@ function LocationPage() {
 
       </main>
 
-      <Suspense fallback={<div className="h-16" />}>
-        <Footer />
-      </Suspense>
-
+      <Footer />
       <MobileBottomNav />
       <StickyCta />
     </div>
   );
 }
-
-export default LocationPage;

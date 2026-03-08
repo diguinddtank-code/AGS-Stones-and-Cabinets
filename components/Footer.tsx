@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 
 const Footer: React.FC = () => {
   return (
@@ -24,25 +24,25 @@ const Footer: React.FC = () => {
             <div>
                 <h4 className="text-white font-bold mb-4 uppercase tracking-wider text-xs">Navigation</h4>
                 <ul className="space-y-2">
-                    <li><Link to="/" className="hover:text-secondary transition-colors">Home</Link></li>
-                    <li><Link to="/about" className="hover:text-secondary transition-colors">About Us</Link></li>
-                    <li><Link to="/services" className="hover:text-secondary transition-colors">Our Services</Link></li>
-                    <li><Link to="/blog" className="hover:text-secondary transition-colors">Blog & Articles</Link></li>
-                    <li><Link to="/faq" className="hover:text-secondary transition-colors">FAQ</Link></li>
-                    <li><Link to="/contact" className="hover:text-secondary transition-colors">Contact Us</Link></li>
-                    <li><Link to="/privacy-policy" className="hover:text-secondary transition-colors">Privacy Policy</Link></li>
+                    <li><Link href="/" className="hover:text-secondary transition-colors">Home</Link></li>
+                    <li><Link href="/about" className="hover:text-secondary transition-colors">About Us</Link></li>
+                    <li><Link href="/services" className="hover:text-secondary transition-colors">Our Services</Link></li>
+                    <li><Link href="/blog" className="hover:text-secondary transition-colors">Blog & Articles</Link></li>
+                    <li><Link href="/faq" className="hover:text-secondary transition-colors">FAQ</Link></li>
+                    <li><Link href="/contact" className="hover:text-secondary transition-colors">Contact Us</Link></li>
+                    <li><Link href="/privacy-policy" className="hover:text-secondary transition-colors">Privacy Policy</Link></li>
                 </ul>
             </div>
 
             <div>
                 <h4 className="text-white font-bold mb-4 uppercase tracking-wider text-xs">Local Services</h4>
                 <ul className="space-y-2">
-                    <li><Link to="/granite-countertops-atlanta" className="hover:text-secondary">Granite in Atlanta</Link></li>
-                    <li><Link to="/granite-countertops-duluth" className="hover:text-secondary">Granite in Duluth</Link></li>
-                    <li><Link to="/granite-countertops-alpharetta" className="hover:text-secondary">Granite in Alpharetta</Link></li>
-                    <li><Link to="/granite-countertops-roswell" className="hover:text-secondary">Granite in Roswell</Link></li>
-                    <li><Link to="/granite-countertops-johns-creek" className="hover:text-secondary">Granite in Johns Creek</Link></li>
-                    <li><Link to="/granite-countertops-marietta" className="hover:text-secondary">Granite in Marietta</Link></li>
+                    <li><Link href="/granite-countertops-atlanta" className="hover:text-secondary">Granite in Atlanta</Link></li>
+                    <li><Link href="/granite-countertops-duluth" className="hover:text-secondary">Granite in Duluth</Link></li>
+                    <li><Link href="/granite-countertops-alpharetta" className="hover:text-secondary">Granite in Alpharetta</Link></li>
+                    <li><Link href="/granite-countertops-roswell" className="hover:text-secondary">Granite in Roswell</Link></li>
+                    <li><Link href="/granite-countertops-johns-creek" className="hover:text-secondary">Granite in Johns Creek</Link></li>
+                    <li><Link href="/granite-countertops-marietta" className="hover:text-secondary">Granite in Marietta</Link></li>
                 </ul>
             </div>
 

@@ -1,18 +1,13 @@
-import React from 'react';
-import { Helmet } from 'react-helmet-async';
-import Header from '../components/Header';
-import Footer from '../components/Footer';
-import Faq from '../components/Faq';
+'use client';
 
-const FaqPage = () => {
+import React from 'react';
+import Header from './Header';
+import Footer from './Footer';
+import Faq from './Faq';
+
+const FaqClient = () => {
   return (
     <div className="min-h-screen flex flex-col font-sans">
-      <Helmet>
-        <title>Frequently Asked Questions | Granite & Cabinet Installation | AGS Stones</title>
-        <meta name="description" content="Find answers to common questions about granite countertops, quartz installation, cabinet refacing, and more. AGS Stones is here to help." />
-        <link rel="canonical" href="https://agsstonefabricators.com/faq" />
-      </Helmet>
-      
       <Header />
       
       <main className="flex-grow">
@@ -58,4 +53,4 @@ const FaqPage = () => {
   );
 };
 
-export default FaqPage;
+export default FaqClient;

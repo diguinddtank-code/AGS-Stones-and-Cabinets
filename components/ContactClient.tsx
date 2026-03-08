@@ -1,19 +1,14 @@
+'use client';
+
 import React from 'react';
-import { Helmet } from 'react-helmet-async';
-import Header from '../components/Header';
-import Footer from '../components/Footer';
-import ContactForm from '../components/ContactForm';
+import Header from './Header';
+import Footer from './Footer';
+import ContactForm from './ContactForm';
 import { MapPin, Phone, Mail, Clock } from 'lucide-react';
 
-const ContactPage = () => {
+const ContactClient = () => {
   return (
     <div className="min-h-screen flex flex-col font-sans">
-      <Helmet>
-        <title>Contact Us | Free Granite & Cabinet Estimates | AGS Stones</title>
-        <meta name="description" content="Get a free quote for your kitchen or bathroom project. Visit our showroom in Duluth, GA or contact us for an in-home consultation." />
-        <link rel="canonical" href="https://agsstonefabricators.com/contact" />
-      </Helmet>
-      
       <Header />
       
       <main className="flex-grow">
@@ -134,4 +129,4 @@ const ContactPage = () => {
   );
 };
 
-export default ContactPage;
+export default ContactClient;
