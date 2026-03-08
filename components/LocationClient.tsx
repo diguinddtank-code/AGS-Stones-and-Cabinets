@@ -63,7 +63,7 @@ export default function LocationClient({ city }: { city: string }) {
               Upgrade your kitchen or bathroom with factory-direct granite, quartz, and marble countertops. Expert fabrication and installation in {formattedCity}.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center animate-in slide-in-from-bottom-10 duration-700 delay-300">
-              <a href="tel:4049524534" className="bg-secondary hover:bg-yellow-500 text-white px-8 py-4 rounded-full font-bold text-lg transition-all flex items-center justify-center gap-2 shadow-lg hover:shadow-xl hover:-translate-y-1">
+              <a href="/#contact" className="bg-secondary hover:bg-yellow-500 text-white px-8 py-4 rounded-full font-bold text-lg transition-all flex items-center justify-center gap-2 shadow-lg hover:shadow-xl hover:-translate-y-1">
                 <Phone size={20} /> Get a Free Estimate
               </a>
             </div>

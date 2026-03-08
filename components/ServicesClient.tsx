@@ -134,7 +134,7 @@ const ServicesClient = () => {
               Contact us for a free consultation and estimate.
             </p>
             <a 
-              href="/contact" 
+              href="/#contact" 
               className="bg-secondary hover:bg-secondary/90 text-white px-8 py-4 rounded-full font-bold transition-transform hover:-translate-y-1 shadow-lg inline-block"
             >
               Get a Free Quote

@@ -95,7 +95,7 @@ const StoneGallery: React.FC = () => {
                             alt={`${stone.name} ${stone.category} slab in Atlanta`} 
                             className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-90 group-hover:opacity-100"
                             fill
-                            sizes="(max-width: 768px) 85vw, (max-width: 1200px) 50vw, 25vw"
+                            sizes="(max-width: 768px) 85vw, (max-width: 1024px) 50vw, (max-width: 1280px) 33vw, 25vw"
                         />
                         
                         {/* Dark Overlay Gradient */}
@@ -129,7 +129,7 @@ const StoneGallery: React.FC = () => {
 
             {/* "View More" CTA Card */}
             <div className="min-w-[85vw] md:min-w-0 snap-center aspect-[3/4] flex flex-col items-center justify-center rounded-xl border border-dashed border-neutral-700 hover:border-secondary hover:bg-neutral-800/50 transition-all group cursor-pointer p-6 text-center">
-                 <a href="/contact" className="flex flex-col items-center gap-4">
+                 <a href="/#contact" className="flex flex-col items-center gap-4">
                     <div className="w-16 h-16 rounded-full border border-neutral-600 group-hover:border-secondary flex items-center justify-center transition-all group-hover:scale-110">
                         <ArrowRight className="text-neutral-400 group-hover:text-secondary" />
                     </div>
@@ -208,7 +208,7 @@ const StoneGallery: React.FC = () => {
                     </div>
                     
                     <div className="space-y-3 pt-8 border-t border-neutral-100 mt-8">
-                        <a href="/contact" className="block w-full bg-primary hover:bg-neutral-800 text-white text-center py-4 text-sm font-bold tracking-widest uppercase transition-all shadow-lg hover:-translate-y-1">
+                        <a href="/#contact" className="block w-full bg-primary hover:bg-neutral-800 text-white text-center py-4 text-sm font-bold tracking-widest uppercase transition-all shadow-lg hover:-translate-y-1">
                             Request Quote
                         </a>
                         <button 

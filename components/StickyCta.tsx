@@ -204,7 +204,7 @@ const StickyCta: React.FC = () => {
                         </a>
                         
                         <Link 
-                            href="/contact"
+                            href="/#contact"
                             onClick={handleClose}
                             className="flex items-center justify-center gap-2 w-full bg-white hover:bg-gray-50 text-primary font-bold py-3.5 rounded-xl border border-gray-200 transition-all hover:border-secondary active:scale-95"
                         >

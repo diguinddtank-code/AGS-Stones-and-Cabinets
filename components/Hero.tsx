@@ -73,20 +73,31 @@ const Hero: React.FC = () => {
         className="absolute inset-0 z-0 will-change-transform"
         style={{ filter: `brightness(0.8)` }}
       >
+        {/* Optimized Background Image (Poster Replacement) */}
+        <div className="absolute inset-0 z-0">
+            <Image 
+                src="https://kitchenandbathshop.com/wp-content/uploads/2020/11/5d7ff4ab763f7-scaled.jpg"
+                alt="Granite Countertops Background"
+                fill
+                priority
+                className="object-cover"
+                sizes="100vw"
+            />
+        </div>
+
         <video
-            className="w-full h-full object-cover animate-in fade-in zoom-in duration-1000"
+            className="relative z-10 w-full h-full object-cover animate-in fade-in zoom-in duration-1000"
             autoPlay
             muted
             loop
             playsInline
-            poster="https://kitchenandbathshop.com/wp-content/uploads/2020/11/5d7ff4ab763f7-scaled.jpg"
         >
             <source src="https://storage.googleapis.com/msgsndr/yRboz8P4zFeLUF6bAk8i/media/680a5a6f1eba4b32d1925215.mp4" type="video/mp4" />
             Your browser does not support the video tag.
         </video>
 
-        <div className="absolute inset-0 bg-gradient-to-r from-primary/70 via-primary/25 to-transparent"></div>
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-primary/60 lg:to-primary/0"></div>
+        <div className="absolute inset-0 z-20 bg-gradient-to-r from-primary/70 via-primary/25 to-transparent"></div>
+        <div className="absolute inset-0 z-20 bg-gradient-to-b from-transparent via-transparent to-primary/60 lg:to-primary/0"></div>
       </div>
 
       <div 
@@ -114,7 +125,7 @@ const Hero: React.FC = () => {
                 </p>
 
                 <div className="flex flex-col sm:flex-row gap-4 mb-10 lg:hidden px-4 sm:px-0 justify-center lg:justify-start">
-                     <a href="/contact" className="w-full sm:w-auto bg-secondary hover:bg-yellow-600 text-white font-bold py-4 px-8 rounded-xl shadow-lg flex items-center justify-center gap-2">
+                     <a href="/#contact" className="w-full sm:w-auto bg-secondary hover:bg-yellow-600 text-white font-bold py-4 px-8 rounded-xl shadow-lg flex items-center justify-center gap-2">
                         Get Free Quote <ArrowRight size={18} />
                      </a>
                      <a href="tel:4049524534" className="w-full sm:w-auto bg-black/30 backdrop-blur-md border border-white/40 text-white font-bold py-4 px-8 rounded-xl flex items-center justify-center gap-2">

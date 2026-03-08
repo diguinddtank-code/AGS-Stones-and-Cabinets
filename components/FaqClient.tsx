@@ -17,7 +17,7 @@ const FaqClient = () => {
           <div className="absolute inset-0 bg-black/60 z-10"></div>
           <div className="absolute inset-0 z-0">
             <Image 
-              src="https://images.unsplash.com/photo-1618221639263-d656c1f52576?q=80&w=1920&fm=webp&fit=crop"
+              src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=1920&auto=format&fit=crop"
               alt="FAQ Background"
               className="w-full h-full object-cover"
               fill

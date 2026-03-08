@@ -17,7 +17,7 @@ const AboutClient = () => {
           <div className="absolute inset-0 bg-black/60 z-10"></div>
           <div 
             className="absolute inset-0 bg-cover bg-center z-0" 
-            style={{ backgroundImage: 'url("https://images.unsplash.com/photo-1618221639263-d656c1f52576?q=80&w=1920&fm=webp&fit=crop")' }}
+            style={{ backgroundImage: 'url("https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=1920&auto=format&fit=crop")' }}
           ></div>
           
           <div className="container mx-auto px-4 relative z-20 text-center py-20">
@@ -123,13 +123,13 @@ const AboutClient = () => {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a 
-                href="/contact" 
+                href="/#contact" 
                 className="bg-secondary hover:bg-secondary/90 text-white px-8 py-4 rounded-full font-bold transition-transform hover:-translate-y-1 shadow-lg"
               >
                 Get a Free Quote
               </a>
               <a 
-                href="/contact" 
+                href="/#contact" 
                 className="bg-transparent border border-white/30 hover:bg-white/10 text-white px-8 py-4 rounded-full font-bold transition-colors"
               >
                 Visit Showroom

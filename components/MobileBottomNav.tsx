@@ -12,7 +12,7 @@ const MobileBottomNav: React.FC = () => {
     { id: 'home', icon: <Home size={20} />, label: 'Home', href: '/' },
     { id: 'services', icon: <Layers size={20} />, label: 'Services', href: '/services' },
     { id: 'gallery', icon: <ImageIcon size={20} />, label: 'Gallery', href: '/blog' },
-    { id: 'contact', icon: <Phone size={20} />, label: 'Contact', href: '/contact' },
+    { id: 'contact', icon: <Phone size={20} />, label: 'Contact', href: '/#contact' },
   ];
 
   return (
