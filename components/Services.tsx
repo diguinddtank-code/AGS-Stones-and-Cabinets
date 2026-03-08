@@ -274,7 +274,7 @@ const Services: React.FC = () => {
                 
                 <div className="bg-white/80 backdrop-blur-xl border-t border-gray-200/50 p-4 md:p-6 flex flex-row gap-3 md:gap-4 items-center shadow-[0_-10px_40px_-15px_rgba(0,0,0,0.1)]">
                     <a 
-                        href="#contact"
+                        href="/contact"
                         className="flex-1 flex items-center justify-center gap-2 bg-primary hover:bg-gray-800 text-white font-bold py-3.5 md:py-4 px-6 rounded-xl transition-all hover:shadow-lg hover:-translate-y-0.5 active:scale-95 text-sm md:text-base"
                     >
                         <Calendar size={18} />

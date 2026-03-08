@@ -24,11 +24,13 @@ const Footer: React.FC = () => {
             <div>
                 <h4 className="text-white font-bold mb-4 uppercase tracking-wider text-xs">Navigation</h4>
                 <ul className="space-y-2">
-                    <li><a href="/#services" className="hover:text-secondary transition-colors" title="Stone & Cabinet Services">Our Services</a></li>
-                    <li><a href="/#visualizer" className="hover:text-secondary transition-colors" title="Kitchen Visualizer Tool">Design Visualizer</a></li>
-                    <li><a href="/#showroom" className="hover:text-secondary transition-colors" title="Visit Duluth Showroom">Showroom Location</a></li>
-                    <li><Link to="/blog" className="hover:text-secondary transition-colors" title="Read our Blog">Blog & Articles</Link></li>
-                    <li><a href="/#contact" className="hover:text-secondary transition-colors" title="Get a Quote">Free Estimate</a></li>
+                    <li><Link to="/" className="hover:text-secondary transition-colors">Home</Link></li>
+                    <li><Link to="/about" className="hover:text-secondary transition-colors">About Us</Link></li>
+                    <li><Link to="/services" className="hover:text-secondary transition-colors">Our Services</Link></li>
+                    <li><Link to="/blog" className="hover:text-secondary transition-colors">Blog & Articles</Link></li>
+                    <li><Link to="/faq" className="hover:text-secondary transition-colors">FAQ</Link></li>
+                    <li><Link to="/contact" className="hover:text-secondary transition-colors">Contact Us</Link></li>
+                    <li><Link to="/privacy-policy" className="hover:text-secondary transition-colors">Privacy Policy</Link></li>
                 </ul>
             </div>
 

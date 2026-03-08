@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { X, Tag, Clock } from 'lucide-react';
+import { X } from 'lucide-react';
 
 const TopBar = () => {
   const [isVisible, setIsVisible] = useState(true);

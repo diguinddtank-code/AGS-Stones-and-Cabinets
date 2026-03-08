@@ -51,11 +51,11 @@ const Header: React.FC = () => {
   }, [mobileMenuOpen]);
 
   const navLinks = [
-    { name: 'Services', href: '/#services' },
-    { name: 'Why Us', href: '/#why-us' },
-    { name: 'Showroom', href: '/#showroom' },
+    { name: 'Home', href: '/' },
+    { name: 'About Us', href: '/about' },
+    { name: 'Services', href: '/services' },
     { name: 'Blog', href: '/blog' },
-    { name: 'Contact', href: '/#contact' },
+    { name: 'Contact', href: '/contact' },
   ];
 
   return (

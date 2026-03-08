@@ -113,7 +113,7 @@ const Hero: React.FC = () => {
                 </p>
 
                 <div className="flex flex-col sm:flex-row gap-4 mb-10 lg:hidden px-4 sm:px-0 justify-center lg:justify-start">
-                     <a href="#contact" className="w-full sm:w-auto bg-secondary hover:bg-yellow-600 text-white font-bold py-4 px-8 rounded-xl shadow-lg flex items-center justify-center gap-2">
+                     <a href="/contact" className="w-full sm:w-auto bg-secondary hover:bg-yellow-600 text-white font-bold py-4 px-8 rounded-xl shadow-lg flex items-center justify-center gap-2">
                         Get Free Quote <ArrowRight size={18} />
                      </a>
                      <a href="tel:4049524534" className="w-full sm:w-auto bg-black/30 backdrop-blur-md border border-white/40 text-white font-bold py-4 px-8 rounded-xl flex items-center justify-center gap-2">

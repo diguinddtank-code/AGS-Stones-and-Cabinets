@@ -214,7 +214,7 @@ const MaterialMatchmaker: React.FC = () => {
                     </div>
 
                     <div className="mt-auto pt-6 border-t border-gray-100">
-                         <a href="#contact" className="flex items-center justify-center w-full text-center bg-secondary hover:bg-yellow-600 text-white font-bold py-3 md:py-4 rounded-xl transition-all shadow-lg hover:shadow-xl hover:-translate-y-1 active:scale-95 cursor-pointer relative z-30 touch-manipulation">
+                         <a href="/contact" className="flex items-center justify-center w-full text-center bg-secondary hover:bg-yellow-600 text-white font-bold py-3 md:py-4 rounded-xl transition-all shadow-lg hover:shadow-xl hover:-translate-y-1 active:scale-95 cursor-pointer relative z-30 touch-manipulation">
                              Get Quote for {currentMaterial.name}
                          </a>
                     </div>

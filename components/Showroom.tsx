@@ -54,7 +54,7 @@ const Showroom: React.FC = () => {
                         </div>
                     </div>
 
-                    <a href="#contact" className="inline-flex items-center gap-2 bg-secondary hover:bg-yellow-600 text-white font-bold py-4 px-8 rounded-full transition-all hover:scale-105 shadow-[0_0_20px_rgba(202,138,4,0.3)]">
+                    <a href="/contact" className="inline-flex items-center gap-2 bg-secondary hover:bg-yellow-600 text-white font-bold py-4 px-8 rounded-full transition-all hover:scale-105 shadow-[0_0_20px_rgba(202,138,4,0.3)]">
                         Get Directions <ArrowRight size={18} />
                     </a>
                 </div>

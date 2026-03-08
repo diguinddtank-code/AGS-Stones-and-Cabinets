@@ -202,7 +202,7 @@ const Testimonials: React.FC = () => {
                 <p className="text-gray-300 mb-6">Start your project with the team Atlanta trusts. No middlemen, just quality.</p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
                     <a 
-                        href="#contact" 
+                        href="/contact" 
                         className="bg-secondary hover:bg-yellow-600 text-white font-bold py-3 px-8 rounded-full shadow-lg hover:shadow-yellow-500/20 transition-all hover:-translate-y-1 flex items-center justify-center gap-2 group whitespace-nowrap"
                     >
                         <span>Request Free Estimate</span>

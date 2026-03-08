@@ -69,7 +69,7 @@ const ExitIntentPopup: React.FC = () => {
 
                 <div className="space-y-3">
                     <a 
-                        href="#contact" 
+                        href="/contact" 
                         onClick={() => setIsOpen(false)}
                         className="block w-full bg-secondary hover:bg-yellow-600 text-white font-bold py-4 rounded-xl shadow-lg hover:shadow-xl transition-all hover:-translate-y-0.5"
                     >

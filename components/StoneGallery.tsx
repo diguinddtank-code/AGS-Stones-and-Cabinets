@@ -127,12 +127,12 @@ const StoneGallery: React.FC = () => {
 
             {/* "View More" CTA Card */}
             <div className="min-w-[85vw] md:min-w-0 snap-center aspect-[3/4] flex flex-col items-center justify-center rounded-xl border border-dashed border-neutral-700 hover:border-secondary hover:bg-neutral-800/50 transition-all group cursor-pointer p-6 text-center">
-                 <a href="#showroom" className="flex flex-col items-center gap-4">
+                 <a href="/contact" className="flex flex-col items-center gap-4">
                     <div className="w-16 h-16 rounded-full border border-neutral-600 group-hover:border-secondary flex items-center justify-center transition-all group-hover:scale-110">
                         <ArrowRight className="text-neutral-400 group-hover:text-secondary" />
                     </div>
                     <div>
-                        <h4 className="text-white font-serif text-xl mb-1">View Full Inventory</h4>
+                        <h4 className="text-white font-serif text-xl mb-1">Visit Showroom</h4>
                         <p className="text-neutral-500 text-xs group-hover:text-neutral-300 transition-colors">Visit our showroom to see 500+ slabs</p>
                     </div>
                  </a>
@@ -204,7 +204,7 @@ const StoneGallery: React.FC = () => {
                     </div>
                     
                     <div className="space-y-3 pt-8 border-t border-neutral-100 mt-8">
-                        <a href="#contact" className="block w-full bg-primary hover:bg-neutral-800 text-white text-center py-4 text-sm font-bold tracking-widest uppercase transition-all shadow-lg hover:-translate-y-1">
+                        <a href="/contact" className="block w-full bg-primary hover:bg-neutral-800 text-white text-center py-4 text-sm font-bold tracking-widest uppercase transition-all shadow-lg hover:-translate-y-1">
                             Request Quote
                         </a>
                         <button 

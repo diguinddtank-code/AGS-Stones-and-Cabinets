@@ -43,22 +43,27 @@ function LocationPage() {
         <link rel="canonical" href={`https://agsstonefabricators.com/granite-countertops-${city}`} />
       </Helmet>
       <Header />
-
-      <main className="flex-grow pt-24 md:pt-32 pb-16">
+      
+      <main className="flex-grow">
         {/* Local SEO Hero */}
-        <section className="bg-primary text-white py-20 relative overflow-hidden">
-          <div className="absolute inset-0 opacity-20 bg-[url('https://kitchenandbathshop.com/wp-content/uploads/2020/11/5d7ff4ab763f7-scaled.jpg')] bg-cover bg-center"></div>
-          <div className="container mx-auto px-4 md:px-6 relative z-10 text-center max-w-4xl">
-            <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md px-4 py-2 rounded-full text-sm font-medium mb-6">
+        <section className="relative min-h-[50vh] flex items-center justify-center bg-gray-900 text-white overflow-hidden">
+          <div className="absolute inset-0 bg-black/60 z-10"></div>
+          <div 
+            className="absolute inset-0 bg-cover bg-center z-0" 
+            style={{ backgroundImage: 'url("https://kitchenandbathshop.com/wp-content/uploads/2020/11/5d7ff4ab763f7-scaled.jpg")' }}
+          ></div>
+          
+          <div className="container mx-auto px-4 md:px-6 relative z-20 text-center py-20">
+            <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md px-4 py-2 rounded-full text-sm font-medium mb-6 animate-in slide-in-from-bottom-4 duration-700">
               <MapPin size={16} className="text-secondary" /> Serving {formattedCity}, GA & Surrounding Areas
             </div>
-            <h1 className="text-4xl md:text-6xl font-serif font-bold mb-6 leading-tight">
+            <h1 className="text-4xl md:text-6xl font-serif font-bold mb-6 leading-tight animate-in slide-in-from-bottom-6 duration-700 delay-100">
               Premium Granite Countertops in <span className="text-secondary">{formattedCity}</span>
             </h1>
-            <p className="text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
+            <p className="text-xl text-gray-200 mb-8 max-w-2xl mx-auto animate-in slide-in-from-bottom-8 duration-700 delay-200">
               Upgrade your kitchen or bathroom with factory-direct granite, quartz, and marble countertops. Expert fabrication and installation in {formattedCity}.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <div className="flex flex-col sm:flex-row gap-4 justify-center animate-in slide-in-from-bottom-10 duration-700 delay-300">
               <a href="tel:4049524534" className="bg-secondary hover:bg-yellow-500 text-white px-8 py-4 rounded-full font-bold text-lg transition-all flex items-center justify-center gap-2 shadow-lg hover:shadow-xl hover:-translate-y-1">
                 <Phone size={20} /> Get a Free Estimate
               </a>
