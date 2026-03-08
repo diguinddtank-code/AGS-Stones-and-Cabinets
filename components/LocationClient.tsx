@@ -2,6 +2,7 @@
 
 import React from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import Header from './Header';
 import MobileBottomNav from './MobileBottomNav';
 import StickyCta from './StickyCta';
@@ -40,10 +41,16 @@ export default function LocationClient({ city }: { city: string }) {
         {/* Local SEO Hero */}
         <section className="relative min-h-[50vh] flex items-center justify-center bg-gray-900 text-white overflow-hidden">
           <div className="absolute inset-0 bg-black/60 z-10"></div>
-          <div 
-            className="absolute inset-0 bg-cover bg-center z-0" 
-            style={{ backgroundImage: 'url("https://kitchenandbathshop.com/wp-content/uploads/2020/11/5d7ff4ab763f7-scaled.jpg")' }}
-          ></div>
+          <div className="absolute inset-0 z-0">
+            <Image 
+              src="https://kitchenandbathshop.com/wp-content/uploads/2020/11/5d7ff4ab763f7-scaled.jpg"
+              alt={`Granite Countertops in ${formattedCity}`}
+              className="w-full h-full object-cover"
+              fill
+              priority
+              sizes="100vw"
+            />
+          </div>
           
           <div className="container mx-auto px-4 md:px-6 relative z-20 text-center py-20">
             <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md px-4 py-2 rounded-full text-sm font-medium mb-6 animate-in slide-in-from-bottom-4 duration-700">
@@ -115,11 +122,15 @@ export default function LocationClient({ city }: { city: string }) {
               </div>
               <div className="relative">
                 <div className="absolute inset-0 bg-secondary rounded-2xl transform translate-x-4 translate-y-4 -z-10"></div>
-                <img 
-                  src="https://agsstonefabricators.com/wp-content/uploads/2024/05/Design-sem-nome-16.png" 
-                  alt={`Granite countertops installation in ${formattedCity}`} 
-                  className="rounded-2xl shadow-xl w-full object-cover h-[400px]"
-                />
+                <div className="rounded-2xl shadow-xl w-full h-[400px] relative overflow-hidden">
+                  <Image 
+                    src="https://agsstonefabricators.com/wp-content/uploads/2024/05/Design-sem-nome-16.png" 
+                    alt={`Granite countertops installation in ${formattedCity}`} 
+                    className="object-cover"
+                    fill
+                    sizes="(max-width: 768px) 100vw, 50vw"
+                  />
+                </div>
               </div>
             </div>
           </div>

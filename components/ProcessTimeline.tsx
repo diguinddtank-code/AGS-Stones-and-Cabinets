@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
+import Image from 'next/image';
 import { MessageSquare, ScanLine, Settings, ShieldCheck, Heart, ChevronRight, X, CheckCircle } from 'lucide-react';
 
 interface Step {
@@ -238,11 +239,12 @@ const ProcessTimeline: React.FC = () => {
 
                 {/* Media Content */}
                 <div className="order-1 md:order-2 relative h-48 md:h-96 rounded-xl md:rounded-2xl overflow-hidden shadow-lg group bg-gray-200">
-                   <img 
+                   <Image 
                      src={step.image} 
                      alt={step.title} 
                      className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700" 
-                     loading="lazy"
+                     fill
+                     sizes="(max-width: 768px) 100vw, 50vw"
                    />
                    
                    {step.badge && (
@@ -288,11 +290,13 @@ const ProcessTimeline: React.FC = () => {
             {/* Body */}
             <div className="p-6 md:p-8 overflow-y-auto">
                <div className="flex flex-col md:flex-row gap-6 md:gap-8">
-                  <div className="md:w-1/2 shrink-0">
-                    <img 
+                  <div className="md:w-1/2 shrink-0 relative h-40 md:h-48">
+                    <Image 
                       src={selectedDetail.image} 
                       alt={selectedDetail.title} 
-                      className="w-full h-40 md:h-48 object-cover rounded-xl shadow-md"
+                      className="w-full h-full object-cover rounded-xl shadow-md"
+                      fill
+                      sizes="(max-width: 768px) 100vw, 50vw"
                     />
                   </div>
                   <div className="md:w-1/2">

@@ -1,5 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 
 const Footer: React.FC = () => {
   return (
@@ -7,10 +8,12 @@ const Footer: React.FC = () => {
       <div className="container mx-auto px-4">
         <div className="grid md:grid-cols-4 gap-8 mb-12">
             <div className="col-span-1 md:col-span-1">
-                 <img 
+                 <Image 
                     src="https://i.imgur.com/B0ZaBpN.png" 
                     alt="AGS Stones & Cabinets Logo" 
                     className="h-20 w-auto mb-4 brightness-0 invert"
+                    width={200}
+                    height={80}
                   />
                   <p className="mb-4">
                       AGS Stones & Cabinets: Your premier destination for luxury stone surfaces and custom cabinetry in Georgia.

@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect, useCallback } from 'react';
+import Image from 'next/image';
 import { ChevronLeft, ChevronRight, Sparkles } from 'lucide-react';
 
 const BeforeAfter: React.FC = () => {
@@ -55,10 +56,12 @@ const BeforeAfter: React.FC = () => {
             onTouchMove={onTouchMove}
           >
             {/* Image 2 (After) - The Base Layer */}
-            <img 
+            <Image 
               src="https://i.imgur.com/nI4AulC.png" 
               alt="After Renovation" 
               className="absolute inset-0 w-full h-full object-cover pointer-events-none"
+              fill
+              sizes="(max-width: 1024px) 100vw, 1024px"
             />
             <div className="absolute top-6 right-6 bg-secondary/90 backdrop-blur-md text-white px-4 py-1.5 rounded-full text-sm font-bold shadow-lg z-10">
                 AFTER
@@ -69,10 +72,12 @@ const BeforeAfter: React.FC = () => {
                 className="absolute inset-0 w-full h-full overflow-hidden pointer-events-none"
                 style={{ clipPath: `inset(0 ${100 - sliderPosition}% 0 0)` }}
             >
-                <img 
+                <Image 
                     src="https://i.imgur.com/EWnnkrO.png" 
                     alt="Before Renovation" 
                     className="absolute inset-0 w-full h-full object-cover"
+                    fill
+                    sizes="(max-width: 1024px) 100vw, 1024px"
                 />
                  <div className="absolute top-6 left-6 bg-black/60 backdrop-blur-md text-white px-4 py-1.5 rounded-full text-sm font-bold shadow-lg">
                     BEFORE

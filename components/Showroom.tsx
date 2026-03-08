@@ -1,4 +1,5 @@
 import React from 'react';
+import Image from 'next/image';
 import { MapPin, Calendar, Clock, ArrowRight } from 'lucide-react';
 
 const Showroom: React.FC = () => {
@@ -6,13 +7,12 @@ const Showroom: React.FC = () => {
     <section id="showroom" className="relative min-h-[600px] flex items-center justify-center py-20 bg-gray-900 overflow-hidden">
         {/* Parallax Background */}
         <div className="absolute inset-0 z-0">
-             <img 
+             <Image 
                 src="https://images.unsplash.com/photo-1618221639263-d656c1f52576?q=80&w=1920&fm=webp&fit=crop" 
                 alt="AGS Stone Showroom Gallery" 
                 className="w-full h-full object-cover opacity-40"
-                loading="lazy"
-                width="1920"
-                height="1080"
+                fill
+                sizes="100vw"
              />
              <div className="absolute inset-0 bg-gradient-to-r from-gray-900 via-gray-900/80 to-transparent"></div>
         </div>

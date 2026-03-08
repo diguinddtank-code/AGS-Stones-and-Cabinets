@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import Image from 'next/image';
 import Header from './Header';
 import Footer from './Footer';
 import { CheckCircle, Users, Award, Clock } from 'lucide-react';
@@ -63,10 +64,12 @@ const AboutClient = () => {
               <div className="relative">
                 <div className="absolute -top-4 -left-4 w-24 h-24 bg-secondary/10 rounded-tl-3xl -z-10"></div>
                 <div className="absolute -bottom-4 -right-4 w-24 h-24 bg-secondary/10 rounded-br-3xl -z-10"></div>
-                <img 
+                <Image 
                   src="https://images.unsplash.com/photo-1600607686527-6fb886090705?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80" 
                   alt="AGS Stones Team working on a project" 
                   className="rounded-lg shadow-xl w-full h-auto object-cover aspect-[4/3]"
+                  width={600}
+                  height={450}
                 />
               </div>
             </div>

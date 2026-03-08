@@ -2,6 +2,7 @@
 
 import React from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import Header from './Header';
 import MobileBottomNav from './MobileBottomNav';
 import StickyCta from './StickyCta';
@@ -42,8 +43,15 @@ export default function BlogPostClient({ slug }: { slug: string }) {
             <h1 className="text-4xl md:text-5xl font-serif text-primary leading-tight mb-6">{post.title}</h1>
           </header>
 
-          <div className="w-full h-[400px] md:h-[500px] rounded-2xl overflow-hidden mb-12 shadow-md">
-            <img src={post.image} alt={post.title} className="w-full h-full object-cover" />
+          <div className="w-full h-[400px] md:h-[500px] rounded-2xl overflow-hidden mb-12 shadow-md relative">
+            <Image 
+              src={post.image} 
+              alt={post.title} 
+              className="w-full h-full object-cover"
+              fill
+              sizes="(max-width: 768px) 100vw, 80vw"
+              priority
+            />
           </div>
 
           <div className="prose prose-lg max-w-none text-gray-700">

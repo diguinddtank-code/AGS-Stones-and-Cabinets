@@ -1,6 +1,7 @@
 'use client';
 
 import React, { Suspense, useState, useEffect } from 'react';
+import Image from 'next/image';
 import Header from './Header';
 import MobileBottomNav from './MobileBottomNav';
 import StickyCta from './StickyCta';
@@ -200,10 +201,12 @@ function BlogClient() {
                 
                 {/* Image Container */}
                 <div className="relative h-64 overflow-hidden cursor-pointer" onClick={() => setSelectedProject(project)}>
-                  <img 
+                  <Image 
                     src={project.image} 
                     alt={project.title} 
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                    fill
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                   />
                   {/* Location Badge */}
                   <div className="absolute top-4 left-4 bg-gray-900/90 backdrop-blur-sm text-white text-[10px] font-bold px-3 py-1.5 rounded-full flex items-center gap-1 uppercase tracking-wider">
@@ -292,7 +295,13 @@ function BlogClient() {
             
             {/* Image Side */}
             <div className="w-full md:w-1/2 h-64 md:h-auto relative">
-              <img src={selectedProject.image} alt={selectedProject.title} className="w-full h-full object-cover" />
+              <Image 
+                src={selectedProject.image} 
+                alt={selectedProject.title} 
+                className="w-full h-full object-cover"
+                fill
+                sizes="(max-width: 768px) 100vw, 50vw"
+              />
               <div className="absolute top-4 left-4 bg-gray-900/90 backdrop-blur-sm text-white text-xs font-bold px-3 py-1.5 rounded-full flex items-center gap-1 uppercase tracking-wider">
                 <MapPin size={14} className="text-secondary" /> {selectedProject.location}
               </div>

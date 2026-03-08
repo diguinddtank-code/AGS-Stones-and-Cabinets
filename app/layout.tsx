@@ -1,23 +1,75 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import Script from "next/script";
+import { Inter, Playfair_Display } from "next/font/google";
 import "./globals.css";
 
+const inter = Inter({
+  subsets: ["latin"],
+  variable: "--font-inter",
+  display: "swap",
+});
+
+const playfair = Playfair_Display({
+  subsets: ["latin"],
+  variable: "--font-playfair",
+  display: "swap",
+});
+
+export const viewport: Viewport = {
+  themeColor: "#ffffff",
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 5,
+};
+
 export const metadata: Metadata = {
-  title: "Granite Countertops Near Me | Atlanta & Duluth's #1 Local Fabricator | AGS Stones",
+  metadataBase: new URL("https://agsstonefabricators.com"),
+  title: {
+    default: "Granite Countertops Near Me | Atlanta & Duluth's #1 Local Fabricator | AGS Stones",
+    template: "%s | AGS Stones",
+  },
   description: "Looking for granite countertops near you? AGS Stones is your local factory-direct fabricator in Duluth, GA. Serving Atlanta, Alpharetta, and Roswell. Save 30% today.",
-  keywords: "granite countertops near me, granite fabricators near me, quartz countertops near me, stone suppliers atlanta, duluth granite company, ags stones",
+  keywords: ["granite countertops near me", "granite fabricators near me", "quartz countertops near me", "stone suppliers atlanta", "duluth granite company", "ags stones", "kitchen remodeling", "bathroom vanities"],
   authors: [{ name: "AGS Stones & Cabinets" }],
+  creator: "AGS Stones & Cabinets",
+  publisher: "AGS Stones & Cabinets",
+  formatDetection: {
+    email: false,
+    address: false,
+    telephone: false,
+  },
   openGraph: {
     type: "website",
+    locale: "en_US",
     url: "https://agsstonefabricators.com",
     title: "AGS Stones | Local Granite Countertops Near You",
     description: "Stop searching. You found the best granite countertops near you. Buy direct from our Duluth factory and save.",
+    siteName: "AGS Stones",
     images: [
       {
         url: "https://kitchenandbathshop.com/wp-content/uploads/2020/11/5d7ff4ab763f7-scaled.jpg",
+        width: 1200,
+        height: 630,
+        alt: "AGS Stones Kitchen Countertops",
       },
     ],
-    siteName: "AGS Stones",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "AGS Stones | Local Granite Countertops Near You",
+    description: "Stop searching. You found the best granite countertops near you. Buy direct from our Duluth factory and save.",
+    images: ["https://kitchenandbathshop.com/wp-content/uploads/2020/11/5d7ff4ab763f7-scaled.jpg"],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
   },
   alternates: {
     canonical: "https://agsstonefabricators.com",
@@ -30,25 +82,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" className={`${inter.variable} ${playfair.variable}`}>
       <head>
         <link rel="icon" type="image/png" href="https://i.imgur.com/B0ZaBpN.png" />
         <link rel="apple-touch-icon" href="https://i.imgur.com/B0ZaBpN.png" />
-        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet" />
         
         {/* JSON-LD Structured Data */}
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "WebSite",
-              "name": "AGS Stones",
-              "alternateName": ["AGS Stones & Cabinets", "AGS Stone Fabricators"],
-              "url": "https://agsstonefabricators.com"
-            }),
-          }}
-        />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
@@ -117,7 +156,7 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className="bg-white text-gray-800 antialiased overflow-x-hidden selection:bg-secondary selection:text-white">
+      <body className="bg-white text-gray-800 antialiased overflow-x-hidden selection:bg-secondary selection:text-white font-sans">
         {/* Google Tag Manager (gtag.js) */}
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=AW-16885125181"

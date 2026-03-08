@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
+import Image from 'next/image';
 import Link from 'next/link';
 import { Menu, X, Phone, ArrowRight, Instagram, Facebook } from 'lucide-react';
 import TopBar from './TopBar';
@@ -77,7 +78,7 @@ const Header: React.FC = () => {
             
             {/* LOGO (Visible on Mobile & Desktop) */}
             <Link href="/" className="block group z-50 relative" aria-label="AGS Stones Home">
-               <img 
+               <Image 
                 src="https://i.imgur.com/B0ZaBpN.png" 
                 alt="AGS Stones and Cabinets Logo" 
                 className={`h-10 md:h-12 w-auto transition-all duration-300 ${
@@ -85,9 +86,9 @@ const Header: React.FC = () => {
                     ? 'filter-none' // Original Colors
                     : 'brightness-0 invert drop-shadow-lg' // White Logo
                 }`}
-                fetchPriority="high"
-                width="180"
-                height="60"
+                priority
+                width={180}
+                height={60}
               />
             </Link>
   

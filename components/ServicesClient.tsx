@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import Image from 'next/image';
 import Header from './Header';
 import Footer from './Footer';
 import { CheckCircle, Hammer, Ruler, Truck, PenTool } from 'lucide-react';
@@ -41,10 +42,16 @@ const ServicesClient = () => {
         {/* Hero Section */}
         <section className="relative min-h-[50vh] flex items-center justify-center bg-gray-900 text-white overflow-hidden">
           <div className="absolute inset-0 bg-black/60 z-10"></div>
-          <div 
-            className="absolute inset-0 bg-cover bg-center z-0" 
-            style={{ backgroundImage: 'url("https://kitchenandbathshop.com/wp-content/uploads/2020/11/5d7ff4ab763f7-scaled.jpg")' }}
-          ></div>
+          <div className="absolute inset-0 z-0">
+            <Image 
+              src="https://kitchenandbathshop.com/wp-content/uploads/2020/11/5d7ff4ab763f7-scaled.jpg"
+              alt="AGS Services"
+              className="w-full h-full object-cover"
+              fill
+              priority
+              sizes="100vw"
+            />
+          </div>
           
           <div className="container mx-auto px-4 relative z-20 text-center py-20">
             <h1 className="text-4xl md:text-6xl font-serif font-bold mb-6 animate-in slide-in-from-bottom-4 duration-700">Our Services</h1>
@@ -61,10 +68,12 @@ const ServicesClient = () => {
               {services.map((service, idx) => (
                 <div key={idx} className="flex flex-col md:flex-row gap-6 bg-gray-50 rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-shadow border border-gray-100">
                   <div className="md:w-2/5 h-64 md:h-auto relative">
-                    <img 
+                    <Image 
                       src={service.img} 
                       alt={service.title} 
                       className="absolute inset-0 w-full h-full object-cover"
+                      fill
+                      sizes="(max-width: 768px) 100vw, 40vw"
                     />
                   </div>
                   <div className="md:w-3/5 p-8 flex flex-col justify-center">

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Image from 'next/image';
 import { Sparkles, Loader2, RefreshCw, Wand2, AlertCircle } from 'lucide-react';
 import { DesignState, VisualizerMode } from '../types';
 import { generateDesignImage } from '../services/geminiService';
@@ -185,10 +186,13 @@ const AiVisualizer: React.FC = () => {
                 </div>
               ) : generatedImage ? (
                 <div className="relative w-full h-full animate-in fade-in duration-700">
-                  <img 
+                  <Image 
                     src={generatedImage} 
                     alt="Generated Design" 
                     className="w-full h-full object-cover transition-transform duration-[2s] group-hover:scale-105" 
+                    fill
+                    sizes="(max-width: 1024px) 100vw, 66vw"
+                    unoptimized // Since it's base64
                   />
                   
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex flex-col justify-end p-8">

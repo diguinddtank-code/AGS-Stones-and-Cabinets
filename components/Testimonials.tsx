@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useRef } from 'react';
+import Image from 'next/image';
 import { Star, Phone, ArrowRight, CheckCircle2 } from 'lucide-react';
 import { Testimonial } from '../types';
 
@@ -92,10 +93,12 @@ const Testimonials: React.FC = () => {
         <div className="flex flex-col md:flex-row items-center justify-between gap-10">
             <div className="text-center md:text-left max-w-2xl">
                 <h2 className="text-secondary font-bold tracking-widest uppercase mb-4 flex items-center justify-center md:justify-start gap-2">
-                    <img 
+                    <Image 
                         src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg" 
                         alt="Google G Logo" 
                         className="w-5 h-5" 
+                        width={20}
+                        height={20}
                     />
                     Verified Reviews
                 </h2>
@@ -144,21 +147,24 @@ const Testimonials: React.FC = () => {
                {/* Header: User & Google Logo */}
                <div className="flex justify-between items-start mb-4">
                   <div className="flex items-center gap-3">
-                      <img 
+                      <Image 
                         src={review.image} 
                         alt={`${review.name} - AGS Stones Customer`} 
                         className="w-10 h-10 rounded-full object-cover"
-                        loading="lazy"
+                        width={40}
+                        height={40}
                       />
                       <div>
                           <p className="font-bold text-gray-900 text-sm">{review.name}</p>
                           <p className="text-[10px] text-gray-500">{review.date}</p>
                       </div>
                   </div>
-                  <img 
+                  <Image 
                     src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg" 
                     alt="Posted on Google" 
                     className="w-6 h-6 opacity-50" 
+                    width={24}
+                    height={24}
                   />
                </div>
 

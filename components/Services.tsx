@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import Image from 'next/image';
 import { Layers, Box, Hammer, Droplet, ChefHat, Grid, X, Check, Bath, Phone, Calendar } from 'lucide-react';
 
 interface ServiceDetail {
@@ -146,11 +147,12 @@ const Services: React.FC = () => {
                     }
                 }}
                 >
-                    <img 
+                    <Image 
                         src={service.image} 
                         alt={`${service.title} Services in Atlanta GA`}
                         className="absolute inset-0 w-full h-full object-cover transform scale-100 group-hover:scale-110 transition-transform duration-[1.5s] ease-out"
-                        loading="lazy"
+                        fill
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                     />
                     
                     <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent opacity-70 group-hover:opacity-85 transition-opacity duration-500"></div>
@@ -212,10 +214,12 @@ const Services: React.FC = () => {
             </button>
 
             <div className="h-64 md:h-auto md:w-5/12 relative overflow-hidden group shrink-0 animate-fade-in-up opacity-0" style={{ animationDelay: '100ms', animationFillMode: 'forwards' }}>
-              <img 
+              <Image 
                 src={selectedService.image} 
                 alt={`${selectedService.title} - Best in Atlanta & Duluth`}
                 className="w-full h-full object-cover transition-transform duration-[3s] ease-linear scale-105 group-hover:scale-110"
+                fill
+                sizes="(max-width: 768px) 100vw, 50vw"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-primary/90 via-primary/20 to-transparent md:bg-gradient-to-r md:from-transparent md:to-transparent"></div>
               

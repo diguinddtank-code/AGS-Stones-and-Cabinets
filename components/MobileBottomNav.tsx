@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { Home, Layers, Phone, Image } from 'lucide-react';
+import { Home, Layers, Phone, Image as ImageIcon } from 'lucide-react';
 import { usePathname } from 'next/navigation';
 import Link from 'next/link';
 
@@ -11,7 +11,7 @@ const MobileBottomNav: React.FC = () => {
   const navItems = [
     { id: 'home', icon: <Home size={20} />, label: 'Home', href: '/' },
     { id: 'services', icon: <Layers size={20} />, label: 'Services', href: '/services' },
-    { id: 'gallery', icon: <Image size={20} />, label: 'Gallery', href: '/blog' },
+    { id: 'gallery', icon: <ImageIcon size={20} />, label: 'Gallery', href: '/blog' },
     { id: 'contact', icon: <Phone size={20} />, label: 'Contact', href: '/contact' },
   ];
 

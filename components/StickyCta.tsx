@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
+import Image from 'next/image';
 import { Phone, X, Send, MessageCircle } from 'lucide-react';
 import Link from 'next/link';
 
@@ -113,10 +114,12 @@ const StickyCta: React.FC = () => {
                 aria-label="Chat with Jessica"
               >
                 <div className="w-14 h-14 md:w-16 md:h-16 rounded-full border-4 border-white shadow-[0_4px_20px_rgba(0,0,0,0.15)] overflow-hidden transition-transform group-hover:scale-105 relative z-10 bg-white">
-                  <img 
+                  <Image 
                     src={avatarUrl} 
                     alt="Jessica Support Agent" 
                     className="w-full h-full object-cover"
+                    width={64}
+                    height={64}
                   />
                 </div>
                 
@@ -169,10 +172,12 @@ const StickyCta: React.FC = () => {
                     <div className="absolute top-0 right-0 w-32 h-32 bg-secondary rounded-full blur-3xl opacity-20 -translate-y-1/2 translate-x-1/2"></div>
                     
                     <div className="relative">
-                        <img 
+                        <Image 
                             src={avatarUrl} 
                             alt="Jessica" 
                             className="w-12 h-12 rounded-full border-2 border-white object-cover"
+                            width={48}
+                            height={48}
                         />
                         <div className="absolute bottom-0 right-0 w-3 h-3 bg-green-500 border-2 border-primary rounded-full"></div>
                     </div>

@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
+import Image from 'next/image';
 import { Star, CheckCircle2, ArrowRight, ShieldCheck, Phone, User, Mail, Layers, MapPin, Loader2 } from 'lucide-react';
 
 const Hero: React.FC = () => {
@@ -144,12 +145,12 @@ const Hero: React.FC = () => {
                         className="inline-flex items-center gap-3 bg-black/40 hover:bg-black/50 backdrop-blur-md border border-white/15 rounded-full pr-5 pl-1.5 py-1.5 transition-all group hover:scale-[1.02] cursor-pointer"
                      >
                         <div className="w-8 h-8 bg-white rounded-full flex items-center justify-center shadow-sm shrink-0">
-                             <img 
+                             <Image 
                                 src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg" 
                                 alt="Google Review" 
                                 className="w-5 h-5" 
-                                width="20"
-                                height="20"
+                                width={20}
+                                height={20}
                              />
                         </div>
                         

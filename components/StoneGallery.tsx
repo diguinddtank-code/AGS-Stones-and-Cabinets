@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Image from 'next/image';
 import { ZoomIn, X, ArrowRight, ArrowLeft } from 'lucide-react';
 
 interface StoneImage {
@@ -89,11 +90,12 @@ const StoneGallery: React.FC = () => {
                     {/* Card Container */}
                     <div className="relative aspect-[3/4] overflow-hidden rounded-xl bg-neutral-800 shadow-2xl transition-all duration-500 group-hover:-translate-y-2 border border-neutral-700/50 group-hover:border-secondary/50">
                         {/* Image */}
-                        <img 
+                        <Image 
                             src={stone.image} 
                             alt={`${stone.name} ${stone.category} slab in Atlanta`} 
                             className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-90 group-hover:opacity-100"
-                            loading="lazy"
+                            fill
+                            sizes="(max-width: 768px) 85vw, (max-width: 1200px) 50vw, 25vw"
                         />
                         
                         {/* Dark Overlay Gradient */}
@@ -165,10 +167,12 @@ const StoneGallery: React.FC = () => {
                 onClick={e => e.stopPropagation()}
              >
                  <div className="h-[40vh] md:h-auto md:w-3/5 bg-neutral-900 relative group overflow-hidden">
-                    <img 
+                    <Image 
                         src={selectedImage.image} 
                         alt={`${selectedImage.name} ${selectedImage.category} close up`}
                         className="w-full h-full object-cover animate-in fade-in duration-1000 scale-105"
+                        fill
+                        sizes="(max-width: 768px) 100vw, 60vw"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent pointer-events-none"></div>
                  </div>
