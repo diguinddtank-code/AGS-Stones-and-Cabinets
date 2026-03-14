@@ -9,7 +9,7 @@ const reviews: (Testimonial & { date: string, label: string })[] = [
     location: "Duluth, GA",
     text: "AGS transformed our outdated kitchen into a modern masterpiece. The quartz countertops are flawless, and the team was incredibly professional.",
     rating: 5,
-    image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&w=200&fm=webp&fit=crop",
+    image: "https://ui-avatars.com/api/?name=Sarah+Jenkins&background=0D8ABC&color=fff",
     date: "2 days ago",
     label: "Kitchen Remodel"
   },
@@ -18,7 +18,7 @@ const reviews: (Testimonial & { date: string, label: string })[] = [
     location: "Alpharetta, GA",
     text: "Best prices in Atlanta hands down. I got quotes from 4 other places and AGS beat them all without sacrificing quality. Highly recommend!",
     rating: 5,
-    image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=200&fm=webp&fit=crop",
+    image: "https://ui-avatars.com/api/?name=Michael+Ross&background=1D4ED8&color=fff",
     date: "1 week ago",
     label: "Granite Install"
   },
@@ -27,7 +27,7 @@ const reviews: (Testimonial & { date: string, label: string })[] = [
     location: "Johns Creek, GA",
     text: "Love my new vanity! They helped me pick the perfect marble slab. The installation was quick and clean. Will definitely use them again.",
     rating: 5,
-    image: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=200&fm=webp&fit=crop",
+    image: "https://ui-avatars.com/api/?name=Emily+Dao&background=B91C1C&color=fff",
     date: "3 weeks ago",
     label: "Bathroom Vanity"
   },
@@ -36,7 +36,7 @@ const reviews: (Testimonial & { date: string, label: string })[] = [
     location: "Roswell, GA",
     text: "The 3D templating was impressive. The fit was perfect against our uneven walls. True professionals who know their stone.",
     rating: 5,
-    image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=200&fm=webp&fit=crop",
+    image: "https://ui-avatars.com/api/?name=David+Thompson&background=047857&color=fff",
     date: "1 month ago",
     label: "Quartzite Countertops"
   },
@@ -45,7 +45,7 @@ const reviews: (Testimonial & { date: string, label: string })[] = [
     location: "Suwanee, GA",
     text: "Fantastic selection of quartz. They installed everything in one day and left the place spotless. My kitchen looks twice as big now!",
     rating: 5,
-    image: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=200&fm=webp&fit=crop",
+    image: "https://ui-avatars.com/api/?name=Jessica+Alverez&background=7C3AED&color=fff",
     date: "2 months ago",
     label: "Full Kitchen Reno"
   }

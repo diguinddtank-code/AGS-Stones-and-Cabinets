@@ -45,7 +45,7 @@ const StickyCta: React.FC = () => {
   };
 
   // Profile Image URL (Professional Support Agent)
-  const avatarUrl = "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=200&fm=webp&fit=crop";
+  const avatarUrl = "https://ui-avatars.com/api/?name=AGS+Stones&background=0D8ABC&color=fff";
 
   if (stage === 'initial') return null;
 

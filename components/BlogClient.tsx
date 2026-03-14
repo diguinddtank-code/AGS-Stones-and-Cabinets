@@ -22,7 +22,7 @@ const projects = [
     scope: '65 Sq. Ft. + Waterfall',
     description: 'Complete kitchen transformation featuring a stunning waterfall island. We removed the old dark granite and installed bright, vein-matched Calacatta quartz to modernize the space.',
     tags: ['#QuartzCountertops', '#WaterfallIsland', '#KitchenDesign'],
-    image: 'https://images.unsplash.com/photo-1556910103-1c02745aae4d?w=800&q=80'
+    image: 'https://hamishmurray.com/wp-content/uploads/2021/06/shutterstock_1315328237-1.jpeg'
   },
   {
     id: 2,
@@ -48,7 +48,7 @@ const projects = [
     scope: '35 Sq. Ft. (Honed)',
     description: 'Designed for outdoor entertaining. We used honed Absolute Black granite for its weather resistance and sleek matte finish, perfectly complementing the brick base.',
     tags: ['#OutdoorKitchen', '#BlackGranite', '#PatioDesign'],
-    image: 'https://images.unsplash.com/photo-1600566752355-35792bedcfea?w=800&q=80'
+    image: 'https://rtaoutdoorliving.com/wp-content/uploads/2022/07/mike-pyles-u-shaped-outdoor-kitchen-with-pizza-oven-refrigerator-and-two-grills.png'
   },
   {
     id: 4,
@@ -61,7 +61,7 @@ const projects = [
     scope: '22 Sq. Ft. Double Vanity',
     description: 'Elevated this master bathroom with premium Carrara marble. Features dual undermount sinks and a custom 4-inch backsplash for a timeless, elegant look.',
     tags: ['#MarbleVanity', '#BathroomRemodel', '#Carrara'],
-    image: 'https://images.unsplash.com/photo-1620626011761-996317b8d101?w=800&q=80'
+    image: 'https://www.dfwimproved.com/wp-content/uploads/2021/12/How-to-plan-a-bathroom-remodel-scaled.jpg'
   },
   {
     id: 5,
@@ -87,7 +87,7 @@ const projects = [
     scope: '50 Sq. Ft. Island Only',
     description: 'Created a massive seamless island using premium Cambria quartz. The bold veining serves as the centerpiece of this open-concept Suwanee home.',
     tags: ['#CambriaQuartz', '#KitchenIsland', '#StatementStone'],
-    image: 'https://images.unsplash.com/photo-1565538810643-b5bdb714032a?w=800&q=80'
+    image: 'https://21stcenturycd.com/wp-content/uploads/2025/02/Aspen-kitchen-2-1.webp'
   },
   {
     id: 7,
@@ -100,7 +100,7 @@ const projects = [
     scope: '120 Linear Ft.',
     description: 'Commercial installation for a downtown Atlanta hotel. Black Galaxy granite was chosen for its striking copper flecks and extreme durability in high-traffic areas.',
     tags: ['#CommercialGranite', '#BarTop', '#AtlantaBusiness'],
-    image: 'https://images.unsplash.com/photo-1572196284554-4e321b0e7e0b?w=800&q=80'
+    image: 'https://dam.thdstatic.com/content/production/3sJNZBkk31xe9nTrYrToTw/Y6t8wIWPcudCaKjiS8Z74g/Original%20file/quartz-vs-granite-countertops-section-6.jpg'
   },
   {
     id: 8,
@@ -113,7 +113,7 @@ const projects = [
     scope: '75 Sq. Ft.',
     description: 'Paired navy blue lower cabinets with crisp white quartz countertops. The subtle gold veining in the stone ties perfectly with the brass hardware.',
     tags: ['#FarmhouseKitchen', '#Silestone', '#TwoToneCabinets'],
-    image: 'https://images.unsplash.com/photo-1505691938895-1758d7feb511?w=800&q=80'
+    image: 'https://howtonestforless.com/wp-content/uploads/2014/10/kitchen-backsplash-tutorial.jpg'
   },
   {
     id: 9,
@@ -126,7 +126,7 @@ const projects = [
     scope: '30 Sq. Ft. + Shower Seat',
     description: 'Utilized Fantasy Brown (a hard marble/quartzite) for the dual vanity and matching custom shower bench. The flowing pattern creates a calming, spa-like atmosphere.',
     tags: ['#FantasyBrown', '#SpaBathroom', '#CustomStone'],
-    image: 'https://images.unsplash.com/photo-1584622650111-993a426fbf0a?w=800&q=80'
+    image: 'https://images.squarespace-cdn.com/content/v1/5fa9e7629998b469eb3ba0f7/53e67296-7237-4d9c-bf9a-deeb86d0f740/5929239-1.jpg'
   },
   {
     id: 10,
@@ -139,7 +139,7 @@ const projects = [
     scope: '40 Sq. Ft.',
     description: 'A minimalist dream. We installed ultra-clean Pure White quartz with a modern eased edge profile to complement the handleless European-style cabinetry.',
     tags: ['#MinimalistDesign', '#WhiteQuartz', '#ModernKitchen'],
-    image: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&q=80'
+    image: 'https://kitchenandbathshop.com/wp-content/uploads/2020/11/5d7ff4ab763f7-scaled.jpg'
   }
 ];
 

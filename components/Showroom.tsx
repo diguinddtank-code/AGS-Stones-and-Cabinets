@@ -8,7 +8,7 @@ const Showroom: React.FC = () => {
         {/* Parallax Background */}
         <div className="absolute inset-0 z-0">
              <Image 
-                src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=1920&auto=format&fit=crop" 
+                src="https://kitchenandbathshop.com/wp-content/uploads/2020/11/5d7ff4ab763f7-scaled.jpg" 
                 alt="AGS Stone Showroom Gallery" 
                 className="w-full h-full object-cover opacity-40"
                 fill

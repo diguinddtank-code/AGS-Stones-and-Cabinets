@@ -17,7 +17,7 @@ const AboutClient = () => {
           <div className="absolute inset-0 bg-black/60 z-10"></div>
           <div 
             className="absolute inset-0 bg-cover bg-center z-0" 
-            style={{ backgroundImage: 'url("https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=1920&auto=format&fit=crop")' }}
+            style={{ backgroundImage: 'url("https://kitchenandbathshop.com/wp-content/uploads/2020/11/5d7ff4ab763f7-scaled.jpg")' }}
           ></div>
           
           <div className="container mx-auto px-4 relative z-20 text-center py-20">
@@ -65,7 +65,7 @@ const AboutClient = () => {
                 <div className="absolute -top-4 -left-4 w-24 h-24 bg-secondary/10 rounded-tl-3xl -z-10"></div>
                 <div className="absolute -bottom-4 -right-4 w-24 h-24 bg-secondary/10 rounded-br-3xl -z-10"></div>
                 <Image 
-                  src="https://images.unsplash.com/photo-1600607686527-6fb886090705?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80" 
+                  src="https://agsstonefabricators.com/wp-content/uploads/2024/05/Design-sem-nome-16.png" 
                   alt="AGS Stones Team working on a project" 
                   className="rounded-lg shadow-xl w-full h-auto object-cover aspect-[4/3]"
                   width={600}

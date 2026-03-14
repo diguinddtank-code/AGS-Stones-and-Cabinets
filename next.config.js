@@ -23,6 +23,7 @@ const nextConfig = {
       { protocol: 'https', hostname: 'www.dfwimproved.com' },
       { protocol: 'https', hostname: 'rtaoutdoorliving.com' },
       { protocol: 'https', hostname: 'howtonestforless.com' },
+      { protocol: 'https', hostname: 'ui-avatars.com' },
     ],
   },
   typescript: {

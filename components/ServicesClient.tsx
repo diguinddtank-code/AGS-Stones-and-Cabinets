@@ -30,7 +30,7 @@ const ServicesClient = () => {
       title: "Bathroom Vanities",
       desc: "Transform your bathroom into a spa-like retreat with elegant stone vanities and custom cabinets.",
       features: ["Luxury Design", "Water Resistant", "Custom Layouts"],
-      img: "https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80"
+      img: "https://images.squarespace-cdn.com/content/v1/5fa9e7629998b469eb3ba0f7/53e67296-7237-4d9c-bf9a-deeb86d0f740/5929239-1.jpg"
     }
   ];
 
