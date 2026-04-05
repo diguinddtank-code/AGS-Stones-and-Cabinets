@@ -55,6 +55,9 @@ const Hero: React.FC = () => {
 
       if (res.ok) {
         setFormStatus('success');
+        if (typeof window !== 'undefined' && (window as any).fbq) {
+          (window as any).fbq('track', 'Lead');
+        }
       } else {
         alert("Something went wrong. Please try calling us directly.");
         setFormStatus('idle');

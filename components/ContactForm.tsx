@@ -23,6 +23,9 @@ const ContactForm: React.FC = () => {
 
       if (res.ok) {
         setStatus('success');
+        if (typeof window !== 'undefined' && (window as any).fbq) {
+          (window as any).fbq('track', 'Lead');
+        }
       } else {
         alert("Something went wrong with the submission. Please call us.");
         setStatus(null);

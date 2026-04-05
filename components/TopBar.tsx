@@ -1,17 +1,21 @@
-import React, { useState } from 'react';
+'use client';
+
+import React, { useState, useEffect } from 'react';
 import { X } from 'lucide-react';
 
 const TopBar = () => {
   const [isVisible, setIsVisible] = useState(true);
-  const [promoDate] = useState(() => {
+  const [promoDate, setPromoDate] = useState<string | null>(null);
+
+  useEffect(() => {
     // Calculate date 2 days from now
     const date = new Date();
     date.setDate(date.getDate() + 2);
     
     // Format: "Mar 7"
     const options: Intl.DateTimeFormatOptions = { month: 'short', day: 'numeric' };
-    return date.toLocaleDateString('en-US', options);
-  });
+    setPromoDate(date.toLocaleDateString('en-US', options));
+  }, []);
 
   if (!isVisible) return null;
 
@@ -26,7 +30,7 @@ const TopBar = () => {
           <span className="w-1 h-1 rounded-full bg-zinc-700 hidden sm:block" />
           <span className="hidden sm:inline text-zinc-200">Save up to 70%</span>
           <span className="w-1 h-1 rounded-full bg-zinc-700" />
-          <span className="text-red-500 font-medium">Ends {promoDate}</span>
+          <span className="text-red-500 font-medium">Ends {promoDate || 'Soon'}</span>
         </div>
       </div>
       <button 
