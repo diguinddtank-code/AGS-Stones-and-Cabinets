@@ -315,7 +315,7 @@ export default function QuotePage() {
                     </div>
                     <h3 className="text-3xl font-extrabold text-slate-900 mb-3 tracking-tight">Quote Requested!</h3>
                     <p className="text-slate-600 mb-8 leading-relaxed text-lg">
-                      Thanks, <strong>{formData.name.split(' ')[0]}</strong>! We're reviewing your project and will call you shortly from a <strong>(404)</strong> number.
+                      Thanks, <strong>{formData.name.split(' ')[0]}</strong>! We're reviewing your project and will contact you shortly.
                     </p>
                     <button 
                       onClick={() => {
