@@ -4,8 +4,10 @@ import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
   CheckCircle2, Loader2, ArrowRight, ShieldCheck, Star, 
-  User, Phone, Mail, Lock, ChevronLeft, MapPin, Zap, Calendar
+  User, Phone, Mail, Lock, ChevronLeft, MapPin, Zap, Calendar, XCircle, ChevronRight
 } from 'lucide-react';
+import Link from 'next/link';
+import Image from 'next/image';
 import Header from '../../components/Header';
 import WhyChooseUs from '../../components/WhyChooseUs';
 import ProcessTimeline from '../../components/ProcessTimeline';
@@ -65,6 +67,7 @@ export default function QuotePage() {
   const [status, setStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
   
   const [formData, setFormData] = useState({
+    isHomeowner: '',
     projectType: '',
     timeline: '',
     name: '',
@@ -78,12 +81,12 @@ export default function QuotePage() {
   const [projectsCount, setProjectsCount] = useState(0);
   const [showZipSuccess, setShowZipSuccess] = useState(false);
 
-  const totalSteps = 4;
+  const totalSteps = 5;
   const zipInputRef = useRef<HTMLInputElement>(null);
 
-  // Auto-focus zip input when reaching step 2
+  // Auto-focus zip input when reaching step 3
   useEffect(() => {
-    if (step === 2 && zipInputRef.current) {
+    if (step === 3 && zipInputRef.current) {
       setTimeout(() => zipInputRef.current?.focus(), 100);
     }
   }, [step]);
@@ -155,6 +158,7 @@ export default function QuotePage() {
     submitData.append('_subject', 'New Lead - Multi-Step Quote Quiz');
     submitData.append('_captcha', 'false');
     submitData.append('_template', 'table');
+    submitData.append('Homeowner', formData.isHomeowner);
     submitData.append('Project Type', formData.projectType);
     submitData.append('Zip Code', formData.zipCode);
     submitData.append('Timeline', formData.timeline);
@@ -207,7 +211,7 @@ export default function QuotePage() {
     <div className="min-h-screen font-sans bg-slate-50">
       <Header />
       
-      <section className="relative pt-24 pb-10 lg:pt-32 lg:pb-16 overflow-hidden bg-slate-900 min-h-[100dvh] flex items-center">
+      <section className="relative pt-36 pb-10 lg:pt-48 lg:pb-16 overflow-hidden bg-slate-900 min-h-[100dvh] flex items-center">
         {/* Background Video & Overlay */}
         <div className="absolute inset-0 z-0">
           <video
@@ -215,11 +219,11 @@ export default function QuotePage() {
             loop
             muted
             playsInline
-            className="absolute top-0 left-0 w-full h-full object-cover opacity-30"
+            className="absolute top-0 left-0 w-full h-full object-cover opacity-60"
           >
             <source src="https://storage.googleapis.com/msgsndr/yRboz8P4zFeLUF6bAk8i/media/680a5a6f1eba4b32d1925215.mp4" type="video/mp4" />
           </video>
-          <div className="absolute inset-0 bg-gradient-to-b from-slate-900/90 via-slate-900/70 to-slate-900/95"></div>
+          <div className="absolute inset-0 bg-gradient-to-b from-slate-900/60 via-slate-900/30 to-slate-900/80"></div>
         </div>
 
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full flex flex-col items-center">
@@ -257,10 +261,10 @@ export default function QuotePage() {
               {/* Modern Step Indicator - Compact */}
               {status !== 'success' && (
                 <div className="w-full bg-slate-50/90 backdrop-blur-sm border-b border-slate-100 p-3 sm:p-4 flex justify-between items-center relative z-20 rounded-t-[1.5rem]">
-                  {['Project', 'Location', 'Timeline', 'Details'].map((label, i) => (
+                  {['Home', 'Project', 'Location', 'Time', 'Details'].map((label, i) => (
                     <div key={i} className="flex flex-col items-center relative z-10 flex-1">
                       <div className={`w-6 h-6 rounded-full flex items-center justify-center text-[10px] font-bold mb-1 transition-all duration-300 shadow-sm ${
-                        step > i + 1 ? 'bg-green-500 text-white shadow-green-500/30' : step === i + 1 ? 'bg-secondary text-white ring-2 ring-secondary/20 shadow-secondary/40 scale-110' : 'bg-white border border-slate-200 text-slate-400'
+                        step > i + 1 ? 'bg-green-500 text-white shadow-green-500/30' : step === i + 1 ? 'bg-blue-600 text-white ring-2 ring-blue-600/20 shadow-blue-600/40 scale-110' : 'bg-white border border-slate-200 text-slate-400'
                       }`}>
                         {step > i + 1 ? <CheckCircle2 className="w-3.5 h-3.5" /> : i + 1}
                       </div>
@@ -270,10 +274,10 @@ export default function QuotePage() {
                     </div>
                   ))}
                   {/* Connecting Lines */}
-                  <div className="absolute top-[22px] sm:top-[26px] left-[12.5%] right-[12.5%] h-[2px] bg-slate-200 -z-10">
+                  <div className="absolute top-[22px] sm:top-[26px] left-[10%] right-[10%] h-[2px] bg-slate-200 -z-10">
                     <div 
-                      className="h-full bg-gradient-to-r from-green-400 to-secondary transition-all duration-500 ease-in-out"
-                      style={{ width: `${((step - 1) / 3) * 100}%` }}
+                      className="h-full bg-gradient-to-r from-green-400 to-blue-600 transition-all duration-500 ease-in-out"
+                      style={{ width: `${((step - 1) / 4) * 100}%` }}
                     />
                   </div>
                 </div>
@@ -294,7 +298,7 @@ export default function QuotePage() {
                       onClick={() => {
                         setStatus('idle');
                         setStep(1);
-                        setFormData({ projectType: '', timeline: '', name: '', phone: '', email: '', zipCode: '' });
+                        setFormData({ isHomeowner: '', projectType: '', timeline: '', name: '', phone: '', email: '', zipCode: '' });
                       }}
                       className="w-full px-4 py-3 bg-slate-100 text-slate-700 font-bold rounded-xl hover:bg-slate-200 transition-colors text-sm"
                     >
@@ -329,7 +333,7 @@ export default function QuotePage() {
                     <div className="relative flex-grow flex flex-col">
                       <AnimatePresence mode="wait" custom={1}>
                         
-                        {/* STEP 1: Project Type */}
+                        {/* STEP 1: Homeowner */}
                         {step === 1 && (
                           <motion.div
                             key="step1"
@@ -341,39 +345,87 @@ export default function QuotePage() {
                             transition={{ type: "tween", duration: 0.2 }}
                             className="flex flex-col h-full"
                           >
+                            <h3 className="text-xl sm:text-2xl font-extrabold text-slate-900 mb-1 text-center tracking-tight">Are you a homeowner?</h3>
+                            <p className="text-slate-500 text-xs sm:text-sm text-center mb-6">Select an option to begin.</p>
+                            
+                            <div className="grid grid-cols-2 gap-3 sm:gap-4 mt-auto mb-auto">
+                              <button
+                                onClick={() => handleOptionSelect('isHomeowner', 'Yes')}
+                                className={`group relative flex flex-col items-center justify-center p-6 rounded-xl border-2 transition-all duration-200 overflow-hidden ${
+                                  formData.isHomeowner === 'Yes' 
+                                    ? 'border-green-500 bg-green-100 text-green-800 shadow-sm scale-[0.98]' 
+                                    : 'border-green-200 bg-green-50/50 text-green-700 hover:border-green-400 hover:bg-green-50'
+                                }`}
+                              >
+                                <CheckCircle2 className={`w-16 h-16 mb-3 transition-transform duration-300 group-hover:scale-110 ${formData.isHomeowner === 'Yes' ? 'text-green-600' : 'text-green-500'}`} />
+                                <span className="font-extrabold text-lg text-center">Yes</span>
+                              </button>
+                              
+                              <button
+                                onClick={() => handleOptionSelect('isHomeowner', 'No')}
+                                className={`group relative flex flex-col items-center justify-center p-6 rounded-xl border-2 transition-all duration-200 overflow-hidden ${
+                                  formData.isHomeowner === 'No' 
+                                    ? 'border-red-500 bg-red-100 text-red-800 shadow-sm scale-[0.98]' 
+                                    : 'border-red-200 bg-red-50/50 text-red-700 hover:border-red-400 hover:bg-red-50'
+                                }`}
+                              >
+                                <XCircle className={`w-16 h-16 mb-3 transition-transform duration-300 group-hover:scale-110 ${formData.isHomeowner === 'No' ? 'text-red-600' : 'text-red-500'}`} />
+                                <span className="font-extrabold text-lg text-center">No</span>
+                              </button>
+                            </div>
+                          </motion.div>
+                        )}
+
+                        {/* STEP 2: Project Type */}
+                        {step === 2 && (
+                          <motion.div
+                            key="step2"
+                            custom={1}
+                            variants={variants}
+                            initial="enter"
+                            animate="center"
+                            exit="exit"
+                            transition={{ type: "tween", duration: 0.2 }}
+                            className="flex flex-col h-full"
+                          >
                             <h3 className="text-xl sm:text-2xl font-extrabold text-slate-900 mb-1 text-center tracking-tight">What are you looking for?</h3>
                             <p className="text-slate-500 text-xs sm:text-sm text-center mb-4">Tap the option that best fits your project.</p>
                             
-                            {/* Compact Bento Grid */}
-                            <div className="grid grid-cols-2 gap-2 mt-auto mb-auto">
+                            {/* Vertical List Layout */}
+                            <div className="flex flex-col gap-3 mt-auto mb-auto">
                               {[
-                                { id: 'Kitchen Remodel', icon: KitchenIcon, colSpan: 'col-span-2 sm:col-span-1' },
-                                { id: 'Bath Remodel', icon: BathIcon, colSpan: 'col-span-2 sm:col-span-1' },
-                                { id: 'Cabinets', icon: CabinetsIcon, colSpan: 'col-span-1' },
-                                { id: 'Countertops', icon: CountertopsIcon, colSpan: 'col-span-1' },
-                                { id: 'Commercial / Other', icon: CommercialIcon, colSpan: 'col-span-2' }
+                                { id: 'Kitchen Remodel', icon: KitchenIcon },
+                                { id: 'Bath Remodel', icon: BathIcon },
+                                { id: 'Cabinets', icon: CabinetsIcon },
+                                { id: 'Countertops', icon: CountertopsIcon },
+                                { id: 'Commercial / Other', icon: CommercialIcon }
                               ].map((opt) => (
                                 <button
                                   key={opt.id}
                                   onClick={() => handleOptionSelect('projectType', opt.id)}
-                                  className={`group relative flex flex-col items-center justify-center p-3 rounded-xl border-2 transition-all duration-200 overflow-hidden ${opt.colSpan} ${
+                                  className={`group relative flex items-center justify-between p-3 sm:p-4 rounded-xl border-2 transition-all duration-300 overflow-hidden ${
                                     formData.projectType === opt.id 
-                                      ? 'border-secondary bg-secondary/5 text-secondary shadow-sm scale-[0.98]' 
-                                      : 'border-slate-100 bg-white hover:border-secondary/40 hover:bg-slate-50 text-slate-600'
+                                      ? 'border-blue-600 bg-blue-50/50 text-blue-900 shadow-sm scale-[0.98]' 
+                                      : 'border-slate-200 bg-white hover:border-blue-400 hover:bg-blue-50/30 text-slate-800 shadow-sm'
                                   }`}
                                 >
-                                  <opt.icon className={`w-8 h-8 mb-1.5 relative z-10 transition-transform duration-300 group-hover:scale-110 ${formData.projectType === opt.id ? 'text-secondary' : 'text-slate-400 group-hover:text-secondary/80'}`} />
-                                  <span className="font-extrabold text-xs text-center leading-tight relative z-10">{opt.id}</span>
+                                  <div className="flex items-center gap-4 relative z-10">
+                                    <div className={`w-12 h-12 rounded-full flex items-center justify-center transition-colors duration-300 ${formData.projectType === opt.id ? 'bg-blue-600 text-white shadow-md shadow-blue-600/20' : 'bg-slate-100 text-slate-500 group-hover:bg-blue-100 group-hover:text-blue-600'}`}>
+                                      <opt.icon className="w-6 h-6" />
+                                    </div>
+                                    <span className="font-extrabold text-base sm:text-lg">{opt.id}</span>
+                                  </div>
+                                  <ChevronRight className={`w-5 h-5 transition-transform duration-300 group-hover:translate-x-1 ${formData.projectType === opt.id ? 'text-blue-600' : 'text-slate-400 group-hover:text-blue-600'}`} />
                                 </button>
                               ))}
                             </div>
                           </motion.div>
                         )}
 
-                        {/* STEP 2: Zip Code */}
-                        {step === 2 && (
+                        {/* STEP 3: Zip Code */}
+                        {step === 3 && (
                           <motion.div
-                            key="step2"
+                            key="step3"
                             custom={1}
                             variants={variants}
                             initial="enter"
@@ -397,13 +449,13 @@ export default function QuotePage() {
                                   placeholder="e.g. 30024"
                                   disabled={showZipSuccess || isVerifyingZip}
                                   className={`w-full px-4 py-4 bg-white border-2 rounded-xl outline-none text-center text-2xl font-extrabold tracking-[0.2em] transition-all shadow-inner text-slate-800 placeholder:text-slate-300 placeholder:font-medium placeholder:tracking-normal ${
-                                    showZipSuccess ? 'border-secondary ring-2 ring-secondary/20' : 'border-slate-200 focus:border-secondary focus:ring-2 focus:ring-secondary/20'
+                                    showZipSuccess ? 'border-green-500 ring-2 ring-green-500/20' : 'border-slate-200 focus:border-blue-600 focus:ring-2 focus:ring-blue-600/20'
                                   }`}
                                   maxLength={5}
                                 />
                                 {isVerifyingZip && (
                                   <div className="absolute right-4 top-1/2 -translate-y-1/2">
-                                    <Loader2 className="w-5 h-5 text-secondary animate-spin" />
+                                    <Loader2 className="w-5 h-5 text-blue-600 animate-spin" />
                                   </div>
                                 )}
                               </div>
@@ -434,18 +486,18 @@ export default function QuotePage() {
                               {showZipSuccess ? (
                                 <button 
                                   onClick={() => {
-                                    setStep(3);
+                                    setStep(4);
                                     setShowZipSuccess(false);
                                   }}
-                                  className="w-full bg-secondary hover:bg-yellow-500 text-white font-bold py-3 rounded-xl transition-all shadow-md flex items-center justify-center gap-2 text-sm"
+                                  className="w-full bg-orange-500 hover:bg-orange-600 text-white font-extrabold py-3.5 rounded-xl transition-all shadow-[0_4px_14px_0_rgba(249,115,22,0.39)] hover:shadow-[0_6px_20px_rgba(249,115,22,0.23)] hover:-translate-y-0.5 flex items-center justify-center gap-2 text-base"
                                 >
-                                  Next Step <ArrowRight className="w-4 h-4" />
+                                  Next Step <ArrowRight className="w-5 h-5" />
                                 </button>
                               ) : (
                                 <button 
                                   onClick={() => verifyZipCode(formData.zipCode)}
                                   disabled={formData.zipCode.length < 5 || isVerifyingZip}
-                                  className="w-full bg-slate-900 hover:bg-slate-800 text-white font-bold py-3 rounded-xl disabled:opacity-50 disabled:hover:bg-slate-900 transition-all shadow-md flex items-center justify-center gap-2 text-sm"
+                                  className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3.5 rounded-xl disabled:opacity-50 disabled:hover:bg-blue-600 transition-all shadow-md flex items-center justify-center gap-2 text-base"
                                 >
                                   {isVerifyingZip ? 'Verifying...' : 'Verify Zip Code'} {!isVerifyingZip && <ArrowRight className="w-4 h-4" />}
                                 </button>
@@ -454,10 +506,10 @@ export default function QuotePage() {
                           </motion.div>
                         )}
 
-                        {/* STEP 3: Timeline */}
-                        {step === 3 && (
+                        {/* STEP 4: Timeline */}
+                        {step === 4 && (
                           <motion.div
-                            key="step3"
+                            key="step4"
                             custom={1}
                             variants={variants}
                             initial="enter"
@@ -480,8 +532,8 @@ export default function QuotePage() {
                                   onClick={() => handleOptionSelect('timeline', opt.id)}
                                   className={`group flex items-center p-3 rounded-xl border-2 transition-all duration-200 text-left ${
                                     formData.timeline === opt.id 
-                                      ? 'border-secondary bg-secondary/5 shadow-sm scale-[0.98]' 
-                                      : 'border-slate-100 bg-white hover:border-secondary/40 hover:bg-slate-50'
+                                      ? 'border-blue-600 bg-blue-50/50 shadow-sm scale-[0.98]' 
+                                      : 'border-slate-100 bg-white hover:border-blue-400 hover:bg-blue-50/30'
                                   }`}
                                 >
                                   <div className={`w-10 h-10 rounded-full flex items-center justify-center shrink-0 mr-3 ${opt.bg}`}>
@@ -489,7 +541,7 @@ export default function QuotePage() {
                                   </div>
                                   <div>
                                     <div className="flex items-baseline gap-1.5">
-                                      <span className={`font-extrabold text-sm sm:text-base ${formData.timeline === opt.id ? 'text-secondary' : 'text-slate-900'}`}>{opt.title}</span>
+                                      <span className={`font-extrabold text-sm sm:text-base ${formData.timeline === opt.id ? 'text-blue-700' : 'text-slate-900'}`}>{opt.title}</span>
                                       <span className="text-[10px] sm:text-xs font-bold text-slate-400 uppercase tracking-wider">{opt.subtitle}</span>
                                     </div>
                                     <span className="text-xs text-slate-500 mt-0.5 block font-medium">{opt.desc}</span>
@@ -500,10 +552,10 @@ export default function QuotePage() {
                           </motion.div>
                         )}
 
-                        {/* STEP 4: Contact Info (Final) */}
-                        {step === 4 && (
+                        {/* STEP 5: Contact Info (Final) */}
+                        {step === 5 && (
                           <motion.div
-                            key="step4"
+                            key="step5"
                             custom={1}
                             variants={variants}
                             initial="enter"
@@ -518,7 +570,7 @@ export default function QuotePage() {
                                 Final Step
                               </div>
                               <h3 className="text-xl sm:text-2xl font-extrabold text-slate-900 mb-1 tracking-tight">
-                                Where should we send your <span className="text-secondary">{formData.projectType || 'Project'}</span> quote?
+                                Where should we send your <span className="text-blue-600">{formData.projectType || 'Project'}</span> quote?
                               </h3>
                             </div>
 
@@ -535,7 +587,7 @@ export default function QuotePage() {
                                     onChange={handleInputChange}
                                     required 
                                     autoFocus
-                                    className="block w-full pl-10 pr-4 py-3 bg-white border-2 border-slate-200 rounded-xl focus:border-secondary focus:ring-2 focus:ring-secondary/20 outline-none transition-all text-slate-900 font-bold text-sm placeholder:text-slate-400 placeholder:font-medium"
+                                    className="block w-full pl-10 pr-4 py-3 bg-white border-2 border-slate-200 rounded-xl focus:border-blue-600 focus:ring-2 focus:ring-blue-600/20 outline-none transition-all text-slate-900 font-bold text-sm placeholder:text-slate-400 placeholder:font-medium"
                                     placeholder="Full Name"
                                   />
                                 </div>
@@ -550,7 +602,7 @@ export default function QuotePage() {
                                     value={formData.phone}
                                     onChange={handlePhoneChange}
                                     required 
-                                    className="block w-full pl-10 pr-4 py-3 bg-white border-2 border-slate-200 rounded-xl focus:border-secondary focus:ring-2 focus:ring-secondary/20 outline-none transition-all text-slate-900 font-bold text-sm placeholder:text-slate-400 placeholder:font-medium"
+                                    className="block w-full pl-10 pr-4 py-3 bg-white border-2 border-slate-200 rounded-xl focus:border-blue-600 focus:ring-2 focus:ring-blue-600/20 outline-none transition-all text-slate-900 font-bold text-sm placeholder:text-slate-400 placeholder:font-medium"
                                     placeholder="Phone Number"
                                   />
                                 </div>
@@ -565,7 +617,7 @@ export default function QuotePage() {
                                     value={formData.email}
                                     onChange={handleInputChange}
                                     required 
-                                    className="block w-full pl-10 pr-4 py-3 bg-white border-2 border-slate-200 rounded-xl focus:border-secondary focus:ring-2 focus:ring-secondary/20 outline-none transition-all text-slate-900 font-bold text-sm placeholder:text-slate-400 placeholder:font-medium"
+                                    className="block w-full pl-10 pr-4 py-3 bg-white border-2 border-slate-200 rounded-xl focus:border-blue-600 focus:ring-2 focus:ring-blue-600/20 outline-none transition-all text-slate-900 font-bold text-sm placeholder:text-slate-400 placeholder:font-medium"
                                     placeholder="Email Address"
                                   />
                                 </div>
@@ -574,7 +626,7 @@ export default function QuotePage() {
                               <button 
                                 type="submit" 
                                 disabled={status === 'submitting'}
-                                className="w-full mt-3 bg-gradient-to-r from-secondary to-yellow-500 hover:from-yellow-500 hover:to-secondary disabled:from-slate-400 disabled:to-slate-400 text-white font-extrabold py-3.5 rounded-xl shadow-md hover:shadow-lg transition-all hover:-translate-y-0.5 flex items-center justify-center gap-2 text-base"
+                                className="w-full mt-4 bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 disabled:from-slate-400 disabled:to-slate-400 text-white font-extrabold py-4 rounded-xl shadow-[0_8px_20px_-6px_rgba(249,115,22,0.6)] hover:shadow-[0_12px_25px_-6px_rgba(249,115,22,0.8)] transition-all hover:-translate-y-0.5 flex items-center justify-center gap-2 text-lg"
                               >
                                 {status === 'submitting' ? (
                                   <><Loader2 className="animate-spin w-5 h-5" /> Processing...</>
