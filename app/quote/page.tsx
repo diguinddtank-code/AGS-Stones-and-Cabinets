@@ -83,11 +83,14 @@ export default function QuotePage() {
   const zipInputRef = useRef<HTMLInputElement>(null);
 
   // Defer video loading to improve LCP and reduce main thread blocking
+  // Only load video on desktop devices to save mobile bandwidth and CPU
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setLoadVideo(true);
-    }, 1500); // Load video 1.5s after page load
-    return () => clearTimeout(timer);
+    if (typeof window !== 'undefined' && window.innerWidth >= 768) {
+      const timer = setTimeout(() => {
+        setLoadVideo(true);
+      }, 1500); // Load video 1.5s after page load
+      return () => clearTimeout(timer);
+    }
   }, []);
 
   // Auto-focus zip input when reaching step 3
@@ -218,8 +221,16 @@ export default function QuotePage() {
       <Header />
       
       <section className="relative pt-36 pb-10 lg:pt-48 lg:pb-16 overflow-hidden bg-slate-900 min-h-[100dvh] flex items-center">
-        {/* Background Video & Overlay */}
-        <div className="absolute inset-0 z-0 bg-[#1e293b] bg-[url('https://kitchenandbathshop.com/wp-content/uploads/2020/11/5d7ff4ab763f7-scaled.jpg')] bg-cover bg-center">
+        {/* Background Image & Video & Overlay */}
+        <div className="absolute inset-0 z-0 bg-[#1e293b]">
+          <Image
+            src="https://kitchenandbathshop.com/wp-content/uploads/2020/11/5d7ff4ab763f7-scaled.jpg"
+            alt="Beautiful Kitchen Background"
+            fill
+            priority
+            quality={60}
+            className="object-cover"
+          />
           {loadVideo && (
             <video
               autoPlay
@@ -231,7 +242,7 @@ export default function QuotePage() {
               <source src="https://storage.googleapis.com/msgsndr/yRboz8P4zFeLUF6bAk8i/media/680a5a6f1eba4b32d1925215.mp4" type="video/mp4" />
             </video>
           )}
-          <div className="absolute inset-0 bg-gradient-to-b from-slate-900/60 via-slate-900/30 to-slate-900/80"></div>
+          <div className="absolute inset-0 bg-gradient-to-b from-slate-900/80 via-slate-900/60 to-slate-900/90"></div>
         </div>
 
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full flex flex-col items-center">
