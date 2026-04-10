@@ -222,6 +222,7 @@ export default function QuotePage() {
             muted
             playsInline
             preload="auto"
+            poster="https://kitchenandbathshop.com/wp-content/uploads/2020/11/5d7ff4ab763f7-scaled.jpg"
             className="absolute top-0 left-0 w-full h-full object-cover opacity-60"
           >
             <source src="https://storage.googleapis.com/msgsndr/yRboz8P4zFeLUF6bAk8i/media/680a5a6f1eba4b32d1925215.mp4" type="video/mp4" />
@@ -231,12 +232,7 @@ export default function QuotePage() {
 
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full flex flex-col items-center">
           
-          <motion.div 
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.4 }}
-            className="text-center text-white mb-4 w-full"
-          >
+          <div className="text-center text-white mb-4 w-full animate-in fade-in slide-in-from-top-4 duration-700">
             <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/10 border border-white/20 backdrop-blur-md mb-3">
               <Star className="w-3 h-3 text-secondary fill-secondary" />
               <span className="text-[10px] font-bold tracking-wider uppercase text-white/90">Georgia's #1 Direct Fabricator</span>
@@ -247,15 +243,10 @@ export default function QuotePage() {
             <p className="text-sm sm:text-base text-gray-300 max-w-xl mx-auto drop-shadow-md font-medium">
               Takes less than 30 seconds. Lock in factory-direct pricing today.
             </p>
-          </motion.div>
+          </div>
 
           {/* Multi-Step Form Container - Compact Glassmorphism */}
-          <motion.div 
-            initial={{ opacity: 0, y: 15 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.4, delay: 0.1 }}
-            className="w-full max-w-lg mx-auto"
-          >
+          <div className="w-full max-w-lg mx-auto animate-in fade-in slide-in-from-bottom-4 duration-700 delay-150 fill-mode-both">
             <div className="bg-white/95 backdrop-blur-xl rounded-[1.5rem] shadow-2xl border border-white/50 overflow-hidden relative min-h-[320px] flex flex-col">
               
               {/* Modern Step Indicator - Compact */}
@@ -653,15 +644,10 @@ export default function QuotePage() {
                 )}
               </div>
             </div>
-          </motion.div>
+          </div>
 
           {/* Trust Badges - Premium Local Business Indicators */}
-          <motion.div 
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.4, delay: 0.3 }}
-            className="w-full max-w-2xl mx-auto mt-5 grid grid-cols-2 md:grid-cols-4 gap-2 sm:gap-3 text-white/90"
-          >
+          <div className="w-full max-w-2xl mx-auto mt-5 grid grid-cols-2 md:grid-cols-4 gap-2 sm:gap-3 text-white/90 animate-in fade-in duration-700 delay-300 fill-mode-both">
             {/* Google Rating */}
             <div className="flex flex-col items-center justify-center gap-1 bg-white/5 hover:bg-white/10 transition-colors px-2 py-2.5 rounded-xl backdrop-blur-md border border-white/10 shadow-sm">
               <div className="flex -space-x-0.5">
@@ -689,7 +675,7 @@ export default function QuotePage() {
               <ShieldCheck className="w-4 h-4 text-white" fill="#22c55e" stroke="white" strokeWidth={1.5} />
               <span className="text-[9px] sm:text-[10px] font-extrabold tracking-wider text-white">LICENSED & INSURED</span>
             </div>
-          </motion.div>
+          </div>
 
         </div>
       </section>
