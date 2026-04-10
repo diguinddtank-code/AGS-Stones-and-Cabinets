@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useState, useEffect, useRef } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
 import { 
   CheckCircle2, Loader2, ArrowRight, ShieldCheck, Star, 
   User, Phone, Mail, Lock, ChevronLeft, MapPin, Zap, Calendar, XCircle, ChevronRight, Award
@@ -11,7 +10,7 @@ import Image from 'next/image';
 import Header from '../../components/Header';
 import dynamic from 'next/dynamic';
 
-const Testimonials = dynamic(() => import('../../components/Testimonials'));
+const Testimonials = dynamic(() => import('../../components/Testimonials'), { ssr: false });
 
 // Premium Custom SVGs
 const KitchenIcon = ({ className }: { className?: string }) => (
@@ -196,26 +195,6 @@ export default function QuotePage() {
     }
   };
 
-  const variants = {
-    enter: (direction: number) => ({
-      x: direction > 0 ? 15 : -15,
-      opacity: 0,
-      scale: 0.98
-    }),
-    center: {
-      zIndex: 1,
-      x: 0,
-      opacity: 1,
-      scale: 1
-    },
-    exit: (direction: number) => ({
-      zIndex: 0,
-      x: direction < 0 ? 15 : -15,
-      opacity: 0,
-      scale: 0.98
-    })
-  };
-
   return (
     <div className="min-h-screen font-sans bg-slate-50">
       <Header />
@@ -228,6 +207,8 @@ export default function QuotePage() {
             alt="Beautiful Kitchen Background"
             fill
             priority
+            fetchPriority="high"
+            sizes="100vw"
             quality={60}
             className="object-cover"
           />
@@ -337,19 +318,12 @@ export default function QuotePage() {
                     )}
 
                     <div className="relative flex-grow flex flex-col">
-                      <AnimatePresence mode="wait" custom={1}>
                         
                         {/* STEP 1: Homeowner */}
                         {step === 1 && (
-                          <motion.div
+                          <div
                             key="step1"
-                            custom={1}
-                            variants={variants}
-                            initial="enter"
-                            animate="center"
-                            exit="exit"
-                            transition={{ type: "tween", duration: 0.2 }}
-                            className="flex flex-col h-full"
+                            className="flex flex-col h-full animate-in fade-in slide-in-from-right-4 duration-300"
                           >
                             <h3 className="text-xl sm:text-2xl font-extrabold text-slate-900 mb-1 text-center tracking-tight">Are you a homeowner?</h3>
                             <p className="text-slate-500 text-xs sm:text-sm text-center mb-6">Select an option to begin.</p>
@@ -379,20 +353,14 @@ export default function QuotePage() {
                                 <span className="font-extrabold text-lg text-center">No</span>
                               </button>
                             </div>
-                          </motion.div>
+                          </div>
                         )}
 
                         {/* STEP 2: Project Type */}
                         {step === 2 && (
-                          <motion.div
+                          <div
                             key="step2"
-                            custom={1}
-                            variants={variants}
-                            initial="enter"
-                            animate="center"
-                            exit="exit"
-                            transition={{ type: "tween", duration: 0.2 }}
-                            className="flex flex-col h-full"
+                            className="flex flex-col h-full animate-in fade-in slide-in-from-right-4 duration-300"
                           >
                             <h3 className="text-xl sm:text-2xl font-extrabold text-slate-900 mb-1 text-center tracking-tight">What are you looking for?</h3>
                             <p className="text-slate-500 text-xs sm:text-sm text-center mb-4">Tap the option that best fits your project.</p>
@@ -425,20 +393,14 @@ export default function QuotePage() {
                                 </button>
                               ))}
                             </div>
-                          </motion.div>
+                          </div>
                         )}
 
                         {/* STEP 3: Zip Code */}
                         {step === 3 && (
-                          <motion.div
+                          <div
                             key="step3"
-                            custom={1}
-                            variants={variants}
-                            initial="enter"
-                            animate="center"
-                            exit="exit"
-                            transition={{ type: "tween", duration: 0.2 }}
-                            className="flex flex-col h-full items-center justify-center"
+                            className="flex flex-col h-full items-center justify-center animate-in fade-in slide-in-from-right-4 duration-300"
                           >
                             <div className="w-full max-w-sm mx-auto text-center">
                               <h3 className="text-xl sm:text-2xl font-extrabold text-slate-900 mb-1 tracking-tight">Where is your project?</h3>
@@ -466,14 +428,10 @@ export default function QuotePage() {
                                 )}
                               </div>
 
-                              <AnimatePresence>
-                                {showZipSuccess && (
-                                  <motion.div
-                                    initial={{ opacity: 0, y: -10, height: 0 }}
-                                    animate={{ opacity: 1, y: 0, height: 'auto' }}
-                                    exit={{ opacity: 0, y: -10, height: 0 }}
-                                    className="bg-[#eafff4] border border-[#bbf3d8] rounded-xl p-4 flex items-start text-left gap-3 overflow-hidden mb-4"
-                                  >
+                              {showZipSuccess && (
+                                <div
+                                  className="bg-[#eafff4] border border-[#bbf3d8] rounded-xl p-4 flex items-start text-left gap-3 overflow-hidden mb-4 animate-in fade-in slide-in-from-top-2 duration-300"
+                                >
                                     <div className="bg-[#00c875] rounded-full p-2 shrink-0 mt-0.5 shadow-sm">
                                       <MapPin className="w-5 h-5 text-white" />
                                     </div>
@@ -485,9 +443,8 @@ export default function QuotePage() {
                                         We have completed over {projectsCount} projects near you.
                                       </p>
                                     </div>
-                                  </motion.div>
+                                  </div>
                                 )}
-                              </AnimatePresence>
 
                               {showZipSuccess ? (
                                 <button 
@@ -509,20 +466,14 @@ export default function QuotePage() {
                                 </button>
                               )}
                             </div>
-                          </motion.div>
+                          </div>
                         )}
 
                         {/* STEP 4: Timeline */}
                         {step === 4 && (
-                          <motion.div
+                          <div
                             key="step4"
-                            custom={1}
-                            variants={variants}
-                            initial="enter"
-                            animate="center"
-                            exit="exit"
-                            transition={{ type: "tween", duration: 0.2 }}
-                            className="flex flex-col h-full"
+                            className="flex flex-col h-full animate-in fade-in slide-in-from-right-4 duration-300"
                           >
                             <h3 className="text-xl sm:text-2xl font-extrabold text-slate-900 mb-1 text-center tracking-tight">When do you need it done?</h3>
                             <p className="text-slate-500 text-xs sm:text-sm text-center mb-4">This helps us check our factory schedule.</p>
@@ -555,20 +506,14 @@ export default function QuotePage() {
                                 </button>
                               ))}
                             </div>
-                          </motion.div>
+                          </div>
                         )}
 
                         {/* STEP 5: Contact Info (Final) */}
                         {step === 5 && (
-                          <motion.div
+                          <div
                             key="step5"
-                            custom={1}
-                            variants={variants}
-                            initial="enter"
-                            animate="center"
-                            exit="exit"
-                            transition={{ type: "tween", duration: 0.2 }}
-                            className="flex flex-col h-full"
+                            className="flex flex-col h-full animate-in fade-in slide-in-from-right-4 duration-300"
                           >
                             <div className="text-center mb-4">
                               <div className="inline-flex items-center justify-center gap-1 bg-green-50 text-green-700 px-2.5 py-0.5 rounded-full text-[9px] font-bold uppercase tracking-wider mb-2 border border-green-200/50">
@@ -651,9 +596,8 @@ export default function QuotePage() {
                                 </div>
                               </div>
                             </form>
-                          </motion.div>
+                          </div>
                         )}
-                      </AnimatePresence>
                     </div>
                   </>
                 )}
