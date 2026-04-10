@@ -9,12 +9,14 @@ import {
 import Link from 'next/link';
 import Image from 'next/image';
 import Header from '../../components/Header';
-import WhyChooseUs from '../../components/WhyChooseUs';
-import ProcessTimeline from '../../components/ProcessTimeline';
-import Testimonials from '../../components/Testimonials';
-import Showroom from '../../components/Showroom';
-import Faq from '../../components/Faq';
-import Footer from '../../components/Footer';
+import dynamic from 'next/dynamic';
+
+const WhyChooseUs = dynamic(() => import('../../components/WhyChooseUs'));
+const ProcessTimeline = dynamic(() => import('../../components/ProcessTimeline'));
+const Testimonials = dynamic(() => import('../../components/Testimonials'));
+const Showroom = dynamic(() => import('../../components/Showroom'));
+const Faq = dynamic(() => import('../../components/Faq'));
+const Footer = dynamic(() => import('../../components/Footer'));
 
 // Premium Custom SVGs
 const KitchenIcon = ({ className }: { className?: string }) => (
@@ -219,6 +221,7 @@ export default function QuotePage() {
             loop
             muted
             playsInline
+            preload="auto"
             className="absolute top-0 left-0 w-full h-full object-cover opacity-60"
           >
             <source src="https://storage.googleapis.com/msgsndr/yRboz8P4zFeLUF6bAk8i/media/680a5a6f1eba4b32d1925215.mp4" type="video/mp4" />

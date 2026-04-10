@@ -171,7 +171,7 @@ export default function RootLayout({
           `}
         </Script>
         {/* Meta Pixel Code */}
-        <Script id="meta-pixel" strategy="afterInteractive">
+        <Script id="meta-pixel" strategy="lazyOnload">
           {`
             !function(f,b,e,v,n,t,s)
             {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
@@ -192,7 +192,7 @@ export default function RootLayout({
           />
         </noscript>
         {/* End Meta Pixel Code */}
-        <Script id="conversion-tracking" strategy="afterInteractive">
+        <Script id="conversion-tracking" strategy="lazyOnload">
           {`
             function gtag_report_conversion(url) {
               var callback = function () {
