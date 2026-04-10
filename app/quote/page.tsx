@@ -77,9 +77,18 @@ export default function QuotePage() {
   const [verifiedCity, setVerifiedCity] = useState('');
   const [projectsCount, setProjectsCount] = useState(0);
   const [showZipSuccess, setShowZipSuccess] = useState(false);
+  const [loadVideo, setLoadVideo] = useState(false);
 
   const totalSteps = 5;
   const zipInputRef = useRef<HTMLInputElement>(null);
+
+  // Defer video loading to improve LCP and reduce main thread blocking
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setLoadVideo(true);
+    }, 1500); // Load video 1.5s after page load
+    return () => clearTimeout(timer);
+  }, []);
 
   // Auto-focus zip input when reaching step 3
   useEffect(() => {
@@ -210,18 +219,18 @@ export default function QuotePage() {
       
       <section className="relative pt-36 pb-10 lg:pt-48 lg:pb-16 overflow-hidden bg-slate-900 min-h-[100dvh] flex items-center">
         {/* Background Video & Overlay */}
-        <div className="absolute inset-0 z-0">
-          <video
-            autoPlay
-            loop
-            muted
-            playsInline
-            preload="auto"
-            poster="https://kitchenandbathshop.com/wp-content/uploads/2020/11/5d7ff4ab763f7-scaled.jpg"
-            className="absolute top-0 left-0 w-full h-full object-cover opacity-60"
-          >
-            <source src="https://storage.googleapis.com/msgsndr/yRboz8P4zFeLUF6bAk8i/media/680a5a6f1eba4b32d1925215.mp4" type="video/mp4" />
-          </video>
+        <div className="absolute inset-0 z-0 bg-[#1e293b] bg-[url('https://kitchenandbathshop.com/wp-content/uploads/2020/11/5d7ff4ab763f7-scaled.jpg')] bg-cover bg-center">
+          {loadVideo && (
+            <video
+              autoPlay
+              loop
+              muted
+              playsInline
+              className="absolute top-0 left-0 w-full h-full object-cover opacity-60 transition-opacity duration-1000"
+            >
+              <source src="https://storage.googleapis.com/msgsndr/yRboz8P4zFeLUF6bAk8i/media/680a5a6f1eba4b32d1925215.mp4" type="video/mp4" />
+            </video>
+          )}
           <div className="absolute inset-0 bg-gradient-to-b from-slate-900/60 via-slate-900/30 to-slate-900/80"></div>
         </div>
 
