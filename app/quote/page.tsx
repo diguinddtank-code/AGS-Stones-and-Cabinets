@@ -11,12 +11,7 @@ import Image from 'next/image';
 import Header from '../../components/Header';
 import dynamic from 'next/dynamic';
 
-const WhyChooseUs = dynamic(() => import('../../components/WhyChooseUs'));
-const ProcessTimeline = dynamic(() => import('../../components/ProcessTimeline'));
 const Testimonials = dynamic(() => import('../../components/Testimonials'));
-const Showroom = dynamic(() => import('../../components/Showroom'));
-const Faq = dynamic(() => import('../../components/Faq'));
-const Footer = dynamic(() => import('../../components/Footer'));
 
 // Premium Custom SVGs
 const KitchenIcon = ({ className }: { className?: string }) => (
@@ -682,12 +677,7 @@ export default function QuotePage() {
 
       {/* Rest of the page content */}
       <div className="bg-white">
-        <WhyChooseUs />
-        <ProcessTimeline />
         <Testimonials />
-        <Showroom />
-        <Faq />
-        <Footer />
       </div>
     </div>
   );
