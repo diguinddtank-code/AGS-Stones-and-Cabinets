@@ -9,7 +9,7 @@ import TopBar from './TopBar';
 const Header: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [scrollProgress, setScrollProgress] = useState(0);
+  const progressBarRef = React.useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     let ticking = false;
@@ -17,20 +17,22 @@ const Header: React.FC = () => {
     const handleScroll = () => {
       if (!ticking) {
         window.requestAnimationFrame(() => {
-          // Optimized: Only update state if the boolean value actually changes
           const scrollTop = window.scrollY;
           const scrolled = scrollTop > 20;
           
-          // Using callback to access latest state without dependency array issue
           setIsScrolled(prev => {
              if (prev !== scrolled) return scrolled;
              return prev;
           });
 
-          // Scroll Progress Calculation
-          const totalHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-          if (totalHeight > 0) {
-            setScrollProgress(scrollTop / totalHeight);
+          // Direct DOM manipulation for progress bar to avoid React re-renders
+          if (progressBarRef.current && window.innerWidth >= 768) {
+            const totalHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            if (totalHeight > 0) {
+              const progress = scrollTop / totalHeight;
+              progressBarRef.current.style.width = `${progress * 100}%`;
+              progressBarRef.current.style.opacity = scrolled ? '1' : '0';
+            }
           }
           
           ticking = false;
@@ -134,8 +136,9 @@ const Header: React.FC = () => {
           {/* Scroll Progress Bar - Hidden on Mobile */}
           <div className={`hidden md:block absolute bottom-0 left-0 h-[2px] bg-transparent w-full`}>
               <div 
-                  className="h-full bg-secondary shadow-[0_0_10px_#ca8a04] will-change-transform"
-                  style={{ width: `${scrollProgress * 100}%`, opacity: isScrolled ? 1 : 0 }}
+                  ref={progressBarRef}
+                  className="h-full bg-secondary shadow-[0_0_10px_#ca8a04] will-change-transform transition-opacity duration-300"
+                  style={{ width: '0%', opacity: 0 }}
               ></div>
           </div>
         </header>

@@ -1,6 +1,7 @@
 'use client';
 
 import React, { Suspense, useEffect } from 'react';
+import dynamic from 'next/dynamic';
 import Header from './Header';
 import Hero from './Hero';
 import MobileBottomNav from './MobileBottomNav';
@@ -8,22 +9,17 @@ import StickyCta from './StickyCta';
 import ExitIntentPopup from './ExitIntentPopup';
 import { Loader2 } from 'lucide-react';
 
-// Direct imports instead of lazy for simplicity in migration, 
-// or keep lazy if performance is critical, but Next.js handles code splitting well.
-// For "SITE IGUAL", I'll keep lazy if possible, but Next.js lazy is 'dynamic'.
-// Let's switch to direct imports to avoid SSR issues with React.lazy in Client Components (it works but dynamic is preferred).
-// Actually, let's use direct imports for stability.
-import Services from './Services';
-import ProcessTimeline from './ProcessTimeline';
-import WhyChooseUs from './WhyChooseUs';
-import StoneGallery from './StoneGallery';
-import MaterialMatchmaker from './MaterialMatchmaker';
-import BeforeAfter from './BeforeAfter';
-import Showroom from './Showroom';
-import Testimonials from './Testimonials';
-import Contact from './Contact';
-import Footer from './Footer';
-import Faq from './Faq';
+const Services = dynamic(() => import('./Services'));
+const ProcessTimeline = dynamic(() => import('./ProcessTimeline'));
+const WhyChooseUs = dynamic(() => import('./WhyChooseUs'));
+const StoneGallery = dynamic(() => import('./StoneGallery'));
+const MaterialMatchmaker = dynamic(() => import('./MaterialMatchmaker'));
+const BeforeAfter = dynamic(() => import('./BeforeAfter'));
+const Showroom = dynamic(() => import('./Showroom'));
+const Testimonials = dynamic(() => import('./Testimonials'), { ssr: false });
+const Contact = dynamic(() => import('./Contact'));
+const Footer = dynamic(() => import('./Footer'));
+const Faq = dynamic(() => import('./Faq'));
 
 const SectionLoader = () => (
   <div className="w-full h-96 flex items-center justify-center bg-gray-50">

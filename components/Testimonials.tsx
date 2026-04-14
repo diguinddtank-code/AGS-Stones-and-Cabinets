@@ -53,7 +53,6 @@ const reviews: (Testimonial & { date: string, label: string })[] = [
 
 // Helper component for animated numbers
 const Counter: React.FC<{ end: number; duration?: number; decimals?: number }> = ({ end, duration = 2000, decimals = 0 }) => {
-  const [count, setCount] = useState(0);
   const countRef = useRef<HTMLSpanElement>(null);
 
   useEffect(() => {
@@ -64,7 +63,9 @@ const Counter: React.FC<{ end: number; duration?: number; decimals?: number }> =
           const animate = (currentTime: number) => {
             if (!startTime) startTime = currentTime;
             const progress = Math.min((currentTime - startTime) / duration, 1);
-            setCount(progress * end);
+            if (countRef.current) {
+              countRef.current.textContent = (progress * end).toFixed(decimals);
+            }
             if (progress < 1) {
               requestAnimationFrame(animate);
             }
@@ -79,9 +80,9 @@ const Counter: React.FC<{ end: number; duration?: number; decimals?: number }> =
     if (countRef.current) observer.observe(countRef.current);
 
     return () => observer.disconnect();
-  }, [end, duration]);
+  }, [end, duration, decimals]);
 
-  return <span ref={countRef}>{count.toFixed(decimals)}</span>;
+  return <span ref={countRef}>0</span>;
 };
 
 const Testimonials: React.FC = () => {

@@ -10,6 +10,7 @@ const nextConfig = {
     optimizePackageImports: ['lucide-react', 'framer-motion'],
   },
   images: {
+    formats: ['image/avif', 'image/webp'],
     remotePatterns: [
       { protocol: 'https', hostname: 'cdn.msisurfaces.com' },
       { protocol: 'https', hostname: 'terrastone.gallery' },

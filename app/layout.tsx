@@ -86,6 +86,7 @@ export default function RootLayout({
       <head>
         <link rel="icon" type="image/png" href="https://i.imgur.com/B0ZaBpN.png" />
         <link rel="apple-touch-icon" href="https://i.imgur.com/B0ZaBpN.png" />
+        <link rel="preload" as="image" href="https://kitchenandbathshop.com/wp-content/uploads/2020/11/5d7ff4ab763f7-scaled.jpg" fetchPriority="high" />
         
         {/* JSON-LD Structured Data */}
         <script
