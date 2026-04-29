@@ -12,10 +12,31 @@ export const metadata: Metadata = {
   }
 };
 
+const quoteSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "Get a Free Granite Countertop Quote",
+  "description": "Request a free in-home estimate or pricing for your kitchen and bathroom surfaces.",
+  "url": "https://agsstonefabricators.com/quote",
+  "potentialAction": {
+    "@type": "QuoteAction",
+    "target": "https://agsstonefabricators.com/quote",
+    "name": "Request a Quote for Countertops and Cabinets"
+  }
+};
+
 export default function QuoteLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  return <>{children}</>;
+  return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(quoteSchema) }}
+      />
+      {children}
+    </>
+  );
 }

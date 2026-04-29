@@ -37,11 +37,38 @@ export default function Page({ params }: { params: { slug: string } }) {
 
   const city = slug.replace('granite-countertops-', '');
   
-  // Optional: Check if city is valid, or let LocationClient handle it (it handles invalid city gracefully)
-  // But for 404 correctness, we should check here.
   if (!locations.includes(city.toLowerCase())) {
     notFound();
   }
 
-  return <LocationClient city={city} />;
+  const formattedCity = city.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
+
+  // Inject localized Service Schema for SGE understanding
+  const localServiceSchema = {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "serviceType": "Granite Countertop Installation",
+    "provider": {
+      "@type": "HomeAndConstructionBusiness",
+      "name": "AGS Stones",
+      "image": "https://agsstonefabricators.com/wp-content/uploads/2024/05/Design-sem-nome-16.png",
+      "telephone": "+14049524534",
+    },
+    "areaServed": {
+      "@type": "City",
+      "name": formattedCity,
+      "addressRegion": "GA"
+    },
+    "description": `Premium granite and quartz countertop fabrication and installation services in ${formattedCity}, Georgia.`
+  };
+
+  return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(localServiceSchema) }}
+      />
+      <LocationClient city={city} />
+    </>
+  );
 }

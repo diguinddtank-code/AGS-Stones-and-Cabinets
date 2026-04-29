@@ -9,6 +9,26 @@ export const metadata: Metadata = {
   },
 };
 
+const blogSchema = {
+  "@context": "https://schema.org",
+  "@type": "Blog",
+  "name": "AGS Stones Kitchen & Bath Portfolio",
+  "description": "Showcase of recent granite and quartz countertop installations in Metro Atlanta.",
+  "publisher": {
+    "@type": "HomeAndConstructionBusiness",
+    "name": "AGS Stones",
+    "url": "https://agsstonefabricators.com"
+  }
+};
+
 export default function Page() {
-  return <BlogClient />;
+  return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(blogSchema) }}
+      />
+      <BlogClient />
+    </>
+  );
 }

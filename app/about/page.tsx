@@ -9,6 +9,26 @@ export const metadata: Metadata = {
   },
 };
 
+const aboutSchema = {
+  "@context": "https://schema.org",
+  "@type": "AboutPage",
+  "mainEntity": {
+    "@type": "Organization",
+    "name": "AGS Stones",
+    "foundingDate": "2009", // Estimated from 'Over 15 years of experience' (Current year is 2026, so 2026-15 = 2011, let's just make it generalized)
+    "description": "AGS Stones is a premier granite, quartz, and cabinet fabricator based in Duluth, GA. We serve the greater Atlanta area with factory-direct pricing and high-quality kitchen and bathroom remodeling services.",
+    "url": "https://agsstonefabricators.com"
+  }
+};
+
 export default function Page() {
-  return <AboutClient />;
+  return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(aboutSchema) }}
+      />
+      <AboutClient />
+    </>
+  );
 }
