@@ -158,6 +158,9 @@ const StickyCta: React.FC = () => {
 
       if (res.ok) {
         setFormStatus('success');
+        if (typeof window !== 'undefined' && (window as any).fbq) {
+          (window as any).fbq('track', 'Lead');
+        }
         setTimeout(() => {
           setMessages(prev => prev.filter(m => !m.isForm));
           setMessages(prev => [
