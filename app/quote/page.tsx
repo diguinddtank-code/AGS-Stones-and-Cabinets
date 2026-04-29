@@ -480,7 +480,7 @@ export default function QuotePage() {
                             
                             <div className="flex flex-col gap-2 mt-auto mb-auto">
                               {[
-                                { id: 'ASAP (Within 1-2 weeks)', title: 'ASAP', subtitle: 'Within 1-2 weeks', desc: 'Ready to start immediately.', icon: Zap, color: 'text-orange-500', bg: 'bg-orange-100' },
+                                { id: 'As soon as possible (Within 1-2 weeks)', title: 'As soon as possible', subtitle: 'Within 1-2 weeks', desc: 'Ready to start immediately.', icon: Zap, color: 'text-orange-500', bg: 'bg-orange-100' },
                                 { id: 'Soon (2-4 weeks)', title: 'Soon', subtitle: '2-4 weeks', desc: 'Gathering quotes and planning.', icon: Calendar, color: 'text-blue-500', bg: 'bg-blue-100' },
                                 { id: 'Planning (1+ month)', title: 'Planning', subtitle: '1+ month', desc: 'Just exploring options for now.', icon: Calendar, color: 'text-slate-500', bg: 'bg-slate-100' }
                               ].map((opt) => (

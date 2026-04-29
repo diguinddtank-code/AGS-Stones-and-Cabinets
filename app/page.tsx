@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import HomeClient from "../components/HomeClient";
 
 export const metadata: Metadata = {
-  title: "Granite Countertops Near Me | Atlanta & Duluth's #1 Local Fabricator | AGS Stones",
+  title: "Granite Countertops Near Me | Atlanta & Duluth's #1 Local Fabricator | AGS Stones & Cabinets",
   description: "Looking for granite countertops near you? AGS Stones is your local factory-direct fabricator in Duluth, GA. Serving Atlanta, Alpharetta, and Roswell. Save 30% today.",
   alternates: {
     canonical: "https://agsstonefabricators.com",
@@ -16,7 +16,8 @@ const homeSchema = {
       "@type": "WebSite",
       "@id": "https://agsstonefabricators.com/#website",
       "url": "https://agsstonefabricators.com",
-      "name": "AGS Stones",
+      "name": "AGS Stones & Cabinets",
+      "alternateName": ["AGS Stones", "AGS Stone Fabricators", "AGS Stones and Cabinets"],
       "description": "Premium Granite & Quartz Countertops in Atlanta",
       "publisher": {
         "@id": "https://agsstonefabricators.com/#organization"

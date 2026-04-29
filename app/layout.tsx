@@ -25,8 +25,8 @@ export const viewport: Viewport = {
 export const metadata: Metadata = {
   metadataBase: new URL("https://agsstonefabricators.com"),
   title: {
-    default: "Granite Countertops Near Me | Atlanta & Duluth's #1 Local Fabricator | AGS Stones",
-    template: "%s | AGS Stones",
+    default: "Granite Countertops Near Me | Atlanta & Duluth's #1 Local Fabricator | AGS Stones & Cabinets",
+    template: "%s | AGS Stones & Cabinets",
   },
   description: "Looking for granite countertops near you? AGS Stones is your local factory-direct fabricator in Duluth, GA. Serving Atlanta, Alpharetta, and Roswell. Save 30% today.",
   keywords: ["granite countertops near me", "granite fabricators near me", "quartz countertops near me", "stone suppliers atlanta", "duluth granite company", "ags stones", "kitchen remodeling", "bathroom vanities"],
@@ -42,9 +42,9 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_US",
     url: "https://agsstonefabricators.com",
-    title: "AGS Stones | Local Granite Countertops Near You",
+    title: "AGS Stones & Cabinets | Local Granite Countertops Near You",
     description: "Stop searching. You found the best granite countertops near you. Buy direct from our Duluth factory and save.",
-    siteName: "AGS Stones",
+    siteName: "AGS Stones & Cabinets",
     images: [
       {
         url: "https://kitchenandbathshop.com/wp-content/uploads/2020/11/5d7ff4ab763f7-scaled.jpg",
@@ -56,7 +56,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "AGS Stones | Local Granite Countertops Near You",
+    title: "AGS Stones & Cabinets | Local Granite Countertops Near You",
     description: "Stop searching. You found the best granite countertops near you. Buy direct from our Duluth factory and save.",
     images: ["https://kitchenandbathshop.com/wp-content/uploads/2020/11/5d7ff4ab763f7-scaled.jpg"],
   },
