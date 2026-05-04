@@ -158,9 +158,12 @@ const StickyCta: React.FC = () => {
 
       if (res.ok) {
         setFormStatus('success');
-        if (typeof window !== 'undefined' && (window as any).fbq) {
-          (window as any).fbq('track', 'Lead');
-        }
+        try {
+          if (typeof window !== 'undefined') {
+            if ((window as any).fbq) (window as any).fbq('track', 'Lead');
+            if ((window as any).gtag) (window as any).gtag('event', 'conversion', { 'send_to': 'AW-16885125181/R1mQCP6Dm5McEL2guvM-' });
+          }
+        } catch(e) {}
         setTimeout(() => {
           setMessages(prev => prev.filter(m => !m.isForm));
           setMessages(prev => [

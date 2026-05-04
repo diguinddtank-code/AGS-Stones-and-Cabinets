@@ -91,9 +91,12 @@ export default function DigitalShowroomApp() {
         setIsSubmitting(false);
         setSuccess(true);
         triggerHaptic([50, 50, 100]); // Success pattern vibration
-        if (typeof window !== 'undefined' && (window as any).fbq) {
-          (window as any).fbq('track', 'Lead');
-        }
+        try {
+          if (typeof window !== 'undefined') {
+            if ((window as any).fbq) (window as any).fbq('track', 'Lead');
+            if ((window as any).gtag) (window as any).gtag('event', 'conversion', { 'send_to': 'AW-16885125181/R1mQCP6Dm5McEL2guvM-' });
+          }
+        } catch(e) {}
       } else {
         setIsSubmitting(false);
         alert("Something went wrong. Please call us.");
