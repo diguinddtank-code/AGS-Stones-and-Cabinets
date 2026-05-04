@@ -92,9 +92,9 @@ export default function QuotePage() {
     }
   }, []);
 
-  // Auto-focus zip input when reaching step 3
+  // Auto-focus zip input when reaching step 1
   useEffect(() => {
-    if (step === 3 && zipInputRef.current) {
+    if (step === 1 && zipInputRef.current) {
       setTimeout(() => zipInputRef.current?.focus(), 100);
     }
   }, [step]);
@@ -121,9 +121,15 @@ export default function QuotePage() {
       setVerifiedCity('your area');
     }
     
-    setProjectsCount(Math.floor(Math.random() * 40) + 60); // Random number between 60-99
+    setProjectsCount(Math.floor(Math.random() * 40) + 60);
     setIsVerifyingZip(false);
     setShowZipSuccess(true);
+    
+    // Auto advance to reduce friction
+    setTimeout(() => {
+      setStep(2);
+      setShowZipSuccess(false);
+    }, 1500);
   };
 
   const handleZipChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -248,7 +254,7 @@ export default function QuotePage() {
               {/* Modern Step Indicator - Compact */}
               {status !== 'success' && (
                 <div className="w-full bg-slate-50/90 backdrop-blur-sm border-b border-slate-100 p-3 sm:p-4 flex justify-between items-center relative z-20 rounded-t-[1.5rem]">
-                  {['Home', 'Project', 'Location', 'Time', 'Details'].map((label, i) => (
+                  {['Location', 'Home', 'Project', 'Time', 'Details'].map((label, i) => (
                     <div key={i} className="flex flex-col items-center relative z-10 flex-1">
                       <div className={`w-6 h-6 rounded-full flex items-center justify-center text-[10px] font-bold mb-1 transition-all duration-300 shadow-sm ${
                         step > i + 1 ? 'bg-green-500 text-white shadow-green-500/30' : step === i + 1 ? 'bg-blue-600 text-white ring-2 ring-blue-600/20 shadow-blue-600/40 scale-110' : 'bg-white border border-slate-200 text-slate-400'
@@ -319,88 +325,11 @@ export default function QuotePage() {
 
                     <div className="relative flex-grow flex flex-col">
                         
-                        {/* STEP 1: Homeowner */}
+                        {/* STEP 1: Zip Code */}
                         {step === 1 && (
                           <div
                             key="step1"
-                            className="flex flex-col h-full animate-in fade-in slide-in-from-right-4 duration-300"
-                          >
-                            <h3 className="text-xl sm:text-2xl font-extrabold text-slate-900 mb-1 text-center tracking-tight">Are you a homeowner?</h3>
-                            <p className="text-slate-500 text-xs sm:text-sm text-center mb-6">Select an option to begin.</p>
-                            
-                            <div className="grid grid-cols-2 gap-3 sm:gap-4 mt-auto mb-auto">
-                              <button
-                                onClick={() => handleOptionSelect('isHomeowner', 'Yes')}
-                                className={`group relative flex flex-col items-center justify-center p-6 rounded-xl border-2 transition-all duration-200 overflow-hidden ${
-                                  formData.isHomeowner === 'Yes' 
-                                    ? 'border-green-500 bg-green-100 text-green-800 shadow-sm scale-[0.98]' 
-                                    : 'border-green-200 bg-green-50/50 text-green-700 hover:border-green-400 hover:bg-green-50'
-                                }`}
-                              >
-                                <CheckCircle2 className={`w-16 h-16 mb-3 transition-transform duration-300 group-hover:scale-110 ${formData.isHomeowner === 'Yes' ? 'text-green-600' : 'text-green-500'}`} />
-                                <span className="font-extrabold text-lg text-center">Yes</span>
-                              </button>
-                              
-                              <button
-                                onClick={() => handleOptionSelect('isHomeowner', 'No')}
-                                className={`group relative flex flex-col items-center justify-center p-6 rounded-xl border-2 transition-all duration-200 overflow-hidden ${
-                                  formData.isHomeowner === 'No' 
-                                    ? 'border-red-500 bg-red-100 text-red-800 shadow-sm scale-[0.98]' 
-                                    : 'border-red-200 bg-red-50/50 text-red-700 hover:border-red-400 hover:bg-red-50'
-                                }`}
-                              >
-                                <XCircle className={`w-16 h-16 mb-3 transition-transform duration-300 group-hover:scale-110 ${formData.isHomeowner === 'No' ? 'text-red-600' : 'text-red-500'}`} />
-                                <span className="font-extrabold text-lg text-center">No</span>
-                              </button>
-                            </div>
-                          </div>
-                        )}
-
-                        {/* STEP 2: Project Type */}
-                        {step === 2 && (
-                          <div
-                            key="step2"
-                            className="flex flex-col h-full animate-in fade-in slide-in-from-right-4 duration-300"
-                          >
-                            <h3 className="text-xl sm:text-2xl font-extrabold text-slate-900 mb-1 text-center tracking-tight">What are you looking for?</h3>
-                            <p className="text-slate-500 text-xs sm:text-sm text-center mb-4">Tap the option that best fits your project.</p>
-                            
-                            {/* Vertical List Layout */}
-                            <div className="flex flex-col gap-3 mt-auto mb-auto">
-                              {[
-                                { id: 'Kitchen Remodel', icon: KitchenIcon },
-                                { id: 'Bath Remodel', icon: BathIcon },
-                                { id: 'Cabinets', icon: CabinetsIcon },
-                                { id: 'Countertops', icon: CountertopsIcon },
-                                { id: 'Commercial / Other', icon: CommercialIcon }
-                              ].map((opt) => (
-                                <button
-                                  key={opt.id}
-                                  onClick={() => handleOptionSelect('projectType', opt.id)}
-                                  className={`group relative flex items-center justify-between p-3 sm:p-4 rounded-xl border-2 transition-all duration-300 overflow-hidden ${
-                                    formData.projectType === opt.id 
-                                      ? 'border-blue-600 bg-blue-50/50 text-blue-900 shadow-sm scale-[0.98]' 
-                                      : 'border-slate-200 bg-white hover:border-blue-400 hover:bg-blue-50/30 text-slate-800 shadow-sm'
-                                  }`}
-                                >
-                                  <div className="flex items-center gap-4 relative z-10">
-                                    <div className={`w-12 h-12 rounded-full flex items-center justify-center transition-colors duration-300 ${formData.projectType === opt.id ? 'bg-blue-600 text-white shadow-md shadow-blue-600/20' : 'bg-slate-100 text-slate-500 group-hover:bg-blue-100 group-hover:text-blue-600'}`}>
-                                      <opt.icon className="w-6 h-6" />
-                                    </div>
-                                    <span className="font-extrabold text-base sm:text-lg">{opt.id}</span>
-                                  </div>
-                                  <ChevronRight className={`w-5 h-5 transition-transform duration-300 group-hover:translate-x-1 ${formData.projectType === opt.id ? 'text-blue-600' : 'text-slate-400 group-hover:text-blue-600'}`} />
-                                </button>
-                              ))}
-                            </div>
-                          </div>
-                        )}
-
-                        {/* STEP 3: Zip Code */}
-                        {step === 3 && (
-                          <div
-                            key="step3"
-                            className="flex flex-col h-full items-center justify-center animate-in fade-in slide-in-from-right-4 duration-300"
+                            className="flex flex-col h-full items-center justify-start sm:justify-center sm:my-auto pt-6 sm:pt-0 animate-in fade-in slide-in-from-right-4 duration-300"
                           >
                             <div className="w-full max-w-sm mx-auto text-center">
                               <h3 className="text-xl sm:text-2xl font-extrabold text-slate-900 mb-1 tracking-tight">Where is your project?</h3>
@@ -449,7 +378,7 @@ export default function QuotePage() {
                               {showZipSuccess ? (
                                 <button 
                                   onClick={() => {
-                                    setStep(4);
+                                    setStep(2);
                                     setShowZipSuccess(false);
                                   }}
                                   className="w-full bg-orange-500 hover:bg-orange-600 text-white font-extrabold py-3.5 rounded-xl transition-all shadow-[0_4px_14px_0_rgba(249,115,22,0.39)] hover:shadow-[0_6px_20px_rgba(249,115,22,0.23)] hover:-translate-y-0.5 flex items-center justify-center gap-2 text-base"
@@ -469,11 +398,88 @@ export default function QuotePage() {
                           </div>
                         )}
 
+                        {/* STEP 2: Homeowner */}
+                        {step === 2 && (
+                          <div
+                            key="step2"
+                            className="flex flex-col h-full justify-start sm:justify-center sm:my-auto pt-6 sm:pt-0 animate-in fade-in slide-in-from-right-4 duration-300"
+                          >
+                            <h3 className="text-xl sm:text-2xl font-extrabold text-slate-900 mb-1 text-center tracking-tight">Are you a homeowner?</h3>
+                            <p className="text-slate-500 text-xs sm:text-sm text-center mb-6">Select an option to continue.</p>
+                            
+                            <div className="grid grid-cols-2 gap-3 sm:gap-4 mt-auto mb-auto">
+                              <button
+                                onClick={() => handleOptionSelect('isHomeowner', 'Yes')}
+                                className={`group relative flex flex-col items-center justify-center p-6 rounded-xl border-2 transition-all duration-200 overflow-hidden ${
+                                  formData.isHomeowner === 'Yes' 
+                                    ? 'border-green-500 bg-green-100 text-green-800 shadow-sm scale-[0.98]' 
+                                    : 'border-green-200 bg-green-50/50 text-green-700 hover:border-green-400 hover:bg-green-50'
+                                }`}
+                              >
+                                <CheckCircle2 className={`w-16 h-16 mb-3 transition-transform duration-300 group-hover:scale-110 ${formData.isHomeowner === 'Yes' ? 'text-green-600' : 'text-green-500'}`} />
+                                <span className="font-extrabold text-lg text-center">Yes</span>
+                              </button>
+                              
+                              <button
+                                onClick={() => handleOptionSelect('isHomeowner', 'No')}
+                                className={`group relative flex flex-col items-center justify-center p-6 rounded-xl border-2 transition-all duration-200 overflow-hidden ${
+                                  formData.isHomeowner === 'No' 
+                                    ? 'border-red-500 bg-red-100 text-red-800 shadow-sm scale-[0.98]' 
+                                    : 'border-red-200 bg-red-50/50 text-red-700 hover:border-red-400 hover:bg-red-50'
+                                }`}
+                              >
+                                <XCircle className={`w-16 h-16 mb-3 transition-transform duration-300 group-hover:scale-110 ${formData.isHomeowner === 'No' ? 'text-red-600' : 'text-red-500'}`} />
+                                <span className="font-extrabold text-lg text-center">No</span>
+                              </button>
+                            </div>
+                          </div>
+                        )}
+
+                        {/* STEP 3: Project Type */}
+                        {step === 3 && (
+                          <div
+                            key="step3"
+                            className="flex flex-col h-full justify-start sm:justify-center sm:my-auto pt-6 sm:pt-0 animate-in fade-in slide-in-from-right-4 duration-300"
+                          >
+                            <h3 className="text-xl sm:text-2xl font-extrabold text-slate-900 mb-1 text-center tracking-tight">What are you looking for?</h3>
+                            <p className="text-slate-500 text-xs sm:text-sm text-center mb-4">Tap the option that best fits your project.</p>
+                            
+                            {/* Vertical List Layout */}
+                            <div className="flex flex-col gap-3 mt-auto mb-auto">
+                              {[
+                                { id: 'Kitchen Remodel', icon: KitchenIcon },
+                                { id: 'Bath Remodel', icon: BathIcon },
+                                { id: 'Cabinets', icon: CabinetsIcon },
+                                { id: 'Countertops', icon: CountertopsIcon },
+                                { id: 'Commercial / Other', icon: CommercialIcon }
+                              ].map((opt) => (
+                                <button
+                                  key={opt.id}
+                                  onClick={() => handleOptionSelect('projectType', opt.id)}
+                                  className={`group relative flex items-center justify-between p-3 sm:p-4 rounded-xl border-2 transition-all duration-300 overflow-hidden ${
+                                    formData.projectType === opt.id 
+                                      ? 'border-blue-600 bg-blue-50/50 text-blue-900 shadow-sm scale-[0.98]' 
+                                      : 'border-slate-200 bg-white hover:border-blue-400 hover:bg-blue-50/30 text-slate-800 shadow-sm'
+                                  }`}
+                                >
+                                  <div className="flex items-center gap-4 relative z-10">
+                                    <div className={`w-12 h-12 rounded-full flex items-center justify-center transition-colors duration-300 ${formData.projectType === opt.id ? 'bg-blue-600 text-white shadow-md shadow-blue-600/20' : 'bg-slate-100 text-slate-500 group-hover:bg-blue-100 group-hover:text-blue-600'}`}>
+                                      <opt.icon className="w-6 h-6" />
+                                    </div>
+                                    <span className="font-extrabold text-base sm:text-lg">{opt.id}</span>
+                                  </div>
+                                  <ChevronRight className={`w-5 h-5 transition-transform duration-300 group-hover:translate-x-1 ${formData.projectType === opt.id ? 'text-blue-600' : 'text-slate-400 group-hover:text-blue-600'}`} />
+                                </button>
+                              ))}
+                            </div>
+                          </div>
+                        )}
+
                         {/* STEP 4: Timeline */}
                         {step === 4 && (
                           <div
                             key="step4"
-                            className="flex flex-col h-full animate-in fade-in slide-in-from-right-4 duration-300"
+                            className="flex flex-col h-full justify-start sm:justify-center sm:my-auto pt-6 sm:pt-0 animate-in fade-in slide-in-from-right-4 duration-300"
                           >
                             <h3 className="text-xl sm:text-2xl font-extrabold text-slate-900 mb-1 text-center tracking-tight">When do you need it done?</h3>
                             <p className="text-slate-500 text-xs sm:text-sm text-center mb-4">This helps us check our factory schedule.</p>
@@ -513,7 +519,7 @@ export default function QuotePage() {
                         {step === 5 && (
                           <div
                             key="step5"
-                            className="flex flex-col h-full animate-in fade-in slide-in-from-right-4 duration-300"
+                            className="flex flex-col h-full justify-start sm:justify-center sm:my-auto pt-6 sm:pt-0 animate-in fade-in slide-in-from-right-4 duration-300"
                           >
                             <div className="text-center mb-4">
                               <div className="inline-flex items-center justify-center gap-1 bg-green-50 text-green-700 px-2.5 py-0.5 rounded-full text-[9px] font-bold uppercase tracking-wider mb-2 border border-green-200/50">
@@ -606,70 +612,49 @@ export default function QuotePage() {
           </div>
 
           {/* Trust Badges - Premium Local Business Indicators */}
-          <div className="w-full max-w-4xl mx-auto mt-6 sm:mt-8 grid grid-cols-2 lg:grid-cols-4 gap-2 sm:gap-4 animate-in fade-in duration-700 delay-300 fill-mode-both">
+          <div className="w-full max-w-4xl mx-auto mt-6 sm:mt-10 grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 animate-in fade-in duration-700 delay-300 fill-mode-both px-2">
             
-            {/* Google Reviews */}
-            <div className="group relative flex flex-row lg:flex-col items-center justify-start lg:justify-center p-2 sm:p-5 rounded-full sm:rounded-2xl bg-white/5 backdrop-blur-xl border border-white/10 hover:border-blue-400/30 hover:bg-white/10 transition-all duration-300 overflow-hidden text-left lg:text-center hover:scale-[1.03] hover:shadow-[0_0_30px_rgba(59,130,246,0.15)]">
-              <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-              <div className="absolute inset-0 shadow-[inset_0_0_20px_rgba(255,255,255,0.02)] rounded-full sm:rounded-2xl"></div>
-              <div className="relative z-10 flex flex-row lg:flex-col items-center gap-2 sm:gap-2 w-full">
-                <div className="w-6 h-6 sm:w-10 sm:h-10 shrink-0 rounded-full bg-white/10 flex items-center justify-center lg:mb-1 group-hover:bg-white/20 transition-colors backdrop-blur-md border border-white/5 shadow-inner">
-                   <svg className="w-3.5 h-3.5 sm:w-5 sm:h-5 drop-shadow-md" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
-                      <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.16v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
-                      <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.16C1.43 8.55 1 10.22 1 12s.43 3.45 1.16 4.93l3.68-2.84z" fill="#FBBC05"/>
-                      <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.16 7.07l3.68 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
-                   </svg>
-                </div>
-                <div className="flex flex-col items-start lg:items-center -mt-0.5 sm:mt-0">
-                  <span className="text-[10px] sm:text-sm font-semibold tracking-tight sm:tracking-wide text-white drop-shadow-sm font-sans leading-[1.1] sm:leading-normal">5.0 on Google</span>
-                  <span className="hidden sm:block text-[10px] sm:text-xs text-white/50 tracking-wide font-medium mt-0.5">Verified Customer Reviews</span>
-                </div>
+            {/* 25+ Years Experience */}
+            <div className="group relative flex flex-row items-center justify-start p-2 sm:p-2.5 pr-4 sm:pr-5 rounded-full bg-white/5 backdrop-blur-md border border-white/10 hover:border-white/20 transition-all duration-300 hover:-translate-y-1 hover:bg-white/10 shadow-lg gap-3">
+              <div className="w-10 h-10 sm:w-12 sm:h-12 shrink-0 rounded-full bg-blue-500/20 flex items-center justify-center">
+                <Award className="w-5 h-5 sm:w-6 sm:h-6 text-blue-400" />
+              </div>
+              <div className="flex flex-col items-start justify-center">
+                <div className="font-extrabold text-white text-xs sm:text-sm tracking-wide leading-tight text-left">25+ Years</div>
+                <div className="text-[9px] sm:text-[10px] text-slate-400 uppercase tracking-widest font-bold mt-0.5 text-left">Experience</div>
               </div>
             </div>
 
-            {/* BBB Accredited */}
-            <div className="group relative flex flex-row lg:flex-col items-center justify-start lg:justify-center p-2 sm:p-5 rounded-full sm:rounded-2xl bg-white/5 backdrop-blur-xl border border-white/10 hover:border-blue-400/30 hover:bg-white/10 transition-all duration-300 overflow-hidden text-left lg:text-center hover:scale-[1.03] hover:shadow-[0_0_30px_rgba(59,130,246,0.15)]">
-              <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-              <div className="absolute inset-0 shadow-[inset_0_0_20px_rgba(255,255,255,0.02)] rounded-full sm:rounded-2xl"></div>
-              <div className="relative z-10 flex flex-row lg:flex-col items-center gap-2 sm:gap-2 w-full">
-                <div className="w-6 h-6 sm:w-10 sm:h-10 shrink-0 rounded-full bg-white/10 flex items-center justify-center lg:mb-1 group-hover:bg-white/20 transition-colors backdrop-blur-md border border-white/5 shadow-inner">
-                  <Award className="w-3.5 h-3.5 sm:w-5 sm:h-5 text-blue-400 drop-shadow-[0_0_8px_rgba(96,165,250,0.5)]" />
-                </div>
-                <div className="flex flex-col items-start lg:items-center -mt-0.5 sm:mt-0">
-                  <span className="text-[10px] sm:text-sm font-semibold tracking-tight sm:tracking-wide text-white drop-shadow-sm font-sans leading-[1.1] sm:leading-normal">BBB A+ Rated</span>
-                  <span className="hidden sm:block text-[10px] sm:text-xs text-white/50 tracking-wide font-medium mt-0.5">Trusted Business</span>
-                </div>
+            {/* Houzz Badge */}
+            <div className="group relative flex flex-row items-center justify-start p-2 sm:p-2.5 pr-4 sm:pr-5 rounded-full bg-white/5 backdrop-blur-md border border-white/10 hover:border-[#7ac143]/50 transition-all duration-300 hover:-translate-y-1 hover:bg-white/10 shadow-lg gap-3">
+              <div className="w-10 h-10 sm:w-12 sm:h-12 shrink-0 rounded-full bg-white flex items-center justify-center shadow-inner overflow-hidden p-1.5 sm:p-2">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/d/d4/Houzz_logo_%282024%29.png" alt="Houzz" className="w-full h-full object-contain" />
+              </div>
+              <div className="flex flex-col items-start justify-center">
+                <div className="font-extrabold text-white text-xs sm:text-sm tracking-wide leading-tight text-left">Best of Houzz</div>
+                <div className="text-[9px] sm:text-[10px] text-slate-400 uppercase tracking-widest font-bold mt-0.5 text-left">Winner 2024</div>
               </div>
             </div>
 
-            {/* Background Checked */}
-            <div className="group relative flex flex-row lg:flex-col items-center justify-start lg:justify-center p-2 sm:p-5 rounded-full sm:rounded-2xl bg-white/5 backdrop-blur-xl border border-white/10 hover:border-blue-400/30 hover:bg-white/10 transition-all duration-300 overflow-hidden text-left lg:text-center hover:scale-[1.03] hover:shadow-[0_0_30px_rgba(59,130,246,0.15)]">
-              <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-              <div className="absolute inset-0 shadow-[inset_0_0_20px_rgba(255,255,255,0.02)] rounded-full sm:rounded-2xl"></div>
-              <div className="relative z-10 flex flex-row lg:flex-col items-center gap-2 sm:gap-2 w-full">
-                <div className="w-6 h-6 sm:w-10 sm:h-10 shrink-0 rounded-full bg-white/10 flex items-center justify-center lg:mb-1 group-hover:bg-white/20 transition-colors backdrop-blur-md border border-white/5 shadow-inner">
-                  <ShieldCheck className="w-3.5 h-3.5 sm:w-5 sm:h-5 text-emerald-400 drop-shadow-[0_0_8px_rgba(52,211,153,0.5)]" strokeWidth={2.5} />
-                </div>
-                <div className="flex flex-col items-start lg:items-center -mt-0.5 sm:mt-0">
-                  <span className="text-[10px] sm:text-sm font-semibold tracking-tight sm:tracking-wide text-white drop-shadow-sm font-sans leading-[1.1] sm:leading-normal">Verified Team</span>
-                  <span className="hidden sm:block text-[10px] sm:text-xs text-white/50 tracking-wide font-medium mt-0.5">Professionally Checked</span>
-                </div>
+            {/* Angi Pro */}
+            <div className="group relative flex flex-row items-center justify-start p-2 sm:p-2.5 pr-4 sm:pr-5 rounded-full bg-white/5 backdrop-blur-md border border-white/10 hover:border-[#f15e22]/50 transition-all duration-300 hover:-translate-y-1 hover:bg-white/10 shadow-lg gap-3">
+              <div className="w-10 h-10 sm:w-12 sm:h-12 shrink-0 rounded-full bg-white flex items-center justify-center shadow-inner overflow-hidden p-1.5 sm:p-2">
+                <img src="https://static.wikia.nocookie.net/logopedia/images/6/62/Angi.svg/revision/latest/scale-to-width-down/250?cb=20210323150535" alt="Angi" className="w-full h-full object-contain" />
+              </div>
+              <div className="flex flex-col items-start justify-center">
+                <div className="font-extrabold text-white text-xs sm:text-sm tracking-wide leading-tight text-left">Super Service</div>
+                <div className="text-[9px] sm:text-[10px] text-slate-400 uppercase tracking-widest font-bold mt-0.5 text-left">Angi Pro</div>
               </div>
             </div>
 
-            {/* Licensed & Insured */}
-            <div className="group relative flex flex-row lg:flex-col items-center justify-start lg:justify-center p-2 sm:p-5 rounded-full sm:rounded-2xl bg-white/5 backdrop-blur-xl border border-white/10 hover:border-indigo-400/30 hover:bg-white/10 transition-all duration-300 overflow-hidden text-left lg:text-center hover:scale-[1.03] hover:shadow-[0_0_30px_rgba(99,102,241,0.15)]">
-              <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-              <div className="absolute inset-0 shadow-[inset_0_0_20px_rgba(255,255,255,0.02)] rounded-full sm:rounded-2xl"></div>
-              <div className="relative z-10 flex flex-row lg:flex-col items-center gap-2 sm:gap-2 w-full">
-                <div className="w-6 h-6 sm:w-10 sm:h-10 shrink-0 rounded-full bg-white/10 flex items-center justify-center lg:mb-1 group-hover:bg-white/20 transition-colors backdrop-blur-md border border-white/5 shadow-inner">
-                  <Shield className="w-3.5 h-3.5 sm:w-5 sm:h-5 text-indigo-400 drop-shadow-[0_0_8px_rgba(129,140,248,0.5)]" strokeWidth={2.5} />
-                </div>
-                <div className="flex flex-col items-start lg:items-center -mt-0.5 sm:mt-0">
-                  <span className="text-[10px] sm:text-sm font-semibold tracking-tight sm:tracking-wide text-white drop-shadow-sm font-sans leading-[1.1] sm:leading-normal">Fully Insured</span>
-                  <span className="hidden sm:block text-[10px] sm:text-xs text-white/50 tracking-wide font-medium mt-0.5">Protected Service</span>
-                </div>
+            {/* Home Depot Services Partner */}
+            <div className="group relative flex flex-row items-center justify-start p-2 sm:p-2.5 pr-4 sm:pr-5 rounded-full bg-white/5 backdrop-blur-md border border-white/10 hover:border-[#f96302]/50 transition-all duration-300 hover:-translate-y-1 hover:bg-white/10 shadow-lg gap-3">
+              <div className="w-10 h-10 sm:w-12 sm:h-12 shrink-0 rounded-full bg-white flex items-center justify-center shadow-inner overflow-hidden p-1.5 sm:p-2">
+                <img src="https://corporate.homedepot.com/sites/default/files/image_gallery/THD_logo.jpg" alt="Home Depot" className="w-full h-full object-cover rounded-full" />
+              </div>
+              <div className="flex flex-col items-start justify-center">
+                <div className="font-extrabold text-white text-xs sm:text-sm tracking-wide leading-tight text-left">Service Partner</div>
+                <div className="text-[9px] sm:text-[10px] text-slate-400 uppercase tracking-widest font-bold mt-0.5 text-left">Home Depot</div>
               </div>
             </div>
 
