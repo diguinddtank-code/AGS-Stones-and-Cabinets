@@ -16,8 +16,6 @@ import {
   Zap
 } from 'lucide-react';
 
-const Testimonials = dynamic(() => import('../../components/Testimonials'), { ssr: false });
-
 export default function FastQuotePage() {
   const router = useRouter();
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -51,18 +49,42 @@ export default function FastQuotePage() {
     setFormData(prev => ({ ...prev, zipCode: value }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
     
-    // Simulate API submission
-    setTimeout(() => {
-      setIsSubmitting(false);
-      setSuccess(true);
-      if (typeof window !== 'undefined' && (window as any).fbq) {
-        (window as any).fbq('track', 'Lead');
+    // Simulate API submission + Real submission via FormSubmit
+    const submitData = new FormData();
+    submitData.append('_subject', 'New Lead - Fast Quote Form');
+    submitData.append('_captcha', 'false');
+    submitData.append('Project Type', formData.projectType);
+    submitData.append('Name', formData.name);
+    submitData.append('Phone', formData.phone);
+    submitData.append('Email', formData.email);
+    submitData.append('Zip Code', formData.zipCode);
+    submitData.append('Details', formData.details);
+
+    try {
+      const res = await fetch("https://formsubmit.co/ajax/agsstonesandcabinets@gmail.com", {
+        method: "POST",
+        body: submitData,
+        headers: { 'Accept': 'application/json' }
+      });
+
+      if (res.ok) {
+        setIsSubmitting(false);
+        setSuccess(true);
+        if (typeof window !== 'undefined' && (window as any).fbq) {
+          (window as any).fbq('track', 'Lead');
+        }
+      } else {
+        setIsSubmitting(false);
+        alert("Something went wrong. Please call us.");
       }
-    }, 1200);
+    } catch (error) {
+      setIsSubmitting(false);
+      alert("Something went wrong. Please call us.");
+    }
   };
 
   if (success) {
@@ -107,7 +129,7 @@ export default function FastQuotePage() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 lg:bg-[#f3f4f6] flex flex-col font-sans selection:bg-amber-100">
+    <div className="min-h-screen bg-gray-50 lg:bg-[#f3f4f6] flex flex-col font-sans selection:bg-amber-100 lg:h-screen lg:overflow-hidden">
       {/* Background Image / Texture block for desktop */}
       <div className="hidden lg:block absolute inset-0 z-0 bg-primary h-[50vh] xl:h-[60vh] border-b-8 border-secondary">
         <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-10"></div>
@@ -147,10 +169,10 @@ export default function FastQuotePage() {
         </div>
       </header>
 
-      <main className="flex-1 flex flex-col lg:flex-row w-full max-w-[1400px] mx-auto lg:my-8 lg:rounded-[32px] overflow-hidden relative shadow-md lg:shadow-2xl bg-white xl:min-h-[750px] z-10 border border-gray-100 lg:border-transparent">
+      <main className="flex-1 flex flex-col lg:flex-row w-full max-w-[1400px] mx-auto lg:my-6 lg:rounded-[32px] overflow-hidden relative shadow-md lg:shadow-2xl bg-white lg:min-h-0 z-10 border border-gray-100 lg:border-transparent">
         
         {/* Left Column - Imagery & Trust */}
-        <div className="lg:w-5/12 xl:w-1/2 relative flex flex-col justify-center bg-black text-white p-6 pt-6 pb-20 lg:py-24 lg:px-16 xl:px-20 overflow-hidden min-h-[30vh] lg:min-h-0 text-center lg:text-left">
+        <div className="lg:w-5/12 xl:w-1/2 relative flex flex-col bg-black text-white p-6 pt-6 pb-20 lg:py-16 xl:px-20 overflow-hidden lg:overflow-y-auto custom-scrollbar min-h-[30vh] lg:min-h-0 text-center lg:text-left">
           <div className="absolute inset-0 z-0">
             <Image 
               src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=1600"
@@ -162,35 +184,35 @@ export default function FastQuotePage() {
             <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent lg:bg-gradient-to-br lg:from-black/80 lg:to-transparent" />
           </div>
 
-          <div className="relative z-10 flex flex-col items-center lg:items-start lg:mt-auto lg:mb-auto w-full max-w-lg mx-auto lg:mx-0 lg:max-w-xl">
+          <div className="relative z-10 flex flex-col items-center lg:items-start lg:my-auto w-full max-w-lg mx-auto lg:mx-0 lg:max-w-xl">
             <div className="inline-flex items-center gap-2 bg-gradient-to-r from-amber-500/20 to-amber-700/20 backdrop-blur-md border border-amber-500/50 px-5 py-2 rounded-full text-[11px] sm:text-xs lg:text-sm font-bold tracking-widest uppercase mb-5 sm:mb-6 text-amber-300 shadow-[0_0_20px_rgba(245,158,11,0.25)]">
               <Zap size={15} className="text-amber-400 drop-shadow-[0_0_8px_rgba(255,191,0,0.8)]" fill="currentColor" /> 
               Instant Estimate
             </div>
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-light tracking-tight mb-5 leading-[1.1] text-balance drop-shadow-xl font-serif text-center lg:text-left">
+            <h1 className="text-4xl sm:text-5xl lg:text-5xl xl:text-6xl font-light tracking-tight mb-4 leading-[1.1] text-balance drop-shadow-xl font-serif text-center lg:text-left">
               <span className="text-white drop-shadow-md">Beautiful spaces.</span><br/>
               <span className="font-bold text-transparent bg-clip-text bg-gradient-to-r from-amber-200 via-amber-400 to-amber-600 italic lg:pr-4">Factory prices.</span>
             </h1>
-            <p className="text-sm sm:text-base lg:text-lg xl:text-xl text-gray-200 max-w-md xl:max-w-lg font-light leading-relaxed lg:border-l-4 border-l-2 border-amber-500/50 pl-5 lg:pl-6 mt-2 lg:mt-6 bg-gradient-to-r from-black/40 to-transparent py-3 lg:py-5 rounded-r-xl shadow-sm text-center sm:text-left">
-              Skip the middleman. Request a custom quote today for Countertops & Cabinets and save up to <strong className="text-amber-400 font-semibold text-lg xl:text-xl">40%</strong> on your next project.
+            <p className="text-sm sm:text-base lg:text-base xl:text-lg text-gray-200 max-w-md xl:max-w-lg font-light leading-relaxed lg:border-l-4 border-l-2 border-amber-500/50 pl-5 lg:pl-6 mt-2 lg:mt-4 bg-gradient-to-r from-black/40 to-transparent py-3 lg:py-4 rounded-r-xl shadow-sm text-center sm:text-left">
+              Skip the middleman. Request a custom quote today for Countertops & Cabinets and save up to <strong className="text-amber-400 font-semibold text-base xl:text-lg">40%</strong> on your next project.
             </p>
           </div>
         </div>
 
         {/* Right Column - The Form (Floating on mobile) */}
-        <div className="lg:w-7/12 xl:w-1/2 flex-1 flex flex-col lg:justify-center bg-white relative z-20 -mt-16 lg:mt-0 rounded-t-[32px] lg:rounded-none shadow-[0_-10px_40px_rgba(0,0,0,0.1)] lg:shadow-none lg:bg-transparent">
+        <div className="lg:w-7/12 xl:w-1/2 flex-1 flex flex-col bg-white relative z-20 -mt-16 lg:mt-0 rounded-t-[32px] lg:rounded-none shadow-[0_-10px_40px_rgba(0,0,0,0.1)] lg:shadow-none lg:bg-transparent lg:overflow-y-auto custom-scrollbar">
           {/* Drag handle for mobile app feel */}
           <div className="w-full flex justify-center pt-4 pb-2 lg:hidden">
             <div className="w-12 h-1.5 bg-gray-200 rounded-full" />
           </div>
 
-          <div className="w-full max-w-[500px] lg:max-w-[600px] mx-auto px-6 pb-12 pt-2 sm:px-12 lg:py-16 lg:px-16 flex flex-col justify-center h-full">
-            <div className="mb-6 lg:mb-10 text-center lg:text-left">
-              <h2 className="text-2xl lg:text-4xl font-bold text-gray-900 mb-1 lg:mb-3 tracking-tight font-serif">Get Your Estimate</h2>
-              <p className="text-sm lg:text-lg text-gray-500">Fast, free, and factory-direct pricing.</p>
+          <div className="w-full max-w-[500px] lg:max-w-[600px] mx-auto px-6 pb-12 pt-2 sm:px-12 lg:py-10 lg:px-12 flex flex-col lg:my-auto h-auto min-h-fit">
+            <div className="mb-6 lg:mb-8 text-center lg:text-left">
+              <h2 className="text-2xl lg:text-3xl font-bold text-gray-900 mb-1 lg:mb-2 tracking-tight font-serif">Get Your Estimate</h2>
+              <p className="text-sm lg:text-base text-gray-500">Fast, free, and factory-direct pricing.</p>
             </div>
 
-            <form onSubmit={handleSubmit} className="space-y-6 lg:space-y-7">
+            <form onSubmit={handleSubmit} className="space-y-6 lg:space-y-5">
               {/* Project Type */}
               <div>
                 <label className="block text-xs lg:text-sm font-bold text-gray-500 uppercase tracking-wide mb-2 lg:mb-3">What are you looking for?</label>
@@ -330,9 +352,6 @@ export default function FastQuotePage() {
         </div>
 
       </main>
-
-      {/* Testimonials Below */}
-      <Testimonials />
     </div>
   );
 }

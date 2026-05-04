@@ -66,18 +66,42 @@ export default function DigitalShowroomApp() {
     setTimeout(() => setStep(3), 300);
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     triggerHaptic();
     setIsSubmitting(true);
-    setTimeout(() => {
-      setIsSubmitting(false);
-      setSuccess(true);
-      triggerHaptic([50, 50, 100]); // Success pattern vibration
-      if (typeof window !== 'undefined' && (window as any).fbq) {
-        (window as any).fbq('track', 'Lead');
+    
+    // Simulate API submission + Real submission via FormSubmit
+    const submitData = new FormData();
+    submitData.append('_subject', 'New Lead - Digital Showroom');
+    submitData.append('_captcha', 'false');
+    submitData.append('Area Selected', areas.find(a=>a.id === selectedArea)?.title || String(selectedArea));
+    submitData.append('Stone Selected', stones.find(s=>s.id === selectedStone)?.title || String(selectedStone));
+    submitData.append('Name', formData.name);
+    submitData.append('Phone', formData.phone);
+
+    try {
+      const res = await fetch("https://formsubmit.co/ajax/agsstonesandcabinets@gmail.com", {
+        method: "POST",
+        body: submitData,
+        headers: { 'Accept': 'application/json' }
+      });
+
+      if (res.ok) {
+        setIsSubmitting(false);
+        setSuccess(true);
+        triggerHaptic([50, 50, 100]); // Success pattern vibration
+        if (typeof window !== 'undefined' && (window as any).fbq) {
+          (window as any).fbq('track', 'Lead');
+        }
+      } else {
+        setIsSubmitting(false);
+        alert("Something went wrong. Please call us.");
       }
-    }, 1500);
+    } catch (error) {
+      setIsSubmitting(false);
+      alert("Something went wrong. Please call us.");
+    }
   };
 
   const goBack = () => {
