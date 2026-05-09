@@ -4,7 +4,6 @@ import React, { Suspense, useEffect } from 'react';
 import dynamic from 'next/dynamic';
 import Header from './Header';
 import Hero from './Hero';
-import MobileBottomNav from './MobileBottomNav';
 import StickyCta from './StickyCta';
 import ExitIntentPopup from './ExitIntentPopup';
 import { Loader2 } from 'lucide-react';
@@ -38,7 +37,7 @@ function HomeClient() {
   }, []);
 
   return (
-    <div className="min-h-screen flex flex-col font-sans pb-24 md:pb-0 relative">
+    <div className="min-h-screen flex flex-col font-sans relative">
       <Header />
 
       <main className="flex-grow">
@@ -56,7 +55,6 @@ function HomeClient() {
       </main>
 
       <Footer />
-      <MobileBottomNav />
       <StickyCta />
       <ExitIntentPopup />
     </div>

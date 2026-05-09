@@ -3,7 +3,6 @@
 import React, { Suspense, useState, useEffect } from 'react';
 import Image from 'next/image';
 import Header from './Header';
-import MobileBottomNav from './MobileBottomNav';
 import StickyCta from './StickyCta';
 import Footer from './Footer';
 import { MapPin, Calendar, ArrowRight, Box, Ruler, X } from 'lucide-react';
@@ -161,7 +160,7 @@ function BlogClient() {
   }, [selectedProject]);
 
   return (
-    <div className="min-h-screen flex flex-col font-sans pb-24 md:pb-0 relative bg-gray-50">
+    <div className="min-h-screen flex flex-col font-sans relative bg-gray-50">
       <Header />
 
       <main className="flex-grow pt-24 md:pt-32 pb-16">
@@ -360,7 +359,6 @@ function BlogClient() {
       )}
 
       <Footer />
-      <MobileBottomNav />
       <StickyCta />
     </div>
   );

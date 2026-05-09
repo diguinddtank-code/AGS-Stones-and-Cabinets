@@ -73,7 +73,7 @@ const Hero: React.FC = () => {
   };
 
   return (
-    <section className="relative min-h-screen flex items-center bg-primary overflow-hidden pt-24 lg:pt-28 pb-32 md:pb-12">
+    <section className="relative min-h-[100dvh] flex items-center justify-center bg-primary overflow-hidden py-24 lg:pt-32 lg:pb-24">
       <div 
         ref={bgRef}
         className="absolute inset-0 z-0 will-change-transform"
@@ -112,29 +112,29 @@ const Hero: React.FC = () => {
       >
         <div className="grid lg:grid-cols-12 gap-10 lg:gap-16 items-center max-w-7xl mx-auto w-full">
             
-            <div className="lg:col-span-7 text-center lg:text-left pt-6 lg:pt-0 animate-in slide-in-from-bottom-10 duration-1000">
+            <div className="lg:col-span-7 text-center lg:text-left pt-2 lg:pt-0 animate-in slide-in-from-bottom-10 duration-1000">
                 {/* Geolocation signal for "Near Me" queries */}
-                <div className="inline-flex items-center gap-2 py-1.5 px-4 rounded-full border border-white/30 bg-black/40 backdrop-blur-md text-xs md:text-sm uppercase tracking-widest mb-6 font-medium shadow-sm text-white mx-auto lg:mx-0">
+                <div className="inline-flex items-center gap-2 py-1.5 px-3 md:px-4 rounded-full border border-white/30 bg-black/40 backdrop-blur-md text-[10px] md:text-sm uppercase tracking-widest mb-4 md:mb-6 font-medium shadow-sm text-white mx-auto lg:mx-0">
                     <MapPin size={12} className="text-secondary fill-secondary" />
                     Serving Atlanta, Duluth & Near You
                 </div>
 
                 {/* UPDATED HEADLINE: Includes Cabinets & All Stones */}
-                <h1 className="text-4xl sm:text-5xl lg:text-5xl xl:text-6xl font-serif font-bold mb-6 drop-shadow-xl leading-[1.15] tracking-tight text-white max-w-4xl mx-auto lg:mx-0 shadow-black/10">
+                <h1 className="text-4xl sm:text-5xl lg:text-5xl xl:text-6xl font-serif font-bold mb-6 md:mb-8 drop-shadow-xl leading-[1.15] tracking-tight text-white max-w-4xl mx-auto lg:mx-0 shadow-black/10">
                   Custom Cabinets & <br/>
                   <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#eab308] via-[#fde047] to-[#eab308] drop-shadow-md">Granite, Quartz & Marble</span><br />
                   Countertops Near You
                 </h1>
 
-                <p className="text-base sm:text-lg lg:text-xl text-white mb-8 max-w-2xl mx-auto lg:mx-0 font-medium leading-relaxed drop-shadow-md">
-                   Your one-stop shop for <strong>Full Kitchen & Bath Remodeling</strong>. We fabricate and install all types of stone surfaces and custom cabinetry direct from our Duluth factory.
+                <p className="text-base sm:text-lg lg:text-xl text-white mb-8 md:mb-10 max-w-2xl mx-auto lg:mx-0 font-medium leading-relaxed drop-shadow-md">
+                   <strong>Full Kitchen & Bath Remodeling</strong>. Factory-direct custom cabinets & premium stones in Duluth.
                 </p>
 
-                <div className="flex flex-col sm:flex-row gap-4 mb-10 lg:hidden px-4 sm:px-0 justify-center lg:justify-start">
-                     <a href="/#contact" className="w-full sm:w-auto bg-secondary hover:bg-yellow-600 text-white font-bold py-4 px-8 rounded-xl shadow-lg flex items-center justify-center gap-2">
+                <div className="flex flex-col sm:flex-row gap-4 md:gap-4 mb-8 md:mb-10 lg:hidden px-4 sm:px-0 justify-center lg:justify-start">
+                     <a href="/#contact" className="w-full sm:w-auto bg-secondary hover:bg-yellow-600 text-white font-bold py-4 px-6 md:px-8 rounded-xl shadow-lg flex items-center justify-center gap-2 text-base">
                         Get Free Quote <ArrowRight size={18} />
                      </a>
-                     <a href="tel:4049524534" className="w-full sm:w-auto bg-black/30 backdrop-blur-md border border-white/40 text-white font-bold py-4 px-8 rounded-xl flex items-center justify-center gap-2">
+                     <a href="tel:4049524534" className="w-full sm:w-auto bg-black/30 backdrop-blur-md border border-white/40 text-white font-bold py-4 px-6 md:px-8 rounded-xl flex items-center justify-center gap-2 text-base">
                         <Phone size={18} /> Call Now
                      </a>
                 </div>

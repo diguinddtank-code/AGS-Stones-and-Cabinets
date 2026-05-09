@@ -4,7 +4,6 @@ import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import Header from './Header';
-import MobileBottomNav from './MobileBottomNav';
 import StickyCta from './StickyCta';
 import Footer from './Footer';
 import { ArrowLeft } from 'lucide-react';
@@ -15,7 +14,7 @@ export default function BlogPostClient({ slug }: { slug: string }) {
 
   if (!post) {
     return (
-      <div className="min-h-screen flex flex-col font-sans pb-24 md:pb-0 relative">
+      <div className="min-h-screen flex flex-col font-sans relative">
         <Header />
         <main className="flex-grow pt-32 pb-16 flex items-center justify-center">
           <div className="text-center">
@@ -29,7 +28,7 @@ export default function BlogPostClient({ slug }: { slug: string }) {
   }
 
   return (
-    <div className="min-h-screen flex flex-col font-sans pb-24 md:pb-0 relative">
+    <div className="min-h-screen flex flex-col font-sans relative">
       <Header />
 
       <main className="flex-grow pt-24 md:pt-32 pb-16">
@@ -61,7 +60,6 @@ export default function BlogPostClient({ slug }: { slug: string }) {
       </main>
 
       <Footer />
-      <MobileBottomNav />
       <StickyCta />
     </div>
   );

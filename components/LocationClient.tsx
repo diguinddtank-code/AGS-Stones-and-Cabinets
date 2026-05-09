@@ -4,7 +4,6 @@ import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import Header from './Header';
-import MobileBottomNav from './MobileBottomNav';
 import StickyCta from './StickyCta';
 import Footer from './Footer';
 import { MapPin, Star, CheckCircle2, Phone } from 'lucide-react';
@@ -20,7 +19,7 @@ export default function LocationClient({ city }: { city: string }) {
 
   if (!isValidLocation) {
     return (
-      <div className="min-h-screen flex flex-col font-sans pb-24 md:pb-0 relative">
+      <div className="min-h-screen flex flex-col font-sans relative">
         <Header />
         <main className="flex-grow pt-32 pb-16 flex items-center justify-center">
           <div className="text-center">
@@ -34,7 +33,7 @@ export default function LocationClient({ city }: { city: string }) {
   }
 
   return (
-    <div className="min-h-screen flex flex-col font-sans pb-24 md:pb-0 relative">
+    <div className="min-h-screen flex flex-col font-sans relative">
       <Header />
 
       <main className="flex-grow">
@@ -139,7 +138,6 @@ export default function LocationClient({ city }: { city: string }) {
       </main>
 
       <Footer />
-      <MobileBottomNav />
       <StickyCta />
     </div>
   );
