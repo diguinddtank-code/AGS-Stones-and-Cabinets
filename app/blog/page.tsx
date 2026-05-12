@@ -5,7 +5,7 @@ export const metadata: Metadata = {
   title: "Our Work in Your Neighborhood | AGS Stones Portfolio",
   description: "Browse our portfolio of stone countertops and custom cabinets completed across Metro Atlanta. Real results from recent months.",
   alternates: {
-    canonical: "https://agsstonefabricators.com/blog",
+    canonical: "https://www.agsstonefabricators.com/blog",
   },
 };
 
@@ -17,7 +17,7 @@ const blogSchema = {
   "publisher": {
     "@type": "HomeAndConstructionBusiness",
     "name": "AGS Stones",
-    "url": "https://agsstonefabricators.com"
+    "url": "https://www.agsstonefabricators.com"
   }
 };
 

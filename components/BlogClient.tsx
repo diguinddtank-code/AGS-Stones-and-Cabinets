@@ -73,7 +73,7 @@ const projects = [
     scope: '85 Sq. Ft.',
     description: 'Replaced outdated countertops with luxurious Taj Mahal Quartzite. Known for its marble-like appearance but granite-like durability, it completely brightened the room.',
     tags: ['#Quartzite', '#LuxuryKitchen', '#JohnsCreek'],
-    image: 'https://agsstonefabricators.com/wp-content/uploads/2024/05/Design-sem-nome-16.png'
+    image: 'https://www.agsstonefabricators.com/wp-content/uploads/2024/05/Design-sem-nome-16.png'
   },
   {
     id: 6,

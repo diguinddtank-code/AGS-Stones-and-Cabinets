@@ -23,7 +23,7 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://agsstonefabricators.com"),
+  metadataBase: new URL("https://www.agsstonefabricators.com"),
   title: {
     default: "Granite Countertops Near Me | Atlanta & Duluth's #1 Local Fabricator | AGS Stones & Cabinets",
     template: "%s | AGS Stones & Cabinets",
@@ -41,7 +41,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://agsstonefabricators.com",
+    url: "https://www.agsstonefabricators.com",
     title: "AGS Stones & Cabinets | Local Granite Countertops Near You",
     description: "Stop searching. You found the best granite countertops near you. Buy direct from our Duluth factory and save.",
     siteName: "AGS Stones & Cabinets",
@@ -72,7 +72,7 @@ export const metadata: Metadata = {
     },
   },
   alternates: {
-    canonical: "https://agsstonefabricators.com",
+    canonical: "https://www.agsstonefabricators.com",
   },
 };
 
@@ -97,10 +97,10 @@ export default function RootLayout({
               "@type": "HomeAndConstructionBusiness",
               "name": "AGS Stones",
               "legalName": "AGS Stones and Cabinets",
-              "image": "https://agsstonefabricators.com/wp-content/uploads/2024/05/Design-sem-nome-16.png",
+              "image": "https://www.agsstonefabricators.com/wp-content/uploads/2024/05/Design-sem-nome-16.png",
               "logo": "https://i.imgur.com/B0ZaBpN.png",
-              "@id": "https://agsstonefabricators.com",
-              "url": "https://agsstonefabricators.com",
+              "@id": "https://www.agsstonefabricators.com",
+              "url": "https://www.agsstonefabricators.com",
               "telephone": "+14049524534",
               "priceRange": "$$",
               "hasMap": "https://maps.google.com/?q=4579+Abbotts+Bridge+Rd,+Duluth,+GA+30097",

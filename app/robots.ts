@@ -21,6 +21,6 @@ export default function robots(): MetadataRoute.Robots {
         allow: '/',
       }
     ],
-    sitemap: 'https://agsstonefabricators.com/sitemap.xml',
+    sitemap: 'https://www.agsstonefabricators.com/sitemap.xml',
   };
 }

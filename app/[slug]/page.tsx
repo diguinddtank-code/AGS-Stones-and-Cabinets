@@ -23,7 +23,7 @@ export async function generateMetadata({ params }: { params: { slug: string } })
     title: `Granite Countertops in ${formattedCity}, GA | AGS Stones`,
     description: `Looking for granite countertops in ${formattedCity}? AGS Stones is your local factory-direct fabricator. Save 30% today on premium stone surfaces.`,
     alternates: {
-      canonical: `https://agsstonefabricators.com/${slug}`,
+      canonical: `https://www.agsstonefabricators.com/${slug}`,
     },
   };
 }
@@ -51,7 +51,7 @@ export default function Page({ params }: { params: { slug: string } }) {
     "provider": {
       "@type": "HomeAndConstructionBusiness",
       "name": "AGS Stones",
-      "image": "https://agsstonefabricators.com/wp-content/uploads/2024/05/Design-sem-nome-16.png",
+      "image": "https://www.agsstonefabricators.com/wp-content/uploads/2024/05/Design-sem-nome-16.png",
       "telephone": "+14049524534",
     },
     "areaServed": {

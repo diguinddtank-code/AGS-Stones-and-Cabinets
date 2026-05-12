@@ -13,7 +13,7 @@ export async function generateMetadata({ params }: { params: { slug: string } })
     title: `${post.title} | AGS Stones Blog`,
     description: post.excerpt,
     alternates: {
-      canonical: `https://agsstonefabricators.com/blog/${params.slug}`,
+      canonical: `https://www.agsstonefabricators.com/blog/${params.slug}`,
     },
   };
 }

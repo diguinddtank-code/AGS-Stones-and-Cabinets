@@ -123,7 +123,7 @@ export default function LocationClient({ city }: { city: string }) {
                 <div className="absolute inset-0 bg-secondary rounded-2xl transform translate-x-4 translate-y-4 -z-10"></div>
                 <div className="rounded-2xl shadow-xl w-full h-[400px] relative overflow-hidden">
                   <Image 
-                    src="https://agsstonefabricators.com/wp-content/uploads/2024/05/Design-sem-nome-16.png" 
+                    src="https://www.agsstonefabricators.com/wp-content/uploads/2024/05/Design-sem-nome-16.png" 
                     alt={`Granite countertops installation in ${formattedCity}`} 
                     className="object-cover"
                     fill

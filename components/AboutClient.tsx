@@ -65,7 +65,7 @@ const AboutClient = () => {
                 <div className="absolute -top-4 -left-4 w-24 h-24 bg-secondary/10 rounded-tl-3xl -z-10"></div>
                 <div className="absolute -bottom-4 -right-4 w-24 h-24 bg-secondary/10 rounded-br-3xl -z-10"></div>
                 <Image 
-                  src="https://agsstonefabricators.com/wp-content/uploads/2024/05/Design-sem-nome-16.png" 
+                  src="https://www.agsstonefabricators.com/wp-content/uploads/2024/05/Design-sem-nome-16.png" 
                   alt="AGS Stones Team working on a project" 
                   className="rounded-lg shadow-xl w-full h-auto object-cover aspect-[4/3]"
                   width={600}

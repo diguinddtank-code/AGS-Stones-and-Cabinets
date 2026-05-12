@@ -3,4 +3,4 @@ Allow: /
 Disallow: /private/
 Disallow: /admin/
 
-Sitemap: https://agsstonefabricators.com/sitemap.xml
+Sitemap: https://www.agsstonefabricators.com/sitemap.xml
