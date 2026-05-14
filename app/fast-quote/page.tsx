@@ -31,6 +31,7 @@ import TopBar from '../../components/TopBar';
 import dynamic from 'next/dynamic';
 
 const Testimonials = dynamic(() => import('../../components/Testimonials'), { ssr: false });
+const StoneGallery = dynamic(() => import('../../components/StoneGallery'), { ssr: false });
 
 import { motion } from 'framer-motion';
 
@@ -459,8 +460,14 @@ export default function FastQuotePage() {
             </div>
           </div>
         </motion.div>
+      </main>
 
-        <div className="mt-24 sm:mt-32">
+      <div className="w-full">
+        <StoneGallery />
+      </div>
+
+      <main className="flex-1 flex flex-col w-full px-4 relative z-20 pb-20">
+        <div className="mt-20 sm:mt-24">
           <Testimonials />
         </div>
       </main>
