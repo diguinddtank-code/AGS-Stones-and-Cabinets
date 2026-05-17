@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useEffect, useRef } from 'react';
+import { useSearchParams } from 'next/navigation';
 import { 
   CheckCircle2, Loader2, ArrowRight, ShieldCheck, Star, 
   User, Phone, Mail, Lock, ChevronLeft, MapPin, Zap, Calendar, XCircle, ChevronRight, Award, Shield
@@ -58,10 +59,24 @@ const CommercialIcon = ({ className }: { className?: string }) => (
   </svg>
 );
 
-export default function QuotePage() {
+function QuoteContent() {
+  const searchParams = useSearchParams();
   const [step, setStep] = useState(1);
   const [status, setStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
   
+  useEffect(() => {
+    if (searchParams.get('success') === 'true') {
+      setStatus('success');
+      setStep(6); // To show success UI if there is a success step, or it will just show success UI based on status
+      try {
+        if (typeof window !== 'undefined') {
+          if ((window as any).fbq) (window as any).fbq('track', 'Lead');
+          if ((window as any).gtag) (window as any).gtag('event', 'conversion', { 'send_to': 'AW-16885125181/R1mQCP6Dm5McEL2guvM-' });
+        }
+      } catch(e) {}
+    }
+  }, [searchParams]);
+
   const [formData, setFormData] = useState({
     isHomeowner: '',
     projectType: '',
@@ -182,26 +197,27 @@ export default function QuotePage() {
     };
 
     try {
-      const res = await fetch("https://formsubmit.co/ajax/agsstonesandcabinets@gmail.com", {
-        method: "POST",
-        headers: { 
-          'Content-Type': 'application/json',
-          'Accept': 'application/json' 
-        },
-        body: JSON.stringify(submitData)
+      const form = document.createElement('form');
+      form.method = 'POST';
+      form.action = 'https://formsubmit.co/agsstonesandcabinets@gmail.com';
+      form.style.display = 'none';
+
+      Object.entries(submitData).forEach(([key, value]) => {
+        const input = document.createElement('input');
+        input.type = 'hidden';
+        input.name = key;
+        input.value = value as string;
+        form.appendChild(input);
       });
 
-      if (res.ok) {
-        setStatus('success');
-        try {
-          if (typeof window !== 'undefined') {
-            if ((window as any).fbq) (window as any).fbq('track', 'Lead');
-            if ((window as any).gtag) (window as any).gtag('event', 'conversion', { 'send_to': 'AW-16885125181/R1mQCP6Dm5McEL2guvM-' });
-          }
-        } catch(e) {}
-      } else {
-        setStatus('error');
-      }
+      const nextInput = document.createElement('input');
+      nextInput.type = 'hidden';
+      nextInput.name = '_next';
+      nextInput.value = window.location.origin + window.location.pathname + '?success=true';
+      form.appendChild(nextInput);
+
+      document.body.appendChild(form);
+      form.submit();
     } catch (error) {
       console.error(error);
       setStatus('error');
@@ -675,5 +691,13 @@ export default function QuotePage() {
         <Testimonials />
       </div>
     </div>
+  );
+}
+
+export default function QuotePage() {
+  return (
+    <React.Suspense fallback={<div className="min-h-screen font-sans bg-slate-50"></div>}>
+      <QuoteContent />
+    </React.Suspense>
   );
 }

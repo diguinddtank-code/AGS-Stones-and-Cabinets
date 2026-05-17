@@ -5,7 +5,7 @@ import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, ChevronRight, ArrowRight, CheckCircle2, ChevronLeft, ShieldCheck, MapPin } from "lucide-react";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 
 // Data
 const areas = [
@@ -22,8 +22,9 @@ const stones = [
   { id: "black-granite", title: "Black Granite", category: "Granite", img: "https://images.unsplash.com/photo-1598300056393-4aac492f3f0b?q=80&w=800", bgProject: "https://images.unsplash.com/photo-1600566753376-12c8ab7e5ce1?q=80&w=1600" },
 ];
 
-export default function DigitalShowroomApp() {
+function ShowroomContent() {
   const router = useRouter();
+  const searchParams = useSearchParams();
   const [step, setStep] = useState(0); // 0: Hero, 1: Area, 2: Stone, 3: Form
   const [selectedArea, setSelectedArea] = useState<string | null>(null);
   const [selectedStone, setSelectedStone] = useState<string | null>(null);
@@ -32,6 +33,18 @@ export default function DigitalShowroomApp() {
   const [formData, setFormData] = useState({ name: "", phone: "" });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [success, setSuccess] = useState(false);
+
+  useEffect(() => {
+    if (searchParams.get('success') === 'true') {
+      setSuccess(true);
+      try {
+        if (typeof window !== 'undefined') {
+          if ((window as any).fbq) (window as any).fbq('track', 'Lead');
+          if ((window as any).gtag) (window as any).gtag('event', 'conversion', { 'send_to': 'AW-16885125181/R1mQCP6Dm5McEL2guvM-' });
+        }
+      } catch(e) {}
+    }
+  }, [searchParams]);
 
   useEffect(() => {
     // Prevent body scrolling
@@ -82,29 +95,27 @@ export default function DigitalShowroomApp() {
     };
 
     try {
-      const res = await fetch("https://formsubmit.co/ajax/agsstonesandcabinets@gmail.com", {
-        method: "POST",
-        headers: { 
-          'Content-Type': 'application/json',
-          'Accept': 'application/json' 
-        },
-        body: JSON.stringify(submitData)
+      const form = document.createElement('form');
+      form.method = 'POST';
+      form.action = 'https://formsubmit.co/agsstonesandcabinets@gmail.com';
+      form.style.display = 'none';
+
+      Object.entries(submitData).forEach(([key, value]) => {
+        const input = document.createElement('input');
+        input.type = 'hidden';
+        input.name = key;
+        input.value = value as string;
+        form.appendChild(input);
       });
 
-      if (res.ok) {
-        setIsSubmitting(false);
-        setSuccess(true);
-        triggerHaptic([50, 50, 100]); // Success pattern vibration
-        try {
-          if (typeof window !== 'undefined') {
-            if ((window as any).fbq) (window as any).fbq('track', 'Lead');
-            if ((window as any).gtag) (window as any).gtag('event', 'conversion', { 'send_to': 'AW-16885125181/R1mQCP6Dm5McEL2guvM-' });
-          }
-        } catch(e) {}
-      } else {
-        setIsSubmitting(false);
-        alert("Something went wrong. Please call us.");
-      }
+      const nextInput = document.createElement('input');
+      nextInput.type = 'hidden';
+      nextInput.name = '_next';
+      nextInput.value = window.location.origin + window.location.pathname + '?success=true';
+      form.appendChild(nextInput);
+
+      document.body.appendChild(form);
+      form.submit();
     } catch (error) {
       setIsSubmitting(false);
       alert("Something went wrong. Please call us.");
@@ -395,6 +406,14 @@ export default function DigitalShowroomApp() {
         .mt-safe { margin-top: env(safe-area-inset-top); }
       `}</style>
     </div>
+  );
+}
+
+export default function DigitalShowroomApp() {
+  return (
+    <React.Suspense fallback={<div className="h-[100dvh] w-full bg-[#0a0a0a]"></div>}>
+      <ShowroomContent />
+    </React.Suspense>
   );
 }
 

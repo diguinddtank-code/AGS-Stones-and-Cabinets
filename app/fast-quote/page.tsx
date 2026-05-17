@@ -1,9 +1,9 @@
 "use client";
 
-import React, { useState } from 'react';
+import React, { useState, useEffect, Suspense } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import { 
   CheckCircle2, 
   ShieldCheck, 
@@ -35,10 +35,24 @@ const StoneGallery = dynamic(() => import('../../components/StoneGallery'), { ss
 
 import { motion } from 'framer-motion';
 
-export default function FastQuotePage() {
+function FastQuoteContent() {
   const router = useRouter();
+  const searchParams = useSearchParams();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [success, setSuccess] = useState(false);
+  
+  useEffect(() => {
+    if (searchParams.get('success') === 'true') {
+      setSuccess(true);
+      try {
+        if (typeof window !== 'undefined') {
+          if ((window as any).fbq) (window as any).fbq('track', 'Lead');
+          if ((window as any).gtag) (window as any).gtag('event', 'conversion', { 'send_to': 'AW-16885125181/R1mQCP6Dm5McEL2guvM-' });
+        }
+      } catch(e) {}
+    }
+  }, [searchParams]);
+
   const [formData, setFormData] = useState({
     projectType: 'Kitchen Countertops',
     name: '',
@@ -87,7 +101,7 @@ export default function FastQuotePage() {
     e.preventDefault();
     setIsSubmitting(true);
     
-    const submitData = {
+    const submitData: Record<string, string> = {
       _subject: 'New Lead - Fast Quote Form',
       _captcha: 'false',
       'Project Type': formData.projectType,
@@ -99,28 +113,27 @@ export default function FastQuotePage() {
     };
 
     try {
-      const res = await fetch("https://formsubmit.co/ajax/agsstonesandcabinets@gmail.com", {
-        method: "POST",
-        headers: { 
-          'Content-Type': 'application/json',
-          'Accept': 'application/json' 
-        },
-        body: JSON.stringify(submitData)
+      const form = document.createElement('form');
+      form.method = 'POST';
+      form.action = 'https://formsubmit.co/agsstonesandcabinets@gmail.com';
+      form.style.display = 'none';
+
+      Object.entries(submitData).forEach(([key, value]) => {
+        const input = document.createElement('input');
+        input.type = 'hidden';
+        input.name = key;
+        input.value = value;
+        form.appendChild(input);
       });
 
-      if (res.ok) {
-        setIsSubmitting(false);
-        setSuccess(true);
-        try {
-          if (typeof window !== 'undefined') {
-            if ((window as any).fbq) (window as any).fbq('track', 'Lead');
-            if ((window as any).gtag) (window as any).gtag('event', 'conversion', { 'send_to': 'AW-16885125181/R1mQCP6Dm5McEL2guvM-' });
-          }
-        } catch(e) {}
-      } else {
-        setIsSubmitting(false);
-        alert("Something went wrong. Please call us.");
-      }
+      const nextInput = document.createElement('input');
+      nextInput.type = 'hidden';
+      nextInput.name = '_next';
+      nextInput.value = window.location.origin + window.location.pathname + '?success=true';
+      form.appendChild(nextInput);
+
+      document.body.appendChild(form);
+      form.submit();
     } catch (error) {
       setIsSubmitting(false);
       alert("Something went wrong. Please call us.");
@@ -487,5 +500,13 @@ export default function FastQuotePage() {
         </div>
       </footer>
     </div>
+  );
+}
+
+export default function FastQuotePage() {
+  return (
+    <Suspense fallback={<div className="min-h-screen bg-gray-50"></div>}>
+      <FastQuoteContent />
+    </Suspense>
   );
 }

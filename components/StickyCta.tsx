@@ -151,34 +151,27 @@ const StickyCta: React.FC = () => {
     const submitData = Object.fromEntries(formData.entries());
 
     try {
-      const res = await fetch("https://formsubmit.co/ajax/agsstonesandcabinets@gmail.com", {
-        method: "POST",
-        headers: { 
-            'Content-Type': 'application/json',
-            'Accept': 'application/json' 
-        },
-        body: JSON.stringify(submitData)
+      const form = document.createElement('form');
+      form.method = 'POST';
+      form.action = 'https://formsubmit.co/agsstonesandcabinets@gmail.com';
+      form.style.display = 'none';
+
+      Object.entries(submitData).forEach(([key, value]) => {
+        const input = document.createElement('input');
+        input.type = 'hidden';
+        input.name = key;
+        input.value = value as string;
+        form.appendChild(input);
       });
 
-      if (res.ok) {
-        setFormStatus('success');
-        try {
-          if (typeof window !== 'undefined') {
-            if ((window as any).fbq) (window as any).fbq('track', 'Lead');
-            if ((window as any).gtag) (window as any).gtag('event', 'conversion', { 'send_to': 'AW-16885125181/R1mQCP6Dm5McEL2guvM-' });
-          }
-        } catch(e) {}
-        setTimeout(() => {
-          setMessages(prev => prev.filter(m => !m.isForm));
-          setMessages(prev => [
-            ...prev, 
-            { id: Date.now().toString(), sender: 'ai', text: "Thank you! Your request has been received. Our design team will contact you shortly with your estimate." }
-          ]);
-          setFormStatus('idle');
-        }, 3000);
-      } else {
-        setFormStatus('error');
-      }
+      const nextInput = document.createElement('input');
+      nextInput.type = 'hidden';
+      nextInput.name = '_next';
+      nextInput.value = window.location.origin + window.location.pathname + '?success=true';
+      form.appendChild(nextInput);
+
+      document.body.appendChild(form);
+      form.submit();
     } catch (error) {
       console.error(error);
       setFormStatus('error');
