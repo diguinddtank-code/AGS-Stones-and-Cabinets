@@ -11,14 +11,16 @@ const ContactForm: React.FC = () => {
     setStatus('loading');
 
     const formData = new FormData(e.currentTarget);
+    const submitData = Object.fromEntries(formData.entries());
 
     try {
       const res = await fetch("https://formsubmit.co/ajax/agsstonesandcabinets@gmail.com", {
         method: "POST",
-        body: formData,
         headers: { 
+            'Content-Type': 'application/json',
             'Accept': 'application/json' 
-        }
+        },
+        body: JSON.stringify(submitData)
       });
 
       if (res.ok) {

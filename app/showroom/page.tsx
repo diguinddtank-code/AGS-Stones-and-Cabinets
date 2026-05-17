@@ -72,19 +72,23 @@ export default function DigitalShowroomApp() {
     setIsSubmitting(true);
     
     // Simulate API submission + Real submission via FormSubmit
-    const submitData = new FormData();
-    submitData.append('_subject', 'New Lead - Digital Showroom');
-    submitData.append('_captcha', 'false');
-    submitData.append('Area Selected', areas.find(a=>a.id === selectedArea)?.title || String(selectedArea));
-    submitData.append('Stone Selected', stones.find(s=>s.id === selectedStone)?.title || String(selectedStone));
-    submitData.append('Name', formData.name);
-    submitData.append('Phone', formData.phone);
+    const submitData = {
+      _subject: 'New Lead - Digital Showroom',
+      _captcha: 'false',
+      'Area Selected': areas.find(a=>a.id === selectedArea)?.title || String(selectedArea),
+      'Stone Selected': stones.find(s=>s.id === selectedStone)?.title || String(selectedStone),
+      Name: formData.name,
+      Phone: formData.phone
+    };
 
     try {
       const res = await fetch("https://formsubmit.co/ajax/agsstonesandcabinets@gmail.com", {
         method: "POST",
-        body: submitData,
-        headers: { 'Accept': 'application/json' }
+        headers: { 
+          'Content-Type': 'application/json',
+          'Accept': 'application/json' 
+        },
+        body: JSON.stringify(submitData)
       });
 
       if (res.ok) {

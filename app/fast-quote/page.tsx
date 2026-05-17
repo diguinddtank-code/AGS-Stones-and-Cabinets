@@ -87,21 +87,25 @@ export default function FastQuotePage() {
     e.preventDefault();
     setIsSubmitting(true);
     
-    const submitData = new FormData();
-    submitData.append('_subject', 'New Lead - Fast Quote Form');
-    submitData.append('_captcha', 'false');
-    submitData.append('Project Type', formData.projectType);
-    submitData.append('Name', formData.name);
-    submitData.append('Phone', formData.phone);
-    submitData.append('Email', formData.email);
-    submitData.append('Zip Code', formData.zipCode);
-    submitData.append('Message', formData.message);
+    const submitData = {
+      _subject: 'New Lead - Fast Quote Form',
+      _captcha: 'false',
+      'Project Type': formData.projectType,
+      Name: formData.name,
+      Phone: formData.phone,
+      Email: formData.email,
+      'Zip Code': formData.zipCode,
+      Message: formData.message
+    };
 
     try {
       const res = await fetch("https://formsubmit.co/ajax/agsstonesandcabinets@gmail.com", {
         method: "POST",
-        body: submitData,
-        headers: { 'Accept': 'application/json' }
+        headers: { 
+          'Content-Type': 'application/json',
+          'Accept': 'application/json' 
+        },
+        body: JSON.stringify(submitData)
       });
 
       if (res.ok) {

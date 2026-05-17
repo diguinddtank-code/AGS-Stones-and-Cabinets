@@ -168,23 +168,27 @@ export default function QuotePage() {
     e.preventDefault();
     setStatus('submitting');
     
-    const submitData = new FormData();
-    submitData.append('_subject', 'New Lead - Multi-Step Quote Quiz');
-    submitData.append('_captcha', 'false');
-    submitData.append('_template', 'table');
-    submitData.append('Homeowner', formData.isHomeowner);
-    submitData.append('Project Type', formData.projectType);
-    submitData.append('Zip Code', formData.zipCode);
-    submitData.append('Timeline', formData.timeline);
-    submitData.append('Name', formData.name);
-    submitData.append('Phone', formData.phone);
-    submitData.append('Email', formData.email);
+    const submitData = {
+      _subject: 'New Lead - Multi-Step Quote Quiz',
+      _captcha: 'false',
+      _template: 'table',
+      Homeowner: formData.isHomeowner,
+      'Project Type': formData.projectType,
+      'Zip Code': formData.zipCode,
+      Timeline: formData.timeline,
+      Name: formData.name,
+      Phone: formData.phone,
+      Email: formData.email
+    };
 
     try {
       const res = await fetch("https://formsubmit.co/ajax/agsstonesandcabinets@gmail.com", {
         method: "POST",
-        body: submitData,
-        headers: { 'Accept': 'application/json' }
+        headers: { 
+          'Content-Type': 'application/json',
+          'Accept': 'application/json' 
+        },
+        body: JSON.stringify(submitData)
       });
 
       if (res.ok) {

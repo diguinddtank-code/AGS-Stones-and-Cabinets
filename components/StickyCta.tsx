@@ -148,12 +148,16 @@ const StickyCta: React.FC = () => {
     const formData = new FormData(e.currentTarget);
     formData.append('_subject', 'New Estimate Request from Chat Assistant');
     formData.append('_captcha', 'false');
+    const submitData = Object.fromEntries(formData.entries());
 
     try {
       const res = await fetch("https://formsubmit.co/ajax/agsstonesandcabinets@gmail.com", {
         method: "POST",
-        body: formData,
-        headers: { 'Accept': 'application/json' }
+        headers: { 
+            'Content-Type': 'application/json',
+            'Accept': 'application/json' 
+        },
+        body: JSON.stringify(submitData)
       });
 
       if (res.ok) {
