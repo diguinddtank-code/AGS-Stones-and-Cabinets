@@ -43,33 +43,33 @@ const Hero: React.FC = () => {
     setFormStatus('loading');
 
     const formData = new FormData(e.currentTarget);
+    formData.append('access_key', '8120d187-d8e4-4348-83a8-b0248042becb');
     const submitData = Object.fromEntries(formData.entries());
 
     try {
-      const form = document.createElement('form');
-      form.method = 'POST';
-      form.action = 'https://formsubmit.co/agsstonesandcabinets@gmail.com';
-      form.style.display = 'none';
-
-      Object.entries(submitData).forEach(([key, value]) => {
-        const input = document.createElement('input');
-        input.type = 'hidden';
-        input.name = key;
-        input.value = value as string;
-        form.appendChild(input);
+      const res = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: { 
+            'Content-Type': 'application/json',
+            'Accept': 'application/json' 
+        },
+        body: JSON.stringify(submitData)
       });
 
-      const nextInput = document.createElement('input');
-      nextInput.type = 'hidden';
-      nextInput.name = '_next';
-      nextInput.value = window.location.origin + window.location.pathname + '?hj=1'; // hj=1 to trick/bypass
-      form.appendChild(nextInput);
-
-      document.body.appendChild(form);
-      form.submit();
+      if (res.ok) {
+        setFormStatus('success');
+        try {
+          if (typeof window !== 'undefined') {
+            if ((window as any).fbq) (window as any).fbq('track', 'Lead');
+            if ((window as any).gtag) (window as any).gtag('event', 'conversion', { 'send_to': 'AW-16885125181/R1mQCP6Dm5McEL2guvM-' });
+          }
+        } catch(e) {}
+      } else {
+        throw new Error('Service down');
+      }
     } catch (error) {
       console.error(error);
-      alert("Connection error. Please check your internet.");
+      alert("Something went wrong. Please call us directly.");
       setFormStatus('idle');
     }
   };

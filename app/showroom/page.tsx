@@ -86,8 +86,8 @@ function ShowroomContent() {
     
     // Simulate API submission + Real submission via FormSubmit
     const submitData = {
+      access_key: "8120d187-d8e4-4348-83a8-b0248042becb",
       _subject: 'New Lead - Digital Showroom',
-      _captcha: 'false',
       'Area Selected': areas.find(a=>a.id === selectedArea)?.title || String(selectedArea),
       'Stone Selected': stones.find(s=>s.id === selectedStone)?.title || String(selectedStone),
       Name: formData.name,
@@ -95,30 +95,31 @@ function ShowroomContent() {
     };
 
     try {
-      const form = document.createElement('form');
-      form.method = 'POST';
-      form.action = 'https://formsubmit.co/agsstonesandcabinets@gmail.com';
-      form.style.display = 'none';
-
-      Object.entries(submitData).forEach(([key, value]) => {
-        const input = document.createElement('input');
-        input.type = 'hidden';
-        input.name = key;
-        input.value = value as string;
-        form.appendChild(input);
+      const res = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: { 
+          'Content-Type': 'application/json',
+          'Accept': 'application/json' 
+        },
+        body: JSON.stringify(submitData)
       });
 
-      const nextInput = document.createElement('input');
-      nextInput.type = 'hidden';
-      nextInput.name = '_next';
-      nextInput.value = window.location.origin + window.location.pathname + '?success=true';
-      form.appendChild(nextInput);
-
-      document.body.appendChild(form);
-      form.submit();
+      if (res.ok) {
+        setIsSubmitting(false);
+        setSuccess(true);
+        triggerHaptic([50, 50, 100]); // Success pattern vibration
+        try {
+          if (typeof window !== 'undefined') {
+            if ((window as any).fbq) (window as any).fbq('track', 'Lead');
+            if ((window as any).gtag) (window as any).gtag('event', 'conversion', { 'send_to': 'AW-16885125181/R1mQCP6Dm5McEL2guvM-' });
+          }
+        } catch(e) {}
+      } else {
+        throw new Error('Service down');
+      }
     } catch (error) {
       setIsSubmitting(false);
-      alert("Something went wrong. Please call us.");
+      alert("Something went wrong. Please call us directly.");
     }
   };
 

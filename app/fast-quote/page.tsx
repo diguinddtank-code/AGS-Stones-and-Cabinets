@@ -102,8 +102,8 @@ function FastQuoteContent() {
     setIsSubmitting(true);
     
     const submitData: Record<string, string> = {
+      access_key: "8120d187-d8e4-4348-83a8-b0248042becb",
       _subject: 'New Lead - Fast Quote Form',
-      _captcha: 'false',
       'Project Type': formData.projectType,
       Name: formData.name,
       Phone: formData.phone,
@@ -113,30 +113,30 @@ function FastQuoteContent() {
     };
 
     try {
-      const form = document.createElement('form');
-      form.method = 'POST';
-      form.action = 'https://formsubmit.co/agsstonesandcabinets@gmail.com';
-      form.style.display = 'none';
-
-      Object.entries(submitData).forEach(([key, value]) => {
-        const input = document.createElement('input');
-        input.type = 'hidden';
-        input.name = key;
-        input.value = value;
-        form.appendChild(input);
+      const res = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: { 
+          'Content-Type': 'application/json',
+          'Accept': 'application/json' 
+        },
+        body: JSON.stringify(submitData)
       });
 
-      const nextInput = document.createElement('input');
-      nextInput.type = 'hidden';
-      nextInput.name = '_next';
-      nextInput.value = window.location.origin + window.location.pathname + '?success=true';
-      form.appendChild(nextInput);
-
-      document.body.appendChild(form);
-      form.submit();
+      if (res.ok) {
+        setIsSubmitting(false);
+        setSuccess(true);
+        try {
+          if (typeof window !== 'undefined') {
+            if ((window as any).fbq) (window as any).fbq('track', 'Lead');
+            if ((window as any).gtag) (window as any).gtag('event', 'conversion', { 'send_to': 'AW-16885125181/R1mQCP6Dm5McEL2guvM-' });
+          }
+        } catch(e) {}
+      } else {
+        throw new Error('Service down');
+      }
     } catch (error) {
       setIsSubmitting(false);
-      alert("Something went wrong. Please call us.");
+      alert("Something went wrong. Please call us directly to get your quote.");
     }
   };
 
