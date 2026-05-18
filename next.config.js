@@ -33,6 +33,7 @@ const nextConfig = {
       { protocol: 'https', hostname: 'rtaoutdoorliving.com' },
       { protocol: 'https', hostname: 'howtonestforless.com' },
       { protocol: 'https', hostname: 'ui-avatars.com' },
+      { protocol: 'https', hostname: 'i.pravatar.cc' },
     ],
   },
   typescript: {

@@ -1,0 +1,328 @@
+'use client';
+
+import React, { useRef } from 'react';
+import Image from 'next/image';
+import Link from 'next/link';
+import { motion, useScroll, useTransform } from 'framer-motion';
+import { Check, Calendar, Phone, ArrowRight, ShieldCheck, Star, PenTool, Hammer, Truck, HeartHandshake, HelpCircle } from 'lucide-react';
+import type { ServiceDetail } from '@/lib/servicesData';
+
+export default function ServiceDynamicContent({ service }: { service: ServiceDetail }) {
+    const containerRef = useRef<HTMLDivElement>(null);
+    const { scrollYProgress } = useScroll({
+        target: containerRef,
+        offset: ["start start", "end end"]
+    });
+
+    const heroRef = useRef<HTMLElement>(null);
+    const { scrollYProgress: heroProgress } = useScroll({
+        target: heroRef,
+        offset: ["start start", "end start"]
+    });
+
+    const yBackground = useTransform(heroProgress, [0, 1], ["0%", "30%"]);
+    const opacityHero = useTransform(heroProgress, [0, 0.8], [1, 0]);
+    const yHeroText = useTransform(heroProgress, [0, 1], ["0%", "40%"]);
+    
+    const scaleImage = useTransform(scrollYProgress, [0, 0.5], [1, 1.1]);
+
+    const staggerContainer = {
+        hidden: { opacity: 0 },
+        show: {
+            opacity: 1,
+            transition: {
+                staggerChildren: 0.15
+            }
+        }
+    };
+
+    const fadeInUp = {
+        hidden: { opacity: 0, y: 40 },
+        show: { opacity: 1, y: 0, transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] } }
+    };
+
+    const textReveal = {
+        hidden: { y: "100%" },
+        show: { y: "0%", transition: { duration: 1, ease: [0.16, 1, 0.3, 1] } }
+    };
+
+    return (
+        <div ref={containerRef} className="relative bg-[#0a0a0a] text-white overflow-hidden selection:bg-secondary/30">
+            {/* Smooth Scroll Progress Bar */}
+            <motion.div 
+                className="fixed top-0 left-0 right-0 h-1 bg-secondary z-50 origin-left"
+                style={{ scaleX: scrollYProgress }}
+            />
+
+            {/* Immersive Hero Section */}
+            <section ref={heroRef} className="relative h-[100svh] min-h-[600px] flex items-center justify-center overflow-hidden">
+                <motion.div 
+                    style={{ y: yBackground }}
+                    className="absolute inset-0 w-full h-[130%] -top-[15%]"
+                >
+                    <Image 
+                        src={service.image}
+                        alt={service.title}
+                        fill
+                        className="object-cover opacity-40 brightness-75 contrast-125"
+                        priority
+                        sizes="100vw"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/40 to-[#0a0a0a]"></div>
+                </motion.div>
+
+                <div className="container relative z-10 px-4 mx-auto max-w-7xl pt-32 pb-24 md:py-0">
+                    <motion.div 
+                        style={{ y: yHeroText, opacity: opacityHero }}
+                        variants={staggerContainer}
+                        initial="hidden"
+                        animate="show"
+                        className="max-w-4xl"
+                    >
+                        <motion.div variants={fadeInUp} className="inline-flex items-center gap-3 bg-white/5 backdrop-blur-md border border-white/10 px-4 py-2 md:px-5 md:py-2.5 rounded-full mb-6 md:mb-8 shadow-2xl">
+                            <span className="text-secondary w-4 h-4 md:w-auto md:h-auto">{service.icon}</span>
+                            <span className="text-white/80 text-[10px] md:text-xs font-bold uppercase tracking-[0.2em] md:tracking-[0.3em]">Masterclass in {service.slug.replace('-', ' ')}</span>
+                        </motion.div>
+                        
+                        <div className="overflow-visible mb-4 md:mb-6 pb-2">
+                            <motion.h1 variants={textReveal} className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-serif font-bold leading-[1.05] tracking-tighter">
+                                {service.title.split(' ').map((word, i) => (
+                                    <React.Fragment key={i}>
+                                        {word === '&' ? <span className="text-secondary italic">&</span> : word}
+                                        {i !== service.title.split(' ').length - 1 && ' '}
+                                    </React.Fragment>
+                                ))}
+                            </motion.h1>
+                        </div>
+                        
+                        <motion.p variants={fadeInUp} className="text-lg md:text-2xl text-gray-400 font-light leading-relaxed mb-8 md:mb-10 max-w-2xl border-l-2 border-secondary pl-4 md:pl-6">
+                            {service.shortDesc} 
+                            <span className="block mt-2 text-white">Don't settle for average. Demand perfection.</span>
+                        </motion.p>
+
+                        <motion.div variants={fadeInUp} className="flex flex-col sm:flex-row items-center sm:items-start gap-5 sm:gap-6">
+                            <Link href="/fast-quote" className="group relative overflow-hidden bg-secondary text-white font-bold py-4 px-6 md:py-5 md:px-10 rounded-full transition-all duration-500 w-full sm:w-auto text-center cursor-pointer">
+                                <span className="relative z-10 flex items-center justify-center gap-2 md:gap-3 text-sm md:text-lg">
+                                    Request Private Consultation <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform md:w-5 md:h-5" />
+                                </span>
+                                <div className="absolute inset-0 bg-white scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]"></div>
+                                <span className="absolute inset-0 z-0 flex items-center justify-center gap-2 md:gap-3 text-primary opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100 font-bold text-sm md:text-lg">
+                                    Request Private Consultation <ArrowRight size={18} className="md:w-5 md:h-5" />
+                                </span>
+                            </Link>
+
+                            <div className="flex items-center gap-4 text-xs sm:text-sm text-gray-400 font-medium tracking-wide">
+                                <div className="flex -space-x-3">
+                                    {[1,2,3,4].map((i) => (
+                                        <div key={i} className={`w-8 h-8 sm:w-10 sm:h-10 rounded-full border-2 border-[#0a0a0a] bg-gray-600 flex items-center justify-center overflow-hidden`}>
+                                            <Image src={`https://i.pravatar.cc/100?img=${i + 10}`} width={40} height={40} alt="Avatar" />
+                                        </div>
+                                    ))}
+                                </div>
+                                <div>
+                                    <div className="flex text-secondary mb-0.5"><Star size={10} fill="currentColor"/><Star size={10} fill="currentColor"/><Star size={10} fill="currentColor"/><Star size={10} fill="currentColor"/><Star size={10} fill="currentColor"/></div>
+                                    <span>Trusted by premium homeowners</span>
+                                </div>
+                            </div>
+                        </motion.div>
+                    </motion.div>
+                </div>
+
+                <div className="absolute bottom-6 md:bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 opacity-50">
+                    <span className="text-[9px] md:text-[10px] uppercase tracking-[0.2em] md:tracking-[0.3em] font-bold">Scroll to Explore</span>
+                    <motion.div 
+                        animate={{ y: [0, 10, 0] }} 
+                        transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+                        className="w-[1px] h-8 md:h-12 bg-gradient-to-b from-white to-transparent"
+                    />
+                </div>
+            </section>
+
+            {/* The Desire / Overview Section */}
+            <section className="py-20 md:py-32 relative bg-white text-gray-900 overflow-hidden rounded-t-3xl md:rounded-t-[3rem] -mt-10 z-20">
+                <div className="container mx-auto px-4 max-w-7xl">
+                    <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 lg:items-center">
+                        
+                        <motion.div 
+                            initial={{ opacity: 0, x: -30 }}
+                            whileInView={{ opacity: 1, x: 0 }}
+                            viewport={{ once: true, margin: "-100px" }}
+                            transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+                            className="lg:col-span-6 space-y-6 md:space-y-8"
+                        >
+                            <h2 className="text-secondary font-bold tracking-[0.2em] uppercase text-xs flex items-center gap-3">
+                                <span className="w-8 h-px bg-secondary"></span> 
+                                The Vision
+                            </h2>
+                            <h3 className="text-3xl md:text-5xl lg:text-6xl font-serif font-bold leading-tight text-primary">
+                                Beyond mere functionality. A statement of luxury.
+                            </h3>
+                            <div className="text-base md:text-lg leading-relaxed text-gray-600 space-y-4 md:space-y-6 font-light">
+                                <p>
+                                    {service.longDesc}
+                                </p>
+                                <p>
+                                    When you choose AGS Stones & Cabinets, you aren't just buying materials. You are investing in artisanal craftsmanship that turns an everyday space into a centerpiece of envy. We bypass the middlemen so you don't have to compromise on quality.
+                                </p>
+                            </div>
+
+                            <ul className="space-y-4 md:space-y-5 pt-6 md:pt-8 border-t border-gray-100">
+                                {service.features.map((feature, idx) => (
+                                    <motion.li 
+                                        key={idx} 
+                                        initial={{ opacity: 0, y: 10 }}
+                                        whileInView={{ opacity: 1, y: 0 }}
+                                        viewport={{ once: true }}
+                                        transition={{ delay: idx * 0.1 }}
+                                        className="flex items-center gap-4 group cursor-default"
+                                    >
+                                        <div className="w-2 h-2 rounded-full border border-secondary/40 bg-secondary/80 group-hover:bg-secondary group-hover:scale-150 group-hover:shadow-[0_0_8px_rgba(217,119,6,0.6)] transition-all duration-300"></div>
+                                        <span className="text-gray-900 font-medium text-base md:text-lg group-hover:translate-x-1 transition-transform duration-300">{feature}</span>
+                                    </motion.li>
+                                ))}
+                            </ul>
+                        </motion.div>
+
+                        <div className="lg:col-span-6 lg:col-start-7 relative">
+                            <motion.div 
+                                style={{ y: useTransform(scrollYProgress, [0.3, 0.7], [50, -50]) }}
+                                className="relative rounded-[2rem] overflow-hidden aspect-[4/5] md:aspect-square shadow-[0_20px_50px_rgba(0,0,0,0.1)]"
+                            >
+                                <motion.div style={{ scale: scaleImage }} className="w-full h-full relative">
+                                    <Image 
+                                        src={service.image}
+                                        alt={`${service.title} detail`}
+                                        fill
+                                        className="object-cover"
+                                    />
+                                    <div className="absolute inset-0 bg-primary/10 mix-blend-overlay"></div>
+                                </motion.div>
+
+                                {/* Floating Trust Badge */}
+                                <motion.div 
+                                    initial={{ opacity: 0, scale: 0.8, rotate: -10 }}
+                                    whileInView={{ opacity: 1, scale: 1, rotate: 0 }}
+                                    viewport={{ once: true }}
+                                    transition={{ type: "spring", delay: 0.5 }}
+                                    className="absolute bottom-8 left-8 bg-white p-6 rounded-3xl shadow-2xl backdrop-blur-md max-w-[200px]"
+                                >
+                                    <div className="w-12 h-12 bg-secondary/10 rounded-full flex items-center justify-center text-secondary mb-4">
+                                        <ShieldCheck size={24} />
+                                    </div>
+                                    <p className="font-bold text-primary leading-tight">Meticulous Quality Control.</p>
+                                </motion.div>
+                            </motion.div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            {/* Parallax Quote Break */}
+            <section className="relative py-24 md:py-40 overflow-hidden bg-primary text-white">
+                <motion.div 
+                    style={{ y: useTransform(scrollYProgress, [0.5, 0.9], ["-20%", "20%"]) }}
+                    className="absolute inset-0 opacity-20 grayscale"
+                >
+                    <Image src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=2070&auto=format&fit=crop" fill alt="Texture" className="object-cover" />
+                </motion.div>
+                <div className="absolute inset-0 bg-primary/80 mix-blend-multiply"></div>
+                
+                <div className="container relative z-10 mx-auto px-4 text-center max-w-4xl">
+                    <motion.div 
+                        initial={{ opacity: 0, scale: 0.9 }}
+                        whileInView={{ opacity: 1, scale: 1 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.8 }}
+                    >
+                        <Star className="text-secondary w-8 h-8 md:w-12 md:h-12 mx-auto mb-6 md:mb-8 opacity-50" />
+                        <h2 className="text-2xl md:text-4xl lg:text-5xl font-serif italic font-light leading-snug mb-6 md:mb-8">
+                            "The difference between ordinary and extraordinary is that little extra. We pour that extra into every slab, every cabinet, every detail."
+                        </h2>
+                        <p className="text-xs md:text-sm tracking-[0.2em] md:tracking-[0.3em] uppercase text-secondary font-bold">— The AGS Promise</p>
+                    </motion.div>
+                </div>
+            </section>
+
+            {/* Seamless Process */}
+            <section className="py-20 md:py-32 bg-[#f8f9fa] text-primary relative">
+                <div className="container mx-auto px-4 max-w-7xl">
+                    <div className="flex flex-col md:flex-row gap-6 md:gap-16 items-start md:items-end mb-16 md:mb-24">
+                        <div className="flex-1">
+                            <h2 className="text-secondary font-bold tracking-[0.2em] uppercase text-xs mb-4">The Methodology</h2>
+                            <h3 className="text-4xl md:text-5xl lg:text-7xl font-serif font-bold leading-[1.1]">Engineered for perfection.</h3>
+                        </div>
+                        <div className="max-w-md">
+                            <p className="text-gray-600 text-base md:text-lg leading-relaxed">No guesswork. No delays. Our proprietary workflow ensures your {service.title.toLowerCase()} is delivered with surgical precision, faster than industry standards.</p>
+                        </div>
+                    </div>
+
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-12 md:gap-y-16 relative">
+                        <div className="hidden md:block absolute top-[28px] left-[10%] w-[80%] h-px bg-gray-300 -z-10"></div>
+                        
+                        {[
+                            { icon: <PenTool />, title: "Precision Capture", desc: "Laser templating down to the millimeter. Your space mapped flawlessly." },
+                            { icon: <HeartHandshake />, title: "Curated Selection", desc: "Access to exclusive slabs and materials reserved for top-tier projects." },
+                            { icon: <Hammer />, title: "Artisanal Fabrication", desc: "CNC machinery meets human artistry in our Duluth facility." },
+                            { icon: <Truck />, title: "White-Glove Install", desc: "Speed without compromise. We respect your time and your home." }
+                        ].map((step, idx) => (
+                            <motion.div 
+                                key={idx} 
+                                initial={{ opacity: 0, y: 30 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true }}
+                                transition={{ delay: idx * 0.2, duration: 0.8 }}
+                                className="relative group"
+                            >
+                                <div className="w-14 h-14 bg-white border border-gray-200 text-primary rounded-2xl flex items-center justify-center mb-8 shadow-sm group-hover:bg-secondary group-hover:text-white group-hover:-translate-y-2 transition-all duration-300">
+                                    {step.icon}
+                                </div>
+                                <div className="text-[10px] font-bold text-gray-400 mb-2 uppercase tracking-widest">Phase 0{idx + 1}</div>
+                                <h4 className="text-2xl font-bold font-serif mb-3 text-primary">{step.title}</h4>
+                                <p className="text-gray-500 leading-relaxed">{step.desc}</p>
+                            </motion.div>
+                        ))}
+                    </div>
+                </div>
+            </section>
+
+            {/* Scarcity / Urgency CTA */}
+            <section className="relative py-32 bg-[#0a0a0a] overflow-hidden">
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-secondary/20 rounded-full blur-[120px] pointer-events-none"></div>
+                
+                <div className="container relative z-10 mx-auto px-4 max-w-5xl text-center">
+                    <motion.div 
+                        initial={{ opacity: 0, scale: 0.95 }}
+                        whileInView={{ opacity: 1, scale: 1 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 1 }}
+                        className="bg-white/5 backdrop-blur-xl border border-white/10 p-8 md:p-12 lg:p-24 rounded-3xl md:rounded-[3rem] shadow-2xl"
+                    >
+                        <div className="inline-flex items-center gap-2 bg-red-500/10 text-red-400 px-4 py-1.5 font-bold uppercase tracking-widest text-[10px] md:text-xs rounded-full mb-6 md:mb-8 border border-red-500/20">
+                            <span className="relative flex h-2 w-2">
+                                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
+                                <span className="relative inline-flex rounded-full h-2 w-2 bg-red-500"></span>
+                            </span>
+                            High Demand Warning
+                        </div>
+                        
+                        <h2 className="text-3xl md:text-5xl lg:text-7xl font-serif font-bold text-white mb-6 md:mb-8 leading-[1.1]">
+                            Excellence can't be mass-produced.
+                        </h2>
+                        
+                        <p className="text-xl text-gray-400 mb-12 font-light max-w-2xl mx-auto leading-relaxed">
+                            Due to our uncompromising commitment to quality and in-house fabrication, we only accept a limited number of {service.title.toLowerCase()} projects each month. Our schedule for this season is nearly full.
+                        </p>
+                        
+                        <div className="flex flex-col sm:flex-row justify-center gap-4 sm:gap-6 mt-8 md:mt-10">
+                            <Link href="/fast-quote" className="bg-secondary text-white hover:bg-white hover:text-primary font-bold py-4 md:py-6 px-8 md:px-12 rounded-full transition-all duration-500 hover:scale-105 shadow-[0_0_40px_rgba(217,119,6,0.4)] flex items-center justify-center gap-2 md:gap-3 text-base md:text-lg w-full sm:w-auto">
+                                Secure Your Private Project Opening <ArrowRight size={22} />
+                            </Link>
+                        </div>
+                        
+                        <p className="text-gray-500 text-xs sm:text-sm mt-4 md:mt-6">Lock in an exclusive consultation. Zero commitment required.</p>
+                    </motion.div>
+                </div>
+            </section>
+        </div>
+    );
+}
