@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import { notFound } from 'next/navigation';
 import { services } from '@/lib/servicesData';
 import Header from '@/components/Header';
@@ -42,7 +42,9 @@ export default function ServicePage({ params }: { params: { slug: string } }) {
     <div className="font-sans text-gray-900 bg-[#0a0a0a] min-h-screen">
       <Header />
       <main>
-        <ServiceDynamicContent service={service} />
+        <Suspense fallback={<div className="h-screen bg-[#0a0a0a]"></div>}>
+          <ServiceDynamicContent service={service} />
+        </Suspense>
       </main>
       <Footer />
     </div>

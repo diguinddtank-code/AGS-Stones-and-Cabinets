@@ -1,13 +1,36 @@
 'use client';
 
-import React, { useRef } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { motion, useScroll, useTransform } from 'framer-motion';
+import { useSearchParams } from 'next/navigation';
 import { Check, Calendar, Phone, ArrowRight, ShieldCheck, Star, PenTool, Hammer, Truck, HeartHandshake, HelpCircle, MapPin } from 'lucide-react';
 import type { ServiceDetail } from '@/lib/servicesData';
 
 export default function ServiceDynamicContent({ service }: { service: ServiceDetail }) {
+    const searchParams = useSearchParams();
+    const cityParam = searchParams.get('city') || searchParams.get('loc');
+    const [userCity, setUserCity] = useState("Atlanta Area");
+    
+    useEffect(() => {
+        if (cityParam) {
+            // Capitalize city
+            const formatted = cityParam.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
+            setUserCity(formatted);
+        }
+    }, [cityParam]);
+    
+    // Derived values for dynamic location insertion
+    const isSpecificLocation = userCity.toLowerCase() !== "atlanta area";
+    const localizedHeroSubtitle = isSpecificLocation 
+        ? `Serving ${userCity} & Surrounding Areas` 
+        : `Masterclass in ${service.slug.replace('-', ' ')}`;
+        
+    const localizedTrustHeadline = isSpecificLocation
+        ? `Why Homeowners in ${userCity} Choose Us`
+        : `Why Homeowners Trust AGS Stones`;
+
     const containerRef = useRef<HTMLDivElement>(null);
     const { scrollYProgress } = useScroll({
         target: containerRef,
@@ -81,7 +104,7 @@ export default function ServiceDynamicContent({ service }: { service: ServiceDet
                     >
                         <motion.div variants={fadeInUp} className="inline-flex items-center gap-3 bg-white/5 backdrop-blur-md border border-white/10 px-4 py-2 md:px-5 md:py-2.5 rounded-full mb-6 md:mb-8 shadow-2xl">
                             <span className="text-secondary w-4 h-4 md:w-auto md:h-auto">{service.icon}</span>
-                            <span className="text-white/80 text-[10px] md:text-xs font-bold uppercase tracking-[0.2em] md:tracking-[0.3em]">Masterclass in {service.slug.replace('-', ' ')}</span>
+                            <span className="text-white/80 text-[10px] md:text-xs font-bold uppercase tracking-[0.2em] md:tracking-[0.3em]">{localizedHeroSubtitle}</span>
                         </motion.div>
                         
                         <div className="overflow-visible mb-4 md:mb-6 pb-2">
@@ -97,17 +120,21 @@ export default function ServiceDynamicContent({ service }: { service: ServiceDet
                         
                         <motion.p variants={fadeInUp} className="text-lg md:text-2xl text-gray-400 font-light leading-relaxed mb-8 md:mb-10 max-w-2xl border-l-2 border-secondary pl-4 md:pl-6">
                             {service.shortDesc} 
-                            <span className="block mt-2 text-white">Don't settle for average. Demand perfection.</span>
+                            <span className="block mt-2 text-white">
+                                {isSpecificLocation 
+                                    ? `Expert craftsmanship now available in ${userCity}.` 
+                                    : "Don't settle for average. Demand perfection."}
+                            </span>
                         </motion.p>
 
-                        <motion.div variants={fadeInUp} className="flex flex-col sm:flex-row items-center sm:items-start gap-5 sm:gap-6">
-                            <Link href="/fast-quote" className="group relative overflow-hidden bg-secondary text-white font-bold py-4 px-6 md:py-5 md:px-10 rounded-full transition-all duration-500 w-full sm:w-auto text-center cursor-pointer">
-                                <span className="relative z-10 flex items-center justify-center gap-2 md:gap-3 text-sm md:text-lg">
-                                    Request Private Consultation <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform md:w-5 md:h-5" />
+                        <motion.div variants={fadeInUp} className="flex flex-col sm:flex-row items-center sm:items-start gap-5 sm:gap-6 w-full">
+                            <Link href="/fast-quote" className="group relative overflow-hidden bg-secondary text-white font-bold py-4 px-6 md:py-5 md:px-10 rounded-full transition-all duration-500 w-full sm:w-auto text-center cursor-pointer shadow-xl shadow-secondary/20 block">
+                                <span className="relative z-10 flex items-center justify-center gap-2 md:gap-3 text-[15px] md:text-lg whitespace-nowrap">
+                                    Request Private Consultation <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform md:w-5 md:h-5 shrink-0" />
                                 </span>
                                 <div className="absolute inset-0 bg-white scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]"></div>
-                                <span className="absolute inset-0 z-0 flex items-center justify-center gap-2 md:gap-3 text-primary opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100 font-bold text-sm md:text-lg">
-                                    Request Private Consultation <ArrowRight size={18} className="md:w-5 md:h-5" />
+                                <span className="absolute inset-0 z-0 flex items-center justify-center gap-2 md:gap-3 text-primary opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100 font-bold text-[15px] md:text-lg whitespace-nowrap">
+                                    Request Private Consultation <ArrowRight size={18} className="md:w-5 md:h-5 shrink-0" />
                                 </span>
                             </Link>
 
@@ -121,7 +148,7 @@ export default function ServiceDynamicContent({ service }: { service: ServiceDet
                                 </div>
                                 <div>
                                     <div className="flex text-secondary mb-0.5"><Star size={10} fill="currentColor"/><Star size={10} fill="currentColor"/><Star size={10} fill="currentColor"/><Star size={10} fill="currentColor"/><Star size={10} fill="currentColor"/></div>
-                                    <span>Trusted by premium homeowners</span>
+                                    <span>{localizedTrustHeadline}</span>
                                 </div>
                             </div>
                         </motion.div>
@@ -310,6 +337,78 @@ export default function ServiceDynamicContent({ service }: { service: ServiceDet
                 </section>
             )}
 
+            {/* Service Areas Section (Replacing Showroom CTA) */}
+            <section className="py-20 md:py-32 bg-white text-gray-900 border-t border-gray-100 border-b border-gray-100">
+                <div className="container mx-auto px-4 max-w-7xl">
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                        <motion.div 
+                            initial={{ opacity: 0, x: -30 }}
+                            whileInView={{ opacity: 1, x: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 0.8 }}
+                            className="space-y-8"
+                        >
+                            <h2 className="text-secondary font-bold tracking-[0.2em] uppercase text-xs flex items-center gap-3">
+                                <MapPin size={16} /> 
+                                Service Areas
+                            </h2>
+                            <h3 className="text-3xl md:text-5xl font-serif font-bold text-primary">
+                                {isSpecificLocation ? `Proudly Serving ${userCity}` : "Serving All of Metro Atlanta"}
+                            </h3>
+                            <p className="text-gray-600 text-lg leading-relaxed max-w-lg">
+                                Based in Duluth, we extend our {service.title.toLowerCase()} expertise to the finest homes across Georgia. Wherever you are, perfection is within reach.
+                            </p>
+                            
+                            <div className="grid grid-cols-2 sm:grid-cols-3 gap-y-4 gap-x-2 text-sm font-medium text-gray-500 pt-4 border-t border-gray-100">
+                                {["Atlanta", "Alpharetta", "Roswell", "Duluth", "Johns Creek", "Marietta", "Suwanee", "Dunwoody", "Sandy Springs", "Milton"].map((city) => (
+                                    <span key={city} className={`flex items-center gap-2 ${userCity.toLowerCase() === city.toLowerCase() ? 'text-green-600 font-bold' : ''}`}>
+                                        <div className="relative flex h-2 w-2">
+                                          {userCity.toLowerCase() === city.toLowerCase() && (
+                                            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                                          )}
+                                          <span className={`relative inline-flex rounded-full h-2 w-2 ${userCity.toLowerCase() === city.toLowerCase() ? 'bg-green-500' : 'bg-green-500/40'}`}></span>
+                                        </div> 
+                                        {city}
+                                    </span>
+                                ))}
+                            </div>
+                            
+                            <div className="pt-6">
+                                <Link href="/contact" className="text-primary font-bold hover:text-secondary flex items-center gap-2 transition-colors w-fit group">
+                                    <span className="border-b-2 border-primary/20 group-hover:border-secondary pb-0.5">Don't see your city? Contact us</span> <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
+                                </Link>
+                            </div>
+                        </motion.div>
+                        
+                        <motion.div 
+                            initial={{ opacity: 0, scale: 0.95 }}
+                            whileInView={{ opacity: 1, scale: 1 }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 0.8 }}
+                            className="relative h-[400px] md:h-[500px] rounded-3xl overflow-hidden shadow-2xl border border-gray-200 group"
+                        >
+                            <div className="absolute top-4 left-4 z-10 bg-white/90 backdrop-blur px-4 py-2 rounded-full shadow-lg border border-gray-100 flex items-center gap-2 text-xs font-bold text-gray-800">
+                                <span className="relative flex h-2.5 w-2.5">
+                                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                                    <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-green-500"></span>
+                                </span>
+                                Currently scheduling in these areas
+                            </div>
+                            <iframe 
+                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d105955.0270034237!2d-84.34914101150428!3d34.02059363574005!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x88f598c467657571%3A0x6762332675667676!2s4579%20Abbotts%20Bridge%20Rd%20Suite%20-10%2C%20Duluth%2C%20GA%2030097!5e0!3m2!1sen!2sus!4v1709867543210!5m2!1sen!2sus" 
+                                width="100%" 
+                                height="100%" 
+                                style={{ border: 0 }} 
+                                allowFullScreen 
+                                loading="lazy" 
+                                referrerPolicy="no-referrer-when-downgrade"
+                                className="absolute inset-0 grayscale-0 md:grayscale md:group-hover:grayscale-0 transition-all duration-1000"
+                            ></iframe>
+                        </motion.div>
+                    </div>
+                </div>
+            </section>
+
             {/* Seamless Process */}
             <section className="py-20 md:py-32 bg-[#f8f9fa] text-primary relative">
                 <div className="container mx-auto px-4 max-w-7xl">
@@ -377,16 +476,24 @@ export default function ServiceDynamicContent({ service }: { service: ServiceDet
                         </h2>
                         
                         <p className="text-xl text-gray-400 mb-12 font-light max-w-2xl mx-auto leading-relaxed">
-                            Due to our uncompromising commitment to quality and in-house fabrication, we only accept a limited number of {service.title.toLowerCase()} projects each month. Our schedule for this season is nearly full.
+                            Due to our uncompromising commitment to quality and in-house fabrication, we only accept a limited number of {service.title.toLowerCase()} projects {isSpecificLocation ? `in ${userCity} ` : ""}each month. Our schedule for this season is nearly full.
                         </p>
                         
-                        <div className="flex flex-col sm:flex-row justify-center gap-4 sm:gap-6 mt-8 md:mt-10">
-                            <Link href="/fast-quote" className="bg-secondary text-white hover:bg-white hover:text-primary font-bold py-4 md:py-6 px-8 md:px-12 rounded-full transition-all duration-500 hover:scale-105 shadow-[0_0_40px_rgba(217,119,6,0.4)] flex items-center justify-center gap-2 md:gap-3 text-base md:text-lg w-full sm:w-auto">
-                                Secure Your Private Project Opening <ArrowRight size={22} />
-                            </Link>
+                        <div className="flex flex-col w-full sm:w-auto mt-8 md:mt-10">
+                            <div className="flex flex-col sm:flex-row justify-center gap-4 sm:gap-6 w-full">
+                                <Link href="/fast-quote" className="bg-secondary text-white hover:bg-white hover:text-primary font-bold py-4 md:py-6 px-4 md:px-12 rounded-full transition-all duration-500 hover:scale-105 shadow-[0_0_40px_rgba(217,119,6,0.4)] hover:shadow-[0_0_40px_rgba(255,255,255,0.4)] flex items-center justify-center gap-2 md:gap-3 text-[15px] md:text-lg w-full sm:w-auto whitespace-nowrap">
+                                    Secure Your Private Project Opening <ArrowRight size={22} className="shrink-0" />
+                                </Link>
+                            </div>
+                            
+                            <div className="flex flex-wrap justify-center items-center gap-x-4 gap-y-2 text-gray-400 text-xs sm:text-sm mt-6 md:mt-8 font-medium">
+                                <span className="flex items-center gap-1.5"><Check size={14} className="text-secondary" /> Zero commitment required</span>
+                                <span className="hidden sm:inline text-gray-600">•</span>
+                                <span className="flex items-center gap-1.5"><Check size={14} className="text-secondary" /> Free In-Home Estimate</span>
+                                <span className="hidden sm:inline text-gray-600">•</span>
+                                <span className="flex items-center gap-1.5"><Check size={14} className="text-secondary" /> Factory Direct Pricing</span>
+                            </div>
                         </div>
-                        
-                        <p className="text-gray-500 text-xs sm:text-sm mt-4 md:mt-6">Lock in an exclusive consultation. Zero commitment required.</p>
                     </motion.div>
                 </div>
             </section>
