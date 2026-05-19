@@ -287,7 +287,7 @@ export default function ServiceDynamicContent({ service }: { service: ServiceDet
                                     Words and photos can only do so much. Visit our Duluth showroom to feel the textures, see the true colors, and explore our massive inventory in person.
                                 </p>
                                 <a 
-                                    href="https://maps.app.goo.gl/3w5iM2sT35M2Q3X2A" 
+                                    href="https://maps.google.com/?q=4579+Abbotts+Bridge+Rd+Suite+-10,+Duluth,+GA+30097" 
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     className="group relative overflow-hidden bg-primary text-white font-bold py-4 px-8 md:py-5 md:px-10 rounded-full transition-all duration-500 hover:shadow-xl inline-flex items-center justify-center gap-3"
