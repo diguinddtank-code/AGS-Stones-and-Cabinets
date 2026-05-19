@@ -1,33 +1,33 @@
 import { MetadataRoute } from 'next';
 import { services } from '@/lib/servicesData';
 
+const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://agsstones.com';
+
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = 'https://agsstonesandcabinets.com'; 
+  // Static Routes
+  const staticRoutes: MetadataRoute.Sitemap = [
+    {
+      url: `${baseUrl}`,
+      lastModified: new Date(),
+      changeFrequency: 'weekly',
+      priority: 1,
+    },
+    {
+      url: `${baseUrl}/fast-quote`,
+      lastModified: new Date(),
+      changeFrequency: 'monthly',
+      priority: 0.8,
+    },
+    // Add other static routes as they are created
+  ];
 
-  // Core static pages
-  const corePages = [
-    '',
-    '/about',
-    '/contact',
-    '/fast-quote',
-    '/quote',
-    '/showroom',
-    '/privacy',
-    '/terms'
-  ].map((route) => ({
-    url: `${baseUrl}${route}`,
-    lastModified: new Date(),
-    changeFrequency: 'weekly' as const,
-    priority: route === '' ? 1 : 0.8,
-  }));
-
-  // Dynamic service pages
-  const servicePages = services.map((service) => ({
+  // Dynamic Service Routes
+  const serviceRoutes: MetadataRoute.Sitemap = services.map((service) => ({
     url: `${baseUrl}/services/${service.slug}`,
     lastModified: new Date(),
-    changeFrequency: 'weekly' as const,
+    changeFrequency: 'weekly',
     priority: 0.9,
   }));
 
-  return [...corePages, ...servicePages];
+  return [...staticRoutes, ...serviceRoutes];
 }

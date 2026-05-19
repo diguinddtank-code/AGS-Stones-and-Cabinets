@@ -4,7 +4,7 @@ import React, { useRef } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { motion, useScroll, useTransform } from 'framer-motion';
-import { Check, Calendar, Phone, ArrowRight, ShieldCheck, Star, PenTool, Hammer, Truck, HeartHandshake, HelpCircle } from 'lucide-react';
+import { Check, Calendar, Phone, ArrowRight, ShieldCheck, Star, PenTool, Hammer, Truck, HeartHandshake, HelpCircle, MapPin } from 'lucide-react';
 import type { ServiceDetail } from '@/lib/servicesData';
 
 export default function ServiceDynamicContent({ service }: { service: ServiceDetail }) {
@@ -242,6 +242,68 @@ export default function ServiceDynamicContent({ service }: { service: ServiceDet
                     </motion.div>
                 </div>
             </section>
+
+            {/* Gallery Section */}
+            {service.gallery && service.gallery.length > 0 && (
+                <section className="py-24 bg-white">
+                    <div className="container mx-auto px-4 max-w-7xl">
+                        <div className="text-center mb-16 md:mb-20">
+                            <h2 className="text-secondary font-bold tracking-[0.2em] uppercase text-xs mb-4">Portfolio</h2>
+                            <h3 className="text-4xl md:text-5xl font-serif font-bold text-gray-900">{service.title} Gallery</h3>
+                        </div>
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+                            {service.gallery.map((imgUrl, idx) => (
+                                <motion.div 
+                                    key={idx}
+                                    initial={{ opacity: 0, y: 30 }}
+                                    whileInView={{ opacity: 1, y: 0 }}
+                                    viewport={{ once: true }}
+                                    transition={{ delay: idx * 0.1, duration: 0.8 }}
+                                    className="group relative aspect-[4/3] rounded-3xl overflow-hidden cursor-pointer shadow-sm hover:shadow-2xl transition-all duration-500"
+                                >
+                                    <Image 
+                                        src={imgUrl}
+                                        alt={`${service.title} work example ${idx + 1}`}
+                                        fill
+                                        className="object-cover transition-transform duration-[2s] group-hover:scale-110"
+                                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                                    />
+                                    <div className="absolute inset-0 bg-primary/0 group-hover:bg-primary/20 transition-colors duration-500 mix-blend-overlay"></div>
+                                </motion.div>
+                            ))}
+                        </div>
+                        
+                        <div className="mt-16 md:mt-24 text-center">
+                            <motion.div
+                                initial={{ opacity: 0, y: 30 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true }}
+                                transition={{ duration: 0.8 }}
+                                className="inline-flex flex-col items-center p-8 md:p-16 bg-[#f8f9fa] rounded-[2rem] border border-gray-200 w-full max-w-4xl mx-auto shadow-sm"
+                            >
+                                <MapPin className="text-secondary w-10 h-10 mb-6 opacity-80" strokeWidth={1.5} />
+                                <h4 className="text-3xl md:text-5xl font-serif font-bold text-primary mb-4 leading-tight">Want to see more?</h4>
+                                <p className="text-gray-600 mb-8 max-w-lg text-lg">
+                                    Words and photos can only do so much. Visit our Duluth showroom to feel the textures, see the true colors, and explore our massive inventory in person.
+                                </p>
+                                <a 
+                                    href="https://maps.app.goo.gl/3w5iM2sT35M2Q3X2A" 
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="group relative overflow-hidden bg-primary text-white font-bold py-4 px-8 md:py-5 md:px-10 rounded-full transition-all duration-500 hover:shadow-xl inline-flex items-center justify-center gap-3"
+                                >
+                                    <span className="relative z-10 flex items-center gap-2 text-base md:text-lg transition-transform duration-500 group-hover:-translate-y-[150%]">
+                                        Get Directions <ArrowRight size={18} />
+                                    </span>
+                                    <span className="absolute inset-0 z-10 flex items-center justify-center gap-2 text-base md:text-lg text-primary bg-secondary translate-y-[150%] group-hover:translate-y-0 transition-transform duration-500">
+                                        Get Directions <ArrowRight size={18} />
+                                    </span>
+                                </a>
+                            </motion.div>
+                        </div>
+                    </div>
+                </section>
+            )}
 
             {/* Seamless Process */}
             <section className="py-20 md:py-32 bg-[#f8f9fa] text-primary relative">
