@@ -283,11 +283,16 @@ export default function ServiceDynamicContent({ service }: { service: ServiceDet
                             >
                                 <MapPin className="text-secondary w-10 h-10 mb-6 opacity-80" strokeWidth={1.5} />
                                 <h4 className="text-3xl md:text-5xl font-serif font-bold text-primary mb-4 leading-tight">Want to see more?</h4>
-                                <p className="text-gray-600 mb-8 max-w-lg text-lg">
+                                <p className="text-gray-600 mb-6 max-w-lg text-lg">
                                     Words and photos can only do so much. Visit our Duluth showroom to feel the textures, see the true colors, and explore our massive inventory in person.
                                 </p>
+                                <p className="text-gray-900 font-medium mb-8 text-center max-w-sm">
+                                    AGS STONES & CABINETS<br/>
+                                    4579 Abbotts Bridge Rd Suite -10<br/>
+                                    Duluth, GA 30097, United States
+                                </p>
                                 <a 
-                                    href="https://maps.google.com/?q=4579+Abbotts+Bridge+Rd+Suite+-10,+Duluth,+GA+30097" 
+                                    href="https://maps.google.com/?q=AGS+STONES+%26+CABINETS,+4579+Abbotts+Bridge+Rd+Suite+-10,+Duluth,+GA+30097,+United+States" 
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     className="group relative overflow-hidden bg-primary text-white font-bold py-4 px-8 md:py-5 md:px-10 rounded-full transition-all duration-500 hover:shadow-xl inline-flex items-center justify-center gap-3"

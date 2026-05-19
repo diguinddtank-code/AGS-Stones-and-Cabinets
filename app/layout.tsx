@@ -103,7 +103,7 @@ export default function RootLayout({
               "url": "https://www.agsstonefabricators.com",
               "telephone": "+14049524534",
               "priceRange": "$$",
-              "hasMap": "https://maps.google.com/?q=4579+Abbotts+Bridge+Rd,+Duluth,+GA+30097",
+              "hasMap": "https://maps.google.com/?q=AGS+STONES+%26+CABINETS,+4579+Abbotts+Bridge+Rd+Suite+-10,+Duluth,+GA+30097,+United+States",
               "address": {
                 "@type": "PostalAddress",
                 "streetAddress": "4579 Abbotts Bridge Rd Suite -10",

@@ -419,11 +419,12 @@ function FastQuoteContent() {
                 <div>
                   <h4 className="font-bold text-gray-900 mb-1.5 tracking-wide">Our Location</h4>
                   <p className="text-gray-500 text-sm leading-relaxed mb-3">
+                    AGS STONES & CABINETS<br />
                     4579 Abbotts Bridge Rd Suite -10<br />
-                    Duluth, GA 30097
+                    Duluth, GA 30097, United States
                   </p>
                   <a 
-                    href="https://maps.google.com/?q=4579+Abbotts+Bridge+Rd+Suite+-10,+Duluth,+GA+30097" 
+                    href="https://maps.google.com/?q=AGS+STONES+%26+CABINETS,+4579+Abbotts+Bridge+Rd+Suite+-10,+Duluth,+GA+30097,+United+States" 
                     target="_blank" 
                     rel="noopener noreferrer"
                     className="inline-flex items-center gap-2 text-amber-600 font-black text-[11px] tracking-[0.15em] uppercase hover:text-amber-700 transition-colors"

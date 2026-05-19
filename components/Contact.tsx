@@ -77,7 +77,7 @@ const Contact: React.FC = () => {
                         <p className="font-bold text-gray-800 text-sm">Mon-Fri: 8am - 6pm</p>
                      </div>
                      <a 
-                        href="https://maps.google.com/?q=4579+Abbotts+Bridge+Rd,+Duluth,+GA+30097" 
+                        href="https://maps.google.com/?q=AGS+STONES+%26+CABINETS,+4579+Abbotts+Bridge+Rd+Suite+-10,+Duluth,+GA+30097,+United+States" 
                         target="_blank" 
                         rel="noopener noreferrer"
                         className="flex items-center gap-2 bg-primary text-white px-5 py-2.5 rounded-lg font-bold text-sm shadow hover:bg-gray-800 transition-colors"

@@ -53,9 +53,9 @@ const ContactClient = () => {
                     </div>
                     <div>
                       <h3 className="font-bold text-gray-900 text-lg">Visit Our Showroom</h3>
-                      <p className="text-gray-600">4579 Abbotts Bridge Rd Suite -10<br/>Duluth, GA 30097</p>
+                      <p className="text-gray-600">AGS STONES & CABINETS<br/>4579 Abbotts Bridge Rd Suite -10<br/>Duluth, GA 30097, United States</p>
                       <a 
-                        href="https://maps.google.com/?q=4579+Abbotts+Bridge+Rd+Suite+-10,+Duluth,+GA+30097" 
+                        href="https://maps.google.com/?q=AGS+STONES+%26+CABINETS,+4579+Abbotts+Bridge+Rd+Suite+-10,+Duluth,+GA+30097,+United+States" 
                         target="_blank" 
                         rel="noopener noreferrer"
                         className="text-secondary hover:underline text-sm mt-1 inline-block"
