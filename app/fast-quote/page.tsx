@@ -85,9 +85,13 @@ function FastQuoteContent() {
     e.preventDefault();
     setIsSubmitting(true);
     
+    // Generate eventId for pixel duplication prevention
+    const submitEventId = typeof crypto !== 'undefined' && crypto.randomUUID ? crypto.randomUUID() : `lead_${Date.now()}`;
+    
     const submitData: Record<string, string> = {
       access_key: "8120d187-d8e4-4348-83a8-b0248042becb",
       _subject: 'New Lead - Fast Quote Form',
+      'Event ID': submitEventId,
       'Project Type': formData.projectType,
       Name: formData.name,
       Phone: formData.phone,
@@ -111,8 +115,7 @@ function FastQuoteContent() {
         setSuccess(true);
         try {
           if (typeof window !== 'undefined') {
-            const eventId = typeof crypto !== 'undefined' && crypto.randomUUID ? crypto.randomUUID() : `lead_${Date.now()}`;
-            if ((window as any).fbq) (window as any).fbq('track', 'Lead', {}, { eventID: eventId });
+            if ((window as any).fbq) (window as any).fbq('track', 'Lead', {}, { eventID: submitEventId });
             if ((window as any).gtag) (window as any).gtag('event', 'conversion', { 'send_to': 'AW-16885125181/R1mQCP6Dm5McEL2guvM-' });
           }
         } catch(e) {}
@@ -138,9 +141,9 @@ function FastQuoteContent() {
             fill
             priority
             fetchPriority="high"
-            sizes="100vw"
-            quality={60}
-            className="object-cover"
+            quality={75}
+            className="object-cover opacity-90"
+            sizes="(max-width: 768px) 100vw, 100vw"
           />
           {loadVideo && (
             <video
@@ -158,21 +161,21 @@ function FastQuoteContent() {
 
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full flex flex-col items-center">
           
-          <div className="text-center text-white mb-6 w-full animate-in fade-in slide-in-from-top-4 duration-700">
-            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/10 border border-white/20 backdrop-blur-md mb-3">
+          <div className="text-center text-white mb-6 w-full animate-in fade-in slide-in-from-top-2 duration-500">
+            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/10 border border-white/20 backdrop-blur-md mb-3 shadow-lg">
               <Star className="w-3 h-3 text-secondary fill-secondary" />
-              <span className="text-[10px] font-bold tracking-wider uppercase text-white/90">Georgia's #1 Direct Fabricator</span>
+              <span className="text-[10px] font-bold tracking-wider uppercase text-white/90">Rated #1 in Georgia for Custom Stone</span>
             </div>
-            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-serif font-bold leading-tight mb-2 drop-shadow-lg">
-              <span className="text-secondary">Fast Quote</span> Request
+            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-serif font-bold leading-tight mb-2 drop-shadow-lg text-white">
+              <span className="text-secondary">Premium</span> Countertops & Cabinetry
             </h1>
-            <p className="text-sm sm:text-base lg:text-lg text-gray-300 max-w-xl mx-auto drop-shadow-md font-medium">
-              Provide your details below to lock in factory-direct pricing.
+            <p className="text-sm sm:text-base lg:text-lg text-white/80 max-w-xl mx-auto drop-shadow-md font-medium">
+              Lock in your exclusive factory-direct estimate. Experience luxury design without the retail markup.
             </p>
           </div>
 
           {/* Form Container - Compact Glassmorphism */}
-          <div className="w-full max-w-2xl mx-auto animate-in fade-in slide-in-from-bottom-4 duration-700 delay-150 fill-mode-both">
+          <div className="w-full max-w-2xl mx-auto animate-in fade-in slide-in-from-bottom-2 duration-500 fill-mode-both">
             <div className="bg-white/95 backdrop-blur-xl rounded-[1.5rem] shadow-2xl border border-white/50 overflow-hidden relative min-h-[320px] flex flex-col">
               
               <div className="p-6 sm:p-8 flex-grow flex flex-col relative z-10">
@@ -228,10 +231,10 @@ function FastQuoteContent() {
                                     key={option.id}
                                     type="button"
                                     onClick={() => setFormData({...formData, projectType: option.id})}
-                                    className={`py-3 px-2 rounded-xl text-[11px] sm:text-xs font-bold transition-all border-2 flex items-center justify-center text-center ${
+                                    className={`py-3.5 px-2 rounded-xl text-[12px] sm:text-[13px] font-bold transition-all duration-300 border-2 flex items-center justify-center text-center w-full ${
                                     formData.projectType === option.id 
-                                        ? 'border-blue-600 bg-blue-50 text-blue-700 shadow-sm' 
-                                        : 'border-slate-100 bg-slate-50 text-slate-500 hover:border-slate-200 hover:bg-white hover:text-slate-800'
+                                        ? 'border-secondary bg-secondary/5 text-secondary shadow-[0_2px_10px_rgba(239,122,54,0.1)]' 
+                                        : 'border-slate-200 bg-white text-slate-500 hover:border-secondary/40 hover:bg-slate-50 hover:text-slate-800 hover:shadow-sm'
                                     }`}
                                 >
                                     {option.label}
@@ -251,7 +254,7 @@ function FastQuoteContent() {
                                     required 
                                     value={formData.name}
                                     onChange={(e) => setFormData({...formData, name: e.target.value})}
-                                    className="block w-full pl-10 pr-4 py-3.5 bg-white border-2 border-slate-200 rounded-xl focus:border-blue-600 focus:ring-2 focus:ring-blue-600/20 outline-none transition-all text-slate-900 font-bold text-sm placeholder:text-slate-400 placeholder:font-medium"
+                                    className="block w-full pl-10 pr-4 py-3.5 bg-white border-2 border-slate-200 rounded-xl focus:border-orange-500 focus:ring-2 focus:ring-orange-500/20 outline-none transition-all text-slate-900 font-bold text-sm placeholder:text-slate-400 placeholder:font-medium"
                                     placeholder="Full Name"
                                 />
                             </div>
@@ -266,7 +269,7 @@ function FastQuoteContent() {
                                     required 
                                     value={formData.phone}
                                     onChange={handlePhoneChange}
-                                    className="block w-full pl-10 pr-4 py-3.5 bg-white border-2 border-slate-200 rounded-xl focus:border-blue-600 focus:ring-2 focus:ring-blue-600/20 outline-none transition-all text-slate-900 font-bold text-sm placeholder:text-slate-400 placeholder:font-medium"
+                                    className="block w-full pl-10 pr-4 py-3.5 bg-white border-2 border-slate-200 rounded-xl focus:border-orange-500 focus:ring-2 focus:ring-orange-500/20 outline-none transition-all text-slate-900 font-bold text-sm placeholder:text-slate-400 placeholder:font-medium"
                                     placeholder="Phone Number"
                                 />
                             </div>
@@ -281,7 +284,7 @@ function FastQuoteContent() {
                                     required 
                                     value={formData.email}
                                     onChange={(e) => setFormData({...formData, email: e.target.value})}
-                                    className="block w-full pl-10 pr-4 py-3.5 bg-white border-2 border-slate-200 rounded-xl focus:border-blue-600 focus:ring-2 focus:ring-blue-600/20 outline-none transition-all text-slate-900 font-bold text-sm placeholder:text-slate-400 placeholder:font-medium"
+                                    className="block w-full pl-10 pr-4 py-3.5 bg-white border-2 border-slate-200 rounded-xl focus:border-orange-500 focus:ring-2 focus:ring-orange-500/20 outline-none transition-all text-slate-900 font-bold text-sm placeholder:text-slate-400 placeholder:font-medium"
                                     placeholder="Email Address"
                                 />
                             </div>
@@ -297,7 +300,7 @@ function FastQuoteContent() {
                                     maxLength={5}
                                     value={formData.zipCode}
                                     onChange={handleZipChange}
-                                    className="block w-full pl-10 pr-4 py-3.5 bg-white border-2 border-slate-200 rounded-xl focus:border-blue-600 focus:ring-2 focus:ring-blue-600/20 outline-none transition-all text-slate-900 font-bold text-sm placeholder:text-slate-400 placeholder:font-medium"
+                                    className="block w-full pl-10 pr-4 py-3.5 bg-white border-2 border-slate-200 rounded-xl focus:border-orange-500 focus:ring-2 focus:ring-orange-500/20 outline-none transition-all text-slate-900 font-bold text-sm placeholder:text-slate-400 placeholder:font-medium"
                                     placeholder="Zip Code"
                                 />
                             </div>
@@ -311,15 +314,15 @@ function FastQuoteContent() {
                             <textarea 
                                 value={formData.message}
                                 onChange={(e) => setFormData({...formData, message: e.target.value})}
-                                className="block w-full pl-10 pr-4 py-3.5 bg-white border-2 border-slate-200 rounded-xl focus:border-blue-600 focus:ring-2 focus:ring-blue-600/20 outline-none transition-all text-slate-900 font-bold text-sm placeholder:text-slate-400 placeholder:font-medium min-h-[90px] resize-none"
+                                className="block w-full pl-10 pr-4 py-3.5 bg-white border-2 border-slate-200 rounded-xl focus:border-orange-500 focus:ring-2 focus:ring-orange-500/20 outline-none transition-all text-slate-900 font-bold text-sm placeholder:text-slate-400 placeholder:font-medium min-h-[90px] resize-none"
                                 placeholder="Tell us about your project (dimensions, stone preference, etc...)"
                             />
                         </div>
 
                         <button 
-                            type="submit" 
+                            type="submit"
                             disabled={isSubmitting}
-                            className="w-full bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 disabled:from-slate-400 disabled:to-slate-400 text-white font-extrabold py-4 rounded-xl shadow-[0_8px_20px_-6px_rgba(249,115,22,0.6)] hover:shadow-[0_12px_25px_-6px_rgba(249,115,22,0.8)] transition-all hover:-translate-y-0.5 flex items-center justify-center gap-2 text-lg"
+                            className="w-full bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 disabled:from-slate-400 disabled:to-slate-400 text-white font-extrabold py-4 rounded-xl shadow-[0_8px_20px_-6px_rgba(249,115,22,0.6)] hover:shadow-[0_12px_25px_-6px_rgba(249,115,22,0.8)] transition-all hover:-translate-y-0.5 flex items-center justify-center gap-2 text-base sm:text-lg"
                         >
                             {isSubmitting ? (
                             <><Loader2 className="animate-spin w-5 h-5" /> Sending Request...</>
@@ -345,7 +348,7 @@ function FastQuoteContent() {
           </div>
 
           {/* Trust Badges - Premium Local Business Indicators */}
-          <div className="w-full max-w-4xl mx-auto mt-8 sm:mt-12 grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 animate-in fade-in duration-700 delay-300 fill-mode-both px-2">
+          <div className="w-full max-w-4xl mx-auto mt-8 sm:mt-12 grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 animate-in fade-in duration-500 delay-150 fill-mode-both px-2">
             
             {/* 25+ Years Experience */}
             <div className="group relative flex flex-row items-center justify-start p-2 sm:p-2.5 pr-4 sm:pr-5 rounded-full bg-white/5 backdrop-blur-md border border-white/10 hover:border-white/20 transition-all duration-300 hover:-translate-y-1 hover:bg-white/10 shadow-lg gap-3">

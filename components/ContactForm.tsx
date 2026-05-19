@@ -10,8 +10,12 @@ const ContactForm: React.FC = () => {
     e.preventDefault();
     setStatus('loading');
 
+    const eventId = typeof crypto !== 'undefined' && crypto.randomUUID ? crypto.randomUUID() : `lead_${Date.now()}`;
+
     const formData = new FormData(e.currentTarget);
     formData.append('access_key', '8120d187-d8e4-4348-83a8-b0248042becb');
+    formData.append('Event ID', eventId);
+    
     const submitData = Object.fromEntries(formData.entries());
 
     try {
@@ -28,7 +32,6 @@ const ContactForm: React.FC = () => {
         setStatus('success');
         try {
           if (typeof window !== 'undefined') {
-            const eventId = typeof crypto !== 'undefined' && crypto.randomUUID ? crypto.randomUUID() : `lead_${Date.now()}`;
             if ((window as any).fbq) (window as any).fbq('track', 'Lead', {}, { eventID: eventId });
             if ((window as any).gtag) (window as any).gtag('event', 'conversion', { 'send_to': 'AW-16885125181/R1mQCP6Dm5McEL2guvM-' });
           }

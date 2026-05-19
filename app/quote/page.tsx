@@ -184,10 +184,13 @@ function QuoteContent() {
     e.preventDefault();
     setStatus('submitting');
     
+    const submitEventId = typeof crypto !== 'undefined' && crypto.randomUUID ? crypto.randomUUID() : `lead_${Date.now()}`;
+    
     const submitData = {
       access_key: "8120d187-d8e4-4348-83a8-b0248042becb",
       _subject: 'New Lead - Multi-Step Quote Quiz',
       _template: 'table',
+      'Event ID': submitEventId,
       Homeowner: formData.isHomeowner,
       'Project Type': formData.projectType,
       'Zip Code': formData.zipCode,
@@ -211,8 +214,7 @@ function QuoteContent() {
         setStatus('success');
         try {
           if (typeof window !== 'undefined') {
-            const eventId = typeof crypto !== 'undefined' && crypto.randomUUID ? crypto.randomUUID() : `lead_${Date.now()}`;
-            if ((window as any).fbq) (window as any).fbq('track', 'Lead', {}, { eventID: eventId });
+            if ((window as any).fbq) (window as any).fbq('track', 'Lead', {}, { eventID: submitEventId });
             if ((window as any).gtag) (window as any).gtag('event', 'conversion', { 'send_to': 'AW-16885125181/R1mQCP6Dm5McEL2guvM-' });
           }
         } catch(e) {}

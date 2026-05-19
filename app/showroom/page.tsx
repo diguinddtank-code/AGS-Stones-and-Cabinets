@@ -85,10 +85,13 @@ function ShowroomContent() {
     triggerHaptic();
     setIsSubmitting(true);
     
+    const submitEventId = typeof crypto !== 'undefined' && crypto.randomUUID ? crypto.randomUUID() : `lead_${Date.now()}`;
+    
     // Simulate API submission + Real submission via FormSubmit
     const submitData = {
       access_key: "8120d187-d8e4-4348-83a8-b0248042becb",
       _subject: 'New Lead - Digital Showroom',
+      'Event ID': submitEventId,
       'Area Selected': areas.find(a=>a.id === selectedArea)?.title || String(selectedArea),
       'Stone Selected': stones.find(s=>s.id === selectedStone)?.title || String(selectedStone),
       Name: formData.name,
@@ -111,8 +114,7 @@ function ShowroomContent() {
         triggerHaptic([50, 50, 100]); // Success pattern vibration
         try {
           if (typeof window !== 'undefined') {
-            const eventId = typeof crypto !== 'undefined' && crypto.randomUUID ? crypto.randomUUID() : `lead_${Date.now()}`;
-            if ((window as any).fbq) (window as any).fbq('track', 'Lead', {}, { eventID: eventId });
+            if ((window as any).fbq) (window as any).fbq('track', 'Lead', {}, { eventID: submitEventId });
             if ((window as any).gtag) (window as any).gtag('event', 'conversion', { 'send_to': 'AW-16885125181/R1mQCP6Dm5McEL2guvM-' });
           }
         } catch(e) {}
