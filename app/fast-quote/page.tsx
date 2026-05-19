@@ -11,47 +11,46 @@ import {
   Phone,
   Lock,
   Award,
-  ChevronLeft,
-  Zap,
-  Star,
   Users,
-  Timer,
-  Check,
-  Package,
-  Truck,
-  Gem,
   MapPin,
-  ChevronDown,
   Pencil,
-  UtensilsCrossed,
-  Bath,
-  Home
+  Loader2,
+  Star
 } from 'lucide-react';
-import TopBar from '../../components/TopBar';
+import Header from '../../components/Header';
 import dynamic from 'next/dynamic';
+import { motion } from 'framer-motion';
 
 const Testimonials = dynamic(() => import('../../components/Testimonials'), { ssr: false });
-const StoneGallery = dynamic(() => import('../../components/StoneGallery'), { ssr: false });
-
-import { motion } from 'framer-motion';
 
 function FastQuoteContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [success, setSuccess] = useState(false);
+  const [loadVideo, setLoadVideo] = useState(false);
   
   useEffect(() => {
     if (searchParams.get('success') === 'true') {
       setSuccess(true);
       try {
         if (typeof window !== 'undefined') {
-          if ((window as any).fbq) (window as any).fbq('track', 'Lead');
+          const eventId = typeof crypto !== 'undefined' && crypto.randomUUID ? crypto.randomUUID() : `lead_${Date.now()}`;
+          if ((window as any).fbq) (window as any).fbq('track', 'Lead', {}, { eventID: eventId });
           if ((window as any).gtag) (window as any).gtag('event', 'conversion', { 'send_to': 'AW-16885125181/R1mQCP6Dm5McEL2guvM-' });
         }
       } catch(e) {}
     }
   }, [searchParams]);
+
+  useEffect(() => {
+    if (typeof window !== 'undefined' && window.innerWidth >= 768) {
+      const timer = setTimeout(() => {
+        setLoadVideo(true);
+      }, 1500);
+      return () => clearTimeout(timer);
+    }
+  }, []);
 
   const [formData, setFormData] = useState({
     projectType: 'Kitchen Countertops',
@@ -61,21 +60,6 @@ function FastQuoteContent() {
     zipCode: '',
     message: '',
   });
-
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1
-      }
-    }
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0 }
-  };
 
   const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     let val = e.target.value.replace(/\D/g, '');
@@ -127,7 +111,8 @@ function FastQuoteContent() {
         setSuccess(true);
         try {
           if (typeof window !== 'undefined') {
-            if ((window as any).fbq) (window as any).fbq('track', 'Lead');
+            const eventId = typeof crypto !== 'undefined' && crypto.randomUUID ? crypto.randomUUID() : `lead_${Date.now()}`;
+            if ((window as any).fbq) (window as any).fbq('track', 'Lead', {}, { eventID: eventId });
             if ((window as any).gtag) (window as any).gtag('event', 'conversion', { 'send_to': 'AW-16885125181/R1mQCP6Dm5McEL2guvM-' });
           }
         } catch(e) {}
@@ -140,373 +125,368 @@ function FastQuoteContent() {
     }
   };
 
-  if (success) {
-    return (
-      <div className="min-h-screen bg-gray-50 flex flex-col font-sans">
-        <TopBar />
-        <header className="py-5 px-6 sm:px-10 border-b border-gray-100 flex justify-between items-center bg-white shadow-sm font-sans">
-          <Link href="/" aria-label="AGS Stones Home">
-            <Image 
-              src="https://i.imgur.com/B0ZaBpN.png" 
-              alt="AGS Stones and Cabinets Logo" 
-              className="h-8 sm:h-10 w-auto"
-              priority
-              width={180}
-              height={48}
-            />
-          </Link>
-          <a href="tel:4049524534" className="flex items-center gap-2 text-sm font-semibold text-gray-900 bg-gray-50 px-4 py-2 rounded-full border border-gray-100 transition-colors hover:bg-gray-100">
-            <Phone size={16} className="text-amber-600" />
-            <span className="hidden sm:inline font-bold">(404) 952-4534</span>
-            <span className="sm:hidden font-bold">Call Now</span>
-          </a>
-        </header>
-        <div className="flex-1 flex items-center justify-center p-6 lg:p-12">
-          <motion.div 
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            className="bg-white p-10 md:p-16 rounded-[32px] shadow-xl text-center max-w-lg w-full border border-gray-100 font-sans"
-          >
-            <div className="w-20 h-20 bg-emerald-50 text-emerald-500 rounded-full flex items-center justify-center mx-auto mb-6 shadow-sm">
-              <CheckCircle2 size={40} />
-            </div>
-            <h1 className="text-3xl font-serif font-black text-gray-900 mb-4">Quote Requested!</h1>
-            <p className="text-gray-600 mb-8 text-lg text-balance">
-              Thank you, {formData.name.split(' ')[0] || 'there'}. We have received your request and our design team will contact you shortly with your <span className="font-extrabold text-gray-900">custom factory-direct pricing</span>.
-            </p>
-            <div className="space-y-3">
-              <a 
-                href="tel:4049524534"
-                className="bg-[#1e293b] text-white px-8 py-4 rounded-xl font-bold hover:bg-black transition-all w-full flex items-center justify-center gap-2 shadow-lg hover:scale-[1.02] active:scale-95"
-              >
-                <Phone size={20} /> Need it Faster? Call Now
-              </a>
-              <button 
-                onClick={() => router.push('/')}
-                className="bg-white text-gray-600 px-8 py-4 rounded-xl font-bold border border-gray-200 hover:bg-gray-50 transition-all w-full hover:scale-[1.02] active:scale-95"
-              >
-                Return to Homepage
-              </button>
-            </div>
-          </motion.div>
-        </div>
-      </div>
-    );
-  }
-
   return (
-    <div className="min-h-screen bg-white flex flex-col font-sans selection:bg-amber-100 overflow-x-hidden">
-      <TopBar />
+    <div className="min-h-screen font-sans bg-slate-50">
+      <Header />
       
-      <div className="relative">
-        {/* Transparent Header over Hero */}
-        <header className="absolute top-6 sm:top-10 left-0 w-full z-50 px-6 sm:px-12 flex justify-between items-center pointer-events-none">
-          <Link href="/" className="pointer-events-auto">
-            <Image 
-              src="https://i.imgur.com/B0ZaBpN.png" 
-              alt="AGS Stones Logo" 
-              width={160}
-              height={44}
-              referrerPolicy="no-referrer"
-              className="h-9 sm:h-12 w-auto brightness-0 invert"
-            />
-          </Link>
-          <div className="hidden sm:flex items-center gap-6 pointer-events-auto">
-            <a href="tel:4049524534" className="text-white font-black text-lg hover:text-amber-400 transition-colors drop-shadow-md">
-              (404) 952-4534
-            </a>
-          </div>
-        </header>
-        
-        {/* Hero Section with Background Image - MATCHING IMAGE STYLE */}
-        <div className="relative flex flex-col items-center justify-start pt-24 sm:pt-28 pb-32 sm:pb-48 px-4 overflow-hidden">
-          {/* Background Overlay */}
-          <div className="absolute inset-0 z-0">
-            <Image 
-              src="https://i.imgur.com/aHv4bLV.png"
-              alt="Premium Countertops background"
-              fill
-              referrerPolicy="no-referrer"
-              className="object-cover"
-              priority
-            />
-            <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/50 to-transparent sm:bg-black/40"></div>
-          </div>
-
-          <motion.div 
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="relative z-10 text-center max-w-5xl mx-auto px-4 w-full"
-          >
-            <p className="text-amber-400 font-black tracking-[0.3em] uppercase text-[10px] sm:text-xs mb-4">Elevate your kitchen</p>
-            <h1 className="text-4xl sm:text-6xl md:text-7xl font-serif font-black text-white mb-0 leading-[1.1] tracking-tight drop-shadow-md">
-              Premium Countertops & Cabinets
-            </h1>
-          </motion.div>
-        </div>
-      </div>
-
-      <main className="flex-1 flex flex-col w-full px-4 -mt-24 sm:-mt-40 relative z-20 pb-20">
-        {/* Form Container precisely matching image */}
-        <motion.div 
-          initial={{ opacity: 0, y: 40 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          className="bg-white rounded-[2rem] sm:rounded-[3rem] p-8 sm:p-12 lg:p-16 max-w-2xl mx-auto w-full shadow-2xl border border-gray-100 flex flex-col items-center"
-        >
-          
-          <div className="text-center mb-10">
-            <div className="flex items-center justify-center gap-4 mb-4">
-              <div className="h-px w-8 bg-amber-200"></div>
-              <span className="text-amber-600 font-bold tracking-[0.2em] uppercase text-[10px] sm:text-xs">Complimentary Design Consultation</span>
-              <div className="h-px w-8 bg-amber-200"></div>
-            </div>
-            <h2 className="text-3xl sm:text-4xl font-serif font-black text-gray-900 mb-3 block">
-              Request an <span className="text-amber-500">Estimate</span>
-            </h2>
-            <p className="text-gray-500 text-sm sm:text-base font-medium leading-relaxed max-w-xs sm:max-w-sm mx-auto">
-              Provide your details below for a custom layout and exact factory-direct pricing.
-            </p>
-          </div>
-
-          <motion.form 
-            variants={containerVariants}
-            initial="hidden"
-            animate="visible"
-            onSubmit={handleSubmit} 
-            className="w-full"
-          >
-            {/* Project Selection */}
-            <motion.div variants={itemVariants} className="mb-6 sm:mb-8">
-              <label className="block text-xs font-bold text-gray-400 mb-4 text-center sm:text-left tracking-[0.15em] uppercase">Select Project Type</label>
-              <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">
-                {[
-                  { id: 'Kitchen Countertops', label: 'Kitchen Countertops' },
-                  { id: 'Bathroom Vanities', label: 'Bathroom Vanities' },
-                  { id: 'Cabinets', label: 'Cabinets' },
-                  { id: 'Full Remodel', label: 'Full Remodel' }
-                ].map((option) => (
-                  <div 
-                    key={option.id}
-                    onClick={() => setFormData({...formData, projectType: option.id})}
-                    className={`cursor-pointer rounded-xl px-2 py-4 transition-all duration-300 flex items-center justify-center text-center select-none border-2 ${
-                      formData.projectType === option.id 
-                        ? 'border-[#1e293b] bg-[#1e293b] text-white shadow-lg shadow-slate-900/20' 
-                        : 'border-gray-100 bg-gray-50 text-gray-500 hover:border-gray-300 hover:bg-white hover:text-gray-900 hover:shadow-sm'
-                    }`}
-                  >
-                    <span className="text-sm font-bold leading-tight">
-                      {option.label}
-                    </span>
-                  </div>
-                ))}
-              </div>
-            </motion.div>
-
-            {/* Input fields with fixed padding and premium styling */}
-            <div className="space-y-4">
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <motion.div variants={itemVariants} className="relative group">
-                  <span className="absolute left-5 top-1/2 -translate-y-1/2 text-gray-400 group-focus-within:text-amber-500 transition-colors pointer-events-none">
-                    <Users size={18} strokeWidth={2.5} />
-                  </span>
-                  <input 
-                    type="text" 
-                    required 
-                    placeholder="Full Name"
-                    className="w-full bg-gray-50 border border-gray-100 text-gray-900 rounded-xl pl-12 pr-6 py-4 outline-none focus:bg-white focus:border-amber-400 focus:ring-4 focus:ring-amber-500/10 transition-all text-base font-bold placeholder:text-gray-400 placeholder:font-medium"
-                    value={formData.name}
-                    onChange={(e) => setFormData({...formData, name: e.target.value})}
-                  />
-                </motion.div>
-                
-                <motion.div variants={itemVariants} className="relative group">
-                  <span className="absolute left-5 top-1/2 -translate-y-1/2 text-gray-400 group-focus-within:text-amber-500 transition-colors pointer-events-none">
-                    <Phone size={18} strokeWidth={2.5} />
-                  </span>
-                  <input 
-                    type="tel" 
-                    required 
-                    placeholder="Phone Number"
-                    className="w-full bg-gray-50 border border-gray-100 text-gray-900 rounded-xl pl-12 pr-6 py-4 outline-none focus:bg-white focus:border-amber-400 focus:ring-4 focus:ring-amber-500/10 transition-all text-base font-bold placeholder:text-gray-400 placeholder:font-medium"
-                    value={formData.phone}
-                    onChange={handlePhoneChange}
-                  />
-                </motion.div>
-
-                <motion.div variants={itemVariants} className="relative group">
-                  <span className="absolute left-5 top-1/2 -translate-y-1/2 text-gray-400 group-focus-within:text-amber-500 transition-colors pointer-events-none">
-                    <Lock size={18} strokeWidth={2.5} />
-                  </span>
-                  <input 
-                    type="email" 
-                    required 
-                    placeholder="Email Address"
-                    className="w-full bg-gray-50 border border-gray-100 text-gray-900 rounded-xl pl-12 pr-6 py-4 outline-none focus:bg-white focus:border-amber-400 focus:ring-4 focus:ring-amber-500/10 transition-all text-base font-bold placeholder:text-gray-400 placeholder:font-medium"
-                    value={formData.email}
-                    onChange={(e) => setFormData({...formData, email: e.target.value})}
-                  />
-                </motion.div>
-
-                <motion.div variants={itemVariants} className="relative group">
-                  <span className="absolute left-5 top-1/2 -translate-y-1/2 text-gray-400 group-focus-within:text-amber-500 transition-colors pointer-events-none">
-                    <MapPin size={18} strokeWidth={2.5} />
-                  </span>
-                  <input 
-                     type="text" 
-                     required 
-                     placeholder="Zip Code"
-                     maxLength={5}
-                     className="w-full bg-gray-50 border border-gray-100 text-gray-900 rounded-xl pl-12 pr-6 py-4 outline-none focus:bg-white focus:border-amber-400 focus:ring-4 focus:ring-amber-500/10 transition-all text-base font-bold placeholder:text-gray-400 placeholder:font-medium"
-                     value={formData.zipCode}
-                     onChange={handleZipChange}
-                  />
-                </motion.div>
-              </div>
-
-              <motion.div variants={itemVariants} className="relative group">
-                <span className="absolute left-5 top-5 text-gray-400 group-focus-within:text-amber-500 transition-colors pointer-events-none">
-                  <Pencil size={18} strokeWidth={2.5} />
-                </span>
-                <textarea 
-                  placeholder="Tell us about your project (e.g. dimensions, stone preference)"
-                  className="w-full bg-gray-50 border border-gray-100 text-gray-900 rounded-xl pl-12 pr-6 py-4 outline-none focus:bg-white focus:border-amber-400 focus:ring-4 focus:ring-amber-500/10 transition-all text-base font-bold placeholder:text-gray-400 placeholder:font-medium min-h-[120px] resize-none"
-                  value={formData.message}
-                  onChange={(e) => setFormData({...formData, message: e.target.value})}
-                />
-              </motion.div>
-            </div>
-
-            <motion.button 
-              variants={itemVariants}
-              whileHover={{ scale: 1.01 }}
-              whileTap={{ scale: 0.98 }}
-              type="submit" 
-              disabled={isSubmitting}
-              className="w-full bg-amber-500 hover:bg-amber-600 disabled:bg-gray-300 disabled:cursor-not-allowed text-white font-black py-5 rounded-xl text-lg flex items-center justify-center gap-3 shadow-lg shadow-amber-500/30 transition-all mt-8 tracking-wide"
+      <section className="relative pt-36 pb-10 lg:pt-48 lg:pb-16 overflow-hidden bg-slate-900 min-h-[100dvh] flex items-center">
+        {/* Background Image & Video & Overlay */}
+        <div className="absolute inset-0 z-0 bg-[#1e293b]">
+          <Image
+            src="https://kitchenandbathshop.com/wp-content/uploads/2020/11/5d7ff4ab763f7-scaled.jpg"
+            alt="Beautiful Kitchen Background"
+            fill
+            priority
+            fetchPriority="high"
+            sizes="100vw"
+            quality={60}
+            className="object-cover"
+          />
+          {loadVideo && (
+            <video
+              autoPlay
+              loop
+              muted
+              playsInline
+              className="absolute top-0 left-0 w-full h-full object-cover opacity-60 transition-opacity duration-1000"
             >
-              {isSubmitting ? 'Sending Request...' : 'Get My Free Quote'}
-            </motion.button>
+              <source src="https://storage.googleapis.com/msgsndr/yRboz8P4zFeLUF6bAk8i/media/680a5a6f1eba4b32d1925215.mp4" type="video/mp4" />
+            </video>
+          )}
+          <div className="absolute inset-0 bg-gradient-to-b from-slate-900/80 via-slate-900/60 to-slate-900/90"></div>
+        </div>
 
-            <motion.p variants={itemVariants} className="text-[11px] text-gray-400 text-center flex items-center justify-center gap-1.5 mt-5 font-semibold uppercase tracking-wider">
-              <ShieldCheck size={14} className="text-amber-500" /> Your information is encrypted and 100% secure.
-            </motion.p>
-          </motion.form>
-        </motion.div>
-
-        {/* Showroom & Directions Section */}
-        <motion.div 
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="mt-16 sm:mt-24 rounded-[2rem] bg-gray-50 flex flex-col md:flex-row max-w-5xl mx-auto w-full border border-gray-100 shadow-sm overflow-hidden"
-        >
-          {/* Information Side */}
-          <div className="flex-1 p-8 sm:p-14 flex flex-col justify-center">
-            <h3 className="text-3xl sm:text-4xl font-serif font-black text-gray-900 mb-4 block">
-              Visit Our <span className="text-amber-500">Showroom</span>
-            </h3>
-            <p className="text-gray-500 text-sm sm:text-base font-medium leading-relaxed mb-8">
-              Explore our extensive selection of premium quartz, granite, and custom cabinetry in person. Our design experts are ready to bring your vision to life.
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full flex flex-col items-center">
+          
+          <div className="text-center text-white mb-6 w-full animate-in fade-in slide-in-from-top-4 duration-700">
+            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/10 border border-white/20 backdrop-blur-md mb-3">
+              <Star className="w-3 h-3 text-secondary fill-secondary" />
+              <span className="text-[10px] font-bold tracking-wider uppercase text-white/90">Georgia's #1 Direct Fabricator</span>
+            </div>
+            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-serif font-bold leading-tight mb-2 drop-shadow-lg">
+              <span className="text-secondary">Fast Quote</span> Request
+            </h1>
+            <p className="text-sm sm:text-base lg:text-lg text-gray-300 max-w-xl mx-auto drop-shadow-md font-medium">
+              Provide your details below to lock in factory-direct pricing.
             </p>
-            
-            <div className="space-y-8">
-              <div className="flex items-start gap-5">
-                <div className="w-12 h-12 rounded-full bg-amber-100 flex items-center justify-center flex-shrink-0 mt-1 shadow-inner shadow-white">
-                  <MapPin size={22} strokeWidth={2.5} className="text-amber-600" />
-                </div>
-                <div>
-                  <h4 className="font-bold text-gray-900 mb-1.5 tracking-wide">Our Location</h4>
-                  <p className="text-gray-500 text-sm leading-relaxed mb-3">
-                    AGS STONES & CABINETS<br />
-                    4579 Abbotts Bridge Rd Suite -10<br />
-                    Duluth, GA 30097, United States
-                  </p>
-                  <a 
-                    href="https://maps.google.com/?q=AGS+STONES+%26+CABINETS,+4579+Abbotts+Bridge+Rd+Suite+-10,+Duluth,+GA+30097,+United+States" 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 text-amber-600 font-black text-[11px] tracking-[0.15em] uppercase hover:text-amber-700 transition-colors"
-                  >
-                    Get Directions 
-                    <span className="text-lg leading-none">&rarr;</span>
-                  </a>
-                </div>
-              </div>
+          </div>
 
-              <div className="flex items-start gap-5">
-                <div className="w-12 h-12 rounded-full bg-amber-100 flex items-center justify-center flex-shrink-0 mt-1 shadow-inner shadow-white relative">
-                  <Phone size={22} strokeWidth={2.5} className="text-amber-600 relative z-10" />
-                  <div className="absolute inset-0 rounded-full border-2 border-amber-300 animate-ping opacity-50"></div>
-                </div>
-                <div>
-                  <h4 className="font-bold text-gray-900 mb-1.5 tracking-wide">Schedule a Call</h4>
-                  <p className="text-gray-500 text-sm leading-relaxed mb-2">
-                    Prefer to speak with an expert right away?
-                  </p>
-                  <a href="tel:4049524534" className="text-[#1e293b] font-black text-xl hover:text-amber-500 transition-colors inline-block">
-                    (404) 952-4534
-                  </a>
-                </div>
+          {/* Form Container - Compact Glassmorphism */}
+          <div className="w-full max-w-2xl mx-auto animate-in fade-in slide-in-from-bottom-4 duration-700 delay-150 fill-mode-both">
+            <div className="bg-white/95 backdrop-blur-xl rounded-[1.5rem] shadow-2xl border border-white/50 overflow-hidden relative min-h-[320px] flex flex-col">
+              
+              <div className="p-6 sm:p-8 flex-grow flex flex-col relative z-10">
+                {success ? (
+                  <div className="flex flex-col items-center justify-center text-center h-full animate-in fade-in zoom-in duration-300 my-auto py-8">
+                    <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mb-4 shadow-inner relative">
+                      <div className="absolute inset-0 bg-green-400 rounded-full animate-ping opacity-20"></div>
+                      <CheckCircle2 className="w-10 h-10 text-green-600 relative z-10" />
+                    </div>
+                    <h3 className="text-2xl font-extrabold text-slate-900 mb-2 tracking-tight">Quote Requested!</h3>
+                    <p className="text-slate-600 mb-8 leading-relaxed text-sm sm:text-base max-w-md mx-auto">
+                      Thank you, <strong>{formData.name.split(' ')[0] || 'there'}</strong>. We have received your request and our design team will contact you shortly with your custom factory-direct pricing.
+                    </p>
+                    <div className="w-full max-w-sm flex flex-col sm:flex-row gap-3 mx-auto">
+                        <a 
+                            href="tel:4049524534"
+                            className="bg-slate-900 text-white px-6 py-3.5 rounded-xl font-bold hover:bg-black transition-all flex items-center justify-center gap-2 shadow-lg hover:scale-[1.02] active:scale-95 flex-1 text-sm sm:text-base"
+                        >
+                            <Phone size={18} /> Call Us Now
+                        </a>
+                        <button 
+                            onClick={() => router.push('/')}
+                            className="bg-white text-slate-700 border border-slate-200 px-6 py-3.5 rounded-xl font-bold hover:bg-slate-50 transition-all flex items-center justify-center hover:scale-[1.02] active:scale-95 flex-1 text-sm sm:text-base"
+                        >
+                            Return Home
+                        </button>
+                    </div>
+                  </div>
+                ) : (
+                  <>
+                    <div className="flex items-center justify-between mb-6">
+                      <div className="flex items-center gap-2">
+                        <div className="h-px w-6 sm:w-8 bg-secondary"></div>
+                        <span className="text-secondary font-bold tracking-[0.1em] uppercase text-[10px] sm:text-xs">Estimate Request</span>
+                      </div>
+                      <div className="flex items-center gap-1 text-[10px] font-bold text-slate-400 bg-slate-100 px-2.5 py-0.5 rounded-full">
+                        <Lock className="w-2.5 h-2.5" /> SECURE
+                      </div>
+                    </div>
+
+                    <form onSubmit={handleSubmit} className="w-full h-full flex flex-col justify-center animate-in fade-in slide-in-from-right-4 duration-300">
+                        {/* Project Selection */}
+                        <div className="mb-5">
+                            <label className="block text-xs font-bold text-slate-400 tracking-widest uppercase mb-3">Project Type</label>
+                            <div className="grid grid-cols-2 lg:grid-cols-4 gap-2">
+                                {[
+                                { id: 'Kitchen Countertops', label: 'Countertops' },
+                                { id: 'Bathroom Vanities', label: 'Vanities' },
+                                { id: 'Cabinets', label: 'Cabinets' },
+                                { id: 'Full Remodel', label: 'Remodel' }
+                                ].map((option) => (
+                                <button 
+                                    key={option.id}
+                                    type="button"
+                                    onClick={() => setFormData({...formData, projectType: option.id})}
+                                    className={`py-3 px-2 rounded-xl text-[11px] sm:text-xs font-bold transition-all border-2 flex items-center justify-center text-center ${
+                                    formData.projectType === option.id 
+                                        ? 'border-blue-600 bg-blue-50 text-blue-700 shadow-sm' 
+                                        : 'border-slate-100 bg-slate-50 text-slate-500 hover:border-slate-200 hover:bg-white hover:text-slate-800'
+                                    }`}
+                                >
+                                    {option.label}
+                                </button>
+                                ))}
+                            </div>
+                        </div>
+
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 mb-4">
+                            {/* Name */}
+                            <div className="relative">
+                                <span className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400">
+                                    <Users size={16} strokeWidth={2.5} />
+                                </span>
+                                <input 
+                                    type="text" 
+                                    required 
+                                    value={formData.name}
+                                    onChange={(e) => setFormData({...formData, name: e.target.value})}
+                                    className="block w-full pl-10 pr-4 py-3.5 bg-white border-2 border-slate-200 rounded-xl focus:border-blue-600 focus:ring-2 focus:ring-blue-600/20 outline-none transition-all text-slate-900 font-bold text-sm placeholder:text-slate-400 placeholder:font-medium"
+                                    placeholder="Full Name"
+                                />
+                            </div>
+
+                            {/* Phone */}
+                            <div className="relative">
+                                <span className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400">
+                                    <Phone size={16} strokeWidth={2.5} />
+                                </span>
+                                <input 
+                                    type="tel" 
+                                    required 
+                                    value={formData.phone}
+                                    onChange={handlePhoneChange}
+                                    className="block w-full pl-10 pr-4 py-3.5 bg-white border-2 border-slate-200 rounded-xl focus:border-blue-600 focus:ring-2 focus:ring-blue-600/20 outline-none transition-all text-slate-900 font-bold text-sm placeholder:text-slate-400 placeholder:font-medium"
+                                    placeholder="Phone Number"
+                                />
+                            </div>
+
+                            {/* Email */}
+                            <div className="relative">
+                                <span className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400">
+                                    <Lock size={16} strokeWidth={2.5} />
+                                </span>
+                                <input 
+                                    type="email" 
+                                    required 
+                                    value={formData.email}
+                                    onChange={(e) => setFormData({...formData, email: e.target.value})}
+                                    className="block w-full pl-10 pr-4 py-3.5 bg-white border-2 border-slate-200 rounded-xl focus:border-blue-600 focus:ring-2 focus:ring-blue-600/20 outline-none transition-all text-slate-900 font-bold text-sm placeholder:text-slate-400 placeholder:font-medium"
+                                    placeholder="Email Address"
+                                />
+                            </div>
+
+                            {/* Zip Code */}
+                            <div className="relative">
+                                <span className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400">
+                                    <MapPin size={16} strokeWidth={2.5} />
+                                </span>
+                                <input 
+                                    type="text" 
+                                    required 
+                                    maxLength={5}
+                                    value={formData.zipCode}
+                                    onChange={handleZipChange}
+                                    className="block w-full pl-10 pr-4 py-3.5 bg-white border-2 border-slate-200 rounded-xl focus:border-blue-600 focus:ring-2 focus:ring-blue-600/20 outline-none transition-all text-slate-900 font-bold text-sm placeholder:text-slate-400 placeholder:font-medium"
+                                    placeholder="Zip Code"
+                                />
+                            </div>
+                        </div>
+
+                        {/* Message */}
+                        <div className="relative mb-5">
+                            <span className="absolute left-4 top-3.5 text-slate-400">
+                                <Pencil size={16} strokeWidth={2.5} />
+                            </span>
+                            <textarea 
+                                value={formData.message}
+                                onChange={(e) => setFormData({...formData, message: e.target.value})}
+                                className="block w-full pl-10 pr-4 py-3.5 bg-white border-2 border-slate-200 rounded-xl focus:border-blue-600 focus:ring-2 focus:ring-blue-600/20 outline-none transition-all text-slate-900 font-bold text-sm placeholder:text-slate-400 placeholder:font-medium min-h-[90px] resize-none"
+                                placeholder="Tell us about your project (dimensions, stone preference, etc...)"
+                            />
+                        </div>
+
+                        <button 
+                            type="submit" 
+                            disabled={isSubmitting}
+                            className="w-full bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 disabled:from-slate-400 disabled:to-slate-400 text-white font-extrabold py-4 rounded-xl shadow-[0_8px_20px_-6px_rgba(249,115,22,0.6)] hover:shadow-[0_12px_25px_-6px_rgba(249,115,22,0.8)] transition-all hover:-translate-y-0.5 flex items-center justify-center gap-2 text-lg"
+                        >
+                            {isSubmitting ? (
+                            <><Loader2 className="animate-spin w-5 h-5" /> Sending Request...</>
+                            ) : (
+                            <>Get My Free Quote <ArrowRight className="w-4 h-4" /></>
+                            )}
+                        </button>
+                        
+                        <div className="flex items-center justify-center gap-3 mt-4">
+                            <div className="flex items-center gap-1 text-[9px] sm:text-[10px] font-bold text-slate-500 uppercase tracking-wider">
+                            <Lock className="w-3 h-3 text-green-500" /> 100% Secure
+                            </div>
+                            <div className="w-1 h-1 bg-slate-300 rounded-full"></div>
+                            <div className="flex items-center gap-1 text-[9px] sm:text-[10px] font-bold text-slate-500 uppercase tracking-wider">
+                            <ShieldCheck className="w-3 h-3 text-blue-500" /> Fast Response
+                            </div>
+                        </div>
+                    </form>
+                  </>
+                )}
               </div>
             </div>
           </div>
 
-          {/* Image Side */}
-          <div className="w-full md:w-2/5 min-h-[350px] md:min-h-auto relative bg-amber-50">
-            <Image
-              src="https://i.imgur.com/L9foVza.png"
-              alt="AGS Stones Showroom"
-              fill
-              referrerPolicy="no-referrer"
-              className="object-cover object-center"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t md:bg-gradient-to-r from-black/40 md:from-black/10 to-transparent"></div>
+          {/* Trust Badges - Premium Local Business Indicators */}
+          <div className="w-full max-w-4xl mx-auto mt-8 sm:mt-12 grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 animate-in fade-in duration-700 delay-300 fill-mode-both px-2">
             
-            {/* Floating badge */}
-            <div className="absolute bottom-6 left-6 right-6 md:right-auto md:left-auto md:bottom-8 md:top-8 md:translate-x-1/2 flex items-center justify-center md:hidden pointer-events-none">
-                <div className="bg-white/95 backdrop-blur-sm p-4 rounded-2xl shadow-xl flex items-center gap-3 w-full max-w-xs mx-auto">
-                   <div className="w-10 h-10 rounded-full bg-green-100 flex items-center justify-center flex-shrink-0">
-                      <MapPin size={20} className="text-green-600" />
-                   </div>
-                   <div>
-                     <p className="text-xs font-bold text-gray-500 uppercase tracking-wider">Open Today</p>
-                     <p className="text-sm font-black text-gray-900">Come visit us!</p>
-                   </div>
+            {/* 25+ Years Experience */}
+            <div className="group relative flex flex-row items-center justify-start p-2 sm:p-2.5 pr-4 sm:pr-5 rounded-full bg-white/5 backdrop-blur-md border border-white/10 hover:border-white/20 transition-all duration-300 hover:-translate-y-1 hover:bg-white/10 shadow-lg gap-3">
+              <div className="w-10 h-10 sm:w-12 sm:h-12 shrink-0 rounded-full bg-blue-500/20 flex items-center justify-center">
+                <Award className="w-5 h-5 sm:w-6 sm:h-6 text-blue-400" />
+              </div>
+              <div className="flex flex-col items-start justify-center">
+                <div className="font-extrabold text-white text-xs sm:text-sm tracking-wide leading-tight text-left">25+ Years</div>
+                <div className="text-[9px] sm:text-[10px] text-slate-400 uppercase tracking-widest font-bold mt-0.5 text-left">Experience</div>
+              </div>
+            </div>
+
+            {/* Houzz Badge */}
+            <div className="group relative flex flex-row items-center justify-start p-2 sm:p-2.5 pr-4 sm:pr-5 rounded-full bg-white/5 backdrop-blur-md border border-white/10 hover:border-[#7ac143]/50 transition-all duration-300 hover:-translate-y-1 hover:bg-white/10 shadow-lg gap-3">
+              <div className="w-10 h-10 sm:w-12 sm:h-12 shrink-0 rounded-full bg-white flex items-center justify-center shadow-inner overflow-hidden p-1.5 sm:p-2">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/d/d4/Houzz_logo_%282024%29.png" alt="Houzz" className="w-full h-full object-contain" />
+              </div>
+              <div className="flex flex-col items-start justify-center">
+                <div className="font-extrabold text-white text-xs sm:text-sm tracking-wide leading-tight text-left">Best of Houzz</div>
+                <div className="text-[9px] sm:text-[10px] text-slate-400 uppercase tracking-widest font-bold mt-0.5 text-left">Winner 2024</div>
+              </div>
+            </div>
+
+            {/* Angi Pro */}
+            <div className="group relative flex flex-row items-center justify-start p-2 sm:p-2.5 pr-4 sm:pr-5 rounded-full bg-white/5 backdrop-blur-md border border-white/10 hover:border-[#f15e22]/50 transition-all duration-300 hover:-translate-y-1 hover:bg-white/10 shadow-lg gap-3">
+              <div className="w-10 h-10 sm:w-12 sm:h-12 shrink-0 rounded-full bg-white flex items-center justify-center shadow-inner overflow-hidden p-1.5 sm:p-2">
+                <img src="https://static.wikia.nocookie.net/logopedia/images/6/62/Angi.svg/revision/latest/scale-to-width-down/250?cb=20210323150535" alt="Angi" className="w-full h-full object-contain" />
+              </div>
+              <div className="flex flex-col items-start justify-center">
+                <div className="font-extrabold text-white text-xs sm:text-sm tracking-wide leading-tight text-left">Super Service</div>
+                <div className="text-[9px] sm:text-[10px] text-slate-400 uppercase tracking-widest font-bold mt-0.5 text-left">Angi Pro</div>
+              </div>
+            </div>
+
+            {/* Home Depot Services Partner */}
+            <div className="group relative flex flex-row items-center justify-start p-2 sm:p-2.5 pr-4 sm:pr-5 rounded-full bg-white/5 backdrop-blur-md border border-white/10 hover:border-[#f96302]/50 transition-all duration-300 hover:-translate-y-1 hover:bg-white/10 shadow-lg gap-3">
+              <div className="w-10 h-10 sm:w-12 sm:h-12 shrink-0 rounded-full bg-white flex items-center justify-center shadow-inner overflow-hidden p-1.5 sm:p-2">
+                <img src="https://corporate.homedepot.com/sites/default/files/image_gallery/THD_logo.jpg" alt="Home Depot" className="w-full h-full object-cover rounded-full" />
+              </div>
+              <div className="flex flex-col items-start justify-center">
+                <div className="font-extrabold text-white text-xs sm:text-sm tracking-wide leading-tight text-left">Service Partner</div>
+                <div className="text-[9px] sm:text-[10px] text-slate-400 uppercase tracking-widest font-bold mt-0.5 text-left">Home Depot</div>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+      </section>
+
+      {/* Showroom Section */}
+      <section className="bg-white py-16 px-5 sm:px-6">
+        <div className="max-w-3xl mx-auto flex flex-col items-center">
+            <p className="text-gray-500 text-sm md:text-base text-center max-w-lg mb-10 font-medium">
+                ...person. Our design experts are ready to bring your vision to life.
+            </p>
+
+            <div className="flex flex-col md:flex-row gap-10 md:gap-16 w-full max-w-2xl justify-center items-start">
+                
+                {/* Location Block */}
+                <div className="flex gap-5 items-start flex-1 w-full relative">
+                    <div className="w-14 h-14 rounded-full bg-orange-50/80 flex items-center justify-center shrink-0 border border-orange-100 shadow-sm relative z-10">
+                        <MapPin className="text-orange-500 w-6 h-6" strokeWidth={2} />
+                        {/* Decorative ring */}
+                        <div className="absolute inset-0 rounded-full border border-orange-200 scale-110 opacity-50"></div>
+                    </div>
+                    <div className="flex flex-col pt-1">
+                        <h3 className="font-serif font-bold text-slate-900 text-[22px] md:text-2xl mb-2.5">Our Location</h3>
+                        <p className="text-slate-500 font-medium text-[15px] leading-relaxed mb-4">
+                            AGS STONES & CABINETS<br/>
+                            4579 Abbotts Bridge Rd Suite -10<br/>
+                            Duluth, GA 30097, United States
+                        </p>
+                        <a 
+                            href="https://maps.google.com/?q=AGS+STONES+%26+CABINETS,+4579+Abbotts+Bridge+Rd+Suite+-10,+Duluth,+GA+30097,+United+States"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="text-orange-500 font-bold uppercase tracking-widest text-xs flex items-center gap-2 hover:text-orange-600 transition-colors w-max"
+                        >
+                            GET DIRECTIONS <ArrowRight size={14} strokeWidth={3} />
+                        </a>
+                    </div>
+                </div>
+
+                {/* Vertical Divider line between blocks for desktop */}
+                <div className="hidden md:block w-px bg-gray-200 self-stretch my-2"></div>
+
+                {/* Call Block */}
+                <div className="flex gap-5 items-start flex-1 w-full relative">
+                    <div className="w-14 h-14 rounded-full bg-orange-50/80 flex items-center justify-center shrink-0 border border-orange-100 shadow-sm relative z-10">
+                        <Phone className="text-orange-500 w-6 h-6" strokeWidth={2} />
+                        <div className="absolute inset-0 rounded-full border border-orange-200 scale-110 opacity-50"></div>
+                    </div>
+                    <div className="flex flex-col pt-1">
+                        <h3 className="font-serif font-bold text-slate-900 text-[22px] md:text-2xl mb-2.5">Schedule a Call</h3>
+                        <p className="text-slate-500 font-medium text-[15px] leading-relaxed mb-4">
+                            Prefer to speak with an expert right away?
+                        </p>
+                        <a href="tel:4049524534" className="text-slate-900 font-black text-2xl md:text-3xl hover:text-orange-500 transition-colors w-max">
+                            (404) 952-4534
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+
+            {/* Storefront Image */}
+            <div className="mt-14 relative w-full rounded-2xl md:rounded-[2rem] overflow-hidden shadow-2xl border border-gray-200 max-w-2xl mx-auto h-[300px] md:h-[400px]">
+                <Image
+                    src="https://i.imgur.com/L9foVza.png" 
+                    alt="AGS Stones & Cabinets Layout"
+                    fill
+                    className="object-cover"
+                />
+                <div className="absolute inset-0 bg-black/10"></div>
+                {/* Overlay Badge */}
+                <div className="absolute bottom-5 left-1/2 -translate-x-1/2 md:translate-x-0 md:left-5 w-[85%] md:w-auto bg-white/95 backdrop-blur-md rounded-2xl p-4 md:px-6 md:py-4 flex items-center gap-4 shadow-xl border border-white/50 z-10">
+                    <div className="w-10 h-10 rounded-full bg-green-50 flex items-center justify-center shrink-0 relative border border-green-100">
+                        <span className="absolute w-full h-full rounded-full bg-green-400 animate-ping opacity-30"></span>
+                        <MapPin className="text-green-500 w-5 h-5" />
+                    </div>
+                    <div className="flex flex-col items-start pt-0.5">
+                        <div className="text-slate-500 text-[10px] md:text-xs font-bold uppercase tracking-[0.2em] mb-0.5">OPEN TODAY</div>
+                        <div className="text-slate-900 font-black text-sm md:text-base leading-none">Come visit us!</div>
+                    </div>
                 </div>
             </div>
-          </div>
-        </motion.div>
-      </main>
+        </div>
+      </section>
 
-      <div className="w-full">
-        <StoneGallery />
+      {/* Rest of the page content */}
+      <div className="bg-slate-50 pt-10">
+        <Testimonials />
       </div>
-
-      <main className="flex-1 flex flex-col w-full px-4 relative z-20 pb-20">
-        <div className="mt-20 sm:mt-24">
-          <Testimonials />
-        </div>
-      </main>
-
-
-      <footer className="py-12 px-4 text-center text-gray-400 text-xs mt-auto border-t border-gray-100 bg-white">
-        <div className="max-w-4xl mx-auto">
-          <div className="flex justify-center gap-8 mb-6">
-               <Link href="/privacy-policy" className="hover:text-primary transition-colors font-bold uppercase tracking-widest underline decoration-amber-400/30 underline-offset-4">Privacy Policy</Link>
-               <Link href="/contact" className="hover:text-primary transition-colors font-bold uppercase tracking-widest underline decoration-amber-400/30 underline-offset-4">Contact Us</Link>
-          </div>
-          <p className="text-gray-400 font-medium tracking-wide">&copy; {new Date().getFullYear()} AGS Stones & Cabinets. Duluth, Georgia's Trusted Fabrication Partner.</p>
-        </div>
-      </footer>
     </div>
   );
 }
 
 export default function FastQuotePage() {
   return (
-    <Suspense fallback={<div className="min-h-screen bg-gray-50"></div>}>
+    <Suspense fallback={<div className="min-h-screen font-sans bg-slate-50"></div>}>
       <FastQuoteContent />
     </Suspense>
   );

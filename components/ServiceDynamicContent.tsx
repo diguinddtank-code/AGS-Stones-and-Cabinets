@@ -497,6 +497,28 @@ export default function ServiceDynamicContent({ service }: { service: ServiceDet
                     </motion.div>
                 </div>
             </section>
+
+            {/* Mobile Sticky Conversion Footer */}
+            <motion.div 
+                initial={{ y: 100 }}
+                animate={{ y: 0 }}
+                transition={{ type: "spring", stiffness: 260, damping: 20, delay: 1 }}
+                className="fixed bottom-4 left-4 right-4 z-50 md:hidden flex gap-2"
+            >
+                <a 
+                    href="tel:4049524534" 
+                    className="flex-1 bg-white text-primary border border-gray-100 shadow-2xl py-3.5 px-4 rounded-xl flex items-center justify-center gap-2 font-bold text-sm"
+                >
+                    <Phone size={16} className="text-secondary" />
+                    Call
+                </a>
+                <Link 
+                    href="/fast-quote" 
+                    className="flex-[2] bg-secondary text-white shadow-[0_8px_20px_-6px_rgba(217,119,6,0.8)] py-3.5 px-4 rounded-xl flex items-center justify-center gap-2 font-bold text-sm"
+                >
+                    Get Free Quote <ArrowRight size={16} />
+                </Link>
+            </motion.div>
         </div>
     );
 }

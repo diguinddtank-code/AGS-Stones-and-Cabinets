@@ -70,7 +70,8 @@ function QuoteContent() {
       setStep(6); // To show success UI if there is a success step, or it will just show success UI based on status
       try {
         if (typeof window !== 'undefined') {
-          if ((window as any).fbq) (window as any).fbq('track', 'Lead');
+          const eventId = typeof crypto !== 'undefined' && crypto.randomUUID ? crypto.randomUUID() : `lead_${Date.now()}`;
+          if ((window as any).fbq) (window as any).fbq('track', 'Lead', {}, { eventID: eventId });
           if ((window as any).gtag) (window as any).gtag('event', 'conversion', { 'send_to': 'AW-16885125181/R1mQCP6Dm5McEL2guvM-' });
         }
       } catch(e) {}
@@ -210,7 +211,8 @@ function QuoteContent() {
         setStatus('success');
         try {
           if (typeof window !== 'undefined') {
-            if ((window as any).fbq) (window as any).fbq('track', 'Lead');
+            const eventId = typeof crypto !== 'undefined' && crypto.randomUUID ? crypto.randomUUID() : `lead_${Date.now()}`;
+            if ((window as any).fbq) (window as any).fbq('track', 'Lead', {}, { eventID: eventId });
             if ((window as any).gtag) (window as any).gtag('event', 'conversion', { 'send_to': 'AW-16885125181/R1mQCP6Dm5McEL2guvM-' });
           }
         } catch(e) {}

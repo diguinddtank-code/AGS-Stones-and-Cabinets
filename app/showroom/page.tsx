@@ -39,7 +39,8 @@ function ShowroomContent() {
       setSuccess(true);
       try {
         if (typeof window !== 'undefined') {
-          if ((window as any).fbq) (window as any).fbq('track', 'Lead');
+          const eventId = typeof crypto !== 'undefined' && crypto.randomUUID ? crypto.randomUUID() : `lead_${Date.now()}`;
+          if ((window as any).fbq) (window as any).fbq('track', 'Lead', {}, { eventID: eventId });
           if ((window as any).gtag) (window as any).gtag('event', 'conversion', { 'send_to': 'AW-16885125181/R1mQCP6Dm5McEL2guvM-' });
         }
       } catch(e) {}
@@ -110,7 +111,8 @@ function ShowroomContent() {
         triggerHaptic([50, 50, 100]); // Success pattern vibration
         try {
           if (typeof window !== 'undefined') {
-            if ((window as any).fbq) (window as any).fbq('track', 'Lead');
+            const eventId = typeof crypto !== 'undefined' && crypto.randomUUID ? crypto.randomUUID() : `lead_${Date.now()}`;
+            if ((window as any).fbq) (window as any).fbq('track', 'Lead', {}, { eventID: eventId });
             if ((window as any).gtag) (window as any).gtag('event', 'conversion', { 'send_to': 'AW-16885125181/R1mQCP6Dm5McEL2guvM-' });
           }
         } catch(e) {}
