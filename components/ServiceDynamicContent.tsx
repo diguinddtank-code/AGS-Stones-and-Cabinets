@@ -3,7 +3,7 @@
 import React, { useRef, useState, useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { motion, useScroll, useTransform, useMotionValueEvent } from 'framer-motion';
 import { useSearchParams } from 'next/navigation';
 import { Check, Calendar, Phone, ArrowRight, ShieldCheck, Star, PenTool, Hammer, Truck, HeartHandshake, HelpCircle, MapPin } from 'lucide-react';
 import type { ServiceDetail } from '@/lib/servicesData';
@@ -25,7 +25,7 @@ export default function ServiceDynamicContent({ service }: { service: ServiceDet
     const isSpecificLocation = userCity.toLowerCase() !== "atlanta area";
     const localizedHeroSubtitle = isSpecificLocation 
         ? `Serving ${userCity} & Surrounding Areas` 
-        : `Masterclass in ${service.slug.replace('-', ' ')}`;
+        : `Custom ${service.slug.replace('-', ' ')} Experts`;
         
     const localizedTrustHeadline = isSpecificLocation
         ? `Why Homeowners in ${userCity} Choose Us`
@@ -48,6 +48,18 @@ export default function ServiceDynamicContent({ service }: { service: ServiceDet
     const yHeroText = useTransform(heroProgress, [0, 1], ["0%", "40%"]);
     
     const scaleImage = useTransform(scrollYProgress, [0, 0.5], [1, 1.1]);
+
+    const { scrollY } = useScroll();
+    const [showMobileSticky, setShowMobileSticky] = useState(false);
+
+    useMotionValueEvent(scrollY, "change", (latest) => {
+        const threshold = typeof window !== "undefined" ? window.innerHeight * 0.8 : 500;
+        if (latest > threshold) {
+            setShowMobileSticky(true);
+        } else {
+            setShowMobileSticky(false);
+        }
+    });
 
     const staggerContainer = {
         hidden: { opacity: 0 },
@@ -122,19 +134,19 @@ export default function ServiceDynamicContent({ service }: { service: ServiceDet
                             {service.shortDesc} 
                             <span className="block mt-2 text-white">
                                 {isSpecificLocation 
-                                    ? `Expert craftsmanship now available in ${userCity}.` 
-                                    : "Don't settle for average. Demand perfection."}
+                                    ? `Beautiful, custom craftsmanship now available in ${userCity}.` 
+                                    : "Quality materials, expert installation, and results you'll love."}
                             </span>
                         </motion.p>
 
                         <motion.div variants={fadeInUp} className="flex flex-col sm:flex-row items-center sm:items-start gap-5 sm:gap-6 w-full">
                             <Link href="/fast-quote" className="group relative overflow-hidden bg-secondary text-white font-bold py-4 px-6 md:py-5 md:px-10 rounded-full transition-all duration-500 w-full sm:w-auto text-center cursor-pointer shadow-xl shadow-secondary/20 block">
                                 <span className="relative z-10 flex items-center justify-center gap-2 md:gap-3 text-[15px] md:text-lg whitespace-nowrap">
-                                    Request Private Consultation <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform md:w-5 md:h-5 shrink-0" />
+                                    Get Your Free Estimate <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform md:w-5 md:h-5 shrink-0" />
                                 </span>
                                 <div className="absolute inset-0 bg-white scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]"></div>
                                 <span className="absolute inset-0 z-0 flex items-center justify-center gap-2 md:gap-3 text-primary opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100 font-bold text-[15px] md:text-lg whitespace-nowrap">
-                                    Request Private Consultation <ArrowRight size={18} className="md:w-5 md:h-5 shrink-0" />
+                                    Get Your Free Estimate <ArrowRight size={18} className="md:w-5 md:h-5 shrink-0" />
                                 </span>
                             </Link>
 
@@ -182,14 +194,14 @@ export default function ServiceDynamicContent({ service }: { service: ServiceDet
                                 The Vision
                             </h2>
                             <h3 className="text-3xl md:text-5xl lg:text-6xl font-serif font-bold leading-tight text-primary">
-                                Beyond mere functionality. A statement of luxury.
+                                Beautiful upgrades that transform your home.
                             </h3>
                             <div className="text-base md:text-lg leading-relaxed text-gray-600 space-y-4 md:space-y-6 font-light">
                                 <p>
                                     {service.longDesc}
                                 </p>
                                 <p>
-                                    When you choose AGS Stones & Cabinets, you aren't just buying materials. You are investing in artisanal craftsmanship that turns an everyday space into a centerpiece of envy. We bypass the middlemen so you don't have to compromise on quality.
+                                    When you choose AGS Stones & Cabinets, you're partnering with an experienced local team that cares about your home. We handle everything from design to fabrication, cutting out the middlemen to bring you premium quality without the crazy markups.
                                 </p>
                             </div>
 
@@ -236,7 +248,7 @@ export default function ServiceDynamicContent({ service }: { service: ServiceDet
                                     <div className="w-12 h-12 bg-secondary/10 rounded-full flex items-center justify-center text-secondary mb-4">
                                         <ShieldCheck size={24} />
                                     </div>
-                                    <p className="font-bold text-primary leading-tight">Meticulous Quality Control.</p>
+                                    <p className="font-bold text-primary leading-tight">Locally fabricated & guaranteed.</p>
                                 </motion.div>
                             </motion.div>
                         </div>
@@ -263,9 +275,9 @@ export default function ServiceDynamicContent({ service }: { service: ServiceDet
                     >
                         <Star className="text-secondary w-8 h-8 md:w-12 md:h-12 mx-auto mb-6 md:mb-8 opacity-50" />
                         <h2 className="text-2xl md:text-4xl lg:text-5xl font-serif italic font-light leading-snug mb-6 md:mb-8">
-                            "The difference between ordinary and extraordinary is that little extra. We pour that extra into every slab, every cabinet, every detail."
+                            "Great design is in the details. We take pride in making sure every cut, edge, and finish looks absolutely flawless."
                         </h2>
-                        <p className="text-xs md:text-sm tracking-[0.2em] md:tracking-[0.3em] uppercase text-secondary font-bold">— The AGS Promise</p>
+                        <p className="text-xs md:text-sm tracking-[0.2em] md:tracking-[0.3em] uppercase text-secondary font-bold">— The AGS Team</p>
                     </motion.div>
                 </div>
             </section>
@@ -414,11 +426,11 @@ export default function ServiceDynamicContent({ service }: { service: ServiceDet
                 <div className="container mx-auto px-4 max-w-7xl">
                     <div className="flex flex-col md:flex-row gap-6 md:gap-16 items-start md:items-end mb-16 md:mb-24">
                         <div className="flex-1">
-                            <h2 className="text-secondary font-bold tracking-[0.2em] uppercase text-xs mb-4">The Methodology</h2>
-                            <h3 className="text-4xl md:text-5xl lg:text-7xl font-serif font-bold leading-[1.1]">Engineered for perfection.</h3>
+                            <h2 className="text-secondary font-bold tracking-[0.2em] uppercase text-xs mb-4">Our Process</h2>
+                            <h3 className="text-4xl md:text-5xl lg:text-7xl font-serif font-bold leading-[1.1]">Smooth & stress-free.</h3>
                         </div>
                         <div className="max-w-md">
-                            <p className="text-gray-600 text-base md:text-lg leading-relaxed">No guesswork. No delays. Our proprietary workflow ensures your {service.title.toLowerCase()} is delivered with surgical precision, faster than industry standards.</p>
+                            <p className="text-gray-600 text-base md:text-lg leading-relaxed">We respect your time and your home. From templating to the final install, our team works efficiently to get the job done right the first time.</p>
                         </div>
                     </div>
 
@@ -426,10 +438,10 @@ export default function ServiceDynamicContent({ service }: { service: ServiceDet
                         <div className="hidden md:block absolute top-[28px] left-[10%] w-[80%] h-px bg-gray-300 -z-10"></div>
                         
                         {[
-                            { icon: <PenTool />, title: "Precision Capture", desc: "Laser templating down to the millimeter. Your space mapped flawlessly." },
-                            { icon: <HeartHandshake />, title: "Curated Selection", desc: "Access to exclusive slabs and materials reserved for top-tier projects." },
-                            { icon: <Hammer />, title: "Artisanal Fabrication", desc: "CNC machinery meets human artistry in our Duluth facility." },
-                            { icon: <Truck />, title: "White-Glove Install", desc: "Speed without compromise. We respect your time and your home." }
+                            { icon: <PenTool />, title: "Accurate Measurements", desc: "We map out your space so everything fits perfectly. No guessing." },
+                            { icon: <HeartHandshake />, title: "Hand-Picked Materials", desc: "Access to top quality stone slabs directly at our showroom." },
+                            { icon: <Hammer />, title: "In-House Fabrication", desc: "We cut and polish your stone right here in our Duluth shop." },
+                            { icon: <Truck />, title: "Professional Install", desc: "Our experienced crew gets it installed quickly and cleanly." }
                         ].map((step, idx) => (
                             <motion.div 
                                 key={idx} 
@@ -463,26 +475,22 @@ export default function ServiceDynamicContent({ service }: { service: ServiceDet
                         transition={{ duration: 1 }}
                         className="bg-white/5 backdrop-blur-xl border border-white/10 p-8 md:p-12 lg:p-24 rounded-3xl md:rounded-[3rem] shadow-2xl"
                     >
-                        <div className="inline-flex items-center gap-2 bg-red-500/10 text-red-400 px-4 py-1.5 font-bold uppercase tracking-widest text-[10px] md:text-xs rounded-full mb-6 md:mb-8 border border-red-500/20">
-                            <span className="relative flex h-2 w-2">
-                                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
-                                <span className="relative inline-flex rounded-full h-2 w-2 bg-red-500"></span>
-                            </span>
-                            High Demand Warning
+                        <div className="inline-flex items-center gap-2 bg-secondary/10 text-secondary px-4 py-1.5 font-bold uppercase tracking-widest text-[10px] md:text-xs rounded-full mb-6 md:mb-8 border border-secondary/20">
+                            Booking Now
                         </div>
                         
                         <h2 className="text-3xl md:text-5xl lg:text-7xl font-serif font-bold text-white mb-6 md:mb-8 leading-[1.1]">
-                            Excellence can't be mass-produced.
+                            Ready to upgrade your space?
                         </h2>
                         
                         <p className="text-xl text-gray-400 mb-12 font-light max-w-2xl mx-auto leading-relaxed">
-                            Due to our uncompromising commitment to quality and in-house fabrication, we only accept a limited number of {service.title.toLowerCase()} projects {isSpecificLocation ? `in ${userCity} ` : ""}each month. Our schedule for this season is nearly full.
+                            Because we handle all our fabrication in-house and never cut corners, our schedule fills up fast. Request a free estimate today to lock in your project {isSpecificLocation ? `in ${userCity} ` : ""}for the upcoming weeks.
                         </p>
                         
                         <div className="flex flex-col w-full sm:w-auto mt-8 md:mt-10">
                             <div className="flex flex-col sm:flex-row justify-center gap-4 sm:gap-6 w-full">
                                 <Link href="/fast-quote" className="bg-secondary text-white hover:bg-white hover:text-primary font-bold py-4 md:py-6 px-4 md:px-12 rounded-full transition-all duration-500 hover:scale-105 shadow-[0_0_40px_rgba(217,119,6,0.4)] hover:shadow-[0_0_40px_rgba(255,255,255,0.4)] flex items-center justify-center gap-2 md:gap-3 text-[15px] md:text-lg w-full sm:w-auto whitespace-nowrap">
-                                    Secure Your Private Project Opening <ArrowRight size={22} className="shrink-0" />
+                                    Get Your Free Estimate <ArrowRight size={22} className="shrink-0" />
                                 </Link>
                             </div>
                             
@@ -500,13 +508,20 @@ export default function ServiceDynamicContent({ service }: { service: ServiceDet
 
             {/* Mobile Sticky Conversion Footer */}
             <motion.div 
-                initial={{ y: 100 }}
-                animate={{ y: 0 }}
-                transition={{ type: "spring", stiffness: 260, damping: 20, delay: 1 }}
-                className="fixed bottom-4 left-4 right-4 z-50 md:hidden flex gap-2"
+                initial={{ y: 100, opacity: 0 }}
+                animate={{ y: showMobileSticky ? 0 : 100, opacity: showMobileSticky ? 1 : 0 }}
+                transition={{ type: "spring", stiffness: 260, damping: 20 }}
+                className="fixed bottom-4 left-4 right-4 z-50 md:hidden flex gap-2 pointer-events-auto"
+                style={{ pointerEvents: showMobileSticky ? 'auto' : 'none' }}
             >
                 <a 
-                    href="tel:4049524534" 
+                    href="tel:4049524534"
+                    onClick={() => {
+                        if (typeof window !== 'undefined') {
+                            if ((window as any).gtag) (window as any).gtag('event', 'conversion', { 'send_to': 'AW-16885125181/R1mQCP6Dm5McEL2guvM-' });
+                            if ((window as any).fbq) (window as any).fbq('track', 'Contact'); 
+                        }
+                    }}
                     className="flex-1 bg-white text-primary border border-gray-100 shadow-2xl py-3.5 px-4 rounded-xl flex items-center justify-center gap-2 font-bold text-sm"
                 >
                     <Phone size={16} className="text-secondary" />
