@@ -40,12 +40,12 @@ const Footer: React.FC = () => {
             <div>
                 <h4 className="text-white font-bold mb-4 uppercase tracking-wider text-xs">Local Services</h4>
                 <ul className="space-y-2">
-                    <li><Link href="/granite-countertops-atlanta" className="hover:text-secondary">Granite in Atlanta</Link></li>
-                    <li><Link href="/granite-countertops-duluth" className="hover:text-secondary">Granite in Duluth</Link></li>
-                    <li><Link href="/granite-countertops-alpharetta" className="hover:text-secondary">Granite in Alpharetta</Link></li>
-                    <li><Link href="/granite-countertops-roswell" className="hover:text-secondary">Granite in Roswell</Link></li>
-                    <li><Link href="/granite-countertops-johns-creek" className="hover:text-secondary">Granite in Johns Creek</Link></li>
-                    <li><Link href="/granite-countertops-marietta" className="hover:text-secondary">Granite in Marietta</Link></li>
+                    <li><Link href="/granite-countertops-atlanta-ga" className="hover:text-secondary">Granite in Atlanta, GA</Link></li>
+                    <li><Link href="/granite-countertops-duluth-ga" className="hover:text-secondary">Granite in Duluth, GA</Link></li>
+                    <li><Link href="/granite-countertops-alpharetta-ga" className="hover:text-secondary">Granite in Alpharetta, GA</Link></li>
+                    <li><Link href="/granite-countertops-roswell-ga" className="hover:text-secondary">Granite in Roswell, GA</Link></li>
+                    <li><Link href="/granite-countertops-johns-creek-ga" className="hover:text-secondary">Granite in Johns Creek, GA</Link></li>
+                    <li><Link href="/granite-countertops-marietta-ga" className="hover:text-secondary">Granite in Marietta, GA</Link></li>
                 </ul>
             </div>
 

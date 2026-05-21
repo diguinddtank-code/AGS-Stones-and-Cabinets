@@ -19,6 +19,7 @@ const Testimonials = dynamic(() => import('./Testimonials'), { ssr: false });
 const Contact = dynamic(() => import('./Contact'));
 const Footer = dynamic(() => import('./Footer'));
 const Faq = dynamic(() => import('./Faq'));
+const LocalSEOSection = dynamic(() => import('./LocalSEOSection'));
 
 const SectionLoader = () => (
   <div className="w-full h-96 flex items-center justify-center bg-gray-50">
@@ -50,6 +51,7 @@ function HomeClient() {
         <MaterialMatchmaker />
         <BeforeAfter />
         <Showroom />
+        <LocalSEOSection />
         <Faq />
         <Contact />
       </main>

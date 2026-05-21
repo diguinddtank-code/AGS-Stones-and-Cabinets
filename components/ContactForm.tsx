@@ -3,7 +3,11 @@
 import React, { useState } from 'react';
 import { Send, CheckCircle2, Loader2 } from 'lucide-react';
 
-const ContactForm: React.FC = () => {
+interface ContactFormProps {
+  theme?: 'light' | 'dark';
+}
+
+const ContactForm: React.FC<ContactFormProps> = ({ theme = 'light' }) => {
   const [status, setStatus] = useState<'loading' | 'success' | null>(null);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -46,25 +50,34 @@ const ContactForm: React.FC = () => {
     }
   };
 
+  const isDark = theme === 'dark';
+
   if (status === 'success') {
     return (
       <div className="flex flex-col items-center justify-center text-center animate-in fade-in zoom-in duration-500 py-10">
-        <div className="w-24 h-24 bg-green-100 rounded-full flex items-center justify-center mb-6 shadow-sm">
-          <CheckCircle2 className="w-12 h-12 text-green-600" />
+        <div className={`w-24 h-24 rounded-full flex items-center justify-center mb-6 shadow-sm ${isDark ? 'bg-secondary/20' : 'bg-green-100'}`}>
+          <CheckCircle2 className={`w-12 h-12 ${isDark ? 'text-secondary' : 'text-green-600'}`} />
         </div>
-        <h4 className="text-3xl font-bold text-primary mb-4">Request Received!</h4>
-        <p className="text-gray-600 mb-8 max-w-sm mx-auto leading-relaxed">
+        <h4 className={`text-3xl font-bold mb-4 ${isDark ? 'text-white' : 'text-primary'}`}>Request Received!</h4>
+        <p className={`mb-8 max-w-sm mx-auto leading-relaxed ${isDark ? 'text-gray-400' : 'text-gray-600'}`}>
           Thank you for contacting <strong>AGS Stones</strong>. We received your details and our team will get back to you shortly with your estimate.
         </p>
         <button 
           onClick={() => setStatus(null)}
-          className="px-8 py-3 bg-gray-100 text-primary font-bold rounded-xl hover:bg-gray-200 transition-all"
+          className={`px-8 py-3 font-bold rounded-xl transition-all ${isDark ? 'bg-white/10 text-white hover:bg-white/20' : 'bg-gray-100 text-primary hover:bg-gray-200'}`}
         >
           Send another message
         </button>
       </div>
     );
   }
+
+  const labelClass = `block text-xs font-bold uppercase tracking-wide mb-2 ${isDark ? 'text-gray-400' : 'text-gray-500'}`;
+  const inputClass = `w-full px-4 py-3 rounded-lg border outline-none transition-all ${
+    isDark 
+      ? 'bg-[#1a1a1a] border-white/10 text-white placeholder-gray-600 focus:border-secondary focus:ring-2 focus:ring-secondary/20' 
+      : 'bg-gray-50 border-gray-200 focus:border-secondary focus:ring-2 focus:ring-secondary/20 placeholder-gray-400'
+  }`;
 
   return (
     <form onSubmit={handleSubmit} className="space-y-6">
@@ -73,12 +86,12 @@ const ContactForm: React.FC = () => {
       <input type="hidden" name="_template" value="table" />
 
       <div>
-        <label htmlFor="fullName" className="block text-xs font-bold text-gray-500 uppercase tracking-wide mb-2">Full Name</label>
+        <label htmlFor="fullName" className={labelClass}>Full Name</label>
         <input 
           id="fullName"
           name="fullName"
           type="text" 
-          className="w-full px-4 py-3 rounded-lg bg-gray-50 border border-gray-200 focus:border-secondary focus:ring-2 focus:ring-secondary/20 outline-none transition-all placeholder-gray-400" 
+          className={inputClass} 
           placeholder="Jane Doe" 
           required
         />
@@ -86,23 +99,23 @@ const ContactForm: React.FC = () => {
 
       <div className="grid md:grid-cols-2 gap-6">
          <div>
-            <label htmlFor="phone" className="block text-xs font-bold text-gray-500 uppercase tracking-wide mb-2">Phone</label>
+            <label htmlFor="phone" className={labelClass}>Phone</label>
             <input 
                 id="phone"
                 name="phone"
                 type="tel" 
-                className="w-full px-4 py-3 rounded-lg bg-gray-50 border border-gray-200 focus:border-secondary focus:ring-2 focus:ring-secondary/20 outline-none transition-all placeholder-gray-400" 
+                className={inputClass} 
                 placeholder="(404) 555-0123" 
                 required
             />
          </div>
          <div>
-            <label htmlFor="email" className="block text-xs font-bold text-gray-500 uppercase tracking-wide mb-2">Email</label>
+            <label htmlFor="email" className={labelClass}>Email</label>
             <input 
                 id="email"
                 name="email"
                 type="email" 
-                className="w-full px-4 py-3 rounded-lg bg-gray-50 border border-gray-200 focus:border-secondary focus:ring-2 focus:ring-secondary/20 outline-none transition-all placeholder-gray-400" 
+                className={inputClass} 
                 placeholder="jane@example.com" 
                 required
             />
@@ -110,12 +123,12 @@ const ContactForm: React.FC = () => {
       </div>
 
       <div>
-        <label htmlFor="details" className="block text-xs font-bold text-gray-500 uppercase tracking-wide mb-2">Project Details</label>
+        <label htmlFor="details" className={labelClass}>Project Details</label>
         <textarea 
             id="details"
             name="details"
             rows={4} 
-            className="w-full px-4 py-3 rounded-lg bg-gray-50 border border-gray-200 focus:border-secondary focus:ring-2 focus:ring-secondary/20 outline-none transition-all placeholder-gray-400 resize-none" 
+            className={`${inputClass} resize-none`} 
             placeholder="Tell us about your space, timeline, and any specific stones you are interested in..."
         ></textarea>
       </div>
@@ -123,7 +136,11 @@ const ContactForm: React.FC = () => {
       <button 
         type="submit" 
         disabled={status === 'loading'}
-        className="w-full bg-primary hover:bg-slate-800 disabled:bg-gray-400 disabled:cursor-not-allowed text-white font-bold py-4 rounded-xl transition-all hover:scale-[1.01] flex items-center justify-center gap-2 shadow-lg hover:shadow-xl"
+        className={`w-full font-bold py-4 rounded-xl transition-all hover:scale-[1.01] flex items-center justify-center gap-2 shadow-lg hover:shadow-xl disabled:cursor-not-allowed ${
+          isDark
+            ? 'bg-secondary text-[#090909] hover:bg-white disabled:bg-secondary/50'
+            : 'bg-primary hover:bg-slate-800 text-white disabled:bg-gray-400'
+        }`}
       >
         {status === 'loading' ? (
            <><Loader2 className="animate-spin" size={20} /> <span>Sending...</span></>
