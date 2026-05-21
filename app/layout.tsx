@@ -25,10 +25,10 @@ export const viewport: Viewport = {
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.agsstonefabricators.com"),
   title: {
-    default: "Granite Countertops Near Me | Atlanta & Duluth's #1 Local Fabricator | AGS Stones & Cabinets",
-    template: "%s | AGS Stones & Cabinets",
+    default: "Quartz & Granite Countertops in Atlanta, GA | AGS Stones",
+    template: "%s | AGS Stones",
   },
-  description: "Looking for granite countertops near you? AGS Stones is your local factory-direct fabricator in Duluth, GA. Serving Atlanta, Alpharetta, and Roswell. Save 30% today.",
+  description: "Get factory-direct kitchen countertops and premium cabinetry. AGS Stones is the top custom fabricator in Duluth, GA. Serving Atlanta, Alpharetta, Roswell, and Johns Creek.",
   keywords: ["granite countertops near me", "granite fabricators near me", "quartz countertops near me", "stone suppliers atlanta", "duluth granite company", "ags stones", "kitchen remodeling", "bathroom vanities"],
   authors: [{ name: "AGS Stones & Cabinets" }],
   creator: "AGS Stones & Cabinets",

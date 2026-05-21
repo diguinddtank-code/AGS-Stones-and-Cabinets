@@ -8,18 +8,41 @@ import { useSearchParams } from 'next/navigation';
 import { Check, Calendar, Phone, ArrowRight, ShieldCheck, Star, PenTool, Hammer, Truck, HeartHandshake, HelpCircle, MapPin } from 'lucide-react';
 import type { ServiceDetail } from '@/lib/servicesData';
 
-export default function ServiceDynamicContent({ service }: { service: ServiceDetail }) {
+export default function ServiceDynamicContent({ service, cityOverride }: { service: ServiceDetail; cityOverride?: string }) {
     const searchParams = useSearchParams();
     const cityParam = searchParams.get('city') || searchParams.get('loc');
-    const [userCity, setUserCity] = useState("Atlanta Area");
+    
+    const initialCity = cityOverride 
+        ? cityOverride.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ')
+        : "Atlanta Area";
+        
+    const [userCity, setUserCity] = useState(initialCity);
+
+    // Compute the parent prefix for local internal dynamic linking mapping (SEO master-link web)
+    let activePrefix = 'countertops';
+    const locationsList = ['atlanta', 'duluth', 'alpharetta', 'roswell', 'johns-creek', 'suwanee', 'marietta', 'sandy-springs', 'buckhead'];
+    let slugLower = service.slug.toLowerCase();
+    if (slugLower.endsWith('-ga')) {
+        slugLower = slugLower.slice(0, -3);
+    }
+    for (const loc of locationsList) {
+        if (slugLower.endsWith(`-${loc}`)) {
+            activePrefix = slugLower.slice(0, -(loc.length + 1));
+            break;
+        }
+    }
+    // If not matching prefix or default, fallback to service.slug or base service slug
+    if (!activePrefix || activePrefix === 'countertops' && !service.slug.includes('countertops')) {
+        activePrefix = service.slug;
+    }
     
     useEffect(() => {
-        if (cityParam) {
+        if (!cityOverride && cityParam) {
             // Capitalize city
             const formatted = cityParam.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
             setUserCity(formatted);
         }
-    }, [cityParam]);
+    }, [cityParam, cityOverride]);
     
     // Derived values for dynamic location insertion
     const isSpecificLocation = userCity.toLowerCase() !== "atlanta area";
@@ -201,7 +224,8 @@ export default function ServiceDynamicContent({ service }: { service: ServiceDet
                                     {service.longDesc}
                                 </p>
                                 <p>
-                                    When you choose AGS Stones & Cabinets, you're partnering with an experienced local team that cares about your home. We handle everything from design to fabrication, cutting out the middlemen to bring you premium quality without the crazy markups.
+                                    When you choose AGS Stones & Cabinets, you're partnering with an experienced local team that cares about your home. We handle everything from design to fabrication, cutting out the middlemen to bring you premium quality without the retail markups. 
+                                    Looking for {activePrefix === 'cabinets' || activePrefix === 'custom-cabinets' ? 'custom cabinets' : 'countertops'} in <Link href={`/${activePrefix}-alpharetta-ga`} className="text-secondary font-medium underline hover:text-primary transition-colors">Alpharetta</Link>? Or custom countertop installations in <Link href={`/countertops-johns-creek-ga`} className="text-secondary font-medium underline hover:text-primary transition-colors">Johns Creek</Link> or <Link href={`/countertops-sandy-springs-ga`} className="text-secondary font-medium underline hover:text-primary transition-colors">Sandy Springs</Link>? We have dedicated fabricators assigned to every major area of Metro Atlanta to ensure custom templating and turnaround in under a week.
                                 </p>
                             </div>
 
@@ -371,18 +395,26 @@ export default function ServiceDynamicContent({ service }: { service: ServiceDet
                                 Based in Duluth, we extend our {service.title.toLowerCase()} expertise to the finest homes across Georgia. Wherever you are, perfection is within reach.
                             </p>
                             
-                            <div className="grid grid-cols-2 sm:grid-cols-3 gap-y-4 gap-x-2 text-sm font-medium text-gray-500 pt-4 border-t border-gray-100">
-                                {["Atlanta", "Alpharetta", "Roswell", "Duluth", "Johns Creek", "Marietta", "Suwanee", "Dunwoody", "Sandy Springs", "Milton"].map((city) => (
-                                    <span key={city} className={`flex items-center gap-2 ${userCity.toLowerCase() === city.toLowerCase() ? 'text-green-600 font-bold' : ''}`}>
-                                        <div className="relative flex h-2 w-2">
-                                          {userCity.toLowerCase() === city.toLowerCase() && (
-                                            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
-                                          )}
-                                          <span className={`relative inline-flex rounded-full h-2 w-2 ${userCity.toLowerCase() === city.toLowerCase() ? 'bg-green-500' : 'bg-green-500/40'}`}></span>
-                                        </div> 
-                                        {city}
-                                    </span>
-                                ))}
+                            <div className="grid grid-cols-2 sm:grid-cols-3 gap-y-4 gap-x-2 text-sm font-medium pt-4 border-t border-gray-100">
+                                {["Atlanta", "Alpharetta", "Roswell", "Duluth", "Johns Creek", "Marietta", "Suwanee", "Sandy Springs", "Buckhead"].map((city) => {
+                                    const citySlug = city.toLowerCase().replace(' ', '-');
+                                    const dynamicUrl = `/${activePrefix}-${citySlug}-ga`;
+                                    return (
+                                        <Link 
+                                            key={city} 
+                                            href={dynamicUrl}
+                                            className={`flex items-center gap-2 hover:text-secondary transition-colors cursor-pointer group ${userCity.toLowerCase() === city.toLowerCase() ? 'text-green-600 font-bold' : 'text-gray-500'}`}
+                                        >
+                                            <div className="relative flex h-2 w-2 shrink-0">
+                                              {userCity.toLowerCase() === city.toLowerCase() && (
+                                                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                                              )}
+                                              <span className={`relative inline-flex rounded-full h-2 w-2 ${userCity.toLowerCase() === city.toLowerCase() ? 'bg-green-500' : 'bg-green-500/40 group-hover:bg-secondary'}`}></span>
+                                            </div> 
+                                            <span className="border-b border-transparent group-hover:border-secondary transition-colors pb-0.5">{city}</span>
+                                        </Link>
+                                    );
+                                })}
                             </div>
                             
                             <div className="pt-6">
