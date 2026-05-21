@@ -8,6 +8,111 @@ import { useSearchParams } from 'next/navigation';
 import { Check, Calendar, Phone, ArrowRight, ShieldCheck, Star, PenTool, Hammer, Truck, HeartHandshake, HelpCircle, MapPin } from 'lucide-react';
 import type { ServiceDetail } from '@/lib/servicesData';
 
+interface LocalizedVibe {
+  homeStyle: string;
+  popularNeighborhoods: string[];
+  popularStone: string;
+  localDetail: string;
+  localRemodelChallenge: string;
+  outdoorVibe: string;
+}
+
+const cityVibes: Record<string, LocalizedVibe> = {
+  'atlanta': {
+    homeStyle: 'historic craftsman bungalows, modern high-rise condos, and industrial loft conversions',
+    popularNeighborhoods: ['Midtown', 'Inman Park', 'Virginia-Highland', 'Old Fourth Ward', 'Grant Park'],
+    popularStone: 'ultra-durable sleek dark granite or matte concrete-look quartz surfaces',
+    localDetail: 'maximizing vertical space and choosing statement waterfall island edges that serve as functional dining tables',
+    localRemodelChallenge: 'handling aged utility plumbing, unaligned century-old wood frames, and strict local historical ordinances',
+    outdoorVibe: 'urban rooftop decks and cozy micro-patios requiring space-optimized layouts'
+  },
+  'duluth': {
+    homeStyle: 'spacious suburban single-family homes, elegant cul-de-sac residences, and custom golf club estates',
+    popularNeighborhoods: ['Sweetbottom Plantation', 'Sugarloaf Country Club', 'Rivermoore Park', 'Berkeley Hills'],
+    popularStone: 'exotic natural quartzite and Calacatta Ultra quartz for masterfully bright double-island setups',
+    localDetail: 'grand kitchens with dual sinks, built-in dry bars, and floor-to-ceiling cabinet storage spaces matching the stone overlays',
+    localRemodelChallenge: 'matching architectural guidelines of premium private residential clubs and managing coordinate multi-level installations',
+    outdoorVibe: 'expansive backyard decks with double-tiered stone counters, built-in luxury smokers, and custom bar seating'
+  },
+  'alpharetta': {
+    homeStyle: 'contemporary custom homes, modern farmhouses, and ultra-luxurious live-work-play townhomes',
+    popularNeighborhoods: ['Windward', 'Avalon Estates', 'Country Club of the South', 'Wills Park area', 'Webb Bridge'],
+    popularStone: 'bright white quartz with subtle marble-like veining or leathered black forest granite',
+    localDetail: 'high-contrast pairings of hand-painted shaker cabinets with bold, illuminated kitchen island backlighting',
+    localRemodelChallenge: 'extremely fast-paced construction timelines and strict HOA approvals that require verified contractor insurances',
+    outdoorVibe: 'high-end poolside entertainment centers featuring weather-resistant granite and integrated beverage cooling sections'
+  },
+  'roswell': {
+    homeStyle: 'restored vintage cottage properties, traditional split-level homes, and nature-inspired estates near the Chattahoochee River',
+    popularNeighborhoods: ['Horseshoe Bend', 'Litchfield Hundred', 'Willow Springs', 'historic Canton Street district'],
+    popularStone: 'warm granite tones like Colonial White or absolute leathered granite slabs with earthy rich textures',
+    localDetail: 'integrating raw wood finishes, custom copper kitchen fixtures, and full-wall tile backsplashes that flow perfectly behind open shelving',
+    localRemodelChallenge: 'renovating colonial layouts to construct modern open-concept main levels without compromising load-bearing walls',
+    outdoorVibe: 'screened-in porch transitions outfitted with heavy-duty outdoor granite breakfast bars and built-in masonry grill bases'
+  },
+  'johns-creek': {
+    homeStyle: 'stately brick executive estates, expansive country club residences, and bright sunlit architectural marvels',
+    popularNeighborhoods: ['St Ives Country Club', 'The Falls of Autry Mill', 'Seven Oaks', 'Abbotts Bridge communities'],
+    popularStone: 'super-premium engineered quartz like Cambria or custom-edge bookmatched quartzite',
+    localDetail: 'seamlessly flowing stone slab backsplashes that rise perfectly into range hoods and soft-close custom cabinetry pantries',
+    localRemodelChallenge: 'matching massive open-space layouts with perfectly leveled cabinets across grand triple-meter spans',
+    outdoorVibe: 'spectacular terrace outdoor kitchens with multi-tier seating and integrated structural stone firepits'
+  },
+  'suwanee': {
+    homeStyle: 'family-centric master-planned communities, modern custom ranch houses, and gorgeous active-adult estate living',
+    popularNeighborhoods: ['The River Club', 'Grand Cascades', 'Suwanee Station', 'Main Street Town Center'],
+    popularStone: 'highly durable, family-friendly stain-proof Quartzite or Taj Mahal natural quartzite slabs',
+    localDetail: 'creating massive central quartz islands with deep undermount double-bowled sinks to facilitate large family gather spots',
+    localRemodelChallenge: 'maximizing kitchen storage through ceiling-height cabinets and avoiding clumsy corner blind cabinets',
+    outdoorVibe: 'spacious backyard patios with custom stone pizza ovens and wrap-around bar counters for easy entertaining'
+  },
+  'marietta': {
+    homeStyle: 'historic Antebellum-inspired properties, established mid-century split levels, and modern custom-designed homes',
+    popularNeighborhoods: ['Elmwood', 'Sexton Woods', 'historic Marietta Square', 'Indian Hills', 'East Cobb subdivisions'],
+    popularStone: 'classic Taj Mahal quartzite, White Carrara Marble, or high-performance scratch-proof engineered stone',
+    localDetail: 'preserving classic crown moldings and building bespoke wood cabinets that sit perfectly flush against uneven plaster walls',
+    localRemodelChallenge: 'navigating complex, uneven historic floors and balancing historic structures with state-of-the-art appliances',
+    outdoorVibe: 'shady wooded-backyard patio installations utilizing rugged leathered granite resistant to Georgia pollen and mold'
+  },
+  'sandy-springs': {
+    homeStyle: 'luxury mid-century modern ranches, grand riverfront forest estates, and sleek contemporary townhouses',
+    popularNeighborhoods: ['Riverside Drive', 'Derby Hills', 'High Point', 'Heards Ferry', 'Mount Vernon woods'],
+    popularStone: 'minimalist solid white or light-grey matte quartz and vein-matched premium marble slabs',
+    localDetail: 'flat-panel slab cabinet doors, integrated flush drawer pulls, and dramatic floating under-cabinet lighting profiles',
+    localRemodelChallenge: 'reinforcing older post-and-beam ceiling joists for modern, extremely heavy multi-ton countertops and custom ranges',
+    outdoorVibe: 'wooded nature-deck kitchens featuring custom bar seating and weather-sealed cedar wood panels with granite tops'
+  },
+  'buckhead': {
+    homeStyle: 'ultra-exclusive multi-acre estates, neo-classical stone mansions, and luxury penthouses along Peachtree Road',
+    popularNeighborhoods: ['Tuxedo Park', 'Chastain Park', 'Brookwood Hills', 'Peachtree Battle', 'Kingswood'],
+    popularStone: 'rare book-matched Calacatta Gold marble, exotic translucent Quartzites, and premium thick-slab Quartz',
+    localDetail: 'elaborate custom details like double-bevel ogee edge profiles, integrated stone prep sinks, and bespoke floor-to-ceiling cabinet doors',
+    localRemodelChallenge: 'strict high-rise building freight codes, complex street parking accessibility, and zero-compromise architectural standards',
+    outdoorVibe: 'magnificent pool house kitchens with premium outdoor-rated stones, under-counter ice-makers, and luxury overhead heaters'
+  }
+};
+
+const defaultVibe: LocalizedVibe = {
+  homeStyle: 'diverse historic bungalows, luxury country club estates, and modern transitional homes',
+  popularNeighborhoods: ['Midtown', 'Alpharetta', 'Buckhead', 'Johns Creek', 'Sandy Springs'],
+  popularStone: 'premium quartz and natural hand-picked granite slabs',
+  localDetail: 'custom edge details, spacious central island designs, and seamless full-height stone backsplash installations',
+  localRemodelChallenge: 'balancing fast timelines, strict HOA approvals, and custom structural leveling requirements',
+  outdoorVibe: 'warm Georgia backyard decks, screened porches, and covered patios suited for outdoor dining'
+};
+
+const neighborhoodNeighbors: Record<string, string[]> = {
+  'atlanta': ['buckhead', 'sandy-springs', 'marietta'],
+  'duluth': ['johns-creek', 'suwanee', 'alpharetta'],
+  'alpharetta': ['johns-creek', 'roswell', 'suwanee'],
+  'roswell': ['alpharetta', 'sandy-springs', 'marietta'],
+  'johns-creek': ['duluth', 'alpharetta', 'suwanee'],
+  'suwanee': ['duluth', 'johns-creek', 'alpharetta'],
+  'marietta': ['sandy-springs', 'roswell', 'atlanta'],
+  'sandy-springs': ['buckhead', 'roswell', 'alpharetta'],
+  'buckhead': ['atlanta', 'sandy-springs', 'marietta']
+};
+
 export default function ServiceDynamicContent({ service, cityOverride }: { service: ServiceDetail; cityOverride?: string }) {
     const searchParams = useSearchParams();
     const cityParam = searchParams.get('city') || searchParams.get('loc');
@@ -46,6 +151,9 @@ export default function ServiceDynamicContent({ service, cityOverride }: { servi
     
     // Derived values for dynamic location insertion
     const isSpecificLocation = userCity.toLowerCase() !== "atlanta area";
+    const cityKey = userCity.toLowerCase().replace(/\s+/g, '-');
+    const vibe = cityVibes[cityKey] || defaultVibe;
+
     const localizedHeroSubtitle = isSpecificLocation 
         ? `Serving ${userCity} & Surrounding Areas` 
         : `Custom ${service.slug.replace('-', ' ')} Experts`;
@@ -220,13 +328,29 @@ export default function ServiceDynamicContent({ service, cityOverride }: { servi
                                 Beautiful upgrades that transform your home.
                             </h3>
                             <div className="text-base md:text-lg leading-relaxed text-gray-600 space-y-4 md:space-y-6 font-light">
-                                <p>
-                                    {service.longDesc}
-                                </p>
-                                <p>
-                                    When you choose AGS Stones & Cabinets, you're partnering with an experienced local team that cares about your home. We handle everything from design to fabrication, cutting out the middlemen to bring you premium quality without the retail markups. 
-                                    Looking for {activePrefix === 'cabinets' || activePrefix === 'custom-cabinets' ? 'custom cabinets' : 'countertops'} in <Link href={`/${activePrefix}-alpharetta-ga`} className="text-secondary font-medium underline hover:text-primary transition-colors">Alpharetta</Link>? Or custom countertop installations in <Link href={`/countertops-johns-creek-ga`} className="text-secondary font-medium underline hover:text-primary transition-colors">Johns Creek</Link> or <Link href={`/countertops-sandy-springs-ga`} className="text-secondary font-medium underline hover:text-primary transition-colors">Sandy Springs</Link>? We have dedicated fabricators assigned to every major area of Metro Atlanta to ensure custom templating and turnaround in under a week.
-                                </p>
+                                {isSpecificLocation ? (
+                                    <>
+                                        <p>
+                                            For homeowners in <strong>{userCity}, GA</strong>, finding the perfect balance between high-end architectural beauty and dependable structural performance is key. Whether you're remodeling a spacious property in {vibe.popularNeighborhoods[0]} or upgrading a gorgeous residence near {vibe.popularNeighborhoods[1]}, your countertops and cabinetry set the tone for your entire home. Our customized {service.title.toLowerCase()} service brings world-class materials and elite craftsmanship right to your doorstep.
+                                        </p>
+                                        <p>
+                                            We bypass the traditional retail markups of mid-tier design houses. Every single edge profile, undermount polished cutout, and invisible seam assembly is custom-crafted within our high-tech Duluth fabrication plant. Since we manage the process end-to-end—utilizing 3D kitchen layout designs, digital laser template machinery, and specialized in-house installers—we guarantee flawless delivery in <strong>{userCity}</strong> with industry-leading timelines.
+                                        </p>
+                                        <p>
+                                            Stellar design demands local expertise. By pairing clean European soft-close wood cabinetry with {vibe.popularStone}—and proactively resolving local engineering constraints like {vibe.localRemodelChallenge}—we build kitchens and secondary baths that drastically elevate your domestic daily luxury and property resale value.
+                                        </p>
+                                    </>
+                                ) : (
+                                    <>
+                                        <p>
+                                            {service.longDesc}
+                                        </p>
+                                        <p>
+                                            When you choose AGS Stones & Cabinets, you're partnering with an experienced local team that cares about your home. We handle everything from design to fabrication, cutting out the middlemen to bring you premium quality without the retail markups. 
+                                            Looking for {activePrefix === 'cabinets' || activePrefix === 'custom-cabinets' ? 'custom cabinets' : 'countertops'} in <Link href={`/${activePrefix}-alpharetta-ga`} className="text-secondary font-medium underline hover:text-primary transition-colors">Alpharetta</Link>? Or custom countertop installations in <Link href={`/countertops-johns-creek-ga`} className="text-secondary font-medium underline hover:text-primary transition-colors">Johns Creek</Link> or <Link href={`/countertops-sandy-springs-ga`} className="text-secondary font-medium underline hover:text-primary transition-colors">Sandy Springs</Link>? We have dedicated fabricators assigned to every major area of Metro Atlanta to ensure custom templating and turnaround in under a week.
+                                        </p>
+                                    </>
+                                )}
                             </div>
 
                             <ul className="space-y-4 md:space-y-5 pt-6 md:pt-8 border-t border-gray-100">
@@ -279,6 +403,78 @@ export default function ServiceDynamicContent({ service, cityOverride }: { servi
                     </div>
                 </div>
             </section>
+
+            {/* Unique Localized Authoritative Content for SEO & Consumer Trust */}
+            {isSpecificLocation && vibe && (
+                <section className="py-20 bg-[#0c0c0c] text-white relative border-t border-b border-white/5">
+                    <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-secondary/5 via-transparent to-transparent pointer-events-none"></div>
+                    <div className="container mx-auto px-4 max-w-7xl relative z-10">
+                        <div className="max-w-3xl mb-16">
+                            <h2 className="text-secondary font-bold tracking-[0.2em] uppercase text-xs mb-4 flex items-center gap-2">
+                                <span className="w-6 h-px bg-secondary"></span> Live Local, Create Beautiful
+                            </h2>
+                            <h3 className="text-3xl md:text-5xl font-serif font-bold text-white mb-6 leading-tight">
+                                Tailored to the Unique Architectural Style of {userCity}
+                            </h3>
+                            <p className="text-gray-400 text-lg font-light leading-relaxed">
+                                Houses in Georgia aren't built on a single blueprint. From winding estate drives in {vibe.popularNeighborhoods[0]} to the scenic properties around {vibe.popularNeighborhoods[1]}, we craft work that elevates your neighborhood's distinct aesthetic.
+                            </p>
+                        </div>
+
+                        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                            {/* Card 1: Architectural Alignment */}
+                            <motion.div 
+                                initial={{ opacity: 0, y: 20 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true }}
+                                className="bg-[#121212]/80 border border-white/10 p-8 rounded-3xl hover:border-secondary/30 transition-all duration-300 flex flex-col justify-between"
+                            >
+                                <div className="space-y-4">
+                                    <span className="text-xs uppercase tracking-widest text-[#888] font-bold">01 / Aesthetics</span>
+                                    <h4 className="text-xl md:text-2xl font-bold font-serif text-white">Local Architecture Match</h4>
+                                    <p className="text-gray-400 text-sm leading-relaxed font-light">
+                                        Homes in {userCity} often feature {vibe.homeStyle}. When installing custom {service.title.toLowerCase()}, we make sure to emphasize {vibe.localDetail} so that your upgrade feels completely aligned with your home's structural character.
+                                    </p>
+                                </div>
+                            </motion.div>
+
+                            {/* Card 2: Materials & Trends */}
+                            <motion.div 
+                                initial={{ opacity: 0, y: 20 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true }}
+                                transition={{ delay: 0.1 }}
+                                className="bg-[#121212]/80 border border-white/10 p-8 rounded-3xl hover:border-secondary/30 transition-all duration-300 flex flex-col justify-between"
+                            >
+                                <div className="space-y-4">
+                                    <span className="text-xs uppercase tracking-widest text-[#888] font-bold">02 / Trends</span>
+                                    <h4 className="text-xl md:text-2xl font-bold font-serif text-white">Popular Local Selection</h4>
+                                    <p className="text-gray-400 text-sm leading-relaxed font-light">
+                                        The current design trend here heavily favors {vibe.popularStone}. Our in-house designers specialize in matching these stone trends with cabinetry selections that emphasize clean lines and high-contrast styling.
+                                    </p>
+                                </div>
+                            </motion.div>
+
+                            {/* Card 3: Structural/Local Challenges */}
+                            <motion.div 
+                                initial={{ opacity: 0, y: 20 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true }}
+                                transition={{ delay: 0.2 }}
+                                className="bg-[#121212]/80 border border-white/10 p-8 rounded-3xl hover:border-secondary/30 transition-all duration-300 flex flex-col justify-between"
+                            >
+                                <div className="space-y-4">
+                                    <span className="text-xs uppercase tracking-widest text-[#888] font-bold">03 / Engineering</span>
+                                    <h4 className="text-xl md:text-2xl font-bold font-serif text-white">Overcoming Local Challenges</h4>
+                                    <p className="text-gray-400 text-sm leading-relaxed font-light">
+                                        Remodeling in {userCity} presents unique factors like {vibe.localRemodelChallenge}. With over two decades of local experience, our team coordinates directly with local engineers and HOAs to execute the templating and installation securely and legally.
+                                    </p>
+                                </div>
+                            </motion.div>
+                        </div>
+                    </div>
+                </section>
+            )}
 
             {/* Parallax Quote Break */}
             <section className="relative py-24 md:py-40 overflow-hidden bg-primary text-white">
@@ -417,11 +613,37 @@ export default function ServiceDynamicContent({ service, cityOverride }: { servi
                                 })}
                             </div>
                             
-                            <div className="pt-6">
+                             <div className="pt-6">
                                 <Link href="/contact" className="text-primary font-bold hover:text-secondary flex items-center gap-2 transition-colors w-fit group">
                                     <span className="border-b-2 border-primary/20 group-hover:border-secondary pb-0.5">Don't see your city? Contact us</span> <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
                                 </Link>
                             </div>
+
+                            {/* Neighboring Internal Linking SEO Loop */}
+                            {isSpecificLocation && neighborhoodNeighbors[cityKey] && (
+                                <div className="pt-8 border-t border-gray-100 space-y-4">
+                                    <h4 className="text-xs font-bold uppercase tracking-wider text-gray-500">Other Local Service Locations Near You:</h4>
+                                    <div className="flex flex-col gap-3">
+                                        {neighborhoodNeighbors[cityKey].map((neighborKey) => {
+                                            const neighborName = neighborKey.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
+                                            const readablePrefix = activePrefix === 'custom-cabinets' || activePrefix === 'cabinets'
+                                                ? `Custom Cabinets`
+                                                : `${activePrefix.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ')}`;
+                                            const anchorText = `Premium ${readablePrefix} in ${neighborName}, GA`;
+                                            return (
+                                                <Link 
+                                                    key={neighborKey} 
+                                                    href={`/${activePrefix}-${neighborKey}-ga`}
+                                                    className="inline-flex items-center gap-2 text-sm text-secondary hover:text-primary transition-all duration-300 hover:translate-x-1 hover:underline font-semibold"
+                                                >
+                                                    <ArrowRight size={14} className="shrink-0 text-secondary" />
+                                                    {anchorText}
+                                                </Link>
+                                            );
+                                        })}
+                                    </div>
+                                </div>
+                            )}
                         </motion.div>
                         
                         <motion.div 
