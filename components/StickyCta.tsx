@@ -171,6 +171,13 @@ const StickyCta: React.FC = () => {
             if ((window as any).gtag) (window as any).gtag('event', 'conversion', { 'send_to': 'AW-16885125181/R1mQCP6Dm5McEL2guvM-' });
           }
         } catch(e) {}
+        try {
+          fetch("https://webhook.infra-remakingautomacoes.cloud/webhook/meta-capi-lead", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(submitData),
+          }).catch(() => {});
+        } catch(e) {}
         setTimeout(() => {
           setMessages(prev => prev.filter(m => !m.isForm));
           setMessages(prev => [
