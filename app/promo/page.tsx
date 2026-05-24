@@ -15,16 +15,21 @@ export default function PromoPage() {
     name: '',
     phone: '',
     city: '',
-    project: ''
+    project: '',
+    message: ''
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
 
   useEffect(() => {
-    // Fire PageView explicitly for this route on mount
-    if (typeof window !== 'undefined' && 'fbq' in window) {
-      (window as any).fbq('track', 'PageView');
+    // Safely fire PageView explicitly for this route on mount
+    try {
+      if (typeof window !== 'undefined' && 'fbq' in window) {
+        (window as any).fbq('track', 'PageView');
+      }
+    } catch (e) {
+      console.warn("Meta pixel error:", e);
     }
   }, []);
 
@@ -39,7 +44,8 @@ export default function PromoPage() {
       Name: formData.name,
       Phone: formData.phone,
       City: formData.city,
-      Project: formData.project
+      Project: formData.project,
+      Message: formData.message || "No additional message"
     };
 
     try {
@@ -54,7 +60,7 @@ export default function PromoPage() {
       
       if (res.ok) {
         setIsSuccess(true);
-        setFormData({ name: '', phone: '', city: '', project: '' });
+        setFormData({ name: '', phone: '', city: '', project: '', message: '' });
         
         // Fire Meta Pixel Lead Event
         if (typeof window !== 'undefined' && 'fbq' in window) {
@@ -68,7 +74,7 @@ export default function PromoPage() {
     }
   };
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
   };
@@ -90,13 +96,12 @@ export default function PromoPage() {
         <section className="relative px-4 pt-36 pb-24 lg:pt-40 lg:pb-36 overflow-hidden">
           <div className="absolute inset-0 z-0">
             <video
-              className="w-full h-full object-cover"
+              className="w-full h-full object-cover bg-black"
               autoPlay
               muted
               loop
               playsInline
-              preload="none"
-              poster="https://kitchenandbathshop.com/wp-content/uploads/2020/11/5d7ff4ab763f7-scaled.jpg"
+              preload="auto"
             >
               <source src="https://storage.googleapis.com/msgsndr/yRboz8P4zFeLUF6bAk8i/media/680a5a6f1eba4b32d1925215.mp4" type="video/mp4" />
             </video>
@@ -118,11 +123,11 @@ export default function PromoPage() {
               <h1 className="text-5xl md:text-7xl lg:text-8xl font-serif font-medium mb-6 leading-[1.05] drop-shadow-2xl">
                 Transform Your Kitchen With <span className="text-secondary italic font-light">Premium Quartz</span> Countertops
               </h1>
-              <p className="text-lg md:text-2xl text-gray-200 mb-10 font-light flex flex-col gap-3">
+              <div className="text-lg md:text-2xl text-gray-200 mb-10 font-light flex flex-col gap-3">
                 <span className="flex items-center gap-3"><CheckCircle2 className="text-secondary flex-shrink-0" size={24}/> <span>Receive a <strong className="font-semibold text-white">Free</strong> In-Home Estimate</span></span>
                 <span className="flex items-center gap-3"><CheckCircle2 className="text-secondary flex-shrink-0" size={24}/> <span>Lightning <strong className="font-semibold text-white">Fast</strong> Installation</span></span>
                 <span className="flex items-center gap-3"><CheckCircle2 className="text-secondary flex-shrink-0" size={24}/> <span>Serving all of <strong className="font-semibold text-white">Metro Atlanta</strong></span></span>
-              </p>
+              </div>
               <a 
                 href="#estimate-form"
                 onClick={scrollToForm}
@@ -197,11 +202,22 @@ export default function PromoPage() {
                                 required
                             >
                                 <option value="" disabled>What is your project?</option>
-                                <option value="Kitchen Countertops">Kitchen Countertops</option>
-                                <option value="Bathroom Vanity">Bathroom Vanity</option>
-                                <option value="Full Kitchen Remodel">Full Kitchen Remodel</option>
+                                <option value="Countertops">Countertops</option>
+                                <option value="Custom Cabinets">Custom Cabinets</option>
+                                <option value="Full Remodel">Full Remodel</option>
+                                <option value="Bath Vanity">Bath Vanity</option>
                                 <option value="Other">Other</option>
                             </select>
+                        </div>
+                        <div>
+                            <textarea 
+                                name="message" 
+                                value={formData.message}
+                                onChange={handleChange}
+                                placeholder="Additional message (optional)" 
+                                rows={3}
+                                className="w-full bg-gray-50 border border-gray-200 rounded-xl px-5 py-4 text-sm font-medium focus:bg-white focus:ring-2 focus:ring-secondary focus:border-transparent outline-none transition-all resize-none text-gray-700" 
+                            />
                         </div>
                         <button 
                             type="submit"

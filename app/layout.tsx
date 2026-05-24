@@ -82,7 +82,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${inter.variable} ${playfair.variable}`}>
+    <html lang="en" className={`${inter.variable} ${playfair.variable}`} suppressHydrationWarning>
       <head>
         <link rel="icon" type="image/png" href="https://i.imgur.com/B0ZaBpN.png" />
         <link rel="apple-touch-icon" href="https://i.imgur.com/B0ZaBpN.png" />
@@ -157,7 +157,7 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className="bg-white text-gray-800 antialiased overflow-x-hidden selection:bg-secondary selection:text-white font-sans">
+      <body className="bg-white text-gray-800 antialiased overflow-x-hidden selection:bg-secondary selection:text-white font-sans" suppressHydrationWarning>
         {/* Google Tag Manager (gtag.js) */}
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=AW-16885125181"
