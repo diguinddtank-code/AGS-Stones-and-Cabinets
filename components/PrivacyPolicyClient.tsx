@@ -12,7 +12,7 @@ const PrivacyPolicyClient = () => {
       <main className="flex-grow pt-20">
         <div className="container mx-auto px-4 py-16 max-w-4xl">
           <h1 className="text-4xl font-serif font-bold text-gray-900 mb-8">Privacy Policy</h1>
-          <p className="text-gray-600 mb-8 text-sm">Last Updated: {new Date().toLocaleDateString()}</p>
+          <p className="text-gray-600 mb-8 text-sm">Last Updated: May 24, 2026</p>
           
           <div className="prose prose-lg text-gray-700">
             <p>

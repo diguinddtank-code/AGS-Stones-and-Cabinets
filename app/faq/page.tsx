@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Script from "next/script";
 import FaqClient from "../../components/FaqClient";
 
 export const metadata: Metadata = {
@@ -67,7 +68,8 @@ const faqSchema = {
 export default function Page() {
   return (
     <>
-      <script
+      <Script
+        id="faq-schema"
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
       />

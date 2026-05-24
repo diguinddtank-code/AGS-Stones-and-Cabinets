@@ -26,6 +26,7 @@ const nextConfig = {
       { protocol: 'https', hostname: 'upload.wikimedia.org' },
       { protocol: 'https', hostname: 'kitchenandbathshop.com' },
       { protocol: 'https', hostname: 'agsstonefabricators.com' },
+      { protocol: 'https', hostname: 'www.agsstonefabricators.com' },
       { protocol: 'https', hostname: 'dam.thdstatic.com' },
       { protocol: 'https', hostname: '21stcenturycd.com' },
       { protocol: 'https', hostname: 'hamishmurray.com' },

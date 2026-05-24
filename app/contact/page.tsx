@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Script from "next/script";
 import ContactClient from "../../components/ContactClient";
 
 export const metadata: Metadata = {
@@ -38,7 +39,8 @@ const contactSchema = {
 export default function Page() {
   return (
     <>
-      <script
+      <Script
+        id="contact-schema"
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(contactSchema) }}
       />

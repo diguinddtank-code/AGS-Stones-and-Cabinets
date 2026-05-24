@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Script from "next/script";
 
 export const metadata: Metadata = {
   title: "Get a Free Quote | Granite Countertops & Custom Cabinets | AGS Stones",
@@ -32,7 +33,8 @@ export default function QuoteLayout({
 }) {
   return (
     <>
-      <script
+      <Script
+        id="quote-schema"
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(quoteSchema) }}
       />

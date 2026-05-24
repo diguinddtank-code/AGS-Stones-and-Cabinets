@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Script from "next/script";
 import { notFound } from "next/navigation";
 import { services, ServiceDetail } from "@/lib/servicesData";
 import Header from "@/components/Header";
@@ -223,7 +224,8 @@ export default function Page({ params }: { params: { slug: string } }) {
 
   return (
     <div className="font-sans text-gray-900 bg-[#0a0a0a] min-h-screen">
-      <script
+      <Script
+        id={`slug-local-service-schema-${city}-${mapping.baseSlug}`}
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(localServiceSchema) }}
       />

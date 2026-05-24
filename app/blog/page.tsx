@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Script from "next/script";
 import BlogClient from "../../components/BlogClient";
 
 export const metadata: Metadata = {
@@ -24,7 +25,8 @@ const blogSchema = {
 export default function Page() {
   return (
     <>
-      <script
+      <Script
+        id="blog-schema"
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(blogSchema) }}
       />

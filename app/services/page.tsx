@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Script from "next/script";
 import ServicesClient from "../../components/ServicesClient";
 
 export const metadata: Metadata = {
@@ -58,7 +59,8 @@ const servicesSchema = {
 export default function Page() {
   return (
     <>
-      <script
+      <Script
+        id="services-schema"
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(servicesSchema) }}
       />

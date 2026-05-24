@@ -87,10 +87,13 @@ export default function RootLayout({
         <link rel="icon" type="image/png" href="https://i.imgur.com/B0ZaBpN.png" />
         <link rel="apple-touch-icon" href="https://i.imgur.com/B0ZaBpN.png" />
         <link rel="preload" as="image" href="https://kitchenandbathshop.com/wp-content/uploads/2020/11/5d7ff4ab763f7-scaled.jpg" fetchPriority="high" />
-        
+      </head>
+      <body className="bg-white text-gray-800 antialiased overflow-x-hidden selection:bg-secondary selection:text-white font-sans" suppressHydrationWarning>
         {/* JSON-LD Structured Data */}
-        <script
+        <Script
+          id="layout-business-schema"
           type="application/ld+json"
+          strategy="beforeInteractive"
           dangerouslySetInnerHTML={{
             __html: JSON.stringify({
               "@context": "https://schema.org",
@@ -156,8 +159,6 @@ export default function RootLayout({
             }),
           }}
         />
-      </head>
-      <body className="bg-white text-gray-800 antialiased overflow-x-hidden selection:bg-secondary selection:text-white font-sans" suppressHydrationWarning>
         {/* Google Tag Manager (gtag.js) */}
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=AW-16885125181"
