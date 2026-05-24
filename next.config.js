@@ -52,6 +52,7 @@ const nextConfig = {
       { protocol: 'https', hostname: 'livetteswallpaper.com' },
       { protocol: 'https', hostname: 'cdn11.bigcommerce.com' },
       { protocol: 'https', hostname: 'justagirlandherblog.com' },
+      { protocol: 'https', hostname: 'media.designcafe.com' },
     ],
   },
   typescript: {

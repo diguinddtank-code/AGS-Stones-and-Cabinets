@@ -122,7 +122,7 @@ const Testimonials: React.FC = () => {
                 </div>
                 <div className="text-center px-4">
                     <p className="text-4xl font-bold text-primary mb-1">
-                        <Counter end={128} />+
+                        <Counter end={200} />+
                     </p>
                     <p className="text-sm font-medium text-green-600 mb-1">100% Recommended</p>
                     <p className="text-xs text-gray-400 uppercase tracking-wider">Total Reviews</p>
@@ -205,7 +205,7 @@ const Testimonials: React.FC = () => {
             <div className="absolute top-0 right-0 w-64 h-64 bg-secondary rounded-full blur-[80px] opacity-20 translate-x-1/2 -translate-y-1/2 pointer-events-none"></div>
             
             <div className="text-center md:text-left relative z-10">
-                <h4 className="text-3xl font-serif font-bold mb-2">Join 120+ Happy Neighbors</h4>
+                <h4 className="text-3xl font-serif font-bold mb-2">Join 200+ Happy Neighbors</h4>
                 <p className="text-gray-300 mb-6">Start your project with the team Atlanta trusts. No middlemen, just quality.</p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
                     <a 

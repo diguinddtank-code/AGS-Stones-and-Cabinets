@@ -5,135 +5,172 @@ import Image from 'next/image';
 import Link from 'next/link';
 import Header from './Header';
 import Footer from './Footer';
+import { motion } from 'framer-motion';
 import { CheckCircle, Hammer, Ruler, Truck, PenTool, ArrowRight } from 'lucide-react';
 import { services } from '@/lib/servicesData';
 
 const ServicesClient = () => {
   return (
-    <div className="min-h-screen flex flex-col font-sans">
+    <div className="min-h-screen flex flex-col font-sans bg-white">
       <Header />
       
       <main className="flex-grow">
         {/* Hero Section */}
-        <section className="relative min-h-[50vh] flex items-center justify-center bg-gray-900 text-white overflow-hidden">
-          <div className="absolute inset-0 bg-black/70 z-10"></div>
+        <section className="relative px-4 pt-40 pb-24 lg:pt-48 lg:pb-32 overflow-hidden text-white">
           <div className="absolute inset-0 z-0">
             <Image 
               src="https://kitchenandbathshop.com/wp-content/uploads/2020/11/5d7ff4ab763f7-scaled.jpg"
               alt="AGS Services"
-              className="w-full h-full object-cover grayscale opacity-60"
+              className="w-full h-full object-cover object-center"
               fill
               priority
               sizes="100vw"
             />
           </div>
+          <div className="absolute inset-0 bg-[#090909]/80 z-10"></div>
           
-          <div className="container mx-auto px-4 relative z-20 text-center py-20">
-            <div className="inline-block bg-secondary/80 text-white px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest mb-6 animate-in slide-in-from-bottom-2 duration-700">
-                Premium Solutions
-            </div>
-            <h1 className="text-5xl md:text-7xl font-serif font-bold mb-6 animate-in slide-in-from-bottom-4 duration-700">Our Services</h1>
-            <p className="text-xl md:text-2xl text-gray-200 max-w-3xl mx-auto animate-in slide-in-from-bottom-6 duration-700 delay-100 font-light leading-relaxed">
-              Comprehensive stone and cabinetry solutions for your dream home, fabricated with precision and installed with care.
-            </p>
+          <div className="container mx-auto max-w-7xl relative z-20 text-center">
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
+            >
+              <div className="inline-block bg-secondary/80 text-white px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest mb-6 transition-transform hover:scale-105">
+                  Premium Solutions
+              </div>
+              <h1 className="text-4xl md:text-6xl lg:text-7xl font-serif font-medium mb-6 leading-[1.1] tracking-tight">Our <span className="italic font-light text-secondary">Services.</span></h1>
+              <p className="text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto font-light leading-relaxed">
+                Comprehensive stone and cabinetry solutions for your dream home, fabricated with precision and installed with care.
+              </p>
+            </motion.div>
           </div>
         </section>
 
-        {/* Services Grid */}
-        <section className="py-24 bg-gray-50 relative">
-          <div className="container mx-auto px-4 relative z-10">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto">
+        {/* Services List - Light Premium */}
+        <section className="py-24 relative bg-gray-50">
+          <div className="container mx-auto px-4 max-w-6xl relative z-10">
+            <div className="grid grid-cols-1 gap-12 lg:gap-16">
               {services.map((service, idx) => (
-                <Link 
-                    href={`/services/${service.slug}`}
-                    key={idx} 
-                    className="flex flex-col bg-white rounded-3xl overflow-hidden shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:shadow-[0_8px_30px_rgb(0,0,0,0.12)] hover:-translate-y-1 transition-all duration-300 border border-gray-100 group"
+                <motion.div
+                  key={idx}
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-100px" }}
+                  transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
                 >
-                  <div className="h-64 md:h-72 w-full relative overflow-hidden">
-                    <Image 
-                      src={service.image} 
-                      alt={service.title} 
-                      className="absolute inset-0 w-full h-full object-cover transform scale-100 group-hover:scale-105 transition-transform duration-700 ease-out"
-                      fill
-                      sizes="(max-width: 768px) 100vw, 50vw"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
-                    <div className="absolute bottom-6 left-6 flex items-center gap-3">
-                        <div className="bg-secondary p-3 rounded-full text-white shadow-lg">
-                            {service.icon}
-                        </div>
-                        <h3 className="text-2xl md:text-3xl font-serif font-bold text-white drop-shadow-md">{service.title}</h3>
+                  <Link 
+                      href={`/services/${service.slug}`}
+                      className={`group flex flex-col ${idx % 2 === 1 ? 'lg:flex-row-reverse' : 'lg:flex-row'} bg-white rounded-3xl overflow-hidden shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:shadow-[0_8px_40px_rgb(0,0,0,0.08)] hover:-translate-y-1 transition-all duration-500 border border-gray-100`}
+                  >
+                    <div className="h-64 sm:h-80 lg:h-auto lg:w-1/2 relative overflow-hidden">
+                      <Image 
+                        src={service.image} 
+                        alt={service.title} 
+                        className="absolute inset-0 w-full h-full object-cover transform scale-100 group-hover:scale-105 transition-all duration-700 ease-out"
+                        fill
+                        sizes="(max-width: 1024px) 100vw, 50vw"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent opacity-60 group-hover:opacity-80 transition-opacity duration-500"></div>
+                      <div className="absolute bottom-6 left-6 flex items-center gap-4">
+                          <div className="bg-white/90 backdrop-blur-md p-3 rounded-full text-secondary shadow-lg">
+                              {service.icon}
+                          </div>
+                      </div>
                     </div>
-                  </div>
-                  <div className="p-8 flex flex-col justify-center flex-grow">
-                    <p className="text-gray-600 mb-6 text-base leading-relaxed line-clamp-3">{service.longDesc}</p>
-                    <ul className="space-y-3 mb-6">
-                      {service.features.slice(0, 3).map((feature, fIdx) => (
-                        <li key={fIdx} className="flex items-center gap-3 text-sm text-gray-700 font-medium">
-                          <CheckCircle size={18} className="text-secondary/80 flex-shrink-0" />
-                          {feature}
-                        </li>
-                      ))}
-                    </ul>
-                    <div className="mt-auto pt-6 border-t border-gray-100 flex items-center justify-between text-primary font-bold group-hover:text-secondary transition-colors">
-                        <span>Learn More</span>
-                        <ArrowRight size={20} className="transform -translate-x-4 opacity-0 group-hover:translate-x-0 group-hover:opacity-100 transition-all duration-300" />
+                    <div className="p-8 lg:p-12 lg:w-1/2 flex flex-col justify-center relative bg-white">
+                      <h3 className="text-3xl lg:text-4xl font-serif font-medium text-primary mb-4">{service.title}</h3>
+                      <p className="text-gray-500 mb-8 text-lg font-light leading-relaxed">{service.longDesc}</p>
+                      
+                      <ul className="space-y-4 mb-10">
+                        {service.features.slice(0, 3).map((feature, fIdx) => (
+                          <li key={fIdx} className="flex items-start gap-4 text-gray-600 font-light">
+                            <CheckCircle size={20} className="text-secondary mt-0.5 flex-shrink-0" />
+                            <span>{feature}</span>
+                          </li>
+                        ))}
+                      </ul>
+                      
+                      <div className="mt-auto pt-8 border-t border-gray-100 flex items-center justify-between text-primary font-bold group-hover:text-secondary transition-colors uppercase tracking-widest text-sm">
+                          <span>Explore Details</span>
+                          <ArrowRight size={20} className="transform -translate-x-4 opacity-0 group-hover:translate-x-0 group-hover:opacity-100 transition-all duration-300" />
+                      </div>
                     </div>
-                  </div>
-                </Link>
+                  </Link>
+                </motion.div>
               ))}
             </div>
           </div>
         </section>
 
-        {/* Process Section */}
-        <section className="py-24 bg-white relative">
-          <div className="container mx-auto px-4 relative z-10">
+        {/* Process Section - Light Architecture */}
+        <section className="py-24 relative bg-gray-50 border-y border-gray-100">
+          <div className="container mx-auto px-4 relative z-10 max-w-6xl">
             <div className="text-center max-w-3xl mx-auto mb-20">
-              <h2 className="text-sm font-bold text-secondary uppercase tracking-[0.2em] mb-3">How We Work</h2>
-              <h3 className="text-4xl md:text-5xl font-serif font-bold text-gray-900 mb-6">Our Process</h3>
-              <p className="text-gray-600 text-lg">
-                From initial consultation to final installation, we ensure a seamless and transparent experience.
+              <span className="text-secondary font-bold tracking-[0.2em] uppercase text-xs mb-4 inline-flex items-center gap-2">
+                <span className="w-8 h-px bg-secondary"></span> The Pipeline <span className="w-8 h-px bg-secondary"></span>
+              </span>
+              <h3 className="text-4xl md:text-5xl lg:text-6xl font-serif font-medium text-primary mb-6 leading-[1.1]">
+                Flawless <span className="italic font-light text-secondary">Execution.</span>
+              </h3>
+              <p className="text-lg text-gray-500 font-light leading-relaxed">
+                From slab selection to the final silicone bead, our proprietary workflow guarantees zero errors, exact color-matching, and completely invisible seams.
               </p>
             </div>
 
-            <div className="grid md:grid-cols-4 gap-8 relative max-w-6xl mx-auto">
+            <div className="grid md:grid-cols-4 gap-8 relative">
               {/* Connecting Line (Desktop) */}
-              <div className="hidden md:block absolute top-[4.5rem] left-0 w-full h-0.5 bg-gray-100 -z-10 transform -translate-y-1/2"></div>
+              <div className="hidden md:block absolute top-[3.5rem] left-0 w-full h-px bg-gray-200 -z-10"></div>
               
               {[
-                { icon: <PenTool size={32} />, title: "1. Consultation", desc: "We discuss your vision, budget, and material preferences." },
-                { icon: <Ruler size={32} />, title: "2. Templating", desc: "Precise laser measurements ensure a perfect fit for your space." },
-                { icon: <Hammer size={32} />, title: "3. Fabrication", desc: "Our skilled artisans cut and polish your stone to perfection." },
-                { icon: <Truck size={32} />, title: "4. Installation", desc: "Professional installation in as little as one day." }
+                { icon: <PenTool size={24} />, title: "Precision Design", desc: "Detailed CAD mockups and curation." },
+                { icon: <Ruler size={24} />, title: "Digital Templating", desc: "Laser-guided millimeter-exact fit." },
+                { icon: <Hammer size={24} />, title: "Fabrication", desc: "CNC-machined for perfect edges." },
+                { icon: <Truck size={24} />, title: "Installation", desc: "Rapid, immaculate placement." }
               ].map((step, idx) => (
-                <div key={idx} className="bg-white p-8 rounded-3xl shadow-sm hover:shadow-xl transition-shadow duration-300 border border-gray-100 text-center relative z-10 group">
-                  <div className="w-20 h-20 bg-gray-50 border border-gray-100 text-primary rounded-full flex items-center justify-center mx-auto mb-6 shadow-sm group-hover:bg-secondary group-hover:text-white group-hover:border-secondary transition-colors duration-300">
+                <motion.div 
+                  key={idx}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-50px" }}
+                  transition={{ duration: 0.6, delay: idx * 0.1 }}
+                  className="bg-white p-8 rounded-3xl shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100 text-center relative z-10 group hover:-translate-y-2"
+                >
+                  <div className="w-16 h-16 bg-gray-50 border border-gray-100 text-secondary rounded-full flex items-center justify-center mx-auto mb-6 shadow-sm group-hover:bg-secondary group-hover:text-white group-hover:border-secondary transition-colors duration-500">
                     {step.icon}
                   </div>
-                  <h4 className="text-xl font-bold text-gray-900 mb-3 font-serif">{step.title}</h4>
+                  <div className="text-secondary font-serif italic text-sm mb-2">Phase 0{idx + 1}</div>
+                  <h4 className="text-xl font-bold text-primary mb-3 font-serif">{step.title}</h4>
                   <p className="text-gray-500 text-sm leading-relaxed">{step.desc}</p>
-                </div>
+                </motion.div>
               ))}
             </div>
           </div>
         </section>
 
-        {/* CTA */}
-        <section className="py-24 bg-primary text-white text-center relative overflow-hidden">
+        {/* Elite CTA */}
+        <section className="py-24 relative bg-primary text-center overflow-hidden text-white">
             <div className="absolute inset-0 bg-[url('https://transparenttextures.com/patterns/cubes.png')] opacity-5"></div>
-            <div className="container mx-auto px-4 relative z-10 max-w-4xl">
-              <h2 className="text-4xl md:text-5xl font-serif font-bold mb-6">Start Your Project Today</h2>
-              <p className="text-xl text-gray-400 mb-10 max-w-2xl mx-auto font-light">
-                Ready to elevate your home? Contact us for a free consultation and personalized estimate.
+            
+            <motion.div 
+              initial={{ opacity: 0, scale: 0.95 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+              className="container mx-auto px-4 relative z-10 max-w-4xl"
+            >
+              <h2 className="text-4xl md:text-6xl font-serif font-medium mb-8 leading-tight">
+                Ready to <span className="italic text-secondary">Elevate</span> Your Space?
+              </h2>
+              <p className="text-lg md:text-xl text-gray-300 mb-12 max-w-2xl mx-auto font-light leading-relaxed">
+                Connect with our senior designers today for a complimentary blueprint review and access our factory-direct pricing.
               </p>
               <Link 
                 href="/contact" 
-                className="bg-white hover:bg-gray-100 text-primary px-10 py-5 rounded-full font-bold transition-transform hover:-translate-y-1 shadow-2xl inline-block text-lg"
+                className="inline-flex items-center gap-3 bg-white text-primary px-10 py-5 rounded-full font-bold uppercase tracking-widest text-sm hover:bg-secondary hover:text-white transition-all duration-300 shadow-xl hover:shadow-[0_0_30px_rgba(193,161,104,0.4)]"
               >
-                Schedule Your Free Quote
+                Request a Quote <ArrowRight size={18} />
               </Link>
-          </div>
+          </motion.div>
         </section>
       </main>
 

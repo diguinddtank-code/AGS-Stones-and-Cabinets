@@ -110,6 +110,8 @@ const Hero: React.FC = () => {
             muted
             loop
             playsInline
+            preload="none"
+            poster="https://kitchenandbathshop.com/wp-content/uploads/2020/11/5d7ff4ab763f7-scaled.jpg"
         >
             <source src="https://storage.googleapis.com/msgsndr/yRboz8P4zFeLUF6bAk8i/media/680a5a6f1eba4b32d1925215.mp4" type="video/mp4" />
             Your browser does not support the video tag.
