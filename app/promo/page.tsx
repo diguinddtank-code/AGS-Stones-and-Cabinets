@@ -13,6 +13,7 @@ import BeforeAfter from '../../components/BeforeAfter';
 export default function PromoPage() {
   const [formData, setFormData] = useState({
     name: '',
+    email: '',
     phone: '',
     city: '',
     project: '',
@@ -42,6 +43,7 @@ export default function PromoPage() {
       _subject: 'New Lead - Promo Landing Page',
       _template: 'table',
       Name: formData.name,
+      Email: formData.email,
       Phone: formData.phone,
       City: formData.city,
       Project: formData.project,
@@ -60,7 +62,7 @@ export default function PromoPage() {
       
       if (res.ok) {
         setIsSuccess(true);
-        setFormData({ name: '', phone: '', city: '', project: '', message: '' });
+        setFormData({ name: '', email: '', phone: '', city: '', project: '', message: '' });
         
         // Fire Meta Pixel Lead Event
         if (typeof window !== 'undefined' && 'fbq' in window) {
@@ -167,6 +169,17 @@ export default function PromoPage() {
                                 value={formData.name}
                                 onChange={handleChange}
                                 placeholder="Full Name" 
+                                className="w-full bg-gray-50 border border-gray-200 rounded-xl px-5 py-4 text-sm font-medium focus:bg-white focus:ring-2 focus:ring-secondary focus:border-transparent outline-none transition-all" 
+                                required 
+                            />
+                        </div>
+                        <div>
+                            <input 
+                                type="email" 
+                                name="email" 
+                                value={formData.email}
+                                onChange={handleChange}
+                                placeholder="Email Address" 
                                 className="w-full bg-gray-50 border border-gray-200 rounded-xl px-5 py-4 text-sm font-medium focus:bg-white focus:ring-2 focus:ring-secondary focus:border-transparent outline-none transition-all" 
                                 required 
                             />
