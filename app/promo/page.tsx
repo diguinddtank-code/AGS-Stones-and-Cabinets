@@ -122,12 +122,12 @@ export default function PromoPage() {
                 <Star size={14} className="fill-white" />
                 #1 Top Rated in Metro Atlanta
               </div>
-              <h1 className="text-5xl md:text-7xl lg:text-8xl font-serif font-medium mb-6 leading-[1.05] drop-shadow-2xl">
-                Transform Your Kitchen With <span className="text-secondary italic font-light">Premium Quartz</span> Countertops
+              <h1 className="text-5xl md:text-7xl lg:text-7xl font-serif font-medium mb-6 leading-[1.05] drop-shadow-2xl">
+                Transform Your Space With <span className="text-secondary italic font-light">Custom Cabinets &</span> Countertops
               </h1>
               <div className="text-lg md:text-2xl text-gray-200 mb-10 font-light flex flex-col gap-3">
                 <span className="flex items-center gap-3"><CheckCircle2 className="text-secondary flex-shrink-0" size={24}/> <span>Receive a <strong className="font-semibold text-white">Free</strong> In-Home Estimate</span></span>
-                <span className="flex items-center gap-3"><CheckCircle2 className="text-secondary flex-shrink-0" size={24}/> <span>Lightning <strong className="font-semibold text-white">Fast</strong> Installation</span></span>
+                <span className="flex items-center gap-3"><CheckCircle2 className="text-secondary flex-shrink-0" size={24}/> <span>Lightning <strong className="font-semibold text-white">Fast</strong> Fabrication & Install</span></span>
                 <span className="flex items-center gap-3"><CheckCircle2 className="text-secondary flex-shrink-0" size={24}/> <span>Serving all of <strong className="font-semibold text-white">Metro Atlanta</strong></span></span>
               </div>
               <a 
@@ -279,7 +279,7 @@ export default function PromoPage() {
             <div className="container mx-auto px-4 max-w-7xl">
                 <div className="text-center mb-16">
                     <h2 className="text-4xl md:text-6xl font-serif font-medium text-primary mb-6 tracking-tight">Recent <span className="italic font-light text-secondary">Masterpieces</span></h2>
-                    <p className="text-xl text-gray-500 font-light max-w-3xl mx-auto">Get inspired by some of our recent premium kitchen transformations across Metro Atlanta.</p>
+                    <p className="text-xl text-gray-500 font-light max-w-3xl mx-auto">Get inspired by some of our recent premium kitchen and bathroom transformations across Metro Atlanta.</p>
                 </div>
                 
                 <div className="grid grid-cols-2 md:grid-cols-12 gap-3 sm:gap-6">
@@ -449,7 +449,7 @@ export default function PromoPage() {
             >
                 <div className="inline-flex w-16 h-1 bg-secondary mb-8"></div>
                 <h2 className="text-5xl md:text-7xl font-serif font-medium text-white mb-8 leading-[1.1] tracking-tight">
-                    Don't settle for an <span className="italic font-light text-secondary">outdated kitchen.</span>
+                    Don't settle for an <span className="italic font-light text-secondary">outdated space.</span>
                 </h2>
                 <p className="text-xl md:text-2xl text-gray-400 mb-12 font-light max-w-2xl mx-auto leading-relaxed">
                     Join over 200+ homeowners in Metro Atlanta who transformed their spaces with unparalleled craftsmanship.
