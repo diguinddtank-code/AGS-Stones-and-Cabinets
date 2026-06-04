@@ -116,27 +116,27 @@ export default function PromoPage() {
               initial={{ opacity: 0, x: -30 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8 }}
-              className="max-w-xl text-white pt-4 lg:pt-0"
+              className="max-w-lg text-white pt-4 lg:pt-0"
             >
-              <div className="inline-flex items-center gap-2 bg-secondary/90 text-white px-4 py-1.5 rounded-full text-[10px] sm:text-xs font-bold uppercase tracking-widest mb-8 border border-white/20 backdrop-blur-md shadow-lg">
-                <Star size={14} className="fill-white" />
+              <div className="inline-flex items-center gap-2 bg-secondary/90 text-white px-3 py-1 rounded-full text-[10px] sm:text-[11px] font-bold uppercase tracking-widest mb-6 border border-white/20 backdrop-blur-md shadow-lg">
+                <Star size={12} className="fill-white" />
                 #1 Top Rated in Metro Atlanta
               </div>
-              <h1 className="text-5xl md:text-7xl lg:text-7xl font-serif font-medium mb-6 leading-[1.05] drop-shadow-2xl">
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-serif font-medium mb-4 leading-[1.1] drop-shadow-2xl">
                 Transform Your Space With <span className="text-secondary italic font-light">Custom Cabinets &</span> Countertops
               </h1>
-              <div className="text-lg md:text-2xl text-gray-200 mb-10 font-light flex flex-col gap-3">
-                <span className="flex items-center gap-3"><CheckCircle2 className="text-secondary flex-shrink-0" size={24}/> <span>Receive a <strong className="font-semibold text-white">Free</strong> In-Home Estimate</span></span>
-                <span className="flex items-center gap-3"><CheckCircle2 className="text-secondary flex-shrink-0" size={24}/> <span>Lightning <strong className="font-semibold text-white">Fast</strong> Fabrication & Install</span></span>
-                <span className="flex items-center gap-3"><CheckCircle2 className="text-secondary flex-shrink-0" size={24}/> <span>Serving all of <strong className="font-semibold text-white">Metro Atlanta</strong></span></span>
+              <div className="text-base md:text-xl text-gray-200 mb-8 font-light flex flex-col gap-2">
+                <span className="flex items-center gap-2.5"><CheckCircle2 className="text-secondary flex-shrink-0" size={20}/> <span>Receive a <strong className="font-semibold text-white">Free</strong> In-Home Estimate</span></span>
+                <span className="flex items-center gap-2.5"><CheckCircle2 className="text-secondary flex-shrink-0" size={20}/> <span>Lightning <strong className="font-semibold text-white">Fast</strong> Fabrication & Install</span></span>
+                <span className="flex items-center gap-2.5"><CheckCircle2 className="text-secondary flex-shrink-0" size={20}/> <span>Serving all of <strong className="font-semibold text-white">Metro Atlanta</strong></span></span>
               </div>
               <a 
                 href="#estimate-form"
                 onClick={scrollToForm}
-                className="inline-flex items-center justify-center w-full sm:w-auto bg-secondary text-white text-lg font-bold uppercase tracking-widest px-10 py-5 rounded-full hover:bg-white hover:text-primary hover:-translate-y-1 transition-all duration-300 shadow-[0_0_40px_rgba(193,161,104,0.4)] group overflow-hidden relative"
+                className="inline-flex items-center justify-center w-full sm:w-auto bg-secondary text-white text-sm md:text-base font-bold uppercase tracking-widest px-8 py-4 md:px-10 md:py-4 rounded-full hover:bg-white hover:text-primary hover:-translate-y-1 transition-all duration-300 shadow-[0_0_40px_rgba(193,161,104,0.4)] group overflow-hidden relative"
               >
                 <div className="absolute inset-0 bg-white/20 transform -skew-x-12 -translate-x-[150%] group-hover:translate-x-[150%] transition-transform duration-700 ease-in-out"></div>
-                Get Free Estimate <ArrowRight size={20} className="ml-3 group-hover:translate-x-2 transition-transform" />
+                Get Free Estimate <ArrowRight size={18} className="ml-3 group-hover:translate-x-2 transition-transform" />
               </a>
             </motion.div>
 
