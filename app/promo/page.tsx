@@ -151,8 +151,8 @@ export default function PromoPage() {
                 <div className="absolute -top-4 -right-4 bg-red-600 text-white text-[10px] font-bold uppercase tracking-widest py-2 px-4 rounded-full shadow-lg transform rotate-3">
                     Limited Time Offer
                 </div>
-                <h3 className="text-3xl lg:text-4xl font-serif font-medium text-primary mb-2 text-center tracking-tight">Lock In Your Price</h3>
-                <p className="text-gray-500 text-center text-sm md:text-base mb-8 font-light">Fill out the form below for a free estimate & 3D Design visualization.</p>
+                <h3 className="text-3xl lg:text-4xl font-serif font-medium text-primary mb-2 text-center tracking-tight">Claim Your Free Estimate</h3>
+                <p className="text-gray-500 text-center text-sm md:text-base mb-8 font-light">Secure your spot for a priority in-home consultation and customized pricing.</p>
 
                 {isSuccess ? (
                     <div className="bg-green-50 border border-green-200 text-green-800 rounded-2xl p-8 text-center">
