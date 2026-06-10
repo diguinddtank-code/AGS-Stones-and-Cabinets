@@ -64,7 +64,24 @@ const Hero: React.FC = () => {
         setFormStatus('success');
         try {
           if (typeof window !== 'undefined') {
-            if ((window as any).fbq) (window as any).fbq('track', 'Lead', {}, { eventID: eventId });
+            if ((window as any).fbq) {
+              const nameStr = (submitData.name as string) || '';
+              const names = nameStr.trim().split(' ');
+              const firstName = names[0] || '';
+              const lastName = names.slice(1).join(' ') || '';
+              
+              const phoneStr = (submitData.phone as string) || '';
+              const emailStr = (submitData.email as string) || '';
+              
+              (window as any).fbq('init', '1660874861583892', {
+                em: emailStr.trim().toLowerCase(),
+                ph: phoneStr.replace(/\D/g, ''),
+                fn: firstName.toLowerCase(),
+                ln: lastName.toLowerCase(),
+                country: 'us'
+              });
+              (window as any).fbq('track', 'Lead', {}, { eventID: eventId });
+            }
             if ((window as any).gtag) (window as any).gtag('event', 'conversion', { 'send_to': 'AW-16885125181/R1mQCP6Dm5McEL2guvM-' });
           }
         } catch(e) {}

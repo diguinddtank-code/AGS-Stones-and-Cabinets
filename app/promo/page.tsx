@@ -61,13 +61,25 @@ export default function PromoPage() {
       });
       
       if (res.ok) {
-        setIsSuccess(true);
-        setFormData({ name: '', email: '', phone: '', city: '', project: '', message: '' });
-        
-        // Fire Meta Pixel Lead Event
+        // Fire Meta Pixel Lead Event before state reset
         if (typeof window !== 'undefined' && 'fbq' in window) {
+          const names = formData.name.trim().split(' ');
+          const firstName = names[0] || '';
+          const lastName = names.slice(1).join(' ') || '';
+          
+          (window as any).fbq('init', '1660874861583892', {
+            em: formData.email.trim().toLowerCase(),
+            ph: formData.phone.replace(/\D/g, ''),
+            fn: firstName.toLowerCase(),
+            ln: lastName.toLowerCase(),
+            zp: formData.city.trim(),
+            country: 'us'
+          });
           (window as any).fbq('track', 'Lead');
         }
+
+        setIsSuccess(true);
+        setFormData({ name: '', email: '', phone: '', city: '', project: '', message: '' });
       }
     } catch (error) {
       console.error(error);
