@@ -38,10 +38,13 @@ export default function PromoPage() {
     e.preventDefault();
     setIsSubmitting(true);
     
+    const submitEventId = typeof crypto !== 'undefined' && crypto.randomUUID ? crypto.randomUUID() : `lead_${Date.now()}`;
+    
     const submitData = {
       access_key: "8120d187-d8e4-4348-83a8-b0248042becb",
       _subject: 'New Lead - Promo Landing Page',
       _template: 'table',
+      'Event ID': submitEventId,
       Name: formData.name,
       Email: formData.email,
       Phone: formData.phone,
@@ -62,21 +65,32 @@ export default function PromoPage() {
       
       if (res.ok) {
         // Fire Meta Pixel Lead Event before state reset
-        if (typeof window !== 'undefined' && 'fbq' in window) {
-          const names = formData.name.trim().split(' ');
-          const firstName = names[0] || '';
-          const lastName = names.slice(1).join(' ') || '';
-          
-          (window as any).fbq('init', '1660874861583892', {
-            em: formData.email.trim().toLowerCase(),
-            ph: formData.phone.replace(/\D/g, ''),
-            fn: firstName.toLowerCase(),
-            ln: lastName.toLowerCase(),
-            zp: formData.city.trim(),
-            country: 'us'
-          });
-          (window as any).fbq('track', 'Lead');
+        if (typeof window !== 'undefined') {
+          if ((window as any).fbq) {
+            const names = formData.name.trim().split(' ');
+            const firstName = names[0] || '';
+            const lastName = names.slice(1).join(' ') || '';
+            
+            (window as any).fbq('init', '1660874861583892', {
+              em: formData.email.trim().toLowerCase(),
+              ph: formData.phone.replace(/\D/g, ''),
+              fn: firstName.toLowerCase(),
+              ln: lastName.toLowerCase(),
+              zp: formData.city.trim(),
+              country: 'us'
+            });
+            (window as any).fbq('track', 'Lead', {}, { eventID: submitEventId });
+          }
+          if ((window as any).gtag) (window as any).gtag('event', 'conversion', { 'send_to': 'AW-16885125181/R1mQCP6Dm5McEL2guvM-' });
         }
+        
+        try {
+          fetch("https://webhook.infra-remakingautomacoes.cloud/webhook/meta-capi-lead", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(submitData),
+          }).catch(() => {});
+        } catch(e) {}
 
         setIsSuccess(true);
         setFormData({ name: '', email: '', phone: '', city: '', project: '', message: '' });
