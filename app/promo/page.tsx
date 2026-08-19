@@ -149,7 +149,7 @@ export default function PromoPage() {
                 #1 Top Rated in Metro Atlanta
               </div>
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-serif font-medium mb-4 leading-[1.1] drop-shadow-2xl">
-                Transform Your Space With <span className="text-secondary italic font-light">Custom Cabinets &</span> Countertops
+                Transform Your Space With <span className="text-secondary italic font-light">Custom Design &</span> Remodeling
               </h1>
               <div className="text-base md:text-xl text-gray-200 mb-8 font-light flex flex-col gap-2">
                 <span className="flex items-center gap-2.5"><CheckCircle2 className="text-secondary flex-shrink-0" size={20}/> <span>Receive a <strong className="font-semibold text-white">Free</strong> In-Home Estimate</span></span>
