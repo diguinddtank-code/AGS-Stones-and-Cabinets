@@ -37,9 +37,9 @@ export default function PromoPage() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    
+
     const submitEventId = typeof crypto !== 'undefined' && crypto.randomUUID ? crypto.randomUUID() : `lead_${Date.now()}`;
-    
+
     const submitData = {
       access_key: "8120d187-d8e4-4348-83a8-b0248042becb",
       _subject: 'New Lead - Promo Landing Page',
@@ -56,13 +56,13 @@ export default function PromoPage() {
     try {
       const res = await fetch("https://api.web3forms.com/submit", {
         method: "POST",
-        headers: { 
+        headers: {
             'Content-Type': 'application/json',
-            'Accept': 'application/json' 
+            'Accept': 'application/json'
         },
         body: JSON.stringify(submitData)
       });
-      
+
       if (res.ok) {
         // Fire Meta Pixel Lead Event before state reset
         if (typeof window !== 'undefined') {
@@ -70,7 +70,7 @@ export default function PromoPage() {
             const names = formData.name.trim().split(' ');
             const firstName = names[0] || '';
             const lastName = names.slice(1).join(' ') || '';
-            
+
             (window as any).fbq('init', '1660874861583892', {
               em: formData.email.trim().toLowerCase(),
               ph: formData.phone.replace(/\D/g, ''),
@@ -83,7 +83,7 @@ export default function PromoPage() {
           }
           if ((window as any).gtag) (window as any).gtag('event', 'conversion', { 'send_to': 'AW-16885125181/R1mQCP6Dm5McEL2guvM-' });
         }
-        
+
         try {
           fetch("https://webhook.infra-remakingautomacoes.cloud/webhook/meta-capi-lead", {
             method: "POST",
@@ -129,16 +129,17 @@ export default function PromoPage() {
               muted
               loop
               playsInline
-              preload="auto"
+              preload="metadata"
+              poster="https://www.igscountertops.com/wp-content/uploads/2018/01/Statuario-Nuvo-Kitchen-Island.jpg"
             >
               <source src="https://storage.googleapis.com/msgsndr/yRboz8P4zFeLUF6bAk8i/media/680a5a6f1eba4b32d1925215.mp4" type="video/mp4" />
             </video>
             {/* Dark overlay for contrast */}
             <div className="absolute inset-0 bg-gradient-to-r from-[#090909]/95 via-[#090909]/80 to-transparent"></div>
           </div>
-          
+
           <div className="container mx-auto max-w-6xl relative z-10 flex flex-col lg:flex-row items-center justify-between gap-12">
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0, x: -30 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8 }}
@@ -156,7 +157,7 @@ export default function PromoPage() {
                 <span className="flex items-center gap-2.5"><CheckCircle2 className="text-secondary flex-shrink-0" size={20}/> <span>Lightning <strong className="font-semibold text-white">Fast</strong> Fabrication & Install</span></span>
                 <span className="flex items-center gap-2.5"><CheckCircle2 className="text-secondary flex-shrink-0" size={20}/> <span>Serving all of <strong className="font-semibold text-white">Metro Atlanta</strong></span></span>
               </div>
-              <a 
+              <a
                 href="#estimate-form"
                 onClick={scrollToForm}
                 className="inline-flex items-center justify-center w-full sm:w-auto bg-secondary text-white text-sm md:text-base font-bold uppercase tracking-widest px-8 py-4 md:px-10 md:py-4 rounded-full hover:bg-white hover:text-primary hover:-translate-y-1 transition-all duration-300 shadow-[0_0_40px_rgba(193,161,104,0.4)] group overflow-hidden relative"
@@ -167,7 +168,7 @@ export default function PromoPage() {
             </motion.div>
 
             {/* Quick Form in Hero (Desktop mostly) */}
-            <motion.div 
+            <motion.div
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.2 }}
@@ -189,52 +190,52 @@ export default function PromoPage() {
                 ) : (
                     <form onSubmit={handleSubmit} className="space-y-4">
                         <div>
-                            <input 
-                                type="text" 
-                                name="name" 
+                            <input
+                                type="text"
+                                name="name"
                                 value={formData.name}
                                 onChange={handleChange}
-                                placeholder="Full Name" 
-                                className="w-full bg-gray-50 border border-gray-200 rounded-xl px-5 py-4 text-sm font-medium focus:bg-white focus:ring-2 focus:ring-secondary focus:border-transparent outline-none transition-all" 
-                                required 
+                                placeholder="Full Name"
+                                className="w-full bg-gray-50 border border-gray-200 rounded-xl px-5 py-4 text-sm font-medium focus:bg-white focus:ring-2 focus:ring-secondary focus:border-transparent outline-none transition-all"
+                                required
                             />
                         </div>
                         <div>
-                            <input 
-                                type="email" 
-                                name="email" 
+                            <input
+                                type="email"
+                                name="email"
                                 value={formData.email}
                                 onChange={handleChange}
-                                placeholder="Email Address" 
-                                className="w-full bg-gray-50 border border-gray-200 rounded-xl px-5 py-4 text-sm font-medium focus:bg-white focus:ring-2 focus:ring-secondary focus:border-transparent outline-none transition-all" 
-                                required 
+                                placeholder="Email Address"
+                                className="w-full bg-gray-50 border border-gray-200 rounded-xl px-5 py-4 text-sm font-medium focus:bg-white focus:ring-2 focus:ring-secondary focus:border-transparent outline-none transition-all"
+                                required
                             />
                         </div>
                         <div>
-                            <input 
-                                type="tel" 
-                                name="phone" 
+                            <input
+                                type="tel"
+                                name="phone"
                                 value={formData.phone}
                                 onChange={handleChange}
-                                placeholder="Phone Number" 
-                                className="w-full bg-gray-50 border border-gray-200 rounded-xl px-5 py-4 text-sm font-medium focus:bg-white focus:ring-2 focus:ring-secondary focus:border-transparent outline-none transition-all" 
-                                required 
+                                placeholder="Phone Number"
+                                className="w-full bg-gray-50 border border-gray-200 rounded-xl px-5 py-4 text-sm font-medium focus:bg-white focus:ring-2 focus:ring-secondary focus:border-transparent outline-none transition-all"
+                                required
                             />
                         </div>
                         <div>
-                            <input 
-                                type="text" 
-                                name="city" 
+                            <input
+                                type="text"
+                                name="city"
                                 value={formData.city}
                                 onChange={handleChange}
-                                placeholder="City / Zip Code" 
-                                className="w-full bg-gray-50 border border-gray-200 rounded-xl px-5 py-4 text-sm font-medium focus:bg-white focus:ring-2 focus:ring-secondary focus:border-transparent outline-none transition-all" 
-                                required 
+                                placeholder="City / Zip Code"
+                                className="w-full bg-gray-50 border border-gray-200 rounded-xl px-5 py-4 text-sm font-medium focus:bg-white focus:ring-2 focus:ring-secondary focus:border-transparent outline-none transition-all"
+                                required
                             />
                         </div>
                         <div>
-                            <select 
-                                name="project" 
+                            <select
+                                name="project"
                                 value={formData.project}
                                 onChange={handleChange}
                                 className="w-full bg-gray-50 border border-gray-200 rounded-xl px-5 py-4 text-sm font-medium focus:bg-white focus:ring-2 focus:ring-secondary focus:border-transparent outline-none transition-all text-gray-700 appearance-none"
@@ -249,16 +250,16 @@ export default function PromoPage() {
                             </select>
                         </div>
                         <div>
-                            <textarea 
-                                name="message" 
+                            <textarea
+                                name="message"
                                 value={formData.message}
                                 onChange={handleChange}
-                                placeholder="Additional message (optional)" 
+                                placeholder="Additional message (optional)"
                                 rows={3}
-                                className="w-full bg-gray-50 border border-gray-200 rounded-xl px-5 py-4 text-sm font-medium focus:bg-white focus:ring-2 focus:ring-secondary focus:border-transparent outline-none transition-all resize-none text-gray-700" 
+                                className="w-full bg-gray-50 border border-gray-200 rounded-xl px-5 py-4 text-sm font-medium focus:bg-white focus:ring-2 focus:ring-secondary focus:border-transparent outline-none transition-all resize-none text-gray-700"
                             />
                         </div>
-                        <button 
+                        <button
                             type="submit"
                             disabled={isSubmitting}
                             className="w-full bg-primary hover:bg-black text-white font-bold py-4 rounded-xl shadow-[0_8px_20px_rgb(0,0,0,0.12)] transition-all hover:shadow-[0_8px_25px_rgb(0,0,0,0.2)] hover:-translate-y-1 disabled:opacity-70 disabled:hover:translate-y-0 tracking-widest uppercase text-sm mt-2"
@@ -284,7 +285,7 @@ export default function PromoPage() {
                         { icon: PenTool, text: "Custom Fabrication" },
                         { icon: ShieldCheck, text: "Financing Available" }
                     ].map((item, i) => (
-                        <motion.div 
+                        <motion.div
                             key={i}
                             initial={{ opacity: 0, y: 20 }}
                             whileInView={{ opacity: 1, y: 0 }}
@@ -307,10 +308,10 @@ export default function PromoPage() {
                     <h2 className="text-4xl md:text-6xl font-serif font-medium text-primary mb-6 tracking-tight">Recent <span className="italic font-light text-secondary">Masterpieces</span></h2>
                     <p className="text-xl text-gray-500 font-light max-w-3xl mx-auto">Get inspired by some of our recent premium kitchen and bathroom transformations across Metro Atlanta.</p>
                 </div>
-                
+
                 <div className="grid grid-cols-2 md:grid-cols-12 gap-3 sm:gap-6">
                     {/* Item 1 - Wide */}
-                    <motion.div 
+                    <motion.div
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true, margin: "-50px" }}
@@ -318,7 +319,7 @@ export default function PromoPage() {
                         onClick={() => setSelectedImage("https://www.igscountertops.com/wp-content/uploads/2018/01/Statuario-Nuvo-Kitchen-Island.jpg")}
                         className="col-span-2 md:col-span-8 group relative overflow-hidden rounded-2xl aspect-[4/3] sm:aspect-[16/9] md:aspect-auto md:h-[400px] shadow-[0_8px_30px_rgb(0,0,0,0.06)] cursor-pointer"
                     >
-                        <Image 
+                        <Image
                             src="https://www.igscountertops.com/wp-content/uploads/2018/01/Statuario-Nuvo-Kitchen-Island.jpg"
                             alt="Seamless Island Waterfall"
                             fill
@@ -331,9 +332,9 @@ export default function PromoPage() {
                             <h4 className="text-xl md:text-2xl font-serif">Seamless Island Waterfall</h4>
                         </div>
                     </motion.div>
-                    
+
                     {/* Item 2 - Square */}
-                    <motion.div 
+                    <motion.div
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true, margin: "-50px" }}
@@ -341,7 +342,7 @@ export default function PromoPage() {
                         onClick={() => setSelectedImage("https://images.unsplash.com/photo-1620626011761-996317b8d101?q=80&w=1000&auto=format&fit=crop")}
                         className="col-span-1 md:col-span-4 group relative overflow-hidden rounded-2xl aspect-square md:aspect-auto md:h-[400px] shadow-[0_8px_30px_rgb(0,0,0,0.06)] cursor-pointer"
                     >
-                        <Image 
+                        <Image
                             src="https://images.unsplash.com/photo-1620626011761-996317b8d101?q=80&w=1000&auto=format&fit=crop"
                             alt="Master Bathroom Vanity"
                             fill
@@ -354,9 +355,9 @@ export default function PromoPage() {
                             <h4 className="text-lg md:text-2xl font-serif leading-tight">Luminous Double Vanity</h4>
                         </div>
                     </motion.div>
-                    
+
                     {/* Item 3 - Square */}
-                    <motion.div 
+                    <motion.div
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true, margin: "-50px" }}
@@ -364,7 +365,7 @@ export default function PromoPage() {
                         onClick={() => setSelectedImage("https://media.designcafe.com/wp-content/uploads/2024/11/11212229/luxury-modern-kitchen-designs.jpg")}
                         className="col-span-1 md:col-span-4 group relative overflow-hidden rounded-2xl aspect-square md:aspect-auto md:h-[350px] shadow-[0_8px_30px_rgb(0,0,0,0.06)] cursor-pointer"
                     >
-                        <Image 
+                        <Image
                             src="https://media.designcafe.com/wp-content/uploads/2024/11/11212229/luxury-modern-kitchen-designs.jpg"
                             alt="Elegant Veining"
                             fill
@@ -379,7 +380,7 @@ export default function PromoPage() {
                     </motion.div>
 
                     {/* Item 4 - Square */}
-                    <motion.div 
+                    <motion.div
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true, margin: "-50px" }}
@@ -387,7 +388,7 @@ export default function PromoPage() {
                         onClick={() => setSelectedImage("https://images.unsplash.com/photo-1600566752355-35792bedcfea?q=80&w=1000&auto=format&fit=crop")}
                         className="col-span-1 md:col-span-4 group relative overflow-hidden rounded-2xl aspect-square md:aspect-auto md:h-[350px] shadow-[0_8px_30px_rgb(0,0,0,0.06)] cursor-pointer"
                     >
-                        <Image 
+                        <Image
                             src="https://images.unsplash.com/photo-1600566752355-35792bedcfea?q=80&w=1000&auto=format&fit=crop"
                             alt="Modern Profile"
                             fill
@@ -400,9 +401,9 @@ export default function PromoPage() {
                             <h4 className="text-lg md:text-2xl font-serif leading-tight">Full Height Splash</h4>
                         </div>
                     </motion.div>
-                    
+
                     {/* Item 5 - Square */}
-                    <motion.div 
+                    <motion.div
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true, margin: "-50px" }}
@@ -410,7 +411,7 @@ export default function PromoPage() {
                         onClick={() => setSelectedImage("https://images.unsplash.com/photo-1588854337236-6889d631faa8?q=80&w=1000&auto=format&fit=crop")}
                         className="col-span-1 md:col-span-4 group relative overflow-hidden rounded-2xl aspect-[4/3] sm:aspect-square md:aspect-auto md:h-[350px] shadow-[0_8px_30px_rgb(0,0,0,0.06)] cursor-pointer"
                     >
-                        <Image 
+                        <Image
                             src="https://images.unsplash.com/photo-1588854337236-6889d631faa8?q=80&w=1000&auto=format&fit=crop"
                             alt="Classic Sophistication"
                             fill
@@ -425,7 +426,7 @@ export default function PromoPage() {
                     </motion.div>
 
                     {/* Item 6 - Wide */}
-                    <motion.div 
+                    <motion.div
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true, margin: "-50px" }}
@@ -433,7 +434,7 @@ export default function PromoPage() {
                         onClick={() => setSelectedImage("https://images.unsplash.com/photo-1556909212-d5b604d0c90d?q=80&w=2000&auto=format&fit=crop")}
                         className="col-span-2 md:col-span-12 group relative overflow-hidden rounded-2xl aspect-[16/9] md:h-[500px] shadow-[0_8px_30px_rgb(0,0,0,0.06)] cursor-pointer mt-0 sm:mt-3 md:mt-0"
                     >
-                        <Image 
+                        <Image
                             src="https://images.unsplash.com/photo-1556909212-d5b604d0c90d?q=80&w=2000&auto=format&fit=crop"
                             alt="The Culinary Dream"
                             fill
@@ -466,7 +467,7 @@ export default function PromoPage() {
         {/* Final CTA Bar */}
         <section className="py-24 bg-primary text-center px-4 relative overflow-hidden">
             <div className="absolute inset-0 bg-[url('https://transparenttextures.com/patterns/cubes.png')] opacity-5"></div>
-            <motion.div 
+            <motion.div
                 initial={{ opacity: 0, scale: 0.95 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
@@ -480,7 +481,7 @@ export default function PromoPage() {
                 <p className="text-xl md:text-2xl text-gray-400 mb-12 font-light max-w-2xl mx-auto leading-relaxed">
                     Join over 200+ homeowners in Metro Atlanta who transformed their spaces with unparalleled craftsmanship.
                 </p>
-                <a 
+                <a
                     href="#estimate-form"
                     onClick={scrollToForm}
                     className="inline-flex items-center justify-center bg-secondary text-white text-lg font-bold uppercase tracking-[0.2em] px-12 py-6 rounded-full hover:bg-white hover:text-primary transition-all duration-300 shadow-[0_0_40px_rgba(193,161,104,0.3)] hover:shadow-[0_0_50px_rgba(193,161,104,0.5)] hover:-translate-y-1 group"
@@ -491,15 +492,15 @@ export default function PromoPage() {
         </section>
 
       </main>
-      
+
       {/* Simple Footer */}
       <footer className="bg-gray-50 py-8 border-t border-gray-200">
           <div className="container mx-auto px-4 text-center">
-              <Image 
-                    src="https://i.imgur.com/B0ZaBpN.png" 
-                    alt="AGS Stones & Cabinets Logo" 
-                    width={180} 
-                    height={60} 
+              <Image
+                    src="https://i.imgur.com/B0ZaBpN.png"
+                    alt="AGS Stones & Cabinets Logo"
+                    width={180}
+                    height={60}
                     className="h-8 w-auto mx-auto mb-6 grayscale opacity-80"
               />
               <p className="text-gray-500 text-sm mb-2">© {new Date().getFullYear()} AGS Stones & Cabinets. All rights reserved.</p>

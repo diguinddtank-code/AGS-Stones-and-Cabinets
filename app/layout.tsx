@@ -86,7 +86,6 @@ export default function RootLayout({
       <head>
         <link rel="icon" type="image/png" href="https://i.imgur.com/B0ZaBpN.png" />
         <link rel="apple-touch-icon" href="https://i.imgur.com/B0ZaBpN.png" />
-        <link rel="preload" as="image" href="https://kitchenandbathshop.com/wp-content/uploads/2020/11/5d7ff4ab763f7-scaled.jpg" fetchPriority="high" />
       </head>
       <body className="bg-white text-gray-800 antialiased overflow-x-hidden selection:bg-secondary selection:text-white font-sans" suppressHydrationWarning>
         {/* JSON-LD Structured Data */}
@@ -173,7 +172,7 @@ export default function RootLayout({
           `}
         </Script>
         {/* Meta Pixel Code */}
-        <Script id="meta-pixel" strategy="afterInteractive">
+        <Script id="meta-pixel" strategy="lazyOnload">
           {`
             !function(f,b,e,v,n,t,s)
             {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
