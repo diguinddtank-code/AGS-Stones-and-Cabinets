@@ -139,12 +139,7 @@ export default function PromoPage() {
           </div>
 
           <div className="container mx-auto max-w-6xl relative z-10 flex flex-col lg:flex-row items-center justify-between gap-12">
-            <motion.div
-              initial={{ opacity: 0, x: -30 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8 }}
-              className="max-w-lg text-white pt-4 lg:pt-0"
-            >
+            <div className="max-w-lg text-white pt-4 lg:pt-0">
               <div className="inline-flex items-center gap-2 bg-secondary/90 text-white px-3 py-1 rounded-full text-[10px] sm:text-[11px] font-bold uppercase tracking-widest mb-6 border border-white/20 backdrop-blur-md shadow-lg">
                 <Star size={12} className="fill-white" />
                 #1 Top Rated in Metro Atlanta
@@ -165,13 +160,10 @@ export default function PromoPage() {
                 <div className="absolute inset-0 bg-white/20 transform -skew-x-12 -translate-x-[150%] group-hover:translate-x-[150%] transition-transform duration-700 ease-in-out"></div>
                 Get Free Estimate <ArrowRight size={18} className="ml-3 group-hover:translate-x-2 transition-transform" />
               </a>
-            </motion.div>
+            </div>
 
             {/* Quick Form in Hero (Desktop mostly) */}
-            <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.2 }}
+            <div
                 className="w-full max-w-md bg-white rounded-3xl p-8 lg:p-10 shadow-2xl relative border border-gray-100"
                 id="estimate-form"
             >
@@ -271,7 +263,7 @@ export default function PromoPage() {
                         </p>
                     </form>
                 )}
-            </motion.div>
+            </div>
           </div>
         </section>
 
