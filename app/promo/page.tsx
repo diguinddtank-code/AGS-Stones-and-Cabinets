@@ -9,6 +9,7 @@ import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 import Testimonials from '../../components/Testimonials';
 import BeforeAfter from '../../components/BeforeAfter';
+import PromoRealWork from '../../components/PromoRealWork';
 
 export default function PromoPage() {
   const [formData, setFormData] = useState({
@@ -449,6 +450,9 @@ export default function PromoPage() {
                 </div>
             </div>
         </section>
+
+        {/* 5b. Real Work Gallery (actual completed jobs, not stock photos) */}
+        <PromoRealWork />
 
         {/* 2. Visual Results (Before/After) */}
         <BeforeAfter />

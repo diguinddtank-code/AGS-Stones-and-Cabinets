@@ -47,10 +47,10 @@ export const metadata: Metadata = {
     siteName: "AGS Stones & Cabinets",
     images: [
       {
-        url: "https://kitchenandbathshop.com/wp-content/uploads/2020/11/5d7ff4ab763f7-scaled.jpg",
-        width: 1200,
-        height: 630,
-        alt: "AGS Stones Kitchen Countertops",
+        url: "https://www.agsstonefabricators.com/images/projects/kitchen-navy-cabinets-white-quartz-waterfall-island-atlanta.jpg",
+        width: 1600,
+        height: 1200,
+        alt: "Navy blue kitchen cabinets with white quartz waterfall island countertop, fabricated and installed by AGS Stones in Atlanta, GA",
       },
     ],
   },
@@ -58,7 +58,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "AGS Stones & Cabinets | Local Granite Countertops Near You",
     description: "Stop searching. You found the best granite countertops near you. Buy direct from our Duluth factory and save.",
-    images: ["https://kitchenandbathshop.com/wp-content/uploads/2020/11/5d7ff4ab763f7-scaled.jpg"],
+    images: ["https://www.agsstonefabricators.com/images/projects/kitchen-navy-cabinets-white-quartz-waterfall-island-atlanta.jpg"],
   },
   robots: {
     index: true,
@@ -99,7 +99,7 @@ export default function RootLayout({
               "@type": "HomeAndConstructionBusiness",
               "name": "AGS Stones",
               "legalName": "AGS Stones and Cabinets",
-              "image": "https://www.agsstonefabricators.com/wp-content/uploads/2024/05/Design-sem-nome-16.png",
+              "image": "https://www.agsstonefabricators.com/images/projects/kitchen-navy-cabinets-white-quartz-waterfall-island-atlanta.jpg",
               "logo": "https://i.imgur.com/B0ZaBpN.png",
               "@id": "https://www.agsstonefabricators.com",
               "url": "https://www.agsstonefabricators.com",
