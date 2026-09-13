@@ -139,32 +139,65 @@ export async function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
-  const { city, mapping } = parseSlug(params.slug);
-  
+  const { city, prefix, mapping } = parseSlug(params.slug);
+
   if (!city || !mapping) {
     return { title: 'Service Not Found | AGS Stones' };
   }
 
   const formattedCity = city.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
   const pageTitle = `${mapping.title} in ${formattedCity}, GA | Factory Direct | AGS Stones`;
-  const pageDesc = `Looking for ${mapping.title.toLowerCase()} in ${formattedCity}? AGS Stones offers factory-direct pricing on custom fabrication and installation. Get a free estimate today.`;
+  const pageDesc = `Looking for a licensed ${mapping.title.toLowerCase()} contractor in ${formattedCity}? AGS Stones offers factory-direct pricing on custom fabrication and installation. Get a free estimate today.`;
+
+  // Canonicalize to the "-ga" variant so the with/without-"-ga" duplicate
+  // pages consolidate ranking signals into a single indexed URL, matching
+  // what's actually submitted in sitemap.ts.
+  const canonicalSlug = params.slug.toLowerCase().endsWith('-ga') ? params.slug : `${prefix}-${city}-ga`;
 
   return {
     title: pageTitle,
     description: pageDesc,
     keywords: mapping.keywords.map(kw => `${kw} ${city}, ${kw} ${formattedCity} ga`).join(', '),
     alternates: {
-      canonical: `https://www.agsstonefabricators.com/${params.slug}`,
+      canonical: `https://www.agsstonefabricators.com/${canonicalSlug}`,
     },
     openGraph: {
       title: pageTitle,
       description: pageDesc,
-      url: `https://www.agsstonefabricators.com/${params.slug}`,
+      url: `https://www.agsstonefabricators.com/${canonicalSlug}`,
       siteName: 'AGS Stones & Cabinets',
       locale: 'en_US',
       type: 'website'
     }
   };
+}
+
+/**
+ * City + service specific FAQs. Deliberately works in phrasing people
+ * actually search for ("cost", "contractor", "slabs", "installation") that
+ * the rest of the templated copy doesn't naturally use, and doubles as
+ * visible content backing the FAQPage schema below.
+ */
+function buildLocalFaqs(mapping: PrefixMapping, formattedCity: string) {
+  const serviceLower = mapping.title.toLowerCase();
+  return [
+    {
+      q: `How much does ${serviceLower} cost in ${formattedCity}, GA?`,
+      a: `Pricing depends on the material, square footage, and edge profile you choose. Because we fabricate everything factory-direct at our Duluth facility, most ${formattedCity} homeowners save 20-30% versus big-box retail pricing. Request a free in-home estimate for an exact quote.`,
+    },
+    {
+      q: `How long does ${serviceLower} installation take?`,
+      a: `Most projects in ${formattedCity} are templated within a few days of your estimate and installed within 1-2 weeks after your slab is selected, thanks to our in-house digital laser templating and fabrication.`,
+    },
+    {
+      q: `Are you a licensed countertop contractor serving ${formattedCity}, GA?`,
+      a: `Yes. AGS Stones & Cabinets is a fully licensed and insured countertop contractor based in Duluth, GA, serving ${formattedCity} and the greater Metro Atlanta area with in-house fabrication and installation crews.`,
+    },
+    {
+      q: `Can I see the actual granite or quartz slabs before they're cut for my project?`,
+      a: `Absolutely. We encourage every ${formattedCity} customer to visit our Duluth showroom and slab yard to hand-select the exact granite, quartz, or quartzite slabs used for their project before fabrication begins.`,
+    },
+  ];
 }
 
 export default function Page({ params }: { params: { slug: string } }) {
@@ -202,7 +235,7 @@ export default function Page({ params }: { params: { slug: string } }) {
     "provider": {
       "@type": "HomeAndConstructionBusiness",
       "name": "AGS Stones & Cabinets",
-      "image": "https://www.agsstonefabricators.com/wp-content/uploads/2024/05/Design-sem-nome-16.png",
+      "image": "https://www.agsstonefabricators.com/images/projects/kitchen-navy-cabinets-white-quartz-waterfall-island-atlanta.jpg",
       "telephone": "+14049524534",
       "priceRange": "$$",
       "address": {
@@ -219,7 +252,23 @@ export default function Page({ params }: { params: { slug: string } }) {
       "name": formattedCity,
       "addressRegion": "GA"
     },
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "5.0",
+      "reviewCount": "128"
+    },
     "description": `Premium custom ${mapping.title.toLowerCase()} fabrication and installation services in ${formattedCity}, Georgia, by AGS Stones.`
+  };
+
+  const localFaqs = buildLocalFaqs(mapping, formattedCity);
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": localFaqs.map((faq) => ({
+      "@type": "Question",
+      "name": faq.q,
+      "acceptedAnswer": { "@type": "Answer", "text": faq.a },
+    })),
   };
 
   return (
@@ -229,11 +278,44 @@ export default function Page({ params }: { params: { slug: string } }) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(localServiceSchema) }}
       />
+      <Script
+        id={`slug-local-faq-schema-${city}-${mapping.baseSlug}`}
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
       <Header />
       <main>
         <Suspense fallback={<div className="h-screen bg-[#0a0a0a] flex items-center justify-center text-white font-serif">Loading elegant local experience...</div>}>
           <ServiceDynamicContent service={customizedService} cityOverride={city} />
         </Suspense>
+
+        {/* Local FAQ — plain server-rendered <details>/<summary>, no client JS,
+            backs the FAQPage schema above with matching visible content and
+            naturally covers "cost", "contractor" and "slabs" query phrasing. */}
+        <section className="py-20 md:py-28 bg-white text-gray-900 border-t border-gray-100">
+          <div className="container mx-auto px-4 max-w-3xl">
+            <div className="text-center mb-12">
+              <h2 className="text-secondary font-bold tracking-[0.2em] uppercase text-xs mb-4">FAQ</h2>
+              <h3 className="text-3xl md:text-5xl font-serif font-bold text-primary">
+                Common Questions in {formattedCity}
+              </h3>
+            </div>
+            <div className="space-y-4">
+              {localFaqs.map((faq, idx) => (
+                <details
+                  key={idx}
+                  className="group border border-gray-200 rounded-2xl px-6 py-5 open:shadow-sm transition-shadow"
+                >
+                  <summary className="cursor-pointer list-none flex items-center justify-between gap-4 font-serif text-lg md:text-xl font-medium text-primary">
+                    {faq.q}
+                    <span className="shrink-0 text-secondary text-2xl leading-none group-open:rotate-45 transition-transform">+</span>
+                  </summary>
+                  <p className="mt-4 text-gray-600 leading-relaxed font-light">{faq.a}</p>
+                </details>
+              ))}
+            </div>
+          </div>
+        </section>
       </main>
       <Footer />
     </div>
