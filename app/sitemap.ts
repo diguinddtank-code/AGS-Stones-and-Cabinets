@@ -18,6 +18,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '/quote',
     '/services',
     '/showroom',
+    '/projects',
     '/blog',
   ];
 

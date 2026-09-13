@@ -61,6 +61,7 @@ const Header: React.FC = () => {
     // { name: 'Digital Showroom', href: '/showroom' },
     { name: 'About Us', href: '/about' },
     { name: 'Services', href: '/services' },
+    { name: 'Our Work', href: '/projects' },
     { name: 'Blog', href: '/blog' },
     { name: 'Contact', href: '/contact' },
   ];

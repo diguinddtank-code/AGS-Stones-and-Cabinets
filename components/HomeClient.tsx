@@ -11,6 +11,7 @@ import { Loader2 } from 'lucide-react';
 const Services = dynamic(() => import('./Services'));
 const ProcessTimeline = dynamic(() => import('./ProcessTimeline'));
 const WhyChooseUs = dynamic(() => import('./WhyChooseUs'));
+const ProjectsShowcase = dynamic(() => import('./ProjectsShowcase'));
 const StoneGallery = dynamic(() => import('./StoneGallery'));
 const MaterialMatchmaker = dynamic(() => import('./MaterialMatchmaker'));
 const BeforeAfter = dynamic(() => import('./BeforeAfter'));
@@ -47,6 +48,7 @@ function HomeClient() {
         <Testimonials />
         <ProcessTimeline />
         <WhyChooseUs />
+        <ProjectsShowcase />
         <StoneGallery />
         <MaterialMatchmaker />
         <BeforeAfter />
