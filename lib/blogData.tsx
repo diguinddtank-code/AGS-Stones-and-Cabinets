@@ -990,5 +990,258 @@ export const blogContent: Record<string, BlogPost> = {
         </div>
       </>
     )
+  },
+
+  'how-to-fix-a-chip-in-granite-or-quartz-countertops': {
+    slug: 'how-to-fix-a-chip-in-granite-or-quartz-countertops',
+    title: 'How to Fix a Chip in Granite or Quartz Countertops: The DIY Repair Guide',
+    badge: 'WIKIHOW & REPAIR GUIDE',
+    badgeType: 'wikihow',
+    category: 'Maintenance',
+    date: 'September 26, 2026',
+    modifiedDate: 'September 26, 2026',
+    readTime: '6 min read',
+    image: '/images/blog/how-to-fix-chip-in-countertop.jpg',
+    alt: 'Instructional wikiHow style illustration of repairing a chipped granite and quartz countertop edge using precision clear epoxy resin',
+    excerpt: 'Step-by-step wikiHow-style guide to repairing chips and nicks on granite and quartz countertops. Master the light-cure acrylic method, epoxy filling, razor scraping, and polishing techniques.',
+    keyTakeaways: [
+      'Save the broken stone chip if possible: natural granite and quartz fragments can be re-bonded almost invisibly using thin cyanoacrylate (Super Glue) or clear knife-grade epoxy.',
+      'For missing chips under 1/2 inch, use a Light-Cure Acrylic (LCA) stone repair kit or clear UV epoxy with clear curing tape for a crystal-clear, durable fill.',
+      'Always degrease the chipped area with 91% isopropyl alcohol and let dry completely—never use oily or citrus cleaners before applying resin.',
+      'Slightly overfill (dome) the resin above the stone surface; once fully cured rock-hard, shave it flush with a fresh razor blade held at a 45-degree angle.',
+      'Finish by wet-sanding with 1500 to 3000 grit micro-abrasive sandpaper and polish with polishing paste to match the surrounding stone sheen.',
+      'For severe fractures near cooktops, structural breaks, or chips over 1 inch wide, consult professional stone fabricators for seamless color-matched polyester resining.'
+    ],
+    faqs: [
+      {
+        q: 'Can you fix a chipped granite or quartz countertop yourself?',
+        a: 'Yes. Minor chips on countertop edges, sink rims, and corners (under 1/2 inch wide) are ideal for DIY repair using a light-cure acrylic (LCA) stone repair kit or transparent two-part epoxy. When shaved flush with a razor blade and polished, small repairs are virtually undetectable.'
+      },
+      {
+        q: 'What is the best glue or epoxy for repairing countertop chips?',
+        a: 'If you still have the broken stone fragment, thin cyanoacrylate (gel-formula super glue) or clear two-part liquid epoxy bonds the chip back with an ultra-thin joint. If the chip is missing and you must fill the cavity, a Light-Cure Acrylic (LCA) kit (like Hxtal, Tenax, or ProCaliber) that hardens with a small LED blue light gives the clearest, non-yellowing repair.'
+      },
+      {
+        q: 'How long does a stone countertop chip repair take to dry?',
+        a: 'Light-cure acrylics cure within 2 to 5 minutes under an LED curing light. Standard two-part epoxy sets in 15 to 30 minutes and cures fully within 4 to 12 hours. We recommend waiting at least 12 hours before heavy kitchen prep or moisture contact.'
+      },
+      {
+        q: 'When should I call a professional fabricator instead of fixing it myself?',
+        a: 'You should contact a professional stone fabricator if: 1) The chip is larger than 1 inch; 2) A fissure crack has propagated into the slab body; 3) The chip occurred along a cooktop cutout or structural seam; or 4) The stone is an exotic veined quartzite that requires specialized color-matched pigment mixing.'
+      }
+    ],
+    content: (
+      <>
+        <p className="text-lg text-gray-700 leading-relaxed font-light mb-6">
+          Granite and quartz are celebrated as two of the hardest, most resilient kitchen surfaces on Earth. However, even high-end stone isn&apos;t completely invincible. An accidental bang from a heavy cast-iron skillet, a slipped ceramic Dutch oven lid, or a dropped wine bottle against the edge of an undermount sink can cause a small flake of stone to pop off, leaving an unsightly, sharp chip.
+        </p>
+
+        <p className="text-gray-700 leading-relaxed mb-8">
+          The good news? You don&apos;t need to replace your entire countertop slab. In fact, professional stone fabricators at <Link href="/" className="text-secondary font-semibold hover:underline">AGS Stones & Cabinets</Link> in <Link href="/countertops-duluth-ga" className="text-primary font-semibold hover:underline">Duluth</Link> and <Link href="/countertops-alpharetta-ga" className="text-primary font-semibold hover:underline">Alpharetta, GA</Link> use simple resin bonding techniques that you can replicate at home. Follow this illustrated, step-by-step wikiHow-style guide to make your countertop edge look and feel factory-fresh again.
+        </p>
+
+        {/* Required Materials Box */}
+        <div className="bg-slate-50 border border-slate-200 rounded-2xl p-6 my-8">
+          <h3 className="text-lg font-bold text-slate-900 mb-3 flex items-center gap-2">
+            🧰 Tools & Materials Checklist
+          </h3>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm text-slate-700">
+            <div className="flex items-center gap-2">
+              <span className="w-2 h-2 rounded-full bg-secondary"></span>
+              <span><strong>Light-Cure Acrylic (LCA) Kit</strong> or Clear 2-Part Epoxy</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <span className="w-2 h-2 rounded-full bg-secondary"></span>
+              <span><strong>91% Isopropyl Alcohol</strong> (degreaser)</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <span className="w-2 h-2 rounded-full bg-secondary"></span>
+              <span><strong>Single-Edge Razor Blades</strong> (brand new, sharp)</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <span className="w-2 h-2 rounded-full bg-secondary"></span>
+              <span><strong>Clear Plastic Curing Strip</strong> or clear packing tape</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <span className="w-2 h-2 rounded-full bg-secondary"></span>
+              <span><strong>Wet Sandpaper (1500 & 2500 grit)</strong></span>
+            </div>
+            <div className="flex items-center gap-2">
+              <span className="w-2 h-2 rounded-full bg-secondary"></span>
+              <span><strong>Microfiber Buffing Cloth</strong> & Stone Polish</span>
+            </div>
+          </div>
+        </div>
+
+        <h2 className="text-2xl sm:text-3xl font-serif text-primary mt-12 mb-6 font-bold pb-2 border-b border-gray-100">
+          Method 1: Re-Attaching the Original Stone Fragment
+        </h2>
+
+        <p className="text-gray-700 leading-relaxed mb-6">
+          If you heard the impact and found the small piece of stone on the floor or inside the sink, congratulations! Re-bonding the original natural crystal fragment always creates the most invisible repair because the colors, veins, and minerals match 100%.
+        </p>
+
+        <div className="space-y-6 my-8">
+          <div className="bg-white p-6 rounded-2xl border border-gray-200/80 shadow-sm flex flex-col sm:flex-row gap-5 items-start">
+            <span className="flex-shrink-0 w-10 h-10 rounded-full bg-blue-600 text-white font-bold flex items-center justify-center text-base shadow-md">
+              1
+            </span>
+            <div>
+              <h3 className="text-lg font-bold text-gray-900 mb-2">Test Fit the Fragment</h3>
+              <p className="text-gray-600 text-sm sm:text-base leading-relaxed m-0">
+                Dry-fit the chipped piece into the void with tweezers. Check that it seats flush and level without rocking. Make sure no crushed stone dust is trapped underneath preventing it from seating fully.
+              </p>
+            </div>
+          </div>
+
+          <div className="bg-white p-6 rounded-2xl border border-gray-200/80 shadow-sm flex flex-col sm:flex-row gap-5 items-start">
+            <span className="flex-shrink-0 w-10 h-10 rounded-full bg-blue-600 text-white font-bold flex items-center justify-center text-base shadow-md">
+              2
+            </span>
+            <div>
+              <h3 className="text-lg font-bold text-gray-900 mb-2">Degrease with Isopropyl Alcohol</h3>
+              <p className="text-gray-600 text-sm sm:text-base leading-relaxed mb-2">
+                Dip a cotton swab in 91% isopropyl alcohol and clean both the countertop cavity and the broken fragment. Allow it to air-dry completely for 5 minutes.
+              </p>
+              <div className="bg-amber-50 border-l-4 border-amber-500 p-2.5 rounded-r-lg text-xs text-amber-900">
+                <strong>Crucial Tip:</strong> Never use nail polish remover (acetone with oils) or dish soap here. Residual oils will prevent the adhesive from bonding chemically to the stone.
+              </div>
+            </div>
+          </div>
+
+          <div className="bg-white p-6 rounded-2xl border border-gray-200/80 shadow-sm flex flex-col sm:flex-row gap-5 items-start">
+            <span className="flex-shrink-0 w-10 h-10 rounded-full bg-blue-600 text-white font-bold flex items-center justify-center text-base shadow-md">
+              3
+            </span>
+            <div>
+              <h3 className="text-lg font-bold text-gray-900 mb-2">Apply Adhesive & Press Firmly</h3>
+              <p className="text-gray-600 text-sm sm:text-base leading-relaxed m-0">
+                Apply a micro-drop of clear cyanoacrylate (Super Glue gel) or clear two-part liquid epoxy into the center of the chip. Press the fragment firmly into place for 60 to 90 seconds. A tiny bead of glue will squeeze out around the edges—leave it alone for now until it hardens completely.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <h2 className="text-2xl sm:text-3xl font-serif text-primary mt-14 mb-6 font-bold pb-2 border-b border-gray-100">
+          Method 2: Filling a Missing Void with Clear Light-Cure Acrylic
+        </h2>
+
+        <p className="text-gray-700 leading-relaxed mb-6">
+          In 80% of kitchen accidents, the broken chip shattered into dust or washed down the garbage disposal. Here is how to rebuild the missing corner or edge using a clear UV Light-Cure Acrylic (LCA) resin kit:
+        </p>
+
+        <div className="space-y-6 my-8">
+          <div className="bg-white p-6 rounded-2xl border border-gray-200/80 shadow-sm flex flex-col sm:flex-row gap-5 items-start">
+            <span className="flex-shrink-0 w-10 h-10 rounded-full bg-emerald-600 text-white font-bold flex items-center justify-center text-base shadow-md">
+              1
+            </span>
+            <div>
+              <h3 className="text-lg font-bold text-gray-900 mb-2">Mask the Perimeter with Painter&apos;s Tape</h3>
+              <p className="text-gray-600 text-sm sm:text-base leading-relaxed m-0">
+                Apply blue painter&apos;s tape approximately 1 millimeter away from the edges of the chip. This shields the surrounding polished stone surface from accidental scuffs and prevents excess resin from spreading.
+              </p>
+            </div>
+          </div>
+
+          <div className="bg-white p-6 rounded-2xl border border-gray-200/80 shadow-sm flex flex-col sm:flex-row gap-5 items-start">
+            <span className="flex-shrink-0 w-10 h-10 rounded-full bg-emerald-600 text-white font-bold flex items-center justify-center text-base shadow-md">
+              2
+            </span>
+            <div>
+              <h3 className="text-lg font-bold text-gray-900 mb-2">Fill the Chip with a Slight &quot;Dome&quot;</h3>
+              <p className="text-gray-600 text-sm sm:text-base leading-relaxed m-0">
+                Using the precision syringe included in your repair kit, slowly inject the clear acrylic gel into the cavity. Allow the resin to rise just slightly above the countertop surface (approximately 1 millimeter dome). Resin shrinks slightly as it cures; overfilling prevents a concave dip.
+              </p>
+            </div>
+          </div>
+
+          <div className="bg-white p-6 rounded-2xl border border-gray-200/80 shadow-sm flex flex-col sm:flex-row gap-5 items-start">
+            <span className="flex-shrink-0 w-10 h-10 rounded-full bg-emerald-600 text-white font-bold flex items-center justify-center text-base shadow-md">
+              3
+            </span>
+            <div>
+              <h3 className="text-lg font-bold text-gray-900 mb-2">Place Curing Strip & Apply Blue UV Light</h3>
+              <p className="text-gray-600 text-sm sm:text-base leading-relaxed m-0">
+                Place the clear plastic curing strip directly over the wet gel and press down gently to smooth out air bubbles. Shine the handheld LED curing light onto the patch from 1/2 inch away for 2 to 3 minutes. The acrylic will transform from liquid to glass-hard solid.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <h2 className="text-2xl sm:text-3xl font-serif text-primary mt-14 mb-6 font-bold pb-2 border-b border-gray-100">
+          Method 3: Razor Shaving & Polishing to a Factory Mirror Sheen
+        </h2>
+
+        <p className="text-gray-700 leading-relaxed mb-6">
+          The secret to a seamless repair that you can&apos;t feel with your fingertip is the razor-blade shaving technique:
+        </p>
+
+        <div className="bg-white p-6 sm:p-8 rounded-3xl border border-gray-200 shadow-sm my-8">
+          <ol className="list-decimal pl-6 space-y-4 text-gray-700 leading-relaxed">
+            <li>
+              <strong>Peel off the curing strip:</strong> Gently lift away the clear plastic strip and remove the surrounding blue painter&apos;s tape.
+            </li>
+            <li>
+              <strong>Hold the razor blade at 45 degrees:</strong> Take a brand-new, single-edge steel razor blade. Hold it firmly with both hands at a 45-degree angle against the counter.
+            </li>
+            <li>
+              <strong>Shave with light, steady strokes:</strong> Shave across the raised resin dome in short, scraping motions. Do not gouge into the stone. Because the steel blade is softer than quartz and granite minerals, it will cleanly slice away the hardened resin without scratching your countertop polish.
+            </li>
+            <li>
+              <strong>Wet sand with micro-grit:</strong> Wrap a small piece of 2000-grit wet sandpaper around your finger. Add a drop of water and buff the patch with light circular pressure for 30 seconds.
+            </li>
+            <li>
+              <strong>Apply stone polishing paste:</strong> Finish by applying a dime-sized amount of diamond stone polishing cream (or automobile clear-coat paste) and buff vigorously with a clean microfiber cloth until the patch reflects ambient kitchen light identically to the stone.
+            </li>
+          </ol>
+        </div>
+
+        {/* Pro Fabricator Comparison Box */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 my-8">
+          <div className="bg-blue-50/70 border border-blue-200 rounded-2xl p-6">
+            <h4 className="text-blue-900 font-bold text-base mb-2 flex items-center gap-2">
+              💎 Repairing Natural Granite Chips
+            </h4>
+            <p className="text-sm text-blue-950 leading-relaxed mb-0">
+              Natural granite has multifaceted mineral crystals (quartz, feldspar, mica). Clear resin works like magic on granite because the clear acrylic acts like a magnifying lens, allowing the underlying stone minerals and colors to refract through naturally.
+            </p>
+          </div>
+
+          <div className="bg-amber-50/70 border border-amber-200 rounded-2xl p-6">
+            <h4 className="text-amber-900 font-bold text-base mb-2 flex items-center gap-2">
+              ⚡ Repairing Engineered Quartz Chips
+            </h4>
+            <p className="text-sm text-amber-950 leading-relaxed mb-0">
+              Engineered quartz (like pure white Calacatta) is more uniform in background color. For solid white quartz, choose a repair kit that includes white and gray pigment powders so you can tint the clear gel before curing to match your exact slab shade.
+            </p>
+          </div>
+        </div>
+
+        {/* Call to action card */}
+        <div className="bg-gradient-to-r from-primary to-slate-900 text-white rounded-3xl p-8 sm:p-10 my-10 shadow-2xl flex flex-col md:flex-row items-center justify-between gap-6">
+          <div className="max-w-xl">
+            <span className="text-secondary font-bold text-xs uppercase tracking-widest block mb-2">Professional Stone Care in Atlanta</span>
+            <h4 className="text-2xl font-serif font-bold mb-2">Need Professional Stone Restoration or Replacement?</h4>
+            <p className="text-gray-300 text-sm mb-0">
+              If your countertop has sustained severe fractures, large edge breaks, or you are ready to upgrade to brand-new factory-direct granite or quartz, our Duluth fabrication team is here to help with free in-home digital laser estimates.
+            </p>
+          </div>
+          <div className="flex flex-col sm:flex-row gap-3 w-full md:w-auto flex-shrink-0">
+            <Link 
+              href="/promo" 
+              className="bg-secondary text-white font-bold text-xs uppercase tracking-wider px-7 py-4 rounded-xl hover:bg-white hover:text-primary transition-all text-center shadow-lg"
+            >
+              Get Free Estimate (20–30% OFF)
+            </Link>
+            <Link 
+              href="/contact" 
+              className="bg-white/10 hover:bg-white/20 text-white font-bold text-xs uppercase tracking-wider px-6 py-4 rounded-xl transition-all text-center border border-white/20"
+            >
+              Visit Showroom
+            </Link>
+          </div>
+        </div>
+      </>
+    )
   }
 };
