@@ -34,7 +34,7 @@ export const services: ServiceDetail[] = [
     title: "Custom Kitchen Cabinets",
     slug: "cabinets",
     shortDesc: "Solid wood cabinetry tailored to your space.",
-    image: "https://21stcenturycd.com/wp-content/uploads/2025/02/Aspen-kitchen-2-1.webp",
+    image: "/images/services/custom-kitchen-cabinets.webp",
     gallery: [
       "https://foxcustomcabinets.com/wp-content/uploads/2024/07/09-0T1A2288-scaled-1.jpg",
       "https://cdn.prod.website-files.com/67e59e3d3623543eb475688f/67e59e3d3623543eb47573ed_Youman%20Kitchen%20(2)%20(1).webp",
@@ -49,7 +49,7 @@ export const services: ServiceDetail[] = [
     title: "Full Kitchen Remodeling",
     slug: "kitchen-remodeling",
     shortDesc: "Complete turnkey renovation from demo to done.",
-    image: "https://hamishmurray.com/wp-content/uploads/2021/06/shutterstock_1315328237-1.jpeg",
+    image: "/images/services/full-kitchen-remodeling.jpg",
     gallery: [
       "https://images.seattletimes.com/wp-content/uploads/2020/04/kitchen-interior-3214064.jpg?d=780x520",
       "https://st.hzcdn.com/simgs/5b0105b2093757b7_14-4620/_.jpg",

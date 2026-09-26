@@ -54,7 +54,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const locationRoutes: MetadataRoute.Sitemap = [];
   locations.forEach((city) => {
     localServicePrefixes.forEach((prefix) => {
-      // We generate the version with -ga because it is the target SEO focus
       locationRoutes.push({
         url: `${baseUrl}/${prefix}-${city}-ga`,
         lastModified: new Date(),
@@ -64,12 +63,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     });
   });
 
-  // Blog Routes
+  // Blog Routes with High SEO Priority
   const blogRoutes: MetadataRoute.Sitemap = Object.keys(blogContent).map((slug) => ({
     url: `${baseUrl}/blog/${slug}`,
     lastModified: new Date(),
-    changeFrequency: 'monthly',
-    priority: 0.7,
+    changeFrequency: 'weekly',
+    priority: 0.85,
   }));
 
   return [...staticRoutes, ...serviceRoutes, ...locationRoutes, ...blogRoutes];
