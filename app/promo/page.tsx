@@ -315,9 +315,9 @@ export default function PromoPage() {
             <div className="absolute inset-0 bg-gradient-to-b from-[#090909]/95 via-[#090909]/85 to-black/80"></div>
           </div>
 
-          <div className="container mx-auto max-w-lg relative z-10 flex flex-col items-center">
-            {/* Direct Centered H1 - Turnkey Full-Service Message & Mobile Friendly */}
-            <div className="text-center mb-3.5 sm:mb-5 px-2">
+          <div className="container mx-auto max-w-lg lg:max-w-7xl relative z-10">
+            {/* Mobile-Only Headline - Untouched & perfectly tailored for small screens */}
+            <div className="text-center mb-3.5 sm:mb-5 px-2 lg:hidden">
               <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[10px] sm:text-[11px] font-bold uppercase tracking-wider bg-secondary/20 text-secondary border border-secondary/35 mb-2 backdrop-blur-sm shadow-xs">
                 Turnkey Full-Service • We Fabricate & Install
               </span>
@@ -329,11 +329,98 @@ export default function PromoPage() {
               </p>
             </div>
 
-            {/* Immediate Multi-Step Interactive Quote Wizard */}
-            <div
-              className="w-full bg-white rounded-2xl sm:rounded-3xl p-4 sm:p-6 shadow-2xl relative border border-slate-100 text-slate-900"
-              id="estimate-form"
-            >
+            {/* Responsive Dual Column Container (Mobile: single column centered, Desktop: 12-col grid) */}
+            <div className="lg:grid lg:grid-cols-12 lg:gap-12 xl:gap-16 lg:items-center">
+
+              {/* DESKTOP-ONLY LEFT CONTENT COLUMN */}
+              <div className="hidden lg:block lg:col-span-7 xl:col-span-7 text-left text-white pr-4">
+                {/* Badge & Social Proof Rating */}
+                <div className="flex flex-wrap items-center gap-3 mb-5">
+                  <span className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider bg-secondary/20 text-secondary border border-secondary/40 backdrop-blur-md shadow-xs">
+                    <Sparkles size={14} className="text-secondary animate-pulse" />
+                    Turnkey Full-Service • We Fabricate & Install
+                  </span>
+                  <div className="inline-flex items-center gap-1.5 bg-black/45 backdrop-blur-md border border-white/10 px-3.5 py-1.5 rounded-full text-xs font-medium">
+                    <div className="flex text-amber-400 text-xs">
+                      {"★★★★★"}
+                    </div>
+                    <span className="text-white font-bold">5.0</span>
+                    <span className="text-gray-300 font-light">(128+ Google Reviews)</span>
+                  </div>
+                </div>
+
+                {/* Desktop High-Impact Headline */}
+                <h1 className="text-3xl xl:text-4xl 2xl:text-5xl font-serif font-medium text-white leading-[1.15] tracking-tight mb-4 drop-shadow-lg">
+                  Custom Countertops & Cabinets: <span className="text-secondary italic font-light block mt-1.5">Complete Turnkey Installation</span>
+                </h1>
+
+                <p className="text-base xl:text-lg text-gray-200 font-light leading-relaxed mb-6 max-w-xl">
+                  Metro Atlanta&apos;s premier stone & cabinetry fabrication shop. We handle your entire project end-to-end: digital 3D laser templating, precision in-house cutting, old countertop removal, and white-glove installation.
+                </p>
+
+                {/* 4 Feature Pillars Grid */}
+                <div className="grid grid-cols-2 gap-3.5 mb-8">
+                  <div className="flex items-start gap-3 bg-white/5 backdrop-blur-md border border-white/10 p-3.5 rounded-xl hover:bg-white/10 transition-colors">
+                    <div className="w-9 h-9 rounded-lg bg-secondary/20 border border-secondary/40 flex items-center justify-center text-secondary flex-shrink-0 mt-0.5 shadow-sm">
+                      <CheckCircle2 size={18} />
+                    </div>
+                    <div>
+                      <h4 className="text-sm font-bold text-white mb-0.5">Factory-Direct Savings</h4>
+                      <p className="text-xs text-gray-300 leading-snug">Save 20% to 30% by cutting out showroom retailer markups.</p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start gap-3 bg-white/5 backdrop-blur-md border border-white/10 p-3.5 rounded-xl hover:bg-white/10 transition-colors">
+                    <div className="w-9 h-9 rounded-lg bg-secondary/20 border border-secondary/40 flex items-center justify-center text-secondary flex-shrink-0 mt-0.5 shadow-sm">
+                      <Clock size={18} />
+                    </div>
+                    <div>
+                      <h4 className="text-sm font-bold text-white mb-0.5">Fast 5-Day Turnaround</h4>
+                      <p className="text-xs text-gray-300 leading-snug">From final laser template approval to finished installation.</p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start gap-3 bg-white/5 backdrop-blur-md border border-white/10 p-3.5 rounded-xl hover:bg-white/10 transition-colors">
+                    <div className="w-9 h-9 rounded-lg bg-secondary/20 border border-secondary/40 flex items-center justify-center text-secondary flex-shrink-0 mt-0.5 shadow-sm">
+                      <PenTool size={18} />
+                    </div>
+                    <div>
+                      <h4 className="text-sm font-bold text-white mb-0.5">Duluth CNC Fabrication</h4>
+                      <p className="text-xs text-gray-300 leading-snug">Waterjet miters, seamless sink cutouts, and polished edges.</p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start gap-3 bg-white/5 backdrop-blur-md border border-white/10 p-3.5 rounded-xl hover:bg-white/10 transition-colors">
+                    <div className="w-9 h-9 rounded-lg bg-secondary/20 border border-secondary/40 flex items-center justify-center text-secondary flex-shrink-0 mt-0.5 shadow-sm">
+                      <ShieldCheck size={18} />
+                    </div>
+                    <div>
+                      <h4 className="text-sm font-bold text-white mb-0.5">Full Craft Warranty</h4>
+                      <p className="text-xs text-gray-300 leading-snug">Licensed, insured, and 100% turnkey accountability.</p>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Showroom & Schedule Availability Footer */}
+                <div className="flex flex-wrap items-center gap-6 pt-5 border-t border-white/15 text-xs text-gray-300">
+                  <div className="flex items-center gap-2">
+                    <MapPin size={16} className="text-secondary" />
+                    <span>Duluth Showroom: <strong className="text-white font-medium">4579 Abbotts Bridge Rd, Duluth GA</strong></span>
+                  </div>
+                  <div className="flex items-center gap-2 bg-emerald-500/10 border border-emerald-500/30 px-3 py-1 rounded-full text-emerald-300">
+                    <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+                    <span className="font-semibold text-[11px] tracking-wide uppercase">Open for In-Home Templating</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* RIGHT COLUMN / MOBILE CARD: INTERACTIVE ESTIMATOR WIZARD */}
+              <div className="lg:col-span-5 xl:col-span-5 w-full">
+                {/* Immediate Multi-Step Interactive Quote Wizard */}
+                <div
+                  className="w-full bg-white rounded-2xl sm:rounded-3xl p-4 sm:p-6 shadow-2xl relative border border-slate-100 text-slate-900"
+                  id="estimate-form"
+                >
               {isSuccess ? (
                 /* SUCCESS CONFIRMATION VIEW - Clean, Compact & Mobile Perfect */
                 <motion.div
@@ -791,8 +878,9 @@ export default function PromoPage() {
                   </AnimatePresence>
                 </form>
               )}
+                </div>
+              </div>
             </div>
-
           </div>
         </section>
 
