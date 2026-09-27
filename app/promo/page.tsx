@@ -93,10 +93,26 @@ export default function PromoPage() {
   const [validationError, setValidationError] = useState<string | null>(null);
 
   useEffect(() => {
-    // Safely fire PageView explicitly for this route on mount
+    // Safely fire PageView and ViewContent explicitly for this promo route on mount
     try {
-      if (typeof window !== 'undefined' && 'fbq' in window) {
-        (window as any).fbq('track', 'PageView');
+      if (typeof window !== 'undefined') {
+        const fireMetaEvents = () => {
+          if ((window as any).fbq) {
+            (window as any).fbq('track', 'PageView');
+            (window as any).fbq('track', 'ViewContent', {
+              content_name: 'Promo Turnkey Estimator',
+              content_category: 'Countertops & Cabinets Installation'
+            });
+          }
+        };
+
+        if ((window as any).fbq) {
+          fireMetaEvents();
+        } else {
+          // Fallback check if script is still initializing
+          const timer = setTimeout(fireMetaEvents, 1000);
+          return () => clearTimeout(timer);
+        }
       }
     } catch (e) {
       console.warn("Meta pixel error:", e);
@@ -205,7 +221,12 @@ export default function PromoPage() {
               zp: formData.city.trim(),
               country: 'us'
             });
-            (window as any).fbq('track', 'Lead', {}, { eventID: submitEventId });
+            (window as any).fbq('track', 'Lead', {
+              content_name: formData.project,
+              content_category: `${formData.material} - Turnkey Installation`,
+              value: 0,
+              currency: 'USD'
+            }, { eventID: submitEventId });
           }
           if ((window as any).gtag) (window as any).gtag('event', 'conversion', { 'send_to': 'AW-16885125181/R1mQCP6Dm5McEL2guvM-' });
         }
@@ -295,13 +316,16 @@ export default function PromoPage() {
           </div>
 
           <div className="container mx-auto max-w-lg relative z-10 flex flex-col items-center">
-            {/* Direct Centered H1 - High Value & Mobile Friendly */}
-            <div className="text-center mb-3 sm:mb-4 px-2">
-              <h1 className="text-xl sm:text-2xl md:text-3xl font-serif font-medium text-white leading-tight drop-shadow-md mb-1.5">
-                Factory-Direct Stone & Custom Cabinets <span className="text-secondary italic font-light">— Save 20% to 30%</span>
+            {/* Direct Centered H1 - Turnkey Full-Service Message & Mobile Friendly */}
+            <div className="text-center mb-3.5 sm:mb-5 px-2">
+              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[10px] sm:text-[11px] font-bold uppercase tracking-wider bg-secondary/20 text-secondary border border-secondary/35 mb-2 backdrop-blur-sm shadow-xs">
+                Turnkey Full-Service • We Fabricate & Install
+              </span>
+              <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-serif font-medium text-white leading-tight drop-shadow-md mb-2">
+                Custom Countertops & Cabinets: <span className="text-secondary italic font-light">Complete Turnkey Installation</span>
               </h1>
-              <p className="text-xs sm:text-sm text-gray-300 font-light max-w-md mx-auto">
-                Skip retail middleman markups in Metro Atlanta. Get your free estimate in under 60 seconds:
+              <p className="text-xs sm:text-sm text-gray-200 font-light max-w-lg mx-auto leading-relaxed">
+                From free 3D laser templating to custom in-house fabrication and complete professional installation — save 20% to 30% factory-direct with zero retail markups.
               </p>
             </div>
 
