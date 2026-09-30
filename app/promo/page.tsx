@@ -17,10 +17,10 @@ import {
   ChefHat,
   Bath,
   Flame,
-  Sparkles,
   Calendar,
   MapPin,
-  Check
+  Check,
+  Lock
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Header from '../../components/Header';
@@ -29,61 +29,13 @@ import Testimonials from '../../components/Testimonials';
 import BeforeAfter from '../../components/BeforeAfter';
 import PromoRealWork from '../../components/PromoRealWork';
 
-const projectOptions = [
-  { id: 'Countertops', title: 'Countertops', icon: Layers },
-  { id: 'Custom Cabinets', title: 'Custom Cabinets', icon: Box },
-  { id: 'Full Remodel', title: 'Full Kitchen Remodel', icon: ChefHat },
-  { id: 'Bath Vanity', title: 'Bathroom Vanity', icon: Bath },
-  { id: 'Outdoor Kitchens', title: 'Outdoor Kitchen', icon: Flame },
-  { id: 'Other / Remnants', title: 'Remnants / Other', icon: Sparkles }
-];
-
-const stonePreferences = [
-  { id: 'Engineered Quartz', label: 'Quartz' },
-  { id: 'Natural Granite', label: 'Granite' },
-  { id: 'Exotic Quartzite', label: 'Quartzite' },
-  { id: 'Need Guidance', label: 'Showroom Visit / Advice' }
-];
-
-const cabinetPreferences = [
-  { id: 'White Shaker', label: 'White Shaker' },
-  { id: 'Modern Flat Panel', label: 'Modern Flat Panel' },
-  { id: 'Navy or Accent Color', label: 'Navy / Accent Color' },
-  { id: 'Natural Stained Wood', label: 'Natural Wood Grain' }
-];
-
-const projectSizes = [
-  { id: 'Small (< 35 sq ft)', label: 'Small (< 35 sq ft)' },
-  { id: 'Standard (40–60 sq ft)', label: 'Standard (40–60 sq ft)' },
-  { id: 'Large with Island (65–90 sq ft)', label: 'Large w/ Island (65–90 sq ft)' },
-  { id: 'Luxury Open-Concept (95+ sq ft)', label: 'Open Concept (95+ sq ft)' }
-];
-
-const timelineOptions = [
-  { id: 'Immediately / ASAP', label: 'ASAP / Ready' },
-  { id: 'Within 2 to 4 Weeks', label: '2 to 4 Weeks' },
-  { id: '1 to 2 Months', label: '1 to 2 Months' },
-  { id: 'Just Planning', label: 'Just Planning' }
-];
-
-const tearOutOptions = [
-  { id: 'Yes, need tear-out', label: 'Yes, remove old tops' },
-  { id: 'No, already prepped', label: 'No, space is ready' }
-];
-
 export default function PromoPage() {
-  const [currentStep, setCurrentStep] = useState(1);
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     phone: '',
     city: '',
     project: 'Countertops',
-    material: 'Engineered Quartz',
-    size: 'Standard (40–60 sq ft)',
-    timeline: 'Immediately / ASAP',
-    tearOut: 'Yes, need tear-out',
-    measurementsStatus: 'Need In-Home Laser Measure',
     message: ''
   });
 
@@ -109,7 +61,6 @@ export default function PromoPage() {
         if ((window as any).fbq) {
           fireMetaEvents();
         } else {
-          // Fallback check if script is still initializing
           const timer = setTimeout(fireMetaEvents, 1000);
           return () => clearTimeout(timer);
         }
@@ -118,33 +69,6 @@ export default function PromoPage() {
       console.warn("Meta pixel error:", e);
     }
   }, []);
-
-  const handleProjectSelect = (projectId: string) => {
-    setFormData(prev => ({
-      ...prev,
-      project: projectId,
-      material: projectId === 'Custom Cabinets' ? 'White Shaker' : prev.material
-    }));
-    setValidationError(null);
-  };
-
-  const handleNextStep = () => {
-    setValidationError(null);
-    if (currentStep === 1 && !formData.project) {
-      setValidationError('Please select a project type to continue.');
-      return;
-    }
-    if (currentStep < 4) {
-      setCurrentStep(prev => prev + 1);
-    }
-  };
-
-  const handlePrevStep = () => {
-    setValidationError(null);
-    if (currentStep > 1) {
-      setCurrentStep(prev => prev - 1);
-    }
-  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -158,12 +82,8 @@ export default function PromoPage() {
       setValidationError('Please enter a valid phone number for quote delivery.');
       return;
     }
-    if (!formData.email.trim() || !formData.email.includes('@')) {
-      setValidationError('Please enter a valid email address.');
-      return;
-    }
     if (!formData.city.trim()) {
-      setValidationError('Please enter your city or zip code in Metro Atlanta.');
+      setValidationError('Please enter your Zip code.');
       return;
     }
 
@@ -171,27 +91,23 @@ export default function PromoPage() {
 
     const submitEventId = typeof crypto !== 'undefined' && crypto.randomUUID ? crypto.randomUUID() : `lead_${Date.now()}`;
 
-    const projectSummary = `${formData.project} (${formData.material} • ${formData.size} • ${formData.timeline})`;
     const fullMessage = [
-      formData.message ? `Notes: ${formData.message}` : '',
-      `Selected Project: ${formData.project}`,
-      `Material/Style: ${formData.material}`,
-      `Size/Scope: ${formData.size}`,
-      `Tear-Out Needed: ${formData.tearOut}`,
-      `Timeline: ${formData.timeline}`,
-      `Measuring Preference: ${formData.measurementsStatus}`
+      `Project: ${formData.project}`,
+      `Zip Code: ${formData.city}`,
+      formData.message ? `Notes: ${formData.message}` : ''
     ].filter(Boolean).join(' | ');
 
     const submitData = {
       access_key: "8120d187-d8e4-4348-83a8-b0248042becb",
-      _subject: `New Lead: ${formData.project} - Promo Quote Wizard`,
+      _subject: `New Lead: ${formData.project} - Free Estimate Request`,
       _template: 'table',
       'Event ID': submitEventId,
       Name: formData.name,
-      Email: formData.email,
+      Email: formData.email || 'N/A',
       Phone: formData.phone,
-      City: formData.city,
-      Project: projectSummary,
+      ZipCode: formData.city,
+      Project: formData.project,
+      Notes: formData.message || 'None',
       Message: fullMessage
     };
 
@@ -206,7 +122,6 @@ export default function PromoPage() {
       });
 
       if (res.ok) {
-        // Fire Meta Pixel Lead Event before state reset
         if (typeof window !== 'undefined') {
           if ((window as any).fbq) {
             const names = formData.name.trim().split(' ');
@@ -214,7 +129,7 @@ export default function PromoPage() {
             const lastName = names.slice(1).join(' ') || '';
 
             (window as any).fbq('init', '1660874861583892', {
-              em: formData.email.trim().toLowerCase(),
+              em: (formData.email || '').trim().toLowerCase(),
               ph: formData.phone.replace(/\D/g, ''),
               fn: firstName.toLowerCase(),
               ln: lastName.toLowerCase(),
@@ -223,7 +138,7 @@ export default function PromoPage() {
             });
             (window as any).fbq('track', 'Lead', {
               content_name: formData.project,
-              content_category: `${formData.material} - Turnkey Installation`,
+              content_category: 'Turnkey Installation',
               value: 0,
               currency: 'USD'
             }, { eventID: submitEventId });
@@ -257,7 +172,6 @@ export default function PromoPage() {
   };
 
   const handleReset = () => {
-    setCurrentStep(1);
     setIsSuccess(false);
     setValidationError(null);
     setFormData({
@@ -266,11 +180,6 @@ export default function PromoPage() {
       phone: '',
       city: '',
       project: 'Countertops',
-      material: 'Engineered Quartz',
-      size: 'Standard (40–60 sq ft)',
-      timeline: 'Immediately / ASAP',
-      tearOut: 'Yes, need tear-out',
-      measurementsStatus: 'Need In-Home Laser Measure',
       message: ''
     });
   };
@@ -282,15 +191,6 @@ export default function PromoPage() {
       formSection.scrollIntoView({ behavior: 'smooth' });
     }
   };
-
-  const progressPercentage = Math.round((currentStep / 4) * 100);
-
-  const stepTitles = [
-    'Project',
-    'Material & Size',
-    'Scope',
-    'Contact'
-  ];
 
   return (
     <div className="min-h-screen flex flex-col font-sans bg-white">
@@ -325,7 +225,7 @@ export default function PromoPage() {
                 Custom Countertops & Cabinets: <span className="text-secondary italic font-light">Complete Turnkey Installation</span>
               </h1>
               <p className="text-xs sm:text-sm text-gray-200 font-light max-w-lg mx-auto leading-relaxed">
-                From free 3D laser templating to custom in-house fabrication and complete professional installation — save 20% to 30% factory-direct with zero retail markups.
+                From precision laser templating to custom in-house fabrication and seamless professional installation across Metro Atlanta.
               </p>
             </div>
 
@@ -337,7 +237,7 @@ export default function PromoPage() {
                 {/* Badge & Social Proof Rating */}
                 <div className="flex flex-wrap items-center gap-3 mb-5">
                   <span className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider bg-secondary/20 text-secondary border border-secondary/40 backdrop-blur-md shadow-xs">
-                    <Sparkles size={14} className="text-secondary animate-pulse" />
+                    <ShieldCheck size={14} className="text-secondary" />
                     Turnkey Full-Service • We Fabricate & Install
                   </span>
                   <div className="inline-flex items-center gap-1.5 bg-black/45 backdrop-blur-md border border-white/10 px-3.5 py-1.5 rounded-full text-xs font-medium">
@@ -355,7 +255,7 @@ export default function PromoPage() {
                 </h1>
 
                 <p className="text-base xl:text-lg text-gray-200 font-light leading-relaxed mb-6 max-w-xl">
-                  Metro Atlanta&apos;s premier stone & cabinetry fabrication shop. We handle your entire project end-to-end: digital 3D laser templating, precision in-house cutting, old countertop removal, and white-glove installation.
+                  Metro Atlanta&apos;s premier stone & cabinetry fabrication shop. We handle your entire project end-to-end: precision laser templating, in-house cutting, old countertop removal, and white-glove installation.
                 </p>
 
                 {/* 4 Feature Pillars Grid */}
@@ -365,8 +265,8 @@ export default function PromoPage() {
                       <CheckCircle2 size={18} />
                     </div>
                     <div>
-                      <h4 className="text-sm font-bold text-white mb-0.5">Factory-Direct Savings</h4>
-                      <p className="text-xs text-gray-300 leading-snug">Save 20% to 30% by cutting out showroom retailer markups.</p>
+                      <h4 className="text-sm font-bold text-white mb-0.5">Factory-Direct Craft</h4>
+                      <p className="text-xs text-gray-300 leading-snug">Direct from our Duluth shop with zero retail middleman markup.</p>
                     </div>
                   </div>
 
@@ -400,18 +300,6 @@ export default function PromoPage() {
                     </div>
                   </div>
                 </div>
-
-                {/* Showroom & Schedule Availability Footer */}
-                <div className="flex flex-wrap items-center gap-6 pt-5 border-t border-white/15 text-xs text-gray-300">
-                  <div className="flex items-center gap-2">
-                    <MapPin size={16} className="text-secondary" />
-                    <span>Duluth Showroom: <strong className="text-white font-medium">4579 Abbotts Bridge Rd, Duluth GA</strong></span>
-                  </div>
-                  <div className="flex items-center gap-2 bg-emerald-500/10 border border-emerald-500/30 px-3 py-1 rounded-full text-emerald-300">
-                    <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
-                    <span className="font-semibold text-[11px] tracking-wide uppercase">Open for In-Home Templating</span>
-                  </div>
-                </div>
               </div>
 
               {/* RIGHT COLUMN / MOBILE CARD: INTERACTIVE ESTIMATOR WIZARD */}
@@ -442,38 +330,32 @@ export default function PromoPage() {
                   </h3>
 
                   <p className="text-xs text-slate-600 max-w-sm mx-auto leading-relaxed mb-4 font-light">
-                    Thank you, <strong className="font-semibold text-slate-900">{formData.name}</strong>. Our Duluth shop has received your details and is preparing your personalized quote.
+                    Thank you, <strong className="font-semibold text-slate-900">{formData.name}</strong>. Our Duluth fabrication team received your details and is preparing your personalized quote.
                   </p>
 
                   {/* Clean Receipt / Summary Card */}
                   <div className="bg-slate-50 border border-slate-200/90 rounded-xl p-3.5 sm:p-4 text-left text-xs mb-4 shadow-xs">
                     <div className="space-y-2">
                       <div className="flex justify-between items-center gap-2">
-                        <span className="text-slate-500">Service:</span>
+                        <span className="text-slate-500">Name:</span>
+                        <span className="font-bold text-slate-900 text-right">{formData.name}</span>
+                      </div>
+                      <div className="flex justify-between items-center gap-2">
+                        <span className="text-slate-500">Project:</span>
                         <span className="font-bold text-slate-900 text-right">{formData.project}</span>
                       </div>
                       <div className="flex justify-between items-center gap-2">
-                        <span className="text-slate-500">Material:</span>
-                        <span className="font-bold text-slate-900 text-right">{formData.material}</span>
+                        <span className="text-slate-500">Contact:</span>
+                        <span className="font-medium text-slate-800 text-right">{formData.phone}</span>
                       </div>
                       <div className="flex justify-between items-center gap-2">
-                        <span className="text-slate-500">Scope:</span>
-                        <span className="font-medium text-slate-800 text-right">{formData.size}</span>
-                      </div>
-                      <div className="flex justify-between items-center gap-2">
-                        <span className="text-slate-500">Location:</span>
+                        <span className="text-slate-500">Zip Code:</span>
                         <span className="font-medium text-slate-800 text-right">{formData.city}</span>
                       </div>
-                      {formData.message && (
-                        <div className="flex justify-between items-start gap-2 pt-1 border-t border-slate-200/50">
-                          <span className="text-slate-500">Notes:</span>
-                          <span className="font-medium text-slate-800 text-right max-w-[200px] truncate">{formData.message}</span>
-                        </div>
-                      )}
                       <div className="pt-2 border-t border-slate-200/70 flex justify-between items-center gap-2">
-                        <span className="text-slate-600 font-medium">Applied Promo:</span>
-                        <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-100 text-emerald-800">
-                          ✓ 20–30% Factory Discount
+                        <span className="text-slate-600 font-medium">Included:</span>
+                        <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-emerald-50 border border-emerald-200 text-emerald-800">
+                          ✓ Free In-Home Laser Templating
                         </span>
                       </div>
                     </div>
@@ -491,391 +373,169 @@ export default function PromoPage() {
                     <button
                       type="button"
                       onClick={handleReset}
-                      className="text-[11px] text-slate-500 hover:text-primary font-medium py-1 transition-colors block mx-auto"
+                      className="text-[11px] text-slate-500 hover:text-primary font-medium py-1 transition-colors block mx-auto cursor-pointer"
                     >
-                      ← Calculate another project
+                      ← Submit another request
                     </button>
                   </div>
                 </motion.div>
               ) : (
-                /* MULTI-STEP FORM VIEW */
-                <form onSubmit={handleSubmit}>
-                  {/* Step Header & Progress */}
-                  <div className="mb-3.5">
-                    <div className="flex items-center justify-between gap-2 mb-1.5">
-                      <span className="text-[11px] font-bold uppercase tracking-wider text-slate-700">
-                        Step {currentStep} of 4: <span className="text-primary font-bold">{stepTitles[currentStep - 1]}</span>
+                /* SINGLE-VIEW FILLING FORM - ZERO STEPS, FAST & DIRECT */
+                <form onSubmit={handleSubmit} className="space-y-3.5">
+                  {/* Card Title & Value Header - Privacy & No-Obligation Focus */}
+                  <div className="border-b border-slate-100 pb-3">
+                    <div className="flex items-center justify-between gap-2 mb-2">
+                      <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-slate-100 border border-slate-200 text-slate-800 text-[11px] font-semibold tracking-tight">
+                        <Lock size={12} className="text-primary flex-shrink-0" />
+                        <span>Data Protected</span>
                       </span>
-                      <span className="text-xs text-slate-400 font-semibold">
-                        {progressPercentage}%
+                      <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-800 text-[11px] font-semibold tracking-tight">
+                        <CheckCircle2 size={12} className="text-emerald-600 flex-shrink-0" />
+                        <span>100% No Obligation</span>
                       </span>
                     </div>
 
-                    {/* Progress Bar */}
-                    <div className="w-full bg-slate-100 h-1 rounded-full overflow-hidden mb-2.5">
-                      <motion.div
-                        className="bg-gradient-to-r from-secondary to-amber-500 h-full rounded-full"
-                        initial={{ width: '25%' }}
-                        animate={{ width: `${progressPercentage}%` }}
-                        transition={{ duration: 0.3, ease: 'easeOut' }}
-                      />
-                    </div>
-
-                    {/* Navigation Pills */}
-                    <div className="grid grid-cols-4 gap-1 text-center">
-                      {['Space', 'Material', 'Timeline', 'Contact'].map((label, idx) => (
-                        <button
-                          key={label}
-                          type="button"
-                          onClick={() => {
-                            if (idx + 1 < currentStep) setCurrentStep(idx + 1);
-                          }}
-                          className={`text-[11px] font-semibold py-1 rounded-md transition-all ${
-                            currentStep === idx + 1
-                              ? 'bg-primary text-white shadow-xs'
-                              : idx + 1 < currentStep
-                              ? 'text-slate-700 bg-slate-100 hover:bg-slate-200 cursor-pointer'
-                              : 'text-slate-400 bg-transparent cursor-default'
-                          }`}
-                        >
-                          {idx + 1}. {label}
-                        </button>
-                      ))}
-                    </div>
+                    <h3 className="text-lg sm:text-xl font-serif font-bold text-slate-900 leading-snug">
+                      Request Your Free Estimate
+                    </h3>
+                    <p className="text-xs text-slate-500 font-light mt-0.5 leading-relaxed">
+                      Your details are strictly confidential. Zero spam & zero sales pressure.
+                    </p>
                   </div>
 
                   {/* Validation Error Banner */}
                   {validationError && (
-                    <div className="bg-red-50 border border-red-200 text-red-700 text-xs px-3 py-2 rounded-xl mb-3 flex items-center gap-1.5">
+                    <div className="bg-red-50 border border-red-200 text-red-700 text-xs px-3 py-2 rounded-xl flex items-center gap-1.5">
                       <span className="font-bold">Notice:</span>
                       <span>{validationError}</span>
                     </div>
                   )}
 
-                  <AnimatePresence mode="wait">
-                    {/* STEP 1: Choose Space / Project */}
-                    {currentStep === 1 && (
-                      <motion.div
-                        key="step-1"
-                        initial={{ opacity: 0, y: 10 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, y: -10 }}
-                        transition={{ duration: 0.2 }}
-                        className="space-y-3"
+                  {/* 1. Full Name */}
+                  <div>
+                    <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">
+                      Full Name *
+                    </label>
+                    <input
+                      type="text"
+                      name="name"
+                      value={formData.name}
+                      onChange={handleChange}
+                      placeholder="Jane Doe"
+                      className="w-full bg-white border border-slate-300 rounded-xl px-3.5 py-2.5 text-xs sm:text-sm text-slate-900 placeholder:text-slate-400 font-medium focus:border-amber-600 focus:ring-4 focus:ring-amber-500/15 outline-none shadow-xs transition-all"
+                      required
+                    />
+                  </div>
+
+                  {/* 2. Phone Number */}
+                  <div>
+                    <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">
+                      Phone Number *
+                    </label>
+                    <input
+                      type="tel"
+                      name="phone"
+                      value={formData.phone}
+                      onChange={handleChange}
+                      placeholder="(404) 555-0123"
+                      className="w-full bg-white border border-slate-300 rounded-xl px-3.5 py-2.5 text-xs sm:text-sm text-slate-900 placeholder:text-slate-400 font-medium focus:border-amber-600 focus:ring-4 focus:ring-amber-500/15 outline-none shadow-xs transition-all"
+                      required
+                    />
+                  </div>
+
+                  {/* 3. Zip Code & Email (2-column grid) */}
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                    <div>
+                      <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">
+                        Zip Code *
+                      </label>
+                      <input
+                        type="text"
+                        name="city"
+                        value={formData.city}
+                        onChange={handleChange}
+                        placeholder="30097 or City"
+                        className="w-full bg-white border border-slate-300 rounded-xl px-3.5 py-2.5 text-xs sm:text-sm text-slate-900 placeholder:text-slate-400 font-medium focus:border-amber-600 focus:ring-4 focus:ring-amber-500/15 outline-none shadow-xs transition-all"
+                        required
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">
+                        Email <span className="text-slate-400 font-normal lowercase">(optional)</span>
+                      </label>
+                      <input
+                        type="email"
+                        name="email"
+                        value={formData.email}
+                        onChange={handleChange}
+                        placeholder="jane@example.com"
+                        className="w-full bg-white border border-slate-300 rounded-xl px-3.5 py-2.5 text-xs sm:text-sm text-slate-900 placeholder:text-slate-400 font-medium focus:border-amber-600 focus:ring-4 focus:ring-amber-500/15 outline-none shadow-xs transition-all"
+                      />
+                    </div>
+                  </div>
+
+                  {/* 4. Project Selector */}
+                  <div>
+                    <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">
+                      Project Type *
+                    </label>
+                    <div className="relative">
+                      <select
+                        name="project"
+                        value={formData.project}
+                        onChange={handleChange}
+                        className="w-full bg-white border border-slate-300 rounded-xl px-3.5 py-2.5 text-xs sm:text-sm text-slate-900 font-medium focus:border-amber-600 focus:ring-4 focus:ring-amber-500/15 outline-none shadow-xs transition-all appearance-none cursor-pointer pr-10"
                       >
-                        <h2 className="text-sm sm:text-base font-serif font-bold text-slate-900">
-                          Select Your Project:
-                        </h2>
+                        <option value="Countertops">Countertops (Quartz, Granite, Quartzite)</option>
+                        <option value="Custom Cabinets">Custom Cabinets (Kitchen or Bath)</option>
+                        <option value="Full Kitchen Remodel">Full Kitchen Remodel (Countertops + Cabinets)</option>
+                        <option value="Bathroom Vanity">Bathroom Vanity Countertop</option>
+                        <option value="Outdoor Kitchen">Outdoor Kitchen Countertops</option>
+                        <option value="Other / Remnants">Other Stone / Remnants</option>
+                      </select>
+                      <div className="absolute right-3.5 top-1/2 -translate-y-1/2 pointer-events-none text-slate-500 text-xs">
+                        ▼
+                      </div>
+                    </div>
+                  </div>
 
-                        <div className="grid grid-cols-2 gap-2">
-                          {projectOptions.map((opt) => {
-                            const IconComponent = opt.icon;
-                            const isSelected = formData.project === opt.id;
-                            return (
-                              <button
-                                key={opt.id}
-                                type="button"
-                                onClick={() => handleProjectSelect(opt.id)}
-                                className={`text-left p-3 rounded-xl border transition-all flex items-center gap-2.5 active:scale-[0.98] ${
-                                  isSelected
-                                    ? 'border-amber-600 bg-amber-50/60 ring-2 ring-amber-500/20 shadow-xs'
-                                    : 'border-slate-200 bg-white hover:border-slate-300'
-                                }`}
-                              >
-                                <div
-                                  className={`w-7 h-7 rounded-lg flex items-center justify-center flex-shrink-0 transition-colors ${
-                                    isSelected
-                                      ? 'bg-secondary text-white'
-                                      : 'bg-slate-100 text-slate-600'
-                                  }`}
-                                >
-                                  <IconComponent size={15} />
-                                </div>
-                                <span className="text-xs sm:text-sm font-bold text-slate-900 leading-tight">
-                                  {opt.title}
-                                </span>
-                              </button>
-                            );
-                          })}
-                        </div>
+                  {/* 5. Notes */}
+                  <div>
+                    <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">
+                      Notes <span className="text-slate-400 font-normal lowercase">(optional)</span>
+                    </label>
+                    <textarea
+                      name="message"
+                      value={formData.message}
+                      onChange={handleChange}
+                      placeholder="Tell us about your space, dimensions, preferred stone, or timeline..."
+                      rows={2}
+                      className="w-full bg-white border border-slate-300 rounded-xl px-3.5 py-2 text-xs sm:text-sm text-slate-900 placeholder:text-slate-400 font-medium focus:border-amber-600 focus:ring-4 focus:ring-amber-500/15 outline-none shadow-xs resize-none transition-all"
+                    />
+                  </div>
 
-                        <div className="pt-1.5">
-                          <button
-                            type="button"
-                            onClick={handleNextStep}
-                            className="w-full bg-primary hover:bg-black text-white font-bold py-3.5 px-6 rounded-xl shadow-md transition-all flex items-center justify-center gap-2 text-xs sm:text-sm uppercase tracking-wider"
-                          >
-                            Next: Material & Size <ArrowRight size={15} />
-                          </button>
-                        </div>
-                      </motion.div>
-                    )}
+                  {/* Submit Button */}
+                  <div className="pt-1">
+                    <button
+                      type="submit"
+                      disabled={isSubmitting}
+                      className="w-full bg-primary hover:bg-black text-white font-bold py-3.5 sm:py-4 px-6 rounded-xl shadow-lg hover:shadow-xl transition-all flex items-center justify-center gap-2 text-sm sm:text-base uppercase tracking-wider disabled:opacity-70 active:scale-[0.99] group cursor-pointer"
+                    >
+                      {isSubmitting ? (
+                        <span>Sending Request...</span>
+                      ) : (
+                        <>
+                          <span>Get Free Estimate</span>
+                          <ArrowRight size={18} className="text-secondary group-hover:translate-x-1 transition-transform flex-shrink-0" />
+                        </>
+                      )}
+                    </button>
+                  </div>
 
-                    {/* STEP 2: Stone / Material Preferences */}
-                    {currentStep === 2 && (
-                      <motion.div
-                        key="step-2"
-                        initial={{ opacity: 0, y: 10 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, y: -10 }}
-                        transition={{ duration: 0.2 }}
-                        className="space-y-3.5"
-                      >
-                        <div>
-                          <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">
-                            {formData.project === 'Custom Cabinets' ? 'Cabinet Style' : 'Stone Material'}
-                          </label>
-                          <div className="grid grid-cols-2 gap-2">
-                            {(formData.project === 'Custom Cabinets' ? cabinetPreferences : stonePreferences).map((mat) => {
-                              const isSelected = formData.material === mat.id;
-                              return (
-                                <button
-                                  key={mat.id}
-                                  type="button"
-                                  onClick={() => setFormData(prev => ({ ...prev, material: mat.id }))}
-                                  className={`p-3 rounded-xl border text-xs font-bold text-left transition-all active:scale-[0.98] ${
-                                    isSelected
-                                      ? 'border-amber-600 bg-amber-50/60 text-slate-900 ring-2 ring-amber-500/20'
-                                      : 'border-slate-200 bg-white text-slate-700 hover:border-slate-300'
-                                  }`}
-                                >
-                                  {mat.label}
-                                </button>
-                              );
-                            })}
-                          </div>
-                        </div>
-
-                        <div>
-                          <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">
-                            Approximate Area / Size
-                          </label>
-                          <div className="grid grid-cols-2 gap-2">
-                            {projectSizes.map((s) => {
-                              const isSelected = formData.size === s.id;
-                              return (
-                                <button
-                                  key={s.id}
-                                  type="button"
-                                  onClick={() => setFormData(prev => ({ ...prev, size: s.id }))}
-                                  className={`p-3 rounded-xl border text-xs font-bold text-left transition-all active:scale-[0.98] ${
-                                    isSelected
-                                      ? 'border-amber-600 bg-amber-50/60 text-slate-900 ring-2 ring-amber-500/20'
-                                      : 'border-slate-200 bg-white text-slate-700 hover:border-slate-300'
-                                  }`}
-                                >
-                                  {s.label}
-                                </button>
-                              );
-                            })}
-                          </div>
-                        </div>
-
-                        <div className="flex gap-2 pt-1.5">
-                          <button
-                            type="button"
-                            onClick={handlePrevStep}
-                            className="w-1/3 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold py-3 px-3 rounded-xl transition-colors flex items-center justify-center gap-1 text-xs uppercase tracking-wider"
-                          >
-                            <ArrowLeft size={14} /> Back
-                          </button>
-                          <button
-                            type="button"
-                            onClick={handleNextStep}
-                            className="w-2/3 bg-primary hover:bg-black text-white font-bold py-3.5 px-5 rounded-xl shadow-md transition-all flex items-center justify-center gap-2 text-xs sm:text-sm uppercase tracking-wider"
-                          >
-                            Next: Scope <ArrowRight size={15} />
-                          </button>
-                        </div>
-                      </motion.div>
-                    )}
-
-                    {/* STEP 3: Timeline & Current Condition */}
-                    {currentStep === 3 && (
-                      <motion.div
-                        key="step-3"
-                        initial={{ opacity: 0, y: 10 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, y: -10 }}
-                        transition={{ duration: 0.2 }}
-                        className="space-y-3.5"
-                      >
-                        <div>
-                          <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">
-                            When are you looking to start?
-                          </label>
-                          <div className="grid grid-cols-2 gap-2">
-                            {timelineOptions.map((t) => {
-                              const isSelected = formData.timeline === t.id;
-                              return (
-                                <button
-                                  key={t.id}
-                                  type="button"
-                                  onClick={() => setFormData(prev => ({ ...prev, timeline: t.id }))}
-                                  className={`p-3 rounded-xl border text-xs font-bold text-left transition-all active:scale-[0.98] ${
-                                    isSelected
-                                      ? 'border-amber-600 bg-amber-50/60 text-slate-900 ring-2 ring-amber-500/20'
-                                      : 'border-slate-200 bg-white text-slate-700 hover:border-slate-300'
-                                  }`}
-                                >
-                                  {t.label}
-                                </button>
-                              );
-                            })}
-                          </div>
-                        </div>
-
-                        <div>
-                          <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">
-                            Need removal of old countertops?
-                          </label>
-                          <div className="grid grid-cols-2 gap-2">
-                            {tearOutOptions.map((opt) => {
-                              const isSelected = formData.tearOut === opt.id;
-                              return (
-                                <button
-                                  key={opt.id}
-                                  type="button"
-                                  onClick={() => setFormData(prev => ({ ...prev, tearOut: opt.id }))}
-                                  className={`p-3 rounded-xl border text-xs font-bold text-left transition-all active:scale-[0.98] ${
-                                    isSelected
-                                      ? 'border-amber-600 bg-amber-50/60 text-slate-900 ring-2 ring-amber-500/20'
-                                      : 'border-slate-200 bg-white text-slate-700 hover:border-slate-300'
-                                  }`}
-                                >
-                                  {opt.label}
-                                </button>
-                              );
-                            })}
-                          </div>
-                        </div>
-
-                        <div className="flex gap-2 pt-1.5">
-                          <button
-                            type="button"
-                            onClick={handlePrevStep}
-                            className="w-1/3 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold py-3 px-3 rounded-xl transition-colors flex items-center justify-center gap-1 text-xs uppercase tracking-wider"
-                          >
-                            <ArrowLeft size={14} /> Back
-                          </button>
-                          <button
-                            type="button"
-                            onClick={handleNextStep}
-                            className="w-2/3 bg-primary hover:bg-black text-white font-bold py-3.5 px-5 rounded-xl shadow-md transition-all flex items-center justify-center gap-2 text-xs sm:text-sm uppercase tracking-wider"
-                          >
-                            Final Step: Details <ArrowRight size={15} />
-                          </button>
-                        </div>
-                      </motion.div>
-                    )}
-
-                    {/* STEP 4: Contact & Submission */}
-                    {currentStep === 4 && (
-                      <motion.div
-                        key="step-4"
-                        initial={{ opacity: 0, y: 10 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, y: -10 }}
-                        transition={{ duration: 0.2 }}
-                        className="space-y-3"
-                      >
-                        <div className="bg-slate-50 border border-slate-200 rounded-lg px-3 py-1.5 flex items-center justify-between text-xs">
-                          <span className="font-bold text-slate-800 truncate">{formData.project} • {formData.material}</span>
-                          <span className="text-emerald-700 font-bold flex-shrink-0 bg-emerald-100 px-2 py-0.5 rounded-full text-[10px]">✓ 20–30% OFF</span>
-                        </div>
-
-                        <div className="space-y-2.5">
-                          <div>
-                            <input
-                              type="text"
-                              name="name"
-                              value={formData.name}
-                              onChange={handleChange}
-                              placeholder="Full Name *"
-                              className="w-full bg-white border border-slate-300 rounded-xl px-4 py-3 text-sm text-slate-900 placeholder:text-slate-400 font-medium focus:border-amber-600 focus:ring-4 focus:ring-amber-500/15 outline-none shadow-xs"
-                              required
-                            />
-                          </div>
-
-                          <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
-                            <div>
-                              <input
-                                type="tel"
-                                name="phone"
-                                value={formData.phone}
-                                onChange={handleChange}
-                                placeholder="Phone Number *"
-                                className="w-full bg-white border border-slate-300 rounded-xl px-4 py-3 text-sm text-slate-900 placeholder:text-slate-400 font-medium focus:border-amber-600 focus:ring-4 focus:ring-amber-500/15 outline-none shadow-xs"
-                                required
-                              />
-                            </div>
-                            <div>
-                              <input
-                                type="email"
-                                name="email"
-                                value={formData.email}
-                                onChange={handleChange}
-                                placeholder="Email Address *"
-                                className="w-full bg-white border border-slate-300 rounded-xl px-4 py-3 text-sm text-slate-900 placeholder:text-slate-400 font-medium focus:border-amber-600 focus:ring-4 focus:ring-amber-500/15 outline-none shadow-xs"
-                                required
-                              />
-                            </div>
-                          </div>
-
-                          <div>
-                            <input
-                              type="text"
-                              name="city"
-                              value={formData.city}
-                              onChange={handleChange}
-                              placeholder="City or Zip Code (Metro Atlanta) *"
-                              className="w-full bg-white border border-slate-300 rounded-xl px-4 py-3 text-sm text-slate-900 placeholder:text-slate-400 font-medium focus:border-amber-600 focus:ring-4 focus:ring-amber-500/15 outline-none shadow-xs"
-                              required
-                            />
-                          </div>
-
-                          <div>
-                            <textarea
-                              name="message"
-                              value={formData.message}
-                              onChange={handleChange}
-                              placeholder="Notes or preferences? (e.g. Calacatta quartz, waterfall island, target date — optional)"
-                              rows={2}
-                              className="w-full bg-white border border-slate-300 rounded-xl px-4 py-2.5 text-xs sm:text-sm text-slate-900 placeholder:text-slate-400 font-medium focus:border-amber-600 focus:ring-4 focus:ring-amber-500/15 outline-none shadow-xs resize-none transition-all"
-                            />
-                          </div>
-                        </div>
-
-                        <div className="flex gap-2 pt-1.5">
-                          <button
-                            type="button"
-                            onClick={handlePrevStep}
-                            disabled={isSubmitting}
-                            className="w-1/3 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold py-3 px-3 rounded-xl transition-colors flex items-center justify-center gap-1 text-xs uppercase tracking-wider"
-                          >
-                            <ArrowLeft size={14} /> Back
-                          </button>
-                          <button
-                            type="submit"
-                            disabled={isSubmitting}
-                            className="w-2/3 bg-primary hover:bg-black text-white font-bold py-3.5 px-5 rounded-xl shadow-lg transition-all flex items-center justify-center gap-2 text-xs sm:text-sm uppercase tracking-wider disabled:opacity-70"
-                          >
-                            {isSubmitting ? (
-                              <span>Sending...</span>
-                            ) : (
-                              <>
-                                Get My Quote <ArrowRight size={15} />
-                              </>
-                            )}
-                          </button>
-                        </div>
-
-                        <p className="text-center text-[11px] text-slate-400 pt-0.5 flex items-center justify-center gap-1 font-light">
-                          <ShieldCheck size={12} className="text-emerald-500" /> 100% confidential. No spam.
-                        </p>
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
+                  <p className="text-center text-[11px] text-slate-500 pt-1 flex items-center justify-center gap-1.5 font-normal">
+                    <Lock size={12} className="text-emerald-600 flex-shrink-0" />
+                    <span>Your information is strictly protected & confidential • No obligation</span>
+                  </p>
                 </form>
               )}
                 </div>

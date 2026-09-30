@@ -31,12 +31,45 @@ function FastQuoteContent() {
   const [loadVideo, setLoadVideo] = useState(false);
   
   useEffect(() => {
+    // Explicitly track PageView and ViewContent for fast-quote route on mount
+    try {
+      if (typeof window !== 'undefined') {
+        const fireMetaEvents = () => {
+          if ((window as any).fbq) {
+            (window as any).fbq('track', 'PageView');
+            (window as any).fbq('track', 'ViewContent', {
+              content_name: 'Fast Quote Estimator',
+              content_category: 'Countertops & Cabinets Installation'
+            });
+          }
+        };
+
+        if ((window as any).fbq) {
+          fireMetaEvents();
+        } else {
+          const timer = setTimeout(fireMetaEvents, 1000);
+          return () => clearTimeout(timer);
+        }
+      }
+    } catch (e) {
+      console.warn("Meta pixel error:", e);
+    }
+  }, []);
+
+  useEffect(() => {
     if (searchParams.get('success') === 'true') {
       setSuccess(true);
       try {
         if (typeof window !== 'undefined') {
           const eventId = typeof crypto !== 'undefined' && crypto.randomUUID ? crypto.randomUUID() : `lead_${Date.now()}`;
-          if ((window as any).fbq) (window as any).fbq('track', 'Lead', {}, { eventID: eventId });
+          if ((window as any).fbq) {
+            (window as any).fbq('track', 'Lead', {
+              content_name: 'Fast Quote',
+              content_category: 'Countertops & Cabinets Installation',
+              value: 0,
+              currency: 'USD'
+            }, { eventID: eventId });
+          }
           if ((window as any).gtag) (window as any).gtag('event', 'conversion', { 'send_to': 'AW-16885125181/R1mQCP6Dm5McEL2guvM-' });
         }
       } catch(e) {}
@@ -90,14 +123,15 @@ function FastQuoteContent() {
     
     const submitData: Record<string, string> = {
       access_key: "8120d187-d8e4-4348-83a8-b0248042becb",
-      _subject: 'New Lead - Fast Quote Form',
+      _subject: `New Lead: ${formData.projectType} - Fast Quote Form`,
+      _template: 'table',
       'Event ID': submitEventId,
       'Project Type': formData.projectType,
       Name: formData.name,
       Phone: formData.phone,
-      Email: formData.email,
+      Email: formData.email || 'N/A',
       'Zip Code': formData.zipCode,
-      Message: formData.message
+      Message: formData.message || 'None'
     };
 
     try {
@@ -121,14 +155,19 @@ function FastQuoteContent() {
               const lastName = names.slice(1).join(' ') || '';
               
               (window as any).fbq('init', '1660874861583892', {
-                em: formData.email.trim().toLowerCase(),
+                em: (formData.email || '').trim().toLowerCase(),
                 ph: formData.phone.replace(/\D/g, ''),
                 fn: firstName.toLowerCase(),
                 ln: lastName.toLowerCase(),
                 zp: formData.zipCode.trim(),
                 country: 'us'
               });
-              (window as any).fbq('track', 'Lead', {}, { eventID: submitEventId });
+              (window as any).fbq('track', 'Lead', {
+                content_name: formData.projectType,
+                content_category: 'Fast Quote Estimator',
+                value: 0,
+                currency: 'USD'
+              }, { eventID: submitEventId });
             }
             if ((window as any).gtag) (window as any).gtag('event', 'conversion', { 'send_to': 'AW-16885125181/R1mQCP6Dm5McEL2guvM-' });
           }
