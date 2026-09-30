@@ -23,7 +23,7 @@ export default function BlogClient() {
   const [activeCategory, setActiveCategory] = useState('All Guides');
   const [searchQuery, setSearchQuery] = useState('');
 
-  const postsList: BlogPost[] = Object.values(blogContent);
+  const postsList: BlogPost[] = Object.values(blogContent).reverse();
 
   const filteredPosts = postsList.filter((post) => {
     const matchesCategory =

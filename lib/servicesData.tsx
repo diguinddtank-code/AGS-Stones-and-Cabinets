@@ -19,11 +19,11 @@ export const services: ServiceDetail[] = [
     title: "Granite & Quartz Countertops",
     slug: "countertops",
     shortDesc: "Factory-direct fabrication of premium stone surfaces.",
-    image: "https://dam.thdstatic.com/content/production/3sJNZBkk31xe9nTrYrToTw/Y6t8wIWPcudCaKjiS8Z74g/Original%20file/quartz-vs-granite-countertops-section-6.jpg", 
+    image: "/images/projects/kitchen-white-raised-panel-cabinets-black-appliances-atlanta.jpg", 
     gallery: [
-      "https://dam.thdstatic.com/content/production/3sJNZBkk31xe9nTrYrToTw/Y6t8wIWPcudCaKjiS8Z74g/Original%20file/quartz-vs-granite-countertops-section-6.jpg",
-      "https://www.cdgranite.com/wp-content/uploads/2017/02/Kitchen-Granite-Countertop-05.jpg",
-      "https://royalmarbleandgranitenj.com/wp-content/uploads/2026/02/how-to-install-quartz-countertops.jpg"
+      "/images/projects/kitchen-white-raised-panel-cabinets-black-appliances-atlanta.jpg",
+      "/images/projects/kitchen-navy-cabinets-white-quartz-waterfall-island-atlanta.jpg",
+      "/images/projects/kitchen-quartz-waterfall-island-black-fixtures-atlanta.jpg"
     ],
     longDesc: "As Atlanta's premier stone fabricator, we import slabs directly to save you money. Whether you want the natural beauty of Granite or the zero-maintenance appeal of Quartz, we precision-cut everything in our Duluth facility using laser templating.",
     features: ["Factory Direct Pricing (No Middlemen)", "Laser Templating Precision", "In-House Fabrication", "15-Year Stain Protection"],

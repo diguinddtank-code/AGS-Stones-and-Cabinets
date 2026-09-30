@@ -5,7 +5,28 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { motion, useScroll, useTransform, useMotionValueEvent } from 'framer-motion';
 import { useSearchParams } from 'next/navigation';
-import { Check, Calendar, Phone, ArrowRight, ShieldCheck, Star, PenTool, Hammer, Truck, HeartHandshake, HelpCircle, MapPin } from 'lucide-react';
+import { 
+  Check, 
+  Calendar, 
+  Phone, 
+  ArrowRight, 
+  ShieldCheck, 
+  Star, 
+  PenTool, 
+  Hammer, 
+  Truck, 
+  HeartHandshake, 
+  HelpCircle, 
+  MapPin,
+  Lock,
+  CheckCircle2,
+  Loader2,
+  Sparkles,
+  Clock,
+  Award,
+  Send,
+  ChevronDown
+} from 'lucide-react';
 import type { ServiceDetail } from '@/lib/servicesData';
 
 interface LocalizedVibe {
@@ -162,6 +183,137 @@ export default function ServiceDynamicContent({ service, cityOverride }: { servi
         ? `Why Homeowners in ${userCity} Choose Us`
         : `Why Homeowners Trust AGS Stones`;
 
+    // High-Converting Free Estimate Form States (for Google Ads & direct traffic)
+    const [formData, setFormData] = useState({
+        name: '',
+        phone: '',
+        zip: '',
+        material: 'Quartz',
+        scope: service.title.toLowerCase().includes('cabinet') ? 'Custom Cabinets' : 'Kitchen Countertops',
+        email: '',
+        notes: ''
+    });
+    const [isSubmitting, setIsSubmitting] = useState(false);
+    const [isSuccess, setIsSuccess] = useState(false);
+    const [validationError, setValidationError] = useState<string | null>(null);
+
+    const handlePhoneInput = (e: React.ChangeEvent<HTMLInputElement>) => {
+        let val = e.target.value.replace(/\D/g, '');
+        if (val.length > 10) val = val.slice(0, 10);
+        let formatted = val;
+        if (val.length > 6) {
+            formatted = `(${val.slice(0, 3)}) ${val.slice(3, 6)}-${val.slice(6)}`;
+        } else if (val.length > 3) {
+            formatted = `(${val.slice(0, 3)}) ${val.slice(3)}`;
+        } else if (val.length > 0) {
+            formatted = `(${val}`;
+        }
+        setFormData(prev => ({ ...prev, phone: formatted }));
+    };
+
+    const handleFormSubmit = async (e: React.FormEvent) => {
+        e.preventDefault();
+        setValidationError(null);
+
+        if (!formData.name.trim()) {
+            setValidationError('Please enter your full name.');
+            return;
+        }
+        if (!formData.phone.trim() || formData.phone.length < 8) {
+            setValidationError('Please enter a valid phone number for quote delivery.');
+            return;
+        }
+        if (!formData.zip.trim()) {
+            setValidationError('Please enter your Zip code.');
+            return;
+        }
+
+        setIsSubmitting(true);
+        const submitEventId = typeof crypto !== 'undefined' && crypto.randomUUID ? crypto.randomUUID() : `lead_${Date.now()}`;
+
+        const fullMessage = [
+            `Service: ${service.title}`,
+            `Location: ${userCity}`,
+            `Material/Stone: ${formData.material}`,
+            `Project Scope: ${formData.scope}`,
+            `Zip Code: ${formData.zip}`,
+            formData.notes ? `Notes: ${formData.notes}` : ''
+        ].filter(Boolean).join(' | ');
+
+        const submitData = {
+            access_key: "8120d187-d8e4-4348-83a8-b0248042becb",
+            _subject: `New Lead: ${service.title} (${formData.material}) - ${userCity}`,
+            _template: 'table',
+            'Event ID': submitEventId,
+            Name: formData.name,
+            Phone: formData.phone,
+            ZipCode: formData.zip,
+            Email: formData.email || 'N/A',
+            Service: service.title,
+            Material: formData.material,
+            ProjectScope: formData.scope,
+            City: userCity,
+            Notes: formData.notes || 'None',
+            Message: fullMessage
+        };
+
+        try {
+            const res = await fetch("https://api.web3forms.com/submit", {
+                method: "POST",
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                },
+                body: JSON.stringify(submitData)
+            });
+
+            if (res.ok) {
+                if (typeof window !== 'undefined') {
+                    if ((window as any).fbq) {
+                        const names = formData.name.trim().split(' ');
+                        const firstName = names[0] || '';
+                        const lastName = names.slice(1).join(' ') || '';
+
+                        (window as any).fbq('init', '1660874861583892', {
+                            em: (formData.email || '').trim().toLowerCase(),
+                            ph: formData.phone.replace(/\D/g, ''),
+                            fn: firstName.toLowerCase(),
+                            ln: lastName.toLowerCase(),
+                            zp: formData.zip.trim(),
+                            country: 'us'
+                        });
+                        (window as any).fbq('track', 'Lead', {
+                            content_name: `${service.title} - ${formData.material}`,
+                            content_category: 'Service Landing Page',
+                            value: 0,
+                            currency: 'USD'
+                        }, { eventID: submitEventId });
+                    }
+                    if ((window as any).gtag) {
+                        (window as any).gtag('event', 'conversion', { 'send_to': 'AW-16885125181/R1mQCP6Dm5McEL2guvM-' });
+                    }
+                }
+
+                try {
+                    fetch("https://webhook.infra-remakingautomacoes.cloud/webhook/meta-capi-lead", {
+                        method: "POST",
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify(submitData),
+                    }).catch(() => {});
+                } catch(e) {}
+
+                setIsSuccess(true);
+            } else {
+                setValidationError('Could not submit request. Please call us at (404) 952-4534.');
+            }
+        } catch (err) {
+            console.error(err);
+            setValidationError('Network error. Please try again or call us at (404) 952-4534.');
+        } finally {
+            setIsSubmitting(false);
+        }
+    };
+
     const containerRef = useRef<HTMLDivElement>(null);
     const { scrollYProgress } = useScroll({
         target: containerRef,
@@ -183,12 +335,19 @@ export default function ServiceDynamicContent({ service, cityOverride }: { servi
     const { scrollY } = useScroll();
     const [showMobileSticky, setShowMobileSticky] = useState(false);
 
-    useMotionValueEvent(scrollY, "change", (latest) => {
-        const threshold = typeof window !== "undefined" ? window.innerHeight * 0.8 : 500;
-        if (latest > threshold) {
-            setShowMobileSticky(true);
+    useMotionValueEvent(scrollY, "change", () => {
+        if (typeof window === "undefined") return;
+        const formEl = document.getElementById("estimate-form");
+        if (formEl) {
+            const rect = formEl.getBoundingClientRect();
+            // Only show sticky CTA after user has completely scrolled past the estimate form
+            if (rect.bottom < 40) {
+                setShowMobileSticky(true);
+            } else {
+                setShowMobileSticky(false);
+            }
         } else {
-            setShowMobileSticky(false);
+            setShowMobileSticky(window.scrollY > 900);
         }
     });
 
@@ -220,8 +379,8 @@ export default function ServiceDynamicContent({ service, cityOverride }: { servi
                 style={{ scaleX: scrollYProgress }}
             />
 
-            {/* Immersive Hero Section */}
-            <section ref={heroRef} className="relative h-[100svh] min-h-[600px] flex items-center justify-center overflow-hidden">
+            {/* Immersive Hero Section with Split High-Converting Form */}
+            <section ref={heroRef} className="relative min-h-[100svh] pt-36 sm:pt-40 md:pt-44 lg:pt-36 xl:pt-40 2xl:pt-48 pb-16 sm:pb-20 md:pb-24 lg:pb-28 flex items-center justify-center overflow-hidden">
                 <motion.div 
                     style={{ y: yBackground }}
                     className="absolute inset-0 w-full h-[130%] -top-[15%]"
@@ -230,80 +389,292 @@ export default function ServiceDynamicContent({ service, cityOverride }: { servi
                         src={service.image}
                         alt={service.title}
                         fill
-                        className="object-cover opacity-40 brightness-75 contrast-125"
+                        className="object-cover opacity-65 brightness-95 contrast-105"
                         priority
                         sizes="100vw"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/40 to-[#0a0a0a]"></div>
+                    <div className="absolute inset-0 bg-gradient-to-b from-black/65 via-black/40 to-black/80"></div>
                 </motion.div>
 
-                <div className="container relative z-10 px-4 mx-auto max-w-7xl pt-32 pb-24 md:py-0">
-                    <motion.div 
-                        style={{ y: yHeroText, opacity: opacityHero }}
-                        variants={staggerContainer}
-                        initial="hidden"
-                        animate="show"
-                        className="max-w-4xl"
-                    >
-                        <motion.div variants={fadeInUp} className="inline-flex items-center gap-3 bg-white/5 backdrop-blur-md border border-white/10 px-4 py-2 md:px-5 md:py-2.5 rounded-full mb-6 md:mb-8 shadow-2xl">
-                            <span className="text-secondary w-4 h-4 md:w-auto md:h-auto">{service.icon}</span>
-                            <span className="text-white/80 text-[10px] md:text-xs font-bold uppercase tracking-[0.2em] md:tracking-[0.3em]">{localizedHeroSubtitle}</span>
+                <div className="container relative z-10 px-4 sm:px-6 lg:px-8 mx-auto max-w-7xl xl:max-w-[86rem] 2xl:max-w-[98rem] 3xl:max-w-[110rem]">
+                    <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 xl:gap-16 2xl:gap-20 items-center">
+                        
+                        {/* LEFT COLUMN: Authority, Value Propositions & Trust */}
+                        <motion.div 
+                            style={{ y: yHeroText, opacity: opacityHero }}
+                            variants={staggerContainer}
+                            initial="hidden"
+                            animate="show"
+                            className="lg:col-span-7 space-y-4 sm:space-y-5 xl:space-y-6"
+                        >
+                            <motion.div variants={fadeInUp} className="inline-flex items-center gap-2 bg-white/15 backdrop-blur-md border border-white/25 px-3.5 py-1.5 2xl:px-5 2xl:py-2 rounded-full shadow-md w-fit">
+                                <Star className="w-3.5 h-3.5 xl:w-4 xl:h-4 text-secondary fill-secondary shrink-0" />
+                                <span className="text-white font-bold uppercase tracking-wider text-[11px] sm:text-xs xl:text-sm whitespace-nowrap">
+                                    #1 Rated in Georgia • Factory-Direct
+                                </span>
+                            </motion.div>
+                            
+                            <div>
+                                <motion.h1 variants={fadeInUp} className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-serif font-bold leading-[1.12] tracking-tight text-white mb-2 sm:mb-3 xl:mb-5">
+                                    Custom <span className="text-secondary">{service.title}</span> in {userCity}
+                                </motion.h1>
+                                <motion.p variants={fadeInUp} className="text-xs sm:text-base xl:text-lg 2xl:text-xl text-gray-200 font-light leading-relaxed max-w-xl xl:max-w-2xl 2xl:max-w-3xl">
+                                    Save 20–30% by cutting out big-box retail middlemen. Precision laser-templated and installed in as little as <strong>5 business days</strong>.
+                                </motion.p>
+                            </div>
+
+                            {/* Direct Click-to-Call Alternative */}
+                            <motion.div variants={fadeInUp} className="flex flex-wrap items-center gap-3 xl:gap-4 text-xs sm:text-sm xl:text-base text-gray-300 pt-1">
+                                <a
+                                    href="tel:4049524534"
+                                    onClick={() => {
+                                        if (typeof window !== 'undefined') {
+                                            if ((window as any).gtag) (window as any).gtag('event', 'conversion', { 'send_to': 'AW-16885125181/R1mQCP6Dm5McEL2guvM-' });
+                                            if ((window as any).fbq) (window as any).fbq('track', 'Contact');
+                                        }
+                                    }}
+                                    className="inline-flex items-center gap-2 font-bold text-white hover:text-secondary transition-colors"
+                                >
+                                    <span className="w-7 h-7 xl:w-9 xl:h-9 rounded-full bg-secondary flex items-center justify-center text-white shrink-0">
+                                        <Phone size={14} className="xl:w-4 xl:h-4" />
+                                    </span>
+                                    <span>Prefer to talk? <strong className="text-secondary underline">(404) 952-4534</strong></span>
+                                </a>
+
+                                <span className="text-gray-500 hidden sm:inline">•</span>
+
+                                <div className="flex items-center gap-1 text-secondary">
+                                    <Star size={12} className="xl:w-3.5 xl:h-3.5" fill="currentColor" />
+                                    <Star size={12} className="xl:w-3.5 xl:h-3.5" fill="currentColor" />
+                                    <Star size={12} className="xl:w-3.5 xl:h-3.5" fill="currentColor" />
+                                    <Star size={12} className="xl:w-3.5 xl:h-3.5" fill="currentColor" />
+                                    <Star size={12} className="xl:w-3.5 xl:h-3.5" fill="currentColor" />
+                                    <span className="text-[11px] xl:text-xs text-gray-300 ml-1 font-medium">5.0 Star Rated</span>
+                                </div>
+                            </motion.div>
                         </motion.div>
-                        
-                        <div className="overflow-visible mb-4 md:mb-6 pb-2">
-                            <motion.h1 variants={textReveal} className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-serif font-bold leading-[1.05] tracking-tighter">
-                                {service.title.split(' ').map((word, i) => (
-                                    <React.Fragment key={i}>
-                                        {word === '&' ? <span className="text-secondary italic">&</span> : word}
-                                        {i !== service.title.split(' ').length - 1 && ' '}
-                                    </React.Fragment>
-                                ))}
-                            </motion.h1>
-                        </div>
-                        
-                        <motion.p variants={fadeInUp} className="text-lg md:text-2xl text-gray-400 font-light leading-relaxed mb-8 md:mb-10 max-w-2xl border-l-2 border-secondary pl-4 md:pl-6">
-                            {service.shortDesc} 
-                            <span className="block mt-2 text-white">
-                                {isSpecificLocation 
-                                    ? `Beautiful, custom craftsmanship now available in ${userCity}.` 
-                                    : "Quality materials, expert installation, and results you'll love."}
-                            </span>
-                        </motion.p>
 
-                        <motion.div variants={fadeInUp} className="flex flex-col sm:flex-row items-center sm:items-start gap-5 sm:gap-6 w-full">
-                            <Link href="/fast-quote" className="group relative overflow-hidden bg-secondary text-white font-bold py-4 px-6 md:py-5 md:px-10 rounded-full transition-all duration-500 w-full sm:w-auto text-center cursor-pointer shadow-xl shadow-secondary/20 block">
-                                <span className="relative z-10 flex items-center justify-center gap-2 md:gap-3 text-[15px] md:text-lg whitespace-nowrap">
-                                    Get Your Free Estimate <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform md:w-5 md:h-5 shrink-0" />
-                                </span>
-                                <div className="absolute inset-0 bg-white scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]"></div>
-                                <span className="absolute inset-0 z-0 flex items-center justify-center gap-2 md:gap-3 text-primary opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100 font-bold text-[15px] md:text-lg whitespace-nowrap">
-                                    Get Your Free Estimate <ArrowRight size={18} className="md:w-5 md:h-5 shrink-0" />
-                                </span>
-                            </Link>
-
-                            <div className="flex items-center gap-4 text-xs sm:text-sm text-gray-400 font-medium tracking-wide">
-                                <div className="flex -space-x-3">
-                                    {[1,2,3,4].map((i) => (
-                                        <div key={i} className={`w-8 h-8 sm:w-10 sm:h-10 rounded-full border-2 border-[#0a0a0a] bg-gray-600 flex items-center justify-center overflow-hidden`}>
-                                            <Image src={`https://i.pravatar.cc/100?img=${i + 10}`} width={40} height={40} alt="Avatar" />
+                        {/* RIGHT COLUMN: High-Converting Embedded Form Card */}
+                        <motion.div 
+                            initial={{ opacity: 0, y: 30 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.8, delay: 0.2 }}
+                            className="lg:col-span-5 w-full flex justify-center lg:justify-end"
+                        >
+                            <div 
+                                id="estimate-form"
+                                className="w-full max-w-lg xl:max-w-xl 2xl:max-w-2xl bg-white rounded-3xl 2xl:rounded-[2.5rem] p-6 sm:p-7 xl:p-8 2xl:p-10 shadow-2xl border border-gray-200/90 text-gray-900 relative overflow-hidden"
+                            >
+                                {isSuccess ? (
+                                    /* Success State View */
+                                    <div className="py-6 text-center space-y-4 animate-in fade-in zoom-in duration-300">
+                                        <div className="w-16 h-16 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center mx-auto shadow-inner">
+                                            <CheckCircle2 size={36} />
                                         </div>
-                                    ))}
-                                </div>
-                                <div>
-                                    <div className="flex text-secondary mb-0.5"><Star size={10} fill="currentColor"/><Star size={10} fill="currentColor"/><Star size={10} fill="currentColor"/><Star size={10} fill="currentColor"/><Star size={10} fill="currentColor"/></div>
-                                    <span>{localizedTrustHeadline}</span>
-                                </div>
+                                        <span className="inline-block px-3 py-1 rounded-full bg-emerald-50 text-emerald-700 text-xs font-bold uppercase tracking-wider">
+                                            Estimate Request Received
+                                        </span>
+                                        <h3 className="text-2xl xl:text-3xl font-serif font-bold text-gray-900 leading-snug">
+                                            You&apos;re On The Schedule!
+                                        </h3>
+                                        <p className="text-sm xl:text-base text-gray-600 font-light leading-relaxed max-w-sm mx-auto">
+                                            Thank you, <strong className="text-gray-900">{formData.name}</strong>. Our Duluth fabrication team received your project details and will call or text you shortly with pricing.
+                                        </p>
+                                        <div className="pt-2">
+                                            <a 
+                                                href="tel:4049524534"
+                                                className="w-full bg-primary hover:bg-black text-white py-3.5 px-6 rounded-xl xl:rounded-2xl font-bold text-sm xl:text-base uppercase tracking-wider flex items-center justify-center gap-2 shadow-lg transition-all"
+                                            >
+                                                <Phone size={16} className="text-secondary" /> Call (404) 952-4534 Now
+                                            </a>
+                                        </div>
+                                        <button
+                                            type="button"
+                                            onClick={() => {
+                                                setIsSuccess(false);
+                                                setFormData({
+                                                    name: '',
+                                                    phone: '',
+                                                    zip: '',
+                                                    material: 'Quartz',
+                                                    scope: 'Kitchen Countertops',
+                                                    email: '',
+                                                    notes: ''
+                                                });
+                                            }}
+                                            className="text-xs text-gray-400 hover:text-primary font-medium underline block mx-auto pt-1"
+                                        >
+                                            Submit another inquiry
+                                        </button>
+                                    </div>
+                                ) : (
+                                    /* Embedded Form View */
+                                    <form onSubmit={handleFormSubmit} className="space-y-3.5 xl:space-y-4">
+                                        {/* Card Title & Value Header */}
+                                        <div className="border-b border-gray-100 pb-3 xl:pb-4">
+                                            <div className="flex items-center justify-between gap-2 mb-1.5">
+                                                <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-slate-100 text-slate-700 text-[10px] xl:text-xs font-bold uppercase tracking-wider">
+                                                    <Lock size={10} className="text-primary" /> Data Protected
+                                                </span>
+                                                <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-emerald-50 text-emerald-700 text-[10px] xl:text-xs font-bold uppercase tracking-wider">
+                                                    <CheckCircle2 size={10} className="text-emerald-600" /> Free Measure
+                                                </span>
+                                            </div>
+                                            <h3 className="text-xl sm:text-2xl xl:text-3xl font-serif font-bold text-gray-900 leading-snug">
+                                                Get Your Free Estimate
+                                            </h3>
+                                            <p className="text-xs xl:text-sm text-gray-500 font-light mt-0.5">
+                                                Claim factory-direct pricing in 60 seconds. Zero sales pressure.
+                                            </p>
+                                        </div>
+
+                                        {/* Validation Alert */}
+                                        {validationError && (
+                                            <div className="bg-red-50 border border-red-200 text-red-700 text-xs px-3 py-2 rounded-xl">
+                                                <strong>Notice:</strong> {validationError}
+                                            </div>
+                                        )}
+
+                                        {/* Name */}
+                                        <div>
+                                            <label className="block text-[11px] xl:text-xs font-bold text-gray-700 uppercase tracking-wider mb-1">
+                                                Full Name *
+                                            </label>
+                                            <input 
+                                                type="text"
+                                                required
+                                                value={formData.name}
+                                                onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                                                placeholder="e.g. Michael Miller"
+                                                className="w-full bg-white border border-gray-300 rounded-xl xl:rounded-2xl px-3.5 py-2.5 xl:py-3.5 text-xs sm:text-sm xl:text-base text-gray-900 placeholder:text-gray-400 font-medium focus:border-secondary focus:ring-2 focus:ring-secondary/20 outline-none transition-all"
+                                            />
+                                        </div>
+
+                                        {/* Phone & Zip */}
+                                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 xl:gap-3">
+                                            <div>
+                                                <label className="block text-[11px] xl:text-xs font-bold text-gray-700 uppercase tracking-wider mb-1">
+                                                    Phone Number *
+                                                </label>
+                                                <input 
+                                                    type="tel"
+                                                    required
+                                                    value={formData.phone}
+                                                    onChange={handlePhoneInput}
+                                                    placeholder="(404) 555-0123"
+                                                    className="w-full bg-white border border-gray-300 rounded-xl xl:rounded-2xl px-3.5 py-2.5 xl:py-3.5 text-xs sm:text-sm xl:text-base text-gray-900 placeholder:text-gray-400 font-medium focus:border-secondary focus:ring-2 focus:ring-secondary/20 outline-none transition-all"
+                                                />
+                                            </div>
+                                            <div>
+                                                <label className="block text-[11px] xl:text-xs font-bold text-gray-700 uppercase tracking-wider mb-1">
+                                                    Zip Code *
+                                                </label>
+                                                <input 
+                                                    type="text"
+                                                    required
+                                                    value={formData.zip}
+                                                    onChange={(e) => setFormData({ ...formData, zip: e.target.value })}
+                                                    placeholder="30097 or City"
+                                                    className="w-full bg-white border border-gray-300 rounded-xl xl:rounded-2xl px-3.5 py-2.5 xl:py-3.5 text-xs sm:text-sm xl:text-base text-gray-900 placeholder:text-gray-400 font-medium focus:border-secondary focus:ring-2 focus:ring-secondary/20 outline-none transition-all"
+                                                />
+                                            </div>
+                                        </div>
+
+                                        {/* Stone Material Preference & Project Scope (Interactive Dropdowns) */}
+                                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 xl:gap-3">
+                                            <div>
+                                                <label className="block text-[11px] xl:text-xs font-bold text-gray-700 uppercase tracking-wider mb-1">
+                                                    Stone Material <span className="text-secondary font-semibold lowercase">(select)</span>
+                                                </label>
+                                                <div className="relative">
+                                                    <select
+                                                        value={formData.material}
+                                                        onChange={(e) => setFormData({ ...formData, material: e.target.value })}
+                                                        className="w-full bg-slate-50 hover:bg-slate-100/80 border-2 border-slate-300 focus:border-secondary rounded-xl xl:rounded-2xl pl-3.5 pr-9 py-2.5 xl:py-3.5 text-xs sm:text-sm xl:text-base text-gray-900 font-semibold focus:ring-2 focus:ring-secondary/20 outline-none transition-all appearance-none cursor-pointer shadow-sm"
+                                                    >
+                                                        <option value="Quartz">Quartz (Most Popular)</option>
+                                                        <option value="Granite">Natural Granite</option>
+                                                        <option value="Quartzite">Exotic Quartzite</option>
+                                                        <option value="Marble">Classic Marble</option>
+                                                        <option value="Not Sure">Not Sure / Show Options</option>
+                                                    </select>
+                                                    <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 xl:w-5 xl:h-5 text-slate-600 pointer-events-none stroke-[2.5]" />
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <label className="block text-[11px] xl:text-xs font-bold text-gray-700 uppercase tracking-wider mb-1">
+                                                    Project Scope <span className="text-secondary font-semibold lowercase">(select)</span>
+                                                </label>
+                                                <div className="relative">
+                                                    <select
+                                                        value={formData.scope}
+                                                        onChange={(e) => setFormData({ ...formData, scope: e.target.value })}
+                                                        className="w-full bg-slate-50 hover:bg-slate-100/80 border-2 border-slate-300 focus:border-secondary rounded-xl xl:rounded-2xl pl-3.5 pr-9 py-2.5 xl:py-3.5 text-xs sm:text-sm xl:text-base text-gray-900 font-semibold focus:ring-2 focus:ring-secondary/20 outline-none transition-all appearance-none cursor-pointer shadow-sm"
+                                                    >
+                                                        <option value="Kitchen Countertops">Kitchen Countertops</option>
+                                                        <option value="Bathroom Vanity">Bathroom Vanity</option>
+                                                        <option value="Full Kitchen Remodel">Full Kitchen Remodel</option>
+                                                        <option value="Outdoor Kitchen">Outdoor BBQ Kitchen</option>
+                                                        <option value="Commercial / Other">Commercial / Other</option>
+                                                    </select>
+                                                    <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 xl:w-5 xl:h-5 text-slate-600 pointer-events-none stroke-[2.5]" />
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        {/* Email (Optional) */}
+                                        <div>
+                                            <label className="block text-[11px] xl:text-xs font-bold text-gray-700 uppercase tracking-wider mb-1">
+                                                Email Address <span className="text-gray-400 font-normal lowercase">(optional for PDF quote)</span>
+                                            </label>
+                                            <input 
+                                                type="email"
+                                                value={formData.email}
+                                                onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                                                placeholder="michael@example.com"
+                                                className="w-full bg-white border border-gray-300 rounded-xl xl:rounded-2xl px-3.5 py-2.5 xl:py-3.5 text-xs sm:text-sm xl:text-base text-gray-900 placeholder:text-gray-400 font-medium focus:border-secondary focus:ring-2 focus:ring-secondary/20 outline-none transition-all"
+                                            />
+                                        </div>
+
+                                        {/* Submit Button */}
+                                        <div className="pt-1.5 xl:pt-2">
+                                            <button
+                                                type="submit"
+                                                disabled={isSubmitting}
+                                                className="w-full bg-secondary hover:bg-yellow-600 text-white font-bold py-3.5 sm:py-4 xl:py-4.5 2xl:py-5 px-6 rounded-xl xl:rounded-2xl shadow-lg hover:shadow-xl transition-all flex items-center justify-center gap-2 text-xs sm:text-sm xl:text-base uppercase tracking-wider disabled:opacity-70 active:scale-[0.99] cursor-pointer group"
+                                            >
+                                                {isSubmitting ? (
+                                                    <>
+                                                        <Loader2 size={16} className="animate-spin" /> Submitting Request...
+                                                    </>
+                                                ) : (
+                                                    <>
+                                                        <span>Claim Free Estimate & Discount</span>
+                                                        <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
+                                                    </>
+                                                )}
+                                            </button>
+                                        </div>
+
+                                        <p className="text-center text-[10px] sm:text-[11px] xl:text-xs text-gray-500 pt-0.5 flex items-center justify-center gap-1.5 font-normal">
+                                            <Lock size={11} className="text-emerald-600 flex-shrink-0" />
+                                            <span>Your information is strictly protected & confidential • No spam</span>
+                                        </p>
+                                    </form>
+                                )}
                             </div>
                         </motion.div>
-                    </motion.div>
+
+                    </div>
                 </div>
 
-                <div className="absolute bottom-6 md:bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 opacity-50">
-                    <span className="text-[9px] md:text-[10px] uppercase tracking-[0.2em] md:tracking-[0.3em] font-bold">Scroll to Explore</span>
+                {/* Subdued Bottom Scroll Indicator */}
+                <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1.5 opacity-40">
+                    <span className="text-[9px] uppercase tracking-[0.2em] font-bold text-white">Scroll to Explore Slabs</span>
                     <motion.div 
-                        animate={{ y: [0, 10, 0] }} 
+                        animate={{ y: [0, 8, 0] }} 
                         transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
-                        className="w-[1px] h-8 md:h-12 bg-gradient-to-b from-white to-transparent"
+                        className="w-[1px] h-6 bg-gradient-to-b from-white to-transparent"
                     />
                 </div>
             </section>
@@ -743,9 +1114,18 @@ export default function ServiceDynamicContent({ service, cityOverride }: { servi
                         
                         <div className="flex flex-col w-full sm:w-auto mt-8 md:mt-10">
                             <div className="flex flex-col sm:flex-row justify-center gap-4 sm:gap-6 w-full">
-                                <Link href="/fast-quote" className="bg-secondary text-white hover:bg-white hover:text-primary font-bold py-4 md:py-6 px-4 md:px-12 rounded-full transition-all duration-500 hover:scale-105 shadow-[0_0_40px_rgba(217,119,6,0.4)] hover:shadow-[0_0_40px_rgba(255,255,255,0.4)] flex items-center justify-center gap-2 md:gap-3 text-[15px] md:text-lg w-full sm:w-auto whitespace-nowrap">
+                                <button 
+                                    type="button"
+                                    onClick={() => {
+                                        const el = document.getElementById('estimate-form');
+                                        if (el) {
+                                            el.scrollIntoView({ behavior: 'smooth' });
+                                        }
+                                    }}
+                                    className="bg-secondary text-white hover:bg-white hover:text-primary font-bold py-4 md:py-6 px-4 md:px-12 rounded-full transition-all duration-500 hover:scale-105 shadow-[0_0_40px_rgba(217,119,6,0.4)] hover:shadow-[0_0_40px_rgba(255,255,255,0.4)] flex items-center justify-center gap-2 md:gap-3 text-[15px] md:text-lg w-full sm:w-auto whitespace-nowrap cursor-pointer"
+                                >
                                     Get Your Free Estimate <ArrowRight size={22} className="shrink-0" />
-                                </Link>
+                                </button>
                             </div>
                             
                             <div className="flex flex-wrap justify-center items-center gap-x-4 gap-y-2 text-gray-400 text-xs sm:text-sm mt-6 md:mt-8 font-medium">
@@ -781,12 +1161,18 @@ export default function ServiceDynamicContent({ service, cityOverride }: { servi
                     <Phone size={16} className="text-secondary" />
                     Call
                 </a>
-                <Link 
-                    href="/fast-quote" 
-                    className="flex-[2] bg-secondary text-white shadow-[0_8px_20px_-6px_rgba(217,119,6,0.8)] py-3.5 px-4 rounded-xl flex items-center justify-center gap-2 font-bold text-sm"
+                <button 
+                    type="button"
+                    onClick={() => {
+                        const el = document.getElementById('estimate-form');
+                        if (el) {
+                            el.scrollIntoView({ behavior: 'smooth' });
+                        }
+                    }}
+                    className="flex-[2] bg-secondary text-white shadow-[0_8px_20px_-6px_rgba(217,119,6,0.8)] py-3.5 px-4 rounded-xl flex items-center justify-center gap-2 font-bold text-sm cursor-pointer"
                 >
                     Get Free Quote <ArrowRight size={16} />
-                </Link>
+                </button>
             </motion.div>
         </div>
     );

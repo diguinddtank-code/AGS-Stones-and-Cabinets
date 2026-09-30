@@ -1231,7 +1231,352 @@ export const blogContent: Record<string, BlogPost> = {
               href="/promo" 
               className="bg-secondary text-white font-bold text-xs uppercase tracking-wider px-7 py-4 rounded-xl hover:bg-white hover:text-primary transition-all text-center shadow-lg"
             >
-              Get Free Estimate (20–30% OFF)
+              Get Free Estimate
+            </Link>
+            <Link 
+              href="/contact" 
+              className="bg-white/10 hover:bg-white/20 text-white font-bold text-xs uppercase tracking-wider px-6 py-4 rounded-xl transition-all text-center border border-white/20"
+            >
+              Visit Showroom
+            </Link>
+          </div>
+        </div>
+      </>
+    )
+  },
+
+  'how-to-remove-stains-from-quartz-countertops': {
+    slug: 'how-to-remove-stains-from-quartz-countertops',
+    title: 'How to Remove Stains from Quartz Countertops: The Complete wikiHow Guide',
+    badge: 'WIKIHOW & CARE GUIDE',
+    badgeType: 'wikihow',
+    category: 'Maintenance',
+    date: 'September 29, 2026',
+    modifiedDate: 'September 29, 2026',
+    readTime: '7 min read',
+    image: '/images/blog/how-to-remove-stains-from-quartz-countertops.jpg',
+    alt: 'Instructional wikiHow style illustration of safely removing stains from white quartz kitchen countertops with baking soda and microfiber cloth',
+    excerpt: 'Step-by-step wikiHow-style guide to removing wine, coffee, turmeric, oil, and hard water stains from quartz countertops. Discover safe DIY cleaning recipes, Bar Keepers Friend protocols, and what never to use on engineered stone.',
+    keyTakeaways: [
+      'Engineered quartz is naturally non-porous and never requires periodic sealing, but surface discoloration occurs when organic pigments or minerals bond to the polymeric resin binder.',
+      'For routine spills, clean immediately using warm water, a few drops of pH-neutral liquid dish soap (like Dawn), and a soft microfiber cloth.',
+      'For stubborn organic stains (red wine, coffee, curry, turmeric, tomato paste), apply a gentle baking soda and water paste poultice for 10 to 15 minutes before wiping clean.',
+      'To remove hard water mineral rings around sink faucets and calcium scale, use 70% isopropyl rubbing alcohol on a microfiber cloth—never soak quartz with high-acid vinegar.',
+      'For dried glue, paint, or grease crusts, gently lift them using a flexible plastic razor scraper held at a 30-degree angle; avoid steel wool and abrasive green scouring pads.',
+      'Never use bleach, oven cleaners, drain openers, acetone (nail polish remover), or alkaline cleaners above pH 10, as they break down the polymer resin and cause permanent cloudy discoloration.'
+    ],
+    faqs: [
+      {
+        q: 'Does quartz stain easily compared to natural granite or marble?',
+        a: 'No. Quartz is one of the most stain-resistant countertop materials available because it is engineered with roughly 90–93% pulverized natural quartz mineral bound together by 7–10% high-grade polymer resins. Unlike unsealed granite or marble, liquids cannot penetrate deep into microscopic pores. When quartz appears stained, the discoloration is almost always sitting on the surface resin layer, making it completely removable with the right techniques.'
+      },
+      {
+        q: 'How do I remove stubborn turmeric, curry, or yellow mustard stains from white quartz?',
+        a: 'Turmeric and mustard contain intense natural dyes (curcumin) that cling to polymer resins. Mix equal parts baking soda and water into a smooth paste (similar to toothpaste consistency). Spread it generously over the yellow stain, cover with a damp microfiber cloth, and let it rest for 15 to 20 minutes. Gently wipe with the cloth in circular motions. If faint yellow remains, dampen a cotton pad with 70% isopropyl alcohol and wipe gently.'
+      },
+      {
+        q: 'Can I use Bar Keepers Friend or a Magic Eraser on quartz countertops?',
+        a: 'You can use Bar Keepers Friend Soft Cleanser (liquid formula), but use it sparingly with plenty of water and a soft cloth without heavy scrubbing. Never use the dry abrasive powder version. As for Magic Erasers (melamine foam), use extreme caution: melamine foam is microscopic sandpaper (equivalent to 3,000–5,000 grit abrasive). Rubbing aggressively with a Magic Eraser can strip the factory gloss and leave a dull, hazy spot that cannot be wiped away.'
+      },
+      {
+        q: 'How do I get rid of hard water white rings around my kitchen sink faucet?',
+        a: 'Metro Atlanta tap water contains natural dissolved minerals. To dissolve hard water mineral haze around your faucet base, saturate a soft microfiber towel with 70% rubbing alcohol and wrap it around the faucet base for 5 minutes. The alcohol dissolves mineral crust without reacting with the resin. Avoid soaking quartz with undiluted vinegar or CLR, which can etch and dull the resin sheen.'
+      },
+      {
+        q: 'What should I do if a chemical burn or permanent stain won’t come out?',
+        a: 'If a harsh chemical (like Drano, bleach, or acetone) was left on the countertop and created a permanent cloudy chemical burn, standard cleaning pastes will not fix it because the resin itself has been damaged. In such cases, contact our professional stone fabrication team in Duluth, GA. Our technicians can assess whether machine diamond buffing or precision resurfacing can restore the original gloss.'
+      }
+    ],
+    content: (
+      <>
+        <p className="text-lg text-gray-700 leading-relaxed font-light mb-6">
+          Engineered quartz is widely celebrated as the king of low-maintenance kitchen surfaces. Unlike natural granite, marble, or quartzite, quartz countertops never need to be impregnated with chemical sealers, never absorb red wine deep into volcanic pores, and resist everyday bacterial growth with zero hassle. However, &quot;stain-resistant&quot; does not mean 100% stain-proof.
+        </p>
+
+        <p className="text-gray-700 leading-relaxed mb-8">
+          If you spilled a splash of Cabernet Sauvignon during a dinner party, dripped bright yellow turmeric curry while cooking, or noticed cloudy white mineral rings around your undermount sink faucet, don&apos;t panic. Because quartz is non-porous, stains almost never penetrate the slab—they sit right on the surface polymer resin binder.
+        </p>
+
+        <p className="text-gray-700 leading-relaxed mb-8">
+          Whether you recently had countertops fabricated by our team at <Link href="/" className="text-secondary font-semibold hover:underline">AGS Stones & Cabinets</Link> or you are maintaining quartz in your home in <Link href="/countertops-duluth-ga" className="text-primary font-semibold hover:underline">Duluth</Link>, <Link href="/countertops-alpharetta-ga" className="text-primary font-semibold hover:underline">Alpharetta</Link>, or <Link href="/countertops-johns-creek-ga" className="text-primary font-semibold hover:underline">Johns Creek, GA</Link>, this illustrated wikiHow-style guide shows you the exact safe, fabricator-approved methods to lift every type of stain without voiding your countertop warranty.
+        </p>
+
+        {/* Required Materials Box */}
+        <div className="bg-slate-50 border border-slate-200 rounded-2xl p-6 my-8">
+          <h3 className="text-lg font-bold text-slate-900 mb-3 flex items-center gap-2">
+            🧰 Safe Tools & Cleaning Supplies Checklist
+          </h3>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm text-slate-700">
+            <div className="flex items-center gap-2">
+              <span className="w-2 h-2 rounded-full bg-secondary"></span>
+              <span><strong>Pure Microfiber Towels</strong> (soft, lint-free)</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <span className="w-2 h-2 rounded-full bg-secondary"></span>
+              <span><strong>pH-Neutral Liquid Dish Soap</strong> (e.g., classic Dawn)</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <span className="w-2 h-2 rounded-full bg-secondary"></span>
+              <span><strong>Arm & Hammer Baking Soda</strong> (mild natural poultice)</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <span className="w-2 h-2 rounded-full bg-secondary"></span>
+              <span><strong>70% Isopropyl Rubbing Alcohol</strong> (safe organic solvent)</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <span className="w-2 h-2 rounded-full bg-secondary"></span>
+              <span><strong>Bar Keepers Friend Soft Cleanser</strong> (liquid only, gentle oxalic acid)</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <span className="w-2 h-2 rounded-full bg-secondary"></span>
+              <span><strong>Plastic Razor Scraper or Putty Knife</strong> (non-marring edge)</span>
+            </div>
+          </div>
+        </div>
+
+        <h2 className="text-2xl sm:text-3xl font-serif text-primary mt-12 mb-6 font-bold pb-2 border-b border-gray-100">
+          Method 1: The 60-Second Daily Routine for Fresh Spills
+        </h2>
+
+        <p className="text-gray-700 leading-relaxed mb-6">
+          The easiest way to treat a quartz stain is to never let it dry. The polymer resins that bind natural quartz crystals together will not absorb liquids, but dried sauces form a sticky surface film that attracts dirt.
+        </p>
+
+        <div className="space-y-6 my-8">
+          <div className="bg-white p-6 rounded-2xl border border-gray-200/80 shadow-sm flex flex-col sm:flex-row gap-5 items-start">
+            <span className="flex-shrink-0 w-10 h-10 rounded-full bg-blue-600 text-white font-bold flex items-center justify-center text-base shadow-md">
+              1
+            </span>
+            <div>
+              <h3 className="text-lg font-bold text-gray-900 mb-2">Blot the Liquid Immediately</h3>
+              <p className="text-gray-600 text-sm sm:text-base leading-relaxed m-0">
+                As soon as red wine, coffee, olive oil, or citrus drips onto the counter, blot it gently with a dry microfiber cloth or soft paper towel. Blotting lifts the liquid off the stone rather than smearing it across a wider surface area.
+              </p>
+            </div>
+          </div>
+
+          <div className="bg-white p-6 rounded-2xl border border-gray-200/80 shadow-sm flex flex-col sm:flex-row gap-5 items-start">
+            <span className="flex-shrink-0 w-10 h-10 rounded-full bg-blue-600 text-white font-bold flex items-center justify-center text-base shadow-md">
+              2
+            </span>
+            <div>
+              <h3 className="text-lg font-bold text-gray-900 mb-2">Wipe with Warm Water and Mild Dish Soap</h3>
+              <p className="text-gray-600 text-sm sm:text-base leading-relaxed mb-3">
+                Mix 1 teaspoon of gentle pH-neutral dish soap in 2 cups of warm water. Moisten a clean microfiber towel with the solution and wipe down the area in smooth S-curves. Dish soap naturally emulsifies cooking oils and food grease without stripping the factory gloss.
+              </p>
+            </div>
+          </div>
+
+          <div className="bg-white p-6 rounded-2xl border border-gray-200/80 shadow-sm flex flex-col sm:flex-row gap-5 items-start">
+            <span className="flex-shrink-0 w-10 h-10 rounded-full bg-blue-600 text-white font-bold flex items-center justify-center text-base shadow-md">
+              3
+            </span>
+            <div>
+              <h3 className="text-lg font-bold text-gray-900 mb-2">Rinse and Buff Dry Completely</h3>
+              <p className="text-gray-600 text-sm sm:text-base leading-relaxed m-0">
+                Wipe the area once more with a cloth dampened only with fresh water to remove any soapy film residue. Finally, buff the quartz with a completely dry microfiber towel. Drying prevents tap water mineral deposits from evaporating into dull spots.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <h2 className="text-2xl sm:text-3xl font-serif text-primary mt-12 mb-6 font-bold pb-2 border-b border-gray-100">
+          Method 2: Lifting Stubborn Food & Wine Stains (The Baking Soda Poultice)
+        </h2>
+
+        <p className="text-gray-700 leading-relaxed mb-6">
+          If red wine, dark berries, espresso, mustard, or turmeric dried overnight on white quartz, regular soap and water won&apos;t be enough. The secret weapon used by stone professionals is a non-toxic baking soda paste poultice.
+        </p>
+
+        <div className="space-y-6 my-8">
+          <div className="bg-white p-6 rounded-2xl border border-gray-200/80 shadow-sm flex flex-col sm:flex-row gap-5 items-start">
+            <span className="flex-shrink-0 w-10 h-10 rounded-full bg-amber-600 text-white font-bold flex items-center justify-center text-base shadow-md">
+              1
+            </span>
+            <div>
+              <h3 className="text-lg font-bold text-gray-900 mb-2">Mix the Baking Soda Paste</h3>
+              <p className="text-gray-600 text-sm sm:text-base leading-relaxed m-0">
+                In a small bowl, combine 3 tablespoons of pure baking soda with just enough warm water (about 1 to 2 teaspoons) to create a thick, spreadable paste with the consistency of toothpaste. Baking soda is mildly alkaline (pH around 8.3) and acts as an ultra-fine, non-scratch micro-abrasive.
+              </p>
+            </div>
+          </div>
+
+          <div className="bg-white p-6 rounded-2xl border border-gray-200/80 shadow-sm flex flex-col sm:flex-row gap-5 items-start">
+            <span className="flex-shrink-0 w-10 h-10 rounded-full bg-amber-600 text-white font-bold flex items-center justify-center text-base shadow-md">
+              2
+            </span>
+            <div>
+              <h3 className="text-lg font-bold text-gray-900 mb-2">Apply Directly Over the Stain</h3>
+              <p className="text-gray-600 text-sm sm:text-base leading-relaxed m-0">
+                Using a silicone spatula, spoon, or your fingertips, spread a 1/8-inch thick layer of the baking soda paste over the entire stained area, extending slightly past the borders of the mark.
+              </p>
+            </div>
+          </div>
+
+          <div className="bg-white p-6 rounded-2xl border border-gray-200/80 shadow-sm flex flex-col sm:flex-row gap-5 items-start">
+            <span className="flex-shrink-0 w-10 h-10 rounded-full bg-amber-600 text-white font-bold flex items-center justify-center text-base shadow-md">
+              3
+            </span>
+            <div>
+              <h3 className="text-lg font-bold text-gray-900 mb-2">Cover with a Damp Cloth & Let Rest (15–20 Minutes)</h3>
+              <p className="text-gray-600 text-sm sm:text-base leading-relaxed m-0">
+                Drape a damp microfiber cloth or a piece of clear plastic wrap over the paste to prevent it from drying out too quickly. Let the poultice sit undisturbed for 15 to 20 minutes. As it rests, the baking soda draws the organic pigment out of the surface resin.
+              </p>
+            </div>
+          </div>
+
+          <div className="bg-white p-6 rounded-2xl border border-gray-200/80 shadow-sm flex flex-col sm:flex-row gap-5 items-start">
+            <span className="flex-shrink-0 w-10 h-10 rounded-full bg-amber-600 text-white font-bold flex items-center justify-center text-base shadow-md">
+              4
+            </span>
+            <div>
+              <h3 className="text-lg font-bold text-gray-900 mb-2">Gently Wipe Away in Gentle Circles</h3>
+              <p className="text-gray-600 text-sm sm:text-base leading-relaxed m-0">
+                Remove the cover and gently wipe the paste away using light circular motions with your damp cloth. Do not press hard. Rinse thoroughly with clean warm water and buff dry. For stubborn turmeric or curry, repeat the process a second time.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <h2 className="text-2xl sm:text-3xl font-serif text-primary mt-12 mb-6 font-bold pb-2 border-b border-gray-100">
+          Method 3: Dissolving Hard Water Mineral Rings Around Faucets
+        </h2>
+
+        <p className="text-gray-700 leading-relaxed mb-6">
+          In Gwinnett and Fulton County homes, tap water naturally contains trace minerals like calcium and magnesium. When water splashes behind the faucet and evaporates, chalky white rings form that feel rough to the touch.
+        </p>
+
+        <div className="space-y-6 my-8">
+          <div className="bg-white p-6 rounded-2xl border border-gray-200/80 shadow-sm flex flex-col sm:flex-row gap-5 items-start">
+            <span className="flex-shrink-0 w-10 h-10 rounded-full bg-emerald-600 text-white font-bold flex items-center justify-center text-base shadow-md">
+              1
+            </span>
+            <div>
+              <h3 className="text-lg font-bold text-gray-900 mb-2">Use 70% Isopropyl Alcohol</h3>
+              <p className="text-gray-600 text-sm sm:text-base leading-relaxed m-0">
+                Pour a small amount of standard 70% rubbing alcohol onto a cotton ball or microfiber rag. Rub the white mineral ring in circular motions for 30 to 45 seconds. Alcohol dissolves light limescale and mineral deposits without etching the quartz resin.
+              </p>
+            </div>
+          </div>
+
+          <div className="bg-white p-6 rounded-2xl border border-gray-200/80 shadow-sm flex flex-col sm:flex-row gap-5 items-start">
+            <span className="flex-shrink-0 w-10 h-10 rounded-full bg-emerald-600 text-white font-bold flex items-center justify-center text-base shadow-md">
+              2
+            </span>
+            <div>
+              <h3 className="text-lg font-bold text-gray-900 mb-2">For Thick Scale: Bar Keepers Friend Soft Cleanser</h3>
+              <p className="text-gray-600 text-sm sm:text-base leading-relaxed mb-3">
+                If the mineral ring is thick and raised, apply a dime-sized drop of <strong>Bar Keepers Friend Soft Cleanser (liquid formula)</strong>. Gently massage it over the ring with a damp microfiber sponge for no more than 60 seconds. The oxalic acid breaks the calcium bonds safely.
+              </p>
+              <div className="bg-amber-50 border-l-4 border-amber-500 p-3 rounded-r-lg text-xs text-amber-900">
+                <strong>Crucial Step:</strong> Immediately rinse the treated area with copious clean water and dry thoroughly. Never leave Bar Keepers Friend sitting on quartz for more than 2 minutes.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <h2 className="text-2xl sm:text-3xl font-serif text-primary mt-12 mb-6 font-bold pb-2 border-b border-gray-100">
+          Method 4: Removing Adhesive, Dried Paint, or Candle Wax
+        </h2>
+
+        <p className="text-gray-700 leading-relaxed mb-6">
+          Sticky residues from painter&apos;s tape, label adhesives, dried craft paint, or dripped candle wax require mechanical removal before solvent cleaning.
+        </p>
+
+        <div className="space-y-6 my-8">
+          <div className="bg-white p-6 rounded-2xl border border-gray-200/80 shadow-sm flex flex-col sm:flex-row gap-5 items-start">
+            <span className="flex-shrink-0 w-10 h-10 rounded-full bg-purple-600 text-white font-bold flex items-center justify-center text-base shadow-md">
+              1
+            </span>
+            <div>
+              <h3 className="text-lg font-bold text-gray-900 mb-2">Scrape Gently with a Plastic Razor Blade</h3>
+              <p className="text-gray-600 text-sm sm:text-base leading-relaxed m-0">
+                Hold a flexible plastic razor blade or plastic putty knife at a shallow 30-degree angle to the stone surface. Gently push forward to slice under the dried wax or paint. Plastic scrapers peel the debris without scratching the quartz resin.
+              </p>
+            </div>
+          </div>
+
+          <div className="bg-white p-6 rounded-2xl border border-gray-200/80 shadow-sm flex flex-col sm:flex-row gap-5 items-start">
+            <span className="flex-shrink-0 w-10 h-10 rounded-full bg-purple-600 text-white font-bold flex items-center justify-center text-base shadow-md">
+              2
+            </span>
+            <div>
+              <h3 className="text-lg font-bold text-gray-900 mb-2">Dissolve Remaining Adhesive with Goo Gone or Alcohol</h3>
+              <p className="text-gray-600 text-sm sm:text-base leading-relaxed m-0">
+                Apply a few drops of Goo Gone or isopropyl alcohol to a paper towel and dab the sticky residue. Let it sit for 2 minutes to soften the glue, then wipe clean. Wash immediately with dish soap and warm water to remove any citrus oil residue.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        {/* The Blacklist: What NEVER to Use */}
+        <h2 className="text-2xl sm:text-3xl font-serif text-primary mt-12 mb-6 font-bold pb-2 border-b border-gray-100">
+          ⚠️ The Fabricator&apos;s Blacklist: 6 Products That Permanently Damage Quartz
+        </h2>
+
+        <p className="text-gray-700 leading-relaxed mb-6">
+          Because quartz contains roughly 7–10% polymeric resins, certain common household chemicals cause irreversible chemical etching, yellowing, or pitting that cannot be polished away:
+        </p>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 my-8">
+          <div className="bg-red-50/70 border border-red-200 rounded-2xl p-5">
+            <h4 className="text-red-900 font-bold text-sm mb-1">❌ Chlorine Bleach & Clorox Soaks</h4>
+            <p className="text-xs text-red-950 leading-relaxed mb-0">
+              Bleach oxidizes and breaks down the polyester resins in engineered stone, causing irreversible yellow discoloration and a chalky, dull surface haze.
+            </p>
+          </div>
+
+          <div className="bg-red-50/70 border border-red-200 rounded-2xl p-5">
+            <h4 className="text-red-900 font-bold text-sm mb-1">❌ Acetone & Nail Polish Remover</h4>
+            <p className="text-xs text-red-950 leading-relaxed mb-0">
+              Acetone is an aggressive solvent capable of dissolving resins. Leaving acetone on quartz melts the surface polish and creates a permanent cloudy chemical burn.
+            </p>
+          </div>
+
+          <div className="bg-red-50/70 border border-red-200 rounded-2xl p-5">
+            <h4 className="text-red-900 font-bold text-sm mb-1">❌ Oven Cleaners & Drano</h4>
+            <p className="text-xs text-red-950 leading-relaxed mb-0">
+              Caustic alkaline degreasers with pH over 10 (containing sodium hydroxide or lye) rapidly attack quartz binders, stripping the gloss within seconds.
+            </p>
+          </div>
+
+          <div className="bg-red-50/70 border border-red-200 rounded-2xl p-5">
+            <h4 className="text-red-900 font-bold text-sm mb-1">❌ Green Scotch-Brite Scouring Pads</h4>
+            <p className="text-xs text-red-950 leading-relaxed mb-0">
+              Abrasive scouring pads contain aluminum oxide crystals that scratch the resin finish. Always use 100% soft microfiber cloths or cellulose sponges.
+            </p>
+          </div>
+
+          <div className="bg-red-50/70 border border-red-200 rounded-2xl p-5">
+            <h4 className="text-red-900 font-bold text-sm mb-1">❌ Concentrated Acid Soaks (Vinegar & CLR)</h4>
+            <p className="text-xs text-red-950 leading-relaxed mb-0">
+              While a momentary splash won&apos;t destroy quartz, letting acidic vinegar, lemon juice, or CLR sit on quartz for hours degrades the resin luster.
+            </p>
+          </div>
+
+          <div className="bg-red-50/70 border border-red-200 rounded-2xl p-5">
+            <h4 className="text-red-900 font-bold text-sm mb-1">❌ Thermal Shock from Crockpots & Skillets</h4>
+            <p className="text-xs text-red-950 leading-relaxed mb-0">
+              Resins expand at a different rate than quartz crystals. Placing a 350°F+ slow cooker or air fryer directly on quartz can cause sudden thermal crack fractures. Always use silicone trivets!
+            </p>
+          </div>
+        </div>
+
+        {/* Call to action card */}
+        <div className="bg-gradient-to-r from-primary to-slate-900 text-white rounded-3xl p-8 sm:p-10 my-10 shadow-2xl flex flex-col md:flex-row items-center justify-between gap-6">
+          <div className="max-w-xl">
+            <span className="text-secondary font-bold text-xs uppercase tracking-widest block mb-2">Factory-Direct Quartz Fabrication in Duluth, GA</span>
+            <h4 className="text-2xl font-serif font-bold mb-2">Thinking of Upgrading Your Kitchen Countertops?</h4>
+            <p className="text-gray-300 text-sm mb-0">
+              Explore our full slab inventory of premium Calacatta quartz, sparkling white quartz, and exotic natural granite at our Duluth showroom. Free digital laser in-home estimates and 5-day turnaround across Metro Atlanta.
+            </p>
+          </div>
+          <div className="flex flex-col sm:flex-row gap-3 w-full md:w-auto flex-shrink-0">
+            <Link 
+              href="/promo" 
+              className="bg-secondary text-white font-bold text-xs uppercase tracking-wider px-7 py-4 rounded-xl hover:bg-white hover:text-primary transition-all text-center shadow-lg"
+            >
+              Get Free Estimate
             </Link>
             <Link 
               href="/contact" 
