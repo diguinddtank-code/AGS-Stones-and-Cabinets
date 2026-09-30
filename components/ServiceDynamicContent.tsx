@@ -25,7 +25,9 @@ import {
   Clock,
   Award,
   Send,
-  ChevronDown
+  ChevronDown,
+  User,
+  Mail
 } from 'lucide-react';
 import type { ServiceDetail } from '@/lib/servicesData';
 
@@ -379,8 +381,8 @@ export default function ServiceDynamicContent({ service, cityOverride }: { servi
                 style={{ scaleX: scrollYProgress }}
             />
 
-            {/* Immersive Hero Section with Split High-Converting Form */}
-            <section ref={heroRef} className="relative min-h-[100svh] pt-36 sm:pt-40 md:pt-44 lg:pt-36 xl:pt-40 2xl:pt-48 pb-16 sm:pb-20 md:pb-24 lg:pb-28 flex items-center justify-center overflow-hidden">
+            {/* Immersive Hero Section - Perfectly Framed for All Desktop Screens (Zero Cut-Off) */}
+            <section ref={heroRef} className="relative min-h-[100svh] lg:min-h-screen pt-28 pb-12 sm:pt-32 sm:pb-14 lg:py-12 xl:py-16 flex items-center justify-center overflow-hidden [@media(max-height:820px)]:py-8">
                 <motion.div 
                     style={{ y: yBackground }}
                     className="absolute inset-0 w-full h-[130%] -top-[15%]"
@@ -389,43 +391,74 @@ export default function ServiceDynamicContent({ service, cityOverride }: { servi
                         src={service.image}
                         alt={service.title}
                         fill
-                        className="object-cover opacity-65 brightness-95 contrast-105"
+                        className="object-cover opacity-70 brightness-95 contrast-105"
                         priority
                         sizes="100vw"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-b from-black/65 via-black/40 to-black/80"></div>
+                    <div className="absolute inset-0 bg-gradient-to-r from-black/85 via-black/55 to-black/30"></div>
+                    <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-transparent to-black/85"></div>
                 </motion.div>
 
-                <div className="container relative z-10 px-4 sm:px-6 lg:px-8 mx-auto max-w-7xl xl:max-w-[86rem] 2xl:max-w-[98rem] 3xl:max-w-[110rem]">
-                    <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 xl:gap-16 2xl:gap-20 items-center">
+                <div className="container relative z-10 px-5 sm:px-8 lg:px-10 xl:px-14 mx-auto max-w-7xl xl:max-w-[88rem]">
+                    <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-8 xl:gap-14 items-center">
                         
-                        {/* LEFT COLUMN: Authority, Value Propositions & Trust */}
+                        {/* LEFT COLUMN: Monumental Headline & Authority (Home Style, Perfectly Proportioned) */}
                         <motion.div 
                             style={{ y: yHeroText, opacity: opacityHero }}
                             variants={staggerContainer}
                             initial="hidden"
                             animate="show"
-                            className="lg:col-span-7 space-y-4 sm:space-y-5 xl:space-y-6"
+                            className="lg:col-span-7 text-center lg:text-left pt-2 lg:pt-0"
                         >
-                            <motion.div variants={fadeInUp} className="inline-flex items-center gap-2 bg-white/15 backdrop-blur-md border border-white/25 px-3.5 py-1.5 2xl:px-5 2xl:py-2 rounded-full shadow-md w-fit">
-                                <Star className="w-3.5 h-3.5 xl:w-4 xl:h-4 text-secondary fill-secondary shrink-0" />
-                                <span className="text-white font-bold uppercase tracking-wider text-[11px] sm:text-xs xl:text-sm whitespace-nowrap">
-                                    #1 Rated in Georgia • Factory-Direct
-                                </span>
+                            {/* Geolocation Tag */}
+                            <motion.div variants={fadeInUp} className="inline-flex items-center gap-1.5 py-1 px-3 md:px-3.5 rounded-full border border-white/30 bg-black/40 backdrop-blur-md text-[10px] md:text-xs uppercase tracking-widest mb-2.5 lg:mb-3 font-medium text-white shadow-sm mx-auto lg:mx-0">
+                                <MapPin size={12} className="text-secondary fill-secondary" />
+                                <span>Serving {userCity}, Duluth & Metro Atlanta</span>
                             </motion.div>
                             
-                            <div>
-                                <motion.h1 variants={fadeInUp} className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-serif font-bold leading-[1.12] tracking-tight text-white mb-2 sm:mb-3 xl:mb-5">
-                                    Custom <span className="text-secondary">{service.title}</span> in {userCity}
-                                </motion.h1>
-                                <motion.p variants={fadeInUp} className="text-xs sm:text-base xl:text-lg 2xl:text-xl text-gray-200 font-light leading-relaxed max-w-xl xl:max-w-2xl 2xl:max-w-3xl">
-                                    Save 20–30% by cutting out big-box retail middlemen. Precision laser-templated and installed in as little as <strong>5 business days</strong>.
-                                </motion.p>
-                            </div>
+                            {/* Huge Monumental H1 (Optimized for all desktop heights) */}
+                            <motion.h1 
+                                variants={fadeInUp} 
+                                className="text-3xl sm:text-4xl lg:text-4xl xl:text-5xl 2xl:text-6xl [@media(min-height:900px)]:lg:text-5xl [@media(min-height:900px)]:xl:text-6xl font-serif font-bold mb-2.5 lg:mb-3 drop-shadow-2xl leading-[1.12] tracking-tight text-white max-w-3xl mx-auto lg:mx-0 shadow-black/20"
+                            >
+                                Custom <br className="hidden sm:inline" />
+                                <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#eab308] via-[#fde047] to-[#eab308] drop-shadow-md">
+                                    {service.title}
+                                </span>
+                                <br />
+                                in {userCity}
+                            </motion.h1>
 
-                            {/* Direct Click-to-Call Alternative */}
-                            <motion.div variants={fadeInUp} className="flex flex-wrap items-center gap-3 xl:gap-4 text-xs sm:text-sm xl:text-base text-gray-300 pt-1">
-                                <a
+                            {/* Subtitle */}
+                            <motion.p variants={fadeInUp} className="text-xs sm:text-sm lg:text-sm xl:text-base text-white/90 mb-3.5 lg:mb-4 max-w-xl mx-auto lg:mx-0 font-light leading-relaxed drop-shadow-md">
+                                Factory-direct stone fabrication & custom cabinetry in Duluth. Save 20–30% with zero retail middlemen & 5-day installation turnaround.
+                            </motion.p>
+
+                            {/* Value Bullets (Desktop) */}
+                            <motion.div variants={fadeInUp} className="hidden lg:flex flex-col gap-2 mb-4 lg:mb-5 text-white drop-shadow-md">
+                                <div className="flex items-center gap-2.5">
+                                    <div className="bg-secondary/20 p-1 rounded-full backdrop-blur-sm border border-white/10 shrink-0">
+                                        <CheckCircle2 className="text-secondary" size={15} />
+                                    </div>
+                                    <span className="font-semibold text-xs xl:text-sm">Factory Direct Pricing (Save 20% to 30%)</span>
+                                </div>
+                                <div className="flex items-center gap-2.5">
+                                    <div className="bg-secondary/20 p-1 rounded-full backdrop-blur-sm border border-white/10 shrink-0">
+                                        <CheckCircle2 className="text-secondary" size={15} />
+                                    </div>
+                                    <span className="font-semibold text-xs xl:text-sm">Fast 5-Day Turnaround from Digital Laser Measure</span>
+                                </div>
+                                <div className="flex items-center gap-2.5">
+                                    <div className="bg-secondary/20 p-1 rounded-full backdrop-blur-sm border border-white/10 shrink-0">
+                                        <CheckCircle2 className="text-secondary" size={15} />
+                                    </div>
+                                    <span className="font-semibold text-xs xl:text-sm">Free In-Home Laser Templating & Digital Layout</span>
+                                </div>
+                            </motion.div>
+
+                            {/* CTAs and Direct Click-to-Call */}
+                            <motion.div variants={fadeInUp} className="flex flex-wrap items-center justify-center lg:justify-start gap-3 mb-3.5 lg:mb-4">
+                                <a 
                                     href="tel:4049524534"
                                     onClick={() => {
                                         if (typeof window !== 'undefined') {
@@ -433,59 +466,101 @@ export default function ServiceDynamicContent({ service, cityOverride }: { servi
                                             if ((window as any).fbq) (window as any).fbq('track', 'Contact');
                                         }
                                     }}
-                                    className="inline-flex items-center gap-2 font-bold text-white hover:text-secondary transition-colors"
+                                    className="w-full sm:w-auto bg-black/40 hover:bg-black/60 backdrop-blur-md border border-white/30 text-white font-bold py-2.5 px-4 rounded-xl flex items-center justify-center gap-2 text-xs xl:text-sm transition-all shadow-md group"
                                 >
-                                    <span className="w-7 h-7 xl:w-9 xl:h-9 rounded-full bg-secondary flex items-center justify-center text-white shrink-0">
-                                        <Phone size={14} className="xl:w-4 xl:h-4" />
+                                    <span className="w-6 h-6 rounded-full bg-secondary flex items-center justify-center text-white shrink-0 group-hover:scale-110 transition-transform">
+                                        <Phone size={13} />
                                     </span>
                                     <span>Prefer to talk? <strong className="text-secondary underline">(404) 952-4534</strong></span>
                                 </a>
 
-                                <span className="text-gray-500 hidden sm:inline">•</span>
+                                <button
+                                    type="button"
+                                    onClick={() => {
+                                        const formEl = document.getElementById('estimate-form');
+                                        if (formEl) formEl.scrollIntoView({ behavior: 'smooth' });
+                                    }}
+                                    className="lg:hidden w-full sm:w-auto bg-secondary hover:bg-yellow-600 text-white font-bold py-2.5 px-5 rounded-xl flex items-center justify-center gap-2 text-xs shadow-lg"
+                                >
+                                    Get Free Estimate <ArrowRight size={15} />
+                                </button>
+                            </motion.div>
 
-                                <div className="flex items-center gap-1 text-secondary">
-                                    <Star size={12} className="xl:w-3.5 xl:h-3.5" fill="currentColor" />
-                                    <Star size={12} className="xl:w-3.5 xl:h-3.5" fill="currentColor" />
-                                    <Star size={12} className="xl:w-3.5 xl:h-3.5" fill="currentColor" />
-                                    <Star size={12} className="xl:w-3.5 xl:h-3.5" fill="currentColor" />
-                                    <Star size={12} className="xl:w-3.5 xl:h-3.5" fill="currentColor" />
-                                    <span className="text-[11px] xl:text-xs text-gray-300 ml-1 font-medium">5.0 Star Rated</span>
-                                </div>
+                            {/* Official Google 5.0 Star Reviews Badge */}
+                            <motion.div variants={fadeInUp} className="flex justify-center lg:justify-start">
+                                <a 
+                                    href="https://www.google.com/search?q=AGS+Stones+and+Cabinets"
+                                    target="_blank"
+                                    rel="noopener noreferrer" 
+                                    className="inline-flex items-center gap-2.5 bg-black/40 hover:bg-black/50 backdrop-blur-md border border-white/15 rounded-full pr-4 pl-1.5 py-1 transition-all group hover:scale-[1.02] cursor-pointer"
+                                >
+                                    <div className="w-7 h-7 bg-white rounded-full flex items-center justify-center shadow-sm shrink-0">
+                                        <Image 
+                                            src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg" 
+                                            alt="Google Review" 
+                                            className="w-4 h-4" 
+                                            width={16} 
+                                            height={16} 
+                                        />
+                                    </div>
+                                    <div className="flex flex-col justify-center text-left">
+                                        <div className="flex items-center gap-1">
+                                            <span className="font-bold text-white text-xs leading-none">5.0</span>
+                                            <div className="flex gap-0.5">
+                                                {[1,2,3,4,5].map(i => (
+                                                    <Star key={i} size={11} className="fill-[#FBBC05] text-[#FBBC05]" />
+                                                ))}
+                                            </div>
+                                        </div>
+                                        <p className="text-[9px] font-medium text-gray-300 leading-none mt-0.5 group-hover:text-white transition-colors">
+                                            120+ Excellent Reviews
+                                        </p>
+                                    </div>
+                                </a>
                             </motion.div>
                         </motion.div>
 
-                        {/* RIGHT COLUMN: High-Converting Embedded Form Card */}
+                        {/* RIGHT COLUMN: Compact & Elegant Quick Quote Card (Guaranteed to Fit All Screens) */}
                         <motion.div 
                             initial={{ opacity: 0, y: 30 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.8, delay: 0.2 }}
-                            className="lg:col-span-5 w-full flex justify-center lg:justify-end"
+                            className="lg:col-span-5 w-full relative"
                         >
+                            {/* Floating Guarantee Badge */}
+                            <div className="hidden lg:flex absolute -top-3 -right-2 z-20 bg-white text-primary py-1.5 px-3 rounded-xl shadow-xl items-center gap-2 border border-gray-100">
+                                <ShieldCheck size={18} className="text-secondary" />
+                                <div>
+                                    <p className="text-[8px] font-bold uppercase tracking-wider text-gray-400 leading-tight">Guaranteed</p>
+                                    <p className="font-bold text-[11px] text-primary leading-tight">Best Price in GA</p>
+                                </div>
+                            </div>
+
                             <div 
                                 id="estimate-form"
-                                className="w-full max-w-lg xl:max-w-xl 2xl:max-w-2xl bg-white rounded-3xl 2xl:rounded-[2.5rem] p-6 sm:p-7 xl:p-8 2xl:p-10 shadow-2xl border border-gray-200/90 text-gray-900 relative overflow-hidden"
+                                className="w-full max-w-[390px] xl:max-w-[410px] mx-auto lg:ml-auto bg-white/95 backdrop-blur-xl rounded-2xl shadow-[0_20px_50px_rgba(0,0,0,0.5)] p-4 sm:p-5 xl:p-6 border border-white/20 text-gray-900 relative overflow-hidden"
                             >
                                 {isSuccess ? (
                                     /* Success State View */
-                                    <div className="py-6 text-center space-y-4 animate-in fade-in zoom-in duration-300">
-                                        <div className="w-16 h-16 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center mx-auto shadow-inner">
-                                            <CheckCircle2 size={36} />
+                                    <div className="py-6 text-center space-y-3.5 animate-in fade-in zoom-in duration-300">
+                                        <div className="w-14 h-14 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center mx-auto shadow-inner">
+                                            <CheckCircle2 size={32} />
                                         </div>
                                         <span className="inline-block px-3 py-1 rounded-full bg-emerald-50 text-emerald-700 text-xs font-bold uppercase tracking-wider">
-                                            Estimate Request Received
+                                            Request Received!
                                         </span>
-                                        <h3 className="text-2xl xl:text-3xl font-serif font-bold text-gray-900 leading-snug">
+                                        <h3 className="text-xl font-serif font-bold text-gray-900 leading-snug">
                                             You&apos;re On The Schedule!
                                         </h3>
-                                        <p className="text-sm xl:text-base text-gray-600 font-light leading-relaxed max-w-sm mx-auto">
-                                            Thank you, <strong className="text-gray-900">{formData.name}</strong>. Our Duluth fabrication team received your project details and will call or text you shortly with pricing.
+                                        <p className="text-xs text-gray-600 font-light leading-relaxed max-w-xs mx-auto">
+                                            Thank you, <strong className="text-gray-900">{formData.name}</strong>. Our Duluth fabrication team received your project details and will contact you shortly with pricing.
                                         </p>
-                                        <div className="pt-2">
+                                        <div className="pt-1">
                                             <a 
                                                 href="tel:4049524534"
-                                                className="w-full bg-primary hover:bg-black text-white py-3.5 px-6 rounded-xl xl:rounded-2xl font-bold text-sm xl:text-base uppercase tracking-wider flex items-center justify-center gap-2 shadow-lg transition-all"
+                                                className="w-full bg-secondary hover:bg-yellow-600 text-white py-3 px-5 rounded-xl font-bold text-xs uppercase tracking-wider flex items-center justify-center gap-2 shadow-lg transition-all"
                                             >
-                                                <Phone size={16} className="text-secondary" /> Call (404) 952-4534 Now
+                                                <Phone size={15} /> Call (404) 952-4534 Now
                                             </a>
                                         </div>
                                         <button
@@ -509,156 +584,136 @@ export default function ServiceDynamicContent({ service, cityOverride }: { servi
                                     </div>
                                 ) : (
                                     /* Embedded Form View */
-                                    <form onSubmit={handleFormSubmit} className="space-y-3.5 xl:space-y-4">
-                                        {/* Card Title & Value Header */}
-                                        <div className="border-b border-gray-100 pb-3 xl:pb-4">
-                                            <div className="flex items-center justify-between gap-2 mb-1.5">
-                                                <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-slate-100 text-slate-700 text-[10px] xl:text-xs font-bold uppercase tracking-wider">
-                                                    <Lock size={10} className="text-primary" /> Data Protected
-                                                </span>
-                                                <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-emerald-50 text-emerald-700 text-[10px] xl:text-xs font-bold uppercase tracking-wider">
-                                                    <CheckCircle2 size={10} className="text-emerald-600" /> Free Measure
-                                                </span>
+                                    <form onSubmit={handleFormSubmit} className="space-y-2.5 lg:space-y-2.5 xl:space-y-3">
+                                        <div className="mb-2 lg:mb-2.5">
+                                            <div className="inline-block bg-secondary/10 text-secondary text-[9px] font-bold uppercase tracking-widest px-2 py-0.5 rounded-full mb-1">
+                                                Fast Estimate
                                             </div>
-                                            <h3 className="text-xl sm:text-2xl xl:text-3xl font-serif font-bold text-gray-900 leading-snug">
-                                                Get Your Free Estimate
-                                            </h3>
-                                            <p className="text-xs xl:text-sm text-gray-500 font-light mt-0.5">
-                                                Claim factory-direct pricing in 60 seconds. Zero sales pressure.
-                                            </p>
+                                            <h3 className="text-xl xl:text-2xl font-serif font-bold text-primary leading-tight">Quick Quote</h3>
+                                            <p className="text-gray-500 text-[11px]">Direct factory pricing in 60 seconds.</p>
                                         </div>
 
                                         {/* Validation Alert */}
                                         {validationError && (
-                                            <div className="bg-red-50 border border-red-200 text-red-700 text-xs px-3 py-2 rounded-xl">
+                                            <div className="bg-red-50 border border-red-200 text-red-700 text-xs px-2.5 py-1.5 rounded-lg">
                                                 <strong>Notice:</strong> {validationError}
                                             </div>
                                         )}
 
-                                        {/* Name */}
-                                        <div>
-                                            <label className="block text-[11px] xl:text-xs font-bold text-gray-700 uppercase tracking-wider mb-1">
-                                                Full Name *
-                                            </label>
+                                        {/* Name with User Icon */}
+                                        <div className="relative group">
+                                            <div className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 group-focus-within:text-secondary transition-colors">
+                                                <User size={15} />
+                                            </div>
                                             <input 
                                                 type="text"
                                                 required
                                                 value={formData.name}
                                                 onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                                                placeholder="e.g. Michael Miller"
-                                                className="w-full bg-white border border-gray-300 rounded-xl xl:rounded-2xl px-3.5 py-2.5 xl:py-3.5 text-xs sm:text-sm xl:text-base text-gray-900 placeholder:text-gray-400 font-medium focus:border-secondary focus:ring-2 focus:ring-secondary/20 outline-none transition-all"
+                                                placeholder="Your Full Name *"
+                                                className="w-full bg-gray-50 border border-gray-200 rounded-xl pl-9 pr-3 py-2 lg:py-2.5 text-xs sm:text-sm text-gray-900 placeholder:text-gray-400 font-medium focus:border-secondary focus:ring-2 focus:ring-secondary/20 outline-none transition-all"
                                             />
                                         </div>
 
-                                        {/* Phone & Zip */}
-                                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 xl:gap-3">
-                                            <div>
-                                                <label className="block text-[11px] xl:text-xs font-bold text-gray-700 uppercase tracking-wider mb-1">
-                                                    Phone Number *
-                                                </label>
+                                        {/* Phone & Zip in 2 Columns */}
+                                        <div className="grid grid-cols-2 gap-2">
+                                            <div className="relative group">
+                                                <div className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 group-focus-within:text-secondary transition-colors">
+                                                    <Phone size={15} />
+                                                </div>
                                                 <input 
                                                     type="tel"
                                                     required
                                                     value={formData.phone}
                                                     onChange={handlePhoneInput}
-                                                    placeholder="(404) 555-0123"
-                                                    className="w-full bg-white border border-gray-300 rounded-xl xl:rounded-2xl px-3.5 py-2.5 xl:py-3.5 text-xs sm:text-sm xl:text-base text-gray-900 placeholder:text-gray-400 font-medium focus:border-secondary focus:ring-2 focus:ring-secondary/20 outline-none transition-all"
+                                                    placeholder="Phone *"
+                                                    className="w-full bg-gray-50 border border-gray-200 rounded-xl pl-8 pr-2.5 py-2 lg:py-2.5 text-xs sm:text-sm text-gray-900 placeholder:text-gray-400 font-medium focus:border-secondary focus:ring-2 focus:ring-secondary/20 outline-none transition-all"
                                                 />
                                             </div>
-                                            <div>
-                                                <label className="block text-[11px] xl:text-xs font-bold text-gray-700 uppercase tracking-wider mb-1">
-                                                    Zip Code *
-                                                </label>
+                                            <div className="relative group">
+                                                <div className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 group-focus-within:text-secondary transition-colors">
+                                                    <MapPin size={15} />
+                                                </div>
                                                 <input 
                                                     type="text"
                                                     required
                                                     value={formData.zip}
                                                     onChange={(e) => setFormData({ ...formData, zip: e.target.value })}
-                                                    placeholder="30097 or City"
-                                                    className="w-full bg-white border border-gray-300 rounded-xl xl:rounded-2xl px-3.5 py-2.5 xl:py-3.5 text-xs sm:text-sm xl:text-base text-gray-900 placeholder:text-gray-400 font-medium focus:border-secondary focus:ring-2 focus:ring-secondary/20 outline-none transition-all"
+                                                    placeholder="Zip Code *"
+                                                    className="w-full bg-gray-50 border border-gray-200 rounded-xl pl-8 pr-2.5 py-2 lg:py-2.5 text-xs sm:text-sm text-gray-900 placeholder:text-gray-400 font-medium focus:border-secondary focus:ring-2 focus:ring-secondary/20 outline-none transition-all"
                                                 />
                                             </div>
                                         </div>
 
-                                        {/* Stone Material Preference & Project Scope (Interactive Dropdowns) */}
-                                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 xl:gap-3">
-                                            <div>
-                                                <label className="block text-[11px] xl:text-xs font-bold text-gray-700 uppercase tracking-wider mb-1">
-                                                    Stone Material <span className="text-secondary font-semibold lowercase">(select)</span>
-                                                </label>
-                                                <div className="relative">
-                                                    <select
-                                                        value={formData.material}
-                                                        onChange={(e) => setFormData({ ...formData, material: e.target.value })}
-                                                        className="w-full bg-slate-50 hover:bg-slate-100/80 border-2 border-slate-300 focus:border-secondary rounded-xl xl:rounded-2xl pl-3.5 pr-9 py-2.5 xl:py-3.5 text-xs sm:text-sm xl:text-base text-gray-900 font-semibold focus:ring-2 focus:ring-secondary/20 outline-none transition-all appearance-none cursor-pointer shadow-sm"
-                                                    >
-                                                        <option value="Quartz">Quartz (Most Popular)</option>
-                                                        <option value="Granite">Natural Granite</option>
-                                                        <option value="Quartzite">Exotic Quartzite</option>
-                                                        <option value="Marble">Classic Marble</option>
-                                                        <option value="Not Sure">Not Sure / Show Options</option>
-                                                    </select>
-                                                    <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 xl:w-5 xl:h-5 text-slate-600 pointer-events-none stroke-[2.5]" />
-                                                </div>
+                                        {/* Stone Material & Scope in 2 Columns */}
+                                        <div className="grid grid-cols-2 gap-2">
+                                            <div className="relative">
+                                                <select
+                                                    value={formData.material}
+                                                    onChange={(e) => setFormData({ ...formData, material: e.target.value })}
+                                                    className="w-full bg-gray-50 border border-gray-200 focus:border-secondary rounded-xl pl-2.5 pr-6 py-2 lg:py-2.5 text-xs sm:text-sm text-gray-900 font-semibold focus:ring-2 focus:ring-secondary/20 outline-none transition-all appearance-none cursor-pointer"
+                                                >
+                                                    <option value="Quartz">Quartz</option>
+                                                    <option value="Granite">Granite</option>
+                                                    <option value="Quartzite">Quartzite</option>
+                                                    <option value="Marble">Marble</option>
+                                                    <option value="Not Sure">Not Sure</option>
+                                                </select>
+                                                <ChevronDown className="absolute right-2 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-gray-500 pointer-events-none stroke-[2]" />
                                             </div>
-                                            <div>
-                                                <label className="block text-[11px] xl:text-xs font-bold text-gray-700 uppercase tracking-wider mb-1">
-                                                    Project Scope <span className="text-secondary font-semibold lowercase">(select)</span>
-                                                </label>
-                                                <div className="relative">
-                                                    <select
-                                                        value={formData.scope}
-                                                        onChange={(e) => setFormData({ ...formData, scope: e.target.value })}
-                                                        className="w-full bg-slate-50 hover:bg-slate-100/80 border-2 border-slate-300 focus:border-secondary rounded-xl xl:rounded-2xl pl-3.5 pr-9 py-2.5 xl:py-3.5 text-xs sm:text-sm xl:text-base text-gray-900 font-semibold focus:ring-2 focus:ring-secondary/20 outline-none transition-all appearance-none cursor-pointer shadow-sm"
-                                                    >
-                                                        <option value="Kitchen Countertops">Kitchen Countertops</option>
-                                                        <option value="Bathroom Vanity">Bathroom Vanity</option>
-                                                        <option value="Full Kitchen Remodel">Full Kitchen Remodel</option>
-                                                        <option value="Outdoor Kitchen">Outdoor BBQ Kitchen</option>
-                                                        <option value="Commercial / Other">Commercial / Other</option>
-                                                    </select>
-                                                    <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 xl:w-5 xl:h-5 text-slate-600 pointer-events-none stroke-[2.5]" />
-                                                </div>
+                                            <div className="relative">
+                                                <select
+                                                    value={formData.scope}
+                                                    onChange={(e) => setFormData({ ...formData, scope: e.target.value })}
+                                                    className="w-full bg-gray-50 border border-gray-200 focus:border-secondary rounded-xl pl-2.5 pr-6 py-2 lg:py-2.5 text-xs sm:text-sm text-gray-900 font-semibold focus:ring-2 focus:ring-secondary/20 outline-none transition-all appearance-none cursor-pointer"
+                                                >
+                                                    <option value="Kitchen Countertops">Countertops</option>
+                                                    <option value="Bathroom Vanity">Bathroom Vanity</option>
+                                                    <option value="Full Kitchen Remodel">Kitchen + Cabinets</option>
+                                                    <option value="Outdoor Kitchen">Outdoor BBQ</option>
+                                                    <option value="Commercial / Other">Commercial / Other</option>
+                                                </select>
+                                                <ChevronDown className="absolute right-2 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-gray-500 pointer-events-none stroke-[2]" />
                                             </div>
                                         </div>
 
-                                        {/* Email (Optional) */}
-                                        <div>
-                                            <label className="block text-[11px] xl:text-xs font-bold text-gray-700 uppercase tracking-wider mb-1">
-                                                Email Address <span className="text-gray-400 font-normal lowercase">(optional for PDF quote)</span>
-                                            </label>
+                                        {/* Email (Optional) with Mail Icon */}
+                                        <div className="relative group">
+                                            <div className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 group-focus-within:text-secondary transition-colors">
+                                                <Mail size={15} />
+                                            </div>
                                             <input 
                                                 type="email"
                                                 value={formData.email}
                                                 onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                                                placeholder="michael@example.com"
-                                                className="w-full bg-white border border-gray-300 rounded-xl xl:rounded-2xl px-3.5 py-2.5 xl:py-3.5 text-xs sm:text-sm xl:text-base text-gray-900 placeholder:text-gray-400 font-medium focus:border-secondary focus:ring-2 focus:ring-secondary/20 outline-none transition-all"
+                                                placeholder="Email Address (optional for quote)"
+                                                className="w-full bg-gray-50 border border-gray-200 rounded-xl pl-9 pr-3 py-2 lg:py-2.5 text-xs sm:text-sm text-gray-900 placeholder:text-gray-400 font-medium focus:border-secondary focus:ring-2 focus:ring-secondary/20 outline-none transition-all"
                                             />
                                         </div>
 
                                         {/* Submit Button */}
-                                        <div className="pt-1.5 xl:pt-2">
+                                        <div className="pt-0.5">
                                             <button
                                                 type="submit"
                                                 disabled={isSubmitting}
-                                                className="w-full bg-secondary hover:bg-yellow-600 text-white font-bold py-3.5 sm:py-4 xl:py-4.5 2xl:py-5 px-6 rounded-xl xl:rounded-2xl shadow-lg hover:shadow-xl transition-all flex items-center justify-center gap-2 text-xs sm:text-sm xl:text-base uppercase tracking-wider disabled:opacity-70 active:scale-[0.99] cursor-pointer group"
+                                                className="w-full bg-secondary hover:bg-yellow-600 text-white font-bold py-2.5 lg:py-3 px-5 rounded-xl shadow-md hover:shadow-lg transition-all flex items-center justify-center gap-2 text-xs sm:text-sm uppercase tracking-wider disabled:opacity-70 active:scale-[0.99] cursor-pointer group"
                                             >
                                                 {isSubmitting ? (
                                                     <>
-                                                        <Loader2 size={16} className="animate-spin" /> Submitting Request...
+                                                        <Loader2 size={15} className="animate-spin" /> Submitting...
                                                     </>
                                                 ) : (
                                                     <>
-                                                        <span>Claim Free Estimate & Discount</span>
-                                                        <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
+                                                        <span>Claim Free Estimate</span>
+                                                        <ArrowRight size={15} className="group-hover:translate-x-1 transition-transform" />
                                                     </>
                                                 )}
                                             </button>
                                         </div>
 
-                                        <p className="text-center text-[10px] sm:text-[11px] xl:text-xs text-gray-500 pt-0.5 flex items-center justify-center gap-1.5 font-normal">
-                                            <Lock size={11} className="text-emerald-600 flex-shrink-0" />
-                                            <span>Your information is strictly protected & confidential • No spam</span>
+                                        <p className="text-center text-[9px] text-gray-400 flex items-center justify-center gap-1 font-normal pt-0.5">
+                                            <Lock size={10} className="text-emerald-600 flex-shrink-0" />
+                                            <span>Confidential • Direct Factory Pricing • No Spam</span>
                                         </p>
                                     </form>
                                 )}
@@ -667,7 +722,6 @@ export default function ServiceDynamicContent({ service, cityOverride }: { servi
 
                     </div>
                 </div>
-
                 {/* Subdued Bottom Scroll Indicator */}
                 <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1.5 opacity-40">
                     <span className="text-[9px] uppercase tracking-[0.2em] font-bold text-white">Scroll to Explore Slabs</span>
