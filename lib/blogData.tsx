@@ -1588,5 +1588,702 @@ export const blogContent: Record<string, BlogPost> = {
         </div>
       </>
     )
+  },
+
+  'how-to-match-countertops-and-cabinets': {
+    slug: 'how-to-match-countertops-and-cabinets',
+    title: 'How to Match Countertops with Cabinets: The Complete Designer Guide',
+    badge: 'WIKIHOW & DESIGN GUIDE',
+    badgeType: 'wikihow',
+    category: 'Design & Style',
+    date: 'September 30, 2026',
+    modifiedDate: 'September 30, 2026',
+    readTime: '8 min read',
+    image: '/images/blog/how-to-match-countertops-and-cabinets.jpg',
+    alt: 'Instructional wikiHow style illustration of matching granite and quartz countertop samples with painted and wood kitchen cabinets',
+    excerpt: 'Step-by-step wikiHow-style guide to coordinating kitchen countertops and cabinets. Master the 60-30-10 color rule, undertone harmony, and the best stone pairings for white, navy, oak, and modern two-tone kitchens.',
+    keyTakeaways: [
+      'Follow the classic interior 60-30-10 design rule: Cabinets occupy 60% of the visual space (the anchor), countertops take 30% (the focal star), and backsplash/hardware supply the remaining 10% accent punch.',
+      'Decide your visual star first: If choosing a bold, dramatic stone slab with heavy Calacatta veining or exotic movement, keep cabinet door profiles and paint colors calm and subtle. If opting for bold shaker cabinets (navy or forest green), pick subtle, calm quartz surfaces.',
+      'Always test undertones under natural daylight and 3000K–4000K LED kitchen lighting: Warm whites (yellow/cream undertones) clash with cool, icy blue-white quartz slabs.',
+      'White cabinets pair effortlessly with almost every stone: Calacatta quartz creates timeless luxury, honed Absolute Black granite creates striking tuxedo contrast, and soapstone-look quartz offers organic warmth.',
+      'To modernize warm honey oak or stained wood cabinets without repainting, pair them with crisp white quartz with light gray veining or deep charcoal leathered granite to balance yellow/orange wood tones.',
+      'Bring physical cabinet sample doors directly into a slab yard like AGS Stones in Duluth, GA to evaluate full 10-foot slabs rather than tiny 4-inch square swatches.'
+    ],
+    faqs: [
+      {
+        q: 'Should kitchen countertops be lighter or darker than the cabinets?',
+        a: 'There is no strict rule, but contrasting values create the most enduring visual appeal. Pairing light countertops (like white quartz or Carrara marble) with darker cabinets (like navy, charcoal, or dark walnut) brightens your work surface and opens up smaller rooms. Conversely, pairing dark stone (like leathered black granite) with crisp white or cream cabinets delivers dramatic tuxedo elegance. In monochromatic kitchens (white on white), ensure the countertop features subtle gray or gold veining to prevent the room from looking sterile or clinical.'
+      },
+      {
+        q: 'What color quartz or granite looks best with honey oak and wood cabinets?',
+        a: 'To modernize oak cabinets without painting them, choose countertops that balance warm yellow and orange undertones. Cool-to-neutral white quartz with gentle gray or greige veining (such as Calacatta Gold or Statuario) immediately updates the kitchen. Alternatively, deep charcoal or honed black granite creates an authentic craftsman or modern rustic contrast that grounds the vibrant wood grain.'
+      },
+      {
+        q: 'Do I pick the countertop or the cabinets first in a kitchen remodel?',
+        a: 'Generally, you should select your cabinet color and door style first because cabinets occupy the largest physical and visual footprint in the room (around 60% of the visual field). However, if you fall in love with a rare, exotic natural quartzite or high-movement granite slab, make that the centerpiece and select a complementary neutral cabinet paint finish that enhances the stone’s undertones.'
+      },
+      {
+        q: 'How do I coordinate two-tone kitchen cabinets with countertops?',
+        a: 'For two-tone kitchens (such as white perimeter cabinets with a navy or dark wood island), you have two proven design paths. Path A (Unified Stone): Use the same quartz or granite across both the perimeter and the island to tie the two cabinet colors together. Path B (Inverted Contrast): Use a subtle white quartz on the dark island and a complementary dark or textured stone on the white perimeter counters.'
+      },
+      {
+        q: 'Where can I see full countertop slabs paired with cabinet door samples in Atlanta?',
+        a: 'You can visit our factory showroom and indoor slab warehouse at AGS Stones & Cabinets in Duluth, GA (4579 Abbotts Bridge Rd). Homeowners throughout Metro Atlanta and Fulton/Gwinnett counties can bring their cabinet paint swatches or wood doors to view over 300 full-size premium quartz and natural granite slabs under true indoor lighting.'
+      }
+    ],
+    content: (
+      <>
+        <p className="text-lg text-gray-700 leading-relaxed font-light mb-6">
+          Designing a dream kitchen is one of the most rewarding home investments you will ever make. Yet for thousands of homeowners across Metro Atlanta, the single most agonizing decision is coordinating the two dominant elements of the room: <strong>the kitchen cabinets and the countertop stone</strong>.
+        </p>
+
+        <p className="text-gray-700 leading-relaxed mb-6">
+          Choose the right combination, and your kitchen radiates timeless luxury, effortless flow, and exceptional resale value. Choose mismatched undertones, however, and a $30,000 renovation can look disjointed, dated, or visually chaotic.
+        </p>
+
+        <p className="text-gray-700 leading-relaxed mb-8">
+          At <Link href="/" className="text-secondary font-semibold hover:underline">AGS Stones & Cabinets</Link>, we fabricate and install both <Link href="/services/countertops" className="text-primary font-semibold hover:underline">custom stone countertops</Link> and <Link href="/services/cabinets" className="text-primary font-semibold hover:underline">custom kitchen cabinetry</Link> under one roof in Duluth, GA. This illustrated step-by-step wikiHow-style guide reveals the exact interior design formulas, undertone matching secrets, and timeless color palettes used by top Atlanta designers.
+        </p>
+
+        {/* Required Planning Checklist */}
+        <div className="bg-slate-50 border border-slate-200 rounded-2xl p-6 my-8">
+          <h3 className="text-lg font-bold text-slate-900 mb-3 flex items-center gap-2">
+            📋 The Kitchen Designer&apos;s Matching Toolkit
+          </h3>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm text-slate-700">
+            <div className="flex items-center gap-2">
+              <span className="w-2 h-2 rounded-full bg-secondary"></span>
+              <span><strong>Physical Cabinet Door Sample</strong> (not a paper swatch)</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <span className="w-2 h-2 rounded-full bg-secondary"></span>
+              <span><strong>Full Stone Slab Preview</strong> (avoid tiny 4-inch chips)</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <span className="w-2 h-2 rounded-full bg-secondary"></span>
+              <span><strong>Hardware Finish Swatch</strong> (brushed brass, matte black, or nickel)</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <span className="w-2 h-2 rounded-full bg-secondary"></span>
+              <span><strong>Flooring Plank Sample</strong> (hardwood, LVP, or tile)</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <span className="w-2 h-2 rounded-full bg-secondary"></span>
+              <span><strong>Kelvin Temperature Check</strong> (3000K warm vs. 4000K daylight LED)</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <span className="w-2 h-2 rounded-full bg-secondary"></span>
+              <span><strong>Natural Daylight Test</strong> (morning and afternoon angle check)</span>
+            </div>
+          </div>
+        </div>
+
+        <h2 className="text-2xl sm:text-3xl font-serif text-primary mt-12 mb-6 font-bold pb-2 border-b border-gray-100">
+          Method 1: Apply the 60-30-10 Kitchen Color Rule
+        </h2>
+
+        <p className="text-gray-700 leading-relaxed mb-6">
+          Professional interior designers never guess color balance—they follow the golden ratio of visual hierarchy known as the 60-30-10 rule.
+        </p>
+
+        <div className="space-y-6 my-8">
+          <div className="bg-white p-6 rounded-2xl border border-gray-200/80 shadow-sm flex flex-col sm:flex-row gap-5 items-start">
+            <span className="flex-shrink-0 w-10 h-10 rounded-full bg-amber-600 text-white font-bold flex items-center justify-center text-base shadow-md">
+              60%
+            </span>
+            <div>
+              <h3 className="text-lg font-bold text-gray-900 mb-2">The Anchor: Kitchen Cabinets</h3>
+              <p className="text-gray-600 text-sm sm:text-base leading-relaxed m-0">
+                Because cabinets span both upper walls and lower base runs, they occupy roughly 60% of your kitchen&apos;s vertical plane. They set the emotional foundation—whether that is clean and bright (pure white shaker), grounded and organic (natural walnut or white oak), or bold and moody (deep navy or forest green).
+              </p>
+            </div>
+          </div>
+
+          <div className="bg-white p-6 rounded-2xl border border-gray-200/80 shadow-sm flex flex-col sm:flex-row gap-5 items-start">
+            <span className="flex-shrink-0 w-10 h-10 rounded-full bg-amber-600 text-white font-bold flex items-center justify-center text-base shadow-md">
+              30%
+            </span>
+            <div>
+              <h3 className="text-lg font-bold text-gray-900 mb-2">The Focal Surface: Countertops</h3>
+              <p className="text-gray-600 text-sm sm:text-base leading-relaxed m-0">
+                Countertops occupy approximately 30% of the visual field on the horizontal plane. As the tactile workhorse where family cooks, dines, and gathers around the island, the stone provides the texture, pattern, and elegance that draws the eye across the room.
+              </p>
+            </div>
+          </div>
+
+          <div className="bg-white p-6 rounded-2xl border border-gray-200/80 shadow-sm flex flex-col sm:flex-row gap-5 items-start">
+            <span className="flex-shrink-0 w-10 h-10 rounded-full bg-amber-600 text-white font-bold flex items-center justify-center text-base shadow-md">
+              10%
+            </span>
+            <div>
+              <h3 className="text-lg font-bold text-gray-900 mb-2">The Accents: Backsplash, Hardware & Fixtures</h3>
+              <p className="text-gray-600 text-sm sm:text-base leading-relaxed m-0">
+                The remaining 10% comes from cabinet handles, gooseneck kitchen faucets, pendant lights, and your tile backsplash. This is where you introduce metallic gleam (warm champagne bronze, matte black, or polished chrome) to unify cabinets and stone.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <h2 className="text-2xl sm:text-3xl font-serif text-primary mt-12 mb-6 font-bold pb-2 border-b border-gray-100">
+          Method 2: Determine Which Element Takes Center Stage
+        </h2>
+
+        <p className="text-gray-700 leading-relaxed mb-6">
+          A fundamental design principle is: <strong>Only one diva per room</strong>. If your cabinets and your countertops both shout for attention with intense colors and busy patterns, they clash.
+        </p>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 my-8">
+          <div className="bg-gradient-to-br from-slate-50 to-white p-6 rounded-2xl border border-slate-200">
+            <span className="inline-block px-3 py-1 bg-amber-100 text-amber-800 text-xs font-bold rounded-full mb-3 uppercase tracking-wider">
+              Strategy A: The Star Countertop
+            </span>
+            <h4 className="text-lg font-bold text-gray-900 mb-2">Dramatic Stone + Quiet Cabinets</h4>
+            <p className="text-gray-600 text-sm leading-relaxed mb-3">
+              If you fall in love with an exotic, high-movement slab—such as bold Calacatta Gold quartz with thick river veins, or wild Brazilian Titanium granite—pair it with clean, simple cabinet profiles (flat panel or classic shaker) in subtle white, off-white, or soft charcoal.
+            </p>
+            <p className="text-xs text-secondary font-semibold mb-0">
+              ✓ Result: The countertop becomes the jaw-dropping centerpiece of the entire home.
+            </p>
+          </div>
+
+          <div className="bg-gradient-to-br from-slate-50 to-white p-6 rounded-2xl border border-slate-200">
+            <span className="inline-block px-3 py-1 bg-blue-100 text-blue-800 text-xs font-bold rounded-full mb-3 uppercase tracking-wider">
+              Strategy B: The Statement Cabinet
+            </span>
+            <h4 className="text-lg font-bold text-gray-900 mb-2">Bold Cabinets + Subtle Stone</h4>
+            <p className="text-gray-600 text-sm leading-relaxed mb-3">
+              If your dream is moody, saturated cabinets—such as deep Hale Navy, rich hunter green, or rich espresso stained walnut—choose a whisper-quiet, subtle countertop stone like clean solid white quartz or delicate Carrara marble veining.
+            </p>
+            <p className="text-xs text-primary font-semibold mb-0">
+              ✓ Result: The cabinets provide deep drama while the clean stone keeps the kitchen luminous and functional.
+            </p>
+          </div>
+        </div>
+
+        <h2 className="text-2xl sm:text-3xl font-serif text-primary mt-12 mb-6 font-bold pb-2 border-b border-gray-100">
+          Method 3: The 4 Best Countertop Pairings for White Cabinets
+        </h2>
+
+        <p className="text-gray-700 leading-relaxed mb-6">
+          White cabinets remain the #1 choice across Atlanta, <Link href="/countertops-alpharetta-ga" className="text-primary font-semibold hover:underline">Alpharetta</Link>, and <Link href="/countertops-roswell-ga" className="text-primary font-semibold hover:underline">Roswell, GA</Link> because of their clean, airy versatility. Here are the top four fabricator-tested stone matches:
+        </p>
+
+        <div className="space-y-4 my-6">
+          <div className="p-5 bg-white rounded-xl border border-gray-200 shadow-sm">
+            <h4 className="text-base font-bold text-gray-900 mb-1">1. Calacatta Quartz (The High-End Luxury Look)</h4>
+            <p className="text-gray-600 text-sm leading-relaxed mb-0">
+              Crisp white base with soft gray and warm gold veining. It creates an Italian marble aesthetic with zero sealing requirements. Pair with brass hardware for modern warmth.
+            </p>
+          </div>
+
+          <div className="p-5 bg-white rounded-xl border border-gray-200 shadow-sm">
+            <h4 className="text-base font-bold text-gray-900 mb-1">2. Honed Absolute Black Granite (The Classic Tuxedo)</h4>
+            <p className="text-gray-600 text-sm leading-relaxed mb-0">
+              High-contrast drama that never goes out of style. A matte or leathered black granite finish softens the stark contrast, giving a sophisticated slate-like texture that resists fingerprints.
+            </p>
+          </div>
+
+          <div className="p-5 bg-white rounded-xl border border-gray-200 shadow-sm">
+            <h4 className="text-base font-bold text-gray-900 mb-1">3. Soapstone or Dark Charcoal Quartz (Organic Farmhouse)</h4>
+            <p className="text-gray-600 text-sm leading-relaxed mb-0">
+              Deep charcoal with delicate white chalk-like veins provides a cozy, historic charm popular in modern farmhouse and transitional Atlanta bungalows.
+            </p>
+          </div>
+
+          <div className="p-5 bg-white rounded-xl border border-gray-200 shadow-sm">
+            <h4 className="text-base font-bold text-gray-900 mb-1">4. Fantasy Brown Marble/Quartzite (Warm Earthy Flow)</h4>
+            <p className="text-gray-600 text-sm leading-relaxed mb-0">
+              Swirls of cream, taupe, apricot, and soft gray. It warms up stark white cabinetry, bridging hardwood flooring with modern painted elements effortlessly.
+            </p>
+          </div>
+        </div>
+
+        <h2 className="text-2xl sm:text-3xl font-serif text-primary mt-12 mb-6 font-bold pb-2 border-b border-gray-100">
+          Method 4: Modernizing Wood & Honey Oak Cabinets
+        </h2>
+
+        <p className="text-gray-700 leading-relaxed mb-6">
+          Many homes in Gwinnett and North Fulton have well-built solid oak, maple, or cherry cabinets that homeowners love for their durability, but whose countertops (often 1990s speckled laminate or green tile) look severely outdated. You do not have to paint your wood cabinets to make them look high-end:
+        </p>
+
+        <div className="bg-amber-50/60 border border-amber-200 rounded-2xl p-6 my-6">
+          <h4 className="text-amber-900 font-bold text-base mb-2">⭐ The Fabricator Formula for Wood Cabinets:</h4>
+          <ul className="space-y-2 text-sm text-amber-950 mb-0">
+            <li>• <strong>Install Crisp White Quartz with Subtle Cool Veining:</strong> The bright white immediately breaks up the heavy wood expanse, while faint gray veining cools down yellow/orange wood tones.</li>
+            <li>• <strong>Avoid Yellow-Beige Granites:</strong> Installing tan or gold speckled granite (like Venetian Gold or Giallo Ornamental) on oak creates a muddy &quot;amber cave&quot; effect.</li>
+            <li>• <strong>Consider Leathered Black Granite:</strong> The textured matte black acts like cast iron against warm wood, instantly transforming dated oak into an upscale modern craftsman or industrial kitchen.</li>
+          </ul>
+        </div>
+
+        <h2 className="text-2xl sm:text-3xl font-serif text-primary mt-12 mb-6 font-bold pb-2 border-b border-gray-100">
+          Method 5: The Two-Tone Kitchen Formula (Islands vs. Perimeters)
+        </h2>
+
+        <p className="text-gray-700 leading-relaxed mb-6">
+          Two-tone cabinetry—such as white wall cabinets paired with a natural white oak or navy kitchen island—is one of the most requested layouts in our <Link href="/showroom" className="text-secondary font-semibold hover:underline">Duluth showroom</Link>. Follow these guidelines:
+        </p>
+
+        <div className="space-y-4 my-6">
+          <div className="p-5 bg-slate-50 rounded-xl border border-slate-200">
+            <h4 className="text-sm font-bold text-slate-900 mb-1">Rule 1: Keep Countertops Consistent for Visual Flow</h4>
+            <p className="text-xs text-slate-600 leading-relaxed mb-0">
+              When cabinet colors differ, using the <em>same stone</em> across both perimeter counters and the island acts as the visual glue that holds the design together. A Calacatta quartz island top matching the perimeter counters makes the room feel cohesive rather than busy.
+            </p>
+          </div>
+
+          <div className="p-5 bg-slate-50 rounded-xl border border-slate-200">
+            <h4 className="text-sm font-bold text-slate-900 mb-1">Rule 2: The Waterfall Island Exception</h4>
+            <p className="text-xs text-slate-600 leading-relaxed mb-0">
+              If your island is your dream centerpiece, opt for a luxury waterfall edge where the stone cascades down both flanks. Pairing a dramatic waterfall stone island with a simpler solid-color perimeter stone creates a showstopper kitchen featured in architectural magazines.
+            </p>
+          </div>
+        </div>
+
+        <h2 className="text-2xl sm:text-3xl font-serif text-primary mt-12 mb-6 font-bold pb-2 border-b border-gray-100">
+          Method 6: Test Undertones Under Your Kitchen&apos;s Actual Lighting
+        </h2>
+
+        <p className="text-gray-700 leading-relaxed mb-6">
+          Color is an illusion created by light. A white quartz slab that looks crisp and bright in a showroom warehouse under high-bay commercial fluorescent lights can look distinctly blue or dingy yellow when placed inside your home under warm 2700K incandescent can lights.
+        </p>
+
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 my-6">
+          <div className="p-4 bg-white border border-gray-200 rounded-xl text-center shadow-sm">
+            <span className="block font-bold text-sm text-gray-900 mb-1">2700K – 3000K</span>
+            <span className="text-xs text-amber-600 font-semibold block mb-2">Warm Soft White</span>
+            <p className="text-xs text-gray-500 leading-relaxed mb-0">
+              Accentuates gold and brown veins; can turn cool gray quartz slightly muddy or greenish.
+            </p>
+          </div>
+
+          <div className="p-4 bg-white border-2 border-secondary rounded-xl text-center shadow-md">
+            <span className="block font-bold text-sm text-secondary mb-1">3500K – 4000K ⭐</span>
+            <span className="text-xs text-emerald-600 font-semibold block mb-2">Designer Ideal (Natural Daylight)</span>
+            <p className="text-xs text-gray-600 leading-relaxed mb-0">
+              The sweet spot recommended by kitchen designers. Renders both whites and wood grains in true color without yellowing.
+            </p>
+          </div>
+
+          <div className="p-4 bg-white border border-gray-200 rounded-xl text-center shadow-sm">
+            <span className="block font-bold text-sm text-gray-900 mb-1">5000K+</span>
+            <span className="text-xs text-blue-600 font-semibold block mb-2">Cool Daylight / Commercial</span>
+            <p className="text-xs text-gray-500 leading-relaxed mb-0">
+              Very clinical; exaggerates blue undertones and can make warm wood cabinets look stark and uninviting.
+            </p>
+          </div>
+        </div>
+
+        {/* Call to action card */}
+        <div className="bg-gradient-to-r from-primary to-slate-900 text-white rounded-3xl p-8 sm:p-10 my-10 shadow-2xl flex flex-col md:flex-row items-center justify-between gap-6">
+          <div className="max-w-xl">
+            <span className="text-secondary font-bold text-xs uppercase tracking-widest block mb-2">Factory-Direct Stones & Custom Cabinets in Duluth, GA</span>
+            <h4 className="text-2xl font-serif font-bold mb-2">Bring Your Cabinet Door to Our Slab Yard!</h4>
+            <p className="text-gray-300 text-sm mb-0">
+              Never gamble with tiny 3-inch color chips. Bring your cabinet door sample or paint swatch to our indoor Duluth showroom at 4579 Abbotts Bridge Rd. Compare side-by-side against 300+ full slabs of premium Calacatta quartz, natural granite, and quartzite with free laser estimates.
+            </p>
+          </div>
+          <div className="flex flex-col sm:flex-row gap-3 w-full md:w-auto flex-shrink-0">
+            <Link 
+              href="/promo" 
+              className="bg-secondary text-white font-bold text-xs uppercase tracking-wider px-7 py-4 rounded-xl hover:bg-white hover:text-primary transition-all text-center shadow-lg"
+            >
+              Claim Free Estimate
+            </Link>
+            <Link 
+              href="/contact" 
+              className="bg-white/10 hover:bg-white/20 text-white font-bold text-xs uppercase tracking-wider px-6 py-4 rounded-xl transition-all text-center border border-white/20"
+            >
+              Visit Showroom
+            </Link>
+          </div>
+        </div>
+      </>
+    )
+  },
+  'quartzite-vs-quartz-countertops-guide': {
+    slug: 'quartzite-vs-quartz-countertops-guide',
+    title: 'Quartzite vs. Quartz Countertops: The Complete Durability, Heat & Care Guide',
+    badge: 'WIKIHOW & BUYER\'S GUIDE',
+    badgeType: 'wikihow',
+    category: 'Comparisons',
+    date: 'October 01, 2026',
+    modifiedDate: 'October 01, 2026',
+    readTime: '9 min read',
+    image: '/images/blog/quartzite-vs-quartz-countertops-guide.jpg',
+    alt: 'Instructional wikiHow style illustration comparing natural quartzite stone slab and engineered quartz countertop with scratch test, heat resistance, and sealing guides',
+    excerpt: 'Comprehensive wikiHow-style guide comparing natural quartzite vs engineered quartz. Learn the glass scratch test, acid etch test, heat resistance limits, pricing ($65-$160/sqft), and which stone suits your Atlanta home best.',
+    keyTakeaways: [
+      'Quartzite is 100% natural metamorphic rock quarried from tectonic sandstone (Mohs hardness 7-8), whereas Quartz is an engineered man-made composite of 90-93% crushed mineral bound by polymer resins and pigments (Mohs hardness 6-7).',
+      'Heat Resistance Difference: Natural quartzite easily handles screaming hot 1,000°F pots and baking trays directly off the burner. Engineered quartz can suffer irreversible resin scorching or yellow ring discoloration above 300°F.',
+      'Sealing & Porosity: True quartzite is porous natural stone requiring penetrating fluoropolymer sealer every 12 to 24 months. Engineered quartz is virtually non-porous and never requires any sealer.',
+      'The Pro Glass Scratch Test: Authentic quartzite will effortlessly gouge a glass bottle like a glass cutter. If the stone powders or scratches itself, it is soft marble or dolomite, not true quartzite.',
+      'The 15-Minute Lemon Acid Test: Pure quartzite does not react to acidic vinegar or citrus juice. If lemon juice leaves a cloudy, dull etched circle, the slab contains calcium carbonate and is mislabeled marble.',
+      'Budget & Investment: In Metro Atlanta, engineered quartz ranges from $55 to $115 per sq. ft. installed. Rare natural quartzites (such as Taj Mahal, Mont Blanc, Sea Pearl) range from $85 to $165+ per sq. ft. due to extreme diamond-tooling diamond blade fabrication costs.'
+    ],
+    faqs: [
+      {
+        q: 'Can you put hot pots directly on quartzite countertops?',
+        a: 'Yes. Natural quartzite was forged deep beneath tectonic plates at temperatures exceeding 1,500°F. Placing hot Dutch ovens or boiling baking pans directly onto quartzite will not melt or discolor the stone (unlike engineered quartz, whose synthetic polymer binders scorch and burn above 300°F). However, stone fabricators still recommend using silicone trivets to eliminate micro-fissure thermal shock.'
+      },
+      {
+        q: 'Does quartzite stain easily compared to engineered quartz?',
+        a: 'Natural quartzite has microscopic pores that can absorb standing red wine, coffee, or cooking grease if left untreated. However, when sealed with a quality penetrating impregnating sealer once a year, quartzite resists staining as effectively as dense granite. Engineered quartz is 100% non-porous and inherently resists liquid stains without ever needing sealers.'
+      },
+      {
+        q: 'How can I test if a slab at the stone yard is real quartzite or marble?',
+        a: 'Many suppliers inadvertently mislabel soft calcitic stones (like Super White Dolomite or Fantasy Brown) as quartzite. Conduct two simple wikiHow tests: The Glass Scratch Test (authentic quartzite slices a glass bottle like a diamond) and the Lemon Juice Acid Test (pure quartzite never fizzes or etches after 15 minutes of lemon exposure).'
+      },
+      {
+        q: 'Why is quartzite more expensive than granite or quartz?',
+        a: 'Quartzite rates 7 to 8 on the Mohs hardness scale—harder than a steel nail and harder than granite. Quarrying, transporting, and diamond-cutting these slabs requires specialized high-pressure waterjet CNC saws, slow feed rates, and expensive diamond segment blades. That extra fabrication labor and blade wear raises the installed price.'
+      },
+      {
+        q: 'Why is Taj Mahal Quartzite so popular in Atlanta and Alpharetta luxury homes?',
+        a: 'Taj Mahal is an exceptionally dense, pure quartzite quarried in Brazil. It features warm creamy ivory and golden crystalline veins that replicate the coveted aesthetic of Italian Calacatta marble, but with extreme scratch, acid, and heat durability that easily withstands busy family kitchens and holiday entertaining.'
+      }
+    ],
+    content: (
+      <>
+        <p className="text-lg text-gray-700 leading-relaxed font-light mb-6">
+          If you are shopping for new kitchen countertops in Metro Atlanta, you have undoubtedly encountered two names that sound nearly identical: <strong>Quartzite</strong> and <strong>Quartz</strong>. Despite sharing the root mineral <em>quartz</em>, these two countertop materials could not be more different in how they are born, how they perform under heat, and how they must be cared for.
+        </p>
+
+        <p className="text-gray-700 leading-relaxed mb-8">
+          One is a 100% organic metamorphic stone forged over millions of years by intense subterranean heat and tectonic pressure. The other is a high-tech engineered composite crafted in manufacturing plants by binding crushed mineral crystals with polymer resins and artistic pigments. At <Link href="/" className="text-secondary font-semibold hover:underline">AGS Stones & Cabinets</Link> in <Link href="/countertops-duluth-ga" className="text-primary font-semibold hover:underline">Duluth</Link> and <Link href="/countertops-alpharetta-ga" className="text-primary font-semibold hover:underline">Alpharetta, GA</Link>, our master fabricators cut both materials daily. This illustrated wikiHow-style guide breaks down the science, the durability tests, and the exact decision framework to choose the ideal surface for your home.
+        </p>
+
+        {/* Quick Comparison Snapshot Table */}
+        <div className="bg-white rounded-2xl border border-gray-200/90 shadow-sm overflow-hidden my-8">
+          <div className="bg-gradient-to-r from-slate-900 to-primary p-4 sm:p-5 text-white">
+            <span className="text-xs uppercase tracking-widest text-secondary font-bold block mb-1">Direct Comparison Matrix</span>
+            <h3 className="text-lg sm:text-xl font-serif font-bold m-0 text-white">Natural Quartzite vs. Engineered Quartz at a Glance</h3>
+          </div>
+          <div className="overflow-x-auto">
+            <table className="w-full text-left text-sm">
+              <thead className="bg-slate-50 border-b border-gray-200 text-xs font-bold text-gray-700 uppercase">
+                <tr>
+                  <th className="py-3.5 px-4 sm:px-6">Feature</th>
+                  <th className="py-3.5 px-4 sm:px-6 text-amber-700">Natural Quartzite (e.g. Taj Mahal)</th>
+                  <th className="py-3.5 px-4 sm:px-6 text-blue-700">Engineered Quartz (e.g. Silestone, Cambria)</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-gray-100 text-gray-700">
+                <tr className="hover:bg-slate-50/50">
+                  <td className="py-3 px-4 sm:px-6 font-semibold text-gray-900">Material Origin</td>
+                  <td className="py-3 px-4 sm:px-6">100% Natural quarried metamorphic rock</td>
+                  <td className="py-3 px-4 sm:px-6">Man-made composite (90-93% stone + 7-10% resin)</td>
+                </tr>
+                <tr className="hover:bg-slate-50/50">
+                  <td className="py-3 px-4 sm:px-6 font-semibold text-gray-900">Mohs Hardness</td>
+                  <td className="py-3 px-4 sm:px-6 font-bold text-emerald-700">7 to 8 (Harder than granite & knife blades)</td>
+                  <td className="py-3 px-4 sm:px-6 font-bold text-blue-700">6 to 7 (Hard, but resin can be scratched by hard steel)</td>
+                </tr>
+                <tr className="hover:bg-slate-50/50">
+                  <td className="py-3 px-4 sm:px-6 font-semibold text-gray-900">Heat Tolerance</td>
+                  <td className="py-3 px-4 sm:px-6 text-emerald-700 font-semibold">1,000°F+ (Volcanic heat resistance)</td>
+                  <td className="py-3 px-4 sm:px-6 text-red-600 font-semibold">300°F max (Polymer resin scorches/yellows)</td>
+                </tr>
+                <tr className="hover:bg-slate-50/50">
+                  <td className="py-3 px-4 sm:px-6 font-semibold text-gray-900">Sealing Required?</td>
+                  <td className="py-3 px-4 sm:px-6 text-amber-700 font-medium">Yes, annually (Micro-porous stone)</td>
+                  <td className="py-3 px-4 sm:px-6 text-emerald-700 font-semibold">Never (Zero-porosity factory surface)</td>
+                </tr>
+                <tr className="hover:bg-slate-50/50">
+                  <td className="py-3 px-4 sm:px-6 font-semibold text-gray-900">Acid & Lemon Etching</td>
+                  <td className="py-3 px-4 sm:px-6">Immune if 100% pure quartzite</td>
+                  <td className="py-3 px-4 sm:px-6">Immune to household kitchen acids</td>
+                </tr>
+                <tr className="hover:bg-slate-50/50">
+                  <td className="py-3 px-4 sm:px-6 font-semibold text-gray-900">Outdoor BBQ Kitchen Use</td>
+                  <td className="py-3 px-4 sm:px-6 text-emerald-700 font-semibold">Excellent (UV-proof & weather-proof)</td>
+                  <td className="py-3 px-4 sm:px-6 text-red-600 font-semibold">Not recommended (UV rays discolor resin)</td>
+                </tr>
+                <tr className="hover:bg-slate-50/50">
+                  <td className="py-3 px-4 sm:px-6 font-semibold text-gray-900">Atlanta Installed Price</td>
+                  <td className="py-3 px-4 sm:px-6 font-bold text-gray-900">$85 – $165+ / sq. ft.</td>
+                  <td className="py-3 px-4 sm:px-6 font-bold text-gray-900">$55 – $115 / sq. ft.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <h2 className="text-2xl sm:text-3xl font-serif text-primary mt-14 mb-6 font-bold pb-2 border-b border-gray-100">
+          Method 1: The Glass Scratch Test (How to Spot Fake Quartzite)
+        </h2>
+
+        <p className="text-gray-700 leading-relaxed mb-6">
+          In the natural stone trade, mislabeling is a well-known risk. Soft stones containing calcium carbonate—such as <em>Super White</em> or <em>Fantasy Brown</em>—are often sold as &quot;soft quartzite,&quot; but geologically they are dolomitic marbles. If you install them thinking they are indestructible quartzite, acidic lemon juice will leave permanent dull spots on day one. Here is the foolproof wikiHow scratch test to verify real quartzite:
+        </p>
+
+        <div className="space-y-6 my-8">
+          <div className="bg-white p-6 rounded-2xl border border-gray-200/80 shadow-sm flex flex-col sm:flex-row gap-5 items-start">
+            <span className="flex-shrink-0 w-10 h-10 rounded-full bg-blue-600 text-white font-bold flex items-center justify-center text-base shadow-md">
+              1
+            </span>
+            <div>
+              <h3 className="text-lg font-bold text-gray-900 mb-2">Obtain a Rough Sample Tile or Edge Scrap</h3>
+              <p className="text-gray-600 text-sm sm:text-base leading-relaxed m-0">
+                Ask your stone supplier or our team at AGS Stones for a small rough sample or unpolished edge piece from the exact slab lot you are evaluating. You need a sharp unrounded stone corner.
+              </p>
+            </div>
+          </div>
+
+          <div className="bg-white p-6 rounded-2xl border border-gray-200/80 shadow-sm flex flex-col sm:flex-row gap-5 items-start">
+            <span className="flex-shrink-0 w-10 h-10 rounded-full bg-blue-600 text-white font-bold flex items-center justify-center text-base shadow-md">
+              2
+            </span>
+            <div>
+              <h3 className="text-lg font-bold text-gray-900 mb-2">Score Across an Ordinary Glass Bottle or Glass Tile</h3>
+              <p className="text-gray-600 text-sm sm:text-base leading-relaxed mb-3">
+                Grab an empty glass beverage bottle or a scrap glass tile. Press the sharp corner of your stone sample firmly against the glass surface and pull across in a continuous dragging motion.
+              </p>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
+                <div className="p-3 bg-emerald-50 border border-emerald-200 rounded-lg text-emerald-900">
+                  <strong>✅ Authentic Quartzite:</strong> Will effortlessly bite into the glass, leaving a deep visible groove or gouge. The stone point stays sharp and does not crush into white powder.
+                </div>
+                <div className="p-3 bg-red-50 border border-red-200 rounded-lg text-red-900">
+                  <strong>❌ Mislabeled Marble / Dolomite:</strong> Will slide without carving the glass, or the stone tip will crush into chalky powder because glass (Mohs 5.5) is harder than marble (Mohs 3-4).
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="bg-white p-6 rounded-2xl border border-gray-200/80 shadow-sm flex flex-col sm:flex-row gap-5 items-start">
+            <span className="flex-shrink-0 w-10 h-10 rounded-full bg-blue-600 text-white font-bold flex items-center justify-center text-base shadow-md">
+              3
+            </span>
+            <div>
+              <h3 className="text-lg font-bold text-gray-900 mb-2">Inspect the Glass Under Raking Light</h3>
+              <p className="text-gray-600 text-sm sm:text-base leading-relaxed m-0">
+                Wipe away any dust. Feel the line with your fingernail. If you can physically feel the gouge caught by your nail, your stone possesses true quartz hardness (Mohs 7+), guaranteeing high scratch resistance in daily kitchen use.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <h2 className="text-2xl sm:text-3xl font-serif text-primary mt-14 mb-6 font-bold pb-2 border-b border-gray-100">
+          Method 2: The 15-Minute Lemon Juice Acid Test
+        </h2>
+
+        <p className="text-gray-700 leading-relaxed mb-6">
+          Pure natural quartzite is chemically inert to typical kitchen acids (vinegar, lemon juice, salsa, red wine). Calcitic marble and dolomite, conversely, chemically dissolve upon contact with acid—a process called <em>chemical etching</em> that permanently strips the glossy finish.
+        </p>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-5 my-8">
+          <div className="bg-slate-50 border border-slate-200 rounded-xl p-5">
+            <div className="w-8 h-8 rounded-full bg-secondary text-white font-bold flex items-center justify-center text-sm mb-3">
+              A
+            </div>
+            <h4 className="font-bold text-gray-900 text-sm mb-1">Apply Acid Drops</h4>
+            <p className="text-xs text-gray-600 leading-relaxed mb-0">
+              Squeeze fresh lemon juice or pour a teaspoon of white distilled vinegar directly onto the polished face of the stone sample.
+            </p>
+          </div>
+
+          <div className="bg-slate-50 border border-slate-200 rounded-xl p-5">
+            <div className="w-8 h-8 rounded-full bg-secondary text-white font-bold flex items-center justify-center text-sm mb-3">
+              B
+            </div>
+            <h4 className="font-bold text-gray-900 text-sm mb-1">Wait 15 to 20 Minutes</h4>
+            <p className="text-xs text-gray-600 leading-relaxed mb-0">
+              Let the puddle sit undisturbed at room temperature. Listen closely: if you hear faint fizzing or see micro-bubbles, calcium carbonate is actively reacting.
+            </p>
+          </div>
+
+          <div className="bg-slate-50 border border-slate-200 rounded-xl p-5">
+            <div className="w-8 h-8 rounded-full bg-secondary text-white font-bold flex items-center justify-center text-sm mb-3">
+              C
+            </div>
+            <h4 className="font-bold text-gray-900 text-sm mb-1">Wipe & Inspect Reflection</h4>
+            <p className="text-xs text-gray-600 leading-relaxed mb-0">
+              Wipe the stone clean with a wet towel and dry it. Tilt the slab under an overhead light. If the reflection is identical, it is 100% pure quartzite! If you see a cloudy, dull ring, it is marble.
+            </p>
+          </div>
+        </div>
+
+        <h2 className="text-2xl sm:text-3xl font-serif text-primary mt-14 mb-6 font-bold pb-2 border-b border-gray-100">
+          Method 3: Heat Resistance Realities (Pots, Pans & Baking Sheets)
+        </h2>
+
+        <p className="text-gray-700 leading-relaxed mb-6">
+          This is where natural stone and engineered surfaces diverge drastically. Homeowners who love high-heat searing, cast-iron cooking, and baking must understand the physical constraints of each material:
+        </p>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 my-8">
+          <div className="bg-amber-50/60 border border-amber-200 rounded-2xl p-6">
+            <div className="flex items-center gap-2 text-amber-900 font-bold text-base mb-3">
+              <span className="text-xl">🔥</span> Natural Quartzite: Unmatched Heat Resilience
+            </div>
+            <p className="text-sm text-gray-700 leading-relaxed mb-3">
+              Quartzite formed under volcanic conditions exceeding 1,500°F. Setting a 450°F Dutch oven or a sizzling roasting pan directly onto a quartzite island will not scorch, bubble, melt, or burn the stone.
+            </p>
+            <p className="text-xs text-amber-800 font-medium mb-0">
+              <em>Pro Tip:</em> While the stone will not melt, sudden thermal shock on cold winter mornings can occasionally trigger micro-fractures along natural fissures. Using silicone mats remains wise practice.
+            </p>
+          </div>
+
+          <div className="bg-blue-50/60 border border-blue-200 rounded-2xl p-6">
+            <div className="flex items-center gap-2 text-blue-900 font-bold text-base mb-3">
+              <span className="text-xl">⚠️</span> Engineered Quartz: Vulnerable to Polymer Scorching
+            </div>
+            <p className="text-sm text-gray-700 leading-relaxed mb-3">
+              Engineered quartz contains 7% to 10% polymer epoxy and acrylic resins. Above 300°F, these plastic binders can chemically melt, leaving a permanent yellow or brown charred ring that cannot be polished or buffed out.
+            </p>
+            <p className="text-xs text-blue-800 font-medium mb-0">
+              <em>Critical Rule:</em> Never place hot pots, air fryer baskets, slow cookers, or electric griddles directly onto engineered quartz without heat-resistant trivets.
+            </p>
+          </div>
+        </div>
+
+        <h2 className="text-2xl sm:text-3xl font-serif text-primary mt-14 mb-6 font-bold pb-2 border-b border-gray-100">
+          Method 4: Everyday Maintenance & Sealing Protocol
+        </h2>
+
+        <p className="text-gray-700 leading-relaxed mb-6">
+          Routine care dictates how fresh your countertops look 10 years from now. Follow these factory-tested maintenance steps:
+        </p>
+
+        <div className="space-y-4 my-8">
+          <div className="p-5 bg-white border border-gray-200 rounded-xl shadow-sm">
+            <h4 className="font-bold text-gray-900 text-base mb-2">Caring for Natural Quartzite (Sealing Required)</h4>
+            <p className="text-sm text-gray-600 leading-relaxed mb-3">
+              Because natural quartzite is slightly porous, apply a premium fluoropolymer penetrating impregnating sealer once every 12 to 18 months. Clean daily with warm water and pH-neutral soap or specialized stone sprays. Learn more in our companion guide on <Link href="/blog/how-to-clean-and-seal-granite-countertops" className="text-primary font-semibold hover:underline">How to Clean & Seal Natural Stone Countertops</Link>.
+            </p>
+            <span className="inline-block bg-amber-100 text-amber-900 text-xs font-semibold px-3 py-1 rounded-full">
+              Annual Sealing Required: ~15 minutes of easy DIY effort
+            </span>
+          </div>
+
+          <div className="p-5 bg-white border border-gray-200 rounded-xl shadow-sm">
+            <h4 className="font-bold text-gray-900 text-base mb-2">Caring for Engineered Quartz (Zero Sealing)</h4>
+            <p className="text-sm text-gray-600 leading-relaxed mb-3">
+              Engineered quartz is completely non-porous. Never apply stone sealers or topical waxes, which will create a greasy, hazy smudge on the resin surface. For tough stains like dried turmeric, ink, or wine, read our step-by-step <Link href="/blog/how-to-remove-stains-from-quartz-countertops" className="text-primary font-semibold hover:underline">Guide to Removing Stains from Quartz Countertops</Link>.
+            </p>
+            <span className="inline-block bg-blue-100 text-blue-900 text-xs font-semibold px-3 py-1 rounded-full">
+              Zero Sealing Ever: Wipe with soft microfiber and mild soap
+            </span>
+          </div>
+        </div>
+
+        <h2 className="text-2xl sm:text-3xl font-serif text-primary mt-14 mb-6 font-bold pb-2 border-b border-gray-100">
+          Method 5: Pricing & Cost Analysis in Atlanta & Duluth, GA
+        </h2>
+
+        <p className="text-gray-700 leading-relaxed mb-6">
+          Understanding the real installed cost helps you allocate your kitchen renovation budget without unexpected surprises:
+        </p>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 my-8">
+          <div className="p-6 bg-white border border-gray-200 rounded-2xl shadow-sm">
+            <div className="text-sm font-bold uppercase tracking-wider text-blue-600 mb-1">Engineered Quartz Pricing</div>
+            <div className="text-3xl font-serif font-bold text-gray-900 mb-2">$55 – $115 <span className="text-sm font-normal text-gray-500">/ sq. ft. installed</span></div>
+            <p className="text-xs text-gray-600 leading-relaxed mb-4">
+              For an average 55 sq. ft. Metro Atlanta kitchen with a center island, turnkey quartz fabrication and installation typically ranges between <strong>$3,000 and $6,200</strong>, including sink cutouts and standard eased edges.
+            </p>
+            <ul className="text-xs text-gray-600 space-y-1.5 pl-4 list-disc mb-0">
+              <li>Entry Level: Clean solid whites, sparkling grays ($55 - $70/sqft)</li>
+              <li>Mid-Tier: Subtle Carrara marble vein styles ($75 - $95/sqft)</li>
+              <li>Premium Brand: Bold bookmatched Calacatta Gold ($100 - $115+/sqft)</li>
+            </ul>
+          </div>
+
+          <div className="p-6 bg-white border-2 border-amber-300 bg-amber-50/20 rounded-2xl shadow-sm">
+            <div className="text-sm font-bold uppercase tracking-wider text-amber-700 mb-1">Natural Quartzite Pricing</div>
+            <div className="text-3xl font-serif font-bold text-gray-900 mb-2">$85 – $165+ <span className="text-sm font-normal text-gray-500">/ sq. ft. installed</span></div>
+            <p className="text-xs text-gray-600 leading-relaxed mb-4">
+              For that same 55 sq. ft. kitchen, luxury quartzite installed ranges between <strong>$4,800 and $9,200+</strong>. The higher cost reflects exotic quarry rarity, international shipping, and specialized diamond-tool waterjet cutting labor.
+            </p>
+            <ul className="text-xs text-gray-600 space-y-1.5 pl-4 list-disc mb-0">
+              <li>Standard Quartzite: White Macaubas, Perla Venata ($85 - $110/sqft)</li>
+              <li>Luxury Iconic: Premium Brazilian Taj Mahal ($115 - $145/sqft)</li>
+              <li>Exotic Masterpieces: Blue Macaubas, Cristallo, Sea Pearl ($150 - $180+/sqft)</li>
+            </ul>
+          </div>
+        </div>
+
+        <p className="text-xs text-gray-500 italic mb-8">
+          *Want an exact quote for your exact layout? Check our <Link href="/blog/how-much-do-countertops-cost-atlanta-duluth" className="text-primary font-semibold hover:underline">Atlanta Countertop Cost & Budget Breakdown Guide</Link> or get a <Link href="/fast-quote" className="text-secondary font-semibold hover:underline">Fast 3-Minute Online Estimate</Link>.
+        </p>
+
+        <h2 className="text-2xl sm:text-3xl font-serif text-primary mt-14 mb-6 font-bold pb-2 border-b border-gray-100">
+          Method 6: The Final Decision Checklist (Which Fits Your Lifestyle?)
+        </h2>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 my-8">
+          <div className="p-6 bg-slate-50 border border-slate-200 rounded-2xl">
+            <h3 className="text-lg font-bold text-gray-900 mb-3 flex items-center gap-2">
+              <span className="w-2.5 h-2.5 rounded-full bg-blue-600"></span> Choose Engineered Quartz If:
+            </h3>
+            <ul className="space-y-2 text-xs sm:text-sm text-gray-700">
+              <li className="flex items-start gap-2">
+                <span className="text-blue-600 font-bold">✓</span> You want zero annual maintenance or sealing ever.
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="text-blue-600 font-bold">✓</span> You prefer uniform, consistent pattern without natural stone variations.
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="text-blue-600 font-bold">✓</span> You are remodeling a rental property, Airbnb, or family home with young kids.
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="text-blue-600 font-bold">✓</span> Your countertop budget is under $5,000 for standard dimensions.
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="text-blue-600 font-bold">✓</span> You want modern waterfall edge islands with seamless mitered corners.
+              </li>
+            </ul>
+          </div>
+
+          <div className="p-6 bg-amber-50/50 border border-amber-200 rounded-2xl">
+            <h3 className="text-lg font-bold text-gray-900 mb-3 flex items-center gap-2">
+              <span className="w-2.5 h-2.5 rounded-full bg-amber-600"></span> Choose Natural Quartzite If:
+            </h3>
+            <ul className="space-y-2 text-xs sm:text-sm text-gray-700">
+              <li className="flex items-start gap-2">
+                <span className="text-amber-600 font-bold">✓</span> You want a 100% unique natural organic masterpiece that no other kitchen in the world has.
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="text-amber-600 font-bold">✓</span> You are an avid cook who sets hot cast-iron pans and baking sheets near the stove.
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="text-amber-600 font-bold">✓</span> You adore the luxury crystalline look of marble (like Calacatta) but demand extreme durability.
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="text-amber-600 font-bold">✓</span> You are planning an outdoor BBQ kitchen that will receive direct Georgia sunlight and UV rays.
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="text-amber-600 font-bold">✓</span> You want maximum luxury resale appraisal value in Alpharetta, Buckhead, or Johns Creek.
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        {/* Call to action card */}
+        <div className="bg-gradient-to-r from-primary to-slate-900 text-white rounded-3xl p-8 sm:p-10 my-10 shadow-2xl flex flex-col md:flex-row items-center justify-between gap-6">
+          <div className="max-w-xl">
+            <span className="text-secondary font-bold text-xs uppercase tracking-widest block mb-2">Visit Our Indoor Slab Yard in Duluth, GA</span>
+            <h4 className="text-2xl font-serif font-bold mb-2">Touch Real Quartzite & Quartz Slabs Side-by-Side!</h4>
+            <p className="text-gray-300 text-sm mb-0">
+              Don&apos;t choose your home&apos;s centerpiece from a computer screen. Visit our showroom at 4579 Abbotts Bridge Rd Suite -10 in Duluth, GA. Compare 300+ full slabs of genuine Brazilian Taj Mahal quartzite and Calacatta quartz under professional lighting with free expert design consultations.
+            </p>
+          </div>
+          <div className="flex flex-col sm:flex-row gap-3 w-full md:w-auto flex-shrink-0">
+            <Link 
+              href="/promo" 
+              className="bg-secondary text-white font-bold text-xs uppercase tracking-wider px-7 py-4 rounded-xl hover:bg-white hover:text-primary transition-all text-center shadow-lg"
+            >
+              Get Free Estimate
+            </Link>
+            <Link 
+              href="/showroom" 
+              className="bg-white/10 hover:bg-white/20 text-white font-bold text-xs uppercase tracking-wider px-6 py-4 rounded-xl transition-all text-center border border-white/20"
+            >
+              Tour Showroom
+            </Link>
+          </div>
+        </div>
+      </>
+    )
   }
 };
