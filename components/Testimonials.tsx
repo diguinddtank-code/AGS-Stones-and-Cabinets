@@ -1,51 +1,51 @@
 import React, { useEffect, useState, useRef } from 'react';
 import Image from 'next/image';
-import { Star, Phone, ArrowRight, CheckCircle2 } from 'lucide-react';
+import { Star, Phone, ArrowRight, CheckCircle2, User } from 'lucide-react';
 import { Testimonial } from '../types';
 
 const reviews: (Testimonial & { date: string, label: string })[] = [
   {
-    name: "Sarah Jenkins",
+    name: "Sarah J.",
     location: "Duluth, GA",
     text: "AGS transformed our outdated kitchen into a modern masterpiece. The quartz countertops are flawless, and the team was incredibly professional.",
     rating: 5,
-    image: "https://ui-avatars.com/api/?name=Sarah+Jenkins&background=0D8ABC&color=fff",
+    image: "",
     date: "2 days ago",
     label: "Kitchen Remodel"
   },
   {
-    name: "Michael Ross",
+    name: "Michael R.",
     location: "Alpharetta, GA",
     text: "Best prices in Atlanta hands down. I got quotes from 4 other places and AGS beat them all without sacrificing quality. Highly recommend!",
     rating: 5,
-    image: "https://ui-avatars.com/api/?name=Michael+Ross&background=1D4ED8&color=fff",
+    image: "",
     date: "1 week ago",
     label: "Granite Install"
   },
   {
-    name: "Emily Dao",
+    name: "Emily D.",
     location: "Johns Creek, GA",
     text: "Love my new vanity! They helped me pick the perfect marble slab. The installation was quick and clean. Will definitely use them again.",
     rating: 5,
-    image: "https://ui-avatars.com/api/?name=Emily+Dao&background=B91C1C&color=fff",
+    image: "",
     date: "3 weeks ago",
     label: "Bathroom Vanity"
   },
   {
-    name: "David Thompson",
+    name: "David T.",
     location: "Roswell, GA",
     text: "The 3D templating was impressive. The fit was perfect against our uneven walls. True professionals who know their stone.",
     rating: 5,
-    image: "https://ui-avatars.com/api/?name=David+Thompson&background=047857&color=fff",
+    image: "",
     date: "1 month ago",
     label: "Quartzite Countertops"
   },
   {
-    name: "Jessica Alverez",
+    name: "Jessica A.",
     location: "Suwanee, GA",
     text: "Fantastic selection of quartz. They installed everything in one day and left the place spotless. My kitchen looks twice as big now!",
     rating: 5,
-    image: "https://ui-avatars.com/api/?name=Jessica+Alverez&background=7C3AED&color=fff",
+    image: "",
     date: "2 months ago",
     label: "Full Kitchen Reno"
   }
@@ -148,13 +148,9 @@ const Testimonials: React.FC = () => {
                {/* Header: User & Google Logo */}
                <div className="flex justify-between items-start mb-4">
                   <div className="flex items-center gap-3">
-                      <Image 
-                        src={review.image} 
-                        alt={`${review.name} - AGS Stones Customer`} 
-                        className="w-10 h-10 rounded-full object-cover"
-                        width={40}
-                        height={40}
-                      />
+                      <div className="w-10 h-10 rounded-full bg-[#FAF7F0] border border-[#EAE4D6] flex items-center justify-center text-[#8F703E] shrink-0 shadow-2xs font-semibold text-xs">
+                        <User size={18} className="text-[#8F703E]" />
+                      </div>
                       <div>
                           <p className="font-bold text-gray-900 text-sm">{review.name}</p>
                           <p className="text-[10px] text-gray-500">{review.date}</p>
