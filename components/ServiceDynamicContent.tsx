@@ -381,8 +381,8 @@ export default function ServiceDynamicContent({ service, cityOverride }: { servi
                 style={{ scaleX: scrollYProgress }}
             />
 
-            {/* Immersive Hero Section - Perfectly Framed for All Desktop Screens (Zero Cut-Off) */}
-            <section ref={heroRef} className="relative min-h-[100svh] lg:min-h-screen pt-28 pb-12 sm:pt-32 sm:pb-14 lg:py-12 xl:py-16 flex items-center justify-center overflow-hidden [@media(max-height:820px)]:py-8">
+            {/* Immersive Hero Section - Perfectly Framed for All Screens with Full Mobile Header Clearance */}
+            <section ref={heroRef} className="relative min-h-0 lg:min-h-screen pt-36 pb-16 sm:pt-40 sm:pb-18 lg:py-14 xl:py-20 flex flex-col justify-start lg:justify-center items-center overflow-hidden">
                 <motion.div 
                     style={{ y: yBackground }}
                     className="absolute inset-0 w-full h-[130%] -top-[15%]"
@@ -399,7 +399,7 @@ export default function ServiceDynamicContent({ service, cityOverride }: { servi
                     <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-transparent to-black/85"></div>
                 </motion.div>
 
-                <div className="container relative z-10 px-5 sm:px-8 lg:px-10 xl:px-14 mx-auto max-w-7xl xl:max-w-[88rem]">
+                <div className="container relative z-10 px-4 sm:px-8 lg:px-10 xl:px-14 mx-auto max-w-7xl xl:max-w-[88rem]">
                     <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-8 xl:gap-14 items-center">
                         
                         {/* LEFT COLUMN: Monumental Headline & Authority (Home Style, Perfectly Proportioned) */}
@@ -408,7 +408,7 @@ export default function ServiceDynamicContent({ service, cityOverride }: { servi
                             variants={staggerContainer}
                             initial="hidden"
                             animate="show"
-                            className="lg:col-span-7 text-center lg:text-left pt-2 lg:pt-0"
+                            className="lg:col-span-7 text-center lg:text-left pt-1 sm:pt-2 lg:pt-0 px-1 sm:px-0"
                         >
                             {/* Geolocation Tag */}
                             <motion.div variants={fadeInUp} className="inline-flex items-center gap-1.5 py-1 px-3 md:px-3.5 rounded-full border border-white/30 bg-black/40 backdrop-blur-md text-[10px] md:text-xs uppercase tracking-widest mb-2.5 lg:mb-3 font-medium text-white shadow-sm mx-auto lg:mx-0">

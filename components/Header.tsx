@@ -6,7 +6,11 @@ import Link from 'next/link';
 import { Menu, X, Phone, ArrowRight, Instagram, Facebook } from 'lucide-react';
 import TopBar from './TopBar';
 
-const Header: React.FC = () => {
+interface HeaderProps {
+  lightNav?: boolean;
+}
+
+const Header: React.FC<HeaderProps> = ({ lightNav = false }) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const progressBarRef = React.useRef<HTMLDivElement>(null);
@@ -73,8 +77,8 @@ const Header: React.FC = () => {
         <header 
           role="banner"
           className={`w-full transition-all duration-500 border-b will-change-transform ${
-            isScrolled 
-              ? 'bg-white/90 backdrop-blur-md shadow-sm border-gray-200/50 py-3' 
+            isScrolled || lightNav
+              ? 'bg-white/95 backdrop-blur-md shadow-xs border-stone-200/60 py-3' 
               : 'bg-transparent border-transparent py-4 md:py-6'
           }`}
         >
@@ -86,7 +90,7 @@ const Header: React.FC = () => {
                 src="https://i.imgur.com/B0ZaBpN.png" 
                 alt="AGS Stones and Cabinets Logo" 
                 className={`h-10 md:h-12 w-auto transition-all duration-300 ${
-                  isScrolled 
+                  isScrolled || lightNav
                     ? 'filter-none' // Original Colors
                     : 'brightness-0 invert drop-shadow-lg' // White Logo
                 }`}
@@ -103,7 +107,7 @@ const Header: React.FC = () => {
                   key={link.name} 
                   href={link.href} 
                   className={`font-medium tracking-wide text-sm uppercase transition-all duration-300 hover:-translate-y-0.5 ${
-                    isScrolled ? 'text-gray-700 hover:text-secondary' : 'text-white/90 hover:text-white drop-shadow-md'
+                    isScrolled || lightNav ? 'text-stone-700 hover:text-secondary' : 'text-white/90 hover:text-white drop-shadow-md'
                   }`}
                 >
                   {link.name}
@@ -111,9 +115,9 @@ const Header: React.FC = () => {
               ))}
               <a 
                 href="tel:4049524534" 
-                className={`flex items-center gap-2 px-5 py-2.5 rounded-full font-bold text-sm transition-all shadow-lg hover:shadow-xl hover:-translate-y-0.5 ${
-                  isScrolled 
-                    ? 'bg-primary text-white hover:bg-gray-800' 
+                className={`flex items-center gap-2 px-5 py-2.5 rounded-full font-bold text-sm transition-all shadow-md hover:shadow-lg hover:-translate-y-0.5 ${
+                  isScrolled || lightNav
+                    ? 'bg-primary text-white hover:bg-stone-900' 
                     : 'bg-white text-primary hover:bg-gray-100'
                 }`}
                 aria-label="Call AGS Stones at 404-952-4534"
@@ -131,7 +135,7 @@ const Header: React.FC = () => {
               aria-expanded={mobileMenuOpen}
               aria-controls="mobile-navigation-drawer"
             >
-              <Menu size={28} className={!isScrolled && !mobileMenuOpen ? 'text-white drop-shadow-md' : 'text-gray-800'} />
+              <Menu size={28} className={(!isScrolled && !lightNav && !mobileMenuOpen) ? 'text-white drop-shadow-md' : 'text-stone-850'} />
             </button>
           </div>
   

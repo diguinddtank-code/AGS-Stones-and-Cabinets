@@ -46,7 +46,7 @@ const ServicesClient = () => {
       
       <main className="flex-grow">
         {/* Cinematic Immersive Hero Section */}
-        <section className="relative min-h-[85vh] flex items-center justify-center overflow-hidden pt-32 pb-20">
+        <section className="relative min-h-0 lg:min-h-[85vh] flex flex-col justify-start lg:justify-center items-center overflow-hidden pt-36 pb-16 sm:pt-40 sm:pb-20 lg:py-24">
           <div className="absolute inset-0 z-0">
             <Image 
               src="https://kitchenandbathshop.com/wp-content/uploads/2020/11/5d7ff4ab763f7-scaled.jpg"
