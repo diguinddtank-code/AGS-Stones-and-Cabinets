@@ -38,24 +38,59 @@ const recentProjects = [
     location: 'Atlanta, GA'
   },
   {
+    src: '/images/projects/kitchen-island-white-quartz-waterfall-edge-atlanta.jpg',
+    title: 'Calacatta Quartz Island',
+    location: 'Alpharetta, GA'
+  },
+  {
     src: '/images/projects/kitchen-white-cabinets-dark-hardwood-floor-full-view-atlanta.jpg',
-    title: 'White Shaker Kitchen',
-    location: 'Atlanta, GA'
+    title: 'Classic White Shaker Kitchen',
+    location: 'Duluth, GA'
   },
   {
     src: '/images/projects/bathroom-navy-cabinets-white-quartz-double-vanity-atlanta.jpg',
     title: 'Navy Double Vanity',
-    location: 'Atlanta, GA'
+    location: 'Johns Creek, GA'
   },
   {
     src: '/images/projects/bathroom-calacatta-marble-shower-lighted-niche-atlanta.jpg',
-    title: 'Calacatta Marble Shower',
-    location: 'Atlanta, GA'
+    title: 'Lighted Marble Shower Niche',
+    location: 'Roswell, GA'
   },
   {
     src: '/images/projects/kitchen-vaulted-ceiling-wood-beams-quartz-island-atlanta.jpg',
     title: 'Vaulted Ceiling Remodel',
-    location: 'Atlanta, GA'
+    location: 'Sandy Springs, GA'
+  },
+  {
+    src: '/images/projects/cabinets-wet-bar-marble-backsplash-wine-storage-atlanta.jpg',
+    title: 'Wet Bar & Wine Storage',
+    location: 'Buckhead, GA'
+  },
+  {
+    src: '/images/projects/bathroom-freestanding-tub-glass-shower-walnut-vanity-atlanta.jpg',
+    title: 'Freestanding Tub & Walnut Vanity',
+    location: 'Suwanee, GA'
+  },
+  {
+    src: '/images/projects/kitchen-white-cabinets-island-open-concept-living-room-atlanta.jpg',
+    title: 'Open Concept Kitchen & Island',
+    location: 'Milton, GA'
+  },
+  {
+    src: '/images/projects/kitchen-gas-cooktop-stainless-hood-quartz-backsplash-atlanta.jpg',
+    title: 'Quartz Backsplash & Cooktop',
+    location: 'Dunwoody, GA'
+  },
+  {
+    src: '/images/projects/bathroom-charcoal-marble-shower-rainfall-head-atlanta.jpg',
+    title: 'Charcoal Marble Shower',
+    location: 'Cumming, GA'
+  },
+  {
+    src: '/images/projects/kitchen-oak-cabinets-double-wall-oven-gas-cooktop-atlanta.jpg',
+    title: 'Custom Oak Cabinetry & Wall Oven',
+    location: 'Norcross, GA'
   }
 ];
 
@@ -310,16 +345,28 @@ export default function PromoPage() {
                     {recentProjects.map((project, idx) => (
                       <div
                         key={idx}
-                        className="w-[190px] h-[120px] shrink-0 rounded-2xl overflow-hidden relative snap-start shadow-xs border border-stone-200/90 group"
+                        onClick={() => setSelectedImage(project.src)}
+                        className="w-[190px] h-[120px] shrink-0 rounded-2xl overflow-hidden relative snap-start shadow-xs border border-stone-200/90 group cursor-pointer hover:border-[#9E7D47]/80 hover:shadow-md transition-all active:scale-95"
                       >
                         <Image
                           src={project.src}
                           alt={project.title}
                           fill
                           sizes="190px"
-                          className="object-cover transition-transform duration-500 group-hover:scale-105"
+                          className="object-cover transition-transform duration-500 group-hover:scale-110"
                         />
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent group-hover:via-black/30 transition-colors" />
+                        
+                        {/* Zoom hint indicator on hover/tap */}
+                        <div className="absolute top-2 right-2 w-6 h-6 rounded-full bg-black/40 backdrop-blur-xs flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                            <circle cx="11" cy="11" r="8"/>
+                            <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+                            <line x1="11" y1="8" x2="11" y2="14"/>
+                            <line x1="8" y1="11" x2="14" y2="11"/>
+                          </svg>
+                        </div>
+
                         <div className="absolute bottom-2 left-2.5 right-2 text-left">
                           <span className="text-[9px] uppercase tracking-wider text-[#D9B473] font-semibold block leading-tight">
                             {project.location}
