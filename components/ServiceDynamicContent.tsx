@@ -358,6 +358,26 @@ export default function ServiceDynamicContent({ service, cityOverride }: { servi
         }
     });
 
+    const scrollToEstimateForm = (e?: React.MouseEvent) => {
+        if (e) e.preventDefault();
+        if (typeof window === 'undefined') return;
+        const formEl = document.getElementById('estimate-form');
+        if (formEl) {
+            const isMobile = window.innerWidth < 1024;
+            const headerHeight = isMobile ? 85 : 95;
+            const rect = formEl.getBoundingClientRect();
+            const targetY = window.pageYOffset + rect.top - headerHeight;
+            window.scrollTo({
+                top: Math.max(0, targetY),
+                behavior: 'smooth'
+            });
+            setTimeout(() => {
+                const input = formEl.querySelector('input') as HTMLInputElement | null;
+                if (input) input.focus({ preventScroll: true });
+            }, 450);
+        }
+    };
+
     const staggerContainer = {
         hidden: { opacity: 0 },
         show: {
@@ -387,7 +407,7 @@ export default function ServiceDynamicContent({ service, cityOverride }: { servi
             />
 
             {/* Immersive Hero Section - Perfectly Framed for All Screens with Full Mobile Header Clearance */}
-            <section ref={heroRef} className="relative min-h-0 lg:min-h-screen pt-36 pb-16 sm:pt-40 sm:pb-18 lg:py-14 xl:py-20 flex flex-col justify-start lg:justify-center items-center overflow-hidden">
+            <section ref={heroRef} className="relative min-h-0 lg:min-h-screen pt-28 pb-10 sm:pt-32 sm:pb-14 lg:py-14 xl:py-20 flex flex-col justify-start lg:justify-center items-center overflow-hidden">
                 <motion.div 
                     style={{ y: yBackground }}
                     className="absolute inset-0 w-full h-[130%] -top-[15%]"
@@ -409,7 +429,6 @@ export default function ServiceDynamicContent({ service, cityOverride }: { servi
                         
                         {/* LEFT COLUMN: Monumental Headline & Authority (Home Style, Perfectly Proportioned) */}
                         <motion.div 
-                            style={{ y: yHeroText, opacity: opacityHero }}
                             variants={staggerContainer}
                             initial="hidden"
                             animate="show"
@@ -481,11 +500,8 @@ export default function ServiceDynamicContent({ service, cityOverride }: { servi
 
                                 <button
                                     type="button"
-                                    onClick={() => {
-                                        const formEl = document.getElementById('estimate-form');
-                                        if (formEl) formEl.scrollIntoView({ behavior: 'smooth' });
-                                    }}
-                                    className="lg:hidden w-full sm:w-auto bg-secondary hover:bg-yellow-600 text-white font-bold py-2.5 px-5 rounded-xl flex items-center justify-center gap-2 text-xs shadow-lg"
+                                    onClick={scrollToEstimateForm}
+                                    className="lg:hidden w-full sm:w-auto bg-secondary hover:bg-yellow-600 text-white font-bold py-2.5 px-5 rounded-xl flex items-center justify-center gap-2 text-xs shadow-lg cursor-pointer"
                                 >
                                     Get Free Estimate <ArrowRight size={15} />
                                 </button>
@@ -543,7 +559,7 @@ export default function ServiceDynamicContent({ service, cityOverride }: { servi
 
                             <div 
                                 id="estimate-form"
-                                className="w-full max-w-[390px] xl:max-w-[410px] mx-auto lg:ml-auto bg-white/95 backdrop-blur-xl rounded-2xl shadow-[0_20px_50px_rgba(0,0,0,0.5)] p-4 sm:p-5 xl:p-6 border border-white/20 text-gray-900 relative overflow-hidden"
+                                className="w-full max-w-[390px] xl:max-w-[410px] mx-auto lg:ml-auto bg-white/95 backdrop-blur-xl rounded-2xl shadow-[0_20px_50px_rgba(0,0,0,0.5)] p-4 sm:p-5 xl:p-6 border border-white/20 text-gray-900 relative overflow-hidden scroll-mt-24 sm:scroll-mt-28"
                             >
                                 {isSuccess ? (
                                     /* Success State View */
@@ -1189,12 +1205,7 @@ export default function ServiceDynamicContent({ service, cityOverride }: { servi
                             <div className="flex flex-col sm:flex-row justify-center gap-4 sm:gap-6 w-full">
                                 <button 
                                     type="button"
-                                    onClick={() => {
-                                        const el = document.getElementById('estimate-form');
-                                        if (el) {
-                                            el.scrollIntoView({ behavior: 'smooth' });
-                                        }
-                                    }}
+                                    onClick={scrollToEstimateForm}
                                     className="bg-secondary text-white hover:bg-white hover:text-primary font-bold py-4 md:py-6 px-4 md:px-12 rounded-full transition-all duration-500 hover:scale-105 shadow-[0_0_40px_rgba(217,119,6,0.4)] hover:shadow-[0_0_40px_rgba(255,255,255,0.4)] flex items-center justify-center gap-2 md:gap-3 text-[15px] md:text-lg w-full sm:w-auto whitespace-nowrap cursor-pointer"
                                 >
                                     Get Your Free Estimate <ArrowRight size={22} className="shrink-0" />
@@ -1236,12 +1247,7 @@ export default function ServiceDynamicContent({ service, cityOverride }: { servi
                 </a>
                 <button 
                     type="button"
-                    onClick={() => {
-                        const el = document.getElementById('estimate-form');
-                        if (el) {
-                            el.scrollIntoView({ behavior: 'smooth' });
-                        }
-                    }}
+                    onClick={scrollToEstimateForm}
                     className="flex-[2] bg-secondary text-white shadow-[0_8px_20px_-6px_rgba(217,119,6,0.8)] py-3.5 px-4 rounded-xl flex items-center justify-center gap-2 font-bold text-sm cursor-pointer"
                 >
                     Get Free Quote <ArrowRight size={16} />
