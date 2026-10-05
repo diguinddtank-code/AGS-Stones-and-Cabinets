@@ -27,7 +27,8 @@ import {
   Send,
   ChevronDown,
   User,
-  Mail
+  Mail,
+  MessageSquare
 } from 'lucide-react';
 import type { ServiceDetail } from '@/lib/servicesData';
 
@@ -190,8 +191,8 @@ export default function ServiceDynamicContent({ service, cityOverride }: { servi
         name: '',
         phone: '',
         zip: '',
-        material: 'Quartz',
-        scope: service.title.toLowerCase().includes('cabinet') ? 'Custom Cabinets' : 'Kitchen Countertops',
+        material: 'Kitchen',
+        scope: service.title.toLowerCase().includes('cabinet') ? 'Custom Cabinets' : 'Countertops + Cabinets',
         email: '',
         notes: ''
     });
@@ -227,6 +228,10 @@ export default function ServiceDynamicContent({ service, cityOverride }: { servi
         }
         if (!formData.zip.trim()) {
             setValidationError('Please enter your Zip code.');
+            return;
+        }
+        if (!formData.email.trim() || !formData.email.includes('@')) {
+            setValidationError('Please enter a valid email address.');
             return;
         }
 
@@ -571,8 +576,8 @@ export default function ServiceDynamicContent({ service, cityOverride }: { servi
                                                     name: '',
                                                     phone: '',
                                                     zip: '',
-                                                    material: 'Quartz',
-                                                    scope: 'Kitchen Countertops',
+                                                    material: 'Kitchen',
+                                                    scope: 'Countertops + Cabinets',
                                                     email: '',
                                                     notes: ''
                                                 });
@@ -645,19 +650,18 @@ export default function ServiceDynamicContent({ service, cityOverride }: { servi
                                             </div>
                                         </div>
 
-                                        {/* Stone Material & Scope in 2 Columns */}
+                                        {/* Room/Space & Project Scope in 2 Columns */}
                                         <div className="grid grid-cols-2 gap-2">
                                             <div className="relative">
                                                 <select
                                                     value={formData.material}
                                                     onChange={(e) => setFormData({ ...formData, material: e.target.value })}
-                                                    className="w-full bg-gray-50 border border-gray-200 focus:border-secondary rounded-xl pl-2.5 pr-6 py-2 lg:py-2.5 text-xs sm:text-sm text-gray-900 font-semibold focus:ring-2 focus:ring-secondary/20 outline-none transition-all appearance-none cursor-pointer"
+                                                    className="w-full bg-gray-50 border border-gray-200 focus:border-secondary rounded-xl pl-2.5 pr-6 py-2 lg:py-2.5 text-xs sm:text-sm text-gray-900 font-semibold focus:ring-2 focus:ring-secondary/20 outline-none transition-all appearance-none cursor-pointer truncate"
                                                 >
-                                                    <option value="Quartz">Quartz</option>
-                                                    <option value="Granite">Granite</option>
-                                                    <option value="Quartzite">Quartzite</option>
-                                                    <option value="Marble">Marble</option>
-                                                    <option value="Not Sure">Not Sure</option>
+                                                    <option value="Kitchen">Kitchen</option>
+                                                    <option value="Bathroom">Bathroom</option>
+                                                    <option value="Outdoor Kitchen">Outdoor Kitchen</option>
+                                                    <option value="Other">Other</option>
                                                 </select>
                                                 <ChevronDown className="absolute right-2 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-gray-500 pointer-events-none stroke-[2]" />
                                             </div>
@@ -665,28 +669,43 @@ export default function ServiceDynamicContent({ service, cityOverride }: { servi
                                                 <select
                                                     value={formData.scope}
                                                     onChange={(e) => setFormData({ ...formData, scope: e.target.value })}
-                                                    className="w-full bg-gray-50 border border-gray-200 focus:border-secondary rounded-xl pl-2.5 pr-6 py-2 lg:py-2.5 text-xs sm:text-sm text-gray-900 font-semibold focus:ring-2 focus:ring-secondary/20 outline-none transition-all appearance-none cursor-pointer"
+                                                    className="w-full bg-gray-50 border border-gray-200 focus:border-secondary rounded-xl pl-2.5 pr-6 py-2 lg:py-2.5 text-xs sm:text-sm text-gray-900 font-semibold focus:ring-2 focus:ring-secondary/20 outline-none transition-all appearance-none cursor-pointer truncate"
                                                 >
-                                                    <option value="Kitchen Countertops">Countertops</option>
-                                                    <option value="Bathroom Vanity">Bathroom Vanity</option>
-                                                    <option value="Full Kitchen Remodel">Kitchen + Cabinets</option>
-                                                    <option value="Outdoor Kitchen">Outdoor BBQ</option>
-                                                    <option value="Commercial / Other">Commercial / Other</option>
+                                                    <option value="Countertops Only">Countertops Only</option>
+                                                    <option value="Countertops + Cabinets">Countertops + Cabinets</option>
+                                                    <option value="Custom Cabinets">Custom Cabinets</option>
+                                                    <option value="Full Remodel">Full Remodel</option>
+                                                    <option value="Other">Other</option>
                                                 </select>
                                                 <ChevronDown className="absolute right-2 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-gray-500 pointer-events-none stroke-[2]" />
                                             </div>
                                         </div>
 
-                                        {/* Email (Optional) with Mail Icon */}
+                                        {/* Email (Required *) with Mail Icon */}
                                         <div className="relative group">
-                                            <div className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 group-focus-within:text-secondary transition-colors">
+                                            <div className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 group-focus-within:text-secondary transition-colors pointer-events-none">
                                                 <Mail size={15} />
                                             </div>
                                             <input 
                                                 type="email"
+                                                required
                                                 value={formData.email}
                                                 onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                                                placeholder="Email Address (optional for quote)"
+                                                placeholder="Email Address *"
+                                                className="w-full bg-gray-50 border border-gray-200 rounded-xl pl-9 pr-3 py-2 lg:py-2.5 text-xs sm:text-sm text-gray-900 placeholder:text-gray-400 font-medium focus:border-secondary focus:ring-2 focus:ring-secondary/20 outline-none transition-all"
+                                            />
+                                        </div>
+
+                                        {/* Notes / Observation (Optional) */}
+                                        <div className="relative group">
+                                            <div className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 group-focus-within:text-secondary transition-colors pointer-events-none">
+                                                <MessageSquare size={15} />
+                                            </div>
+                                            <input 
+                                                type="text"
+                                                value={formData.notes}
+                                                onChange={(e) => setFormData({ ...formData, notes: e.target.value })}
+                                                placeholder="Project Notes / Details (Optional)"
                                                 className="w-full bg-gray-50 border border-gray-200 rounded-xl pl-9 pr-3 py-2 lg:py-2.5 text-xs sm:text-sm text-gray-900 placeholder:text-gray-400 font-medium focus:border-secondary focus:ring-2 focus:ring-secondary/20 outline-none transition-all"
                                             />
                                         </div>

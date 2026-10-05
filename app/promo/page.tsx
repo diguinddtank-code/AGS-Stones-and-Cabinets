@@ -1,55 +1,63 @@
 'use client';
 
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import Image from 'next/image';
-import {
-  Phone,
+import Link from 'next/link';
+import { motion, useScroll, useTransform, useMotionValueEvent, AnimatePresence } from 'framer-motion';
+import { 
+  Check, 
+  Calendar, 
+  Phone, 
+  ArrowRight, 
+  ShieldCheck, 
+  Star, 
+  PenTool, 
+  Hammer, 
+  Truck, 
+  HeartHandshake, 
+  MapPin,
+  Lock,
   CheckCircle2,
-  Star,
-  ArrowRight,
-  ArrowLeft,
-  ShieldCheck,
+  Loader2,
+  Sparkles,
   Clock,
-  PenTool,
+  ChevronDown,
+  User,
+  Mail,
+  MessageSquare,
   X,
   Layers,
-  Box,
-  ChefHat,
-  Bath,
-  Flame,
-  Calendar,
-  MapPin,
-  Check,
-  Lock,
-  User
+  Box
 } from 'lucide-react';
-import { motion, AnimatePresence, useScroll, useMotionValueEvent } from 'framer-motion';
-import Header from '../../components/Header';
-import Footer from '../../components/Footer';
-import Testimonials from '../../components/Testimonials';
-import BeforeAfter from '../../components/BeforeAfter';
-import PromoRealWork from '../../components/PromoRealWork';
-import { GoogleGLogo, YelpLogo, ThumbtackLogo, NextdoorLogo } from '../../components/BrandLogos';
+import Header from '@/components/Header';
+import Footer from '@/components/Footer';
+import Testimonials from '@/components/Testimonials';
+import { GoogleGLogo, YelpLogo, ThumbtackLogo, NextdoorLogo } from '@/components/BrandLogos';
 
-const recentProjects = [
+const promoGallery = [
   {
-    src: '/images/projects/kitchen-navy-cabinets-white-quartz-waterfall-island-atlanta.jpg',
-    title: 'Waterfall Quartz Island',
+    src: '/images/projects/kitchen-white-cabinets-island-quartz-countertop-atlanta.jpg',
+    title: 'Custom White Shaker Cabinets & Quartz Island',
     location: 'Atlanta, GA'
   },
   {
     src: '/images/projects/kitchen-island-white-quartz-waterfall-edge-atlanta.jpg',
-    title: 'Calacatta Quartz Island',
+    title: 'Calacatta Quartz Island Remodel',
     location: 'Alpharetta, GA'
   },
   {
+    src: '/images/projects/kitchen-navy-cabinets-white-quartz-waterfall-island-atlanta.jpg',
+    title: 'Waterfall Quartz Island & Navy Cabinets',
+    location: 'Buckhead, GA'
+  },
+  {
     src: '/images/projects/kitchen-white-cabinets-dark-hardwood-floor-full-view-atlanta.jpg',
-    title: 'Classic White Shaker Kitchen',
+    title: 'Classic White Shaker Kitchen & Island',
     location: 'Duluth, GA'
   },
   {
     src: '/images/projects/bathroom-navy-cabinets-white-quartz-double-vanity-atlanta.jpg',
-    title: 'Navy Double Vanity',
+    title: 'Navy Double Vanity & Quartz Top',
     location: 'Johns Creek, GA'
   },
   {
@@ -59,12 +67,12 @@ const recentProjects = [
   },
   {
     src: '/images/projects/kitchen-vaulted-ceiling-wood-beams-quartz-island-atlanta.jpg',
-    title: 'Vaulted Ceiling Remodel',
+    title: 'Vaulted Ceiling Remodel with Custom Cabinets',
     location: 'Sandy Springs, GA'
   },
   {
     src: '/images/projects/cabinets-wet-bar-marble-backsplash-wine-storage-atlanta.jpg',
-    title: 'Wet Bar & Wine Storage',
+    title: 'Custom Wet Bar & Wine Storage',
     location: 'Buckhead, GA'
   },
   {
@@ -74,76 +82,74 @@ const recentProjects = [
   },
   {
     src: '/images/projects/kitchen-white-cabinets-island-open-concept-living-room-atlanta.jpg',
-    title: 'Open Concept Kitchen & Island',
+    title: 'Open Concept Kitchen & Island Setup',
     location: 'Milton, GA'
-  },
-  {
-    src: '/images/projects/kitchen-gas-cooktop-stainless-hood-quartz-backsplash-atlanta.jpg',
-    title: 'Quartz Backsplash & Cooktop',
-    location: 'Dunwoody, GA'
-  },
-  {
-    src: '/images/projects/bathroom-charcoal-marble-shower-rainfall-head-atlanta.jpg',
-    title: 'Charcoal Marble Shower',
-    location: 'Cumming, GA'
-  },
-  {
-    src: '/images/projects/kitchen-oak-cabinets-double-wall-oven-gas-cooktop-atlanta.jpg',
-    title: 'Custom Oak Cabinetry & Wall Oven',
-    location: 'Norcross, GA'
   }
 ];
 
 export default function PromoPage() {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const heroRef = useRef<HTMLElement>(null);
+  const [selectedImage, setSelectedImage] = useState<string | null>(null);
+
+  // Quick Quote Form State (Identical to /services/countertops)
   const [formData, setFormData] = useState({
     name: '',
-    email: '',
     phone: '',
-    city: '',
-    project: 'Countertops',
-    message: ''
+    zip: '',
+    material: 'Kitchen',
+    scope: 'Countertops + Cabinets',
+    email: '',
+    notes: ''
   });
-
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
-  const [selectedImage, setSelectedImage] = useState<string | null>(null);
   const [validationError, setValidationError] = useState<string | null>(null);
-  const [showStickyBar, setShowStickyBar] = useState(false);
-  const { scrollY } = useScroll();
 
-  useMotionValueEvent(scrollY, "change", (latest) => {
-    if (typeof window !== 'undefined') {
-      setShowStickyBar(latest > 520);
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start start", "end end"]
+  });
+
+  const { scrollYProgress: heroProgress } = useScroll({
+    target: heroRef,
+    offset: ["start start", "end start"]
+  });
+
+  const yBackground = useTransform(heroProgress, [0, 1], ["0%", "30%"]);
+  const opacityHero = useTransform(heroProgress, [0, 0.8], [1, 0]);
+  const yHeroText = useTransform(heroProgress, [0, 1], ["0%", "40%"]);
+  const scaleImage = useTransform(scrollYProgress, [0, 0.5], [1, 1.1]);
+
+  const { scrollY } = useScroll();
+  const [showMobileSticky, setShowMobileSticky] = useState(false);
+
+  useMotionValueEvent(scrollY, "change", () => {
+    if (typeof window === "undefined") return;
+    const formEl = document.getElementById("estimate-form");
+    if (formEl) {
+      const rect = formEl.getBoundingClientRect();
+      setShowMobileSticky(rect.bottom < 40);
+    } else {
+      setShowMobileSticky(window.scrollY > 900);
     }
   });
 
-  useEffect(() => {
-    // Safely fire PageView and ViewContent explicitly for this promo route on mount
-    try {
-      if (typeof window !== 'undefined') {
-        const fireMetaEvents = () => {
-          if ((window as any).fbq) {
-            (window as any).fbq('track', 'PageView');
-            (window as any).fbq('track', 'ViewContent', {
-              content_name: 'Promo Turnkey Estimator',
-              content_category: 'Countertops & Cabinets Installation'
-            });
-          }
-        };
-
-        if ((window as any).fbq) {
-          fireMetaEvents();
-        } else {
-          const timer = setTimeout(fireMetaEvents, 1000);
-          return () => clearTimeout(timer);
-        }
-      }
-    } catch (e) {
-      console.warn("Meta pixel error:", e);
+  const handlePhoneInput = (e: React.ChangeEvent<HTMLInputElement>) => {
+    let val = e.target.value.replace(/\D/g, '');
+    if (val.length > 10) val = val.slice(0, 10);
+    let formatted = val;
+    if (val.length > 6) {
+      formatted = `(${val.slice(0, 3)}) ${val.slice(3, 6)}-${val.slice(6)}`;
+    } else if (val.length > 3) {
+      formatted = `(${val.slice(0, 3)}) ${val.slice(3)}`;
+    } else if (val.length > 0) {
+      formatted = `(${val}`;
     }
-  }, []);
+    setFormData(prev => ({ ...prev, phone: formatted }));
+  };
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleFormSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setValidationError(null);
 
@@ -155,32 +161,41 @@ export default function PromoPage() {
       setValidationError('Please enter a valid phone number for quote delivery.');
       return;
     }
-    if (!formData.city.trim()) {
+    if (!formData.zip.trim()) {
       setValidationError('Please enter your Zip code.');
+      return;
+    }
+    if (!formData.email.trim() || !formData.email.includes('@')) {
+      setValidationError('Please enter a valid email address.');
       return;
     }
 
     setIsSubmitting(true);
-
     const submitEventId = typeof crypto !== 'undefined' && crypto.randomUUID ? crypto.randomUUID() : `lead_${Date.now()}`;
 
     const fullMessage = [
-      `Project: ${formData.project}`,
-      `Zip Code: ${formData.city}`,
-      formData.message ? `Notes: ${formData.message}` : ''
+      `Service: Countertops & Custom Cabinets`,
+      `Location: Atlanta Area`,
+      `Material/Stone: ${formData.material}`,
+      `Project Scope: ${formData.scope}`,
+      `Zip Code: ${formData.zip}`,
+      formData.notes ? `Notes: ${formData.notes}` : ''
     ].filter(Boolean).join(' | ');
 
     const submitData = {
       access_key: "8120d187-d8e4-4348-83a8-b0248042becb",
-      _subject: `New Lead: ${formData.project} - Free Estimate Request`,
+      _subject: `New Lead: Countertops & Custom Cabinets (${formData.material}) - Atlanta Area`,
       _template: 'table',
       'Event ID': submitEventId,
       Name: formData.name,
-      Email: formData.email || 'N/A',
       Phone: formData.phone,
-      ZipCode: formData.city,
-      Project: formData.project,
-      Notes: formData.message || 'None',
+      ZipCode: formData.zip,
+      Email: formData.email || 'N/A',
+      Service: 'Countertops & Custom Cabinets',
+      Material: formData.material,
+      ProjectScope: formData.scope,
+      City: 'Atlanta Area',
+      Notes: formData.notes || 'None',
       Message: fullMessage
     };
 
@@ -188,8 +203,8 @@ export default function PromoPage() {
       const res = await fetch("https://api.web3forms.com/submit", {
         method: "POST",
         headers: {
-            'Content-Type': 'application/json',
-            'Accept': 'application/json'
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
         },
         body: JSON.stringify(submitData)
       });
@@ -206,17 +221,19 @@ export default function PromoPage() {
               ph: formData.phone.replace(/\D/g, ''),
               fn: firstName.toLowerCase(),
               ln: lastName.toLowerCase(),
-              zp: formData.city.trim(),
+              zp: formData.zip.trim(),
               country: 'us'
             });
             (window as any).fbq('track', 'Lead', {
-              content_name: formData.project,
-              content_category: 'Turnkey Installation',
+              content_name: `Countertops & Custom Cabinets - ${formData.material}`,
+              content_category: 'Promo Landing Page',
               value: 0,
               currency: 'USD'
             }, { eventID: submitEventId });
           }
-          if ((window as any).gtag) (window as any).gtag('event', 'conversion', { 'send_to': 'AW-16885125181/R1mQCP6Dm5McEL2guvM-' });
+          if ((window as any).gtag) {
+            (window as any).gtag('event', 'conversion', { 'send_to': 'AW-16885125181/R1mQCP6Dm5McEL2guvM-' });
+          }
         }
 
         try {
@@ -229,829 +246,900 @@ export default function PromoPage() {
 
         setIsSuccess(true);
       } else {
-        setValidationError('We could not send your request. Please call us directly at (404) 952-4534.');
+        setValidationError('Could not submit request. Please call us at (404) 952-4534.');
       }
-    } catch (error) {
-      console.error(error);
+    } catch (err) {
+      console.error(err);
       setValidationError('Network error. Please try again or call us at (404) 952-4534.');
     } finally {
       setIsSubmitting(false);
     }
   };
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
-    const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
-  };
-
-  const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    let val = e.target.value.replace(/\D/g, '');
-    if (val.length > 10) val = val.slice(0, 10);
-    let formatted = val;
-    if (val.length > 6) {
-      formatted = `(${val.slice(0, 3)}) ${val.slice(3, 6)}-${val.slice(6)}`;
-    } else if (val.length > 3) {
-      formatted = `(${val.slice(0, 3)}) ${val.slice(3)}`;
-    } else if (val.length > 0) {
-      formatted = `(${val}`;
+  const staggerContainer = {
+    hidden: { opacity: 0 },
+    show: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.15
+      }
     }
-    setFormData(prev => ({ ...prev, phone: formatted }));
   };
 
-  const handleReset = () => {
-    setIsSuccess(false);
-    setValidationError(null);
-    setFormData({
-      name: '',
-      email: '',
-      phone: '',
-      city: '',
-      project: 'Countertops',
-      message: ''
-    });
-  };
-
-  const scrollToForm = (e: React.MouseEvent<HTMLAnchorElement>) => {
-    e.preventDefault();
-    const formSection = document.getElementById('estimate-form');
-    if (formSection) {
-      formSection.scrollIntoView({ behavior: 'smooth' });
-    }
+  const fadeInUp = {
+    hidden: { opacity: 0, y: 40 },
+    show: { opacity: 1, y: 0, transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] } }
   };
 
   return (
-    <div className="min-h-screen flex flex-col font-sans bg-white">
-      <Header lightNav />
+    <div ref={containerRef} className="font-sans text-gray-900 bg-[#0a0a0a] min-h-screen">
+      <Header />
 
-      <main className="flex-grow">
-        {/* 1. Hero Section - Refined 21st.dev / Awwwards Editorial Luxury */}
-        <section className="relative px-4 sm:px-6 pt-32 sm:pt-36 lg:pt-36 pb-16 sm:pb-20 lg:pb-24 bg-[#FAF8F5] border-b border-stone-200/80 overflow-hidden">
-          {/* Ambient luxury light aura */}
-          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-[480px] bg-[radial-gradient(ellipse_80%_60%_at_50%_-10%,rgba(217,180,115,0.16),transparent_70%)] pointer-events-none" />
+      <main className="relative bg-[#0a0a0a] text-white overflow-hidden selection:bg-secondary/30">
+        {/* Smooth Scroll Progress Bar */}
+        <motion.div 
+          className="fixed top-0 left-0 right-0 h-1 bg-secondary z-50 origin-left"
+          style={{ scaleX: scrollYProgress }}
+        />
 
-          <div className="container mx-auto max-w-7xl relative z-10">
-            {/* Desktop: 2-column layout. Mobile: clean mobile-first stack */}
-            <div className="lg:grid lg:grid-cols-12 lg:gap-12 xl:gap-16 lg:items-center">
+        {/* 1. Immersive Hero Section - Perfectly Framed Dark Mode Aesthetic */}
+        <section ref={heroRef} className="relative min-h-0 lg:min-h-screen pt-36 pb-16 sm:pt-40 sm:pb-18 lg:py-14 xl:py-20 flex flex-col justify-start lg:justify-center items-center overflow-hidden">
+          <motion.div 
+            style={{ y: yBackground }}
+            className="absolute inset-0 w-full h-[130%] -top-[15%] z-0 pointer-events-none"
+          >
+            <Image 
+              src="https://kitchenandbathshop.com/wp-content/uploads/2020/11/5d7ff4ab763f7-scaled.jpg"
+              alt="Custom Countertops & Cabinets in Atlanta, GA"
+              fill
+              className="object-cover opacity-60 brightness-90 contrast-105"
+              priority
+              sizes="100vw"
+            />
+            <video
+              className="absolute inset-0 w-full h-full object-cover opacity-65"
+              autoPlay
+              muted
+              loop
+              playsInline
+              preload="none"
+              poster="https://kitchenandbathshop.com/wp-content/uploads/2020/11/5d7ff4ab763f7-scaled.jpg"
+            >
+              <source src="https://storage.googleapis.com/msgsndr/yRboz8P4zFeLUF6bAk8i/media/680a5a6f1eba4b32d1925215.mp4" type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
+            <div className="absolute inset-0 bg-gradient-to-r from-black/75 via-black/35 to-transparent pointer-events-none"></div>
+            <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-black/70 pointer-events-none"></div>
+          </motion.div>
 
-              {/* LEFT SIDE (Desktop: Col 1-5, Mobile: Steps 1, 2, 3) */}
-              <div className="lg:col-span-5 xl:col-span-5 text-left">
-                {/* 1. Headline - Kitchen & Bath */}
-                <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-[3.25rem] xl:text-[3.65rem] font-serif font-normal text-stone-900 leading-[1.1] tracking-tight mb-3 sm:mb-4 pt-1">
-                  YOUR KITCHEN &amp; BATH.<br />
-                  <span className="font-light italic text-[#9E7D47]">DONE RIGHT.</span>
-                </h1>
+          <div className="container relative z-10 px-4 sm:px-8 lg:px-10 xl:px-14 mx-auto max-w-7xl xl:max-w-[88rem]">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-8 xl:gap-14 items-center">
+              
+              {/* LEFT COLUMN: Monumental Headline & Authority */}
+              <motion.div 
+                style={{ y: yHeroText }}
+                variants={staggerContainer}
+                initial="hidden"
+                animate="show"
+                className="lg:col-span-7 text-center lg:text-left pt-1 sm:pt-2 lg:pt-0 px-1 sm:px-0"
+              >
+                {/* Geolocation Tag */}
+                <motion.div variants={fadeInUp} className="inline-flex items-center gap-1.5 py-1 px-3 md:px-3.5 rounded-full border border-white/30 bg-black/40 backdrop-blur-md text-[10px] md:text-xs uppercase tracking-widest mb-2.5 lg:mb-3 font-medium text-white shadow-sm mx-auto lg:mx-0">
+                  <MapPin size={12} className="text-secondary fill-secondary" />
+                  <span>Serving Atlanta, Duluth &amp; Metro Atlanta</span>
+                </motion.div>
+                
+                {/* Huge Monumental H1 */}
+                <motion.h1 
+                  variants={fadeInUp} 
+                  className="text-3xl sm:text-4xl lg:text-4xl xl:text-5xl 2xl:text-6xl font-serif font-bold mb-2.5 lg:mb-3 drop-shadow-2xl leading-[1.12] tracking-tight text-white max-w-3xl mx-auto lg:mx-0 shadow-black/20"
+                >
+                  Custom <br className="hidden sm:inline" />
+                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#eab308] via-[#fde047] to-[#eab308] drop-shadow-md">
+                    Countertops &amp; Custom Cabinets
+                  </span>
+                  <br />
+                  in Atlanta Area
+                </motion.h1>
 
-                {/* 2. Subheading & Supporting copy */}
-                <p className="text-lg sm:text-xl font-medium text-stone-900 mb-3 tracking-tight">
-                  Beautiful spaces. Built around the way you live.
-                </p>
-                <p className="text-sm sm:text-base text-stone-600 font-light leading-relaxed mb-6 lg:mb-7 max-w-lg">
-                  From custom countertops and cabinetry to complete kitchen &amp; bath remodeling, our local team handles your project from design to fabrication and installation.
-                </p>
+                {/* Subtitle */}
+                <motion.p variants={fadeInUp} className="text-xs sm:text-sm lg:text-sm xl:text-base text-white/90 mb-3.5 lg:mb-4 max-w-xl mx-auto lg:mx-0 font-light leading-relaxed drop-shadow-md">
+                  Factory-direct stone fabrication &amp; custom cabinetry in Duluth. Save 20–30% with zero retail middlemen &amp; 5-day installation turnaround.
+                </motion.p>
 
-                {/* Unified Luxury Social Proof & Platform Trust Card */}
-                <div className="mb-6 p-3.5 sm:p-4 rounded-2xl bg-white border border-stone-200/90 shadow-sm w-full max-w-sm sm:max-w-md">
-                  <div className="flex items-center gap-3 pb-3 border-b border-stone-100">
-                    {/* Official Google G Logo Icon */}
-                    <GoogleGLogo />
-                    <div className="flex flex-col text-left">
-                      <div className="flex items-center gap-1.5 text-xs sm:text-sm font-semibold text-stone-900">
-                        <span className="text-amber-500 tracking-wider">★★★★★</span>
-                        <span>5.0 Google Rating</span>
-                      </div>
-                      <span className="text-[11px] sm:text-xs text-stone-500 font-normal">120+ Metro Atlanta Homeowners Served</span>
+                {/* Value Bullets (Desktop) */}
+                <motion.div variants={fadeInUp} className="hidden lg:flex flex-col gap-2 mb-4 lg:mb-5 text-white drop-shadow-md">
+                  <div className="flex items-center gap-2.5">
+                    <div className="bg-secondary/20 p-1 rounded-full backdrop-blur-sm border border-white/10 shrink-0">
+                      <CheckCircle2 className="text-secondary" size={15} />
                     </div>
+                    <span className="font-semibold text-xs xl:text-sm">Factory Direct Pricing (Save 20% to 30%)</span>
                   </div>
+                  <div className="flex items-center gap-2.5">
+                    <div className="bg-secondary/20 p-1 rounded-full backdrop-blur-sm border border-white/10 shrink-0">
+                      <CheckCircle2 className="text-secondary" size={15} />
+                    </div>
+                    <span className="font-semibold text-xs xl:text-sm">Fast 5-Day Turnaround from Digital Laser Measure</span>
+                  </div>
+                  <div className="flex items-center gap-2.5">
+                    <div className="bg-secondary/20 p-1 rounded-full backdrop-blur-sm border border-white/10 shrink-0">
+                      <CheckCircle2 className="text-secondary" size={15} />
+                    </div>
+                    <span className="font-semibold text-xs xl:text-sm">Free In-Home Laser Templating &amp; 3D Design Layout</span>
+                  </div>
+                </motion.div>
 
-                  {/* Razor-Sharp Brand Trust Logos: Yelp, Thumbtack, Nextdoor (Fully Responsive) */}
-                  <div className="flex items-center justify-between gap-1.5 sm:gap-3 pt-3 px-0.5">
+                {/* CTAs and Direct Click-to-Call */}
+                <motion.div variants={fadeInUp} className="flex flex-wrap items-center justify-center lg:justify-start gap-3 mb-3.5 lg:mb-4">
+                  <a 
+                    href="tel:4049524534"
+                    onClick={() => {
+                      if (typeof window !== 'undefined') {
+                        if ((window as any).gtag) (window as any).gtag('event', 'conversion', { 'send_to': 'AW-16885125181/R1mQCP6Dm5McEL2guvM-' });
+                        if ((window as any).fbq) (window as any).fbq('track', 'Contact');
+                      }
+                    }}
+                    className="w-full sm:w-auto bg-black/40 hover:bg-black/60 backdrop-blur-md border border-white/30 text-white font-bold py-2.5 px-4 rounded-xl flex items-center justify-center gap-2 text-xs xl:text-sm transition-all shadow-md group"
+                  >
+                    <span className="w-6 h-6 rounded-full bg-secondary flex items-center justify-center text-white shrink-0 group-hover:scale-110 transition-transform">
+                      <Phone size={13} />
+                    </span>
+                    <span>Prefer to talk? <strong className="text-secondary underline">(404) 952-4534</strong></span>
+                  </a>
+
+                  <button
+                    type="button"
+                    onClick={() => {
+                      const formEl = document.getElementById('estimate-form');
+                      if (formEl) formEl.scrollIntoView({ behavior: 'smooth' });
+                    }}
+                    className="lg:hidden w-full sm:w-auto bg-secondary hover:bg-yellow-600 text-white font-bold py-2.5 px-5 rounded-xl flex items-center justify-center gap-2 text-xs shadow-lg"
+                  >
+                    Get Free Estimate <ArrowRight size={15} />
+                  </button>
+                </motion.div>
+
+                {/* Official Google 5.0 Star Reviews Badge & Trust Platforms */}
+                <motion.div variants={fadeInUp} className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-3 pt-1">
+                  <a 
+                    href="https://www.google.com/search?q=AGS+Stones+and+Cabinets"
+                    target="_blank"
+                    rel="noopener noreferrer" 
+                    className="inline-flex items-center gap-2.5 bg-black/40 hover:bg-black/50 backdrop-blur-md border border-white/15 rounded-full pr-4 pl-1.5 py-1 transition-all group hover:scale-[1.02] cursor-pointer"
+                  >
+                    <div className="w-7 h-7 bg-white rounded-full flex items-center justify-center shadow-sm shrink-0">
+                      <Image 
+                        src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg" 
+                        alt="Google Review" 
+                        className="w-4 h-4" 
+                        width={16} 
+                        height={16} 
+                      />
+                    </div>
+                    <div className="flex flex-col justify-center text-left">
+                      <div className="flex items-center gap-1">
+                        <span className="font-bold text-white text-xs leading-none">5.0</span>
+                        <div className="flex gap-0.5">
+                          {[1,2,3,4,5].map(i => (
+                            <Star key={i} size={11} className="fill-[#FBBC05] text-[#FBBC05]" />
+                          ))}
+                        </div>
+                      </div>
+                      <p className="text-[9px] font-medium text-gray-300 leading-none mt-0.5 group-hover:text-white transition-colors">
+                        120+ Excellent Reviews
+                      </p>
+                    </div>
+                  </a>
+
+                  {/* Clean Trust Logos: Yelp, Thumbtack, Nextdoor */}
+                  <div className="flex items-center gap-3 bg-black/40 backdrop-blur-md border border-white/15 rounded-full px-3.5 py-1.5">
                     <YelpLogo />
                     <ThumbtackLogo />
                     <NextdoorLogo />
                   </div>
-                </div>
+                </motion.div>
+              </motion.div>
 
-                {/* 4. Compact Horizontal Work Strip ("Recent Projects" - Tamanhozinho que estava com as melhores fotos) */}
-                <div className="lg:hidden my-5">
-                  <div className="flex items-center justify-between mb-2.5 px-0.5">
-                    <span className="text-[11px] font-semibold text-stone-700 uppercase tracking-wider flex items-center gap-1.5">
-                      <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-                      <span>Recent Projects</span>
-                    </span>
-                    <span className="text-[10px] text-stone-500 font-medium">Swipe to explore →</span>
-                  </div>
-
-                  <div className="-mx-4 px-4 flex gap-2.5 overflow-x-auto snap-x snap-mandatory py-1 scrollbar-none">
-                    {recentProjects.map((project, idx) => (
-                      <div
-                        key={idx}
-                        onClick={() => setSelectedImage(project.src)}
-                        className="w-[190px] h-[120px] shrink-0 rounded-2xl overflow-hidden relative snap-start shadow-xs border border-stone-200/90 group cursor-pointer hover:border-[#9E7D47]/80 hover:shadow-md transition-all active:scale-95"
-                      >
-                        <Image
-                          src={project.src}
-                          alt={project.title}
-                          fill
-                          sizes="190px"
-                          className="object-cover transition-transform duration-500 group-hover:scale-110"
-                        />
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent group-hover:via-black/30 transition-colors" />
-                        
-                        {/* Zoom hint indicator on hover/tap */}
-                        <div className="absolute top-2 right-2 w-6 h-6 rounded-full bg-black/40 backdrop-blur-xs flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
-                          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                            <circle cx="11" cy="11" r="8"/>
-                            <line x1="21" y1="21" x2="16.65" y2="16.65"/>
-                            <line x1="11" y1="8" x2="11" y2="14"/>
-                            <line x1="8" y1="11" x2="14" y2="11"/>
-                          </svg>
-                        </div>
-
-                        <div className="absolute bottom-2 left-2.5 right-2 text-left">
-                          <span className="text-[9px] uppercase tracking-wider text-[#D9B473] font-semibold block leading-tight">
-                            {project.location}
-                          </span>
-                          <p className="text-[11px] font-medium text-white truncate leading-snug">
-                            {project.title}
-                          </p>
-                        </div>
-                      </div>
-                    ))}
+              {/* RIGHT COLUMN: Identical Quick Quote Card (from /services/countertops) */}
+              <motion.div 
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.2 }}
+                className="lg:col-span-5 w-full relative"
+              >
+                {/* Floating Guarantee Badge */}
+                <div className="hidden lg:flex absolute -top-3 -right-2 z-20 bg-white text-primary py-1.5 px-3 rounded-xl shadow-xl items-center gap-2 border border-gray-100">
+                  <ShieldCheck size={18} className="text-secondary" />
+                  <div>
+                    <p className="text-[8px] font-bold uppercase tracking-wider text-gray-400 leading-tight">Guaranteed</p>
+                    <p className="font-bold text-[11px] text-primary leading-tight">Best Price in GA</p>
                   </div>
                 </div>
 
-              </div>
-
-              {/* RIGHT SIDE (Desktop: Col 6-12, ~50–55% visual area with real kitchen photo + floating form card) */}
-              <div className="lg:col-span-7 xl:col-span-7 w-full">
-                <div className="relative lg:rounded-3xl lg:overflow-hidden lg:shadow-[0_25px_70px_-15px_rgba(28,24,20,0.12)] lg:border lg:border-stone-200/80 lg:min-h-[660px] flex items-center lg:justify-end lg:p-8 xl:p-10">
-                  
-                  {/* Desktop Background Kitchen Photograph */}
-                  <div className="hidden lg:block absolute inset-0 z-0">
-                    <Image
-                      src="/images/projects/kitchen-navy-cabinets-white-quartz-waterfall-island-atlanta.jpg"
-                      alt="Kitchen & Bath Remodel in Atlanta, GA"
-                      fill
-                      sizes="(min-width: 1024px) 55vw, 100vw"
-                      className="object-cover object-center pointer-events-none"
-                      priority
-                    />
-                    {/* Gentle warm vignette overlay for clean legibility */}
-                    <div className="absolute inset-0 bg-gradient-to-r from-stone-900/10 via-transparent to-stone-900/25 pointer-events-none" />
-
-                    {/* Floating Awwwards Location Chip */}
-                    <div className="absolute bottom-6 left-6 z-10 flex items-center gap-2.5 bg-white/95 backdrop-blur-md border border-stone-200/90 px-4 py-2 rounded-2xl shadow-lg pointer-events-none">
-                      <div className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></div>
-                      <div className="text-left">
-                        <p className="text-[11px] font-bold text-stone-900 leading-tight">Atlanta, GA</p>
-                        <p className="text-[10px] text-stone-500 font-medium">Kitchen & Bath Remodel</p>
+                <div 
+                  id="estimate-form"
+                  className="w-full max-w-[390px] xl:max-w-[410px] mx-auto lg:ml-auto bg-white/95 backdrop-blur-xl rounded-2xl shadow-[0_20px_50px_rgba(0,0,0,0.5)] p-4 sm:p-5 xl:p-6 border border-white/20 text-gray-900 relative overflow-hidden"
+                >
+                  {isSuccess ? (
+                    /* Success State View */
+                    <div className="py-6 text-center space-y-3.5 animate-in fade-in zoom-in duration-300">
+                      <div className="w-14 h-14 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center mx-auto shadow-inner">
+                        <CheckCircle2 size={32} />
                       </div>
-                    </div>
-                  </div>
-
-                  {/* Prominent High-Converting Estimate Form Card (High Contrast, Bold Crown & Deep Glow) */}
-                  <div
-                    id="estimate-form"
-                    className="relative z-10 w-full lg:max-w-[440px] bg-white rounded-3xl p-6 sm:p-8 shadow-[0_25px_60px_-12px_rgba(28,24,20,0.22),0_0_0_1px_rgba(217,180,115,0.45)] border-t-4 border-t-[#C1A168] border-x border-b border-stone-200/90 text-stone-900"
-                  >
-                    {isSuccess ? (
-                      /* Clean, Low-Friction Confirmation State */
-                      <motion.div
-                        initial={{ opacity: 0, scale: 0.98 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                        transition={{ duration: 0.25 }}
-                        className="text-center py-4"
-                      >
-                        <div className="w-12 h-12 rounded-full bg-[#FAF7F0] text-[#8F703E] border border-[#EAE4D6] flex items-center justify-center mx-auto mb-3">
-                          <Check size={22} className="stroke-[2.5]" />
-                        </div>
-
-                        <h3 className="text-xl sm:text-2xl font-serif text-[#1A1D20] mb-2 leading-snug">
-                          Thank You, {formData.name}
-                        </h3>
-
-                        <p className="text-sm text-[#555A60] font-light leading-relaxed mb-6">
-                          We received your request for <strong className="font-medium text-[#1A1D20]">{formData.project}</strong>. Our local Atlanta team will prepare your estimate and be in touch shortly.
-                        </p>
-
-                        <a
+                      <span className="inline-block px-3 py-1 rounded-full bg-emerald-50 text-emerald-700 text-xs font-bold uppercase tracking-wider">
+                        Request Received!
+                      </span>
+                      <h3 className="text-xl font-serif font-bold text-gray-900 leading-snug">
+                        You&apos;re On The Schedule!
+                      </h3>
+                      <p className="text-xs text-gray-600 font-light leading-relaxed max-w-xs mx-auto">
+                        Thank you, <strong className="text-gray-900">{formData.name}</strong>. Our Duluth team received your project details and will contact you shortly with direct factory pricing.
+                      </p>
+                      <div className="pt-1">
+                        <a 
                           href="tel:4049524534"
-                          className="w-full inline-block bg-[#1A1D20] hover:bg-[#8F703E] text-white font-medium py-3.5 px-6 rounded-xl transition-colors text-xs sm:text-sm uppercase tracking-wider text-center"
+                          className="w-full bg-secondary hover:bg-yellow-600 text-white py-3 px-5 rounded-xl font-bold text-xs uppercase tracking-wider flex items-center justify-center gap-2 shadow-lg transition-all"
                         >
-                          Call Us Directly: (404) 952-4534
+                          <Phone size={15} /> Call (404) 952-4534 Now
                         </a>
-
-                        <button
-                          type="button"
-                          onClick={handleReset}
-                          className="text-xs text-[#7B828A] hover:text-[#1A1D20] font-medium mt-4 block mx-auto cursor-pointer"
-                        >
-                          ← Submit another request
-                        </button>
-                      </motion.div>
-                    ) : (
-                      /* The High-Converting Low-Friction Form */
-                      <form onSubmit={handleSubmit} className="space-y-4">
-                        {/* Heading & Subheading */}
-                        <div>
-                          <h2 className="text-xl sm:text-2xl font-serif font-semibold text-stone-900 leading-snug tracking-tight uppercase">
-                            LET’S TALK ABOUT YOUR PROJECT
-                          </h2>
-                          <p className="text-xs sm:text-sm text-stone-600 font-light mt-1 leading-relaxed">
-                            Tell us a little about your remodel. We’ll take it from there.
-                          </p>
+                      </div>
+                      <button
+                        type="button"
+                        onClick={() => {
+                          setIsSuccess(false);
+                          setFormData({
+                            name: '',
+                            phone: '',
+                            zip: '',
+                            material: 'Kitchen',
+                            scope: 'Countertops + Cabinets',
+                            email: '',
+                            notes: ''
+                          });
+                        }}
+                        className="text-xs text-gray-400 hover:text-primary font-medium underline block mx-auto pt-1 cursor-pointer"
+                      >
+                        Submit another inquiry
+                      </button>
+                    </div>
+                  ) : (
+                    /* Embedded Form View - Identical to Quick Quote */
+                    <form onSubmit={handleFormSubmit} className="space-y-2.5 lg:space-y-2.5 xl:space-y-3">
+                      <div className="mb-2 lg:mb-2.5">
+                        <div className="inline-block bg-secondary/10 text-secondary text-[9px] font-bold uppercase tracking-widest px-2 py-0.5 rounded-full mb-1">
+                          Fast Estimate
                         </div>
+                        <h3 className="text-xl xl:text-2xl font-serif font-bold text-primary leading-tight">Quick Quote</h3>
+                        <p className="text-gray-500 text-[11px]">Direct factory pricing in 60 seconds.</p>
+                      </div>
 
-                        {/* Error Notice */}
-                        {validationError && (
-                          <div className="bg-red-50 border border-red-200 text-red-700 text-xs px-3.5 py-2 rounded-xl">
-                            {validationError}
+                      {/* Validation Alert */}
+                      {validationError && (
+                        <div className="bg-red-50 border border-red-200 text-red-700 text-xs px-2.5 py-1.5 rounded-lg">
+                          <strong>Notice:</strong> {validationError}
+                        </div>
+                      )}
+
+                      {/* Name with User Icon */}
+                      <div className="relative group">
+                        <div className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 group-focus-within:text-secondary transition-colors pointer-events-none">
+                          <User size={15} />
+                        </div>
+                        <input 
+                          type="text"
+                          required
+                          value={formData.name}
+                          onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                          placeholder="Your Full Name *"
+                          className="w-full bg-gray-50 border border-gray-200 rounded-xl pl-9 pr-3 py-2 lg:py-2.5 text-xs sm:text-sm text-gray-900 placeholder:text-gray-400 font-medium focus:border-secondary focus:ring-2 focus:ring-secondary/20 outline-none transition-all"
+                        />
+                      </div>
+
+                      {/* Phone & Zip in 2 Columns */}
+                      <div className="grid grid-cols-2 gap-2">
+                        <div className="relative group">
+                          <div className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 group-focus-within:text-secondary transition-colors pointer-events-none">
+                            <Phone size={15} />
                           </div>
-                        )}
-
-                        {/* 1. Full Name */}
-                        <div>
-                          <label htmlFor="hero-name" className="block text-[11px] font-bold text-stone-800 uppercase tracking-wider mb-1">
-                            FULL NAME *
-                          </label>
-                          <input
-                            id="hero-name"
-                            type="text"
-                            name="name"
-                            value={formData.name}
-                            onChange={handleChange}
-                            placeholder="John Smith"
-                            className="w-full bg-stone-50/80 border border-stone-300 rounded-xl px-3.5 py-2.5 text-sm text-stone-900 placeholder:text-stone-400 focus:bg-white focus:border-[#9E7D47] focus:ring-2 focus:ring-[#9E7D47]/20 transition-all outline-none font-medium"
-                            required
-                          />
-                        </div>
-
-                        {/* 2. Phone Number */}
-                        <div>
-                          <label htmlFor="hero-phone" className="block text-[11px] font-bold text-stone-800 uppercase tracking-wider mb-1">
-                            PHONE NUMBER *
-                          </label>
-                          <input
-                            id="hero-phone"
+                          <input 
                             type="tel"
-                            name="phone"
-                            value={formData.phone}
-                            onChange={handlePhoneChange}
-                            placeholder="(404) 555-1234"
-                            className="w-full bg-stone-50/80 border border-stone-300 rounded-xl px-3.5 py-2.5 text-sm text-stone-900 placeholder:text-stone-400 focus:bg-white focus:border-[#9E7D47] focus:ring-2 focus:ring-[#9E7D47]/20 transition-all outline-none font-medium"
                             required
+                            value={formData.phone}
+                            onChange={handlePhoneInput}
+                            placeholder="Phone *"
+                            className="w-full bg-gray-50 border border-gray-200 rounded-xl pl-8 pr-2.5 py-2 lg:py-2.5 text-xs sm:text-sm text-gray-900 placeholder:text-gray-400 font-medium focus:border-secondary focus:ring-2 focus:ring-secondary/20 outline-none transition-all"
                           />
                         </div>
-
-                        {/* 3. ZIP Code & Email */}
-                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                          <div>
-                            <label htmlFor="hero-zip" className="block text-[11px] font-bold text-stone-800 uppercase tracking-wider mb-1">
-                              ZIP CODE *
-                            </label>
-                            <input
-                              id="hero-zip"
-                              type="text"
-                              name="city"
-                              value={formData.city}
-                              onChange={handleChange}
-                              placeholder="30097"
-                              className="w-full bg-stone-50/80 border border-stone-300 rounded-xl px-3.5 py-2.5 text-sm text-stone-900 placeholder:text-stone-400 focus:bg-white focus:border-[#9E7D47] focus:ring-2 focus:ring-[#9E7D47]/20 transition-all outline-none font-medium"
-                              required
-                            />
+                        <div className="relative group">
+                          <div className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 group-focus-within:text-secondary transition-colors pointer-events-none">
+                            <MapPin size={15} />
                           </div>
-
-                          <div>
-                            <label htmlFor="hero-email" className="block text-[11px] font-bold text-stone-800 uppercase tracking-wider mb-1">
-                              EMAIL
-                            </label>
-                            <input
-                              id="hero-email"
-                              type="email"
-                              name="email"
-                              value={formData.email}
-                              onChange={handleChange}
-                              placeholder="john.smith@gmail.com"
-                              className="w-full bg-stone-50/80 border border-stone-300 rounded-xl px-3.5 py-2.5 text-sm text-stone-900 placeholder:text-stone-400 focus:bg-white focus:border-[#9E7D47] focus:ring-2 focus:ring-[#9E7D47]/20 transition-all outline-none font-medium"
-                            />
-                          </div>
+                          <input 
+                            type="text"
+                            required
+                            value={formData.zip}
+                            onChange={(e) => setFormData({ ...formData, zip: e.target.value })}
+                            placeholder="Zip Code *"
+                            className="w-full bg-gray-50 border border-gray-200 rounded-xl pl-8 pr-2.5 py-2 lg:py-2.5 text-xs sm:text-sm text-gray-900 placeholder:text-gray-400 font-medium focus:border-secondary focus:ring-2 focus:ring-secondary/20 outline-none transition-all"
+                          />
                         </div>
+                      </div>
 
-                        {/* 4. What are you remodeling? (Comprehensive Project Options) */}
-                        <div>
-                          <label htmlFor="hero-project" className="block text-[11px] font-bold text-stone-800 uppercase tracking-wider mb-1.5">
-                            WHAT ARE YOU REMODELING? *
-                          </label>
-                          <div className="relative">
-                            <select
-                              id="hero-project"
-                              name="project"
-                              value={formData.project}
-                              onChange={handleChange}
-                              className="w-full bg-stone-50/80 border border-stone-300 rounded-xl px-3.5 py-2.5 text-sm text-stone-900 focus:bg-white focus:border-[#9E7D47] focus:ring-2 focus:ring-[#9E7D47]/20 transition-all outline-none appearance-none cursor-pointer pr-10 font-medium"
-                              required
-                            >
-                              <option value="Full Kitchen Remodel">Full Kitchen Remodel (Cabinets + Countertops)</option>
-                              <option value="Countertops Only">Kitchen Countertops Only (Quartz / Granite / Marble)</option>
-                              <option value="Custom Cabinets">Custom Kitchen Cabinets</option>
-                              <option value="Master Bathroom">Master Bathroom Remodel</option>
-                              <option value="Bathroom Vanity">Bathroom Vanity & Countertops</option>
-                              <option value="Full Kitchen & Bath">Full Kitchen & Bath Package</option>
-                              <option value="Other Project">Other Custom Stone / Remodel Project</option>
-                            </select>
-                            <div className="absolute right-3.5 top-1/2 -translate-y-1/2 pointer-events-none text-stone-500">
-                              <svg width="12" height="8" viewBox="0 0 12 8" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M1.5 1.75L6 6.25L10.5 1.75" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round"/>
-                              </svg>
-                            </div>
-                          </div>
-                        </div>
-
-                        {/* Primary CTA Button */}
-                        <div className="pt-2">
-                          <button
-                            type="submit"
-                            disabled={isSubmitting}
-                            className="w-full bg-gradient-to-r from-[#1C1917] via-[#2A231C] to-[#1C1917] hover:from-[#9E7D47] hover:to-[#B89255] text-white font-bold py-3.5 px-6 rounded-xl transition-all duration-300 shadow-[0_10px_25px_rgba(28,24,20,0.25)] hover:shadow-[0_12px_30px_rgba(158,125,71,0.35)] text-xs sm:text-sm uppercase tracking-wider disabled:opacity-70 cursor-pointer text-center flex items-center justify-center gap-2 group border border-[#D9B473]/30"
+                      {/* Room/Space & Project Scope in 2 Columns */}
+                      <div className="grid grid-cols-2 gap-2">
+                        <div className="relative">
+                          <select
+                            value={formData.material}
+                            onChange={(e) => setFormData({ ...formData, material: e.target.value })}
+                            className="w-full bg-gray-50 border border-gray-200 focus:border-secondary rounded-xl pl-2.5 pr-6 py-2 lg:py-2.5 text-xs sm:text-sm text-gray-900 font-semibold focus:ring-2 focus:ring-secondary/20 outline-none transition-all appearance-none cursor-pointer truncate"
                           >
-                            {isSubmitting ? (
-                              'Sending Request...'
-                            ) : (
-                              <>
-                                <span>GET MY FREE ESTIMATE</span>
-                                <ArrowRight size={16} className="text-[#D9B473] group-hover:translate-x-1 transition-transform" />
-                              </>
-                            )}
-                          </button>
+                            <option value="Kitchen">Kitchen</option>
+                            <option value="Bathroom">Bathroom</option>
+                            <option value="Outdoor Kitchen">Outdoor Kitchen</option>
+                            <option value="Other">Other</option>
+                          </select>
+                          <ChevronDown className="absolute right-2 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-gray-500 pointer-events-none stroke-[2]" />
                         </div>
-
-                        {/* Reassuring Text Under CTA */}
-                        <div className="flex items-center justify-center gap-2 text-center text-xs text-stone-500 pt-1 font-light">
-                          <Lock size={12} className="text-[#9E7D47] shrink-0" />
-                          <span>No obligation • Your information is kept private</span>
+                        <div className="relative">
+                          <select
+                            value={formData.scope}
+                            onChange={(e) => setFormData({ ...formData, scope: e.target.value })}
+                            className="w-full bg-gray-50 border border-gray-200 focus:border-secondary rounded-xl pl-2.5 pr-6 py-2 lg:py-2.5 text-xs sm:text-sm text-gray-900 font-semibold focus:ring-2 focus:ring-secondary/20 outline-none transition-all appearance-none cursor-pointer truncate"
+                          >
+                            <option value="Countertops Only">Countertops Only</option>
+                            <option value="Countertops + Cabinets">Countertops + Cabinets</option>
+                            <option value="Custom Cabinets">Custom Cabinets</option>
+                            <option value="Full Remodel">Full Remodel</option>
+                            <option value="Other">Other</option>
+                          </select>
+                          <ChevronDown className="absolute right-2 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-gray-500 pointer-events-none stroke-[2]" />
                         </div>
-                      </form>
-                    )}
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
+                      </div>
 
-        {/* 4. Dynamic Editorial Bento Advantages Grid (Unique & Non-Generic) */}
-        <section className="bg-[#FAF8F5] py-16 sm:py-20 border-b border-stone-200/90 relative z-20">
-          <div className="container mx-auto px-4 sm:px-6 max-w-7xl">
-            {/* Section Header */}
-            <div className="text-center max-w-2xl mx-auto mb-12 sm:mb-16">
-              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white border border-stone-200/90 shadow-2xs text-[11px] font-semibold text-stone-800 uppercase tracking-widest mb-4">
-                <span className="w-1.5 h-1.5 rounded-full bg-[#9E7D47]"></span>
-                <span>The AGS Direct Fabrication Advantage</span>
-              </div>
-              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-serif font-normal text-stone-900 tracking-tight leading-[1.15] mb-4">
-                Crafted In-House.<br />
-                <span className="font-light italic text-[#9E7D47]">Delivered Flawlessly.</span>
-              </h2>
-              <p className="text-stone-600 text-sm sm:text-base font-light leading-relaxed">
-                Why Metro Atlanta homeowners choose our local stone fabrication studio over middleman retailers and brokers.
-              </p>
-            </div>
+                      {/* Email (Required *) with Mail Icon */}
+                      <div className="relative group">
+                        <div className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 group-focus-within:text-secondary transition-colors pointer-events-none">
+                          <Mail size={15} />
+                        </div>
+                        <input 
+                          type="email"
+                          required
+                          value={formData.email}
+                          onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                          placeholder="Email Address *"
+                          className="w-full bg-gray-50 border border-gray-200 rounded-xl pl-9 pr-3 py-2 lg:py-2.5 text-xs sm:text-sm text-gray-900 placeholder:text-gray-400 font-medium focus:border-secondary focus:ring-2 focus:ring-secondary/20 outline-none transition-all"
+                        />
+                      </div>
 
-            {/* Asymmetric Dynamic Bento Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-12 gap-5 sm:gap-6">
-              
-              {/* Card 1: Featured 20-30% Savings (Spans 7 cols on Desktop) */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5 }}
-                className="md:col-span-7 bg-[#1C1917] text-white p-7 sm:p-9 rounded-3xl border border-stone-800 shadow-[0_20px_50px_rgba(28,24,20,0.18)] flex flex-col justify-between relative overflow-hidden group"
-              >
-                {/* Ambient gold glow */}
-                <div className="absolute top-0 right-0 w-80 h-80 bg-[radial-gradient(ellipse_at_top_right,rgba(217,180,115,0.18),transparent_70%)] pointer-events-none" />
-                
-                <div className="relative z-10">
-                  <div className="flex items-center justify-between gap-3 mb-6">
-                    <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 backdrop-blur-md border border-white/15 text-[11px] font-semibold text-[#D9B473] tracking-wider uppercase">
-                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping"></span>
-                      <span>Duluth In-House Facility</span>
-                    </span>
-                    <span className="text-xs font-mono font-medium text-stone-500">01 / DIRECT</span>
-                  </div>
+                      {/* Notes / Observation (Optional) */}
+                      <div className="relative group">
+                        <div className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 group-focus-within:text-secondary transition-colors pointer-events-none">
+                          <MessageSquare size={15} />
+                        </div>
+                        <input 
+                          type="text"
+                          value={formData.notes}
+                          onChange={(e) => setFormData({ ...formData, notes: e.target.value })}
+                          placeholder="Project Notes / Details (Optional)"
+                          className="w-full bg-gray-50 border border-gray-200 rounded-xl pl-9 pr-3 py-2 lg:py-2.5 text-xs sm:text-sm text-gray-900 placeholder:text-gray-400 font-medium focus:border-secondary focus:ring-2 focus:ring-secondary/20 outline-none transition-all"
+                        />
+                      </div>
 
-                  <h3 className="text-2xl sm:text-3xl lg:text-4xl font-serif font-medium text-white mb-3 leading-snug">
-                    Save 20–30% Factory Direct.
-                  </h3>
-                  <p className="text-stone-300 text-sm sm:text-base font-light leading-relaxed mb-6 max-w-xl">
-                    By eliminating third-party showrooms, broker commissions, and subcontracted installers, you get premium quartz, granite, and cabinetry fabricated and installed directly by our team.
-                  </p>
-                </div>
+                      {/* Submit Button */}
+                      <div className="pt-0.5">
+                        <button
+                          type="submit"
+                          disabled={isSubmitting}
+                          className="w-full bg-secondary hover:bg-yellow-600 text-white font-bold py-2.5 lg:py-3 px-5 rounded-xl shadow-md hover:shadow-lg transition-all flex items-center justify-center gap-2 text-xs sm:text-sm uppercase tracking-wider disabled:opacity-70 active:scale-[0.99] cursor-pointer group"
+                        >
+                          {isSubmitting ? (
+                            <>
+                              <Loader2 size={15} className="animate-spin" /> Submitting...
+                            </>
+                          ) : (
+                            <>
+                              <span>Claim Free Estimate</span>
+                              <ArrowRight size={15} className="group-hover:translate-x-1 transition-transform" />
+                            </>
+                          )}
+                        </button>
+                      </div>
 
-                <div className="relative z-10 pt-4 border-t border-white/10 grid grid-cols-1 sm:grid-cols-3 gap-3">
-                  <div className="flex items-center gap-2 text-xs text-stone-300 font-medium">
-                    <Check size={14} className="text-[#D9B473] shrink-0 stroke-[2.5]" />
-                    <span>Zero Middlemen</span>
-                  </div>
-                  <div className="flex items-center gap-2 text-xs text-stone-300 font-medium">
-                    <Check size={14} className="text-[#D9B473] shrink-0 stroke-[2.5]" />
-                    <span>CNC Waterjet Cut</span>
-                  </div>
-                  <div className="flex items-center gap-2 text-xs text-stone-300 font-medium">
-                    <Check size={14} className="text-[#D9B473] shrink-0 stroke-[2.5]" />
-                    <span>Direct Slab Yard</span>
-                  </div>
-                </div>
-              </motion.div>
-
-              {/* Card 2: 5-Day Turnaround (Spans 5 cols on Desktop) */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: 0.1 }}
-                className="md:col-span-5 bg-white p-7 sm:p-8 rounded-3xl border border-stone-200/90 shadow-sm hover:shadow-md hover:border-[#9E7D47]/60 transition-all duration-300 flex flex-col justify-between group"
-              >
-                <div>
-                  <div className="flex items-center justify-between mb-5">
-                    <div className="w-12 h-12 rounded-2xl bg-[#FAF7F0] border border-[#EAE4D6] flex items-center justify-center text-[#9E7D47] group-hover:scale-110 transition-transform duration-300">
-                      <Clock size={22} className="stroke-[2.2]" />
-                    </div>
-                    <span className="text-xs font-mono font-medium text-stone-400">02 / SPEED</span>
-                  </div>
-                  <div className="inline-block px-2.5 py-0.5 rounded-md bg-emerald-50 text-emerald-800 font-semibold text-[11px] mb-2.5">
-                    ⚡ Fast 5-Day Turnaround
-                  </div>
-                  <h3 className="text-xl sm:text-2xl font-serif font-medium text-stone-900 mb-2 leading-snug">
-                    From Laser Measure to Finished Stone
-                  </h3>
-                  <p className="text-stone-600 text-xs sm:text-sm font-light leading-relaxed mb-4">
-                    While typical contractors take 3 to 6 weeks, our dedicated digital machinery allows us to template, fabricate, and install your project in days.
-                  </p>
-                </div>
-
-                <div className="flex items-center gap-2 text-[11px] font-medium text-stone-500 pt-3 border-t border-stone-100">
-                  <span className="w-2 h-2 rounded-full bg-emerald-500"></span>
-                  <span>Average 5 Business Days in Metro Atlanta</span>
-                </div>
-              </motion.div>
-
-              {/* Card 3: Free 3D Measure (Spans 4 cols on Desktop) */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: 0.15 }}
-                className="md:col-span-4 bg-white p-7 sm:p-8 rounded-3xl border border-stone-200/90 shadow-sm hover:shadow-md hover:border-[#9E7D47]/60 transition-all duration-300 flex flex-col justify-between group"
-              >
-                <div>
-                  <div className="flex items-center justify-between mb-5">
-                    <div className="w-12 h-12 rounded-2xl bg-[#FAF7F0] border border-[#EAE4D6] flex items-center justify-center text-[#9E7D47] group-hover:scale-110 transition-transform duration-300">
-                      <CheckCircle2 size={22} className="stroke-[2.2]" />
-                    </div>
-                    <span className="text-xs font-mono font-medium text-stone-400">03 / PRECISION</span>
-                  </div>
-                  <h3 className="text-xl font-serif font-medium text-stone-900 mb-2 leading-snug">
-                    Free In-Home 3D Laser Measure
-                  </h3>
-                  <p className="text-stone-600 text-xs sm:text-sm font-light leading-relaxed">
-                    Precise digital CAD laser templating right in your home. Millimeter-level accuracy ensures seamless seams and flawless waterfall edges.
-                  </p>
-                </div>
-                <span className="text-[11px] font-semibold text-[#9E7D47] pt-4 block">100% Free · No Obligation</span>
-              </motion.div>
-
-              {/* Card 4: 100% Turnkey Guarantee (Spans 4 cols on Desktop) */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: 0.2 }}
-                className="md:col-span-4 bg-white p-7 sm:p-8 rounded-3xl border border-stone-200/90 shadow-sm hover:shadow-md hover:border-[#9E7D47]/60 transition-all duration-300 flex flex-col justify-between group"
-              >
-                <div>
-                  <div className="flex items-center justify-between mb-5">
-                    <div className="w-12 h-12 rounded-2xl bg-[#FAF7F0] border border-[#EAE4D6] flex items-center justify-center text-[#9E7D47] group-hover:scale-110 transition-transform duration-300">
-                      <ShieldCheck size={22} className="stroke-[2.2]" />
-                    </div>
-                    <span className="text-xs font-mono font-medium text-stone-400">04 / GUARANTEE</span>
-                  </div>
-                  <h3 className="text-xl font-serif font-medium text-stone-900 mb-2 leading-snug">
-                    100% Turnkey Accountability
-                  </h3>
-                  <p className="text-stone-600 text-xs sm:text-sm font-light leading-relaxed">
-                    One single accountable team handling cabinets, countertops, sinks, plumbing, and demolition from start to finish.
-                  </p>
-                </div>
-                <span className="text-[11px] font-semibold text-[#9E7D47] pt-4 block">Full Craftsmanship Warranty</span>
-              </motion.div>
-
-              {/* Card 5: 5.0 Google Rating & Local Atlanta Trust (Spans 4 cols on Desktop) */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: 0.25 }}
-                className="md:col-span-4 bg-gradient-to-br from-white to-[#FAF7F0] p-7 sm:p-8 rounded-3xl border border-[#EAE4D6] shadow-sm hover:shadow-md hover:border-[#9E7D47]/60 transition-all duration-300 flex flex-col justify-between group"
-              >
-                <div>
-                  <div className="flex items-center justify-between mb-5">
-                    <div className="flex items-center gap-1 text-amber-500 text-sm">
-                      ★★★★★
-                    </div>
-                    <span className="text-xs font-mono font-medium text-stone-400">05 / REVIEWS</span>
-                  </div>
-                  <h3 className="text-xl font-serif font-medium text-stone-900 mb-2 leading-snug">
-                    5.0 Star Google Rating
-                  </h3>
-                  <p className="text-stone-600 text-xs sm:text-sm font-light leading-relaxed">
-                    Over 120+ verified 5-star reviews from homeowners across Atlanta, Alpharetta, Johns Creek, Duluth, and Roswell.
-                  </p>
-                </div>
-                <div className="flex items-center gap-2 pt-4">
-                  <div className="w-2 h-2 rounded-full bg-emerald-500"></div>
-                  <span className="text-[11px] font-semibold text-stone-800">120+ Metro Atlanta Homeowners Served</span>
+                      <p className="text-center text-[9px] text-gray-400 flex items-center justify-center gap-1 font-normal pt-0.5">
+                        <Lock size={10} className="text-emerald-600 flex-shrink-0" />
+                        <span>Confidential • Direct Factory Pricing • No Spam</span>
+                      </p>
+                    </form>
+                  )}
                 </div>
               </motion.div>
 
             </div>
           </div>
+
+          {/* Subdued Bottom Scroll Indicator */}
+          <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1.5 opacity-40">
+            <span className="text-[9px] uppercase tracking-[0.2em] font-bold text-white">Scroll to Explore Slabs &amp; Cabinets</span>
+            <motion.div 
+              animate={{ y: [0, 8, 0] }} 
+              transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+              className="w-[1px] h-6 bg-gradient-to-b from-white to-transparent"
+            />
+          </div>
         </section>
 
-        {/* 5. Stunning Kitchens Gallery */}
-        <section className="py-24 bg-white relative">
+        {/* 2. The Vision / Overview Section */}
+        <section className="py-20 md:py-32 relative bg-white text-gray-900 overflow-hidden rounded-t-3xl md:rounded-t-[3rem] -mt-10 z-20">
           <div className="container mx-auto px-4 max-w-7xl">
-            <div className="text-center mb-16">
-              <h2 className="text-4xl md:text-6xl font-serif font-medium text-primary mb-6 tracking-tight">
-                Recent <span className="italic font-light text-secondary">Masterpieces</span>
-              </h2>
-              <p className="text-xl text-gray-500 font-light max-w-3xl mx-auto">
-                Get inspired by some of our recent premium kitchen and bathroom transformations across Metro Atlanta.
-              </p>
-            </div>
-
-            <div className="grid grid-cols-2 md:grid-cols-12 gap-3 sm:gap-6">
-              {/* Item 1 - Wide */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-50px" }}
-                transition={{ duration: 0.5 }}
-                onClick={() => setSelectedImage("/images/projects/kitchen-island-white-quartz-waterfall-edge-atlanta.jpg")}
-                className="col-span-2 md:col-span-8 group relative overflow-hidden rounded-2xl aspect-[4/3] sm:aspect-[16/9] md:aspect-auto md:h-[400px] shadow-[0_8px_30px_rgb(0,0,0,0.06)] cursor-pointer border border-stone-200/60"
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 lg:items-center">
+              
+              <motion.div 
+                initial={{ opacity: 0, x: -30 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true, margin: "-100px" }}
+                transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+                className="lg:col-span-6 space-y-6 md:space-y-8"
               >
-                <Image
-                  src="/images/projects/kitchen-island-white-quartz-waterfall-edge-atlanta.jpg"
-                  alt="Seamless Island Waterfall"
-                  fill
-                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 66vw, 66vw"
-                  className="object-cover transition-transform duration-700 group-hover:scale-105"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-70 group-hover:opacity-90 transition-opacity duration-300"></div>
-                <div className="absolute bottom-5 left-5 text-white z-10">
-                  <span className="text-[10px] md:text-xs uppercase tracking-widest font-semibold text-[#D9B473] mb-1 block">Custom Kitchen Island</span>
-                  <h4 className="text-xl md:text-2xl font-serif">Seamless Calacatta Quartz Waterfall</h4>
-                </div>
-              </motion.div>
-
-              {/* Item 2 - Square */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-50px" }}
-                transition={{ duration: 0.5, delay: 0.1 }}
-                onClick={() => setSelectedImage("/images/projects/bathroom-navy-cabinets-white-quartz-double-vanity-atlanta.jpg")}
-                className="col-span-1 md:col-span-4 group relative overflow-hidden rounded-2xl aspect-square md:aspect-auto md:h-[400px] shadow-[0_8px_30px_rgb(0,0,0,0.06)] cursor-pointer border border-stone-200/60"
-              >
-                <Image
-                  src="/images/projects/bathroom-navy-cabinets-white-quartz-double-vanity-atlanta.jpg"
-                  alt="Master Bathroom Vanity"
-                  fill
-                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 33vw, 33vw"
-                  className="object-cover transition-transform duration-700 group-hover:scale-105"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-70 group-hover:opacity-90 transition-opacity duration-300"></div>
-                <div className="absolute bottom-4 left-4 md:bottom-5 md:left-5 text-white z-10">
-                  <span className="text-[10px] md:text-xs uppercase tracking-widest font-semibold text-[#D9B473] mb-1 block">Master Bathroom</span>
-                  <h4 className="text-base md:text-xl font-serif leading-tight">Navy Shaker Double Vanity</h4>
-                </div>
-              </motion.div>
-
-              {/* Item 3 - Square */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-50px" }}
-                transition={{ duration: 0.5, delay: 0.15 }}
-                onClick={() => setSelectedImage("/images/projects/kitchen-white-cabinets-dark-hardwood-floor-full-view-atlanta.jpg")}
-                className="col-span-1 md:col-span-4 group relative overflow-hidden rounded-2xl aspect-square md:aspect-auto md:h-[350px] shadow-[0_8px_30px_rgb(0,0,0,0.06)] cursor-pointer border border-stone-200/60"
-              >
-                <Image
-                  src="/images/projects/kitchen-white-cabinets-dark-hardwood-floor-full-view-atlanta.jpg"
-                  alt="White Shaker Cabinets & Island"
-                  fill
-                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 33vw, 33vw"
-                  className="object-cover transition-transform duration-700 group-hover:scale-105"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-70 group-hover:opacity-90 transition-opacity duration-300"></div>
-                <div className="absolute bottom-4 left-4 md:bottom-5 md:left-5 text-white z-10">
-                  <span className="text-[10px] md:text-xs uppercase tracking-widest font-semibold text-[#D9B473] mb-1 block">Full Remodel</span>
-                  <h4 className="text-base md:text-xl font-serif leading-tight">Classic White Kitchen & Island</h4>
-                </div>
-              </motion.div>
-
-              {/* Item 4 - Square */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-50px" }}
-                transition={{ duration: 0.5, delay: 0.2 }}
-                onClick={() => setSelectedImage("/images/projects/bathroom-calacatta-marble-shower-lighted-niche-atlanta.jpg")}
-                className="col-span-1 md:col-span-4 group relative overflow-hidden rounded-2xl aspect-square md:aspect-auto md:h-[350px] shadow-[0_8px_30px_rgb(0,0,0,0.06)] cursor-pointer border border-stone-200/60"
-              >
-                <Image
-                  src="/images/projects/bathroom-calacatta-marble-shower-lighted-niche-atlanta.jpg"
-                  alt="Calacatta Marble Shower Niche"
-                  fill
-                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 33vw, 33vw"
-                  className="object-cover transition-transform duration-700 group-hover:scale-105"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-70 group-hover:opacity-90 transition-opacity duration-300"></div>
-                <div className="absolute bottom-4 left-4 md:bottom-5 md:left-5 text-white z-10">
-                  <span className="text-[10px] md:text-xs uppercase tracking-widest font-semibold text-[#D9B473] mb-1 block">Bathroom Detail</span>
-                  <h4 className="text-base md:text-xl font-serif leading-tight">Lighted Marble Shower Niche</h4>
-                </div>
-              </motion.div>
-
-              {/* Item 5 - Square */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-50px" }}
-                transition={{ duration: 0.5, delay: 0.25 }}
-                onClick={() => setSelectedImage("/images/projects/cabinets-wet-bar-marble-backsplash-wine-storage-atlanta.jpg")}
-                className="col-span-1 md:col-span-4 group relative overflow-hidden rounded-2xl aspect-[4/3] sm:aspect-square md:aspect-auto md:h-[350px] shadow-[0_8px_30px_rgb(0,0,0,0.06)] cursor-pointer border border-stone-200/60"
-              >
-                <Image
-                  src="/images/projects/cabinets-wet-bar-marble-backsplash-wine-storage-atlanta.jpg"
-                  alt="Custom Wet Bar & Wine Nook"
-                  fill
-                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 33vw, 33vw"
-                  className="object-cover transition-transform duration-700 group-hover:scale-105"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-70 group-hover:opacity-90 transition-opacity duration-300"></div>
-                <div className="absolute bottom-4 left-4 md:bottom-5 md:left-5 text-white z-10">
-                  <span className="text-[10px] md:text-xs uppercase tracking-widest font-semibold text-[#D9B473] mb-1 block">Custom Millwork</span>
-                  <h4 className="text-base md:text-xl font-serif leading-tight">Custom Wet Bar & Wine Storage</h4>
-                </div>
-              </motion.div>
-
-              {/* Item 6 - Wide */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-50px" }}
-                transition={{ duration: 0.5, delay: 0.3 }}
-                onClick={() => setSelectedImage("/images/projects/kitchen-vaulted-ceiling-wood-beams-quartz-island-atlanta.jpg")}
-                className="col-span-2 md:col-span-12 group relative overflow-hidden rounded-2xl aspect-[16/9] md:h-[480px] shadow-[0_8px_30px_rgb(0,0,0,0.06)] cursor-pointer mt-0 sm:mt-3 md:mt-0 border border-stone-200/60"
-              >
-                <Image
-                  src="/images/projects/kitchen-vaulted-ceiling-wood-beams-quartz-island-atlanta.jpg"
-                  alt="Vaulted Ceiling Kitchen Transformation"
-                  fill
-                  sizes="100vw"
-                  className="object-cover transition-transform duration-700 group-hover:scale-105"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-70 group-hover:opacity-90 transition-opacity duration-300"></div>
-                <div className="absolute bottom-6 left-6 md:bottom-10 md:left-10 text-white z-10">
-                  <span className="text-[10px] md:text-xs uppercase tracking-widest font-semibold text-[#D9B473] mb-2 block">Full Transformation</span>
-                  <h4 className="text-2xl md:text-4xl font-serif leading-tight">Vaulted Ceiling Quartz Island Remodel</h4>
-                  <p className="text-sm md:text-base text-stone-300 mt-2 max-w-lg hidden sm:block">
-                    In-house digital laser templating, custom fabrication, and turnkey installation by our Atlanta team.
+                <h2 className="text-secondary font-bold tracking-[0.2em] uppercase text-xs flex items-center gap-3">
+                  <span className="w-8 h-px bg-secondary"></span> 
+                  The Vision
+                </h2>
+                <h3 className="text-3xl md:text-5xl lg:text-6xl font-serif font-bold leading-tight text-primary">
+                  Beautiful upgrades that transform your home.
+                </h3>
+                <div className="text-base md:text-lg leading-relaxed text-gray-600 space-y-4 md:space-y-6 font-light">
+                  <p>
+                    As Atlanta&apos;s direct stone fabricator and custom cabinetry provider, we eliminate mid-tier showrooms and broker markups to bring you luxurious kitchen and bath upgrades at direct pricing.
+                  </p>
+                  <p>
+                    From natural granite and low-maintenance engineered quartz to dovetail solid-wood cabinets with soft-close hardware, every cut, edge, and cabinet box is crafted in our high-tech Duluth facility with precision digital laser templating.
+                  </p>
+                  <p>
+                    With dedicated crews serving Atlanta, Alpharetta, Duluth, Johns Creek, Roswell, Sandy Springs, and Suwanee, you get a turnkey team handling your project from 3D layout to final installation in under a week.
                   </p>
                 </div>
-              </motion.div>
-            </div>
 
-            <div className="mt-14 text-center">
-              <a
-                href="#estimate-form"
-                onClick={scrollToForm}
-                className="inline-flex items-center gap-2 text-stone-900 font-semibold hover:text-[#9E7D47] transition-colors uppercase tracking-widest text-xs sm:text-sm border-b-2 border-stone-900 hover:border-[#9E7D47] pb-1"
-              >
-                <span>Request your free custom project estimate</span>
-                <ArrowRight size={15} />
-              </a>
+                <ul className="space-y-4 md:space-y-5 pt-6 md:pt-8 border-t border-gray-100">
+                  {[
+                    "Factory Direct Pricing (Save 20% to 30%)",
+                    "Solid Wood & Plywood Cabinets (No Particle Board)",
+                    "Digital Laser Templating & CNC Precision Cut",
+                    "In-House Duluth Stone Slab Yard & Fabrication",
+                    "Soft-Close Hinges, Slides & Dovetail Drawers",
+                    "15-Year Stain Protection & Craftsmanship Warranty"
+                  ].map((feature, idx) => (
+                    <motion.li 
+                      key={idx} 
+                      initial={{ opacity: 0, y: 10 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: idx * 0.1 }}
+                      className="flex items-center gap-4 group cursor-default"
+                    >
+                      <div className="w-2 h-2 rounded-full border border-secondary/40 bg-secondary/80 group-hover:bg-secondary group-hover:scale-150 group-hover:shadow-[0_0_8px_rgba(217,119,6,0.6)] transition-all duration-300"></div>
+                      <span className="text-gray-900 font-medium text-base md:text-lg group-hover:translate-x-1 transition-transform duration-300">{feature}</span>
+                    </motion.li>
+                  ))}
+                </ul>
+              </motion.div>
+
+              <div className="lg:col-span-6 lg:col-start-7 relative">
+                <motion.div 
+                  style={{ y: useTransform(scrollYProgress, [0.3, 0.7], [50, -50]) }}
+                  className="relative rounded-[2rem] overflow-hidden aspect-[4/5] md:aspect-square shadow-[0_20px_50px_rgba(0,0,0,0.1)]"
+                >
+                  <motion.div style={{ scale: scaleImage }} className="w-full h-full relative">
+                    <Image 
+                      src="/images/projects/kitchen-white-cabinets-dark-hardwood-floor-full-view-atlanta.jpg"
+                      alt="Countertops & Custom Cabinets detail"
+                      fill
+                      className="object-cover"
+                    />
+                    <div className="absolute inset-0 bg-primary/10 mix-blend-overlay"></div>
+                  </motion.div>
+
+                  {/* Floating Trust Badge */}
+                  <motion.div 
+                    initial={{ opacity: 0, scale: 0.8, rotate: -10 }}
+                    whileInView={{ opacity: 1, scale: 1, rotate: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ type: "spring", delay: 0.5 }}
+                    className="absolute bottom-8 left-8 bg-white p-6 rounded-3xl shadow-2xl backdrop-blur-md max-w-[220px]"
+                  >
+                    <div className="w-12 h-12 bg-secondary/10 rounded-full flex items-center justify-center text-secondary mb-4">
+                      <ShieldCheck size={24} />
+                    </div>
+                    <p className="font-bold text-primary leading-tight">Locally fabricated in Duluth &amp; guaranteed.</p>
+                  </motion.div>
+                </motion.div>
+              </div>
             </div>
           </div>
         </section>
 
-        {/* 5b. Real Work Gallery */}
-        <PromoRealWork />
+        {/* 3. The 3 Architectural & Value Advantage Cards */}
+        <section className="py-20 bg-[#0c0c0c] text-white relative border-t border-b border-white/5">
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-secondary/5 via-transparent to-transparent pointer-events-none"></div>
+          <div className="container mx-auto px-4 max-w-7xl relative z-10">
+            <div className="max-w-3xl mb-16">
+              <h2 className="text-secondary font-bold tracking-[0.2em] uppercase text-xs mb-4 flex items-center gap-2">
+                <span className="w-6 h-px bg-secondary"></span> The Direct Fabrication Advantage
+              </h2>
+              <h3 className="text-3xl md:text-5xl font-serif font-bold text-white mb-6 leading-tight">
+                Crafted In-House. Delivered Flawlessly.
+              </h3>
+              <p className="text-gray-400 text-lg font-light leading-relaxed">
+                Why Metro Atlanta homeowners choose our local Duluth stone fabrication and custom cabinetry studio over big-box stores and brokers.
+              </p>
+            </div>
 
-        {/* 2. Visual Results (Before/After) */}
-        <BeforeAfter />
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              {/* Card 1 */}
+              <motion.div 
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                className="bg-[#121212]/80 border border-white/10 p-8 rounded-3xl hover:border-secondary/30 transition-all duration-300 flex flex-col justify-between"
+              >
+                <div className="space-y-4">
+                  <span className="text-xs uppercase tracking-widest text-[#888] font-bold">01 / DIRECT</span>
+                  <h4 className="text-xl md:text-2xl font-bold font-serif text-white">Save 20–30% Factory Direct</h4>
+                  <p className="text-gray-400 text-sm leading-relaxed font-light">
+                    By eliminating retail showrooms, broker commissions, and subcontracted installers, you get premium quartz, granite, and custom solid-wood cabinets fabricated directly by our local team.
+                  </p>
+                </div>
+              </motion.div>
 
-        {/* 3. Social Proof (Testimonials) */}
+              {/* Card 2 */}
+              <motion.div 
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.1 }}
+                className="bg-[#121212]/80 border border-white/10 p-8 rounded-3xl hover:border-secondary/30 transition-all duration-300 flex flex-col justify-between"
+              >
+                <div className="space-y-4">
+                  <span className="text-xs uppercase tracking-widest text-[#888] font-bold">02 / SPEED</span>
+                  <h4 className="text-xl md:text-2xl font-bold font-serif text-white">Fast 5-Day Installation</h4>
+                  <p className="text-gray-400 text-sm leading-relaxed font-light">
+                    While traditional contractors take 4 to 8 weeks, our high-precision CNC machinery and dedicated in-house crews template, cut, and install your kitchen in days.
+                  </p>
+                </div>
+              </motion.div>
+
+              {/* Card 3 */}
+              <motion.div 
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.2 }}
+                className="bg-[#121212]/80 border border-white/10 p-8 rounded-3xl hover:border-secondary/30 transition-all duration-300 flex flex-col justify-between"
+              >
+                <div className="space-y-4">
+                  <span className="text-xs uppercase tracking-widest text-[#888] font-bold">03 / TURNKEY</span>
+                  <h4 className="text-xl md:text-2xl font-bold font-serif text-white">Single Accountable Team</h4>
+                  <p className="text-gray-400 text-sm leading-relaxed font-light">
+                    One experienced partner managing your 3D cabinet design, digital laser templating, slab matching, sink cutouts, and professional installation from start to finish.
+                  </p>
+                </div>
+              </motion.div>
+            </div>
+          </div>
+        </section>
+
+        {/* 4. Parallax Quote Break */}
+        <section className="relative py-24 md:py-40 overflow-hidden bg-primary text-white">
+          <motion.div 
+            style={{ y: useTransform(scrollYProgress, [0.5, 0.9], ["-20%", "20%"]) }}
+            className="absolute inset-0 opacity-20 grayscale"
+          >
+            <Image src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=2070&auto=format&fit=crop" fill alt="Stone Texture" className="object-cover" />
+          </motion.div>
+          <div className="absolute inset-0 bg-primary/80 mix-blend-multiply"></div>
+          
+          <div className="container relative z-10 mx-auto px-4 text-center max-w-4xl">
+            <motion.div 
+              initial={{ opacity: 0, scale: 0.9 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+            >
+              <Star className="text-secondary w-8 h-8 md:w-12 md:h-12 mx-auto mb-6 md:mb-8 opacity-50" />
+              <h2 className="text-2xl md:text-4xl lg:text-5xl font-serif italic font-light leading-snug mb-6 md:mb-8">
+                &ldquo;Great design is in the details. We take pride in making sure every cut, edge, and finish looks absolutely flawless.&rdquo;
+              </h2>
+              <p className="text-xs md:text-sm tracking-[0.2em] md:tracking-[0.3em] uppercase text-secondary font-bold">— The AGS Team</p>
+            </motion.div>
+          </div>
+        </section>
+
+        {/* 5. Gallery Section with Click-to-Enlarge Lightbox */}
+        <section className="py-24 bg-white text-gray-900">
+          <div className="container mx-auto px-4 max-w-7xl">
+            <div className="text-center mb-16 md:mb-20">
+              <h2 className="text-secondary font-bold tracking-[0.2em] uppercase text-xs mb-4">Portfolio</h2>
+              <h3 className="text-4xl md:text-5xl font-serif font-bold text-gray-900">Countertops &amp; Cabinets Gallery</h3>
+              <p className="text-gray-500 text-sm md:text-base mt-3 max-w-xl mx-auto">
+                Explore real transformations completed by our local team across Metro Atlanta. Click any photo to enlarge.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+              {promoGallery.map((item, idx) => (
+                <motion.div 
+                  key={idx}
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: idx * 0.08, duration: 0.8 }}
+                  onClick={() => setSelectedImage(item.src)}
+                  className="group relative aspect-[4/3] rounded-3xl overflow-hidden cursor-pointer shadow-sm hover:shadow-2xl transition-all duration-500 border border-gray-200"
+                >
+                  <Image 
+                    src={item.src}
+                    alt={item.title}
+                    fill
+                    className="object-cover transition-transform duration-[2s] group-hover:scale-110"
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-80 group-hover:opacity-90 transition-opacity"></div>
+                  
+                  <div className="absolute bottom-4 left-5 right-5 text-white z-10">
+                    <span className="text-[10px] uppercase tracking-widest font-semibold text-[#D9B473] mb-1 block">
+                      {item.location}
+                    </span>
+                    <h4 className="text-base md:text-lg font-serif font-medium leading-snug">
+                      {item.title}
+                    </h4>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+            
+            {/* Showroom Visit Card */}
+            <div className="mt-16 md:mt-24 text-center">
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8 }}
+                className="inline-flex flex-col items-center p-8 md:p-16 bg-[#f8f9fa] rounded-[2rem] border border-gray-200 w-full max-w-4xl mx-auto shadow-sm"
+              >
+                <MapPin className="text-secondary w-10 h-10 mb-6 opacity-80" strokeWidth={1.5} />
+                <h4 className="text-3xl md:text-5xl font-serif font-bold text-primary mb-4 leading-tight">Want to see slabs &amp; cabinets in person?</h4>
+                <p className="text-gray-600 mb-6 max-w-lg text-lg">
+                  Visit our Duluth slab yard &amp; showroom to feel the quartz &amp; granite textures, see cabinet door finishes, and view full slabs before cutting.
+                </p>
+                <p className="text-gray-900 font-medium mb-8 text-center max-w-sm">
+                  AGS STONES &amp; CABINETS<br/>
+                  4579 Abbotts Bridge Rd Suite -10<br/>
+                  Duluth, GA 30097, United States
+                </p>
+                <a 
+                  href="https://maps.google.com/?q=AGS+STONES+%26+CABINETS,+4579+Abbotts+Bridge+Rd+Suite+-10,+Duluth,+GA+30097,+United+States" 
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group relative overflow-hidden bg-primary text-white font-bold py-4 px-8 md:py-5 md:px-10 rounded-full transition-all duration-500 hover:shadow-xl inline-flex items-center justify-center gap-3"
+                >
+                  <span className="relative z-10 flex items-center gap-2 text-base md:text-lg transition-transform duration-500 group-hover:-translate-y-[150%]">
+                    Get Directions <ArrowRight size={18} />
+                  </span>
+                  <span className="absolute inset-0 z-10 flex items-center justify-center gap-2 text-base md:text-lg text-primary bg-secondary translate-y-[150%] group-hover:translate-y-0 transition-transform duration-500">
+                    Get Directions <ArrowRight size={18} />
+                  </span>
+                </a>
+              </motion.div>
+            </div>
+          </div>
+        </section>
+
+        {/* 6. Service Areas Section */}
+        <section className="py-20 md:py-32 bg-white text-gray-900 border-t border-gray-100 border-b border-gray-100">
+          <div className="container mx-auto px-4 max-w-7xl">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+              <motion.div 
+                initial={{ opacity: 0, x: -30 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8 }}
+                className="space-y-8"
+              >
+                <h2 className="text-secondary font-bold tracking-[0.2em] uppercase text-xs flex items-center gap-3">
+                  <MapPin size={16} /> 
+                  Service Areas
+                </h2>
+                <h3 className="text-3xl md:text-5xl font-serif font-bold text-primary">
+                  Serving All of Metro Atlanta
+                </h3>
+                <p className="text-gray-600 text-lg leading-relaxed max-w-lg">
+                  Based in Duluth, our custom countertops and cabinetry crews deliver precision stone fabrication and flawless installations throughout Georgia.
+                </p>
+                
+                <div className="grid grid-cols-2 sm:grid-cols-3 gap-y-4 gap-x-2 text-sm font-medium pt-4 border-t border-gray-100">
+                  {["Atlanta", "Alpharetta", "Roswell", "Duluth", "Johns Creek", "Marietta", "Suwanee", "Sandy Springs", "Buckhead"].map((city) => (
+                    <Link 
+                      key={city} 
+                      href={`/countertops-${city.toLowerCase().replace(' ', '-')}-ga`}
+                      className="flex items-center gap-2 hover:text-secondary transition-colors cursor-pointer group text-gray-600"
+                    >
+                      <div className="relative flex h-2 w-2 shrink-0">
+                        <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500/40 group-hover:bg-secondary"></span>
+                      </div> 
+                      <span className="border-b border-transparent group-hover:border-secondary transition-colors pb-0.5">{city}</span>
+                    </Link>
+                  ))}
+                </div>
+                
+                <div className="pt-6">
+                  <a 
+                    href="#estimate-form"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      const formEl = document.getElementById('estimate-form');
+                      if (formEl) formEl.scrollIntoView({ behavior: 'smooth' });
+                    }}
+                    className="text-primary font-bold hover:text-secondary flex items-center gap-2 transition-colors w-fit group cursor-pointer"
+                  >
+                    <span className="border-b-2 border-primary/20 group-hover:border-secondary pb-0.5">Request your free quote for your area</span> 
+                    <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
+                  </a>
+                </div>
+              </motion.div>
+              
+              <motion.div 
+                initial={{ opacity: 0, scale: 0.95 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8 }}
+                className="relative h-[400px] md:h-[500px] rounded-3xl overflow-hidden shadow-2xl border border-gray-200 group"
+              >
+                <div className="absolute top-4 left-4 z-10 bg-white/90 backdrop-blur px-4 py-2 rounded-full shadow-lg border border-gray-100 flex items-center gap-2 text-xs font-bold text-gray-800">
+                  <span className="relative flex h-2.5 w-2.5">
+                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                    <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-green-500"></span>
+                  </span>
+                  Currently scheduling in Duluth &amp; Metro Atlanta
+                </div>
+                <iframe 
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d105955.0270034237!2d-84.34914101150428!3d34.02059363574005!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x88f598c467657571%3A0x6762332675667676!2s4579%20Abbotts%20Bridge%20Rd%20Suite%20-10%2C%20Duluth%2C%20GA%2030097!5e0!3m2!1sen!2sus!4v1709867543210!5m2!1sen!2sus" 
+                  width="100%" 
+                  height="100%" 
+                  style={{ border: 0 }} 
+                  allowFullScreen 
+                  loading="lazy" 
+                  referrerPolicy="no-referrer-when-downgrade"
+                  className="absolute inset-0 grayscale-0 md:grayscale md:group-hover:grayscale-0 transition-all duration-1000"
+                ></iframe>
+              </motion.div>
+            </div>
+          </div>
+        </section>
+
+        {/* 7. Seamless Process */}
+        <section className="py-20 md:py-32 bg-[#f8f9fa] text-primary relative">
+          <div className="container mx-auto px-4 max-w-7xl">
+            <div className="flex flex-col md:flex-row gap-6 md:gap-16 items-start md:items-end mb-16 md:mb-24">
+              <div className="flex-1">
+                <h2 className="text-secondary font-bold tracking-[0.2em] uppercase text-xs mb-4">Our Process</h2>
+                <h3 className="text-4xl md:text-5xl lg:text-7xl font-serif font-bold leading-[1.1]">Smooth &amp; stress-free.</h3>
+              </div>
+              <div className="max-w-md">
+                <p className="text-gray-600 text-base md:text-lg leading-relaxed">
+                  We respect your time and your home. From laser templating and cabinet layout to final stone placement, our team delivers flawlessly.
+                </p>
+              </div>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-12 md:gap-y-16 relative">
+              <div className="hidden md:block absolute top-[28px] left-[10%] w-[80%] h-px bg-gray-300 -z-10"></div>
+              
+              {[
+                { icon: <PenTool />, title: "Accurate Measurements", desc: "Digital 3D laser mapping so your countertops and cabinets fit with millimeter accuracy." },
+                { icon: <HeartHandshake />, title: "Hand-Picked Slabs", desc: "Select from over 2,000 quartz, granite, and quartzite slabs directly at our showroom." },
+                { icon: <Hammer />, title: "In-House Fabrication", desc: "CNC waterjet cutting, custom edge profiling, and cabinet assembly in our Duluth shop." },
+                { icon: <Truck />, title: "Professional Install", desc: "Fast 5-day installation by our certified in-house crew. Clean, on time, and guaranteed." }
+              ].map((step, idx) => (
+                <motion.div 
+                  key={idx} 
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: idx * 0.2, duration: 0.8 }}
+                  className="relative group"
+                >
+                  <div className="w-14 h-14 bg-white border border-gray-200 text-primary rounded-2xl flex items-center justify-center mb-8 shadow-sm group-hover:bg-secondary group-hover:text-white group-hover:-translate-y-2 transition-all duration-300">
+                    {step.icon}
+                  </div>
+                  <div className="text-[10px] font-bold text-gray-400 mb-2 uppercase tracking-widest">Phase 0{idx + 1}</div>
+                  <h4 className="text-2xl font-bold font-serif mb-3 text-primary">{step.title}</h4>
+                  <p className="text-gray-500 leading-relaxed">{step.desc}</p>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* 8. Testimonials Section */}
         <Testimonials />
 
-        {/* Final CTA Bar - Warm, Luminous Editorial Luxury (No Black Background) */}
-        <section className="py-20 sm:py-24 bg-gradient-to-b from-[#FAF8F5] via-[#F4F0E8] to-[#EAE3D5] text-center px-4 relative overflow-hidden border-t border-stone-200/80">
-          {/* Subtle warm light ambient aura */}
-          <div className="absolute inset-0 bg-[radial-gradient(ellipse_70%_50%_at_50%_40%,rgba(217,180,115,0.18),transparent_70%)] pointer-events-none" />
+        {/* 9. Scarcity / Urgency Bottom CTA */}
+        <section className="relative py-28 md:py-36 bg-[#0a0a0a] overflow-hidden text-center">
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-secondary/20 rounded-full blur-[120px] pointer-events-none"></div>
+          
+          <div className="container relative z-10 mx-auto px-4 max-w-4xl">
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+            >
+              <span className="inline-block py-1 px-4 rounded-full border border-secondary/30 bg-secondary/10 text-secondary text-xs uppercase tracking-widest font-bold mb-6">
+                Direct Duluth Fabrication
+              </span>
+              <h2 className="text-3xl sm:text-5xl lg:text-6xl font-serif font-bold text-white mb-6 leading-tight">
+                Ready to Upgrade Your Countertops &amp; Cabinets?
+              </h2>
+              <p className="text-base sm:text-xl text-gray-300 mb-10 max-w-2xl mx-auto font-light leading-relaxed">
+                Save 20–30% with factory-direct pricing. Contact us today for a free in-home 3D digital laser measurement and estimate.
+              </p>
+              
+              <div className="flex flex-col sm:flex-row items-center justify-center gap-4 max-w-md mx-auto">
+                <button
+                  type="button"
+                  onClick={() => {
+                    const formEl = document.getElementById('estimate-form');
+                    if (formEl) formEl.scrollIntoView({ behavior: 'smooth' });
+                  }}
+                  className="w-full sm:w-auto bg-secondary hover:bg-yellow-600 text-white font-bold py-4 px-8 rounded-full shadow-xl transition-all flex items-center justify-center gap-2 text-sm uppercase tracking-wider cursor-pointer group"
+                >
+                  <span>Claim Your Free Quote</span>
+                  <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
+                </button>
 
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="relative z-10 max-w-4xl mx-auto"
-          >
-            {/* Subtle luxury badge */}
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/90 border border-stone-200/90 shadow-xs backdrop-blur-md text-xs font-semibold text-stone-800 mb-6">
-              <span className="w-2 h-2 rounded-full bg-[#9E7D47]"></span>
-              <span>Metro Atlanta Kitchen & Bathroom Remodeling</span>
-            </div>
-
-            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-serif font-normal text-stone-900 mb-5 leading-[1.15] tracking-tight">
-              Transform Your Kitchen & Bath.<br />
-              <span className="font-light italic text-[#9E7D47]">Built Around Your Home.</span>
-            </h2>
-
-            <p className="text-base sm:text-lg md:text-xl text-stone-600 mb-8 sm:mb-10 font-light max-w-2xl mx-auto leading-relaxed">
-              Join over 120+ homeowners in Metro Atlanta who upgraded their spaces with local stone fabrication, custom cabinetry, and factory-direct savings.
-            </p>
-
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-3.5 sm:gap-4 max-w-md mx-auto mb-6">
-              <a
-                href="#estimate-form"
-                onClick={scrollToForm}
-                className="w-full sm:w-auto inline-flex items-center justify-center bg-[#1C1917] hover:bg-[#9E7D47] text-white font-medium py-4 px-8 rounded-xl transition-all duration-300 shadow-md hover:shadow-xl text-xs sm:text-sm uppercase tracking-wider group cursor-pointer"
-              >
-                <span>GET MY FREE ESTIMATE</span>
-                <ArrowRight size={16} className="ml-2.5 transform group-hover:translate-x-1 transition-transform" />
-              </a>
-
-              <a
-                href="tel:4049524534"
-                className="w-full sm:w-auto inline-flex items-center justify-center bg-white hover:bg-stone-50 border border-stone-300 text-stone-800 font-medium py-4 px-7 rounded-xl transition-all duration-200 shadow-xs text-xs sm:text-sm uppercase tracking-wider cursor-pointer"
-              >
-                <Phone size={15} className="mr-2 text-[#9E7D47]" />
-                <span>(404) 952-4534</span>
-              </a>
-            </div>
-
-            <p className="text-xs text-stone-500 font-light">
-              Free 3D digital laser estimate • No obligation • Factory-direct pricing in Duluth, GA
-            </p>
-          </motion.div>
+                <a 
+                  href="tel:4049524534"
+                  className="w-full sm:w-auto bg-white/10 hover:bg-white/20 backdrop-blur-md text-white font-bold py-4 px-8 rounded-full border border-white/20 transition-all flex items-center justify-center gap-2 text-sm uppercase tracking-wider"
+                >
+                  <Phone size={16} className="text-secondary" />
+                  <span>(404) 952-4534</span>
+                </a>
+              </div>
+            </motion.div>
+          </div>
         </section>
 
-        {/* Mobile Sticky Quick Action Bar (Reveals on scroll, under 54px height) */}
+        {/* 10. Mobile Sticky Action Bar */}
         <AnimatePresence>
-          {showStickyBar && (
+          {showMobileSticky && (
             <motion.div
               initial={{ y: 80, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               exit={{ y: 80, opacity: 0 }}
               transition={{ type: 'spring', damping: 24, stiffness: 260 }}
-              className="fixed bottom-0 left-0 right-0 z-50 p-2.5 bg-white/95 backdrop-blur-md border-t border-stone-200 shadow-[0_-5px_20px_rgba(0,0,0,0.08)] flex items-center justify-between gap-2.5 md:hidden"
+              className="fixed bottom-0 left-0 right-0 z-50 p-2.5 bg-black/95 backdrop-blur-md border-t border-white/10 shadow-[0_-5px_20px_rgba(0,0,0,0.5)] flex items-center justify-between gap-2.5 md:hidden"
             >
               <a
                 href="tel:4049524534"
-                className="flex-1 inline-flex items-center justify-center gap-1.5 bg-stone-100 hover:bg-stone-200 text-stone-800 font-semibold py-2.5 px-3 rounded-xl text-xs transition-colors"
+                className="flex-1 inline-flex items-center justify-center gap-1.5 bg-white/10 hover:bg-white/20 text-white font-semibold py-2.5 px-3 rounded-xl text-xs transition-colors"
               >
-                <Phone size={14} className="text-[#9E7D47]" />
+                <Phone size={14} className="text-secondary" />
                 <span>(404) 952-4534</span>
               </a>
-              <a
-                href="#estimate-form"
-                onClick={scrollToForm}
-                className="flex-1 inline-flex items-center justify-center gap-1.5 bg-[#1C1917] hover:bg-[#9E7D47] text-white font-semibold py-2.5 px-3 rounded-xl text-xs uppercase tracking-wide transition-colors"
+              <button
+                type="button"
+                onClick={() => {
+                  const formEl = document.getElementById('estimate-form');
+                  if (formEl) formEl.scrollIntoView({ behavior: 'smooth' });
+                }}
+                className="flex-1 inline-flex items-center justify-center gap-1.5 bg-secondary hover:bg-yellow-600 text-white font-bold py-2.5 px-3 rounded-xl text-xs uppercase tracking-wide transition-colors cursor-pointer"
               >
-                <span>Free Estimate</span>
+                <span>Free Quote</span>
                 <ArrowRight size={13} />
-              </a>
+              </button>
             </motion.div>
           )}
         </AnimatePresence>
-
       </main>
-
-      {/* Simple Footer */}
-      <footer className="bg-gray-50 py-8 border-t border-gray-200">
-        <div className="container mx-auto px-4 text-center">
-          <Image
-            src="https://i.imgur.com/B0ZaBpN.png"
-            alt="AGS Stones & Cabinets Logo"
-            width={180}
-            height={60}
-            className="h-8 w-auto mx-auto mb-6 grayscale opacity-80"
-          />
-          <p className="text-gray-500 text-sm mb-2">© {new Date().getFullYear()} AGS Stones & Cabinets. All rights reserved.</p>
-          <p className="text-xs text-gray-400">Serving Metro Atlanta • Professional Stone Fabrication & Installation</p>
-        </div>
-      </footer>
 
       {/* Lightbox / Image Popup Modal */}
       <AnimatePresence>
@@ -1060,12 +1148,12 @@ export default function PromoPage() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[100] flex items-center justify-center bg-black/90 p-4"
+            className="fixed inset-0 z-[100] flex items-center justify-center bg-black/95 p-4"
             onClick={() => setSelectedImage(null)}
           >
             <button
               onClick={() => setSelectedImage(null)}
-              className="absolute top-6 right-6 text-white/70 hover:text-white transition-colors z-50 bg-black/50 p-2 rounded-full"
+              className="absolute top-6 right-6 text-white/70 hover:text-white transition-colors z-50 bg-black/60 p-2 rounded-full cursor-pointer"
             >
               <X size={28} />
             </button>
@@ -1074,12 +1162,12 @@ export default function PromoPage() {
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.95, opacity: 0 }}
               transition={{ type: 'spring', damping: 25, stiffness: 300 }}
-              className="relative w-full max-w-6xl max-h-[90vh] aspect-[16/9] sm:aspect-auto sm:h-[85vh] rounded-xl overflow-hidden"
+              className="relative w-full max-w-6xl max-h-[90vh] aspect-[16/9] sm:aspect-auto sm:h-[85vh] rounded-2xl overflow-hidden"
               onClick={(e) => e.stopPropagation()}
             >
               <Image
                 src={selectedImage}
-                alt="Enlarged gallery implementation"
+                alt="Enlarged transformation example"
                 fill
                 className="object-contain"
                 priority
@@ -1088,6 +1176,8 @@ export default function PromoPage() {
           </motion.div>
         )}
       </AnimatePresence>
+
+      <Footer />
     </div>
   );
 }
