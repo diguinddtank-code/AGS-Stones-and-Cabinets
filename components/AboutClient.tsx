@@ -86,7 +86,7 @@ const AboutClient = () => {
       
       <main className="flex-grow">
         {/* Cinematic Immersive Hero Section */}
-        <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden pt-32 pb-20">
+        <section className="relative lg:min-h-[70vh] flex items-center justify-center overflow-hidden pt-36 pb-24 lg:pb-28">
           <div className="absolute inset-0 z-0">
             <Image 
               src="https://kitchenandbathshop.com/wp-content/uploads/2020/11/5d7ff4ab763f7-scaled.jpg"
@@ -117,7 +117,7 @@ const AboutClient = () => {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.1 }}
-              className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-serif font-medium mb-6 md:mb-8 leading-[1.1] md:leading-[1.05] tracking-tight text-white max-w-5xl mx-auto"
+              className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-serif font-medium mb-6 md:mb-8 leading-[1.1] md:leading-[1.05] tracking-tight text-white max-w-5xl mx-auto"
             >
               Where Raw Earth Meets <span className="text-secondary italic font-light">Mathematical Artistry.</span>
             </motion.h1>
@@ -127,7 +127,7 @@ const AboutClient = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
-              className="text-base sm:text-lg md:text-2xl text-gray-200 font-light max-w-3xl mx-auto leading-relaxed mb-8 md:mb-12 px-2 sm:px-0"
+              className="text-base sm:text-lg md:text-xl text-gray-200 font-light max-w-3xl mx-auto leading-relaxed mb-8 md:mb-12 px-2 sm:px-0"
             >
               Atlanta's premier family-founded studio bypasses retail markup. We handpick, laser-template, and robotically carve the world's most breathtaking quartz and granite blocks directly for your residence.
             </motion.p>
@@ -158,25 +158,25 @@ const AboutClient = () => {
         <TrustBadges overlap />
 
         {/* Our Blueprint: Large Horizontal/Responsive Dynamic Process Stage */}
-        <section className="py-24 md:py-32 bg-white relative">
+        <section className="py-16 md:py-20 bg-white relative">
                     
           <div className="container mx-auto px-4 max-w-7xl">
-            <div className="text-center md:text-left mb-16 lg:mb-24">
+            <div className="text-center md:text-left mb-10 lg:mb-14">
               <span className="text-xs uppercase tracking-[0.3em] text-secondary font-bold mb-3 block">Uncompromised Fabrication Blueprint</span>
-              <h2 className="text-4xl md:text-6xl font-serif font-light text-primary tracking-tight">
+              <h2 className="text-3xl md:text-5xl font-serif font-light text-primary tracking-tight">
                 No Retail Middlemen. <br className="hidden md:block" />
                 <span className="italic font-light text-secondary">Pure Factory-Direct Control.</span>
               </h2>
             </div>
 
-            <div className="grid lg:grid-cols-12 gap-10 lg:gap-16 items-start">
+            <div className="grid lg:grid-cols-12 gap-8 lg:gap-12 items-start">
               {/* Left Column: Interactive Steps List */}
               <div className="lg:col-span-5 space-y-4">
                 {steps.map((step, idx) => (
                   <button
                     key={idx}
                     onClick={() => setActiveStep(idx)}
-                    className={`w-full text-left p-6 sm:p-8 rounded-2xl border transition-all duration-300 relative overflow-hidden group ${
+                    className={`w-full text-left p-5 sm:p-6 rounded-2xl border transition-all duration-300 relative overflow-hidden group ${
                       activeStep === idx 
                         ? 'bg-gray-50 border-secondary/40 shadow-lg' 
                         : 'bg-transparent border-transparent hover:border-gray-200 hover:bg-gray-50'
@@ -209,9 +209,9 @@ const AboutClient = () => {
 
               {/* Right Column: Visual Showcase Screen */}
               <div className="lg:col-span-7">
-                <div className="relative bg-white rounded-[2.5rem] border border-gray-200 overflow-hidden shadow-xl group min-h-[500px] flex flex-col justify-between">
+                <div className="relative bg-white rounded-[2.5rem] border border-gray-200 overflow-hidden shadow-xl group flex flex-col justify-between">
                   {/* Active Slide Media Container */}
-                  <div className="relative h-[280px] sm:h-[350px] w-full overflow-hidden">
+                  <div className="relative h-[240px] sm:h-[300px] w-full overflow-hidden">
                     <AnimatePresence mode="wait">
                       <motion.div
                         key={activeStep}
@@ -234,7 +234,7 @@ const AboutClient = () => {
                   </div>
 
                   {/* Active Slide Metadata Details */}
-                  <div className="p-8 sm:p-10 relative z-20">
+                  <div className="p-6 sm:p-8 relative z-20">
                     <span className="text-xs uppercase tracking-[0.2em] font-bold text-secondary mb-2 block">{steps[activeStep].subtitle}</span>
                     <AnimatePresence mode="wait">
                       <motion.div
@@ -261,13 +261,13 @@ const AboutClient = () => {
         </section>
 
         {/* Dynamic Legacy Timeline - Custom Staggered Panels */}
-        <section className="py-24 md:py-32 bg-white text-gray-900 relative">
+        <section className="py-16 md:py-20 bg-gray-50 text-gray-900 relative">
           <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-gray-50 to-transparent pointer-events-none"></div>
           
           <div className="container mx-auto px-4 max-w-7xl">
-            <div className="text-center max-w-3xl mx-auto mb-20 md:mb-28">
+            <div className="text-center max-w-3xl mx-auto mb-10 md:mb-14">
               <span className="text-xs uppercase tracking-[0.3em] text-secondary font-bold mb-3 block">THE CHRONICLES OF EXCELLENCE</span>
-              <h2 className="text-4xl md:text-6xl font-serif font-medium tracking-tight text-primary mb-6">
+              <h2 className="text-3xl md:text-5xl font-serif font-medium tracking-tight text-primary mb-5">
                 From a Single Saw to <span className="italic font-light text-secondary">Atlanta's Elite Benchmark</span>
               </h2>
               <p className="text-lg text-gray-600 font-light max-w-2xl mx-auto leading-relaxed">
@@ -276,7 +276,7 @@ const AboutClient = () => {
             </div>
 
             {/* Timelines Cards */}
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 relative z-10">
+            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5 relative z-10">
               {[
                 {
                   year: "2009",
@@ -303,10 +303,10 @@ const AboutClient = () => {
                   desc: "With 2,000+ custom installations completed and a relentless 5-star reputation in Duluth, Buckhead, and Alpharetta, AGS Stones stands as the definitive elite stonecrafter choice."
                 }
               ].map((item, idx) => (
-                <div key={idx} className="bg-gray-50 border border-gray-150 p-8 rounded-[1.8rem] flex flex-col justify-between hover:shadow-xl transition-all duration-500 hover:-translate-y-2 group">
+                <div key={idx} className="bg-white border border-gray-200 p-6 rounded-2xl flex flex-col justify-between hover:shadow-xl transition-all duration-500 hover:-translate-y-2 group">
                   <div>
-                    <div className="flex items-center justify-between mb-8">
-                      <span className="text-5xl font-serif font-light text-secondary group-hover:scale-105 transition-transform duration-500 block">{item.year}</span>
+                    <div className="flex items-center justify-between mb-5">
+                      <span className="text-4xl font-serif font-light text-secondary group-hover:scale-105 transition-transform duration-500 block">{item.year}</span>
                       <Bookmark className="text-gray-300 group-hover:text-secondary transition-colors" size={20} />
                     </div>
                     <span className="text-xs uppercase tracking-widest text-[#a8a8a8] block mb-2 font-mono font-bold">{item.label}</span>
@@ -322,14 +322,14 @@ const AboutClient = () => {
         </section>
 
         {/* Sovereign Analytics of Trust: Stats & Guarantees */}
-        <section className="py-24 bg-gray-50 border-gray-100 border-t relative overflow-hidden">
+        <section className="py-16 md:py-20 bg-white border-gray-100 border-t relative overflow-hidden">
           
           <div className="container mx-auto px-4 max-w-7xl relative z-10">
-            <div className="grid lg:grid-cols-12 gap-16 items-center">
+            <div className="grid lg:grid-cols-12 gap-10 lg:gap-16 items-center">
               {/* Left text column */}
               <div className="lg:col-span-5 text-center lg:text-left">
                 <span className="text-xs uppercase tracking-[0.3em] text-secondary font-bold mb-3 block">ATLANTA'S SOVEREIGN BENCHMARK</span>
-                <h2 className="text-4xl md:text-5xl font-serif text-primary tracking-tight mb-6">
+                <h2 className="text-3xl md:text-4xl font-serif text-primary tracking-tight mb-6">
                   Elite Benchmarks <br />That Back Our <span className="italic font-light text-secondary">Reputation</span>
                 </h2>
                 <p className="text-gray-600 font-light leading-relaxed max-w-lg mb-8">
@@ -352,15 +352,15 @@ const AboutClient = () => {
               </div>
 
               {/* Right statistics grid */}
-              <div className="lg:col-span-7 grid sm:grid-cols-2 gap-6 w-full">
+              <div className="lg:col-span-7 grid sm:grid-cols-2 gap-4 w-full">
                 {[
                   { value: "20+", metric: "Years Sovereignty", detail: "Serving Duluth, Alpharetta, Buckhead & beyond." },
                   { value: "2,000+", metric: "Custom Kitchens Built", detail: "From minimalist quartz slabs to exotic quartzite." },
                   { value: "0", metric: "Brokers or Distributors", detail: "We buy directly, saving you up to 30% MSRP." },
                   { value: "5-Star", metric: "Consistently Certified", detail: "Atlanta's highest-voted artisan stone fabricator." }
                 ].map((stat, idx) => (
-                  <div key={idx} className="bg-white border border-gray-200 rounded-3xl p-8 shadow-sm hover:shadow-md transition-colors relative group">
-                    <div className="text-4xl sm:text-5xl font-serif text-secondary mb-2 font-light">{stat.value}</div>
+                  <div key={idx} className="bg-white border border-gray-200 rounded-2xl p-6 shadow-sm hover:shadow-md transition-colors relative group">
+                    <div className="text-3xl sm:text-4xl font-serif text-secondary mb-2 font-light">{stat.value}</div>
                     <div className="text-primary font-medium text-base mb-1 tracking-tight">{stat.metric}</div>
                     <div className="text-gray-500 text-xs leading-relaxed">{stat.detail}</div>
                     <span className="absolute top-4 right-4 text-[10px] text-gray-300 font-mono">AGS // 0{idx + 1}</span>
@@ -374,13 +374,13 @@ const AboutClient = () => {
         <ReviewsMarquee className="bg-white" />
 
         {/* Master Showroom Callout - Dual-split Layout */}
-        <section className="py-24 md:py-32 bg-white text-gray-900 relative">
-          <div className="container mx-auto px-4 max-w-7xl">
-            <div className="bg-primary rounded-[2.5rem] text-white overflow-hidden border border-primary relative shadow-2xl">
+        <section className="py-16 md:py-20 bg-white text-gray-900 relative">
+          <div className="container mx-auto px-4 max-w-6xl">
+            <div className="bg-primary rounded-3xl text-white overflow-hidden border border-primary relative shadow-2xl">
                             
               <div className="grid lg:grid-cols-12 items-stretch">
                 {/* Visual Side */}
-                <div className="lg:col-span-6 relative min-h-[350px] lg:min-h-auto">
+                <div className="lg:col-span-6 relative min-h-[260px] lg:min-h-auto">
                   <Image 
                     src="https://images.unsplash.com/photo-1620626011761-996317b8d101?q=80&w=1000&auto=format&fit=crop"
                     alt="Premium Granite and Cabinet Showroom Duluth"
@@ -394,9 +394,9 @@ const AboutClient = () => {
                 </div>
 
                 {/* Consumer Psychology Persuasive Content Side */}
-                <div className="lg:col-span-6 p-8 sm:p-14 md:p-20 flex flex-col justify-center relative z-10">
+                <div className="lg:col-span-6 p-7 sm:p-10 md:p-12 flex flex-col justify-center relative z-10">
                   <span className="text-xs uppercase tracking-[0.2em] text-secondary font-bold mb-4 block">Visit the Design Sanctuary</span>
-                  <h3 className="text-3xl sm:text-5xl font-serif font-light mb-6 leading-tight">
+                  <h3 className="text-3xl sm:text-4xl font-serif font-light mb-5 leading-tight">
                     Every Slab Tells a <br />
                     <span className="italic font-light text-secondary">Geological Story.</span>
                   </h3>

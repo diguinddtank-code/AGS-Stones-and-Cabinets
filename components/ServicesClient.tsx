@@ -48,7 +48,7 @@ const ServicesClient = () => {
       
       <main className="flex-grow">
         {/* Cinematic Immersive Hero Section */}
-        <section className="relative min-h-0 lg:min-h-[85vh] flex flex-col justify-start lg:justify-center items-center overflow-hidden pt-36 pb-16 sm:pt-40 sm:pb-20 lg:py-24">
+        <section className="relative min-h-0 lg:min-h-[70vh] flex flex-col justify-start lg:justify-center items-center overflow-hidden pt-36 pb-20 sm:pt-40 sm:pb-24 lg:pt-36 lg:pb-28">
           <div className="absolute inset-0 z-0">
             <Image 
               src="https://kitchenandbathshop.com/wp-content/uploads/2020/11/5d7ff4ab763f7-scaled.jpg"
@@ -79,7 +79,7 @@ const ServicesClient = () => {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.1 }}
-              className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-serif font-medium mb-6 md:mb-8 leading-[1.1] md:leading-[1.05] tracking-tight text-white max-w-5xl mx-auto"
+              className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-serif font-medium mb-6 md:mb-8 leading-[1.1] md:leading-[1.05] tracking-tight text-white max-w-5xl mx-auto"
             >
               Architectural Slabs & <span className="text-secondary italic font-light">Precision Cabinetry.</span>
             </motion.h1>
@@ -89,7 +89,7 @@ const ServicesClient = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
-              className="text-base sm:text-lg md:text-2xl text-gray-200 font-light max-w-3xl mx-auto leading-relaxed mb-8 md:mb-12 px-2 sm:px-0"
+              className="text-base sm:text-lg md:text-xl text-gray-200 font-light max-w-3xl mx-auto leading-relaxed mb-8 md:mb-12 px-2 sm:px-0"
             >
               We bypass third-party showrooms and regional broker commissions. From raw Brazilian Quartzite curation to exact 3D laser-guided installation, we engineer perfect spaces.
             </motion.p>
@@ -120,12 +120,12 @@ const ServicesClient = () => {
         <TrustBadges overlap />
 
         {/* Premium Immersive Services Directory */}
-        <section className="py-24 md:py-32 bg-white relative">
+        <section className="py-16 md:py-20 bg-white relative">
           
           <div className="container mx-auto px-4 max-w-7xl relative z-10">
-            <div className="text-center max-w-3xl mx-auto mb-20 md:mb-28">
+            <div className="text-center max-w-3xl mx-auto mb-10 md:mb-14">
               <span className="text-xs uppercase tracking-[0.3em] text-secondary font-bold mb-3 block">HIGH-FIDELITY SERVICES</span>
-              <h2 className="text-3xl md:text-6xl font-serif font-light text-primary tracking-tight">
+              <h2 className="text-3xl md:text-5xl font-serif font-light text-primary tracking-tight">
                 Crafted for Breathtaking <br className="hidden md:block" />
                 <span className="italic font-light text-secondary">Spatial Transformations</span>
               </h2>
@@ -134,7 +134,7 @@ const ServicesClient = () => {
               </p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
+            <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-5 lg:gap-6 xl:[&>*:last-child:nth-child(3n+1)]:col-start-2">
               {services.map((service, idx) => (
                 <motion.div
                   key={idx}
@@ -144,46 +144,46 @@ const ServicesClient = () => {
                   transition={{ duration: 0.8, delay: idx * 0.1, ease: [0.16, 1, 0.3, 1] }}
                   onMouseEnter={() => setHoveredIndex(idx)}
                   onMouseLeave={() => setHoveredIndex(null)}
-                  className="group relative bg-white border border-gray-200 rounded-[2rem] overflow-hidden hover:border-secondary/40 transition-all duration-500 shadow-lg hover:shadow-xl flex flex-col h-full"
+                  className="group relative bg-white border border-gray-200 rounded-2xl overflow-hidden hover:border-secondary/40 transition-all duration-500 shadow-sm hover:shadow-lg flex flex-col h-full"
                 >
                   {/* Image Container with Custom Glow Layer */}
-                  <div className="relative h-[250px] sm:h-[320px] w-full overflow-hidden">
+                  <div className="relative aspect-[16/10] w-full overflow-hidden">
                     <Image 
                       src={service.image} 
                       alt={service.title} 
                       className="absolute inset-0 w-full h-full object-cover transform scale-100 group-hover:scale-[1.03] transition-all duration-700 ease-out filter brightness-90 contrast-105"
                       fill
-                      sizes="(max-width: 768px) 100vw, 45vw"
+                      sizes="(max-width: 640px) 100vw, (max-width: 1280px) 50vw, 33vw"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent z-10"></div>
                     
                     {/* Floating Level Marker */}
-                    <div className="absolute top-6 right-6 z-20 bg-black/40 backdrop-blur-md px-3.5 py-1 rounded-full border border-white/10 text-[10px] font-mono uppercase tracking-widest text-secondary font-bold">
+                    <div className="absolute top-3 right-3 z-20 bg-black/40 backdrop-blur-md px-2.5 py-0.5 rounded-full border border-white/10 text-[10px] font-mono uppercase tracking-widest text-secondary font-bold">
                       AGS // 0{idx + 1}
                     </div>
 
                     {/* Floating Service Icon */}
-                    <div className="absolute bottom-6 left-6 z-20 flex items-center gap-3">
-                      <div className="bg-secondary/90 backdrop-blur-md p-3.5 rounded-2xl text-white shadow-xl border border-secondary/25">
+                    <div className="absolute bottom-3 left-3 z-20 flex items-center gap-3">
+                      <div className="bg-secondary/90 backdrop-blur-md p-2.5 rounded-xl text-white shadow-xl border border-secondary/25">
                         {service.icon}
                       </div>
                     </div>
                   </div>
 
                   {/* Service Metadata / Copy */}
-                  <div className="p-8 sm:p-10 flex flex-col justify-between flex-grow">
+                  <div className="p-5 md:p-6 flex flex-col justify-between flex-grow">
                     <div>
-                      <h3 className="text-2xl sm:text-3xl font-serif font-light text-primary mb-4 group-hover:text-secondary transition-colors duration-300">
+                      <h3 className="text-xl md:text-2xl font-serif font-light text-primary mb-2 group-hover:text-secondary transition-colors duration-300">
                         {service.title}
                       </h3>
-                      <p className="text-gray-600 text-sm sm:text-base font-light leading-relaxed mb-6 block">
+                      <p className="text-gray-600 text-sm font-light leading-relaxed mb-4 block">
                         {service.longDesc}
                       </p>
 
                       {/* Feature Bullet Points */}
-                      <ul className="space-y-3.5 border-t border-gray-100 pt-6 mb-8">
+                      <ul className="space-y-2 border-t border-gray-100 pt-4 mb-5">
                         {service.features.map((feature, fIdx) => (
-                          <li key={fIdx} className="flex items-start gap-3.5 text-xs sm:text-sm text-gray-700 font-light leading-snug">
+                          <li key={fIdx} className="flex items-start gap-2.5 text-xs sm:text-sm text-gray-700 font-light leading-snug">
                             <CheckCircle2 size={16} className="text-secondary mt-0.5 flex-shrink-0" />
                             <span>{feature}</span>
                           </li>
@@ -192,10 +192,10 @@ const ServicesClient = () => {
                     </div>
 
                     {/* Interactive CTA Anchor */}
-                    <div className="pt-6 border-t border-gray-100 mt-auto flex items-center justify-between">
+                    <div className="pt-4 border-t border-gray-100 mt-auto flex items-center justify-between">
                       <Link 
                         href={`/services/${service.slug}`}
-                        className="inline-flex items-center gap-2 text-xs uppercase tracking-widest text-primary group-hover:text-secondary font-bold transition-all duration-300 pb-0.5 border-b border-transparent group-hover:border-secondary"
+                        className="inline-flex items-center gap-2 text-[11px] uppercase tracking-widest text-primary group-hover:text-secondary font-bold transition-all duration-300 pb-0.5 border-b border-transparent group-hover:border-secondary"
                       >
                         Explore Fabrication Specifications <ChevronRight size={13} className="transform group-hover:translate-x-1 transition-transform" />
                       </Link>
@@ -208,11 +208,11 @@ const ServicesClient = () => {
         </section>
 
         {/* The Execution Pipeline - Custom Interactive Stage Cards */}
-        <section className="py-24 md:py-32 bg-white text-gray-900 relative">
+        <section className="py-16 md:py-20 bg-gray-50 text-gray-900 relative">
           <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-gray-50 to-transparent pointer-events-none"></div>
           
           <div className="container mx-auto px-4 max-w-7xl relative z-10">
-            <div className="text-center max-w-3xl mx-auto mb-20 md:mb-28">
+            <div className="text-center max-w-3xl mx-auto mb-10 md:mb-14">
               <span className="text-xs uppercase tracking-[0.3em] text-secondary font-bold mb-3 block">OUR MONOLITHIC FLOW</span>
               <h2 className="text-3xl md:text-5xl font-serif tracking-tight text-primary">
                 Flawless Execution. <br />
@@ -246,15 +246,15 @@ const ServicesClient = () => {
                   desc: "High-vacuum Gorilla Grips pull slab seams together with intense mechanical lock and matched pigment epoxy." 
                 }
               ].map((item, idx) => (
-                <div key={idx} className="bg-gray-50 border border-gray-150 p-8 rounded-[1.8rem] flex flex-col justify-between hover:shadow-xl transition-all duration-500 hover:-translate-y-2 group">
+                <div key={idx} className="bg-white border border-gray-200 p-6 rounded-2xl flex flex-col justify-between hover:shadow-xl transition-all duration-500 hover:-translate-y-2 group">
                   <div>
-                    <span className="text-4xl font-serif font-light text-secondary mb-8 block">{item.step}</span>
+                    <span className="text-3xl font-serif font-light text-secondary mb-4 block">{item.step}</span>
                     <h3 className="text-lg font-semibold text-primary mb-3">{item.title}</h3>
                     <p className="text-gray-650 text-xs sm:text-sm font-light leading-relaxed">
                       {item.desc}
                     </p>
                   </div>
-                  <span className="text-[10px] uppercase tracking-wider text-gray-400 font-mono mt-8 block">STAGE PROGRESSION</span>
+                  <span className="text-[10px] uppercase tracking-wider text-gray-400 font-mono mt-5 block">STAGE PROGRESSION</span>
                 </div>
               ))}
             </div>
@@ -262,10 +262,10 @@ const ServicesClient = () => {
         </section>
 
         {/* Persuasive Showroom Direct Consumer Psychology Block */}
-        <section className="py-24 bg-gray-50 border-gray-100 border-y relative overflow-hidden">
+        <section className="py-16 md:py-20 bg-white border-gray-100 border-y relative overflow-hidden">
           
           <div className="container mx-auto px-4 max-w-7xl relative z-10">
-            <div className="grid lg:grid-cols-12 gap-16 items-center">
+            <div className="grid lg:grid-cols-12 gap-10 lg:gap-16 items-center">
               {/* Left Text */}
               <div className="lg:col-span-5 text-center lg:text-left">
                 <span className="text-xs uppercase tracking-[0.3em] text-secondary font-bold mb-3 block">WHY ATLANTA CHOOSES AGS</span>
@@ -293,23 +293,23 @@ const ServicesClient = () => {
               </div>
 
               {/* Right Dual Showroom Visual Blocks */}
-              <div className="lg:col-span-7 grid sm:grid-cols-2 gap-6 w-full">
-                <div className="bg-white border border-gray-200 rounded-3xl p-8 shadow-sm hover:shadow-md transition-colors relative">
+              <div className="lg:col-span-7 grid sm:grid-cols-2 gap-4 w-full">
+                <div className="bg-white border border-gray-200 rounded-2xl p-6 shadow-sm hover:shadow-md transition-colors relative">
                   <div className="text-4xl font-serif text-secondary mb-2 font-light">20+</div>
                   <div className="text-primary font-medium text-base mb-1">Years of Local Quality</div>
                   <div className="text-gray-500 text-xs leading-relaxed">Serving duluth, alpharetta, buckhead, and greater metro atlanta.</div>
                 </div>
-                <div className="bg-white border border-gray-200 rounded-3xl p-8 shadow-sm hover:shadow-md transition-colors relative">
+                <div className="bg-white border border-gray-200 rounded-2xl p-6 shadow-sm hover:shadow-md transition-colors relative">
                   <div className="text-4xl font-serif text-secondary mb-2 font-light">0%</div>
                   <div className="text-primary font-medium text-base mb-1">Middlemen Commission</div>
                   <div className="text-gray-500 text-xs leading-relaxed">Everything is sourced and processed under one facility roof.</div>
                 </div>
-                <div className="bg-white border border-gray-200 rounded-3xl p-8 shadow-sm hover:shadow-md transition-colors relative">
+                <div className="bg-white border border-gray-200 rounded-2xl p-6 shadow-sm hover:shadow-md transition-colors relative">
                   <div className="text-4xl font-serif text-secondary mb-2 font-light">2,000+</div>
                   <div className="text-primary font-medium text-base mb-1">Slabs Hand-Selected</div>
                   <div className="text-gray-500 text-xs leading-relaxed">Direct imports of unique Brazilian Quartzite and Italian Marble.</div>
                 </div>
-                <div className="bg-white border border-gray-200 rounded-3xl p-8 shadow-sm hover:shadow-md transition-colors relative">
+                <div className="bg-white border border-gray-200 rounded-2xl p-6 shadow-sm hover:shadow-md transition-colors relative">
                   <div className="text-4xl font-serif text-secondary mb-2 font-light">5-Star</div>
                   <div className="text-primary font-medium text-base mb-1">Reputation of Trust</div>
                   <div className="text-gray-500 text-xs leading-relaxed">Highly rated over consecutive years of spotless work.</div>
@@ -322,13 +322,13 @@ const ServicesClient = () => {
         <ReviewsMarquee className="bg-white" />
 
         {/* Luxury CTA section */}
-        <section className="py-24 md:py-32 bg-white text-gray-900 relative">
-          <div className="container mx-auto px-4 max-w-7xl">
-            <div className="bg-primary rounded-[2.5rem] text-white overflow-hidden border border-primary relative shadow-2xl">
+        <section className="py-16 md:py-20 bg-white text-gray-900 relative">
+          <div className="container mx-auto px-4 max-w-6xl">
+            <div className="bg-primary rounded-3xl text-white overflow-hidden border border-primary relative shadow-2xl">
                             
               <div className="grid lg:grid-cols-12 items-stretch">
                 {/* Visual Side */}
-                <div className="lg:col-span-6 relative min-h-[350px] lg:min-h-auto">
+                <div className="lg:col-span-6 relative min-h-[260px] lg:min-h-auto">
                   <Image 
                     src="https://images.unsplash.com/photo-1620626011761-996317b8d101?q=80&w=1000&auto=format&fit=crop"
                     alt="Premium Granite and Cabinet Showroom Duluth"
@@ -342,9 +342,9 @@ const ServicesClient = () => {
                 </div>
 
                 {/* Consumer Psychology Persuasive Content Side */}
-                <div className="lg:col-span-6 p-8 sm:p-14 md:p-20 flex flex-col justify-center relative z-10">
+                <div className="lg:col-span-6 p-7 sm:p-10 md:p-12 flex flex-col justify-center relative z-10">
                   <span className="text-xs uppercase tracking-[0.2em] text-secondary font-bold mb-4 block font-mono">Transform Your Environment</span>
-                  <h3 className="text-3xl sm:text-5xl font-serif font-light mb-6 leading-tight">
+                  <h3 className="text-3xl sm:text-4xl font-serif font-light mb-5 leading-tight">
                     Every Slab Tells a <br />
                     <span className="italic font-light text-secondary">Geological Story.</span>
                   </h3>
