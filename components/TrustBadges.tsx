@@ -1,33 +1,14 @@
 import React from 'react';
 import { CalendarCheck, Factory, Hammer, Layers } from 'lucide-react';
-import { GoogleGLogo, NextdoorLogo } from './BrandLogos';
+import { YelpLogo, ThumbtackLogo, NextdoorLogo } from './BrandLogos';
 
 // Only facts already published on the site. "5.0 on Google" was left out
 // on purpose: the Google Business Profile has no public reviews yet.
 const medals = [
   { title: '20+ Years', subtitle: 'In business in Metro Atlanta', icon: CalendarCheck },
-  { title: 'Factory-Direct', subtitle: 'Pricing with no middleman', icon: Factory },
-  { title: 'Fabricated Locally', subtitle: 'In our own Duluth, GA shop', icon: Hammer },
-  { title: '500+ Slabs', subtitle: 'On display in our showroom', icon: Layers },
-];
-
-// Profiles confirmed to belong to AGS Stones & Cabinets.
-const platforms = [
-  {
-    name: 'Google',
-    href: 'https://maps.google.com/?q=AGS+STONES+%26+CABINETS,+4579+Abbotts+Bridge+Rd+Suite+-10,+Duluth,+GA+30097,+United+States',
-    logo: (
-      <span className="inline-flex items-center gap-2">
-        <GoogleGLogo className="w-4 h-4" />
-        <span className="font-semibold text-[15px] text-gray-700 tracking-tight">Google</span>
-      </span>
-    ),
-  },
-  {
-    name: 'Nextdoor',
-    href: 'https://nextdoor.com/pages/ags-stones-cabinets-llc-duluth-ga/',
-    logo: <NextdoorLogo />,
-  },
+  { title: 'Factory‑Direct', subtitle: 'Pricing with no middleman', icon: Factory },
+  { title: 'Fabricated Locally', subtitle: 'In our Duluth, GA shop', icon: Hammer },
+  { title: '500+ Slabs', subtitle: 'In our showroom', icon: Layers },
 ];
 
 // Rosette edge: a circle with 32 small notches.
@@ -44,7 +25,7 @@ const rosettePath = (() => {
 })();
 
 const Medal: React.FC<{ icon: React.ElementType }> = ({ icon: Icon }) => (
-  <div className="relative w-[84px] h-[96px] md:w-[96px] md:h-[110px] shrink-0">
+  <div className="relative w-[40px] h-[46px] md:w-[46px] md:h-[52px] shrink-0">
     <svg viewBox="0 0 100 114" className="absolute inset-0 w-full h-full" aria-hidden="true">
       {/* Ribbon tails */}
       <path d="M30 70 L20 112 L33 104 L42 113 L50 78 Z" fill="#a16207" />
@@ -56,7 +37,7 @@ const Medal: React.FC<{ icon: React.ElementType }> = ({ icon: Icon }) => (
       <circle cx="50" cy="46" r="27.5" fill="none" stroke="#ca8a04" strokeWidth="0.5" strokeDasharray="1.5 2" />
     </svg>
     <div className="absolute left-0 right-0 top-0 h-[81%] flex items-center justify-center">
-      <Icon className="text-white w-6 h-6 md:w-7 md:h-7" strokeWidth={1.75} />
+      <Icon className="text-white w-[15px] h-[15px] md:w-[17px] md:h-[17px]" strokeWidth={2} />
     </div>
   </div>
 );
@@ -70,38 +51,28 @@ interface TrustBadgesProps {
 const TrustBadges: React.FC<TrustBadgesProps> = ({ overlap = false, className = '' }) => (
   <section
     aria-label="Why homeowners trust AGS Stones"
-    className={`relative z-30 px-4 ${overlap === 'desktop' ? 'pt-10 md:pt-0 md:-mt-20' : overlap ? '-mt-14 md:-mt-20' : ''} ${className}`}
+    className={`relative z-30 px-4 ${overlap === 'desktop' ? 'pt-8 md:pt-0 md:-mt-12' : overlap ? '-mt-10 md:-mt-12' : ''} ${className}`}
   >
-    <div className="container mx-auto max-w-6xl">
-      <div className="bg-white rounded-3xl shadow-[0_20px_60px_-15px_rgba(15,23,42,0.25)] border border-gray-100">
-        <ul className="grid grid-cols-2 lg:grid-cols-4 gap-y-8 gap-x-4 px-4 py-8 md:px-10 md:py-10">
+    <div className="container mx-auto max-w-5xl">
+      <div className="bg-white rounded-2xl shadow-[0_12px_40px_-12px_rgba(15,23,42,0.22)] border border-gray-100">
+        <ul className="grid grid-cols-2 lg:grid-cols-4 gap-y-4 px-3 py-4 md:px-6 md:py-5 lg:divide-x lg:divide-gray-100">
           {medals.map(({ title, subtitle, icon }) => (
-            <li key={title} className="flex flex-col items-center text-center">
+            <li key={title} className="flex items-center gap-2.5 md:gap-3 px-1 md:px-4 lg:justify-center">
               <Medal icon={icon} />
-              <p className="mt-3 font-extrabold uppercase tracking-wide text-primary text-[13px] md:text-base leading-tight">
-                {title}
-              </p>
-              <p className="mt-1 text-xs md:text-sm text-gray-500 leading-snug max-w-[180px]">{subtitle}</p>
+              <div className="min-w-0">
+                <p className="font-extrabold uppercase tracking-wide text-primary text-[11px] md:text-[13px] leading-tight lg:whitespace-nowrap">
+                  {title}
+                </p>
+                <p className="mt-0.5 text-[10.5px] md:text-xs text-gray-500 leading-snug">{subtitle}</p>
+              </div>
             </li>
           ))}
         </ul>
 
-        <div className="border-t border-gray-100 px-4 py-4 md:py-5 flex flex-nowrap items-center justify-center gap-x-5 md:gap-x-10">
-          <span className="text-[11px] md:text-xs font-semibold uppercase tracking-widest text-gray-400 whitespace-nowrap">
-            Find us on
-          </span>
-          {platforms.map(p => (
-            <a
-              key={p.name}
-              href={p.href}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label={`AGS Stones & Cabinets on ${p.name}`}
-              className="opacity-80 hover:opacity-100 transition-opacity"
-            >
-              {p.logo}
-            </a>
-          ))}
+        <div className="border-t border-gray-100 px-4 py-2.5 md:py-3 flex items-center justify-center gap-x-6 md:gap-x-10 opacity-80">
+          <NextdoorLogo />
+          <ThumbtackLogo />
+          <YelpLogo />
         </div>
       </div>
     </div>
