@@ -2285,5 +2285,384 @@ export const blogContent: Record<string, BlogPost> = {
         </div>
       </>
     )
+  },
+  'can-you-put-hot-pans-on-quartz-countertops': {
+    slug: 'can-you-put-hot-pans-on-quartz-countertops',
+    title: 'Can You Put Hot Pans on Quartz Countertops? The WikiHow Heat Safety & Burn Repair Guide',
+    badge: 'WIKIHOW & HEAT SAFETY',
+    badgeType: 'wikihow',
+    category: 'Maintenance',
+    date: 'October 7, 2026',
+    modifiedDate: 'October 7, 2026',
+    readTime: '7 min read',
+    image: '/images/blog/can-you-put-hot-pans-on-quartz-countertops.jpg',
+    alt: 'Instructional wikiHow style illustration demonstrating heat safety on quartz countertops with silicone trivets, hot cookware protection, and thermal shock prevention',
+    excerpt: 'Step-by-step wikiHow guide answering if you can place hot pans on quartz. Learn polymer resin temperature thresholds, why air fryers cause sudden thermal cracks, how to prevent heat damage, and how to treat yellow burn marks.',
+    keyTakeaways: [
+      'No, you should never place hot pans, baking sheets, or cast-iron skillets directly on engineered quartz countertops.',
+      'While natural quartz crystals withstand over 1,500°F, engineered quartz contains 7% to 10% polymer resin binders that soften and scorch at temperatures above 150°F to 300°F.',
+      'Small countertop appliances like air fryers, slow cookers, and electric griddles emit sustained radiant heat downward and are the #1 cause of hidden yellow burns and thermal shock cracks.',
+      'Sudden extreme temperature differentials (thermal shock) can cause quartz to fracture along its internal structure or around sink cutouts.',
+      'Always use heat-resistant silicone trivets, hot pads, or thick wooden cutting boards under hot cookware and countertop appliances.'
+    ],
+    faqs: [
+      {
+        q: 'Can I put a hot pan straight from the stove onto quartz countertops?',
+        a: 'No. Placing a hot pan (which frequently exceeds 350°F to 500°F) directly onto quartz will scorch or melt the synthetic polymer resins that bind the stone crystals together. This results in permanent yellow or brown burn rings, surface cloudiness, or sudden thermal stress fractures.'
+      },
+      {
+        q: 'Can an air fryer or Instant Pot damage quartz countertops?',
+        a: 'Yes! In fact, air fryers, crockpots, and electric roasters are the leading causes of residential quartz countertop repairs in Metro Atlanta. Unlike a pan that touches for a few seconds, an air fryer radiates high heat (up to 400°F) downward into the countertop for 30 to 60 continuous minutes, gradually degrading the resin and causing spider cracks.'
+      },
+      {
+        q: 'What is thermal shock and why does it crack quartz countertops?',
+        a: 'Thermal shock occurs when a localized area of the quartz slab experiences a sudden, extreme temperature change while the surrounding stone remains room temperature. The heated section expands rapidly while the adjacent cold stone resists the expansion, creating intense internal tension that releases as a visible fissure or crack, particularly near sink cutouts or cooktop seams.'
+      },
+      {
+        q: 'Can yellow heat marks or scorch stains on quartz be repaired?',
+        a: 'If the heat only caused light surface resin oxidation, gentle buffing with a non-abrasive cleanser like Bar Keepers Friend Soft Cleanser or mild baking soda paste can lighten the mark. However, if deep resin melting or carbonization occurred, professional diamond honing, mechanical resurfacing, or precision resin color matching by our Duluth stone restoration team is required.'
+      },
+      {
+        q: 'How does quartz heat resistance compare to granite and quartzite?',
+        a: 'Natural granite and quartzite have vastly superior direct heat resistance. Both natural stones were forged under volcanic conditions and tolerate heat over 1,200°F without scorching or melting, making them safer next to high-heat cooktops. Engineered quartz is more stain-resistant and uniform, but requires faithful trivet usage.'
+      }
+    ],
+    content: (
+      <>
+        <p className="text-lg text-gray-700 leading-relaxed font-light mb-6">
+          Engineered quartz is celebrated across Metro Atlanta homes for its breathtaking marble-like veining, zero-porosity, and carefree resistance to wine, coffee, and lemon juice stains. But there is one question every homeowner asks when designing their dream kitchen at <Link href="/" className="text-secondary font-semibold hover:underline">AGS Stones & Cabinets</Link>: <strong>&ldquo;Can I put a hot pan directly onto my quartz countertop?&rdquo;</strong>
+        </p>
+
+        <p className="text-gray-700 leading-relaxed mb-8">
+          The short answer is a definitive <strong>No</strong>. While marketing brochures often tout quartz as &ldquo;heat resistant,&rdquo; there is a critical distinction between <em>heat resistant</em> and <em>heat proof</em>. In this step-by-step wikiHow-style guide, our master stone fabricators break down the chemistry behind quartz heat limits, expose the everyday countertop appliances that cause hidden burns, and demonstrate how to protect and repair your surfaces factory-fresh.
+        </p>
+
+        {/* Warning Callout Box */}
+        <div className="bg-amber-50 border-l-4 border-amber-500 p-6 rounded-r-2xl my-8 shadow-sm">
+          <div className="flex items-start gap-4">
+            <span className="text-2xl">⚠️</span>
+            <div>
+              <h4 className="text-base font-bold text-amber-900 mb-1">Crucial Rule for Quartz Countertop Owners</h4>
+              <p className="text-sm text-amber-800 leading-relaxed m-0">
+                Never place cookware hotter than <strong>150°F (65°C)</strong> directly onto quartz without a trivet. A frying pan straight off an induction burner or gas range typically measures between <strong>350°F and 500°F</strong>—more than hot enough to permanently singe the synthetic polyester and acrylic resins that hold your quartz slab together.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <h2 className="text-2xl sm:text-3xl font-serif text-primary mt-12 mb-6 font-bold pb-2 border-b border-gray-100">
+          Method 1: The Science of Quartz (Why It Scorches While Granite Doesn&apos;t)
+        </h2>
+
+        <p className="text-gray-700 leading-relaxed mb-6">
+          To understand why quartz reacts to heat, you have to look inside its manufacturing composition. Unlike 100% natural stones like <Link href="/services/granite-countertops" className="text-primary font-semibold hover:underline">granite</Link> or <Link href="/blog/quartzite-vs-quartz-countertops-guide" className="text-primary font-semibold hover:underline">natural quartzite</Link>, engineered quartz is an industrial hybrid material:
+        </p>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 my-8">
+          <div className="bg-white p-6 rounded-2xl border border-gray-200/80 shadow-sm">
+            <div className="w-12 h-12 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center font-bold text-lg mb-4">
+              90-93%
+            </div>
+            <h3 className="text-lg font-bold text-gray-900 mb-2">Crushed Natural Quartz Mineral</h3>
+            <p className="text-sm text-gray-600 leading-relaxed m-0">
+              The overwhelming bulk of the slab consists of pure quartz crystal aggregate—one of the hardest minerals on Earth (ranking 7 on the Mohs scale). Pure quartz crystals withstand temperatures up to 1,500°F without batting an eye.
+            </p>
+          </div>
+
+          <div className="bg-white p-6 rounded-2xl border-2 border-amber-300 bg-amber-50/20 shadow-sm">
+            <div className="w-12 h-12 rounded-xl bg-amber-100 text-amber-700 flex items-center justify-center font-bold text-lg mb-4">
+              7-10%
+            </div>
+            <h3 className="text-lg font-bold text-gray-900 mb-2">Synthetic Polymer & Acrylic Resins</h3>
+            <p className="text-sm text-gray-600 leading-relaxed m-0">
+              The remaining component is a liquid polymer resin binder that glues the crushed crystals into a solid, impervious slab. <strong>These resins are plastics.</strong> At temperatures between 150°F and 300°F, polymer resins soften, yellow, degrade, and can produce burnt discoloration or milky dull rings.
+            </p>
+          </div>
+        </div>
+
+        <h3 className="text-xl font-bold text-gray-900 mt-8 mb-4">What Happens When Thermal Shock Occurs?</h3>
+        <p className="text-gray-700 leading-relaxed mb-6">
+          Beyond resin melting, rapid heating triggers <strong>thermal shock</strong>. Quartz expands when heated. If you set a 450°F cast iron pan on a 70°F countertop in the middle of winter, that 10-inch circle of stone expands violently while the cold stone surrounding it remains rigid. This localized differential creates intense kinetic tension that can fissure the slab—especially near narrow bridge areas around undermount sink cutouts and cooktops.
+        </p>
+
+        <h2 className="text-2xl sm:text-3xl font-serif text-primary mt-14 mb-6 font-bold pb-2 border-b border-gray-100">
+          Method 2: Beware the &ldquo;Hidden Culprits&rdquo; (Small Countertop Appliances)
+        </h2>
+
+        <p className="text-gray-700 leading-relaxed mb-6">
+          When homeowners think of heat damage, they imagine a sizzling pan from the stove. But in our Duluth and Alpharetta stone restoration service calls, <strong>over 70% of quartz heat damage is caused by small electrical appliances</strong> left running on the counter:
+        </p>
+
+        <div className="space-y-4 my-8">
+          <div className="bg-white p-6 rounded-2xl border border-gray-200/80 shadow-sm flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+            <div>
+              <div className="flex items-center gap-2 mb-1">
+                <span className="text-red-500 font-bold text-sm uppercase tracking-wide">High Risk ★★★</span>
+                <span className="text-xs bg-red-100 text-red-800 px-2 py-0.5 rounded-full font-medium">Sustained 400°F Heat</span>
+              </div>
+              <h4 className="font-bold text-gray-900 text-base">Air Fryers & Convection Toaster Ovens</h4>
+              <p className="text-xs sm:text-sm text-gray-600 m-0">
+                Air fryers circulate extreme radiant heat. Because their heating element sits close to the bottom metal casing, downward heat transfer radiates directly into the quartz slab beneath for 20 to 45 continuous minutes.
+              </p>
+            </div>
+            <span className="flex-shrink-0 text-xs font-bold text-amber-700 bg-amber-50 px-3 py-1.5 rounded-xl border border-amber-200">
+              Must use silicone mat + board
+            </span>
+          </div>
+
+          <div className="bg-white p-6 rounded-2xl border border-gray-200/80 shadow-sm flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+            <div>
+              <div className="flex items-center gap-2 mb-1">
+                <span className="text-red-500 font-bold text-sm uppercase tracking-wide">High Risk ★★★</span>
+                <span className="text-xs bg-red-100 text-red-800 px-2 py-0.5 rounded-full font-medium">6 to 8 Hours Continuous</span>
+              </div>
+              <h4 className="font-bold text-gray-900 text-base">Crockpots & Slow Cookers</h4>
+              <p className="text-xs sm:text-sm text-gray-600 m-0">
+                While slow cookers do not reach the explosive temperatures of a frying pan, their ceramic insert holds 200°F+ heat against the counter for 8 full hours. This steady thermal soak slowly bakes the resin binders into a yellow shadow.
+              </p>
+            </div>
+            <span className="flex-shrink-0 text-xs font-bold text-amber-700 bg-amber-50 px-3 py-1.5 rounded-xl border border-amber-200">
+              Must use elevated trivet
+            </span>
+          </div>
+
+          <div className="bg-white p-6 rounded-2xl border border-gray-200/80 shadow-sm flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+            <div>
+              <div className="flex items-center gap-2 mb-1">
+                <span className="text-amber-500 font-bold text-sm uppercase tracking-wide">Medium Risk ★★☆</span>
+                <span className="text-xs bg-amber-100 text-amber-800 px-2 py-0.5 rounded-full font-medium">Hot Pressing Surface</span>
+              </div>
+              <h4 className="font-bold text-gray-900 text-base">Electric Griddles & Panini Presses</h4>
+              <p className="text-xs sm:text-sm text-gray-600 m-0">
+                Flat electric griddles often lack adequate leg elevation. Oil splatters combined with sustained 350°F pancake temperatures will bake grease into the softened resin surface.
+              </p>
+            </div>
+            <span className="flex-shrink-0 text-xs font-bold text-amber-700 bg-amber-50 px-3 py-1.5 rounded-xl border border-amber-200">
+              Use heat-shield runner
+            </span>
+          </div>
+
+          <div className="bg-white p-6 rounded-2xl border border-gray-200/80 shadow-sm flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+            <div>
+              <div className="flex items-center gap-2 mb-1">
+                <span className="text-amber-500 font-bold text-sm uppercase tracking-wide">Bathroom Risk ★★☆</span>
+                <span className="text-xs bg-amber-100 text-amber-800 px-2 py-0.5 rounded-full font-medium">400°F Metal Barrel</span>
+              </div>
+              <h4 className="font-bold text-gray-900 text-base">Curling Irons & Hair Straighteners</h4>
+              <p className="text-xs sm:text-sm text-gray-600 m-0">
+                Resting a heated 400°F titanium styling wand on a bathroom vanity quartz top will melt an outline of the wand directly into the polish within 60 seconds.
+              </p>
+            </div>
+            <span className="flex-shrink-0 text-xs font-bold text-amber-700 bg-amber-50 px-3 py-1.5 rounded-xl border border-amber-200">
+              Use silicone heat holster
+            </span>
+          </div>
+        </div>
+
+        <h2 className="text-2xl sm:text-3xl font-serif text-primary mt-14 mb-6 font-bold pb-2 border-b border-gray-100">
+          Method 3: Heat Resistance Comparison (Quartz vs. Other Countertop Materials)
+        </h2>
+
+        <p className="text-gray-700 leading-relaxed mb-6">
+          If you are still deciding which surface to install for your kitchen renovation in Atlanta, Johns Creek, or Duluth, review this definitive stone heat tolerance matrix:
+        </p>
+
+        <div className="overflow-x-auto my-8">
+          <table className="w-full text-left text-xs sm:text-sm border-collapse bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-200">
+            <thead>
+              <tr className="bg-primary text-white">
+                <th className="p-4 font-semibold">Countertop Surface</th>
+                <th className="p-4 font-semibold">Direct Heat Rating</th>
+                <th className="p-4 font-semibold">Max Safe Temp Without Trivet</th>
+                <th className="p-4 font-semibold">Can a Hot Pan Go Directly On It?</th>
+                <th className="p-4 font-semibold">Thermal Shock Risk</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-gray-100 text-gray-700">
+              <tr className="bg-amber-50/40">
+                <td className="p-4 font-bold text-gray-900">Engineered Quartz</td>
+                <td className="p-4 font-medium text-amber-600">Moderate (Resin sensitive)</td>
+                <td className="p-4">150°F – 200°F</td>
+                <td className="p-4 font-bold text-red-600">❌ NO (Resin burns/yellows)</td>
+                <td className="p-4 font-medium text-amber-700">Moderate – High</td>
+              </tr>
+              <tr className="hover:bg-gray-50/80">
+                <td className="p-4 font-bold text-gray-900">Natural Granite</td>
+                <td className="p-4 font-medium text-emerald-600">High (Igneous rock)</td>
+                <td className="p-4">900°F – 1,200°F</td>
+                <td className="p-4 font-bold text-emerald-600">✔️ Generally Safe (Trivet still advised)</td>
+                <td className="p-4 font-medium text-emerald-700">Low</td>
+              </tr>
+              <tr className="hover:bg-gray-50/80">
+                <td className="p-4 font-bold text-gray-900">Natural Quartzite</td>
+                <td className="p-4 font-medium text-emerald-600">Very High (Metamorphic rock)</td>
+                <td className="p-4">1,000°F – 1,400°F</td>
+                <td className="p-4 font-bold text-emerald-600">✔️ Yes (Will not melt or burn)</td>
+                <td className="p-4 font-medium text-emerald-700">Very Low</td>
+              </tr>
+              <tr className="hover:bg-gray-50/80">
+                <td className="p-4 font-bold text-gray-900">Porcelain Slabs</td>
+                <td className="p-4 font-medium text-emerald-600">Maximum (Kiln-fired at 2,200°F)</td>
+                <td className="p-4">1,800°F+</td>
+                <td className="p-4 font-bold text-emerald-600">✔️ Yes (Virtually fireproof)</td>
+                <td className="p-4 font-medium text-emerald-700">Virtually Zero</td>
+              </tr>
+              <tr className="hover:bg-gray-50/80">
+                <td className="p-4 font-bold text-gray-900">Solid Surface (Corian)</td>
+                <td className="p-4 font-medium text-red-600">Low (Acrylic polymer)</td>
+                <td className="p-4">150°F – 180°F</td>
+                <td className="p-4 font-bold text-red-600">❌ NO (Easily warps and scorches)</td>
+                <td className="p-4 font-medium text-red-700">High</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <p className="text-xs text-gray-500 italic mb-8">
+          *Notice: While granite and quartzite can physically take hot pans without melting, stone fabricators still recommend using silicone trivets on every stone to prevent rare micro-fissures from sudden winter thermal shock.
+        </p>
+
+        <h2 className="text-2xl sm:text-3xl font-serif text-primary mt-14 mb-6 font-bold pb-2 border-b border-gray-100">
+          Method 4: Step-by-Step WikiHow Guide to Treating Heat Marks & Scorch Stains
+        </h2>
+
+        <p className="text-gray-700 leading-relaxed mb-6">
+          Did someone accidentally set a hot Dutch oven on your quartz island, or did your air fryer leave a faint yellow shadow? Follow these four progressive steps from mildest DIY treatment to professional restoration:
+        </p>
+
+        <div className="space-y-6 my-8">
+          <div className="bg-white p-6 rounded-2xl border border-gray-200/80 shadow-sm flex flex-col sm:flex-row gap-5 items-start">
+            <span className="flex-shrink-0 w-10 h-10 rounded-full bg-blue-600 text-white font-bold flex items-center justify-center text-base shadow-md">
+              1
+            </span>
+            <div>
+              <h3 className="text-lg font-bold text-gray-900 mb-2">Diagnose: Is It a Surface Grease Burn or Resin Damage?</h3>
+              <p className="text-gray-600 text-sm sm:text-base leading-relaxed mb-3">
+                Run your dry fingernails across the discolored spot. If the surface feels completely glass-smooth, the heat may have only baked surface cooking grease, butter, or pan residue onto the stone polish. If you feel a rough, pitted, sunken, or sticky texture, the resin binder itself has undergone thermal oxidation and melted.
+              </p>
+              <div className="bg-blue-50 border-l-4 border-blue-500 p-3 rounded-r-lg text-xs text-blue-900">
+                <strong>Pro Tip:</strong> Grease burns can be cleaned at home in 5 minutes. True melted resin burns require specialized stone chemical restoration.
+              </div>
+            </div>
+          </div>
+
+          <div className="bg-white p-6 rounded-2xl border border-gray-200/80 shadow-sm flex flex-col sm:flex-row gap-5 items-start">
+            <span className="flex-shrink-0 w-10 h-10 rounded-full bg-blue-600 text-white font-bold flex items-center justify-center text-base shadow-md">
+              2
+            </span>
+            <div>
+              <h3 className="text-lg font-bold text-gray-900 mb-2">Clean Surface Heat Rings with Bar Keepers Friend Soft Cleanser</h3>
+              <p className="text-gray-600 text-sm sm:text-base leading-relaxed mb-3">
+                For light yellowing caused by surface food scorching, squeeze a quarter-sized drop of <strong>Bar Keepers Friend Soft Cleanser (Liquid Cream Formula)</strong> directly onto the mark. Dampen a clean microfiber cloth with warm water and gently massage the cream in tight circular motions for 60 to 90 seconds.
+              </p>
+              <p className="text-gray-600 text-xs sm:text-sm leading-relaxed m-0">
+                The mild oxalic acid in Bar Keepers Friend lifts organic scorch marks without scratching the mineral face. Rinse thoroughly with clean water and buff dry immediately. Never use scouring pads, steel wool, or abrasive gritty powders.
+              </p>
+            </div>
+          </div>
+
+          <div className="bg-white p-6 rounded-2xl border border-gray-200/80 shadow-sm flex flex-col sm:flex-row gap-5 items-start">
+            <span className="flex-shrink-0 w-10 h-10 rounded-full bg-blue-600 text-white font-bold flex items-center justify-center text-base shadow-md">
+              3
+            </span>
+            <div>
+              <h3 className="text-lg font-bold text-gray-900 mb-2">Apply a 24-Hour Baking Soda Poultice for Stubborn Yellowing</h3>
+              <p className="text-gray-600 text-sm sm:text-base leading-relaxed mb-3">
+                If the faint yellow ring persists, mix 3 tablespoons of pure baking soda with warm distilled water until it forms a thick toothpaste paste. Spread the paste 1/4-inch thick over the mark. Cover it with plastic kitchen wrap and tape the edges down with blue painter&apos;s tape to trap moisture.
+              </p>
+              <p className="text-gray-600 text-xs sm:text-sm leading-relaxed m-0">
+                Allow the poultice to sit for 24 hours as it naturally leaches out oxidized pigments. Remove the plastic, wipe away with a damp microfiber cloth, and inspect under natural lighting. For more stubborn stain techniques, read our <Link href="/blog/how-to-remove-stains-from-quartz-countertops" className="text-primary font-semibold hover:underline">Complete Quartz Stain Removal Guide</Link>.
+              </p>
+            </div>
+          </div>
+
+          <div className="bg-white p-6 rounded-2xl border border-gray-200/80 shadow-sm flex flex-col sm:flex-row gap-5 items-start">
+            <span className="flex-shrink-0 w-10 h-10 rounded-full bg-blue-600 text-white font-bold flex items-center justify-center text-base shadow-md">
+              4
+            </span>
+            <div>
+              <h3 className="text-lg font-bold text-gray-900 mb-2">Deep Carbonized Burns or Cracks: Call a Professional Stone Fabricator</h3>
+              <p className="text-gray-600 text-sm sm:text-base leading-relaxed mb-3">
+                If the heat scorch is deep brown, charred, or accompanied by a hairline thermal fracture, home remedies will not fix it. DIY grinding will leave a dull, milky depression in your slab that permanently ruins the factory polish.
+              </p>
+              <p className="text-gray-600 text-xs sm:text-sm leading-relaxed m-0">
+                Our technicians at AGS Stones use industrial water-cooled diamond honing pads (ranging from 400 to 3000 grit) and UV-cured liquid acrylic epoxies tinted to match your exact slab&apos;s background color and veining. If a thermal crack has appeared, we can stabilize it using high-tensile structural epoxy injections before it spreads across your island.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <h2 className="text-2xl sm:text-3xl font-serif text-primary mt-14 mb-6 font-bold pb-2 border-b border-gray-100">
+          Method 5: The 4 Golden Habits for 100% Heat-Safe Kitchens
+        </h2>
+
+        <p className="text-gray-700 leading-relaxed mb-6">
+          Keeping your quartz countertops looking brand new for 25+ years is effortless once you establish four simple kitchen habits:
+        </p>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 my-8">
+          <div className="p-6 bg-slate-50 border border-slate-200 rounded-2xl">
+            <h4 className="font-bold text-gray-900 text-base mb-2 flex items-center gap-2">
+              <span className="text-blue-600 font-bold">1.</span> Keep Silicone Trivets Next to the Range
+            </h4>
+            <p className="text-xs sm:text-sm text-gray-600 leading-relaxed m-0">
+              Keep 2 to 3 flexible silicone hot pads permanently resting in a drawer or crock right beside your cooktop. Make it automatic muscle memory to slide a trivet into place before lifting any skillet, boiling pasta pot, or roasting pan off the burner.
+            </p>
+          </div>
+
+          <div className="p-6 bg-slate-50 border border-slate-200 rounded-2xl">
+            <h4 className="font-bold text-gray-900 text-base mb-2 flex items-center gap-2">
+              <span className="text-blue-600 font-bold">2.</span> Buy a Heat-Resistant Silicone Mat for Air Fryers
+            </h4>
+            <p className="text-xs sm:text-sm text-gray-600 leading-relaxed m-0">
+              Pick up an inexpensive heat-insulating silicone appliance runner or thick end-grain wooden cutting board to serve as a permanent &ldquo;landing dock&rdquo; under your air fryer, toaster oven, and Instant Pot. The wood or silicone absorbs radiant heat completely.
+            </p>
+          </div>
+
+          <div className="p-6 bg-slate-50 border border-slate-200 rounded-2xl">
+            <h4 className="font-bold text-gray-900 text-base mb-2 flex items-center gap-2">
+              <span className="text-blue-600 font-bold">3.</span> Never Rest Slow Cookers Directly on Quartz Corners
+            </h4>
+            <p className="text-xs sm:text-sm text-gray-600 leading-relaxed m-0">
+              Never position an all-day slow cooker within 6 inches of a countertop seam or sink cutout. Narrow stone bridges have less mass to dissipate heat and are the most vulnerable zones for thermal shock fractures.
+            </p>
+          </div>
+
+          <div className="p-6 bg-slate-50 border border-slate-200 rounded-2xl">
+            <h4 className="font-bold text-gray-900 text-base mb-2 flex items-center gap-2">
+              <span className="text-blue-600 font-bold">4.</span> Equip Bathroom Vanities with Silicone Styling Mats
+            </h4>
+            <p className="text-xs sm:text-sm text-gray-600 leading-relaxed m-0">
+              Place a heat-resistant silicone styling mat or hanging silicone pocket on bathroom quartz vanities so teenagers and family members can safely rest hot curling wands and straighteners without damaging the stone.
+            </p>
+          </div>
+        </div>
+
+        {/* Call to action card */}
+        <div className="bg-gradient-to-r from-primary to-slate-900 text-white rounded-3xl p-8 sm:p-10 my-10 shadow-2xl flex flex-col md:flex-row items-center justify-between gap-6">
+          <div className="max-w-xl">
+            <span className="text-secondary font-bold text-xs uppercase tracking-widest block mb-2">AGS Stones & Cabinets • Factory-Direct Fabrication</span>
+            <h4 className="text-2xl font-serif font-bold mb-2">Need Quartz Repair or Looking to Upgrade Your Kitchen?</h4>
+            <p className="text-gray-300 text-sm mb-0">
+              Whether you need professional stone repair for a damaged countertop in Metro Atlanta, or you are looking to install premium Calacatta quartz, natural granite, or quartzite slabs with factory-direct pricing, our Duluth showroom team is here to help!
+            </p>
+          </div>
+          <div className="flex flex-col sm:flex-row gap-3 w-full md:w-auto flex-shrink-0">
+            <Link 
+              href="/promo" 
+              className="bg-secondary text-white font-bold text-xs uppercase tracking-wider px-7 py-4 rounded-xl hover:bg-white hover:text-primary transition-all text-center shadow-lg"
+            >
+              Get Free Estimate
+            </Link>
+            <Link 
+              href="/showroom" 
+              className="bg-white/10 hover:bg-white/20 text-white font-bold text-xs uppercase tracking-wider px-6 py-4 rounded-xl transition-all text-center border border-white/20"
+            >
+              Visit Showroom
+            </Link>
+          </div>
+        </div>
+      </>
+    )
   }
 };

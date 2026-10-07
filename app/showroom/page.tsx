@@ -41,7 +41,12 @@ function ShowroomContent() {
         if (typeof window !== 'undefined') {
           const eventId = typeof crypto !== 'undefined' && crypto.randomUUID ? crypto.randomUUID() : `lead_${Date.now()}`;
           if ((window as any).fbq) (window as any).fbq('track', 'Lead', {}, { eventID: eventId });
-          if ((window as any).gtag) (window as any).gtag('event', 'conversion', { 'send_to': 'AW-16885125181/R1mQCP6Dm5McEL2guvM-' });
+          try {
+            const dataLayer = ((window as any).dataLayer = (window as any).dataLayer || []);
+            const gtag = (window as any).gtag || function() { dataLayer.push(arguments); };
+            (window as any).gtag = gtag;
+            gtag('event', 'conversion', { 'send_to': 'AW-16885125181/R1mQCP6Dm5McEL2guvM-' });
+          } catch(e) {}
         }
       } catch(e) {}
     }
@@ -130,7 +135,12 @@ function ShowroomContent() {
               });
               (window as any).fbq('track', 'Lead', {}, { eventID: submitEventId });
             }
-            if ((window as any).gtag) (window as any).gtag('event', 'conversion', { 'send_to': 'AW-16885125181/R1mQCP6Dm5McEL2guvM-' });
+            try {
+              const dataLayer = ((window as any).dataLayer = (window as any).dataLayer || []);
+              const gtag = (window as any).gtag || function() { dataLayer.push(arguments); };
+              (window as any).gtag = gtag;
+              gtag('event', 'conversion', { 'send_to': 'AW-16885125181/R1mQCP6Dm5McEL2guvM-' });
+            } catch(e) {}
           }
         } catch(e) {}
         try {

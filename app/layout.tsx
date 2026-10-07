@@ -161,12 +161,13 @@ export default function RootLayout({
         {/* Google Tag Manager (gtag.js) */}
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=AW-16885125181"
-          strategy="lazyOnload"
+          strategy="afterInteractive"
         />
-        <Script id="google-analytics" strategy="lazyOnload">
+        <Script id="google-analytics" strategy="afterInteractive">
           {`
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
+            window.gtag = gtag;
             gtag('js', new Date());
             gtag('config', 'AW-16885125181');
           `}
@@ -193,7 +194,7 @@ export default function RootLayout({
           />
         </noscript>
         {/* End Meta Pixel Code */}
-        <Script id="conversion-tracking" strategy="lazyOnload">
+        <Script id="conversion-tracking" strategy="afterInteractive">
           {`
             function gtag_report_conversion(url) {
               var callback = function () {
