@@ -6,6 +6,7 @@ import Header from './Header';
 import Hero from './Hero';
 import StickyCta from './StickyCta';
 import ExitIntentPopup from './ExitIntentPopup';
+import TrustBadges from './TrustBadges';
 import { Loader2 } from 'lucide-react';
 
 const Services = dynamic(() => import('./Services'));
@@ -16,7 +17,7 @@ const StoneGallery = dynamic(() => import('./StoneGallery'));
 const MaterialMatchmaker = dynamic(() => import('./MaterialMatchmaker'));
 const BeforeAfter = dynamic(() => import('./BeforeAfter'));
 const Showroom = dynamic(() => import('./Showroom'));
-const Testimonials = dynamic(() => import('./Testimonials'), { ssr: false });
+const ReviewsMarquee = dynamic(() => import('./ReviewsMarquee'));
 const Contact = dynamic(() => import('./Contact'));
 const Footer = dynamic(() => import('./Footer'));
 const Faq = dynamic(() => import('./Faq'));
@@ -44,14 +45,15 @@ function HomeClient() {
 
       <main className="flex-grow">
         <Hero />
-        <Services />
-        <Testimonials />
-        <ProcessTimeline />
+        <TrustBadges overlap />
         <WhyChooseUs />
+        <ReviewsMarquee />
+        <Services />
+        <ProcessTimeline />
+        <BeforeAfter />
         <ProjectsShowcase />
         <StoneGallery />
         <MaterialMatchmaker />
-        <BeforeAfter />
         <Showroom />
         <LocalSEOSection />
         <Faq />

@@ -6,6 +6,8 @@ import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
 import Header from './Header';
 import Footer from './Footer';
+import TrustBadges from './TrustBadges';
+import ReviewsMarquee from './ReviewsMarquee';
 import { 
   ArrowRight, 
   CheckCircle2, 
@@ -41,7 +43,7 @@ const ServicesClient = () => {
   }, []);
 
   return (
-    <div className="min-h-screen flex flex-col font-sans bg-[#0c0c0c] text-white selection:bg-secondary selection:text-white overflow-hidden">
+    <div className="min-h-screen flex flex-col font-sans bg-white text-gray-900 selection:bg-secondary selection:text-white overflow-hidden">
       <Header />
       
       <main className="flex-grow">
@@ -57,9 +59,8 @@ const ServicesClient = () => {
               sizes="100vw"
             />
             {/* Dark abstract radial gradient over background */}
-            <div className="absolute inset-0 bg-gradient-to-t from-[#0c0c0c] via-[#0c0c0c]/85 to-transparent z-10"></div>
-            <div className="absolute inset-0 bg-radial-at-c from-transparent via-[#0c0c0c]/90 to-[#0c0c0c] z-10"></div>
-          </div>
+            <div className="absolute inset-0 bg-gradient-to-t from-primary via-primary/80 to-primary/40 z-10"></div>
+                      </div>
           
           <div className="container mx-auto px-4 max-w-7xl relative z-20 text-center">
             {/* Top glass badge */}
@@ -88,7 +89,7 @@ const ServicesClient = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
-              className="text-base sm:text-lg md:text-2xl text-gray-400 font-light max-w-3xl mx-auto leading-relaxed mb-8 md:mb-12 px-2 sm:px-0"
+              className="text-base sm:text-lg md:text-2xl text-gray-200 font-light max-w-3xl mx-auto leading-relaxed mb-8 md:mb-12 px-2 sm:px-0"
             >
               We bypass third-party showrooms and regional broker commissions. From raw Brazilian Quartzite curation to exact 3D laser-guided installation, we engineer perfect spaces.
             </motion.p>
@@ -110,24 +111,25 @@ const ServicesClient = () => {
           </div>
 
           {/* Bottom subtle scroll anchor */}
-          <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-2 text-gray-500 text-xs tracking-widest font-light">
+          <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-20 hidden flex-col items-center gap-2 text-white/50 text-xs tracking-widest font-light">
             <span>OUR SOLUTIONS</span>
             <span className="w-1 h-8 rounded bg-gradient-to-b from-secondary to-transparent animate-pulse"></span>
           </div>
         </section>
 
+        <TrustBadges overlap />
+
         {/* Premium Immersive Services Directory */}
-        <section className="py-24 md:py-32 bg-[#0c0c0c] relative">
-          <div className="absolute top-0 left-1/4 w-96 h-96 bg-secondary/5 rounded-full blur-3xl pointer-events-none"></div>
+        <section className="py-24 md:py-32 bg-white relative">
           
           <div className="container mx-auto px-4 max-w-7xl relative z-10">
             <div className="text-center max-w-3xl mx-auto mb-20 md:mb-28">
               <span className="text-xs uppercase tracking-[0.3em] text-secondary font-bold mb-3 block">HIGH-FIDELITY SERVICES</span>
-              <h2 className="text-3xl md:text-6xl font-serif font-light text-white tracking-tight">
+              <h2 className="text-3xl md:text-6xl font-serif font-light text-primary tracking-tight">
                 Crafted for Breathtaking <br className="hidden md:block" />
                 <span className="italic font-light text-secondary">Spatial Transformations</span>
               </h2>
-              <p className="text-sm sm:text-base text-gray-400 font-light mt-4 leading-relaxed max-w-xl mx-auto">
+              <p className="text-sm sm:text-base text-gray-600 font-light mt-4 leading-relaxed max-w-xl mx-auto">
                 No outsourcing. No quick-dry shortcuts. Every single service is handled exclusively by AGS Stones' hand-picked specialists under rigid quality tolerances.
               </p>
             </div>
@@ -142,7 +144,7 @@ const ServicesClient = () => {
                   transition={{ duration: 0.8, delay: idx * 0.1, ease: [0.16, 1, 0.3, 1] }}
                   onMouseEnter={() => setHoveredIndex(idx)}
                   onMouseLeave={() => setHoveredIndex(null)}
-                  className="group relative bg-[#111111] border border-white/5 rounded-[2rem] overflow-hidden hover:border-secondary/40 transition-all duration-500 shadow-2xl flex flex-col h-full"
+                  className="group relative bg-white border border-gray-200 rounded-[2rem] overflow-hidden hover:border-secondary/40 transition-all duration-500 shadow-lg hover:shadow-xl flex flex-col h-full"
                 >
                   {/* Image Container with Custom Glow Layer */}
                   <div className="relative h-[250px] sm:h-[320px] w-full overflow-hidden">
@@ -153,7 +155,7 @@ const ServicesClient = () => {
                       fill
                       sizes="(max-width: 768px) 100vw, 45vw"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#111111] via-[#111111]/30 to-transparent z-10"></div>
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent z-10"></div>
                     
                     {/* Floating Level Marker */}
                     <div className="absolute top-6 right-6 z-20 bg-black/40 backdrop-blur-md px-3.5 py-1 rounded-full border border-white/10 text-[10px] font-mono uppercase tracking-widest text-secondary font-bold">
@@ -171,17 +173,17 @@ const ServicesClient = () => {
                   {/* Service Metadata / Copy */}
                   <div className="p-8 sm:p-10 flex flex-col justify-between flex-grow">
                     <div>
-                      <h3 className="text-2xl sm:text-3xl font-serif font-light text-white mb-4 group-hover:text-secondary transition-colors duration-300">
+                      <h3 className="text-2xl sm:text-3xl font-serif font-light text-primary mb-4 group-hover:text-secondary transition-colors duration-300">
                         {service.title}
                       </h3>
-                      <p className="text-gray-400 text-sm sm:text-base font-light leading-relaxed mb-6 block">
+                      <p className="text-gray-600 text-sm sm:text-base font-light leading-relaxed mb-6 block">
                         {service.longDesc}
                       </p>
 
                       {/* Feature Bullet Points */}
-                      <ul className="space-y-3.5 border-t border-white/5 pt-6 mb-8">
+                      <ul className="space-y-3.5 border-t border-gray-100 pt-6 mb-8">
                         {service.features.map((feature, fIdx) => (
-                          <li key={fIdx} className="flex items-start gap-3.5 text-xs sm:text-sm text-gray-300 font-light leading-snug">
+                          <li key={fIdx} className="flex items-start gap-3.5 text-xs sm:text-sm text-gray-700 font-light leading-snug">
                             <CheckCircle2 size={16} className="text-secondary mt-0.5 flex-shrink-0" />
                             <span>{feature}</span>
                           </li>
@@ -190,10 +192,10 @@ const ServicesClient = () => {
                     </div>
 
                     {/* Interactive CTA Anchor */}
-                    <div className="pt-6 border-t border-white/5 mt-auto flex items-center justify-between">
+                    <div className="pt-6 border-t border-gray-100 mt-auto flex items-center justify-between">
                       <Link 
                         href={`/services/${service.slug}`}
-                        className="inline-flex items-center gap-2 text-xs uppercase tracking-widest text-[#dcdcdc] group-hover:text-secondary font-bold transition-all duration-300 pb-0.5 border-b border-transparent group-hover:border-secondary"
+                        className="inline-flex items-center gap-2 text-xs uppercase tracking-widest text-primary group-hover:text-secondary font-bold transition-all duration-300 pb-0.5 border-b border-transparent group-hover:border-secondary"
                       >
                         Explore Fabrication Specifications <ChevronRight size={13} className="transform group-hover:translate-x-1 transition-transform" />
                       </Link>
@@ -207,7 +209,7 @@ const ServicesClient = () => {
 
         {/* The Execution Pipeline - Custom Interactive Stage Cards */}
         <section className="py-24 md:py-32 bg-white text-gray-900 relative">
-          <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-[#0c0c0c]/5 to-transparent pointer-events-none"></div>
+          <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-gray-50 to-transparent pointer-events-none"></div>
           
           <div className="container mx-auto px-4 max-w-7xl relative z-10">
             <div className="text-center max-w-3xl mx-auto mb-20 md:mb-28">
@@ -217,7 +219,7 @@ const ServicesClient = () => {
                 <span className="italic font-light text-secondary">From Slab to Silicon Joint.</span>
               </h2>
               <p className="text-sm sm:text-base text-gray-600 font-light mt-4 leading-relaxed max-w-xl mx-auto">
-                We've spent 15 years eliminating gaps, uneven miters, and structural cracking. Here is the proprietary system that separates AGS Stones from typical installers.
+                We've spent 20 years eliminating gaps, uneven miters, and structural cracking. Here is the proprietary system that separates AGS Stones from typical installers.
               </p>
             </div>
 
@@ -260,31 +262,30 @@ const ServicesClient = () => {
         </section>
 
         {/* Persuasive Showroom Direct Consumer Psychology Block */}
-        <section className="py-24 bg-[#111111] border-y border-white/5 relative overflow-hidden">
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_left,rgba(209,173,115,0.04),transparent)] pointer-events-none"></div>
+        <section className="py-24 bg-gray-50 border-gray-100 border-y relative overflow-hidden">
           
           <div className="container mx-auto px-4 max-w-7xl relative z-10">
             <div className="grid lg:grid-cols-12 gap-16 items-center">
               {/* Left Text */}
               <div className="lg:col-span-5 text-center lg:text-left">
                 <span className="text-xs uppercase tracking-[0.3em] text-secondary font-bold mb-3 block">WHY ATLANTA CHOOSES AGS</span>
-                <h2 className="text-3xl md:text-5xl font-serif text-white tracking-tight mb-6">
+                <h2 className="text-3xl md:text-5xl font-serif text-primary tracking-tight mb-6">
                   Direct Factory Curation. <br />
                   <span className="italic font-light text-secondary">Zero Retail Markups.</span>
                 </h2>
-                <p className="text-gray-400 text-sm sm:text-base font-light leading-relaxed mb-8 max-w-lg mx-auto lg:mx-0">
+                <p className="text-gray-600 text-sm sm:text-base font-light leading-relaxed mb-8 max-w-lg mx-auto lg:mx-0">
                   Most design centers simply broker regional stonework yards and charge you an extra 25% to 35% commission. AGS Stones imports, crafts, and configures directly. Your estimate is the pure, raw fabrication value.
                 </p>
                 <div className="space-y-4 max-w-md mx-auto lg:mx-0 text-left">
-                  <div className="flex items-center gap-3 text-sm text-gray-300">
+                  <div className="flex items-center gap-3 text-sm text-gray-700">
                     <CheckCircle2 size={16} className="text-secondary flex-shrink-0" />
                     <span>Gold-Certified Cambria & Silestone Fabricators</span>
                   </div>
-                  <div className="flex items-center gap-3 text-sm text-gray-300">
+                  <div className="flex items-center gap-3 text-sm text-gray-700">
                     <CheckCircle2 size={16} className="text-secondary flex-shrink-0" />
                     <span>$2 Million General Liability Insured</span>
                   </div>
-                  <div className="flex items-center gap-3 text-sm text-gray-300">
+                  <div className="flex items-center gap-3 text-sm text-gray-700">
                     <CheckCircle2 size={16} className="text-secondary flex-shrink-0" />
                     <span>Comprehensive Lifetime Installation Guarantee</span>
                   </div>
@@ -293,24 +294,24 @@ const ServicesClient = () => {
 
               {/* Right Dual Showroom Visual Blocks */}
               <div className="lg:col-span-7 grid sm:grid-cols-2 gap-6 w-full">
-                <div className="bg-white/[0.02] border border-white/5 rounded-3xl p-8 hover:bg-white/[0.04] transition-colors relative">
-                  <div className="text-4xl font-serif text-secondary mb-2 font-light">15+</div>
-                  <div className="text-white font-medium text-base mb-1">Years of Local Quality</div>
+                <div className="bg-white border border-gray-200 rounded-3xl p-8 shadow-sm hover:shadow-md transition-colors relative">
+                  <div className="text-4xl font-serif text-secondary mb-2 font-light">20+</div>
+                  <div className="text-primary font-medium text-base mb-1">Years of Local Quality</div>
                   <div className="text-gray-500 text-xs leading-relaxed">Serving duluth, alpharetta, buckhead, and greater metro atlanta.</div>
                 </div>
-                <div className="bg-white/[0.02] border border-white/5 rounded-3xl p-8 hover:bg-white/[0.04] transition-colors relative">
+                <div className="bg-white border border-gray-200 rounded-3xl p-8 shadow-sm hover:shadow-md transition-colors relative">
                   <div className="text-4xl font-serif text-secondary mb-2 font-light">0%</div>
-                  <div className="text-white font-medium text-base mb-1">Middlemen Commission</div>
+                  <div className="text-primary font-medium text-base mb-1">Middlemen Commission</div>
                   <div className="text-gray-500 text-xs leading-relaxed">Everything is sourced and processed under one facility roof.</div>
                 </div>
-                <div className="bg-white/[0.02] border border-white/5 rounded-3xl p-8 hover:bg-white/[0.04] transition-colors relative">
+                <div className="bg-white border border-gray-200 rounded-3xl p-8 shadow-sm hover:shadow-md transition-colors relative">
                   <div className="text-4xl font-serif text-secondary mb-2 font-light">2,000+</div>
-                  <div className="text-white font-medium text-base mb-1">Slabs Hand-Selected</div>
+                  <div className="text-primary font-medium text-base mb-1">Slabs Hand-Selected</div>
                   <div className="text-gray-500 text-xs leading-relaxed">Direct imports of unique Brazilian Quartzite and Italian Marble.</div>
                 </div>
-                <div className="bg-white/[0.02] border border-white/5 rounded-3xl p-8 hover:bg-white/[0.04] transition-colors relative">
+                <div className="bg-white border border-gray-200 rounded-3xl p-8 shadow-sm hover:shadow-md transition-colors relative">
                   <div className="text-4xl font-serif text-secondary mb-2 font-light">5-Star</div>
-                  <div className="text-white font-medium text-base mb-1">Reputation of Trust</div>
+                  <div className="text-primary font-medium text-base mb-1">Reputation of Trust</div>
                   <div className="text-gray-500 text-xs leading-relaxed">Highly rated over consecutive years of spotless work.</div>
                 </div>
               </div>
@@ -318,12 +319,13 @@ const ServicesClient = () => {
           </div>
         </section>
 
+        <ReviewsMarquee className="bg-white" />
+
         {/* Luxury CTA section */}
         <section className="py-24 md:py-32 bg-white text-gray-900 relative">
           <div className="container mx-auto px-4 max-w-7xl">
-            <div className="bg-[#0c0c0c] rounded-[2.5rem] text-white overflow-hidden border border-white/10 relative shadow-2xl">
-              <div className="absolute top-0 right-1/2 w-[500px] h-[500px] bg-secondary/5 rounded-full blur-[100px] pointer-events-none"></div>
-              
+            <div className="bg-primary rounded-[2.5rem] text-white overflow-hidden border border-primary relative shadow-2xl">
+                            
               <div className="grid lg:grid-cols-12 items-stretch">
                 {/* Visual Side */}
                 <div className="lg:col-span-6 relative min-h-[350px] lg:min-h-auto">
@@ -335,8 +337,8 @@ const ServicesClient = () => {
                     className="object-cover object-center filter contrast-105 brightness-95"
                   />
                   {/* Gentle shadow overlay over image */}
-                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#0c0c0c]/80 to-[#0c0c0c] hidden lg:block" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#0c0c0c] via-[#0c0c0c]/70 to-transparent lg:hidden" />
+                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-primary/80 to-primary hidden lg:block" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-primary via-primary/70 to-transparent lg:hidden" />
                 </div>
 
                 {/* Consumer Psychology Persuasive Content Side */}

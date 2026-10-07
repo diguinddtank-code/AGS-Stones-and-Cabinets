@@ -753,7 +753,7 @@ export default function PromoPage() {
                 >
                   <motion.div style={{ scale: scaleImage }} className="w-full h-full relative">
                     <Image 
-                      src="/images/projects/kitchen-white-cabinets-dark-hardwood-floor-full-view-atlanta.jpg"
+                      src="/images/projects/kitchen-navy-cabinets-pendant-lighting-island-atlanta.jpg"
                       alt="Countertops & Custom Cabinets detail"
                       fill
                       className="object-cover"

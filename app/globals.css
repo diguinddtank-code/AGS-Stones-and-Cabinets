@@ -44,3 +44,33 @@ details > summary::-webkit-details-marker {
 .cursor-ew-resize { cursor: ew-resize; }
 .scrollbar-hide::-webkit-scrollbar { display: none; }
 .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+
+/* Reviews marquee (components/ReviewsMarquee.tsx) */
+.marquee-viewport {
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
+  mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
+}
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee-left 70s linear infinite;
+}
+.marquee-reverse { animation-name: marquee-right; }
+.marquee-item { display: flex; padding-right: 1.5rem; }
+.marquee:hover .marquee-track { animation-play-state: paused; }
+@keyframes marquee-left { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+@keyframes marquee-right { from { transform: translateX(-50%); } to { transform: translateX(0); } }
+
+@media (prefers-reduced-motion: reduce) {
+  .marquee-viewport {
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-mask-image: none;
+    mask-image: none;
+    padding: 0 1rem 0.5rem;
+  }
+  .marquee-track { animation: none; }
+  .marquee-item { scroll-snap-align: start; }
+  .marquee-dup, .marquee-second-row { display: none !important; }
+}

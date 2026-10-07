@@ -31,6 +31,7 @@ import {
   MessageSquare
 } from 'lucide-react';
 import type { ServiceDetail } from '@/lib/servicesData';
+import ServiceConversionBlock from './ServiceConversionBlock';
 
 interface LocalizedVibe {
   homeStyle: string;
@@ -774,6 +775,8 @@ export default function ServiceDynamicContent({ service, cityOverride }: { servi
                     />
                 </div>
             </section>
+
+            <ServiceConversionBlock service={service} />
 
             {/* The Desire / Overview Section */}
             <section className="py-20 md:py-32 relative bg-white text-gray-900 overflow-hidden rounded-t-3xl md:rounded-t-[3rem] -mt-10 z-20">
