@@ -74,3 +74,23 @@ details > summary::-webkit-details-marker {
   .marquee-item { scroll-snap-align: start; }
   .marquee-dup, .marquee-second-row { display: none !important; }
 }
+
+/* /promo hero entrance: CSS-only so text and form paint before any
+   JavaScript runs (same slide-up motion as before). */
+@keyframes promo-rise {
+  from { transform: translate3d(0, var(--rise, 40px), 0); }
+  to { transform: none; }
+}
+/* Desktop only: on phones the hero is shown in place right away, because
+   Chrome only counts the headline as painted once its animation ends. */
+@media (min-width: 1024px) {
+  .promo-rise { animation: promo-rise 0.8s cubic-bezier(0.16, 1, 0.3, 1) both; }
+}
+@keyframes promo-nudge {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(8px); }
+}
+.promo-nudge { animation: promo-nudge 1.5s ease-in-out infinite; }
+@media (prefers-reduced-motion: reduce) {
+  .promo-rise, .promo-nudge { animation: none; }
+}

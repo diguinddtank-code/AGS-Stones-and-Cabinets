@@ -87,9 +87,43 @@ const promoGallery = [
   }
 ];
 
+// Hero background video, re-encoded from the original 4K/60fps file (265 MB)
+// to 720p for desktop and 480p for phones. Same footage, same look.
+const HERO_VIDEO_DESKTOP = '/videos/promo-hero-720.mp4';
+const HERO_VIDEO_MOBILE = '/videos/promo-hero-480.mp4';
+// Same poster image as before, served through the Next.js image optimizer.
+const HERO_POSTER = `/_next/image?url=${encodeURIComponent('https://kitchenandbathshop.com/wp-content/uploads/2020/11/5d7ff4ab763f7-scaled.jpg')}&w=1200&q=75`;
+
 export default function PromoPage() {
   const containerRef = useRef<HTMLDivElement>(null);
   const heroRef = useRef<HTMLElement>(null);
+  const heroVideoRef = useRef<HTMLVideoElement>(null);
+
+  // Start the hero video only once the page has finished loading and the
+  // browser is idle. Skipped for data-saver / 2G visitors (poster stays).
+  useEffect(() => {
+    const video = heroVideoRef.current;
+    if (!video) return;
+    const conn = (navigator as any).connection;
+    if (conn && (conn.saveData || /2g/.test(conn.effectiveType || ''))) return;
+
+    let idleId: number | undefined;
+    const start = () => {
+      video.src = window.innerWidth < 768 ? HERO_VIDEO_MOBILE : HERO_VIDEO_DESKTOP;
+      video.play().catch(() => {});
+    };
+    const schedule = () => {
+      const w = window as any;
+      idleId = w.requestIdleCallback ? w.requestIdleCallback(start, { timeout: 2500 }) : window.setTimeout(start, 1200);
+    };
+    if (document.readyState === 'complete') schedule();
+    else window.addEventListener('load', schedule, { once: true });
+    return () => {
+      window.removeEventListener('load', schedule);
+      const w = window as any;
+      if (idleId !== undefined) (w.cancelIdleCallback ? w.cancelIdleCallback(idleId) : clearTimeout(idleId));
+    };
+  }, []);
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
 
   // Quick Quote Form State (Identical to /services/countertops)
@@ -105,6 +139,9 @@ export default function PromoPage() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const [validationError, setValidationError] = useState<string | null>(null);
+  // Guards against double submits (two taps before React re-renders) and bots.
+  const submittingRef = useRef(false);
+  const honeypotRef = useRef<HTMLInputElement>(null);
 
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -171,25 +208,34 @@ export default function PromoPage() {
 
   const handleFormSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (submittingRef.current) return;
     setValidationError(null);
 
-    if (!formData.name.trim()) {
+    if (formData.name.trim().length < 2) {
       setValidationError('Please enter your full name.');
       return;
     }
-    if (!formData.phone.trim() || formData.phone.length < 8) {
+    if (formData.phone.replace(/\D/g, '').length !== 10) {
       setValidationError('Please enter a valid phone number for quote delivery.');
       return;
     }
-    if (!formData.zip.trim()) {
+    if (!/^\d{5}(-\d{4})?$/.test(formData.zip.trim())) {
       setValidationError('Please enter your Zip code.');
       return;
     }
-    if (!formData.email.trim() || !formData.email.includes('@')) {
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(formData.email.trim())) {
       setValidationError('Please enter a valid email address.');
       return;
     }
 
+    // Honeypot filled = bot. Show the normal success screen but send nothing
+    // and fire no Pixel / Ads / CAPI event, so it never counts as a lead.
+    if (honeypotRef.current?.value) {
+      setIsSuccess(true);
+      return;
+    }
+
+    submittingRef.current = true;
     setIsSubmitting(true);
     const submitEventId = typeof crypto !== 'undefined' && crypto.randomUUID ? crypto.randomUUID() : `lead_${Date.now()}`;
 
@@ -229,7 +275,11 @@ export default function PromoPage() {
         body: JSON.stringify(submitData)
       });
 
-      if (res.ok) {
+      // Web3Forms can answer HTTP 200 with { success: false }; only a confirmed
+      // delivery counts as a lead.
+      const result = await res.json().catch(() => null);
+
+      if (res.ok && result?.success) {
         if (typeof window !== 'undefined') {
           if ((window as any).fbq) {
             const names = formData.name.trim().split(' ');
@@ -279,23 +329,9 @@ export default function PromoPage() {
       console.error(err);
       setValidationError('Network error. Please try again or call us at (404) 952-4534.');
     } finally {
+      submittingRef.current = false;
       setIsSubmitting(false);
     }
-  };
-
-  const staggerContainer = {
-    hidden: { opacity: 0 },
-    show: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.15
-      }
-    }
-  };
-
-  const fadeInUp = {
-    hidden: { opacity: 0, y: 40 },
-    show: { opacity: 1, y: 0, transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] } }
   };
 
   return (
@@ -319,20 +355,22 @@ export default function PromoPage() {
               src="https://kitchenandbathshop.com/wp-content/uploads/2020/11/5d7ff4ab763f7-scaled.jpg"
               alt="Custom Countertops & Cabinets in Atlanta, GA"
               fill
-              className="object-cover opacity-60 brightness-90 contrast-105"
+              className="object-cover min-h-screen opacity-60 brightness-90 contrast-105"
               priority
               sizes="100vw"
             />
+            {/* src is attached after page load (see heroVideoRef effect) so the
+                video never competes with the headline and form for bandwidth */}
             <video
-              className="absolute inset-0 w-full h-full object-cover opacity-65"
+              ref={heroVideoRef}
+              className="absolute inset-0 w-full h-full min-h-screen object-cover opacity-65"
               autoPlay
               muted
               loop
               playsInline
               preload="none"
-              poster="https://kitchenandbathshop.com/wp-content/uploads/2020/11/5d7ff4ab763f7-scaled.jpg"
+              poster={HERO_POSTER}
             >
-              <source src="https://storage.googleapis.com/msgsndr/yRboz8P4zFeLUF6bAk8i/media/680a5a6f1eba4b32d1925215.mp4" type="video/mp4" />
               Your browser does not support the video tag.
             </video>
             <div className="absolute inset-0 bg-gradient-to-r from-black/75 via-black/35 to-transparent pointer-events-none"></div>
@@ -343,22 +381,17 @@ export default function PromoPage() {
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-8 xl:gap-14 items-center">
               
               {/* LEFT COLUMN: Monumental Headline & Authority */}
-              <motion.div 
-                variants={staggerContainer}
-                initial="hidden"
-                animate="show"
-                className="lg:col-span-7 text-center lg:text-left pt-1 sm:pt-2 lg:pt-0 px-1 sm:px-0"
-              >
+              <div className="lg:col-span-7 text-center lg:text-left pt-1 sm:pt-2 lg:pt-0 px-1 sm:px-0">
                 {/* Geolocation Tag */}
-                <motion.div variants={fadeInUp} className="inline-flex items-center gap-1.5 py-1 px-3 md:px-3.5 rounded-full border border-white/30 bg-black/40 backdrop-blur-md text-[10px] md:text-xs uppercase tracking-widest mb-2.5 lg:mb-3 font-medium text-white shadow-sm mx-auto lg:mx-0">
+                <div style={{ animationDelay: '0s' }} className="promo-rise inline-flex items-center gap-1.5 py-1 px-3 md:px-3.5 rounded-full border border-white/30 bg-black/40 backdrop-blur-md text-[10px] md:text-xs uppercase tracking-widest mb-2.5 lg:mb-3 font-medium text-white shadow-sm mx-auto lg:mx-0">
                   <MapPin size={12} className="text-secondary fill-secondary" />
                   <span>Serving Atlanta, Duluth &amp; Metro Atlanta</span>
-                </motion.div>
+                </div>
                 
                 {/* Huge Monumental H1 */}
-                <motion.h1 
-                  variants={fadeInUp} 
-                  className="text-3xl sm:text-4xl lg:text-4xl xl:text-5xl 2xl:text-6xl font-serif font-bold mb-2.5 lg:mb-3 drop-shadow-2xl leading-[1.12] tracking-tight text-white max-w-3xl mx-auto lg:mx-0 shadow-black/20"
+                <h1 
+                  style={{ animationDelay: '0.15s' }}
+                  className="promo-rise text-3xl sm:text-4xl lg:text-4xl xl:text-5xl 2xl:text-6xl font-serif font-bold mb-2.5 lg:mb-3 drop-shadow-2xl leading-[1.12] tracking-tight text-white max-w-3xl mx-auto lg:mx-0 shadow-black/20"
                 >
                   Custom <br className="hidden sm:inline" />
                   <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#eab308] via-[#fde047] to-[#eab308] drop-shadow-md">
@@ -366,15 +399,15 @@ export default function PromoPage() {
                   </span>
                   <br />
                   in Atlanta Area
-                </motion.h1>
+                </h1>
 
                 {/* Subtitle */}
-                <motion.p variants={fadeInUp} className="text-xs sm:text-sm lg:text-sm xl:text-base text-white/90 mb-3.5 lg:mb-4 max-w-xl mx-auto lg:mx-0 font-light leading-relaxed drop-shadow-md">
+                <p style={{ animationDelay: '0.3s' }} className="promo-rise text-xs sm:text-sm lg:text-sm xl:text-base text-white/90 mb-3.5 lg:mb-4 max-w-xl mx-auto lg:mx-0 font-light leading-relaxed drop-shadow-md">
                   Factory-direct stone fabrication &amp; custom cabinetry in Duluth. Save 20–30% with zero retail middlemen &amp; 5-day installation turnaround.
-                </motion.p>
+                </p>
 
                 {/* Value Bullets (Desktop) */}
-                <motion.div variants={fadeInUp} className="hidden lg:flex flex-col gap-2 mb-4 lg:mb-5 text-white drop-shadow-md">
+                <div style={{ animationDelay: '0.45s' }} className="promo-rise hidden lg:flex flex-col gap-2 mb-4 lg:mb-5 text-white drop-shadow-md">
                   <div className="flex items-center gap-2.5">
                     <div className="bg-secondary/20 p-1 rounded-full backdrop-blur-sm border border-white/10 shrink-0">
                       <CheckCircle2 className="text-secondary" size={15} />
@@ -393,10 +426,10 @@ export default function PromoPage() {
                     </div>
                     <span className="font-semibold text-xs xl:text-sm">Free In-Home Laser Templating &amp; 3D Design Layout</span>
                   </div>
-                </motion.div>
+                </div>
 
                 {/* CTAs and Direct Click-to-Call */}
-                <motion.div variants={fadeInUp} className="flex flex-wrap items-center justify-center lg:justify-start gap-3 mb-3.5 lg:mb-4">
+                <div style={{ animationDelay: '0.6s' }} className="promo-rise flex flex-wrap items-center justify-center lg:justify-start gap-3 mb-3.5 lg:mb-4">
                   <a 
                     href="tel:4049524534"
                     onClick={() => {
@@ -420,10 +453,10 @@ export default function PromoPage() {
                   >
                     Get Free Estimate <ArrowRight size={15} />
                   </button>
-                </motion.div>
+                </div>
 
                 {/* Official Google 5.0 Star Reviews Badge & Trust Platforms */}
-                <motion.div variants={fadeInUp} className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-3 pt-1">
+                <div style={{ animationDelay: '0.75s' }} className="promo-rise flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-3 pt-1">
                   <a 
                     href="https://www.google.com/search?q=AGS+Stones+and+Cabinets"
                     target="_blank"
@@ -460,15 +493,13 @@ export default function PromoPage() {
                     <ThumbtackLogo />
                     <NextdoorLogo />
                   </div>
-                </motion.div>
-              </motion.div>
+                </div>
+              </div>
 
               {/* RIGHT COLUMN: Identical Quick Quote Card (from /services/countertops) */}
-              <motion.div 
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.2 }}
-                className="lg:col-span-5 w-full relative"
+              <div
+                style={{ animationDelay: '0.2s', ['--rise' as string]: '30px' }}
+                className="promo-rise lg:col-span-5 w-full relative"
               >
                 {/* Floating Guarantee Badge */}
                 <div className="hidden lg:flex absolute -top-3 -right-2 z-20 bg-white text-primary py-1.5 px-3 rounded-xl shadow-xl items-center gap-2 border border-gray-100">
@@ -535,6 +566,17 @@ export default function PromoPage() {
                         <h3 className="text-xl xl:text-2xl font-serif font-bold text-primary leading-tight">Quick Quote</h3>
                         <p className="text-gray-500 text-[11px]">Direct factory pricing in 60 seconds.</p>
                       </div>
+
+                      {/* Honeypot: hidden from people, bots tend to fill it */}
+                      <input
+                        ref={honeypotRef}
+                        type="text"
+                        name="botcheck"
+                        tabIndex={-1}
+                        autoComplete="off"
+                        aria-hidden="true"
+                        className="hidden"
+                      />
 
                       {/* Validation Alert */}
                       {validationError && (
@@ -675,7 +717,7 @@ export default function PromoPage() {
                     </form>
                   )}
                 </div>
-              </motion.div>
+              </div>
 
             </div>
           </div>
@@ -683,11 +725,7 @@ export default function PromoPage() {
           {/* Subdued Bottom Scroll Indicator */}
           <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1.5 opacity-40">
             <span className="text-[9px] uppercase tracking-[0.2em] font-bold text-white">Scroll to Explore Slabs &amp; Cabinets</span>
-            <motion.div 
-              animate={{ y: [0, 8, 0] }} 
-              transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
-              className="w-[1px] h-6 bg-gradient-to-b from-white to-transparent"
-            />
+            <div className="promo-nudge w-[1px] h-6 bg-gradient-to-b from-white to-transparent" />
           </div>
         </section>
 
