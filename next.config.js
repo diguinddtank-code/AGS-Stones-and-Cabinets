@@ -56,12 +56,17 @@ const nextConfig = {
       { protocol: 'https', hostname: 'media.designcafe.com' },
     ],
   },
-  // City pages: the "-ga" URL is the canonical one; the version without
-  // "-ga" is a duplicate that Google indexed.
+  // City pages: only "/{service}-{city}-ga" exists. Must match the service
+  // prefixes and cities in app/[slug]/page.tsx.
   async redirects() {
+    const cities = 'atlanta|duluth|alpharetta|roswell|johns-creek|suwanee|marietta|sandy-springs|buckhead';
+    const services = 'countertops|granite-countertops|quartz-countertops|cabinets|outdoor-kitchens|kitchen-remodeling|bathroom-remodeling|vanity-tops|backsplash-tile';
     return [
-      { source: '/granite-countertops-roswell', destination: '/granite-countertops-roswell-ga', statusCode: 301 },
-      { source: '/granite-countertops-duluth', destination: '/granite-countertops-duluth-ga', statusCode: 301 },
+      // custom-cabinets-{city}[-ga] merged into cabinets-{city}-ga (near-duplicate pages)
+      { source: `/custom-cabinets-:city(${cities})`, destination: '/cabinets-:city-ga', statusCode: 301 },
+      { source: `/custom-cabinets-:city(${cities})-ga`, destination: '/cabinets-:city-ga', statusCode: 301 },
+      // Any {service}-{city} without "-ga" goes to its "-ga" URL
+      { source: `/:page((?:${services})-(?:${cities}))`, destination: '/:page-ga', statusCode: 301 },
     ];
   },
   typescript: {

@@ -39,13 +39,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.9,
   }));
 
-  // Localized Service Landing Pages Combinations (SEO city pages, including -ga suffix)
+  // City landing pages: only the "-ga" URLs exist (others 301, see next.config.js).
+  // Must match prefixMappings in app/[slug]/page.tsx.
   const localServicePrefixes = [
     'countertops',
     'granite-countertops',
     'quartz-countertops',
     'cabinets',
-    'custom-cabinets',
     'outdoor-kitchens',
     'kitchen-remodeling',
     'bathroom-remodeling',

@@ -6,6 +6,13 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import ServiceDynamicContent from "@/components/ServiceDynamicContent";
 import React, { Suspense } from "react";
+import Link from "next/link";
+import {
+  isMaterialPrefix,
+  materialSection,
+  materialFaqs,
+  countertopComparison,
+} from "@/lib/cityMaterialContent";
 
 const locations = ['atlanta', 'duluth', 'alpharetta', 'roswell', 'johns-creek', 'suwanee', 'marietta', 'sandy-springs', 'buckhead'];
 
@@ -22,26 +29,26 @@ const prefixMappings: Record<string, PrefixMapping> = {
   'countertops': {
     baseSlug: 'countertops',
     title: 'Quartz & Granite Countertops',
-    shortDesc: 'Stunning premium quartz, granite, and marble surfaces custom-fabricated for your kitchen or bath.',
-    longDesc: "Elevate your home with top-tier kitchen countertops and master bath vanities. We source premium quartz, natural granite, and exotic quartzite slabs directly, then custom fab in our local Duluth facility. Get high-end luxury finishes at factory-direct pricing with flawless installation guaranteed.",
-    features: ["Premium Non-Porous Quartz & Hardwood Granite Slabs", "Precision Edge Profiling & High-Polished Joint Seams", "Direct Sourcing (No Retail Markups or Middlemen)", "Digital Laser Templating for 100% Flawless Fit"],
-    keywords: ["kitchen countertops", "countertop installation", "granite fabricators", "quartz countertops ga"]
+    shortDesc: 'Compare granite, quartz, quartzite and marble side by side, then see every option in person at our Duluth showroom.',
+    longDesc: "Every countertop material has a trade-off. Granite handles heat and lasts for decades but needs sealing. Quartz never needs sealing and keeps a uniform color, but it does not like hot pans or direct sun. Quartzite and marble bring natural veining with their own care routines. We fabricate all of them in our Duluth shop, so we can recommend what fits how you cook and clean.",
+    features: ["Granite, Quartz, Quartzite & Marble Under One Roof", "Side-by-Side Slab Comparison in Our Duluth Showroom", "Digital Laser Templating for Any Material", "Factory-Direct Pricing on Every Stone"],
+    keywords: ["kitchen countertops", "countertop installation", "countertop materials", "countertop fabricators"]
   },
   'granite-countertops': {
     baseSlug: 'countertops',
     title: 'Premium Granite Countertops',
-    shortDesc: 'Natural, factory-direct granite countertops fabricated and installed to absolute perfection.',
-    longDesc: "As Atlanta's premier stone installers, we offer stunning natural granite slabs hand-picked from the world's finest quarries. Every countertop is custom-fabricated in our local Duluth facility using state-of-the-art CNC machinery to ensure your seams are virtually invisible and the edge profiles look flawless.",
-    features: ["Hand-Picked Premium Natural Granite Slabs", "Custom Edge Profiles & Precision Polishing", "Highly Resistant to Heat, Cuts, and Scratches", "Duluth-Based In-House Master Fabricators"],
-    keywords: ["granite countertops", "granite slab fabrication", "local granite installers", "kitchen granite installation"]
+    shortDesc: 'Natural granite that handles heat and daily wear, with a slab that is truly one of a kind. Cut and sealed in our Duluth shop.',
+    longDesc: "Granite is natural stone formed under heat and pressure, so no two slabs look the same. It stands up to hot cookware, knives and daily wear, and with a fresh seal it resists stains for years. Walk our slab yard to choose your exact piece, from classic Uba Tuba and Absolute Black to exotic slabs with bold movement. We cut, polish and seal every slab in-house.",
+    features: ["Natural Stone: Every Slab Is One of a Kind", "Handles Hot Pans, Knives and Daily Wear", "Sealed at Installation, Easy to Reseal", "Classic and Exotic Colors You Pick in Person"],
+    keywords: ["granite countertops", "natural granite slabs", "exotic granite countertops", "granite countertop installation"]
   },
   'quartz-countertops': {
     baseSlug: 'countertops',
     title: 'Premium Quartz Countertops',
-    shortDesc: 'Stunning, low-maintenance quartz surfaces customized for your modern kitchen or bath.',
-    longDesc: "Choose from a massive, curated collection of top-rated Quartz countertops. Because we buy directly from the manufacturer and fabricate in-house in Duluth, you save 30% or more compared to retail. Our quartz is 100% non-porous, highly sanitary, stain-proof, and requires absolutely zero sealing.",
-    features: ["Premium Non-Porous & Stain-Proof Surfaces", "Never Needs Sealing or Resurfacing", "Factory-Direct Pricing (No Markup)", "Precision Digital Laser Templating"],
-    keywords: ["quartz countertops", "custom quartz installers", "quartz slab yards", "quartz counter installation"]
+    shortDesc: 'Engineered quartz that never needs sealing, resists stains and keeps a consistent color from slab to slab.',
+    longDesc: "Quartz is engineered from ground natural quartz bound with resin, which makes it non-porous. Coffee, wine and oil wipe off without soaking in, and it never needs a sealer. Because it is made in a factory, color and pattern stay consistent across slabs, so long runs and islands match. Our Duluth shop fabricates quartz with tight, color-matched seams.",
+    features: ["Non-Porous: No Sealing, Ever", "Resists Coffee, Wine and Oil Stains", "Consistent Color Across Every Slab", "Wipe-Clean Care with Mild Soap and Water"],
+    keywords: ["quartz countertops", "engineered quartz countertops", "low maintenance countertops", "quartz countertop installation"]
   },
   'cabinets': {
     baseSlug: 'cabinets',
@@ -50,14 +57,6 @@ const prefixMappings: Record<string, PrefixMapping> = {
     longDesc: "Get durable, solid-wood custom and semi-custom kitchen cabinets built to last. Our cabinetry features high-quality premium plywood boxes, hardwood face frames and doors, and premium steel soft-close hardware.",
     features: ["Heavy-Duty Plywood Boxes & All-Wood Frames (Zero Cheap MDF)", "Smooth European Soft-Close Hinges & Undermount Slides", "Professional 3D Layout Planning & Design Assistance", "Flawless On-Site Calibration & Expert Trim Assembly"],
     keywords: ["kitchen cabinets", "custom cabinets", "semi custom cabinetry", "wood cabinet installer"]
-  },
-  'custom-cabinets': {
-    baseSlug: 'cabinets',
-    title: 'Custom Kitchen Cabinets',
-    shortDesc: 'Solid wood cabinetry hand-built to maximize storage, style, and resale value.',
-    longDesc: "Bypass flat-pack fiberboard cabinets. We build custom and semi-custom solid-wood and premium plywood cabinetry using durable dovetail drawer construction and smooth European soft-close hinges. Measured to fit every corner of your home perfectly.",
-    features: ["100% Plywood Core & Solid Hardwood Doors (Zero MDF)", "German Soft-Close Undermount Drawer Slides", "Virtual 3D Kitchen Design & Space Optimization", "Masterful Duluth-made In-house Finishes"],
-    keywords: ["custom cabinets", "shaker kitchen cabinets", "cabinet replacement", "kitchen cabinets installer"]
   },
   'outdoor-kitchens': {
     baseSlug: 'outdoor-kitchens',
@@ -126,12 +125,14 @@ function parseSlug(slug: string): { city: string; prefix: string; mapping: Prefi
   return { city: matchedCity, prefix: matchedPrefix, mapping };
 }
 
+// Only "/{service}-{city}-ga" is built. Versions without "-ga" and the old
+// custom-cabinets pages 301 to these (see next.config.js); any other slug 404s.
+export const dynamicParams = false;
+
 export async function generateStaticParams() {
   const params: { slug: string }[] = [];
   locations.forEach((city) => {
     Object.keys(prefixMappings).forEach((prefix) => {
-      // Build both with and without -ga to ensure static pages compile properly
-      params.push({ slug: `${prefix}-${city}` });
       params.push({ slug: `${prefix}-${city}-ga` });
     });
   });
@@ -149,10 +150,7 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   const pageTitle = `${mapping.title} in ${formattedCity}, GA | Factory Direct | AGS Stones`;
   const pageDesc = `Looking for a licensed ${mapping.title.toLowerCase()} contractor in ${formattedCity}? AGS Stones offers factory-direct pricing on custom fabrication and installation. Get a free estimate today.`;
 
-  // Canonicalize to the "-ga" variant so the with/without-"-ga" duplicate
-  // pages consolidate ranking signals into a single indexed URL, matching
-  // what's actually submitted in sitemap.ts.
-  const canonicalSlug = params.slug.toLowerCase().endsWith('-ga') ? params.slug : `${prefix}-${city}-ga`;
+  const canonicalSlug = `${prefix}-${city}-ga`;
 
   return {
     title: pageTitle,
@@ -201,7 +199,7 @@ function buildLocalFaqs(mapping: PrefixMapping, formattedCity: string) {
 }
 
 export default function Page({ params }: { params: { slug: string } }) {
-  const { city, mapping } = parseSlug(params.slug);
+  const { city, prefix, mapping } = parseSlug(params.slug);
 
   if (!city || !mapping) {
     notFound();
@@ -260,7 +258,8 @@ export default function Page({ params }: { params: { slug: string } }) {
     "description": `Premium custom ${mapping.title.toLowerCase()} fabrication and installation services in ${formattedCity}, Georgia, by AGS Stones.`
   };
 
-  const localFaqs = buildLocalFaqs(mapping, formattedCity);
+  const material = isMaterialPrefix(prefix) ? materialSection(prefix, city, formattedCity) : null;
+  const localFaqs = isMaterialPrefix(prefix) ? materialFaqs(prefix, formattedCity) : buildLocalFaqs(mapping, formattedCity);
   const faqSchema = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
@@ -288,6 +287,81 @@ export default function Page({ params }: { params: { slug: string } }) {
         <Suspense fallback={<div className="h-screen bg-[#0a0a0a] flex items-center justify-center text-white font-serif">Loading elegant local experience...</div>}>
           <ServiceDynamicContent service={customizedService} cityOverride={city} />
         </Suspense>
+
+        {/* Material guide (countertops / granite / quartz pages only): plain
+            server-rendered content that makes each of the three pages distinct */}
+        {material && (
+          <section className="py-20 md:py-28 bg-[#f8f9fa] text-gray-900">
+            <div className="container mx-auto px-4 max-w-6xl">
+              <div className="max-w-3xl mb-10 md:mb-14">
+                <h2 className="text-secondary font-bold tracking-[0.2em] uppercase text-xs mb-4">{material.eyebrow}</h2>
+                <h3 className="text-3xl md:text-5xl font-serif font-bold text-primary mb-5 leading-tight">{material.heading}</h3>
+                <p className="text-gray-600 text-base md:text-lg leading-relaxed">{material.intro}</p>
+              </div>
+
+              {prefix === 'countertops' && (
+                <div className="overflow-x-auto mb-10 md:mb-14 rounded-2xl border border-gray-200 bg-white">
+                  <table className="w-full text-left text-sm min-w-[640px]">
+                    <thead className="bg-primary text-white">
+                      <tr>
+                        {['Material', 'Made of', 'Sealing', 'Heat', 'Stains', 'Look'].map(h => (
+                          <th key={h} className="px-4 py-3 font-semibold">{h}</th>
+                        ))}
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {countertopComparison.map(row => (
+                        <tr key={row.material} className="border-t border-gray-100">
+                          <td className="px-4 py-3 font-bold text-primary">{row.material}</td>
+                          <td className="px-4 py-3 text-gray-600">{row.madeOf}</td>
+                          <td className="px-4 py-3 text-gray-600">{row.sealing}</td>
+                          <td className="px-4 py-3 text-gray-600">{row.heat}</td>
+                          <td className="px-4 py-3 text-gray-600">{row.stains}</td>
+                          <td className="px-4 py-3 text-gray-600">{row.look}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              )}
+
+              <div className="grid sm:grid-cols-2 gap-4 md:gap-5">
+                {material.points.map(p => (
+                  <div key={p.title} className="bg-white border border-gray-200 rounded-2xl p-6">
+                    <h4 className="text-lg font-bold text-primary mb-2">{p.title}</h4>
+                    <p className="text-gray-600 leading-relaxed">{p.text}</p>
+                  </div>
+                ))}
+              </div>
+
+              {material.goodToKnow && (
+                <div className="mt-5 md:mt-6 rounded-2xl border border-secondary/30 bg-secondary/5 p-6">
+                  <p className="text-xs font-bold uppercase tracking-widest text-secondary mb-3">Good to know</p>
+                  <ul className="grid sm:grid-cols-2 gap-4">
+                    {material.goodToKnow.map(g => (
+                      <li key={g.title}>
+                        <p className="font-bold text-primary mb-1">{g.title}</p>
+                        <p className="text-gray-600 text-sm leading-relaxed">{g.text}</p>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+
+              <div className="mt-8 flex flex-wrap gap-3">
+                {material.links.map(l => (
+                  <Link
+                    key={l.href}
+                    href={l.href}
+                    className="inline-flex items-center gap-2 bg-white border border-gray-200 hover:border-secondary text-primary font-semibold text-sm px-5 py-2.5 rounded-full transition-colors"
+                  >
+                    {l.label} <span aria-hidden="true" className="text-secondary">&rarr;</span>
+                  </Link>
+                ))}
+              </div>
+            </div>
+          </section>
+        )}
 
         {/* Local FAQ — plain server-rendered <details>/<summary>, no client JS,
             backs the FAQPage schema above with matching visible content and
