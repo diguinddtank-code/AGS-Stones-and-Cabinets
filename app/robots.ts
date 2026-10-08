@@ -1,6 +1,8 @@
 import { MetadataRoute } from 'next';
 
-const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://www.agsstonefabricators.com';
+// Canonical host. Hardcoded on purpose so an env var can never put the
+// non-www host into the sitemap or robots.txt.
+const baseUrl = 'https://www.agsstonefabricators.com';
 
 export default function robots(): MetadataRoute.Robots {
   return {

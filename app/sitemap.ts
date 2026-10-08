@@ -2,7 +2,9 @@ import { MetadataRoute } from 'next';
 import { services } from '@/lib/servicesData';
 import { blogContent } from '@/lib/blogData';
 
-const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://www.agsstonefabricators.com';
+// Canonical host. Hardcoded on purpose so an env var can never put the
+// non-www host into the sitemap or robots.txt.
+const baseUrl = 'https://www.agsstonefabricators.com';
 
 const locations = ['atlanta', 'duluth', 'alpharetta', 'roswell', 'johns-creek', 'suwanee', 'marietta', 'sandy-springs', 'buckhead'];
 

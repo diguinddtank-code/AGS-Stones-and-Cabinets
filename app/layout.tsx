@@ -38,10 +38,11 @@ export const metadata: Metadata = {
     address: false,
     telephone: false,
   },
+  // No fixed og:url / canonical here: every page sets its own, otherwise
+  // pages without one would inherit the home URL.
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://www.agsstonefabricators.com",
     title: "AGS Stones & Cabinets | Local Granite Countertops Near You",
     description: "Stop searching. You found the best granite countertops near you. Buy direct from our Duluth factory and save.",
     siteName: "AGS Stones & Cabinets",
@@ -70,9 +71,6 @@ export const metadata: Metadata = {
       "max-image-preview": "large",
       "max-snippet": -1,
     },
-  },
-  alternates: {
-    canonical: "https://www.agsstonefabricators.com",
   },
 };
 

@@ -56,6 +56,14 @@ const nextConfig = {
       { protocol: 'https', hostname: 'media.designcafe.com' },
     ],
   },
+  // City pages: the "-ga" URL is the canonical one; the version without
+  // "-ga" is a duplicate that Google indexed.
+  async redirects() {
+    return [
+      { source: '/granite-countertops-roswell', destination: '/granite-countertops-roswell-ga', statusCode: 301 },
+      { source: '/granite-countertops-duluth', destination: '/granite-countertops-duluth-ga', statusCode: 301 },
+    ];
+  },
   typescript: {
     ignoreBuildErrors: true,
   },

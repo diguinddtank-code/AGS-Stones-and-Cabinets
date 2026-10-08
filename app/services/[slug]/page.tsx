@@ -23,7 +23,11 @@ export async function generateMetadata({ params }: { params: { slug: string } })
     title: `${service.title} in Atlanta, GA | Factory Direct | AGS Stones`,
     description: `Get factory-direct ${service.title.toLowerCase()} in Atlanta & Duluth, GA. AGS Stones provides custom fabrication and flawless professional installation. Get a free estimate today!`,
     keywords: service.keywords.join(', '),
+    alternates: {
+      canonical: `https://www.agsstonefabricators.com/services/${service.slug}`,
+    },
     openGraph: {
+      url: `https://www.agsstonefabricators.com/services/${service.slug}`,
       title: `${service.title} in Atlanta, GA | AGS Stones`,
       description: `Get factory-direct ${service.title.toLowerCase()} in Atlanta & Duluth, GA. AGS Stones provides custom fabrication and flawless professional installation. Get a free estimate today!`,
       images: [{ url: service.image }]
