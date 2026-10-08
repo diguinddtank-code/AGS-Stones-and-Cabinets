@@ -1,140 +1,91 @@
-import React, { useEffect } from 'react';
-import { Clock, Award, DollarSign, Star } from 'lucide-react';
+import React from 'react';
+import { ArrowRight, Ruler, Factory, Layers, Clock } from 'lucide-react';
 
-const WhyChooseUs: React.FC = () => {
-  // Animation logic for visual elements
-  useEffect(() => {
-    // Observer for Cards (Fade Up)
-    const cardObserver = new IntersectionObserver(
-        (entries) => {
-            entries.forEach((entry) => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.remove('opacity-0', 'translate-y-10');
-                    entry.target.classList.add('opacity-100', 'translate-y-0');
-                    cardObserver.unobserve(entry.target);
-                }
-            });
-        },
-        { threshold: 0.1 }
-    );
+// Each point pairs a problem homeowners run into with how AGS handles it.
+// Facts come from elsewhere on the site (ProcessTimeline, Faq, StoneGallery).
+const points = [
+  {
+    icon: Ruler,
+    problem: 'Gaps at the wall and overhangs that are off by half an inch.',
+    title: 'Measured with a laser, not a tape',
+    fix: 'We template your cabinets with a digital laser system to 1/16". Uneven walls are accounted for before we cut.',
+  },
+  {
+    icon: Factory,
+    problem: 'Paying a showroom markup on stone they bought from someone else.',
+    title: 'Cut in our own Duluth shop',
+    fix: 'We import our own slabs and fabricate in-house. No middleman, which saves you up to 30%.',
+  },
+  {
+    icon: Layers,
+    problem: 'Choosing from a 2-inch sample and getting a slab that looks different.',
+    title: 'You pick the actual slab',
+    fix: 'Walk our showroom, see 500+ full slabs and choose yours. We lay out the veins with you before the first cut.',
+  },
+  {
+    icon: Clock,
+    problem: 'A kitchen out of commission for weeks.',
+    title: 'About 5 days, template to install',
+    fix: 'Installation day usually takes 4-6 hours. Floors are covered first and we clean up before we leave.',
+  },
+];
 
-    const cardElements = document.querySelectorAll('.animate-on-scroll');
-    cardElements.forEach((el) => cardObserver.observe(el));
+const WhyChooseUs: React.FC = () => (
+  <section id="why-us" className="pt-12 pb-14 md:pt-24 md:pb-24 bg-white relative z-20">
+    <div className="container mx-auto px-4 max-w-6xl">
+      {/* Header */}
+      <div className="max-w-2xl mb-6 md:mb-12 md:text-center md:mx-auto">
+        <h2 className="text-secondary font-bold tracking-widest uppercase text-xs md:text-sm mb-3">The AGS Difference</h2>
+        <h3 className="text-3xl md:text-5xl font-bold text-primary mb-4 leading-tight">Why Atlanta Chooses Us</h3>
+        <p className="text-[15px] text-gray-600 md:text-lg leading-relaxed">
+          Most countertop problems start before the stone reaches your kitchen: a rough measurement, a padded quote,
+          a slab you never saw. Here is how we handle each one.
+        </p>
+      </div>
 
-    // Observer for Icons (Pop In with overshoot)
-    const iconObserver = new IntersectionObserver(
-        (entries) => {
-            entries.forEach((entry) => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.remove('opacity-0', 'scale-50', '-rotate-12');
-                    entry.target.classList.add('opacity-100', 'scale-100', 'rotate-0');
-                    iconObserver.unobserve(entry.target);
-                }
-            });
-        },
-        { threshold: 0.5 }
-    );
+      {/* Problem / fix list */}
+      <ol className="grid md:grid-cols-2 gap-3 md:gap-5">
+        {points.map(({ icon: Icon, problem, title, fix }, i) => (
+          <li key={title} className="rounded-2xl border border-gray-200 overflow-hidden bg-white flex flex-col">
+            <div className="bg-gray-50 border-b border-gray-200 px-4 py-3 md:px-6 md:py-4 flex gap-3">
+              <span className="text-[11px] font-bold uppercase tracking-wider text-gray-400 pt-0.5 shrink-0 w-[68px]">
+                The usual
+              </span>
+              <p className="text-[13px] md:text-sm text-gray-500 leading-snug">{problem}</p>
+            </div>
+            <div className="px-4 py-4 md:px-6 md:py-6 flex gap-3.5 md:gap-4 flex-grow">
+              <span className="w-9 h-9 md:w-11 md:h-11 rounded-xl bg-primary text-secondary flex items-center justify-center shrink-0">
+                <Icon size={18} strokeWidth={1.75} />
+              </span>
+              <div>
+                <p className="text-[10.5px] md:text-[11px] font-bold uppercase tracking-wider text-secondary mb-0.5 md:mb-1">
+                  AGS fix 0{i + 1}
+                </p>
+                <h4 className="text-[17px] md:text-xl font-bold text-primary leading-snug mb-1 md:mb-1.5">{title}</h4>
+                <p className="text-sm md:text-[15px] text-gray-600 leading-relaxed">{fix}</p>
+              </div>
+            </div>
+          </li>
+        ))}
+      </ol>
 
-    const iconElements = document.querySelectorAll('.animate-icon');
-    iconElements.forEach((el) => iconObserver.observe(el));
-
-    return () => {
-        cardObserver.disconnect();
-        iconObserver.disconnect();
-    };
-  }, []);
-
-  return (
-    <section id="why-us" className="py-24 bg-white relative z-30 pointer-events-auto">
-      <div className="container mx-auto px-4">
-        
-        {/* Header */}
-        <div className="text-center mb-16 animate-on-scroll opacity-0 translate-y-10 transition-all duration-700">
-          <h2 className="text-secondary font-bold tracking-widest uppercase mb-4">The AGS Difference</h2>
-          <h3 className="text-4xl lg:text-5xl font-bold text-primary mb-6">Why Atlanta Chooses Us</h3>
-          <p className="text-gray-600 max-w-2xl mx-auto">
-            We don't just install stone; we craft experiences. Here is why homeowners in Duluth, Alpharetta, and Roswell trust AGS Stones & Cabinets.
+      {/* Closing line */}
+      <div className="mt-5 md:mt-6 rounded-2xl bg-primary text-white px-5 py-5 md:px-8 md:py-6 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+        <div className="flex items-center gap-4">
+          <span className="text-3xl md:text-4xl font-bold text-secondary leading-none">20+</span>
+          <p className="text-sm md:text-base text-white/85 leading-snug">
+            years fabricating and installing stone<br className="hidden sm:block" /> for homes across Metro Atlanta.
           </p>
         </div>
-
-        {/* Grid Layout - Visual Content */}
-        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 grid-rows-[auto] gap-4 lg:gap-6 mb-20">
-          
-          {/* Main Large Card */}
-          <div 
-            className="md:col-span-2 row-span-2 bg-primary rounded-3xl p-8 lg:p-12 relative overflow-hidden group text-white flex flex-col justify-between min-h-[400px] shadow-xl animate-on-scroll opacity-0 translate-y-10 transition-all duration-700"
-            style={{ transitionDelay: '100ms' }}
-          >
-            <div className="absolute top-0 right-0 w-64 h-64 bg-secondary/20 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 group-hover:bg-secondary/30 transition-colors pointer-events-none"></div>
-            <div className="relative z-10">
-              <div className="bg-white/10 w-16 h-16 rounded-2xl flex items-center justify-center mb-6 backdrop-blur-md animate-icon opacity-0 scale-50 -rotate-12 transition-all duration-700 ease-[cubic-bezier(0.34,1.56,0.64,1)]">
-                <Award className="text-secondary" size={32} />
-              </div>
-              <h4 className="text-3xl font-bold mb-4">Master Craftsmanship</h4>
-              <p className="text-gray-300 text-lg leading-relaxed">
-                Our fabrication facility uses the latest digital laser templating technology combined with old-world stone artistry. 
-                We guarantee precise seam matching and flawless edge profiles.
-              </p>
-            </div>
-            <div className="relative z-10 mt-8">
-              <span className="inline-block bg-secondary text-white font-bold px-4 py-2 rounded-lg text-sm">
-                #1 Rated in Duluth
-              </span>
-            </div>
-          </div>
-
-          {/* Speed Card */}
-          <div 
-            className="bg-gray-50 hover:bg-gray-100 transition-colors rounded-3xl p-8 border border-gray-100 flex flex-col shadow-sm animate-on-scroll opacity-0 translate-y-10 transition-all duration-700"
-            style={{ transitionDelay: '200ms' }}
-          >
-            <div className="mb-4 animate-icon opacity-0 scale-50 -rotate-12 transition-all duration-700 ease-[cubic-bezier(0.34,1.56,0.64,1)] delay-100">
-                <Clock className="text-secondary" size={32} />
-            </div>
-            <h4 className="text-xl font-bold text-primary mb-2">5-Day Turnaround</h4>
-            <p className="text-sm text-gray-600">From template to install, we work efficiently to minimize disruption.</p>
-          </div>
-
-          {/* Price Card */}
-          <div 
-            className="bg-gray-50 hover:bg-gray-100 transition-colors rounded-3xl p-8 border border-gray-100 flex flex-col shadow-sm animate-on-scroll opacity-0 translate-y-10 transition-all duration-700"
-            style={{ transitionDelay: '300ms' }}
-          >
-            <div className="mb-4 animate-icon opacity-0 scale-50 -rotate-12 transition-all duration-700 ease-[cubic-bezier(0.34,1.56,0.64,1)] delay-200">
-                <DollarSign className="text-secondary" size={32} />
-            </div>
-            <h4 className="text-xl font-bold text-primary mb-2">Factory Direct</h4>
-            <p className="text-sm text-gray-600">We import our own slabs, cutting out the middleman to save you up to 30%.</p>
-          </div>
-
-          {/* Experience Card */}
-          <div 
-            className="bg-secondary/10 rounded-3xl p-8 flex flex-col justify-center items-center text-center md:col-span-2 lg:col-span-1 group hover:bg-secondary/20 transition-colors shadow-sm animate-on-scroll opacity-0 translate-y-10 transition-all duration-700"
-            style={{ transitionDelay: '400ms' }}
-          >
-             <h4 className="text-5xl font-bold text-secondary mb-2 animate-icon opacity-0 scale-50 transition-all duration-700 ease-[cubic-bezier(0.34,1.56,0.64,1)] delay-300">20+</h4>
-             <p className="font-bold text-primary">Years Experience</p>
-             <p className="text-xs text-gray-500 mt-2">Serving Metro Atlanta</p>
-          </div>
-
-          {/* Wide Bottom Card */}
-          <div 
-            className="md:col-span-3 lg:col-span-1 bg-primary text-white rounded-3xl p-8 flex flex-col justify-center shadow-xl animate-on-scroll opacity-0 translate-y-10 transition-all duration-700"
-            style={{ transitionDelay: '500ms' }}
-          >
-             <div className="flex items-center gap-4 mb-4 animate-icon opacity-0 scale-50 transition-all duration-700 ease-[cubic-bezier(0.34,1.56,0.64,1)] delay-300">
-                {[1,2,3,4,5].map(i => (
-                    <Star key={i} className="text-yellow-400 fill-yellow-400" />
-                ))}
-             </div>
-             <p className="font-medium">"Absolute perfection. The team at AGS went above and beyond."</p>
-             <p className="text-sm text-gray-400 mt-2">- Jennifer M., Suwanee</p>
-          </div>
-        </div>
-
+        <a
+          href="#contact"
+          className="inline-flex items-center justify-center gap-2 bg-secondary hover:bg-yellow-600 text-white font-bold px-6 py-3 rounded-full transition-colors text-sm whitespace-nowrap"
+        >
+          Get a Free Estimate <ArrowRight size={16} />
+        </a>
       </div>
-    </section>
-  );
-};
+    </div>
+  </section>
+);
 
 export default WhyChooseUs;
