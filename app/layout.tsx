@@ -156,46 +156,68 @@ export default function RootLayout({
             }),
           }}
         />
-        {/* Google Tag Manager (gtag.js) */}
-        <Script
-          src="https://www.googletagmanager.com/gtag/js?id=AW-16885125181"
-          strategy="afterInteractive"
-        />
-        <Script id="google-analytics" strategy="afterInteractive">
+        {/* Tracking (Google Ads gtag.js + Meta Pixel).
+            The gtag/fbq queues are created right away, so every call made by
+            the page (PageView, Lead, conversions) is recorded. The two heavy
+            third-party scripts (~420 KB, ~1.4 s of main-thread work on a
+            mid-range phone) are only downloaded on the visitor's first
+            interaction or 3.5 s after the page has loaded, whichever comes
+            first; they then flush the queued events. */}
+        <Script id="tracking-loader" strategy="afterInteractive">
           {`
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
             window.gtag = gtag;
             gtag('js', new Date());
             gtag('config', 'AW-16885125181');
-          `}
-        </Script>
-        {/* Meta Pixel Code */}
-        <Script id="meta-pixel" strategy="afterInteractive">
-          {`
-            !function(f,b,e,v,n,t,s)
-            {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+
+            !function(f){if(f.fbq)return;var n=f.fbq=function(){n.callMethod?
             n.callMethod.apply(n,arguments):n.queue.push(arguments)};
             if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-            n.queue=[];t=b.createElement(e);t.async=!0;
-            t.src=v;s=b.getElementsByTagName(e)[0];
-            s.parentNode.insertBefore(t,s)}(window, document,'script',
-            'https://connect.facebook.net/en_US/fbevents.js');
+            n.queue=[]}(window);
             fbq('init', '1660874861583892');
             fbq('track', 'PageView');
+
+            (function(){
+              var done = false;
+              var events = ['pointerdown', 'touchstart', 'keydown', 'scroll', 'wheel', 'mousemove'];
+              function load() {
+                if (done) return;
+                done = true;
+                events.forEach(function(ev){ window.removeEventListener(ev, load, true); });
+                [
+                  'https://www.googletagmanager.com/gtag/js?id=AW-16885125181',
+                  'https://connect.facebook.net/en_US/fbevents.js'
+                ].forEach(function(src){
+                  var s = document.createElement('script');
+                  s.async = true;
+                  s.src = src;
+                  document.head.appendChild(s);
+                });
+              }
+              window.__loadTracking = load;
+              events.forEach(function(ev){ window.addEventListener(ev, load, { capture: true, passive: true }); });
+              function startTimer(){ setTimeout(load, 3500); }
+              if (document.readyState === 'complete') startTimer();
+              else window.addEventListener('load', startTimer);
+            })();
           `}
         </Script>
-        <noscript>
-          <img height="1" width="1" style={{ display: 'none' }}
-            src="https://www.facebook.com/tr?id=1660874861583892&ev=PageView&noscript=1"
-            alt=""
-          />
-        </noscript>
+        {/* Rendered as raw HTML so React does not preload the image: that
+            preload fired a second, duplicate PageView on every visit. */}
+        <noscript
+          dangerouslySetInnerHTML={{
+            __html: '<img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1660874861583892&ev=PageView&noscript=1" alt="" />',
+          }}
+        />
         {/* End Meta Pixel Code */}
         <Script id="conversion-tracking" strategy="afterInteractive">
           {`
             function gtag_report_conversion(url) {
+              var sent = false;
               var callback = function () {
+                if (sent) return;
+                sent = true;
                 if (typeof(url) != 'undefined') {
                   window.location = url;
                 }
@@ -204,6 +226,9 @@ export default function RootLayout({
                   'send_to': 'AW-16885125181/R1mQCP6Dm5McEL2guvM-',
                   'event_callback': callback
               });
+              // Never leave a tap-to-call hanging if gtag.js is still loading
+              // or blocked (ad blockers): dial anyway after 1.5 s.
+              setTimeout(callback, 1500);
               return false;
             }
 

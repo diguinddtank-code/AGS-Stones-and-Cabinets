@@ -85,7 +85,7 @@ const Header: React.FC<HeaderProps> = ({ lightNav = false }) => {
           <div className="container mx-auto px-4 md:px-6 flex justify-between items-center h-12 md:h-16 relative">
             
             {/* LOGO (Visible on Mobile & Desktop) */}
-            <Link href="/" className="block group z-50 relative" aria-label="AGS Stones Home">
+            <Link href="/" prefetch={false} className="block group z-50 relative" aria-label="AGS Stones Home">
                <Image 
                 src="https://i.imgur.com/B0ZaBpN.png" 
                 alt="AGS Stones and Cabinets Logo" 
@@ -103,7 +103,7 @@ const Header: React.FC<HeaderProps> = ({ lightNav = false }) => {
             {/* Desktop Nav */}
             <nav className="hidden md:flex items-center gap-8" role="navigation" aria-label="Main Desktop Navigation">
               {navLinks.map((link) => (
-                <Link 
+                <Link prefetch={false}
                   key={link.name} 
                   href={link.href} 
                   className={`font-medium tracking-wide text-sm uppercase transition-all duration-300 hover:-translate-y-0.5 ${
@@ -186,7 +186,7 @@ const Header: React.FC<HeaderProps> = ({ lightNav = false }) => {
 
               <nav className="flex-grow overflow-y-auto py-4 px-6 flex flex-col gap-4">
                   {navLinks.map((link, idx) => (
-                      <Link 
+                      <Link prefetch={false}
                           key={link.name} 
                           href={link.href} 
                           className="text-xl font-serif text-gray-800 py-3 border-b border-gray-100 flex items-center justify-between group active:text-secondary"

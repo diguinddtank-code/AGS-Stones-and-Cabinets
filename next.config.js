@@ -69,6 +69,16 @@ const nextConfig = {
       { source: `/:page((?:${services})-(?:${cities}))`, destination: '/:page-ga', statusCode: 301 },
     ];
   },
+  // Static media in /public is served with max-age=0 by default, so every
+  // repeat visit re-checks each file. 30 days is safe for files that are
+  // only ever replaced under a new name.
+  async headers() {
+    const cache = [{ key: 'Cache-Control', value: 'public, max-age=2592000, stale-while-revalidate=86400' }];
+    return [
+      { source: '/videos/:path*', headers: cache },
+      { source: '/images/:path*', headers: cache },
+    ];
+  },
   typescript: {
     ignoreBuildErrors: true,
   },

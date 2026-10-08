@@ -33,6 +33,7 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import Testimonials from '@/components/Testimonials';
 import { GoogleGLogo, YelpLogo, ThumbtackLogo, NextdoorLogo } from '@/components/BrandLogos';
+import { useDeferredHeroVideo, HERO_VIDEO_POSTER } from '@/lib/useDeferredHeroVideo';
 
 const promoGallery = [
   {
@@ -87,43 +88,12 @@ const promoGallery = [
   }
 ];
 
-// Hero background video, re-encoded from the original 4K/60fps file (265 MB)
-// to 720p for desktop and 480p for phones. Same footage, same look.
-const HERO_VIDEO_DESKTOP = '/videos/promo-hero-720.mp4';
-const HERO_VIDEO_MOBILE = '/videos/promo-hero-480.mp4';
-// Same poster image as before, served through the Next.js image optimizer.
-const HERO_POSTER = `/_next/image?url=${encodeURIComponent('https://kitchenandbathshop.com/wp-content/uploads/2020/11/5d7ff4ab763f7-scaled.jpg')}&w=1200&q=75`;
-
 export default function PromoPage() {
   const containerRef = useRef<HTMLDivElement>(null);
   const heroRef = useRef<HTMLElement>(null);
   const heroVideoRef = useRef<HTMLVideoElement>(null);
 
-  // Start the hero video only once the page has finished loading and the
-  // browser is idle. Skipped for data-saver / 2G visitors (poster stays).
-  useEffect(() => {
-    const video = heroVideoRef.current;
-    if (!video) return;
-    const conn = (navigator as any).connection;
-    if (conn && (conn.saveData || /2g/.test(conn.effectiveType || ''))) return;
-
-    let idleId: number | undefined;
-    const start = () => {
-      video.src = window.innerWidth < 768 ? HERO_VIDEO_MOBILE : HERO_VIDEO_DESKTOP;
-      video.play().catch(() => {});
-    };
-    const schedule = () => {
-      const w = window as any;
-      idleId = w.requestIdleCallback ? w.requestIdleCallback(start, { timeout: 2500 }) : window.setTimeout(start, 1200);
-    };
-    if (document.readyState === 'complete') schedule();
-    else window.addEventListener('load', schedule, { once: true });
-    return () => {
-      window.removeEventListener('load', schedule);
-      const w = window as any;
-      if (idleId !== undefined) (w.cancelIdleCallback ? w.cancelIdleCallback(idleId) : clearTimeout(idleId));
-    };
-  }, []);
+  useDeferredHeroVideo(heroVideoRef);
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
 
   // Quick Quote Form State (Identical to /services/countertops)
@@ -359,8 +329,7 @@ export default function PromoPage() {
               priority
               sizes="100vw"
             />
-            {/* src is attached after page load (see heroVideoRef effect) so the
-                video never competes with the headline and form for bandwidth */}
+            {/* src is attached after page load (useDeferredHeroVideo) */}
             <video
               ref={heroVideoRef}
               className="absolute inset-0 w-full h-full min-h-screen object-cover opacity-65"
@@ -369,7 +338,7 @@ export default function PromoPage() {
               loop
               playsInline
               preload="none"
-              poster={HERO_POSTER}
+              poster={HERO_VIDEO_POSTER}
             >
               Your browser does not support the video tag.
             </video>

@@ -1,10 +1,13 @@
 import React, { useEffect, useRef, useState } from 'react';
+import { useDeferredHeroVideo, HERO_VIDEO_POSTER } from '@/lib/useDeferredHeroVideo';
 import Image from 'next/image';
 import { Star, CheckCircle2, ArrowRight, ShieldCheck, Phone, User, Mail, Layers, MapPin, Loader2 } from 'lucide-react';
 
 const Hero: React.FC = () => {
   const bgRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
+  const videoRef = useRef<HTMLVideoElement>(null);
+  useDeferredHeroVideo(videoRef);
   const [formStatus, setFormStatus] = useState<'idle' | 'loading' | 'success'>('idle');
 
   useEffect(() => {
@@ -126,16 +129,17 @@ const Hero: React.FC = () => {
             />
         </div>
 
+        {/* src is attached after page load (useDeferredHeroVideo) */}
         <video
+            ref={videoRef}
             className="relative z-10 w-full h-full object-cover animate-in fade-in zoom-in duration-1000"
             autoPlay
             muted
             loop
             playsInline
             preload="none"
-            poster="https://kitchenandbathshop.com/wp-content/uploads/2020/11/5d7ff4ab763f7-scaled.jpg"
+            poster={HERO_VIDEO_POSTER}
         >
-            <source src="https://storage.googleapis.com/msgsndr/yRboz8P4zFeLUF6bAk8i/media/680a5a6f1eba4b32d1925215.mp4" type="video/mp4" />
             Your browser does not support the video tag.
         </video>
 
@@ -149,7 +153,7 @@ const Hero: React.FC = () => {
       >
         <div className="grid lg:grid-cols-12 gap-10 lg:gap-16 items-center max-w-7xl mx-auto w-full">
             
-            <div className="lg:col-span-7 text-center lg:text-left pt-2 lg:pt-0 animate-in slide-in-from-bottom-10 duration-1000">
+            <div className="lg:col-span-7 text-center lg:text-left pt-2 lg:pt-0 lg:animate-in lg:slide-in-from-bottom-10 lg:duration-1000">
                 {/* Geolocation signal for "Near Me" queries */}
                 <div className="inline-flex items-center gap-2 py-1.5 px-3 md:px-4 rounded-full border border-white/30 bg-black/40 backdrop-blur-md text-[10px] md:text-sm uppercase tracking-widest mb-4 md:mb-6 font-medium shadow-sm text-white mx-auto lg:mx-0">
                     <MapPin size={12} className="text-secondary fill-secondary" />
@@ -235,7 +239,7 @@ const Hero: React.FC = () => {
                     </div>
                  </div>
 
-                 <div className="bg-white/95 backdrop-blur-xl rounded-2xl shadow-[0_20px_50px_rgba(0,0,0,0.5)] p-6 border border-white/20 animate-in slide-in-from-bottom-8 fade-in duration-700 delay-200 w-full max-w-[400px] ml-auto relative overflow-hidden">
+                 <div className="bg-white/95 backdrop-blur-xl rounded-2xl shadow-[0_20px_50px_rgba(0,0,0,0.5)] p-6 border border-white/20 lg:animate-in lg:slide-in-from-bottom-8 lg:fade-in lg:duration-700 lg:delay-200 w-full max-w-[400px] ml-auto relative overflow-hidden">
                     
                     {/* SUCCESS OVERLAY */}
                     {formStatus === 'success' && (
