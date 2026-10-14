@@ -2664,5 +2664,545 @@ export const blogContent: Record<string, BlogPost> = {
         </div>
       </>
     )
+  },
+  'are-countertop-seams-normal-guide': {
+    slug: 'are-countertop-seams-normal-guide',
+    title: 'Are Countertop Seams Normal? The Complete wikiHow Guide to Seam Placement, Hiding & Repair',
+    badge: 'WIKIHOW & SEAM GUIDE',
+    badgeType: 'wikihow',
+    category: 'Maintenance',
+    date: 'October 14, 2026',
+    modifiedDate: 'October 14, 2026',
+    readTime: '8 min read',
+    image: '/images/blog/are-countertop-seams-normal-guide.jpg',
+    alt: 'Instructional wikiHow style illustration demonstrating kitchen countertop seam inspection, credit card thickness test, vacuum seam clamp leveling, and color-matched epoxy joining on quartz countertops',
+    excerpt: 'Are visible seams normal in granite and quartz countertops? This comprehensive wikiHow guide explains industry standard seam width (the credit card test), optimal seam placement at sinks vs corners, how professional fabricators match veining, and how to fix separated seams.',
+    keyTakeaways: [
+      'Countertop seams are 100% normal and structurally necessary in most kitchens exceeding 10 feet, turning L-shapes, or featuring oversized islands exceeding slab quarry dimensions.',
+      'The Natural Stone Institute (NSI) industry standard specifies seams must not exceed 1/16-inch wide (the thickness of a standard credit card) with vertical lippage under 1/32-inch.',
+      'Professional fabricators prefer placing seams at the kitchen sink or cooktop cutouts, reducing the visible joint line by over 80% to just 3 to 4 inches at the front and rear rails.',
+      'Modern stone fabrication uses digital laser templating and Slabsmith vein-matching to align movement and pattern grain direction across adjacent slabs before waterjet cutting.',
+      'High-end fabricators join seams using custom color-matched two-part epoxy and mechanical vacuum seam setters that pull joints perfectly flush and level.'
+    ],
+    faqs: [
+      {
+        q: 'Can a countertop seam be made 100% invisible?',
+        a: 'No countertop seam in natural stone or quartz is completely invisible like seamless liquid glass. However, an expertly fabricated seam should be inconspicuous and hairline (less than 1/16 inch). With precision CNC waterjet edging and custom-tinted two-part epoxy resin that matches the stone background and mineral flecks, seams become virtually imperceptible from a normal standing distance.'
+      },
+      {
+        q: 'Will a countertop seam centered at the undermount sink leak water into the cabinet?',
+        a: 'No, when installed by professional fabricators. Premium two-part knife-grade polyester or epoxy creates a chemical weld that is completely waterproof and stronger than the natural stone itself. Furthermore, undermount sinks are mechanically clamped to the subtop with steel brackets and bedded in 100% pure waterproof silicone.'
+      },
+      {
+        q: 'How wide is an acceptable countertop seam by industry standards?',
+        a: 'According to the Marble Institute of America and Natural Stone Institute (NSI) standards, acceptable countertop seams range between 1/32 inch (hairline) and 1/16 inch (approximately the thickness of a credit card). Seams wider than 1/16 inch or displaying uneven vertical lippage where one slab sits noticeably higher than the other fail quality standards.'
+      },
+      {
+        q: 'Can a dirty, discolored, or separated countertop seam be repaired?',
+        a: 'Yes. If a seam separates due to home foundation settling or cabinet shifts, a stone technician can safely scrape out the old deteriorated adhesive with a razor blade, level the slabs with vacuum pullers, and re-inject freshly tinted epoxy. Surface dirt and grease can be cleaned with a baking soda paste and a soft nylon brush.'
+      },
+      {
+        q: 'How do fabricators handle seams on quartz slabs with bold veining (like Calacatta)?',
+        a: 'Quality fabricators like AGS Stones & Cabinets use digital photogrammetry software (Slabsmith) during the templating phase. High-resolution digital photos of your exact slabs are loaded into 3D software so you can review and approve exactly how veins and patterns flow across the seam line before a single cut is made.'
+      }
+    ],
+    content: (
+      <>
+        {/* Quick Answer Banner */}
+        <div className="bg-gradient-to-br from-blue-50/80 via-white to-slate-50 border-2 border-blue-200/90 rounded-3xl p-6 sm:p-8 my-8 shadow-sm">
+          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-4 pb-4 border-b border-blue-100">
+            <div>
+              <span className="text-xs font-bold text-blue-700 uppercase tracking-widest bg-blue-100/70 px-3 py-1 rounded-full">
+                WikiHow Fact Check • Natural Stone Institute (NSI) Standard
+              </span>
+              <h3 className="text-xl sm:text-2xl font-serif font-bold text-primary mt-2">
+                The 3-Second Verdict: Are Countertop Seams Normal?
+              </h3>
+            </div>
+            <span className="text-xs sm:text-sm font-semibold text-emerald-700 bg-emerald-50 border border-emerald-200 px-4 py-2 rounded-2xl flex-shrink-0">
+              ✓ YES, Absolutely Normal
+            </span>
+          </div>
+
+          <p className="text-gray-700 leading-relaxed mb-4">
+            <strong>Yes, countertop seams are completely normal, structurally necessary, and an expected hallmark of natural granite, marble, quartzite, and engineered quartz installations.</strong> Unless your kitchen island or linear perimeter counter is smaller than standard slab dimensions (roughly 9.5 to 10.5 feet long), seams are physically mandatory to safely transport, navigate doorways, and install heavy stone without catastrophic cracking.
+          </p>
+
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-2">
+            <div className="bg-white p-3.5 rounded-xl border border-gray-200 shadow-2xs">
+              <span className="text-[11px] text-gray-500 uppercase font-semibold block">Max Standard Width</span>
+              <span className="text-base font-bold text-gray-900">1/16 Inch</span>
+              <span className="text-[11px] text-blue-600 block">Credit Card Rule</span>
+            </div>
+            <div className="bg-white p-3.5 rounded-xl border border-gray-200 shadow-2xs">
+              <span className="text-[11px] text-gray-500 uppercase font-semibold block">Vertical Lippage Limit</span>
+              <span className="text-base font-bold text-gray-900">&le; 1/32 Inch</span>
+              <span className="text-[11px] text-blue-600 block">Nearly Flat to Touch</span>
+            </div>
+            <div className="bg-white p-3.5 rounded-xl border border-gray-200 shadow-2xs">
+              <span className="text-[11px] text-gray-500 uppercase font-semibold block">Best Placement</span>
+              <span className="text-base font-bold text-gray-900">Sink Cutout</span>
+              <span className="text-[11px] text-blue-600 block">85% Hidden by Basin</span>
+            </div>
+            <div className="bg-white p-3.5 rounded-xl border border-gray-200 shadow-2xs">
+              <span className="text-[11px] text-gray-500 uppercase font-semibold block">Joint Adhesive</span>
+              <span className="text-base font-bold text-gray-900">Tinted Epoxy</span>
+              <span className="text-[11px] text-blue-600 block">Color-Matched Resin</span>
+            </div>
+          </div>
+        </div>
+
+        <h2 className="text-2xl sm:text-3xl font-serif text-primary mt-12 mb-6 font-bold pb-2 border-b border-gray-100">
+          Method 1: Why Countertop Seams Are Necessary (The Stone Reality)
+        </h2>
+
+        <p className="text-gray-700 leading-relaxed mb-6">
+          When homeowners envision their dream kitchen remodel in Atlanta, Alpharetta, or Duluth, they often imagine a single, uninterrupted slab flowing endlessly across their perimeter counters and massive waterfall island. However, architectural physics, quarrying limits, and residential delivery constraints dictate that most kitchens will feature at least one or two seams.
+        </p>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 my-8">
+          <div className="bg-white p-6 rounded-2xl border border-gray-200/80 shadow-sm flex flex-col justify-between">
+            <div>
+              <div className="w-12 h-12 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center font-bold text-lg mb-4">
+                1
+              </div>
+              <h3 className="text-lg font-bold text-gray-900 mb-2">Physical Slab Sizes</h3>
+              <p className="text-sm text-gray-600 leading-relaxed m-0">
+                Natural granite and quartzite blocks quarried from mountains in Brazil or Italy average <strong>110&quot; to 125&quot; wide by 65&quot; to 75&quot; tall</strong>. Engineered quartz slabs average <strong>120&quot; x 55&quot;</strong> (standard) or <strong>130&quot; x 65&quot;</strong> (jumbo). If your continuous counter run is 14 feet, no single stone block on Earth exists to cover it without a seam.
+              </p>
+            </div>
+            <div className="mt-4 pt-3 border-t border-gray-100 text-xs text-gray-500">
+              Standard max slab span: ~10 to 11 ft
+            </div>
+          </div>
+
+          <div className="bg-white p-6 rounded-2xl border border-gray-200/80 shadow-sm flex flex-col justify-between">
+            <div>
+              <div className="w-12 h-12 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center font-bold text-lg mb-4">
+                2
+              </div>
+              <h3 className="text-lg font-bold text-gray-900 mb-2">Weight &amp; Home Navigation</h3>
+              <p className="text-sm text-gray-600 leading-relaxed m-0">
+                A standard 3cm (1.25&quot;) thick stone slab weighs between <strong>18 and 22 pounds per square foot</strong>. A full kitchen island can easily weigh 600 to 900 lbs. Attempting to maneuver an oversized unbroken &ldquo;L-shaped&rdquo; piece through standard 36-inch front doors, tight 90-degree hallways, or stairs will shatter the stone under its own cantilevered weight.
+              </p>
+            </div>
+            <div className="mt-4 pt-3 border-t border-gray-100 text-xs text-gray-500">
+              Stone flexes easily along inside corners
+            </div>
+          </div>
+
+          <div className="bg-white p-6 rounded-2xl border border-gray-200/80 shadow-sm flex flex-col justify-between">
+            <div>
+              <div className="w-12 h-12 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center font-bold text-lg mb-4">
+                3
+              </div>
+              <h3 className="text-lg font-bold text-gray-900 mb-2">Thermal &amp; Structural Relief</h3>
+              <p className="text-sm text-gray-600 leading-relaxed m-0">
+                Homes naturally expand, contract, and settle with Georgia&apos;s humid summers and cool winters. Solid stone has zero tensile flexibility. A strategically placed seam filled with flexible knife-grade epoxy serves as an expansion joint, preventing stress cracks from migrating across fragile corners or cooktop rails.
+              </p>
+            </div>
+            <div className="mt-4 pt-3 border-t border-gray-100 text-xs text-gray-500">
+              Acts as a engineered stress relief joint
+            </div>
+          </div>
+        </div>
+
+        <h2 className="text-2xl sm:text-3xl font-serif text-primary mt-14 mb-6 font-bold pb-2 border-b border-gray-100">
+          Method 2: The wikiHow Diagnostic Tests (Is Your Seam Acceptable?)
+        </h2>
+
+        <p className="text-gray-700 leading-relaxed mb-6">
+          How do you know if your installer did a flawless job or cut corners? Follow this 3-step inspection checklist recognized by the Natural Stone Institute:
+        </p>
+
+        {/* Step-by-step diagnostic cards */}
+        <div className="space-y-6 my-8">
+          <div className="bg-white p-6 sm:p-7 rounded-3xl border border-gray-200 shadow-sm">
+            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 mb-4">
+              <div className="flex items-center gap-3">
+                <span className="w-10 h-10 rounded-xl bg-blue-600 text-white font-bold text-lg flex items-center justify-center">
+                  A
+                </span>
+                <div>
+                  <h3 className="text-lg font-bold text-gray-900">Step 1: The Credit Card Width Test</h3>
+                  <p className="text-xs text-gray-500 m-0">Testing horizontal gap dimension</p>
+                </div>
+              </div>
+              <span className="text-xs font-semibold px-3 py-1 rounded-full bg-blue-50 text-blue-700 border border-blue-200">
+                Tolerance: &le; 1/16 Inch (1.6 mm)
+              </span>
+            </div>
+
+            <p className="text-gray-700 text-sm leading-relaxed mb-4">
+              Take a standard plastic credit card or driver&apos;s license and try to insert the thin edge vertically into the seam line:
+            </p>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div className="p-4 bg-emerald-50/60 border border-emerald-200 rounded-xl">
+                <span className="text-xs font-bold text-emerald-800 uppercase block mb-1">✓ Passed (Hairline Joint)</span>
+                <p className="text-xs text-emerald-900 m-0">
+                  The credit card cannot enter the gap at all. The joint is a tight, razor-thin line (approx 1/32&quot;) filled completely with resin. This is master-grade fabrication.
+                </p>
+              </div>
+              <div className="p-4 bg-rose-50/60 border border-rose-200 rounded-xl">
+                <span className="text-xs font-bold text-rose-800 uppercase block mb-1">✗ Failed (Excessive Gap)</span>
+                <p className="text-xs text-rose-900 m-0">
+                  The credit card easily slips into the gap, or the seam looks like a thick, cavernous canyon. Seams over 1/16&quot; wide indicate blunt bridge saw blade chatter or poor clamping.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div className="bg-white p-6 sm:p-7 rounded-3xl border border-gray-200 shadow-sm">
+            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 mb-4">
+              <div className="flex items-center gap-3">
+                <span className="w-10 h-10 rounded-xl bg-blue-600 text-white font-bold text-lg flex items-center justify-center">
+                  B
+                </span>
+                <div>
+                  <h3 className="text-lg font-bold text-gray-900">Step 2: The Fingernail Lippage &amp; Smoothness Test</h3>
+                  <p className="text-xs text-gray-500 m-0">Testing vertical height alignment across slabs</p>
+                </div>
+              </div>
+              <span className="text-xs font-semibold px-3 py-1 rounded-full bg-blue-50 text-blue-700 border border-blue-200">
+                Tolerance: &le; 1/32 Inch (0.8 mm)
+              </span>
+            </div>
+
+            <p className="text-gray-700 text-sm leading-relaxed mb-4">
+              Gently slide your fingertips or fingernail perpendicularly across the seam from left to right and right to left. Also slide a coin (like a quarter) flat against the surface:
+            </p>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div className="p-4 bg-emerald-50/60 border border-emerald-200 rounded-xl">
+                <span className="text-xs font-bold text-emerald-800 uppercase block mb-1">✓ Passed (Flush Plane)</span>
+                <p className="text-xs text-emerald-900 m-0">
+                  Your fingernail slides smoothly across without snagging. While you can feel a subtle change in texture (resin vs stone polish), there is no distinct vertical ledge.
+                </p>
+              </div>
+              <div className="p-4 bg-rose-50/60 border border-rose-200 rounded-xl">
+                <span className="text-xs font-bold text-rose-800 uppercase block mb-1">✗ Failed (High Lippage / Step)</span>
+                <p className="text-xs text-rose-900 m-0">
+                  Your fingernail or coin violently catches on an edge. One slab sits higher than the other, creating a trip hazard for glasses and bowls. This occurs when cabinets are not shimmed flat or installers didn&apos;t use vacuum leveling pods.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div className="bg-white p-6 sm:p-7 rounded-3xl border border-gray-200 shadow-sm">
+            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 mb-4">
+              <div className="flex items-center gap-3">
+                <span className="w-10 h-10 rounded-xl bg-blue-600 text-white font-bold text-lg flex items-center justify-center">
+                  C
+                </span>
+                <div>
+                  <h3 className="text-lg font-bold text-gray-900">Step 3: The Color Tint &amp; Polish Test</h3>
+                  <p className="text-xs text-gray-500 m-0">Testing color blending and aesthetic finish</p>
+                </div>
+              </div>
+              <span className="text-xs font-semibold px-3 py-1 rounded-full bg-blue-50 text-blue-700 border border-blue-200">
+                Visual Inconspicuousness
+              </span>
+            </div>
+
+            <p className="text-gray-700 text-sm leading-relaxed mb-4">
+              Stand 3 to 4 feet back from the countertop in normal kitchen lighting (natural window daylight or overhead 3000K recessed lights):
+            </p>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div className="p-4 bg-emerald-50/60 border border-emerald-200 rounded-xl">
+                <span className="text-xs font-bold text-emerald-800 uppercase block mb-1">✓ Passed (Inconspicuous Blend)</span>
+                <p className="text-xs text-emerald-900 m-0">
+                  The epoxy adhesive has been custom-tinted to match the predominant background shade and accent mineral flecks of the slab. It does not pull the eye away from the kitchen design.
+                </p>
+              </div>
+              <div className="p-4 bg-rose-50/60 border border-rose-200 rounded-xl">
+                <span className="text-xs font-bold text-rose-800 uppercase block mb-1">✗ Failed (Glaring Contrast)</span>
+                <p className="text-xs text-rose-900 m-0">
+                  The epoxy was left generic translucent or raw yellowish-white, standing out like chalk on dark stone or like gray mud on pure white quartz.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <h2 className="text-2xl sm:text-3xl font-serif text-primary mt-14 mb-6 font-bold pb-2 border-b border-gray-100">
+          Method 3: Optimal Seam Placement (Where SHOULD Seams Go?)
+        </h2>
+
+        <p className="text-gray-700 leading-relaxed mb-6">
+          Seam placement is not an accident—it is a calculated engineering decision made during the digital templating phase. Here is how master fabricators choose where to place seams to minimize visibility and maximize structural strength:
+        </p>
+
+        <div className="space-y-4 my-8">
+          <div className="bg-white p-6 rounded-2xl border border-gray-200/80 shadow-sm flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+            <div className="max-w-2xl">
+              <div className="flex items-center gap-2 mb-1">
+                <span className="text-emerald-700 font-bold text-xs uppercase tracking-wide bg-emerald-50 border border-emerald-200 px-2.5 py-0.5 rounded-full">
+                  ★ Gold Standard (Top Recommendation)
+                </span>
+              </div>
+              <h4 className="font-bold text-gray-900 text-base mt-1">Centered in the Kitchen Sink Cutout</h4>
+              <p className="text-xs sm:text-sm text-gray-600 m-0 mt-1">
+                Because an undermount sink cutout cuts away 30 to 33 inches of stone, placing the seam here reduces the visible joint to just <strong>3.5 inches at the front rail and 3.5 inches at the rear faucet deck</strong>. You eliminate 85% of the seam length! When properly reinforced with an under-rail steel bar or fiberglass rod, this is the strongest, cleanest placement.
+              </p>
+            </div>
+            <span className="flex-shrink-0 text-xs font-bold text-primary bg-slate-100 px-3.5 py-2 rounded-xl">
+              85% Less Visible
+            </span>
+          </div>
+
+          <div className="bg-white p-6 rounded-2xl border border-gray-200/80 shadow-sm flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+            <div className="max-w-2xl">
+              <div className="flex items-center gap-2 mb-1">
+                <span className="text-blue-700 font-bold text-xs uppercase tracking-wide bg-blue-50 border border-blue-200 px-2.5 py-0.5 rounded-full">
+                  Solid Alternative
+                </span>
+              </div>
+              <h4 className="font-bold text-gray-900 text-base mt-1">Centered in the Cooktop Cutout</h4>
+              <p className="text-xs sm:text-sm text-gray-600 m-0 mt-1">
+                Similar to the sink, a drop-in cooktop cuts out the vast majority of the stone. The metal flange of the cooktop often overlaps the rear rail, leaving only a small front rail seam visible.
+              </p>
+            </div>
+            <span className="flex-shrink-0 text-xs font-bold text-primary bg-slate-100 px-3.5 py-2 rounded-xl">
+              Minimal Exposure
+            </span>
+          </div>
+
+          <div className="bg-white p-6 rounded-2xl border border-gray-200/80 shadow-sm flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+            <div className="max-w-2xl">
+              <div className="flex items-center gap-2 mb-1">
+                <span className="text-amber-700 font-bold text-xs uppercase tracking-wide bg-amber-50 border border-amber-200 px-2.5 py-0.5 rounded-full">
+                  Corner Layout
+                </span>
+              </div>
+              <h4 className="font-bold text-gray-900 text-base mt-1">Straight Butt Joint Offset From Inside Corner</h4>
+              <p className="text-xs sm:text-sm text-gray-600 m-0 mt-1">
+                Older fabricators used to cut 45-degree diagonal miter seams right through inside corners, which frequently cracked under house shifting. Modern NSI standards specify cutting a straight 90-degree butt seam offset 12 to 18 inches away from the inside corner, where the cabinet framework offers rock-solid vertical support.
+              </p>
+            </div>
+            <span className="flex-shrink-0 text-xs font-bold text-amber-800 bg-amber-50 px-3.5 py-2 rounded-xl border border-amber-200">
+              Zero Crack Stress
+            </span>
+          </div>
+
+          <div className="bg-white p-6 rounded-2xl border border-gray-200/80 shadow-sm flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+            <div className="max-w-2xl">
+              <div className="flex items-center gap-2 mb-1">
+                <span className="text-purple-700 font-bold text-xs uppercase tracking-wide bg-purple-50 border border-purple-200 px-2.5 py-0.5 rounded-full">
+                  Island Standard
+                </span>
+              </div>
+              <h4 className="font-bold text-gray-900 text-base mt-1">Kitchen Islands (Seamless Whenever Possible)</h4>
+              <p className="text-xs sm:text-sm text-gray-600 m-0 mt-1">
+                Any kitchen island up to 10 feet by 5 feet should <strong>NEVER have a seam</strong>. At AGS Stones &amp; Cabinets, we source jumbo quartz slabs (130&quot; x 65&quot;) specifically to fabricate seamless monolithic waterfall islands. If an island exceeds 11 feet, we utilize digital vein-matching (Slabsmith) so the two bookmatched slabs flow together like butterfly wings.
+              </p>
+            </div>
+            <span className="flex-shrink-0 text-xs font-bold text-purple-800 bg-purple-50 px-3.5 py-2 rounded-xl border border-purple-200">
+              Seamless Slabs
+            </span>
+          </div>
+        </div>
+
+        <h2 className="text-2xl sm:text-3xl font-serif text-primary mt-14 mb-6 font-bold pb-2 border-b border-gray-100">
+          Method 4: How Master Fabricators Make Seams Inconspicuous
+        </h2>
+
+        <p className="text-gray-700 leading-relaxed mb-6">
+          The difference between an ugly countertop seam and an invisible, master-crafted joint comes down to five distinct fabrication and installation technologies:
+        </p>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 my-8">
+          <div className="bg-slate-50 p-6 rounded-2xl border border-slate-200/80 flex flex-col">
+            <div className="w-10 h-10 rounded-xl bg-primary text-white flex items-center justify-center font-bold text-base mb-3">
+              1
+            </div>
+            <h4 className="text-base font-bold text-gray-900 mb-2">Laser Digital Templating</h4>
+            <p className="text-xs text-gray-600 leading-relaxed m-0 flex-grow">
+              Hand-cut plywood or cardboard templates cannot account for warped drywall or unlevel cabinet boxes. We use Proliner and LT-2D3D digital lasers that capture millimetric coordinates directly into CAD.
+            </p>
+          </div>
+
+          <div className="bg-slate-50 p-6 rounded-2xl border border-slate-200/80 flex flex-col">
+            <div className="w-10 h-10 rounded-xl bg-primary text-white flex items-center justify-center font-bold text-base mb-3">
+              2
+            </div>
+            <h4 className="text-base font-bold text-gray-900 mb-2">CNC Waterjet Cutting</h4>
+            <p className="text-xs text-gray-600 leading-relaxed m-0 flex-grow">
+              Cheap handheld circular saws chip stone edges, creating micro-fissures and jagged gaps. Our CNC 5-axis waterjet saws cut true 90-degree pristine joint edges with zero micro-fracturing.
+            </p>
+          </div>
+
+          <div className="bg-slate-50 p-6 rounded-2xl border border-slate-200/80 flex flex-col">
+            <div className="w-10 h-10 rounded-xl bg-primary text-white flex items-center justify-center font-bold text-base mb-3">
+              3
+            </div>
+            <h4 className="text-base font-bold text-gray-900 mb-2">Custom Pigment Chemistry</h4>
+            <p className="text-xs text-gray-600 leading-relaxed m-0 flex-grow">
+              Our lead installers do not use standard generic glue. They hand-mix knife-grade polyester/epoxy on-site with dry powdered pigments, matching the base color and contrasting veins perfectly.
+            </p>
+          </div>
+
+          <div className="bg-slate-50 p-6 rounded-2xl border border-slate-200/80 flex flex-col">
+            <div className="w-10 h-10 rounded-xl bg-primary text-white flex items-center justify-center font-bold text-base mb-3">
+              4
+            </div>
+            <h4 className="text-base font-bold text-gray-900 mb-2">Vacuum Seam Clamps</h4>
+            <p className="text-xs text-gray-600 leading-relaxed m-0 flex-grow">
+              We never push slabs together by hand. We lock motorized electric vacuum pods (Gorilla Grips) across the seam, exerting 400+ lbs of lateral pressure to pull the seam hairline-tight while dialing leveling screws flush.
+            </p>
+          </div>
+
+          <div className="bg-slate-50 p-6 rounded-2xl border border-slate-200/80 flex flex-col">
+            <div className="w-10 h-10 rounded-xl bg-primary text-white flex items-center justify-center font-bold text-base mb-3">
+              5
+            </div>
+            <h4 className="text-base font-bold text-gray-900 mb-2">Razor Shave at 45°</h4>
+            <p className="text-xs text-gray-600 leading-relaxed m-0 flex-grow">
+              As the epoxy reaches a semi-cured &ldquo;rubbery&rdquo; state, the technician uses a brand-new single-edge industrial razor blade at a flat 45-degree angle to shave excess resin flush with the factory polish.
+            </p>
+          </div>
+
+          <div className="bg-slate-50 p-6 rounded-2xl border border-slate-200/80 flex flex-col">
+            <div className="w-10 h-10 rounded-xl bg-primary text-white flex items-center justify-center font-bold text-base mb-3">
+              6
+            </div>
+            <h4 className="text-base font-bold text-gray-900 mb-2">Denatured Alcohol Buff</h4>
+            <p className="text-xs text-gray-600 leading-relaxed m-0 flex-grow">
+              A quick wipe with 0000 ultra-fine steel wool (on granite only) or denatured alcohol wipes away resin residue, leaving both slabs feeling continuous to the touch.
+            </p>
+          </div>
+        </div>
+
+        <h2 className="text-2xl sm:text-3xl font-serif text-primary mt-14 mb-6 font-bold pb-2 border-b border-gray-100">
+          Method 5: How to Clean, Care for &amp; Fix Aging Countertop Seams
+        </h2>
+
+        <p className="text-gray-700 leading-relaxed mb-6">
+          Over 5 to 10 years of heavy cooking, crumbs, grease, and cleaning chemicals can affect a countertop seam. Here is the wikiHow care protocol:
+        </p>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 my-8">
+          <div className="p-6 bg-white border border-gray-200 rounded-2xl shadow-sm">
+            <h4 className="font-bold text-gray-900 text-base mb-2 flex items-center gap-2">
+              <span className="text-blue-600 font-bold">1.</span> How to Clean a Darkened Seam
+            </h4>
+            <p className="text-xs sm:text-sm text-gray-600 leading-relaxed m-0 mb-3">
+              If cooking oils or spice powders have darkened your seam line:
+            </p>
+            <ul className="text-xs sm:text-sm text-gray-600 space-y-1.5 list-disc pl-5">
+              <li>Mix a paste of baking soda and warm water.</li>
+              <li>Apply to the seam line and scrub gently with a soft-bristle nylon toothbrush.</li>
+              <li>Wipe clean with a microfiber cloth and warm water. Buff dry immediately.</li>
+            </ul>
+          </div>
+
+          <div className="p-6 bg-white border border-gray-200 rounded-2xl shadow-sm">
+            <h4 className="font-bold text-gray-900 text-base mb-2 flex items-center gap-2">
+              <span className="text-blue-600 font-bold">2.</span> Cleaners That Destroy Seams
+            </h4>
+            <p className="text-xs sm:text-sm text-gray-600 leading-relaxed m-0 mb-3">
+              Never use harsh acidic or bleach cleaners on countertop seams:
+            </p>
+            <ul className="text-xs sm:text-sm text-gray-600 space-y-1.5 list-disc pl-5">
+              <li><strong>Avoid Bleach &amp; Vinegar:</strong> High acid breaks down epoxy polymers, causing the glue to pit, turn yellow, and crumble out.</li>
+              <li><strong>Use pH-neutral soap:</strong> Dawn dish soap or specialized stone cleaners (like Stonetech) keep epoxy pliable and shiny.</li>
+            </ul>
+          </div>
+
+          <div className="p-6 bg-white border border-gray-200 rounded-2xl shadow-sm">
+            <h4 className="font-bold text-gray-900 text-base mb-2 flex items-center gap-2">
+              <span className="text-blue-600 font-bold">3.</span> How to Fix a Tiny Chip on a Seam Line
+            </h4>
+            <p className="text-xs sm:text-sm text-gray-600 leading-relaxed m-0">
+              If a heavy pot struck the seam and caused a tiny micro-chip, purchase a clear light-curing acrylic repair kit (like Tenax or ProCaliber). Clean with isopropyl alcohol, fill the chip, cure for 30 seconds with the included UV light, and shave flush with a razor blade.
+            </p>
+          </div>
+
+          <div className="p-6 bg-white border border-gray-200 rounded-2xl shadow-sm">
+            <h4 className="font-bold text-gray-900 text-base mb-2 flex items-center gap-2">
+              <span className="text-blue-600 font-bold">4.</span> What to Do If a Seam &ldquo;Pops&rdquo; or Sinks
+            </h4>
+            <p className="text-xs sm:text-sm text-gray-600 leading-relaxed m-0">
+              If an entire seam line cracks open or one slab drops 1/8 inch due to foundation settling, <strong>do not attempt DIY epoxy injection</strong>. Call a certified stone fabricator. The technician must inspect cabinet supports, install composite shims underneath, razor out the old glue, and clamp the seam with vacuum pullers.
+            </p>
+          </div>
+        </div>
+
+        {/* Quality Comparison Table */}
+        <h2 className="text-2xl sm:text-3xl font-serif text-primary mt-14 mb-6 font-bold pb-2 border-b border-gray-100">
+          Countertop Seam Quality: Budget Installers vs. Master Fabricators
+        </h2>
+
+        <div className="overflow-x-auto my-8">
+          <table className="w-full text-left text-xs sm:text-sm border-collapse bg-white rounded-2xl border border-gray-200 shadow-sm overflow-hidden">
+            <thead>
+              <tr className="bg-slate-900 text-white">
+                <th className="p-4 font-semibold">Quality Metric</th>
+                <th className="p-4 font-semibold text-rose-300">Budget Subcontractor</th>
+                <th className="p-4 font-semibold text-emerald-300">AGS Stones &amp; Cabinets (Duluth, GA)</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-gray-100">
+              <tr>
+                <td className="p-4 font-bold text-gray-900">Seam Width</td>
+                <td className="p-4 text-gray-600">1/8&quot; to 3/16&quot; (Noticeable gap)</td>
+                <td className="p-4 font-semibold text-emerald-700 bg-emerald-50/40">&le; 1/16&quot; (Hairline credit card tolerance)</td>
+              </tr>
+              <tr>
+                <td className="p-4 font-bold text-gray-900">Edge Cutting</td>
+                <td className="p-4 text-gray-600">Manual circular saw blade with visible chips</td>
+                <td className="p-4 font-semibold text-emerald-700 bg-emerald-50/40">5-Axis CNC Waterjet blade (Pristine 90° true joint)</td>
+              </tr>
+              <tr>
+                <td className="p-4 font-bold text-gray-900">Vein Flow / Grain</td>
+                <td className="p-4 text-gray-600">Random cuts, colliding veins, mismatched flow</td>
+                <td className="p-4 font-semibold text-emerald-700 bg-emerald-50/40">Slabsmith digital vein-matching layout pre-approved by client</td>
+              </tr>
+              <tr>
+                <td className="p-4 font-bold text-gray-900">Adhesive</td>
+                <td className="p-4 text-gray-600">Pre-mixed generic translucent resin or silicone</td>
+                <td className="p-4 font-semibold text-emerald-700 bg-emerald-50/40">Custom-tinted two-part knife-grade polyester/epoxy</td>
+              </tr>
+              <tr>
+                <td className="p-4 font-bold text-gray-900">Clamping Method</td>
+                <td className="p-4 text-gray-600">Masking tape or hand pressure</td>
+                <td className="p-4 font-semibold text-emerald-700 bg-emerald-50/40">Motorized vacuum seam clamps with micro-dial levelers</td>
+              </tr>
+              <tr>
+                <td className="p-4 font-bold text-gray-900">Warranty</td>
+                <td className="p-4 text-gray-600">None or 30-day verbal promise</td>
+                <td className="p-4 font-semibold text-emerald-700 bg-emerald-50/40">Comprehensive craftsmanship &amp; fabrication warranty</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        {/* Call to action card */}
+        <div className="bg-gradient-to-r from-primary to-slate-900 text-white rounded-3xl p-8 sm:p-10 my-10 shadow-2xl flex flex-col md:flex-row items-center justify-between gap-6">
+          <div className="max-w-xl">
+            <span className="text-secondary font-bold text-xs uppercase tracking-widest block mb-2">AGS Stones &amp; Cabinets • Factory-Direct Precision</span>
+            <h4 className="text-2xl font-serif font-bold mb-2">Want Flawless, Invisible Seams in Your Dream Kitchen?</h4>
+            <p className="text-gray-300 text-sm mb-0">
+              Visit our Duluth, GA showroom or request a fast digital estimate. See how our CNC waterjet fabrication and digital Slabsmith vein matching ensure the tightest, cleanest seams in Metro Atlanta!
+            </p>
+          </div>
+          <div className="flex flex-col sm:flex-row gap-3 w-full md:w-auto flex-shrink-0">
+            <Link 
+              href="/promo" 
+              className="bg-secondary text-white font-bold text-xs uppercase tracking-wider px-7 py-4 rounded-xl hover:bg-white hover:text-primary transition-all text-center shadow-lg"
+            >
+              Get Free Estimate
+            </Link>
+            <Link 
+              href="/showroom" 
+              className="bg-white/10 hover:bg-white/20 text-white font-bold text-xs uppercase tracking-wider px-6 py-4 rounded-xl transition-all text-center border border-white/20"
+            >
+              Visit Showroom
+            </Link>
+          </div>
+        </div>
+      </>
+    )
   }
 };
