@@ -263,7 +263,7 @@ function QuoteContent() {
     <div className="min-h-screen font-sans bg-slate-50">
       <Header />
       
-      <section className="relative pt-36 pb-10 lg:pt-48 lg:pb-16 overflow-hidden bg-slate-900 min-h-[100dvh] flex items-center">
+      <section className="relative pt-36 pb-16 sm:pb-20 lg:pt-48 lg:pb-24 overflow-hidden bg-slate-900 min-h-[100dvh] flex items-center">
         {/* Background Image & Video & Overlay */}
         <div className="absolute inset-0 z-0 bg-[#1e293b]">
           <Image
@@ -722,7 +722,14 @@ function QuoteContent() {
       </section>
 
       {/* Rest of the page content */}
-      <div className="bg-white">
+      <div className="relative z-20 -mt-8 sm:-mt-10 md:-mt-14 bg-gradient-to-b from-[#fbfbfc] via-white to-white text-gray-900 rounded-t-[2.25rem] sm:rounded-t-[3.25rem] lg:rounded-t-[4.25rem] shadow-[0_-25px_60px_-15px_rgba(0,0,0,0.45),0_-8px_24px_-6px_rgba(0,0,0,0.25)] border-t border-white/30 pt-10 overflow-hidden">
+        {/* Top Architectural Handle / Bridge Pill */}
+        <div className="w-full flex justify-center pb-6 sm:pb-8">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-slate-100/90 border border-slate-200/80 text-[10px] md:text-xs font-semibold tracking-wider text-slate-600 uppercase shadow-xs">
+            <span className="w-1.5 h-1.5 rounded-full bg-secondary animate-pulse" />
+            <span>Verified Customer Stories</span>
+          </div>
+        </div>
         <Testimonials />
       </div>
     </div>

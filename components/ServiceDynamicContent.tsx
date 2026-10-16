@@ -31,6 +31,7 @@ import {
   MessageSquare
 } from 'lucide-react';
 import type { ServiceDetail } from '@/lib/servicesData';
+import { serviceConversion } from '@/lib/serviceConversionData';
 import ServiceConversionBlock from './ServiceConversionBlock';
 
 interface LocalizedVibe {
@@ -415,7 +416,7 @@ export default function ServiceDynamicContent({ service, cityOverride }: { servi
             />
 
             {/* Immersive Hero Section - Perfectly Framed for All Screens with Full Mobile Header Clearance */}
-            <section ref={heroRef} className="relative min-h-0 lg:min-h-screen pt-28 pb-10 sm:pt-32 sm:pb-14 lg:py-14 xl:py-20 flex flex-col justify-start lg:justify-center items-center overflow-hidden">
+            <section ref={heroRef} className="relative min-h-0 lg:min-h-screen pt-28 pb-20 sm:pt-32 sm:pb-24 lg:py-16 xl:py-24 flex flex-col justify-start lg:justify-center items-center overflow-hidden">
                 <motion.div 
                     style={{ y: yBackground }}
                     className="absolute inset-0 w-full h-[130%] -top-[15%]"
@@ -430,6 +431,8 @@ export default function ServiceDynamicContent({ service, cityOverride }: { servi
                     />
                     <div className="absolute inset-0 bg-gradient-to-r from-black/85 via-black/55 to-black/30"></div>
                     <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-transparent to-black/85"></div>
+                    {/* Cinematic bottom gradient floor to bridge the hero into the next section */}
+                    <div className="absolute inset-x-0 bottom-0 h-40 md:h-56 bg-gradient-to-t from-[#0a0a0a] via-[#0a0a0a]/85 to-transparent pointer-events-none z-[1]"></div>
                 </motion.div>
 
                 <div className="container relative z-10 px-4 sm:px-8 lg:px-10 xl:px-14 mx-auto max-w-7xl xl:max-w-[88rem]">
@@ -765,13 +768,13 @@ export default function ServiceDynamicContent({ service, cityOverride }: { servi
 
                     </div>
                 </div>
-                {/* Subdued Bottom Scroll Indicator */}
-                <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1.5 opacity-40">
-                    <span className="text-[9px] uppercase tracking-[0.2em] font-bold text-white">Scroll to Explore Slabs</span>
+                {/* Subdued Bottom Scroll Indicator - Safely cleared above the transition curve */}
+                <div className="absolute bottom-6 sm:bottom-8 md:bottom-10 left-1/2 -translate-x-1/2 hidden sm:flex flex-col items-center gap-1.5 opacity-60 z-20 pointer-events-none transition-opacity hover:opacity-100">
+                    <span className="text-[9px] uppercase tracking-[0.2em] font-bold text-white/90 drop-shadow-sm">Scroll to Explore Slabs</span>
                     <motion.div 
-                        animate={{ y: [0, 8, 0] }} 
+                        animate={{ y: [0, 6, 0] }} 
                         transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
-                        className="w-[1px] h-6 bg-gradient-to-b from-white to-transparent"
+                        className="w-[1px] h-6 bg-gradient-to-b from-white via-white/80 to-transparent shadow-sm"
                     />
                 </div>
             </section>
@@ -779,7 +782,11 @@ export default function ServiceDynamicContent({ service, cityOverride }: { servi
             <ServiceConversionBlock service={service} />
 
             {/* The Desire / Overview Section */}
-            <section className="py-20 md:py-32 relative bg-white text-gray-900 overflow-hidden rounded-t-3xl md:rounded-t-[3rem] -mt-10 z-20">
+            <section className={`py-20 md:py-32 relative bg-white text-gray-900 overflow-hidden ${
+                serviceConversion[service.slug] 
+                    ? "border-t border-gray-100 z-10" 
+                    : "relative z-20 -mt-8 sm:-mt-10 md:-mt-14 bg-gradient-to-b from-[#fbfbfc] via-white to-white rounded-t-[2.25rem] sm:rounded-t-[3.25rem] lg:rounded-t-[4.25rem] shadow-[0_-25px_60px_-15px_rgba(0,0,0,0.45),0_-8px_24px_-6px_rgba(0,0,0,0.25)] border-t border-white/40 pt-10"
+            }`}>
                 <div className="container mx-auto px-4 max-w-7xl">
                     <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 lg:items-center">
                         

@@ -202,7 +202,7 @@ function FastQuoteContent() {
     <div className="min-h-screen font-sans bg-slate-50">
       <Header />
       
-      <section className="relative pt-36 pb-10 lg:pt-48 lg:pb-16 overflow-hidden bg-slate-900 min-h-[100dvh] flex items-center">
+      <section className="relative pt-36 pb-16 sm:pb-20 lg:pt-48 lg:pb-24 overflow-hidden bg-slate-900 min-h-[100dvh] flex items-center">
         {/* Background Image & Video & Overlay */}
         <div className="absolute inset-0 z-0 bg-[#1e293b]">
           <Image
@@ -470,7 +470,15 @@ function FastQuoteContent() {
       </section>
 
       {/* Showroom Section */}
-      <section className="bg-white py-16 px-5 sm:px-6">
+      <section className="relative z-20 -mt-8 sm:-mt-10 md:-mt-14 bg-gradient-to-b from-[#fbfbfc] via-white to-white text-gray-900 rounded-t-[2.25rem] sm:rounded-t-[3.25rem] lg:rounded-t-[4.25rem] shadow-[0_-25px_60px_-15px_rgba(0,0,0,0.45),0_-8px_24px_-6px_rgba(0,0,0,0.25)] border-t border-white/30 py-16 px-5 sm:px-6 overflow-hidden">
+        {/* Top Architectural Handle / Bridge Pill */}
+        <div className="w-full flex justify-center pb-8 sm:pb-10">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-slate-100/90 border border-slate-200/80 text-[10px] md:text-xs font-semibold tracking-wider text-slate-600 uppercase shadow-xs">
+            <span className="w-1.5 h-1.5 rounded-full bg-secondary animate-pulse" />
+            <span>Visit Our Duluth Showroom</span>
+          </div>
+        </div>
+
         <div className="max-w-3xl mx-auto flex flex-col items-center">
             <p className="text-gray-500 text-sm md:text-base text-center max-w-lg mb-10 font-medium">
                 ...person. Our design experts are ready to bring your vision to life.

@@ -31,11 +31,19 @@ const ServiceConversionBlock: React.FC<{ service: ServiceDetail }> = ({ service 
   const serviceReviews = reviewsForService(service.slug, 3);
 
   return (
-    <div className="relative z-20 bg-white text-gray-900 font-sans">
-      <TrustBadges overlap="desktop" />
+    <div className="relative z-20 bg-gradient-to-b from-[#fbfbfc] via-white to-white text-gray-900 font-sans rounded-t-[2.25rem] sm:rounded-t-[3.25rem] lg:rounded-t-[4.25rem] -mt-8 sm:-mt-10 md:-mt-14 shadow-[0_-25px_60px_-15px_rgba(0,0,0,0.45),0_-8px_24px_-6px_rgba(0,0,0,0.25)] border-t border-white/40 overflow-hidden pt-6 sm:pt-8 md:pt-10">
+      {/* Top Architectural Handle / Bridge Pill */}
+      <div className="w-full flex justify-center pb-5 sm:pb-6 md:pb-8">
+        <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-slate-100/90 border border-slate-200/80 text-[10px] md:text-xs font-semibold tracking-wider text-slate-600 uppercase shadow-xs">
+          <span className="w-1.5 h-1.5 rounded-full bg-secondary animate-pulse" />
+          <span>Factory-Direct Duluth Fabrication</span>
+        </div>
+      </div>
+
+      <TrustBadges overlap={false} />
 
       {/* Why AGS for this service */}
-      <section className="pt-20 md:pt-28 pb-16 md:pb-20">
+      <section className="pt-10 md:pt-14 pb-16 md:pb-20">
         <div className="container mx-auto px-4 max-w-6xl">
           <div className="max-w-2xl mb-10 md:mb-14">
             <h2 className="text-secondary font-bold tracking-widest uppercase text-xs md:text-sm mb-3">Why AGS</h2>

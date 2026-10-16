@@ -316,7 +316,7 @@ export default function PromoPage() {
         />
 
         {/* 1. Immersive Hero Section - Perfectly Framed Dark Mode Aesthetic */}
-        <section ref={heroRef} className="relative min-h-0 lg:min-h-screen pt-28 pb-10 sm:pt-32 sm:pb-14 lg:py-14 xl:py-20 flex flex-col justify-start lg:justify-center items-center overflow-hidden">
+        <section ref={heroRef} className="relative min-h-0 lg:min-h-screen pt-28 pb-20 sm:pt-32 sm:pb-24 lg:py-16 xl:py-24 flex flex-col justify-start lg:justify-center items-center overflow-hidden">
           <motion.div 
             style={{ y: yBackground }}
             className="absolute inset-0 w-full h-[130%] -top-[15%] z-0 pointer-events-none"
@@ -344,6 +344,8 @@ export default function PromoPage() {
             </video>
             <div className="absolute inset-0 bg-gradient-to-r from-black/75 via-black/35 to-transparent pointer-events-none"></div>
             <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-black/70 pointer-events-none"></div>
+            {/* Cinematic bottom gradient floor to bridge the hero into the next section */}
+            <div className="absolute inset-x-0 bottom-0 h-40 md:h-56 bg-gradient-to-t from-[#0a0a0a] via-[#0a0a0a]/85 to-transparent pointer-events-none z-[1]"></div>
           </motion.div>
 
           <div className="container relative z-10 px-4 sm:px-8 lg:px-10 xl:px-14 mx-auto max-w-7xl xl:max-w-[88rem]">
@@ -691,15 +693,23 @@ export default function PromoPage() {
             </div>
           </div>
 
-          {/* Subdued Bottom Scroll Indicator */}
-          <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1.5 opacity-40">
-            <span className="text-[9px] uppercase tracking-[0.2em] font-bold text-white">Scroll to Explore Slabs &amp; Cabinets</span>
-            <div className="promo-nudge w-[1px] h-6 bg-gradient-to-b from-white to-transparent" />
+          {/* Subdued Bottom Scroll Indicator - Safely cleared above the transition curve */}
+          <div className="absolute bottom-6 sm:bottom-8 md:bottom-10 left-1/2 -translate-x-1/2 hidden sm:flex flex-col items-center gap-1.5 opacity-60 z-20 pointer-events-none transition-opacity hover:opacity-100">
+            <span className="text-[9px] uppercase tracking-[0.2em] font-bold text-white/90 drop-shadow-sm">Scroll to Explore Slabs &amp; Cabinets</span>
+            <div className="promo-nudge w-[1px] h-6 bg-gradient-to-b from-white via-white/80 to-transparent shadow-sm" />
           </div>
         </section>
 
         {/* 2. The Vision / Overview Section */}
-        <section className="py-20 md:py-32 relative bg-white text-gray-900 overflow-hidden rounded-t-3xl md:rounded-t-[3rem] -mt-10 z-20">
+        <section className="relative z-20 -mt-8 sm:-mt-10 md:-mt-14 bg-gradient-to-b from-[#fbfbfc] via-white to-white text-gray-900 rounded-t-[2.25rem] sm:rounded-t-[3.25rem] lg:rounded-t-[4.25rem] shadow-[0_-25px_60px_-15px_rgba(0,0,0,0.45),0_-8px_24px_-6px_rgba(0,0,0,0.25)] border-t border-white/40 overflow-hidden pt-10 sm:pt-14 md:pt-20 pb-20 md:pb-32">
+          {/* Ambient Transition Bridge Accent */}
+          <div className="w-full flex justify-center pb-8 sm:pb-10 md:pb-14">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-slate-100/90 border border-slate-200/80 text-[10px] md:text-xs font-semibold tracking-wider text-slate-600 uppercase shadow-xs">
+              <span className="w-1.5 h-1.5 rounded-full bg-secondary animate-pulse" />
+              <span>Direct Stone Fabricator &amp; Custom Cabinets</span>
+            </div>
+          </div>
+
           <div className="container mx-auto px-4 max-w-7xl">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 lg:items-center">
               
