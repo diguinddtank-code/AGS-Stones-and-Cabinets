@@ -316,7 +316,7 @@ export default function PromoPage() {
         />
 
         {/* 1. Immersive Hero Section - Perfectly Framed Dark Mode Aesthetic */}
-        <section ref={heroRef} className="relative min-h-0 lg:min-h-screen pt-28 pb-20 sm:pt-32 sm:pb-24 lg:py-16 xl:py-24 flex flex-col justify-start lg:justify-center items-center overflow-hidden">
+        <section ref={heroRef} className="relative min-h-0 lg:h-screen lg:min-h-[600px] [@media(min-height:750px)]:lg:min-h-[660px] [@media(min-height:850px)]:lg:min-h-[720px] pt-28 pb-20 sm:pt-32 sm:pb-24 lg:pt-22 lg:pb-16 xl:pt-24 xl:pb-20 [@media(min-height:850px)]:lg:pt-26 [@media(min-height:850px)]:lg:pb-20 [@media(min-height:950px)]:lg:pt-30 [@media(min-height:950px)]:lg:pb-24 [@media(min-height:1050px)]:lg:pt-36 [@media(min-height:1050px)]:lg:pb-28 flex flex-col justify-start lg:justify-center items-center overflow-hidden">
           <motion.div 
             style={{ y: yBackground }}
             className="absolute inset-0 w-full h-[130%] -top-[15%] z-0 pointer-events-none"
@@ -348,13 +348,13 @@ export default function PromoPage() {
             <div className="absolute inset-x-0 bottom-0 h-40 md:h-56 bg-gradient-to-t from-[#0a0a0a] via-[#0a0a0a]/85 to-transparent pointer-events-none z-[1]"></div>
           </motion.div>
 
-          <div className="container relative z-10 px-4 sm:px-8 lg:px-10 xl:px-14 mx-auto max-w-7xl xl:max-w-[88rem]">
+          <div className="container relative z-10 px-4 sm:px-8 lg:px-8 xl:px-12 mx-auto max-w-7xl xl:max-w-[88rem]">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-8 xl:gap-14 items-center">
               
               {/* LEFT COLUMN: Monumental Headline & Authority */}
               <div className="lg:col-span-7 text-center lg:text-left pt-1 sm:pt-2 lg:pt-0 px-1 sm:px-0">
                 {/* Geolocation Tag */}
-                <div style={{ animationDelay: '0s' }} className="promo-rise inline-flex items-center gap-1.5 py-1 px-3 md:px-3.5 rounded-full border border-white/30 bg-black/40 backdrop-blur-md text-[10px] md:text-xs uppercase tracking-widest mb-2.5 lg:mb-3 font-medium text-white shadow-sm mx-auto lg:mx-0">
+                <div style={{ animationDelay: '0s' }} className="promo-rise inline-flex items-center gap-1.5 py-1 px-3 md:px-3.5 rounded-full border border-white/30 bg-black/40 backdrop-blur-md text-[10px] md:text-xs uppercase tracking-widest mb-2 lg:mb-2 [@media(min-height:850px)]:lg:mb-3 font-medium text-white shadow-sm mx-auto lg:mx-0">
                   <MapPin size={12} className="text-secondary fill-secondary" />
                   <span>Serving Atlanta, Duluth &amp; Metro Atlanta</span>
                 </div>
@@ -362,9 +362,9 @@ export default function PromoPage() {
                 {/* Huge Monumental H1 */}
                 <h1 
                   style={{ animationDelay: '0.15s' }}
-                  className="promo-rise text-3xl sm:text-4xl lg:text-4xl xl:text-5xl 2xl:text-6xl font-serif font-bold mb-2.5 lg:mb-3 drop-shadow-2xl leading-[1.12] tracking-tight text-white max-w-3xl mx-auto lg:mx-0 shadow-black/20"
+                  className="promo-rise text-3xl sm:text-4xl lg:text-3xl xl:text-4xl 2xl:text-5xl [@media(min-height:850px)]:lg:text-4xl [@media(min-height:850px)]:xl:text-5xl [@media(min-height:950px)]:2xl:text-6xl font-serif font-bold mb-2 lg:mb-2 [@media(min-height:850px)]:lg:mb-3 drop-shadow-2xl leading-[1.1] tracking-tight text-white max-w-3xl mx-auto lg:mx-0 shadow-black/20"
                 >
-                  Custom <br className="hidden sm:inline" />
+                  Custom <br className="hidden sm:inline lg:hidden xl:inline" />
                   <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#eab308] via-[#fde047] to-[#eab308] drop-shadow-md">
                     Countertops &amp; Custom Cabinets
                   </span>
@@ -373,34 +373,34 @@ export default function PromoPage() {
                 </h1>
 
                 {/* Subtitle */}
-                <p style={{ animationDelay: '0.3s' }} className="promo-rise text-xs sm:text-sm lg:text-sm xl:text-base text-white/90 mb-3.5 lg:mb-4 max-w-xl mx-auto lg:mx-0 font-light leading-relaxed drop-shadow-md">
+                <p style={{ animationDelay: '0.3s' }} className="promo-rise text-xs sm:text-sm lg:text-xs xl:text-sm [@media(min-height:850px)]:lg:text-sm [@media(min-height:950px)]:xl:text-base text-white/90 mb-2.5 lg:mb-2.5 [@media(min-height:850px)]:lg:mb-4 max-w-xl mx-auto lg:mx-0 font-light leading-relaxed drop-shadow-md">
                   Factory-direct stone fabrication &amp; custom cabinetry in Duluth. Save 20–30% with zero retail middlemen &amp; 5-day installation turnaround.
                 </p>
 
                 {/* Value Bullets (Desktop) */}
-                <div style={{ animationDelay: '0.45s' }} className="promo-rise hidden lg:flex flex-col gap-2 mb-4 lg:mb-5 text-white drop-shadow-md">
+                <div style={{ animationDelay: '0.45s' }} className="promo-rise hidden lg:flex flex-col gap-1.5 lg:gap-1.5 [@media(min-height:850px)]:lg:gap-2 mb-3 lg:mb-3 [@media(min-height:850px)]:lg:mb-4 text-white drop-shadow-md">
                   <div className="flex items-center gap-2.5">
                     <div className="bg-secondary/20 p-1 rounded-full backdrop-blur-sm border border-white/10 shrink-0">
-                      <CheckCircle2 className="text-secondary" size={15} />
+                      <CheckCircle2 className="text-secondary" size={14} />
                     </div>
                     <span className="font-semibold text-xs xl:text-sm">Factory Direct Pricing (Save 20% to 30%)</span>
                   </div>
                   <div className="flex items-center gap-2.5">
                     <div className="bg-secondary/20 p-1 rounded-full backdrop-blur-sm border border-white/10 shrink-0">
-                      <CheckCircle2 className="text-secondary" size={15} />
+                      <CheckCircle2 className="text-secondary" size={14} />
                     </div>
                     <span className="font-semibold text-xs xl:text-sm">Fast 5-Day Turnaround from Digital Laser Measure</span>
                   </div>
                   <div className="flex items-center gap-2.5">
                     <div className="bg-secondary/20 p-1 rounded-full backdrop-blur-sm border border-white/10 shrink-0">
-                      <CheckCircle2 className="text-secondary" size={15} />
+                      <CheckCircle2 className="text-secondary" size={14} />
                     </div>
                     <span className="font-semibold text-xs xl:text-sm">Free In-Home Laser Templating &amp; 3D Design Layout</span>
                   </div>
                 </div>
 
                 {/* CTAs and Direct Click-to-Call */}
-                <div style={{ animationDelay: '0.6s' }} className="promo-rise flex flex-wrap items-center justify-center lg:justify-start gap-3 mb-3.5 lg:mb-4">
+                <div style={{ animationDelay: '0.6s' }} className="promo-rise flex flex-wrap items-center justify-center lg:justify-start gap-2.5 mb-2.5 lg:mb-2.5 [@media(min-height:850px)]:lg:mb-4">
                   <a 
                     href="tel:4049524534"
                     onClick={() => {
@@ -409,7 +409,7 @@ export default function PromoPage() {
                         if ((window as any).fbq) (window as any).fbq('track', 'Contact');
                       }
                     }}
-                    className="w-full sm:w-auto bg-black/40 hover:bg-black/60 backdrop-blur-md border border-white/30 text-white font-bold py-2.5 px-4 rounded-xl flex items-center justify-center gap-2 text-xs xl:text-sm transition-all shadow-md group"
+                    className="w-full sm:w-auto bg-black/40 hover:bg-black/60 backdrop-blur-md border border-white/30 text-white font-bold py-2 lg:py-2 xl:py-2.5 px-3.5 xl:px-4 rounded-xl flex items-center justify-center gap-2 text-xs xl:text-sm transition-all shadow-md group"
                   >
                     <span className="w-6 h-6 rounded-full bg-secondary flex items-center justify-center text-white shrink-0 group-hover:scale-110 transition-transform">
                       <Phone size={13} />
@@ -427,7 +427,7 @@ export default function PromoPage() {
                 </div>
 
                 {/* Official Google 5.0 Star Reviews Badge & Trust Platforms */}
-                <div style={{ animationDelay: '0.75s' }} className="promo-rise flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-3 pt-1">
+                <div style={{ animationDelay: '0.75s' }} className="promo-rise flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-2.5 pt-0.5 lg:pt-0.5 [@media(min-height:850px)]:lg:pt-1">
                   <a 
                     href="https://www.google.com/search?q=AGS+Stones+and+Cabinets"
                     target="_blank"
@@ -467,24 +467,26 @@ export default function PromoPage() {
                 </div>
               </div>
 
+
               {/* RIGHT COLUMN: Identical Quick Quote Card (from /services/countertops) */}
               <div
                 style={{ animationDelay: '0.2s', ['--rise' as string]: '30px' }}
-                className="promo-rise lg:col-span-5 w-full relative"
+                className="promo-rise lg:col-span-5 w-full relative flex lg:justify-end"
               >
-                {/* Floating Guarantee Badge */}
-                <div className="hidden lg:flex absolute -top-3 -right-2 z-20 bg-white text-primary py-1.5 px-3 rounded-xl shadow-xl items-center gap-2 border border-gray-100">
-                  <ShieldCheck size={18} className="text-secondary" />
-                  <div>
-                    <p className="text-[8px] font-bold uppercase tracking-wider text-gray-400 leading-tight">Guaranteed</p>
-                    <p className="font-bold text-[11px] text-primary leading-tight">Best Price in GA</p>
+                <div className="relative w-full max-w-[390px] lg:max-w-[420px] xl:max-w-[440px] mx-auto lg:mr-0">
+                  {/* Floating Guarantee Badge */}
+                  <div className="hidden lg:flex absolute -top-3.5 -right-2 z-20 bg-white text-primary py-1.5 px-3 rounded-xl shadow-xl items-center gap-2 border border-gray-100">
+                    <ShieldCheck size={18} className="text-secondary" />
+                    <div>
+                      <p className="text-[8px] font-bold uppercase tracking-wider text-gray-400 leading-tight">Guaranteed</p>
+                      <p className="font-bold text-[11px] text-primary leading-tight">Best Price in GA</p>
+                    </div>
                   </div>
-                </div>
 
-                <div 
-                  id="estimate-form"
-                  className="w-full max-w-[390px] xl:max-w-[410px] mx-auto lg:ml-auto bg-white/95 backdrop-blur-xl rounded-2xl shadow-[0_20px_50px_rgba(0,0,0,0.5)] p-4 sm:p-5 xl:p-6 border border-white/20 text-gray-900 relative overflow-hidden scroll-mt-24 sm:scroll-mt-28"
-                >
+                  <div 
+                    id="estimate-form"
+                    className="w-full bg-white/95 backdrop-blur-xl rounded-2xl shadow-[0_20px_50px_rgba(0,0,0,0.5)] p-3.5 sm:p-4 lg:p-3 xl:p-4 [@media(min-height:850px)]:lg:p-4.5 [@media(min-height:950px)]:xl:p-6 border border-white/20 text-gray-900 relative overflow-hidden scroll-mt-24 sm:scroll-mt-28"
+                  >
                   {isSuccess ? (
                     /* Success State View */
                     <div className="py-6 text-center space-y-3.5 animate-in fade-in zoom-in duration-300">
@@ -529,13 +531,13 @@ export default function PromoPage() {
                     </div>
                   ) : (
                     /* Embedded Form View - Identical to Quick Quote */
-                    <form onSubmit={handleFormSubmit} className="space-y-2.5 lg:space-y-2.5 xl:space-y-3">
-                      <div className="mb-2 lg:mb-2.5">
-                        <div className="inline-block bg-secondary/10 text-secondary text-[9px] font-bold uppercase tracking-widest px-2 py-0.5 rounded-full mb-1">
+                    <form onSubmit={handleFormSubmit} className="space-y-2 lg:space-y-1.5 xl:space-y-2 [@media(min-height:850px)]:lg:space-y-2 [@media(min-height:950px)]:xl:space-y-2.5">
+                      <div className="mb-1 lg:mb-1 [@media(min-height:850px)]:lg:mb-2">
+                        <div className="inline-block bg-secondary/10 text-secondary text-[8px] xl:text-[9px] font-bold uppercase tracking-widest px-2 py-0.5 rounded-full mb-0.5">
                           Fast Estimate
                         </div>
-                        <h3 className="text-xl xl:text-2xl font-serif font-bold text-primary leading-tight">Quick Quote</h3>
-                        <p className="text-gray-500 text-[11px]">Direct factory pricing in 60 seconds.</p>
+                        <h3 className="text-lg xl:text-xl [@media(min-height:850px)]:text-2xl font-serif font-bold text-primary leading-tight">Quick Quote</h3>
+                        <p className="text-gray-500 text-[10px] xl:text-[11px]">Direct factory pricing in 60 seconds.</p>
                       </div>
 
                       {/* Honeypot: hidden from people, bots tend to fill it */}
@@ -559,7 +561,7 @@ export default function PromoPage() {
                       {/* Name with User Icon */}
                       <div className="relative group">
                         <div className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 group-focus-within:text-secondary transition-colors pointer-events-none">
-                          <User size={15} />
+                          <User size={14} />
                         </div>
                         <input 
                           type="text"
@@ -567,15 +569,15 @@ export default function PromoPage() {
                           value={formData.name}
                           onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                           placeholder="Your Full Name *"
-                          className="w-full bg-gray-50 border border-gray-200 rounded-xl pl-9 pr-3 py-2 lg:py-2.5 text-xs sm:text-sm text-gray-900 placeholder:text-gray-400 font-medium focus:border-secondary focus:ring-2 focus:ring-secondary/20 outline-none transition-all"
+                          className="w-full bg-gray-50 border border-gray-200 rounded-xl pl-8 pr-2.5 py-1.5 sm:py-2 lg:py-1 xl:py-1.5 [@media(min-height:850px)]:lg:py-2 text-xs sm:text-sm text-gray-900 placeholder:text-gray-400 font-medium focus:border-secondary focus:ring-2 focus:ring-secondary/20 outline-none transition-all"
                         />
                       </div>
 
                       {/* Phone & Zip in 2 Columns */}
                       <div className="grid grid-cols-2 gap-2">
                         <div className="relative group">
-                          <div className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 group-focus-within:text-secondary transition-colors pointer-events-none">
-                            <Phone size={15} />
+                          <div className="absolute left-2.5 top-1/2 -translate-y-1/2 text-gray-400 group-focus-within:text-secondary transition-colors pointer-events-none">
+                            <Phone size={13} />
                           </div>
                           <input 
                             type="tel"
@@ -583,12 +585,12 @@ export default function PromoPage() {
                             value={formData.phone}
                             onChange={handlePhoneInput}
                             placeholder="Phone *"
-                            className="w-full bg-gray-50 border border-gray-200 rounded-xl pl-8 pr-2.5 py-2 lg:py-2.5 text-xs sm:text-sm text-gray-900 placeholder:text-gray-400 font-medium focus:border-secondary focus:ring-2 focus:ring-secondary/20 outline-none transition-all"
+                            className="w-full bg-gray-50 border border-gray-200 rounded-xl pl-7 pr-2 py-1.5 sm:py-2 lg:py-1 xl:py-1.5 [@media(min-height:850px)]:lg:py-2 text-xs sm:text-sm text-gray-900 placeholder:text-gray-400 font-medium focus:border-secondary focus:ring-2 focus:ring-secondary/20 outline-none transition-all"
                           />
                         </div>
                         <div className="relative group">
-                          <div className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 group-focus-within:text-secondary transition-colors pointer-events-none">
-                            <MapPin size={15} />
+                          <div className="absolute left-2.5 top-1/2 -translate-y-1/2 text-gray-400 group-focus-within:text-secondary transition-colors pointer-events-none">
+                            <MapPin size={13} />
                           </div>
                           <input 
                             type="text"
@@ -596,7 +598,7 @@ export default function PromoPage() {
                             value={formData.zip}
                             onChange={(e) => setFormData({ ...formData, zip: e.target.value })}
                             placeholder="Zip Code *"
-                            className="w-full bg-gray-50 border border-gray-200 rounded-xl pl-8 pr-2.5 py-2 lg:py-2.5 text-xs sm:text-sm text-gray-900 placeholder:text-gray-400 font-medium focus:border-secondary focus:ring-2 focus:ring-secondary/20 outline-none transition-all"
+                            className="w-full bg-gray-50 border border-gray-200 rounded-xl pl-7 pr-2 py-1.5 sm:py-2 lg:py-1 xl:py-1.5 [@media(min-height:850px)]:lg:py-2 text-xs sm:text-sm text-gray-900 placeholder:text-gray-400 font-medium focus:border-secondary focus:ring-2 focus:ring-secondary/20 outline-none transition-all"
                           />
                         </div>
                       </div>
@@ -607,20 +609,20 @@ export default function PromoPage() {
                           <select
                             value={formData.material}
                             onChange={(e) => setFormData({ ...formData, material: e.target.value })}
-                            className="w-full bg-gray-50 border border-gray-200 focus:border-secondary rounded-xl pl-2.5 pr-6 py-2 lg:py-2.5 text-xs sm:text-sm text-gray-900 font-semibold focus:ring-2 focus:ring-secondary/20 outline-none transition-all appearance-none cursor-pointer truncate"
+                            className="w-full bg-gray-50 border border-gray-200 focus:border-secondary rounded-xl pl-2 pr-5 py-1.5 sm:py-2 lg:py-1 xl:py-1.5 [@media(min-height:850px)]:lg:py-2 text-xs sm:text-sm text-gray-900 font-semibold focus:ring-2 focus:ring-secondary/20 outline-none transition-all appearance-none cursor-pointer truncate"
                           >
                             <option value="Kitchen">Kitchen</option>
                             <option value="Bathroom">Bathroom</option>
                             <option value="Outdoor Kitchen">Outdoor Kitchen</option>
                             <option value="Other">Other</option>
                           </select>
-                          <ChevronDown className="absolute right-2 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-gray-500 pointer-events-none stroke-[2]" />
+                          <ChevronDown className="absolute right-1.5 top-1/2 -translate-y-1/2 w-3 h-3 text-gray-500 pointer-events-none stroke-[2]" />
                         </div>
                         <div className="relative">
                           <select
                             value={formData.scope}
                             onChange={(e) => setFormData({ ...formData, scope: e.target.value })}
-                            className="w-full bg-gray-50 border border-gray-200 focus:border-secondary rounded-xl pl-2.5 pr-6 py-2 lg:py-2.5 text-xs sm:text-sm text-gray-900 font-semibold focus:ring-2 focus:ring-secondary/20 outline-none transition-all appearance-none cursor-pointer truncate"
+                            className="w-full bg-gray-50 border border-gray-200 focus:border-secondary rounded-xl pl-2 pr-5 py-1.5 sm:py-2 lg:py-1 xl:py-1.5 [@media(min-height:850px)]:lg:py-2 text-xs sm:text-sm text-gray-900 font-semibold focus:ring-2 focus:ring-secondary/20 outline-none transition-all appearance-none cursor-pointer truncate"
                           >
                             <option value="Countertops Only">Countertops Only</option>
                             <option value="Countertops + Cabinets">Countertops + Cabinets</option>
@@ -628,14 +630,14 @@ export default function PromoPage() {
                             <option value="Full Remodel">Full Remodel</option>
                             <option value="Other">Other</option>
                           </select>
-                          <ChevronDown className="absolute right-2 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-gray-500 pointer-events-none stroke-[2]" />
+                          <ChevronDown className="absolute right-1.5 top-1/2 -translate-y-1/2 w-3 h-3 text-gray-500 pointer-events-none stroke-[2]" />
                         </div>
                       </div>
 
                       {/* Email (Required *) with Mail Icon */}
                       <div className="relative group">
                         <div className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 group-focus-within:text-secondary transition-colors pointer-events-none">
-                          <Mail size={15} />
+                          <Mail size={14} />
                         </div>
                         <input 
                           type="email"
@@ -643,21 +645,21 @@ export default function PromoPage() {
                           value={formData.email}
                           onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                           placeholder="Email Address *"
-                          className="w-full bg-gray-50 border border-gray-200 rounded-xl pl-9 pr-3 py-2 lg:py-2.5 text-xs sm:text-sm text-gray-900 placeholder:text-gray-400 font-medium focus:border-secondary focus:ring-2 focus:ring-secondary/20 outline-none transition-all"
+                          className="w-full bg-gray-50 border border-gray-200 rounded-xl pl-8 pr-2.5 py-1.5 sm:py-2 lg:py-1 xl:py-1.5 [@media(min-height:850px)]:lg:py-2 text-xs sm:text-sm text-gray-900 placeholder:text-gray-400 font-medium focus:border-secondary focus:ring-2 focus:ring-secondary/20 outline-none transition-all"
                         />
                       </div>
 
                       {/* Notes / Observation (Optional) */}
                       <div className="relative group">
                         <div className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 group-focus-within:text-secondary transition-colors pointer-events-none">
-                          <MessageSquare size={15} />
+                          <MessageSquare size={14} />
                         </div>
                         <input 
                           type="text"
                           value={formData.notes}
                           onChange={(e) => setFormData({ ...formData, notes: e.target.value })}
                           placeholder="Project Notes / Details (Optional)"
-                          className="w-full bg-gray-50 border border-gray-200 rounded-xl pl-9 pr-3 py-2 lg:py-2.5 text-xs sm:text-sm text-gray-900 placeholder:text-gray-400 font-medium focus:border-secondary focus:ring-2 focus:ring-secondary/20 outline-none transition-all"
+                          className="w-full bg-gray-50 border border-gray-200 rounded-xl pl-8 pr-2.5 py-1.5 sm:py-2 lg:py-1 xl:py-1.5 [@media(min-height:850px)]:lg:py-2 text-xs sm:text-sm text-gray-900 placeholder:text-gray-400 font-medium focus:border-secondary focus:ring-2 focus:ring-secondary/20 outline-none transition-all"
                         />
                       </div>
 
@@ -666,16 +668,16 @@ export default function PromoPage() {
                         <button
                           type="submit"
                           disabled={isSubmitting}
-                          className="w-full bg-secondary hover:bg-yellow-600 text-white font-bold py-2.5 lg:py-3 px-5 rounded-xl shadow-md hover:shadow-lg transition-all flex items-center justify-center gap-2 text-xs sm:text-sm uppercase tracking-wider disabled:opacity-70 active:scale-[0.99] cursor-pointer group"
+                          className="w-full bg-secondary hover:bg-yellow-600 text-white font-bold py-2 sm:py-2.5 lg:py-1.5 xl:py-2 [@media(min-height:850px)]:lg:py-2.5 px-4 rounded-xl shadow-md hover:shadow-lg transition-all flex items-center justify-center gap-2 text-xs sm:text-sm uppercase tracking-wider disabled:opacity-70 active:scale-[0.99] cursor-pointer group"
                         >
                           {isSubmitting ? (
                             <>
-                              <Loader2 size={15} className="animate-spin" /> Submitting...
+                              <Loader2 size={14} className="animate-spin" /> Submitting...
                             </>
                           ) : (
                             <>
                               <span>Claim Free Estimate</span>
-                              <ArrowRight size={15} className="group-hover:translate-x-1 transition-transform" />
+                              <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
                             </>
                           )}
                         </button>
@@ -689,14 +691,15 @@ export default function PromoPage() {
                   )}
                 </div>
               </div>
+            </div>
 
             </div>
           </div>
 
-          {/* Subdued Bottom Scroll Indicator - Safely cleared above the transition curve */}
-          <div className="absolute bottom-6 sm:bottom-8 md:bottom-10 left-1/2 -translate-x-1/2 hidden sm:flex flex-col items-center gap-1.5 opacity-60 z-20 pointer-events-none transition-opacity hover:opacity-100">
+          {/* Subdued Bottom Scroll Indicator - Safely cleared above the transition curve on desktop */}
+          <div className="absolute bottom-3 sm:bottom-4 lg:bottom-14 xl:bottom-16 [@media(min-height:850px)]:lg:bottom-18 [@media(min-height:950px)]:lg:bottom-20 left-1/2 -translate-x-1/2 hidden sm:flex flex-col items-center gap-1 opacity-60 z-20 pointer-events-none transition-opacity hover:opacity-100">
             <span className="text-[9px] uppercase tracking-[0.2em] font-bold text-white/90 drop-shadow-sm">Scroll to Explore Slabs &amp; Cabinets</span>
-            <div className="promo-nudge w-[1px] h-6 bg-gradient-to-b from-white via-white/80 to-transparent shadow-sm" />
+            <div className="promo-nudge w-[1px] h-5 bg-gradient-to-b from-white via-white/80 to-transparent shadow-sm" />
           </div>
         </section>
 

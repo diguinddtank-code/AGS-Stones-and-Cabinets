@@ -3562,6 +3562,357 @@ export const blogContent: Record<string, BlogPost> = {
         </div>
       </>
     )
+  },
+  '2cm-vs-3cm-countertops-thickness-guide': {
+    slug: '2cm-vs-3cm-countertops-thickness-guide',
+    title: '2cm vs. 3cm Countertops: Which Thickness Should You Choose? (Plywood Subtop, Edge Profiles, Strength & Cost Guide)',
+    badge: 'WIKIHOW & BUYER\'S GUIDE',
+    badgeType: 'wikihow',
+    category: 'Comparisons',
+    date: 'October 18, 2026',
+    modifiedDate: 'October 18, 2026',
+    readTime: '8 min read',
+    image: '/images/blog/countertop-thickness-2cm-vs-3cm-guide.jpg',
+    alt: 'Instructional wikiHow diagram comparing 2cm countertop slab with plywood subtop and laminated edge versus solid 3cm stone on kitchen cabinets',
+    excerpt: 'Should you buy 2cm (3/4") or 3cm (1 1/4") countertop slabs? Compare plywood subtop requirements, edge lamination, structural strength, weight, fabrication costs, and regional East Coast standards to make the smartest investment for your home.',
+    keyTakeaways: [
+      '3cm (1 1/4" / 30mm) is the gold standard for residential kitchens across Georgia and the East Coast, offering superior structural strength without requiring plywood subtops.',
+      '2cm (3/4" / 20mm) stone requires a full 5/8" or 3/4" exterior-grade plywood subtop deck screwed onto cabinets, plus a laminated or mitered drop edge to hide the raw wood underneath.',
+      'While raw 2cm slabs can cost 15% to 25% less at stone distributors, the added carpentry labor for plywood subtops and mitered edge fabrication often makes 2cm equal to or MORE expensive than solid 3cm.',
+      '3cm stone supports longer cantilevers (up to 10"–12" unsupported) compared to 2cm (maximum 6" unsupported before requiring continuous steel reinforcement).',
+      '2cm shines best for vertical applications like full-height quartz backsplashes, fireplace cladding, and shower walls where lighter weight (12–14 lbs/sq ft) is an advantage.'
+    ],
+    faqs: [
+      {
+        q: 'Why do fabricators in Atlanta and Duluth recommend 3cm over 2cm for kitchens?',
+        a: 'Across Georgia and the Southeast, 3cm (approx. 1 1/4 inch) is the established construction standard. It installs directly on top of cabinet frames with no need for plywood decking, eliminates glued laminate edge seams along perimeter faces, supports heavy undermount sinks and appliances safely, and provides a rich, substantial visual profile.'
+      },
+      {
+        q: 'Do 3cm granite or quartz countertops need plywood under them?',
+        a: 'No. Standard 3cm natural granite, quartzite, and engineered quartz slabs possess sufficient flexural strength to sit directly on the level perimeter rails of quality kitchen base cabinets. Silicone adhesive holds the stone securely without requiring plywood decking.'
+      },
+      {
+        q: 'Is 2cm stone really cheaper than 3cm stone?',
+        a: 'Only the raw un-fabricated slab is cheaper (typically 15% to 25% less due to reduced quarrying mass and lower freight shipping weight). However, once you factor in the carpentry labor and materials for cutting and installing a plywood subtop deck, plus the stone shop labor to miter, glue, clamp, and polish a laminated edge to hide the wood, total installed costs for 2cm and 3cm are virtually identical.'
+      },
+      {
+        q: 'Can you see the seam line on a 2cm laminated edge?',
+        a: 'On 2cm countertops with a laminated or mitered built-up edge, there is always a continuous horizontal or 45-degree epoxy seam running along the front perimeter. While skilled master fabricators like AGS Stones color-match epoxy adhesives with high accuracy, the seam can sometimes be noticeable on stones with dramatic flowing veining.'
+      },
+      {
+        q: 'Can 2cm stone be used for a full-height kitchen backsplash?',
+        a: 'Yes! In fact, 2cm is often preferred for full-height vertical slab backsplashes, fireplace surrounds, and bathroom shower wall cladding. At 12 to 14 lbs per square foot (compared to 18 to 22 lbs for 3cm), 2cm places significantly less structural load on vertical drywall studs and protrudes less behind cooktops and upper wall cabinets.'
+      }
+    ],
+    content: (
+      <>
+        {/* Intro Highlight Box */}
+        <div className="bg-amber-50/70 border-l-4 border-amber-500 p-6 rounded-r-2xl my-6">
+          <p className="text-amber-950 font-medium text-base leading-relaxed m-0">
+            <strong>The Homeowner&apos;s Thickness Dilemma:</strong> When browsing stone yards in Metro Atlanta, you will quickly notice slabs quoted in two primary thicknesses: <strong>2cm (approximately 3/4 inch)</strong> and <strong>3cm (approximately 1 1/4 inches)</strong>. At first glance, 2cm slabs look tempting because the raw material price tag is often 15% to 25% lower. But does thinner stone really save you money in the end, or will hidden installation requirements like plywood subtops and edge lamination eat up all your savings? Here is the complete breakdown by Georgia master fabricators.
+          </p>
+        </div>
+
+        {/* Quick Reference Comparison Table */}
+        <h2 className="text-2xl font-serif font-bold text-gray-900 mt-10 mb-4">
+          At a Glance: 2cm vs. 3cm Countertop Comparison Matrix
+        </h2>
+        <p className="text-gray-700 leading-relaxed mb-6">
+          Review the core technical differences before choosing your kitchen or bathroom countertop slab:
+        </p>
+
+        <div className="overflow-x-auto my-6 rounded-2xl border border-gray-200 shadow-sm">
+          <table className="w-full text-left border-collapse text-sm">
+            <thead>
+              <tr className="bg-slate-900 text-white">
+                <th className="p-4 font-bold">Feature</th>
+                <th className="p-4 font-bold">2cm Slabs (~3/4 Inch / 20mm)</th>
+                <th className="p-4 font-bold">3cm Slabs (~1 1/4 Inch / 30mm)</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-gray-200 bg-white">
+              <tr className="hover:bg-gray-50/80 transition-colors">
+                <td className="p-4 font-semibold text-gray-900">Actual Thickness</td>
+                <td className="p-4 text-gray-700">20 mm (approx. 0.787 in.)</td>
+                <td className="p-4 font-bold text-primary">30 mm (approx. 1.181 in.)</td>
+              </tr>
+              <tr className="hover:bg-gray-50/80 transition-colors">
+                <td className="p-4 font-semibold text-gray-900">Plywood Subtop Decking</td>
+                <td className="p-4 font-bold text-amber-700 bg-amber-50/40">Mandatory (5/8&quot; or 3/4&quot; plywood)</td>
+                <td className="p-4 font-bold text-emerald-700 bg-emerald-50/40">None Needed (Mounts directly on cabinets)</td>
+              </tr>
+              <tr className="hover:bg-gray-50/80 transition-colors">
+                <td className="p-4 font-semibold text-gray-900">Edge Profile Options</td>
+                <td className="p-4 text-gray-700">Requires laminated drop edge or miter fold</td>
+                <td className="p-4 text-gray-700">Monolithic: Eased, Bullnose, Ogee, Demi, Waterfall</td>
+              </tr>
+              <tr className="hover:bg-gray-50/80 transition-colors">
+                <td className="p-4 font-semibold text-gray-900">Visible Edge Seam Line</td>
+                <td className="p-4 text-amber-800">Yes, continuous glued epoxy seam along edge</td>
+                <td className="p-4 text-emerald-700 font-bold">No edge glue seam (100% solid stone)</td>
+              </tr>
+              <tr className="hover:bg-gray-50/80 transition-colors">
+                <td className="p-4 font-semibold text-gray-900">Weight Per Square Foot</td>
+                <td className="p-4 text-gray-700">12 – 14 lbs / sq. ft.</td>
+                <td className="p-4 text-gray-700">18 – 22 lbs / sq. ft.</td>
+              </tr>
+              <tr className="hover:bg-gray-50/80 transition-colors">
+                <td className="p-4 font-semibold text-gray-900">Max Unsupported Overhang</td>
+                <td className="p-4 text-rose-700 font-bold">Max 6 Inches (requires continuous brackets)</td>
+                <td className="p-4 text-emerald-700 font-bold">10 – 12 Inches (Natural Stone Institute compliant)</td>
+              </tr>
+              <tr className="hover:bg-gray-50/80 transition-colors">
+                <td className="p-4 font-semibold text-gray-900">Regional Standard</td>
+                <td className="p-4 text-gray-700">West Coast (California, Arizona) &amp; Prefabs</td>
+                <td className="p-4 font-bold text-blue-700">East Coast (Georgia, Atlanta, Carolinas, Florida)</td>
+              </tr>
+              <tr className="hover:bg-gray-50/80 transition-colors">
+                <td className="p-4 font-semibold text-gray-900">Best Applications</td>
+                <td className="p-4 text-gray-700">Full-height wall backsplashes, shower walls, furniture</td>
+                <td className="p-4 font-bold text-primary">Kitchen islands, heavy undermount sinks, main counters</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        {/* Method 1: The Plywood Subtop Requirement */}
+        <h2 className="text-2xl sm:text-3xl font-serif text-primary mt-12 mb-6 font-bold pb-2 border-b border-gray-100">
+          Method 1: Understanding the Plywood Subtop &amp; Laminated Edge (2cm)
+        </h2>
+        <p className="text-gray-700 leading-relaxed mb-6">
+          The single biggest structural difference between 2cm and 3cm countertops is the <strong>underlayment</strong>. Because 2cm natural stone (about 3/4 inch thick) is more flexible, it cannot support its own weight across cabinet spans without deflecting:
+        </p>
+
+        <div className="space-y-6 my-8">
+          <div className="bg-white p-6 rounded-2xl border border-gray-200/80 shadow-sm flex flex-col sm:flex-row gap-5 items-start">
+            <span className="flex-shrink-0 w-10 h-10 rounded-full bg-blue-600 text-white font-bold flex items-center justify-center text-base shadow-md">
+              1
+            </span>
+            <div>
+              <h3 className="text-lg font-bold text-gray-900 mb-2">The Mandatory Plywood Subdeck</h3>
+              <p className="text-gray-600 text-sm sm:text-base leading-relaxed m-0">
+                Before laying a 2cm slab, installers must screw a full sheet of <strong>5/8-inch or 3/4-inch CDX or exterior-grade plywood</strong> across the entire top of your base cabinets. This wood deck provides a continuous structural bed that prevents the thinner stone from cracking when someone sets down a heavy cast iron pot or leans heavily on the surface.
+              </p>
+            </div>
+          </div>
+
+          <div className="bg-white p-6 rounded-2xl border border-gray-200/80 shadow-sm flex flex-col sm:flex-row gap-5 items-start">
+            <span className="flex-shrink-0 w-10 h-10 rounded-full bg-blue-600 text-white font-bold flex items-center justify-center text-base shadow-md">
+              2
+            </span>
+            <div>
+              <h3 className="text-lg font-bold text-gray-900 mb-2">The Laminated Drop Edge</h3>
+              <p className="text-gray-600 text-sm sm:text-base leading-relaxed m-0">
+                Because there is a piece of rough plywood directly beneath the stone, you cannot leave the front edge exposed—otherwise, you would look directly at raw plywood layers! To conceal this, fabricators must cut an extra 1 1/2&quot; wide strip of stone and epoxy it underneath the front rim (a <em>laminated edge</em>) or cut a 45-degree mitered drop edge.
+              </p>
+            </div>
+          </div>
+
+          <div className="bg-white p-6 rounded-2xl border border-gray-200/80 shadow-sm flex flex-col sm:flex-row gap-5 items-start">
+            <span className="flex-shrink-0 w-10 h-10 rounded-full bg-blue-600 text-white font-bold flex items-center justify-center text-base shadow-md">
+              3
+            </span>
+            <div>
+              <h3 className="text-lg font-bold text-gray-900 mb-2">The Risk of Seam Telegraphing</h3>
+              <p className="text-gray-600 text-sm sm:text-base leading-relaxed m-0">
+                When two pieces of stone are glued together to form a built-up 1 1/2&quot; edge, there is an unavoidable epoxy seam. In consistent fine-grain quartz, this seam can be virtually invisible. However, on natural granite or veined quartzite (such as Calacatta quartz or Taj Mahal quartzite), matching veins across the laminated edge is difficult and often creates a visible horizontal or miter line.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        {/* Method 2: Why 3cm Is the Standard */}
+        <h2 className="text-2xl sm:text-3xl font-serif text-primary mt-12 mb-6 font-bold pb-2 border-b border-gray-100">
+          Method 2: Why 3cm (1 1/4 Inch) Is the Preferred Standard in Georgia
+        </h2>
+        <p className="text-gray-700 leading-relaxed mb-6">
+          If you walk into any luxury kitchen showroom in Atlanta, Alpharetta, Buckhead, or Duluth, over 95% of the countertops on display will be <strong>3cm solid stone</strong>. Here is why builders and fabricators rely on 3cm:
+        </p>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 my-8">
+          <div className="bg-white p-6 rounded-2xl border border-gray-200 shadow-sm">
+            <div className="w-10 h-10 rounded-xl bg-emerald-100 text-emerald-800 flex items-center justify-center font-bold mb-4">
+              💎
+            </div>
+            <h4 className="text-base font-bold text-gray-900 mb-2">100% Solid Monolithic Stone</h4>
+            <p className="text-xs sm:text-sm text-gray-600 leading-relaxed m-0">
+              No glued edges, no plywood sandwiches, and no chance of edge lamination delaminating over decades of moisture exposure. The profile (eased, demi-bullnose, ogee) is carved directly into the single solid slab.
+            </p>
+          </div>
+
+          <div className="bg-white p-6 rounded-2xl border border-gray-200 shadow-sm">
+            <div className="w-10 h-10 rounded-xl bg-blue-100 text-blue-800 flex items-center justify-center font-bold mb-4">
+              📐
+            </div>
+            <h4 className="text-base font-bold text-gray-900 mb-2">Fast, Clean Direct Installation</h4>
+            <p className="text-xs sm:text-sm text-gray-600 leading-relaxed m-0">
+              3cm stone rests directly on top of level cabinet rails with structural silicone adhesive. Your cabinet drawers have immediate clearance, and there is no raw subtop wood to swell or collect moisture under the sink.
+            </p>
+          </div>
+
+          <div className="bg-white p-6 rounded-2xl border border-gray-200 shadow-sm">
+            <div className="w-10 h-10 rounded-xl bg-indigo-100 text-indigo-800 flex items-center justify-center font-bold mb-4">
+              🛡️
+            </div>
+            <h4 className="text-base font-bold text-gray-900 mb-2">Heavy-Duty Undermount Sink Support</h4>
+            <p className="text-xs sm:text-sm text-gray-600 leading-relaxed m-0">
+              Large cast-iron, fireclay, and deep stainless steel undermount sinks hang with rock-solid security. 3cm stone provides substantial stone depth for mechanical undermount sink clips and epoxy anchors.
+            </p>
+          </div>
+
+          <div className="bg-white p-6 rounded-2xl border border-gray-200 shadow-sm">
+            <div className="w-10 h-10 rounded-xl bg-purple-100 text-purple-800 flex items-center justify-center font-bold mb-4">
+              🛋️
+            </div>
+            <h4 className="text-base font-bold text-gray-900 mb-2">Superior Cantilever &amp; Overhang Strength</h4>
+            <p className="text-xs sm:text-sm text-gray-600 leading-relaxed m-0">
+              Per Natural Stone Institute standards, 3cm engineered quartz can safely cantilever up to 12 inches without brackets, whereas 2cm stone requires steel brackets if extending more than 6 inches.
+            </p>
+          </div>
+        </div>
+
+        {/* Method 3: The True Cost Myth */}
+        <h2 className="text-2xl sm:text-3xl font-serif text-primary mt-12 mb-6 font-bold pb-2 border-b border-gray-100">
+          Method 3: The Cost Myth: Is 2cm Actually Cheaper Than 3cm?
+        </h2>
+        <p className="text-gray-700 leading-relaxed mb-6">
+          Many homeowners receive estimates from discount fabricators advertising low square-footage prices based on 2cm slabs, only to find the final installed cost exceeds a quality 3cm quote. Here is why:
+        </p>
+
+        <div className="bg-white rounded-2xl border border-gray-200 p-6 sm:p-8 my-6 shadow-sm">
+          <h3 className="text-lg font-bold text-gray-900 mb-4 flex items-center gap-2">
+            <span>⚖️</span> The Hidden Math Behind 2cm vs. 3cm Pricing
+          </h3>
+          <div className="space-y-4 text-sm text-gray-700">
+            <div className="flex items-start gap-3">
+              <span className="text-emerald-600 font-bold text-lg">✓</span>
+              <p className="m-0 leading-relaxed">
+                <strong>Raw Slab Cost:</strong> A raw 2cm slab costs roughly <strong>$10 to $20 less per square foot</strong> from stone distributors because quarries can cut more slabs per block and shipping containers hold more units without exceeding highway axle weight limits.
+              </p>
+            </div>
+            <div className="flex items-start gap-3">
+              <span className="text-rose-600 font-bold text-lg">✗</span>
+              <p className="m-0 leading-relaxed">
+                <strong>Plywood &amp; Carpentry Subtop:</strong> Purchasing 3/4&quot; exterior plywood and having carpenters rip, level, and screw it across all kitchen base cabinets adds <strong>$8 to $15 per linear foot</strong> in materials and labor.
+              </p>
+            </div>
+            <div className="flex items-start gap-3">
+              <span className="text-rose-600 font-bold text-lg">✗</span>
+              <p className="m-0 leading-relaxed">
+                <strong>Edge Lamination Shop Labor:</strong> Cutting stone strips, applying two-part color-matched epoxy, clamping every 6 inches, letting it cure, and then milling the edge profile adds <strong>$15 to $35 per linear foot</strong> in fabrication shop labor.
+              </p>
+            </div>
+            <div className="p-4 bg-blue-50 border border-blue-200 rounded-xl mt-4 text-blue-950 font-medium">
+              <strong>The Final Result:</strong> For standard residential kitchens, the extra carpentry and edge lamination labor on 2cm stone almost always balances out the raw slab discount. You end up paying the exact same price (or more) for a thinner stone that has an epoxy seam along the edge!
+            </div>
+          </div>
+        </div>
+
+        {/* Method 4: Where 2cm Wins */}
+        <h2 className="text-2xl sm:text-3xl font-serif text-primary mt-12 mb-6 font-bold pb-2 border-b border-gray-100">
+          Method 4: When Should You Actually Choose 2cm Countertop Stone?
+        </h2>
+        <p className="text-gray-700 leading-relaxed mb-6">
+          While 3cm is the winner for kitchen horizontal work surfaces, 2cm stone is not obsolete. In fact, there are several applications where 2cm is the superior architectural choice:
+        </p>
+
+        <div className="space-y-4 my-6">
+          <div className="p-5 bg-white border border-gray-200 rounded-2xl shadow-sm flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+            <div>
+              <h4 className="font-bold text-gray-900 text-base mb-1">Full-Height Vertical Backsplashes</h4>
+              <p className="text-xs text-gray-600 m-0">
+                Extending matching slab quartz from your countertops up to the upper cabinets or ceiling is dramatically easier with 2cm. At 12–14 lbs/sq ft, it puts less stress on wall studs and drywall anchors while taking up 1/2&quot; less depth behind your range.
+              </p>
+            </div>
+            <span className="bg-emerald-100 text-emerald-800 font-bold px-3 py-1.5 rounded-xl text-xs flex-shrink-0">
+              Ideal Use Case
+            </span>
+          </div>
+
+          <div className="p-5 bg-white border border-gray-200 rounded-2xl shadow-sm flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+            <div>
+              <h4 className="font-bold text-gray-900 text-base mb-1">Bathroom Shower Walls &amp; Tub Surrounds</h4>
+              <p className="text-xs text-gray-600 m-0">
+                Seamless full-slab shower walls eliminate grout lines. 2cm slabs provide complete waterproof durability while keeping the overall wall weight manageable for bathroom framing.
+              </p>
+            </div>
+            <span className="bg-emerald-100 text-emerald-800 font-bold px-3 py-1.5 rounded-xl text-xs flex-shrink-0">
+              Ideal Use Case
+            </span>
+          </div>
+
+          <div className="p-5 bg-white border border-gray-200 rounded-2xl shadow-sm flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+            <div>
+              <h4 className="font-bold text-gray-900 text-base mb-1">Modern European Ultra-Slim Countertops</h4>
+              <p className="text-xs text-gray-600 m-0">
+                Contemporary, minimalist kitchen designs sometimes deliberately seek a sleek, ultra-thin 20mm profile without an edge drop. If paired with full-box European frameless cabinetry that has full top stretchers, 2cm creates a striking knife-edge look.
+              </p>
+            </div>
+            <span className="bg-blue-100 text-blue-800 font-bold px-3 py-1.5 rounded-xl text-xs flex-shrink-0">
+              Modern Styling
+            </span>
+          </div>
+        </div>
+
+        {/* Method 5: The AGS Custom Edge Advantage */}
+        <h2 className="text-2xl sm:text-3xl font-serif text-primary mt-12 mb-6 font-bold pb-2 border-b border-gray-100">
+          Method 5: How AGS Stones Fabricates Slabs in Duluth, GA
+        </h2>
+        <p className="text-gray-700 leading-relaxed mb-6">
+          At <Link href="/" className="text-secondary font-semibold hover:underline">AGS Stones &amp; Cabinets</Link>, our climate-controlled stone fabrication shop in Duluth utilizes high-precision 5-axis CNC waterjet bridge saws:
+        </p>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 my-6">
+          <div className="bg-white p-6 rounded-2xl border border-gray-200 shadow-sm">
+            <span className="text-2xl mb-2 block">🔍</span>
+            <h4 className="font-bold text-gray-900 text-sm mb-2">Live Slab Inspection</h4>
+            <p className="text-xs text-gray-600 m-0 leading-relaxed">
+              Walk our indoor slab gallery in Duluth, GA to touch and compare 2cm and 3cm slabs side by side, observing edge profiles, weight, and light reflection.
+            </p>
+          </div>
+          <div className="bg-white p-6 rounded-2xl border border-gray-200 shadow-sm">
+            <span className="text-2xl mb-2 block">⚙️</span>
+            <h4 className="font-bold text-gray-900 text-sm mb-2">CNC Mitered Aprons</h4>
+            <p className="text-xs text-gray-600 m-0 leading-relaxed">
+              Want the luxury look of a 2-inch or 3-inch thick massive stone island? We execute seamless 45° CNC miter folds on both 2cm and 3cm slabs with book-matched vein flow.
+            </p>
+          </div>
+          <div className="bg-white p-6 rounded-2xl border border-gray-200 shadow-sm">
+            <span className="text-2xl mb-2 block">📐</span>
+            <h4 className="font-bold text-gray-900 text-sm mb-2">Digital Proliner Templating</h4>
+            <p className="text-xs text-gray-600 m-0 leading-relaxed">
+              Our digital measuring lasers verify that your cabinets are level to within 1/16 of an inch, ensuring your new stone rests with zero tension or stress points.
+            </p>
+          </div>
+        </div>
+
+        {/* Call to action card */}
+        <div className="bg-gradient-to-r from-primary to-slate-900 text-white rounded-3xl p-8 sm:p-10 my-10 shadow-2xl flex flex-col md:flex-row items-center justify-between gap-6">
+          <div className="max-w-xl">
+            <span className="text-secondary font-bold text-xs uppercase tracking-widest block mb-2">AGS Stones &amp; Cabinets • Factory-Direct Fabrication</span>
+            <h4 className="text-2xl font-serif font-bold mb-2">Not Sure Which Slab Thickness Fits Your Remodel?</h4>
+            <p className="text-gray-300 text-sm mb-0">
+              Visit our Duluth, GA showroom or request an instant free online estimate. Our stone specialists will help you select the ideal stone thickness, edge style, and underlayment for your budget and lifestyle!
+            </p>
+          </div>
+          <div className="flex flex-col sm:flex-row gap-3 w-full md:w-auto flex-shrink-0">
+            <Link 
+              href="/promo" 
+              className="bg-secondary text-white font-bold text-xs uppercase tracking-wider px-7 py-4 rounded-xl hover:bg-white hover:text-primary transition-all text-center shadow-lg"
+            >
+              Get Free Estimate
+            </Link>
+            <Link 
+              href="/showroom" 
+              className="bg-white/10 hover:bg-white/20 text-white font-bold text-xs uppercase tracking-wider px-6 py-4 rounded-xl transition-all text-center border border-white/20"
+            >
+              Visit Showroom
+            </Link>
+          </div>
+        </div>
+      </>
+    )
   }
 };
+
 
