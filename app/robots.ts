@@ -6,11 +6,28 @@ const baseUrl = 'https://www.agsstonefabricators.com';
 
 export default function robots(): MetadataRoute.Robots {
   return {
-    rules: {
-      userAgent: '*',
-      allow: '/',
-      disallow: ['/api/', '/admin/', '/private/'],
-    },
+    rules: [
+      {
+        userAgent: '*',
+        allow: '/',
+        disallow: ['/api/', '/admin/', '/private/'],
+      },
+      {
+        userAgent: [
+          'GPTBot',
+          'ChatGPT-User',
+          'PerplexityBot',
+          'ClaudeBot',
+          'anthropic-ai',
+          'Google-Extended',
+          'Applebot-Extended',
+          'Amazonbot',
+          'cohere-ai',
+        ],
+        allow: ['/', '/llms.txt', '/llms-full.txt'],
+        disallow: ['/api/', '/admin/', '/private/'],
+      },
+    ],
     sitemap: `${baseUrl}/sitemap.xml`,
   };
 }

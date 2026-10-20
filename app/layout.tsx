@@ -94,15 +94,19 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{
             __html: JSON.stringify({
               "@context": "https://schema.org",
-              "@type": "HomeAndConstructionBusiness",
-              "name": "AGS Stones",
-              "legalName": "AGS Stones and Cabinets",
+              "@type": ["HomeAndConstructionBusiness", "LocalBusiness"],
+              "name": "AGS Stones and Cabinets",
+              "alternateName": ["AGS Stones", "AGS Stone Fabricators", "AGS Stones & Cabinets"],
+              "legalName": "AGS Stones and Cabinets LLC",
+              "description": "Factory-direct granite and quartz countertop fabricator and custom cabinetry installer in Duluth, GA. Serving Metro Atlanta, Alpharetta, Johns Creek, and Roswell with 5-day installation and 20-30% savings.",
               "image": "https://www.agsstonefabricators.com/images/projects/kitchen-navy-cabinets-white-quartz-waterfall-island-atlanta.jpg",
               "logo": "https://i.imgur.com/B0ZaBpN.png",
-              "@id": "https://www.agsstonefabricators.com",
+              "@id": "https://www.agsstonefabricators.com/#organization",
               "url": "https://www.agsstonefabricators.com",
               "telephone": "+14049524534",
               "priceRange": "$$",
+              "currenciesAccepted": "USD",
+              "paymentAccepted": "Cash, Credit Card, Check, Financing",
               "hasMap": "https://maps.google.com/?q=AGS+STONES+%26+CABINETS,+4579+Abbotts+Bridge+Rd+Suite+-10,+Duluth,+GA+30097,+United+States",
               "address": {
                 "@type": "PostalAddress",
@@ -140,18 +144,66 @@ export default function RootLayout({
                 { "@type": "City", "name": "Atlanta", "sameAs": "https://en.wikipedia.org/wiki/Atlanta" },
                 { "@type": "City", "name": "Duluth", "sameAs": "https://en.wikipedia.org/wiki/Duluth,_Georgia" },
                 { "@type": "City", "name": "Alpharetta", "sameAs": "https://en.wikipedia.org/wiki/Alpharetta,_Georgia" },
+                { "@type": "City", "name": "Johns Creek", "sameAs": "https://en.wikipedia.org/wiki/Johns_Creek,_Georgia" },
+                { "@type": "City", "name": "Roswell", "sameAs": "https://en.wikipedia.org/wiki/Roswell,_Georgia" },
+                { "@type": "City", "name": "Suwanee", "sameAs": "https://en.wikipedia.org/wiki/Suwanee,_Georgia" },
                 { "@type": "City", "name": "Marietta", "sameAs": "https://en.wikipedia.org/wiki/Marietta,_Georgia" },
                 { "@type": "City", "name": "Sandy Springs", "sameAs": "https://en.wikipedia.org/wiki/Sandy_Springs,_Georgia" },
-                { "@type": "City", "name": "Roswell", "sameAs": "https://en.wikipedia.org/wiki/Roswell,_Georgia" },
-                { "@type": "City", "name": "Johns Creek", "sameAs": "https://en.wikipedia.org/wiki/Johns_Creek,_Georgia" },
                 { "@type": "City", "name": "Lawrenceville", "sameAs": "https://en.wikipedia.org/wiki/Lawrenceville,_Georgia" },
-                { "@type": "City", "name": "Suwanee", "sameAs": "https://en.wikipedia.org/wiki/Suwanee,_Georgia" },
-                { "@type": "City", "name": "Brookhaven", "sameAs": "https://en.wikipedia.org/wiki/Brookhaven,_Georgia" }
+                { "@type": "City", "name": "Brookhaven", "sameAs": "https://en.wikipedia.org/wiki/Brookhaven,_Georgia" },
+                { "@type": "AdministrativeArea", "name": "Gwinnett County", "sameAs": "https://en.wikipedia.org/wiki/Gwinnett_County,_Georgia" },
+                { "@type": "AdministrativeArea", "name": "Fulton County", "sameAs": "https://en.wikipedia.org/wiki/Fulton_County,_Georgia" }
               ],
+              "knowsAbout": [
+                "Granite Countertop Fabrication",
+                "Quartz Countertop Installation",
+                "Quartzite & Marble Slab Custom Cutting",
+                "Digital Laser Templating",
+                "Mitered Edge Waterfall Kitchen Islands",
+                "Custom Solid Wood Kitchen Cabinets",
+                "Full-Height Stone Slab Backsplash",
+                "Kitchen Remodeling Contractor",
+                "Bathroom Vanity Countertops",
+                "Outdoor Kitchen Granite Tops",
+                "15-Year Industrial Stone Sealer Application"
+              ],
+              "hasOfferCatalog": {
+                "@type": "OfferCatalog",
+                "name": "Factory Direct Stone & Cabinetry Services",
+                "itemListElement": [
+                  {
+                    "@type": "Offer",
+                    "itemOffered": {
+                      "@type": "Service",
+                      "name": "Custom Quartz & Granite Countertop Fabrication",
+                      "description": "In-house CNC stone fabrication with digital laser measure and 5-day installation in Metro Atlanta."
+                    }
+                  },
+                  {
+                    "@type": "Offer",
+                    "itemOffered": {
+                      "@type": "Service",
+                      "name": "Custom Kitchen & Bath Cabinetry",
+                      "description": "All-wood solid plywood construction cabinets with European soft-close hardware and 3D design assistance."
+                    }
+                  },
+                  {
+                    "@type": "Offer",
+                    "itemOffered": {
+                      "@type": "Service",
+                      "name": "Turnkey Kitchen Remodeling",
+                      "description": "Single-source kitchen renovation including demo, cabinetry, stone installation, sink cutouts, and tile backsplash."
+                    }
+                  }
+                ]
+              },
               "sameAs": [
+                "https://www.google.com/search?q=AGS+Stones+and+Cabinets",
+                "https://maps.google.com/?q=AGS+STONES+%26+CABINETS,+4579+Abbotts+Bridge+Rd+Suite+-10,+Duluth,+GA+30097",
                 "https://www.facebook.com/agsstones",
                 "https://www.instagram.com/agsstones",
-                "https://twitter.com/agsstones"
+                "https://twitter.com/agsstones",
+                "https://www.yelp.com/biz/ags-stones-and-cabinets-duluth"
               ]
             }),
           }}

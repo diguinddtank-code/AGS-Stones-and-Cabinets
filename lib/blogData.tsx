@@ -3912,6 +3912,363 @@ export const blogContent: Record<string, BlogPost> = {
         </div>
       </>
     )
+  },
+  'honed-vs-polished-vs-leathered-countertops-guide': {
+    slug: 'honed-vs-polished-vs-leathered-countertops-guide',
+    title: 'Honed vs. Polished vs. Leathered Countertops: Which Stone Finish Is Best for Your Kitchen? (Texture, Cleaning, Fingerprints & Cost Guide)',
+    badge: "WIKIHOW & BUYER'S GUIDE",
+    badgeType: 'wikihow',
+    category: 'Comparisons',
+    date: 'October 19, 2026',
+    modifiedDate: 'October 19, 2026',
+    author: 'AGS Stones Fabrication Team',
+    authorRole: 'Master Stone Fabricators & Finish Specialists',
+    readTime: '9 min read',
+    image: '/images/blog/countertop-finishes-honed-polished-leathered-guide.jpg',
+    alt: 'How to identify stone countertop finishes: polished glossy, honed smooth matte, and leathered textured pebbled surface on granite and quartz',
+    excerpt: 'Confused between polished, honed, or leathered countertop finishes? Discover how surface texture impacts fingerprint visibility, daily cleaning, stain resistance, sealing frequency, and overall kitchen aesthetic in this complete illustrated homeowner guide.',
+    content: (
+      <>
+        {/* Intro Banner */}
+        <div className="bg-gradient-to-r from-slate-900 to-primary text-white p-6 sm:p-8 rounded-3xl my-6 shadow-xl border border-white/10">
+          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+            <div>
+              <span className="text-secondary font-bold text-xs uppercase tracking-widest block mb-1">
+                WikiHow Master Surface Finish Guide
+              </span>
+              <h3 className="text-xl sm:text-2xl font-serif font-bold text-white mb-2">
+                The Touch, Look &amp; Maintenance of Stone Countertop Finishes
+              </h3>
+              <p className="text-gray-300 text-xs sm:text-sm leading-relaxed mb-0">
+                When homeowners visit our Duluth, GA fabrication showroom, they often know what stone color they want—like Absolute Black granite, Taj Mahal quartzite, or Calacatta quartz. But then comes the big decision: <strong>Polished, Honed, or Leathered?</strong> The surface finish completely alters how light bounces, how fingerprints appear, how often you must seal, and how your kitchen feels every single day.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        {/* Quick Summary Infographic Box */}
+        <div className="bg-amber-50 border-2 border-amber-200 rounded-3xl p-6 sm:p-8 my-8 text-amber-950 shadow-sm">
+          <h3 className="text-xl font-bold font-serif text-amber-900 mb-3 flex items-center gap-2">
+            <span>⚡</span> Quick Rule of Thumb for Homeowners
+          </h3>
+          <ul className="space-y-3 text-sm leading-relaxed m-0 list-disc list-inside">
+            <li>
+              <strong>Choose Polished:</strong> If you love vibrant deep colors, reflective glossy shine, maximum stain resistance, and a classic luxury aesthetic that wipes clean effortlessly.
+            </li>
+            <li>
+              <strong>Choose Honed:</strong> If you want a contemporary, low-glare velvet matte finish with a soft European look, and you do not mind slightly more frequent sealing on natural stone.
+            </li>
+            <li>
+              <strong>Choose Leathered:</strong> If you want a rich, tactile, pebbled texture that hides fingerprints, smudges, and water spots like magic—especially stunning on dark granites like Black Pearl, Steel Grey, and Virginia Mist.
+            </li>
+          </ul>
+        </div>
+
+        {/* Comparison Matrix Table */}
+        <h2 className="text-2xl sm:text-3xl font-serif text-primary mt-12 mb-6 font-bold pb-2 border-b border-gray-100">
+          Stone Finish Comparison Matrix: Side-by-Side Breakdown
+        </h2>
+        <p className="text-gray-700 leading-relaxed mb-6">
+          To help you weigh the daily pros and cons, here is how polished, honed, and leathered stone surfaces perform across the 6 criteria that matter most to busy homeowners:
+        </p>
+
+        <div className="overflow-x-auto my-6 border border-gray-200 rounded-2xl shadow-sm bg-white">
+          <table className="w-full text-left text-xs sm:text-sm">
+            <thead className="bg-gray-100 text-gray-800 uppercase font-bold text-[11px] tracking-wider border-b border-gray-200">
+              <tr>
+                <th className="py-4 px-4 sm:px-6">Performance Factor</th>
+                <th className="py-4 px-4 sm:px-6 bg-blue-50/70 text-blue-900">1. Polished Finish</th>
+                <th className="py-4 px-4 sm:px-6 bg-slate-50 text-slate-900">2. Honed Finish</th>
+                <th className="py-4 px-4 sm:px-6 bg-amber-50/70 text-amber-900">3. Leathered Finish</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-gray-200 text-gray-700">
+              <tr>
+                <td className="py-4 px-4 sm:px-6 font-bold text-gray-900">Visual Appearance</td>
+                <td className="py-4 px-4 sm:px-6 bg-blue-50/30">Mirror-like gloss, high reflection, deep vibrant stone colors</td>
+                <td className="py-4 px-4 sm:px-6 bg-slate-50/30">Satin velvet matte, zero glare, softer pastel tones</td>
+                <td className="py-4 px-4 sm:px-6 bg-amber-50/30">Subtle undulating sheen, rustic luxury, organic texture</td>
+              </tr>
+              <tr>
+                <td className="py-4 px-4 sm:px-6 font-bold text-gray-900">Tactile Feel</td>
+                <td className="py-4 px-4 sm:px-6 bg-blue-50/30">Completely smooth, glass-like glide</td>
+                <td className="py-4 px-4 sm:px-6 bg-slate-50/30">Smooth, soft, powdery or velvety feel</td>
+                <td className="py-4 px-4 sm:px-6 bg-amber-50/30">Textured, subtle dimpled pebbles you can feel</td>
+              </tr>
+              <tr>
+                <td className="py-4 px-4 sm:px-6 font-bold text-gray-900">Fingerprints &amp; Water Marks</td>
+                <td className="py-4 px-4 sm:px-6 bg-blue-50/30">Visible under direct lighting and sunbeams</td>
+                <td className="py-4 px-4 sm:px-6 bg-slate-50/30">Shows cooking oil smudges and handprints easily</td>
+                <td className="py-4 px-4 sm:px-6 bg-amber-50/30 font-bold text-emerald-700">Virtually invisible — hides smudges best!</td>
+              </tr>
+              <tr>
+                <td className="py-4 px-4 sm:px-6 font-bold text-gray-900">Stain &amp; Liquid Resistance</td>
+                <td className="py-4 px-4 sm:px-6 bg-blue-50/30 font-semibold text-emerald-700">High: closed pores resist liquid penetration</td>
+                <td className="py-4 px-4 sm:px-6 bg-slate-50/30 text-amber-700">Moderate: open pores absorb spills faster</td>
+                <td className="py-4 px-4 sm:px-6 bg-amber-50/30 font-semibold text-emerald-700">High: diamond brushing tightens surface pores</td>
+              </tr>
+              <tr>
+                <td className="py-4 px-4 sm:px-6 font-bold text-gray-900">Sealing Maintenance</td>
+                <td className="py-4 px-4 sm:px-6 bg-blue-50/30">Standard: Once every 12 to 24 months (Granite)</td>
+                <td className="py-4 px-4 sm:px-6 bg-slate-50/30 text-rose-700">Frequent: Every 6 to 12 months (Natural stone)</td>
+                <td className="py-4 px-4 sm:px-6 bg-amber-50/30">Low to Moderate: Once every 18 to 24 months</td>
+              </tr>
+              <tr>
+                <td className="py-4 px-4 sm:px-6 font-bold text-gray-900">Best Stone Candidates</td>
+                <td className="py-4 px-4 sm:px-6 bg-blue-50/30">Quartz, Granite, Quartzite, Marble</td>
+                <td className="py-4 px-4 sm:px-6 bg-slate-50/30">Carrara Marble, Soapstone, Dark Granite, Quartz</td>
+                <td className="py-4 px-4 sm:px-6 bg-amber-50/30">Black Pearl, Steel Grey, Absolute Black, Taj Mahal</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        {/* Method 1: Polished */}
+        <h2 className="text-2xl sm:text-3xl font-serif text-primary mt-12 mb-6 font-bold pb-2 border-b border-gray-100">
+          Method 1: Polished Countertops — The Classic High-Gloss Standard
+        </h2>
+        <p className="text-gray-700 leading-relaxed mb-4">
+          Polished is by far the most popular countertop finish in American homes. Over 75% of residential kitchens feature polished granite, quartz, or quartzite. The finish is achieved by grinding the raw stone slab with progressively finer diamond-grit polishing pads (up to 3,000 grit) until the surface reflects light like a clean mirror.
+        </p>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 my-6">
+          <div className="bg-emerald-50/60 border border-emerald-200 rounded-2xl p-6">
+            <h4 className="font-bold text-emerald-950 text-base mb-3 flex items-center gap-2">
+              <span className="text-emerald-600 font-bold">✓</span> Why Homeowners Love Polished
+            </h4>
+            <ul className="space-y-2 text-xs sm:text-sm text-emerald-900 m-0">
+              <li><strong>Maximizes Stone Brilliance:</strong> Deepens blacks, intensifies quartz sparkles, and highlights natural mineral veins and flecks.</li>
+              <li><strong>Superior Stain Defense:</strong> The intense microscopic polishing process closes up the surface pores, creating a natural barrier against spilled wine, coffee, and sauces.</li>
+              <li><strong>Effortless Daily Cleaning:</strong> Smooth glass-like surface wipes spotless with warm water and microfibers in seconds.</li>
+              <li><strong>Bounces Light in Small Kitchens:</strong> Reflects ambient daylight and under-cabinet LED lighting, making smaller spaces feel expansive.</li>
+            </ul>
+          </div>
+
+          <div className="bg-rose-50/60 border border-rose-200 rounded-2xl p-6">
+            <h4 className="font-bold text-rose-950 text-base mb-3 flex items-center gap-2">
+              <span className="text-rose-600 font-bold">✗</span> The Drawbacks of Polished
+            </h4>
+            <ul className="space-y-2 text-xs sm:text-sm text-rose-900 m-0">
+              <li><strong>Shows Fingerprints and Smudges:</strong> Especially on dark or solid-black countertops when overhead pendant lights shine directly down.</li>
+              <li><strong>Visible Etching on Marble:</strong> Acidic spills (lemon juice, vinegar, wine) will dull the polished shine on natural marble, leaving obvious cloudy spots.</li>
+              <li><strong>High Glare:</strong> In kitchens with massive floor-to-ceiling windows, high-gloss stone can produce strong reflections during sunny mornings.</li>
+            </ul>
+          </div>
+        </div>
+
+        {/* Method 2: Honed */}
+        <h2 className="text-2xl sm:text-3xl font-serif text-primary mt-12 mb-6 font-bold pb-2 border-b border-gray-100">
+          Method 2: Honed Countertops — The Contemporary Velvet Matte Look
+        </h2>
+        <p className="text-gray-700 leading-relaxed mb-4">
+          A honed finish stops the abrasive grinding process earlier—typically around 400 to 600 grit. Instead of grinding until the stone develops a glossy shine, the fabricator leaves the slab with a smooth, satin, flat matte texture. It feels like soft velvet or cashmere under your fingertips.
+        </p>
+
+        <div className="bg-white rounded-2xl border border-gray-200 p-6 sm:p-8 my-6 shadow-sm">
+          <h3 className="text-lg font-bold text-gray-900 mb-3 flex items-center gap-2">
+            <span>🏛️</span> Where Honed Stone Shines Most
+          </h3>
+          <p className="text-sm text-gray-700 leading-relaxed mb-4">
+            Honed stone is the darling of high-end interior designers creating European transitional, modern farmhouse, and organic modern kitchens. Because it does not bounce light, it gives natural stone an understated, calm architectural presence.
+          </p>
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs text-gray-700">
+            <div className="p-4 bg-gray-50 rounded-xl border border-gray-100">
+              <strong className="block text-gray-900 mb-1">Carrara &amp; Calacatta Marble</strong>
+              Honed marble hides etch marks from lemons far better than polished marble, because the surface is already matte!
+            </div>
+            <div className="p-4 bg-gray-50 rounded-xl border border-gray-100">
+              <strong className="block text-gray-900 mb-1">Soapstone</strong>
+              Soapstone naturally comes in a velvety honed or oiled finish, producing an authentic colonial or modern rustic vibe.
+            </div>
+            <div className="p-4 bg-gray-50 rounded-xl border border-gray-100">
+              <strong className="block text-gray-900 mb-1">Matte Engineered Quartz</strong>
+              Modern quartz brands produce factory-honed slabs (like suede or concrete textures) that avoid the glossy look.
+            </div>
+          </div>
+        </div>
+
+        <div className="p-5 bg-amber-50 border border-amber-200 rounded-2xl my-6 text-amber-950 text-sm">
+          <strong className="block mb-1 font-bold">⚠️ Critical Care Warning for Honed Natural Stone:</strong>
+          Because honed natural stone is not sealed with high-grit friction, its microscopic pores remain slightly open. Honed granite and marble will absorb dark oils and water spots much quicker than polished stone. If you choose honed granite or marble, plan to apply an impregnating penetrating sealer every 6 to 12 months.
+        </div>
+
+        {/* Method 3: Leathered */}
+        <h2 className="text-2xl sm:text-3xl font-serif text-primary mt-12 mb-6 font-bold pb-2 border-b border-gray-100">
+          Method 3: Leathered Countertops — The Heavy-Duty Textured Favorite
+        </h2>
+        <p className="text-gray-700 leading-relaxed mb-4">
+          Leathered finish (sometimes called brushed or river-washed finish) is the fastest-growing countertop finish in Metro Atlanta and nationwide. It is created by taking a honed slab and running heavy, diamond-tipped wire bristles across the surface in oscillating circular patterns.
+        </p>
+
+        <p className="text-gray-700 leading-relaxed mb-4">
+          These abrasive brushes remove the softer mineral layers of the stone while polishing the harder crystalline components. The result is a subtle, dimpled, undulating texture that mimics the natural grain of fine leather.
+        </p>
+
+        <div className="space-y-4 my-6">
+          <div className="p-5 bg-white border border-gray-200 rounded-2xl shadow-sm flex items-start gap-4">
+            <div className="w-10 h-10 rounded-full bg-secondary/10 flex items-center justify-center text-secondary font-bold shrink-0">
+              01
+            </div>
+            <div>
+              <h4 className="font-bold text-gray-900 text-sm mb-1">Zero Fingerprints and Zero Water Rings</h4>
+              <p className="text-xs text-gray-600 m-0 leading-relaxed">
+                Because light scatters across the micro-ridges of a leathered surface, hand oils, grease splatters, and wet glass rings are virtually invisible. It is the ultimate family-friendly finish for active households with kids.
+              </p>
+            </div>
+          </div>
+
+          <div className="p-5 bg-white border border-gray-200 rounded-2xl shadow-sm flex items-start gap-4">
+            <div className="w-10 h-10 rounded-full bg-secondary/10 flex items-center justify-center text-secondary font-bold shrink-0">
+              02
+            </div>
+            <div>
+              <h4 className="font-bold text-gray-900 text-sm mb-1">Tighter Pores Than Honed Stone</h4>
+              <p className="text-xs text-gray-600 m-0 leading-relaxed">
+                Many homeowners assume textured stone absorbs more stains. In reality, the high-speed diamond brushing actually compacts and closes the stone&apos;s surface pores, making leathered granite more stain-resistant than standard honed granite!
+              </p>
+            </div>
+          </div>
+
+          <div className="p-5 bg-white border border-gray-200 rounded-2xl shadow-sm flex items-start gap-4">
+            <div className="w-10 h-10 rounded-full bg-secondary/10 flex items-center justify-center text-secondary font-bold shrink-0">
+              03
+            </div>
+            <div>
+              <h4 className="font-bold text-gray-900 text-sm mb-1">Stunning Depth on Dark Stones</h4>
+              <p className="text-xs text-gray-600 m-0 leading-relaxed">
+                While polished black granite can look like cold black glass, leathered black granite (like Black Pearl or Steel Grey) reveals rich gunmetal greys, charcoal contours, and natural geological character that feels warm and inviting.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        {/* Method 4: Can You Get Leathered Quartz? */}
+        <h2 className="text-2xl sm:text-3xl font-serif text-primary mt-12 mb-6 font-bold pb-2 border-b border-gray-100">
+          Method 4: Can You Get Leathered Quartz or Only Granite?
+        </h2>
+        <p className="text-gray-700 leading-relaxed mb-4">
+          This is one of the most common questions our team receives in Duluth: <em>&quot;Can I get leathered quartz countertops?&quot;</em>
+        </p>
+
+        <p className="text-gray-700 leading-relaxed mb-4">
+          The short answer is: <strong>Yes, but with key differences.</strong>
+        </p>
+
+        <div className="bg-white rounded-2xl border border-gray-200 p-6 sm:p-8 my-6 shadow-sm">
+          <div className="space-y-4 text-sm text-gray-700">
+            <div className="flex items-start gap-3">
+              <span className="text-secondary font-bold text-lg">•</span>
+              <p className="m-0 leading-relaxed">
+                <strong>Natural Stone (Granite &amp; Quartzite):</strong> True leathering requires natural minerals with varying hardness. The diamond brushes selectively carve the soft stone, creating genuine 3D topographical texture.
+              </p>
+            </div>
+            <div className="flex items-start gap-3">
+              <span className="text-secondary font-bold text-lg">•</span>
+              <p className="m-0 leading-relaxed">
+                <strong>Engineered Quartz (Suede, Matte, or Concrete Finish):</strong> Because quartz is bound with resin, it cannot be brushed with extreme abrasion. Instead, manufacturers like Silestone (Suede finish), Caesarstone (Concrete/Rough finish), and MSI create textured quartz using specialized mold presses at the factory.
+              </p>
+            </div>
+            <div className="p-4 bg-gray-50 border border-gray-200 rounded-xl mt-3 text-xs leading-relaxed text-gray-600">
+              <strong>Fabrication Pro Tip:</strong> If you love the deep, pebbled texture of leathered stone, natural granite or quartzite gives you the richest tactile experience. If you prefer low-maintenance non-porous engineered stone without reflections, factory Suede or Matte quartz is your best bet!
+            </div>
+          </div>
+        </div>
+
+        {/* Method 5: Cost Comparison */}
+        <h2 className="text-2xl sm:text-3xl font-serif text-primary mt-12 mb-6 font-bold pb-2 border-b border-gray-100">
+          Method 5: Does Finish Affect the Price of Countertops?
+        </h2>
+        <p className="text-gray-700 leading-relaxed mb-4">
+          Yes, but the price difference is smaller than most homeowners think:
+        </p>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 my-6 text-center">
+          <div className="bg-white p-6 rounded-2xl border border-gray-200 shadow-sm">
+            <span className="text-xs uppercase font-bold tracking-wider text-gray-400 block mb-1">Standard Base Price</span>
+            <h4 className="text-xl font-bold text-primary mb-2">Polished Finish</h4>
+            <p className="text-2xl font-serif font-bold text-secondary mb-2">$0 Added</p>
+            <p className="text-xs text-gray-600 m-0">
+              Since 80%+ of slabs imported into Georgia are polished at the quarry, there is zero added fabrication upcharge.
+            </p>
+          </div>
+
+          <div className="bg-white p-6 rounded-2xl border border-gray-200 shadow-sm">
+            <span className="text-xs uppercase font-bold tracking-wider text-gray-400 block mb-1">Specialty Finishing</span>
+            <h4 className="text-xl font-bold text-primary mb-2">Honed Finish</h4>
+            <p className="text-2xl font-serif font-bold text-secondary mb-2">+$5 to +$12 / sqft</p>
+            <p className="text-xs text-gray-600 m-0">
+              If the slab arrives pre-honed from the supplier, price is identical. If custom-honed in our Duluth shop, modest labor applies.
+            </p>
+          </div>
+
+          <div className="bg-white p-6 rounded-2xl border border-gray-200 shadow-sm">
+            <span className="text-xs uppercase font-bold tracking-wider text-gray-400 block mb-1">Artisan Texturing</span>
+            <h4 className="text-xl font-bold text-primary mb-2">Leathered Finish</h4>
+            <p className="text-2xl font-serif font-bold text-secondary mb-2">+$5 to +$15 / sqft</p>
+            <p className="text-xs text-gray-600 m-0">
+              Requires diamond wire brush tooling and specialized oscillating machinery, but offers exceptional durability return on investment.
+            </p>
+          </div>
+        </div>
+
+        {/* Method 6: How AGS Stones Helps You Choose */}
+        <h2 className="text-2xl sm:text-3xl font-serif text-primary mt-12 mb-6 font-bold pb-2 border-b border-gray-100">
+          Method 6: See and Feel Slabs in Our Duluth, GA Showroom
+        </h2>
+        <p className="text-gray-700 leading-relaxed mb-6">
+          Photos and screen brightness cannot replace your physical sense of touch. At <Link href="/" className="text-secondary font-semibold hover:underline">AGS Stones &amp; Cabinets</Link>, our climate-controlled stone showroom and slab yard in Duluth features full slabs in polished, honed, and leathered textures side-by-side:
+        </p>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 my-6">
+          <div className="bg-white p-6 rounded-2xl border border-gray-200 shadow-sm">
+            <span className="text-2xl mb-2 block">🖐️</span>
+            <h4 className="font-bold text-gray-900 text-sm mb-2">The Scratch &amp; Touch Test</h4>
+            <p className="text-xs text-gray-600 m-0 leading-relaxed">
+              Place your hands directly on leathered Steel Grey and polished Calacatta quartz under showroom daylight to test fingerprint visibility in person.
+            </p>
+          </div>
+          <div className="bg-white p-6 rounded-2xl border border-gray-200 shadow-sm">
+            <span className="text-2xl mb-2 block">🎨</span>
+            <h4 className="font-bold text-gray-900 text-sm mb-2">Cabinet Matching in 3D</h4>
+            <p className="text-xs text-gray-600 m-0 leading-relaxed">
+              Pair your favorite stone finish with painted Shaker or stained white oak cabinet door samples to verify color harmony and contrast.
+            </p>
+          </div>
+          <div className="bg-white p-6 rounded-2xl border border-gray-200 shadow-sm">
+            <span className="text-2xl mb-2 block">⏱️</span>
+            <h4 className="font-bold text-gray-900 text-sm mb-2">Fast 5-Day Installation</h4>
+            <p className="text-xs text-gray-600 m-0 leading-relaxed">
+              Once you hand-select your slab and finish, our digital lasers template your home and our in-house crews complete installation in just 5 days.
+            </p>
+          </div>
+        </div>
+
+        {/* Call to action card */}
+        <div className="bg-gradient-to-r from-primary to-slate-900 text-white rounded-3xl p-8 sm:p-10 my-10 shadow-2xl flex flex-col md:flex-row items-center justify-between gap-6">
+          <div className="max-w-xl">
+            <span className="text-secondary font-bold text-xs uppercase tracking-widest block mb-2">AGS Stones &amp; Cabinets • Factory-Direct Stone Studio</span>
+            <h4 className="text-2xl font-serif font-bold mb-2">Ready to Feel the Difference in Person?</h4>
+            <p className="text-gray-300 text-sm mb-0">
+              Visit our Duluth, GA slab gallery at 4579 Abbotts Bridge Rd Suite -10 or claim a free in-home digital estimate. Our design experts will bring stone samples directly to your kitchen!
+            </p>
+          </div>
+          <div className="flex flex-col sm:flex-row gap-3 w-full md:w-auto flex-shrink-0">
+            <Link 
+              href="/promo" 
+              className="bg-secondary text-white font-bold text-xs uppercase tracking-wider px-7 py-4 rounded-xl hover:bg-white hover:text-primary transition-all text-center shadow-lg"
+            >
+              Get Free Estimate
+            </Link>
+            <Link 
+              href="/showroom" 
+              className="bg-white/10 hover:bg-white/20 text-white font-bold text-xs uppercase tracking-wider px-6 py-4 rounded-xl transition-all text-center border border-white/20"
+            >
+              Visit Showroom
+            </Link>
+          </div>
+        </div>
+      </>
+    )
   }
 };
 
