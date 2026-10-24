@@ -18,8 +18,10 @@ export interface BlogPost {
   excerpt: string;
   image: string;
   alt: string;
-  keyTakeaways: string[];
-  faqs: BlogFaq[];
+  keyTakeaways?: string[];
+  faqs?: BlogFaq[];
+  author?: string;
+  authorRole?: string;
   content: React.ReactNode;
 }
 
@@ -4269,7 +4271,506 @@ export const blogContent: Record<string, BlogPost> = {
         </div>
       </>
     )
+  },
+  'undermount-vs-farmhouse-sink-countertops-guide': {
+    slug: 'undermount-vs-farmhouse-sink-countertops-guide',
+    title: 'Undermount vs. Farmhouse Sink with Quartz & Granite Countertops: The Complete Cutout, Reveal & Cabinet Support Guide',
+    badge: 'WIKIHOW & INSTALLATION GUIDE',
+    badgeType: 'wikihow',
+    category: 'Installation & Guides',
+    date: 'October 24, 2026',
+    modifiedDate: 'October 24, 2026',
+    author: 'AGS Stones Fabrication Team',
+    authorRole: 'Master Stone Fabricators & Cabinet Structural Specialists',
+    readTime: '10 min read',
+    image: '/images/blog/undermount-vs-farmhouse-sink-countertops-guide.jpg',
+    alt: 'Illustrated wikiHow guide comparing undermount and farmhouse apron-front sinks with quartz and granite countertops: cutout reveal styles, 2x4 cabinet cradle framing, and undermount support straps',
+    excerpt: 'Deciding between an undermount or farmhouse apron-front sink for your quartz or granite countertops? Learn the critical differences in CNC cutout reveal options (positive, zero flush, negative overhang), heavy fireclay 2x4 cabinet cradle framing, sink harness strap mounting, and faucet hole spacing in this step-by-step illustrated homeowner guide.',
+    keyTakeaways: [
+      'Undermount sinks mount beneath stone countertops with three CNC cutout reveal options: Positive Reveal (1/8" rim shelf exposed), Zero Flush Reveal (edge flush with basin wall), and Negative Reveal (1/8" stone overhang concealing the silicone joint).',
+      'Heavy farmhouse apron-front sinks (fireclay or enameled cast iron weighing 100–180 lbs empty and 300+ lbs full of water) must NEVER hang from granite or quartz—they require an independent 2x4 structural timber cradle built inside the base cabinet.',
+      'Never rely solely on silicone adhesive or simple glued clips to hold an undermount sink. Professional fabricators use mechanical undermount sink harness straps anchored into cabinet side walls to eliminate sink drop failures permanently.',
+      'For Metro Atlanta kitchen remodels (Alpharetta, Milton, Johns Creek, Buckhead), sinks must be physically on-site during the digital template appointment so lasers can map the exact basin curvature and rim geometry.',
+      'Faucet, soap dispenser, and garbage disposal air switch holes are diamond core-drilled on-site through 3cm stone slabs during installation, ensuring millimeter-perfect alignment with basin dividers.'
+    ],
+    faqs: [
+      {
+        q: 'What is the best cutout reveal for an undermount sink on quartz or granite?',
+        a: 'Zero Flush and slight Negative Reveal (1/16" to 1/8" stone overhang) are the most popular choices. Zero Flush creates an ultra-clean transitional aesthetic where sponge wiping is smooth. Negative reveal conceals the silicone caulk line entirely from overhead view, letting you sweep crumbs straight into the basin, though care should be taken with heavy cast iron pots to avoid chipping the bottom stone rim.'
+      },
+      {
+        q: 'Can a farmhouse apron sink be installed after quartz countertops are already in place?',
+        a: 'No. Apron-front farmhouse sinks must be mounted and leveled on their internal cabinet 2x4 cradle support BEFORE the stone countertops are fabricated and placed. The stone fabricator measures the installed sink with digital lasers to scribe the stone tightly around the sink rim with a continuous waterproof silicone seal.'
+      },
+      {
+        q: 'How much weight can an undermount sink hold when attached to granite?',
+        a: 'When installed using mechanical under-sink steel support straps anchored to cabinet structural sidewalls, the sink can easily support 250 to 300+ lbs (including a full basin of water and heavy cast iron Dutch ovens). Gluing clips solely with epoxy to the underside of the stone without structural straps creates a risk of eventual failure over time.'
+      },
+      {
+        q: 'Does a farmhouse sink require a special kitchen base cabinet?',
+        a: 'Yes. Farmhouse sinks need a dedicated "Apron-Front Sink Base Cabinet" with shorter doors and an open top face. Alternatively, existing standard cabinets can be modified by skilled carpenters by trimming the face frame and building an internal 2x4 plywood shelf support.'
+      },
+      {
+        q: 'Who disconnects and reconnects the plumbing when replacing countertops and sinks?',
+        a: 'Countertop installation crews handle the structural stone installation, sink cutout, sink mounting clips, and faucet hole drilling. Licensed Georgia plumbers should handle the final P-trap, garbage disposal, and water supply line hookups 24 hours after installation once 100% silicone sealant has fully cured.'
+      }
+    ],
+    content: (
+      <>
+        {/* Intro Banner */}
+        <div className="bg-gradient-to-r from-slate-900 to-primary text-white p-6 sm:p-8 rounded-3xl my-6 shadow-xl border border-white/10">
+          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+            <div>
+              <span className="text-secondary font-bold text-xs uppercase tracking-widest block mb-1">
+                WikiHow Master Sink &amp; Countertop Guide
+              </span>
+              <h3 className="text-xl sm:text-2xl font-serif font-bold text-white mb-2">
+                Undermount vs. Farmhouse Sinks: Cutouts, Reveals &amp; Cabinet Framing
+              </h3>
+              <p className="text-gray-300 text-xs sm:text-sm leading-relaxed mb-0">
+                When designing your dream kitchen in Atlanta, choosing your sink style goes far beyond aesthetic preference. The sink you choose dictates how your quartz or granite slab is cut on our CNC machines, how your base cabinetry is structurally framed, and how easily you clean your counters every evening.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        {/* Quick Decision Infographic Box */}
+        <div className="bg-amber-50 border-2 border-amber-200 rounded-3xl p-6 sm:p-8 my-8 text-amber-950 shadow-sm">
+          <h3 className="text-xl font-bold font-serif text-amber-900 mb-3 flex items-center gap-2">
+            <span>⚡</span> Quick Rule of Thumb for Homeowners
+          </h3>
+          <ul className="space-y-3 text-sm leading-relaxed m-0 list-disc list-inside">
+            <li>
+              <strong>Choose an Undermount Sink:</strong> If you want sleek continuous countertop space, zero protruding basin edges, versatile cutout reveal styles (Zero Flush or Negative), and standard cabinet compatibility without custom carpentry.
+            </li>
+            <li>
+              <strong>Choose a Farmhouse (Apron-Front) Sink:</strong> If you love modern farmhouse, coastal, or classic Southern architecture (very popular in Milton, Alpharetta, and Roswell), want deep ergonomic basin depth without leaning forward over a 3.5&quot; stone front rail, and have an apron-ready cabinet with reinforced 2x4 cradle support.
+            </li>
+          </ul>
+        </div>
+
+        {/* Comparison Matrix Table */}
+        <h2 className="text-2xl sm:text-3xl font-serif text-primary mt-12 mb-6 font-bold pb-2 border-b border-gray-100">
+          Undermount vs. Farmhouse Sink: Side-by-Side Comparison
+        </h2>
+        <p className="text-gray-700 leading-relaxed mb-6">
+          Before ordering your sink and scheduling stone templating with our Duluth team, compare how both styles impact installation, cabinet framing, daily maintenance, and overall budget:
+        </p>
+
+        <div className="overflow-x-auto my-6 border border-gray-200 rounded-2xl shadow-sm bg-white">
+          <table className="w-full text-left text-xs sm:text-sm">
+            <thead className="bg-gray-100 text-gray-800 uppercase font-bold text-[11px] tracking-wider border-b border-gray-200">
+              <tr>
+                <th className="py-4 px-4 sm:px-6">Feature / Consideration</th>
+                <th className="py-4 px-4 sm:px-6 bg-blue-50/70 text-blue-900">1. Undermount Sink</th>
+                <th className="py-4 px-4 sm:px-6 bg-amber-50/70 text-amber-900">2. Farmhouse (Apron-Front) Sink</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-gray-200 text-gray-700">
+              <tr>
+                <td className="py-4 px-4 sm:px-6 font-bold text-gray-900">Cabinet Requirements</td>
+                <td className="py-4 px-4 sm:px-6 bg-blue-50/30">Standard sink base cabinet (30&quot; to 36&quot; width) with standard full-height doors.</td>
+                <td className="py-4 px-4 sm:px-6 bg-amber-50/30">Requires dedicated Apron-Front Sink Base with shorter doors or custom face frame cutouts.</td>
+              </tr>
+              <tr>
+                <td className="py-4 px-4 sm:px-6 font-bold text-gray-900">Weight &amp; Structural Support</td>
+                <td className="py-4 px-4 sm:px-6 bg-blue-50/30">Lightweight to medium (stainless steel 15–30 lbs; composite granite 35–45 lbs). Supported by mechanical harness straps.</td>
+                <td className="py-4 px-4 sm:px-6 bg-amber-50/30 font-bold text-rose-700">Heavy (fireclay/cast iron 100–180 lbs empty, 300+ lbs full). Requires internal 2x4 timber cradle framing.</td>
+              </tr>
+              <tr>
+                <td className="py-4 px-4 sm:px-6 font-bold text-gray-900">Countertop Front Rail</td>
+                <td className="py-4 px-4 sm:px-6 bg-blue-50/30">Full 3.5&quot; to 4&quot; solid stone front rail between user and sink basin.</td>
+                <td className="py-4 px-4 sm:px-6 bg-amber-50/30 font-semibold text-emerald-700">Zero stone front rail; apron projects 1&quot; to 2&quot; forward for superior ergonomic access without leaning.</td>
+              </tr>
+              <tr>
+                <td className="py-4 px-4 sm:px-6 font-bold text-gray-900">Reveal Styles Possible</td>
+                <td className="py-4 px-4 sm:px-6 bg-blue-50/30">Positive (1/8&quot; ledge), Zero Flush, or Negative (1/8&quot; overhang).</td>
+                <td className="py-4 px-4 sm:px-6 bg-amber-50/30">Rear and side reveals only; front apron remains fully exposed.</td>
+              </tr>
+              <tr>
+                <td className="py-4 px-4 sm:px-6 font-bold text-gray-900">Installation Sequence</td>
+                <td className="py-4 px-4 sm:px-6 bg-blue-50/30">Countertop set first; sink clamped and strapped from underneath on installation day.</td>
+                <td className="py-4 px-4 sm:px-6 bg-amber-50/30 font-bold text-amber-800">Sink must be mounted and leveled on its 2x4 cradle BEFORE countertop template and installation.</td>
+              </tr>
+              <tr>
+                <td className="py-4 px-4 sm:px-6 font-bold text-gray-900">Countertop Usable Surface Area</td>
+                <td className="py-4 px-4 sm:px-6 bg-blue-50/30">Maximizes continuous stone area; great for prep and pastry rolling.</td>
+                <td className="py-4 px-4 sm:px-6 bg-amber-50/30">Slightly interrupts continuous front stone edge; creates bold architectural focal point.</td>
+              </tr>
+              <tr>
+                <td className="py-4 px-4 sm:px-6 font-bold text-gray-900">Popular Materials</td>
+                <td className="py-4 px-4 sm:px-6 bg-blue-50/30">16-gauge 304 Stainless Steel, Composite Granite (Silgranit), Fireclay undermount.</td>
+                <td className="py-4 px-4 sm:px-6 bg-amber-50/30">Glazed White Fireclay, Enameled Cast Iron, Hammered Copper, Stainless Steel.</td>
+              </tr>
+              <tr>
+                <td className="py-4 px-4 sm:px-6 font-bold text-gray-900">Best Metro Atlanta Architectural Fit</td>
+                <td className="py-4 px-4 sm:px-6 bg-blue-50/30">Modern luxury estates in Buckhead, transitional townhomes in Sandy Springs &amp; Dunwoody, Johns Creek golf communities.</td>
+                <td className="py-4 px-4 sm:px-6 bg-amber-50/30">Modern Farmhouse estates in Milton &amp; Alpharetta, classic Southern renovations in Roswell, Suwanee &amp; East Cobb.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        {/* Method 1: The 3 Cutout Reveal Styles */}
+        <h2 className="text-2xl sm:text-3xl font-serif text-primary mt-12 mb-6 font-bold pb-2 border-b border-gray-100">
+          Method 1: Mastering Undermount Sink Cutout Reveals (Positive, Zero &amp; Negative)
+        </h2>
+        <p className="text-gray-700 leading-relaxed mb-4">
+          When our CNC waterjet fabricates your sink opening at our Duluth facility, the stone edge can be aligned with the sink rim in three distinct ways. This specification is called the <strong>Sink Reveal</strong>.
+        </p>
+
+        <div className="space-y-6 my-8">
+          {/* Positive Reveal */}
+          <div className="bg-white rounded-2xl border-2 border-blue-100 p-6 sm:p-8 shadow-sm">
+            <div className="flex items-center gap-3 mb-3">
+              <span className="w-8 h-8 rounded-full bg-blue-600 text-white font-bold flex items-center justify-center text-sm">
+                A
+              </span>
+              <h3 className="text-xl font-bold text-gray-900 m-0">
+                Positive Reveal (1/8&quot; Exposed Sink Rim Shelf)
+              </h3>
+            </div>
+            <p className="text-sm text-gray-700 leading-relaxed mb-3">
+              In a positive reveal cutout, the stone opening is slightly larger than the sink basin. This leaves approximately 1/8 inch of the sink&apos;s upper rim exposed like a small shelf along the perimeter.
+            </p>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs mt-4">
+              <div className="bg-emerald-50/60 p-4 rounded-xl border border-emerald-200">
+                <strong className="text-emerald-950 block mb-1">Advantages:</strong>
+                <ul className="list-disc list-inside space-y-1 text-emerald-900 m-0">
+                  <li>Allows drop-in sink accessories like cutting boards and colanders to sit securely on the rim shelf.</li>
+                  <li>Less risk of chipping stone edges when lifting heavy pots, since the stainless rim protects the bottom stone corner.</li>
+                </ul>
+              </div>
+              <div className="bg-rose-50/60 p-4 rounded-xl border border-rose-200">
+                <strong className="text-rose-950 block mb-1">Disadvantages:</strong>
+                <ul className="list-disc list-inside space-y-1 text-rose-900 m-0">
+                  <li>The exposed 1/8&quot; ledge and silicone seam collect food crumbs and water drops that require toothbrush cleaning.</li>
+                  <li>You cannot wipe countertop spills directly into the basin without stopping at the rim lip.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          {/* Zero Flush Reveal */}
+          <div className="bg-white rounded-2xl border-2 border-emerald-200 p-6 sm:p-8 shadow-sm">
+            <div className="flex items-center gap-3 mb-3">
+              <span className="w-8 h-8 rounded-full bg-emerald-600 text-white font-bold flex items-center justify-center text-sm">
+                B
+              </span>
+              <h3 className="text-xl font-bold text-gray-900 m-0">
+                Zero Flush Reveal (Exact Stone-to-Basin Alignment)
+              </h3>
+            </div>
+            <p className="text-sm text-gray-700 leading-relaxed mb-3">
+              In a zero flush reveal, the polished edge of the stone countertop aligns perfectly with the vertical inner wall of the sink basin. There is no visible ledge and no stone overhang.
+            </p>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs mt-4">
+              <div className="bg-emerald-50/60 p-4 rounded-xl border border-emerald-200">
+                <strong className="text-emerald-950 block mb-1">Advantages:</strong>
+                <ul className="list-disc list-inside space-y-1 text-emerald-900 m-0">
+                  <li>Sleek, architectural appearance favored by interior designers across Alpharetta and Buckhead.</li>
+                  <li>Easiest reveal to clean with zero dirt-trapping ledges.</li>
+                  <li>Provides a direct vertical drop for water and sponges.</li>
+                </ul>
+              </div>
+              <div className="bg-amber-50/60 p-4 rounded-xl border border-amber-200">
+                <strong className="text-amber-950 block mb-1">Fabrication Requirement:</strong>
+                <p className="text-amber-900 m-0">
+                  Requires sub-millimeter CNC waterjet programming. The physical sink or factory CAD DXF file must be provided during templating so our machines match the basin&apos;s corner radius perfectly.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Negative Reveal */}
+          <div className="bg-white rounded-2xl border-2 border-indigo-100 p-6 sm:p-8 shadow-sm">
+            <div className="flex items-center gap-3 mb-3">
+              <span className="w-8 h-8 rounded-full bg-indigo-600 text-white font-bold flex items-center justify-center text-sm">
+                C
+              </span>
+              <h3 className="text-xl font-bold text-gray-900 m-0">
+                Negative Reveal (1/8&quot; Stone Overhang)
+              </h3>
+            </div>
+            <p className="text-sm text-gray-700 leading-relaxed mb-3">
+              In a negative reveal, the stone countertop extends approximately 1/8 inch beyond the inner rim of the sink basin, creating a slight overhang that completely conceals the silicone joint below.
+            </p>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs mt-4">
+              <div className="bg-emerald-50/60 p-4 rounded-xl border border-emerald-200">
+                <strong className="text-emerald-950 block mb-1">Advantages:</strong>
+                <ul className="list-disc list-inside space-y-1 text-emerald-900 m-0">
+                  <li>Ultimate crumb sweep: Wipe prep scraps directly from the quartz or granite into the sink with zero resistance.</li>
+                  <li>Silicone caulk seam is completely invisible from eye level.</li>
+                </ul>
+              </div>
+              <div className="bg-rose-50/60 p-4 rounded-xl border border-rose-200">
+                <strong className="text-rose-950 block mb-1">Watch-outs:</strong>
+                <ul className="list-disc list-inside space-y-1 text-rose-900 m-0">
+                  <li>The underside caulk joint can accumulate mildew if not periodically wiped clean from below.</li>
+                  <li>Lifting a heavy cast iron pan straight up can knock against the overhanging stone edge if you aren&apos;t careful.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Method 2: Undermount Securing & Harness Straps */}
+        <h2 className="text-2xl sm:text-3xl font-serif text-primary mt-12 mb-6 font-bold pb-2 border-b border-gray-100">
+          Method 2: How Undermount Sinks Are Structurally Anchored to 3cm Stone
+        </h2>
+        <p className="text-gray-700 leading-relaxed mb-4">
+          One of the biggest fears homeowners express is: <em>&quot;Can my undermount sink drop if I fill it with heavy pots and water?&quot;</em>
+        </p>
+        <p className="text-gray-700 leading-relaxed mb-4">
+          With improper installation, yes. Cheap contractors often glue aluminum clips to the underside of the stone with polyester resin and smear silicone around the rim. Over 3 to 5 years, water humidity and thermal expansion weaken the epoxy, causing the sink to detach and sag.
+        </p>
+
+        <div className="bg-gray-50 border border-gray-200 rounded-2xl p-6 sm:p-8 my-6">
+          <h3 className="text-lg font-bold text-gray-900 mb-4 flex items-center gap-2">
+            <span>🛡️</span> The AGS Stones Pro Installation Standard: Dual-System Anchoring
+          </h3>
+          <div className="space-y-4 text-sm text-gray-700">
+            <div className="flex items-start gap-4 p-4 bg-white rounded-xl border border-gray-200">
+              <span className="w-8 h-8 rounded-full bg-secondary text-white font-bold flex items-center justify-center shrink-0 text-xs">
+                1
+              </span>
+              <div>
+                <h4 className="font-bold text-gray-900 text-sm mb-1">Mechanical Cabinet-Wall Harness Straps</h4>
+                <p className="text-xs text-gray-600 m-0 leading-relaxed">
+                  We install heavy-gauge galvanized steel support straps (such as Sink UnderMounter or Hercules brackets) screwed directly into the solid wood sidewalls of your base cabinet. These straps cradle the entire weight of the sink from underneath, transferring load directly into the cabinet frame rather than pulling downward on the stone slab.
+                </p>
+              </div>
+            </div>
+
+            <div className="flex items-start gap-4 p-4 bg-white rounded-xl border border-gray-200">
+              <span className="w-8 h-8 rounded-full bg-secondary text-white font-bold flex items-center justify-center shrink-0 text-xs">
+                2
+              </span>
+              <div>
+                <h4 className="font-bold text-gray-900 text-sm mb-1">Slotted Mechanical Stone Anchors</h4>
+                <p className="text-xs text-gray-600 m-0 leading-relaxed">
+                  For wide 36&quot; workstation sinks, our installers cut precision T-slots or set threaded brass inserts on the underside of the 3cm stone with industrial two-part stone epoxy. Heavy steel wing-nut clips clamp the sink flange tight against the stone.
+                </p>
+              </div>
+            </div>
+
+            <div className="flex items-start gap-4 p-4 bg-white rounded-xl border border-gray-200">
+              <span className="w-8 h-8 rounded-full bg-secondary text-white font-bold flex items-center justify-center shrink-0 text-xs">
+                3
+              </span>
+              <div>
+                <h4 className="font-bold text-gray-900 text-sm mb-1">100% Neutral-Cure Mildew-Resistant RTV Silicone</h4>
+                <p className="text-xs text-gray-600 m-0 leading-relaxed">
+                  We apply a continuous 3/8&quot; bead of non-acidic, 100% silicone between the sink flange and the polished stone. Silicone acts as a flexible, permanent, watertight gasket that absorbs vibration from the garbage disposal without breaking its seal.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Method 3: Farmhouse 2x4 Cradle Framing */}
+        <h2 className="text-2xl sm:text-3xl font-serif text-primary mt-12 mb-6 font-bold pb-2 border-b border-gray-100">
+          Method 3: Farmhouse Apron Sinks — Framing the 2x4 Timber Cradle
+        </h2>
+        <p className="text-gray-700 leading-relaxed mb-4">
+          Farmhouse apron-front sinks made of fireclay or enameled cast iron (like Kohler Whitehaven or Bocchi fireclay) are architectural showstoppers. However, their structural reality is dramatic:
+        </p>
+
+        <div className="p-5 bg-rose-50 border border-rose-200 rounded-2xl my-4 text-rose-950 text-sm">
+          <strong className="block mb-1 font-bold">⚠️ Critical Structural Weight Calculation:</strong>
+          An empty 33-inch fireclay sink weighs between 110 and 160 pounds. Filled with 15 gallons of water (8.34 lbs per gallon = ~125 lbs) plus heavy cookware, the total operating weight exceeds <strong>275 to 300+ pounds</strong>! A stone countertop can NEVER bear this downward hanging weight. Farmhouse sinks must sit on an independent wooden structural cradle.
+        </div>
+
+        <div className="space-y-4 my-6">
+          <div className="p-5 bg-white border border-gray-200 rounded-2xl shadow-sm flex items-start gap-4">
+            <div className="w-10 h-10 rounded-full bg-primary text-white flex items-center justify-center font-bold shrink-0 text-sm">
+              01
+            </div>
+            <div>
+              <h4 className="font-bold text-gray-900 text-sm mb-1">Build 2x4 Timber Cleats on Cabinet Sidewalls</h4>
+              <p className="text-xs text-gray-600 m-0 leading-relaxed">
+                Fasten horizontal 2x4 structural timber cleats to the interior sidewalls of the sink base cabinet using 2.5&quot; cabinet screws. Ensure cleats are perfectly level across both sides using a 24&quot; digital level.
+              </p>
+            </div>
+          </div>
+
+          <div className="p-5 bg-white border border-gray-200 rounded-2xl shadow-sm flex items-start gap-4">
+            <div className="w-10 h-10 rounded-full bg-primary text-white flex items-center justify-center font-bold shrink-0 text-sm">
+              02
+            </div>
+            <div>
+              <h4 className="font-bold text-gray-900 text-sm mb-1">Cross-Brace with 2x4 Joists &amp; 3/4&quot; Plywood Deck</h4>
+              <p className="text-xs text-gray-600 m-0 leading-relaxed">
+                Span two or three 2x4 timber joists between the cleats, and top with a 3/4-inch exterior-grade plywood shelf. Cut a generous center hole in the plywood shelf to accommodate the sink drain and garbage disposal throat.
+              </p>
+            </div>
+          </div>
+
+          <div className="p-5 bg-white border border-gray-200 rounded-2xl shadow-sm flex items-start gap-4">
+            <div className="w-10 h-10 rounded-full bg-primary text-white flex items-center justify-center font-bold shrink-0 text-sm">
+              03
+            </div>
+            <div>
+              <h4 className="font-bold text-gray-900 text-sm mb-1">Set Sink Height 1/16&quot; Below Cabinet Top Edge</h4>
+              <p className="text-xs text-gray-600 m-0 leading-relaxed">
+                Position the sink on the cradle so its top rim sits approximately 1/16 inch below the top plane of the cabinet perimeter. This small micro-gap allows the quartz or granite slab to rest flat on the cabinet boxes without rocking on the sink rim, while high-grade silicone fills the sealed perimeter joint.
+              </p>
+            </div>
+          </div>
+
+          <div className="p-5 bg-white border border-gray-200 rounded-2xl shadow-sm flex items-start gap-4">
+            <div className="w-10 h-10 rounded-full bg-primary text-white flex items-center justify-center font-bold shrink-0 text-sm">
+              04
+            </div>
+            <div>
+              <h4 className="font-bold text-gray-900 text-sm mb-1">Digital Laser Scribing for Natural Fireclay Variances</h4>
+              <p className="text-xs text-gray-600 m-0 leading-relaxed">
+                Fireclay sinks shrink and warp slightly in the kiln during high-temperature baking. No two fireclay sinks are 100% identical or perfectly rectangular. That is why AGS Stones uses digital Proliner lasers to map the exact contours of your installed sink, ensuring our CNC saws cut the stone with a custom, glove-tight fit.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        {/* Method 4: Faucet & Accessory Holes */}
+        <h2 className="text-2xl sm:text-3xl font-serif text-primary mt-12 mb-6 font-bold pb-2 border-b border-gray-100">
+          Method 4: Drilling Faucet, Soap Dispenser &amp; Air Switch Holes in 3cm Stone
+        </h2>
+        <p className="text-gray-700 leading-relaxed mb-4">
+          Unlike drop-in sinks where faucet holes are pre-punched in stainless steel, undermount and farmhouse sinks require all plumbing access holes to be core-drilled directly through your 3cm granite or quartz slab.
+        </p>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 my-6">
+          <div className="bg-white p-6 rounded-2xl border border-gray-200 shadow-sm">
+            <span className="text-2xl mb-2 block">🚰</span>
+            <h4 className="font-bold text-gray-900 text-sm mb-1">Main Faucet Hole</h4>
+            <p className="text-xs text-gray-600 m-0 leading-relaxed">
+              Drilled with a 1-3/8&quot; (35mm) diamond water-cooled core bit centered behind the basin. On 3cm stone, back-splash clearance requires at least 2.5&quot; to 3&quot; of stone bridge between the sink cutout and the wall tile.
+            </p>
+          </div>
+
+          <div className="bg-white p-6 rounded-2xl border border-gray-200 shadow-sm">
+            <span className="text-2xl mb-2 block">🧴</span>
+            <h4 className="font-bold text-gray-900 text-sm mb-1">Soap Dispenser or RO Tap</h4>
+            <p className="text-xs text-gray-600 m-0 leading-relaxed">
+              Drilled 1-1/4&quot; in diameter, positioned 4&quot; to 6&quot; to the left or right of the faucet. We ensure the under-sink pump mechanism clears the sink basin flange underneath.
+            </p>
+          </div>
+
+          <div className="bg-white p-6 rounded-2xl border border-gray-200 shadow-sm">
+            <span className="text-2xl mb-2 block">🔘</span>
+            <h4 className="font-bold text-gray-900 text-sm mb-1">Air Switch Disposal Button</h4>
+            <p className="text-xs text-gray-600 m-0 leading-relaxed">
+              Drilled 1-3/8&quot; on the countertop surface, replacing ugly wall toggle switches with an elegant, water-safe pneumatic push button right beside your sink.
+            </p>
+          </div>
+        </div>
+
+        {/* Method 5: Basin Configurations */}
+        <h2 className="text-2xl sm:text-3xl font-serif text-primary mt-12 mb-6 font-bold pb-2 border-b border-gray-100">
+          Method 5: Single Large Basin vs. 50/50 Double Basin &amp; Workstations
+        </h2>
+        <p className="text-gray-700 leading-relaxed mb-4">
+          Beyond mounting style, basin configuration determines how functional your sink feels:
+        </p>
+
+        <div className="space-y-4 my-6">
+          <div className="p-5 bg-white border border-gray-200 rounded-2xl shadow-sm flex items-start gap-4">
+            <div className="w-10 h-10 rounded-full bg-secondary/10 flex items-center justify-center text-secondary font-bold shrink-0">
+              01
+            </div>
+            <div>
+              <h4 className="font-bold text-gray-900 text-sm mb-1">The 32&quot; Single Deep Basin (The Modern Standard)</h4>
+              <p className="text-xs text-gray-600 m-0 leading-relaxed">
+                Chosen by over 80% of our clients in Alpharetta, Suwanee, and Milton. A 30&quot; to 33&quot; single bowl allows you to lay full-size baking half-sheets, large Dutch ovens, and stockpots completely flat without water splashing over the divider.
+              </p>
+            </div>
+          </div>
+
+          <div className="p-5 bg-white border border-gray-200 rounded-2xl shadow-sm flex items-start gap-4">
+            <div className="w-10 h-10 rounded-full bg-secondary/10 flex items-center justify-center text-secondary font-bold shrink-0">
+              02
+            </div>
+            <div>
+              <h4 className="font-bold text-gray-900 text-sm mb-1">Workstation Sinks with Integrated Ledges</h4>
+              <p className="text-xs text-gray-600 m-0 leading-relaxed">
+                Featuring built-in sliding tiers for solid acacia or rich walnut cutting boards, roll-up stainless drying racks, and colanders. Workstation sinks turn your sink cutout into 3 additional square feet of prep space in compact kitchens.
+              </p>
+            </div>
+          </div>
+
+          <div className="p-5 bg-white border border-gray-200 rounded-2xl shadow-sm flex items-start gap-4">
+            <div className="w-10 h-10 rounded-full bg-secondary/10 flex items-center justify-center text-secondary font-bold shrink-0">
+              03
+            </div>
+            <div>
+              <h4 className="font-bold text-gray-900 text-sm mb-1">60/40 Low-Divide (Smart Divide) Basins</h4>
+              <p className="text-xs text-gray-600 m-0 leading-relaxed">
+                If you still prefer dual compartments for washing on one side and drying on the other, opt for a low-divide basin where the center wall is only 4&quot; tall. Pot handles easily fit across the divider without sacrificing dual-zone convenience.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        {/* Method 6: Metro Atlanta Neighborhoods & Showroom */}
+        <h2 className="text-2xl sm:text-3xl font-serif text-primary mt-12 mb-6 font-bold pb-2 border-b border-gray-100">
+          Method 6: See Sinks &amp; Stone Cutouts in Person at Our Duluth Showroom
+        </h2>
+        <p className="text-gray-700 leading-relaxed mb-6">
+          At <Link href="/" className="text-secondary font-semibold hover:underline">AGS Stones &amp; Cabinets</Link>, our climate-controlled stone showroom and fabrication facility in Duluth features complete kitchen displays showcasing both undermount and farmhouse sink cutouts paired with custom cabinetry:
+        </p>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 my-6">
+          <div className="bg-white p-6 rounded-2xl border border-gray-200 shadow-sm">
+            <span className="text-2xl mb-2 block">🔍</span>
+            <h4 className="font-bold text-gray-900 text-sm mb-2">Inspect Reveal Precision</h4>
+            <p className="text-xs text-gray-600 m-0 leading-relaxed">
+              Examine true Zero Flush and Negative reveals on polished quartz and leathered granite up close. Run your fingers over the smooth CNC edge polish.
+            </p>
+          </div>
+          <div className="bg-white p-6 rounded-2xl border border-gray-200 shadow-sm">
+            <span className="text-2xl mb-2 block">🪵</span>
+            <h4 className="font-bold text-gray-900 text-sm mb-2">Cabinet &amp; Apron Integration</h4>
+            <p className="text-xs text-gray-600 m-0 leading-relaxed">
+              See how our solid wood apron-front sink base cabinets accommodate heavy fireclay basins with clean, factory-finished reveal lines.
+            </p>
+          </div>
+          <div className="bg-white p-6 rounded-2xl border border-gray-200 shadow-sm">
+            <span className="text-2xl mb-2 block">⚡</span>
+            <h4 className="font-bold text-gray-900 text-sm mb-2">Turnkey 5-Day Installation</h4>
+            <p className="text-xs text-gray-600 m-0 leading-relaxed">
+              Our single-source team coordinates your cabinets, digital laser templating, CNC stone fabrication, sink harness mounting, and faucet drilling from start to finish.
+            </p>
+          </div>
+        </div>
+
+        {/* Call to action card */}
+        <div className="bg-gradient-to-r from-primary to-slate-900 text-white rounded-3xl p-8 sm:p-10 my-10 shadow-2xl flex flex-col md:flex-row items-center justify-between gap-6">
+          <div className="max-w-xl">
+            <span className="text-secondary font-bold text-xs uppercase tracking-widest block mb-2">AGS Stones &amp; Cabinets • Factory-Direct Fabrication</span>
+            <h4 className="text-2xl font-serif font-bold mb-2">Planning a Sink &amp; Countertop Upgrade?</h4>
+            <p className="text-gray-300 text-sm mb-0">
+              Visit our Duluth, GA slab showroom at 4579 Abbotts Bridge Rd Suite -10 or claim your free in-home digital laser estimate. Our stone and cabinet experts will ensure your sink and countertops fit with millimeter perfection!
+            </p>
+          </div>
+          <div className="flex flex-col sm:flex-row gap-3 w-full md:w-auto flex-shrink-0">
+            <Link 
+              href="/promo" 
+              className="bg-secondary text-white font-bold text-xs uppercase tracking-wider px-7 py-4 rounded-xl hover:bg-white hover:text-primary transition-all text-center shadow-lg"
+            >
+              Get Free Estimate
+            </Link>
+            <Link 
+              href="/showroom" 
+              className="bg-white/10 hover:bg-white/20 text-white font-bold text-xs uppercase tracking-wider px-6 py-4 rounded-xl transition-all text-center border border-white/20"
+            >
+              Visit Showroom
+            </Link>
+          </div>
+        </div>
+      </>
+    )
   }
 };
+
 
 
