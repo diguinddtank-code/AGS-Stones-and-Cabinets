@@ -4769,8 +4769,418 @@ export const blogContent: Record<string, BlogPost> = {
         </div>
       </>
     )
+  },
+  'waterfall-countertop-island-guide': {
+    slug: 'waterfall-countertop-island-guide',
+    title: 'Waterfall Countertop Island Guide: How 45° Mitered Edges Work, Vein Cascading, Support & Costs',
+    badge: 'WIKIHOW & DESIGN GUIDE',
+    badgeType: 'wikihow',
+    category: 'Design & Trends',
+    date: 'October 29, 2026',
+    modifiedDate: 'October 29, 2026',
+    author: 'AGS Stones Fabrication Team',
+    authorRole: 'Master CNC Stone Fabricators & Island Architecture Specialists',
+    readTime: '11 min read',
+    image: '/images/blog/waterfall-countertop-island-guide.jpg',
+    alt: 'Illustrated wikiHow guide to waterfall kitchen island countertops: 45-degree precision miter joint cut, continuous vein cascading, concealed steel brackets, and floor expansion gap',
+    excerpt: 'Thinking about a waterfall island for your kitchen remodel? Learn how 45-degree mitered edges are cut on CNC saws, how quartz and marble veins cascade seamlessly to the floor, structural steel sub-countertop support, barstool seating overhangs, and real Atlanta fabrication costs in this illustrated step-by-step homeowner guide.',
+    keyTakeaways: [
+      'A waterfall countertop island extends the stone vertically down one or both sides to the floor, connected by a 45-degree precision miter joint bonded with color-matched knife-grade epoxy.',
+      'Vein flow continuity requires bookmatched or consecutively numbered slabs from the same bundle; master CNC saws cut adjacent horizontal and vertical pieces from a single continuous stone sequence.',
+      'Waterfall legs require a 2mm to 3mm flexible silicone expansion gap at the finished floor to protect the stone from subfloor deflection, foundation settling, and mopping moisture.',
+      'Barstool seating on a waterfall island requires recessed 1/4-inch structural steel L-brackets or flat steel support bars concealed under the overhang to prevent tipping and eliminate bulky corbels.',
+      'Adding a waterfall edge typically costs $1,200 to $2,500 per vertical drop in Metro Atlanta (including extra slab footage, 45° CNC miter cuts, hand-polishing, and structural floor leveling).'
+    ],
+    faqs: [
+      {
+        q: 'How much extra does a waterfall edge cost on a kitchen island in Atlanta?',
+        a: 'In Metro Atlanta, a single waterfall leg typically adds $1,200 to $2,500 to your total project cost. This covers the additional 12 to 18 square feet of stone slab material, precision 45-degree CNC bridge saw miter cutting, hand-edge honing and polishing, color-matched epoxy seam blending, and structural floor anchoring. When buying factory-direct from our Duluth shop, you avoid middleman markup.'
+      },
+      {
+        q: 'Can you have barstool seating on an island with waterfall edges?',
+        a: 'Yes! You can have waterfall legs on both ends while maintaining a 12-to-15-inch seating overhang along the back side. The corner where the vertical waterfall leg meets the seating overhang is reinforced with internal 1/4-inch structural steel L-brackets or a return panel to ensure rigid lateral stability and prevent rocking.'
+      },
+      {
+        q: 'What is the difference between a 45-degree mitered edge and a butt joint waterfall?',
+        a: 'A 45-degree miter joint cuts both the horizontal top and vertical drop at opposing 45-degree angles, creating a razor-thin, seamless seam where the stone pattern wraps organically around the corner. A butt joint (cheaper shortcut) places the vertical slab flat underneath the horizontal edge, leaving an exposed 90-degree seam line that visibly interrupts the vein flow.'
+      },
+      {
+        q: 'Does a waterfall countertop protect kitchen cabinets from damage?',
+        a: 'Yes. Waterfall stone panels completely shield the ends of your island cabinetry from pet claws, vacuum cleaner scuffs, grocery bag bumps, and children kicking their shoes. They also provide a sleek visual screen that conceals dishwasher sides or trash pullout reveals from open-concept living rooms.'
+      },
+      {
+        q: 'Which stone materials work best for waterfall countertops?',
+        a: 'Engineered quartz with bold Calacatta veining (like Calacatta Gold or Laza), natural quartzite (such as Taj Mahal or Mont Blanc), and Italian marble are the top choices because their dramatic flowing veins create a striking cascading waterfall effect. Solid or fine-grain stones can be used, but dramatic veining showcases the artisan miter craftsmanship best.'
+      }
+    ],
+    content: (
+      <>
+        {/* Intro Banner */}
+        <div className="bg-gradient-to-r from-slate-900 to-primary text-white p-6 sm:p-8 rounded-3xl my-6 shadow-xl border border-white/10">
+          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+            <div>
+              <span className="text-secondary font-bold text-xs uppercase tracking-widest block mb-1">
+                WikiHow Master Kitchen Island Architecture Guide
+              </span>
+              <h3 className="text-xl sm:text-2xl font-serif font-bold text-white mb-2">
+                The Anatomy of a Waterfall Countertop Island: Precision Miters &amp; Vein Flow
+              </h3>
+              <p className="text-gray-300 text-xs sm:text-sm leading-relaxed mb-0">
+                A waterfall countertop—where stone drops vertically down the side of a kitchen island all the way to the floor—has become the crown jewel of modern and transitional homes across Buckhead, Alpharetta, Milton, and Sandy Springs. But behind that effortless, flowing beauty lies complex stone engineering, sub-millimeter CNC cutting, and hidden structural reinforcement.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        {/* Quick Rule of Thumb Box */}
+        <div className="bg-amber-50 border-2 border-amber-200 rounded-3xl p-6 sm:p-8 my-8 text-amber-950 shadow-sm">
+          <h3 className="text-xl font-bold font-serif text-amber-900 mb-3 flex items-center gap-2">
+            <span>⚡</span> Quick Rule of Thumb for Homeowners
+          </h3>
+          <ul className="space-y-3 text-sm leading-relaxed m-0 list-disc list-inside">
+            <li>
+              <strong>Always Demand a 45-Degree Miter Joint:</strong> Never accept a flat &quot;butt joint&quot; on a waterfall edge. A true 45° miter allows dramatic veins in Calacatta quartz or quartzite to cascade organically down the corner without an awkward horizontal seam line.
+            </li>
+            <li>
+              <strong>Reserve Enough Slab Square Footage:</strong> A standard 36-inch tall island waterfall leg requires an additional 12 to 18 square feet of stone per side. Most waterfall islands require two or three consecutively numbered slabs from the same stone bundle to ensure exact vein flow matching.
+            </li>
+            <li>
+              <strong>Incorporate a Floor Expansion Joint:</strong> Stone expands and contracts differently than hardwood or tile. A 2mm to 3mm flexible silicone joint at the floor prevents floor settling stress from cracking your vertical stone leg.
+            </li>
+          </ul>
+        </div>
+
+        {/* Side-by-Side Comparison Matrix */}
+        <h2 className="text-2xl sm:text-3xl font-serif text-primary mt-12 mb-6 font-bold pb-2 border-b border-gray-100">
+          Waterfall Island vs. Traditional Overhang Island: Side-by-Side Breakdown
+        </h2>
+        <p className="text-gray-700 leading-relaxed mb-6">
+          To help you determine whether a waterfall edge fits your lifestyle, budget, and layout, here is how a waterfall island compares to a traditional finished-wood end panel:
+        </p>
+
+        <div className="overflow-x-auto my-6 border border-gray-200 rounded-2xl shadow-sm bg-white">
+          <table className="w-full text-left text-xs sm:text-sm">
+            <thead className="bg-gray-100 text-gray-800 uppercase font-bold text-[11px] tracking-wider border-b border-gray-200">
+              <tr>
+                <th className="py-4 px-4 sm:px-6">Design &amp; Structural Factor</th>
+                <th className="py-4 px-4 sm:px-6 bg-blue-50/70 text-blue-900">1. Waterfall Island (45° Mitered)</th>
+                <th className="py-4 px-4 sm:px-6 bg-slate-50 text-slate-900">2. Traditional Island (1.5&quot; Overhang)</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-gray-200 text-gray-700">
+              <tr>
+                <td className="py-4 px-4 sm:px-6 font-bold text-gray-900">Visual Impact &amp; Luxury Vibe</td>
+                <td className="py-4 px-4 sm:px-6 bg-blue-50/30 font-semibold text-emerald-700">High-end architectural focal point; continuous vein cascade makes kitchen feel custom-built.</td>
+                <td className="py-4 px-4 sm:px-6 bg-slate-50/30">Classic, timeless look; showcases custom cabinet end panels and Shaker millwork.</td>
+              </tr>
+              <tr>
+                <td className="py-4 px-4 sm:px-6 font-bold text-gray-900">Cabinet End Protection</td>
+                <td className="py-4 px-4 sm:px-6 bg-blue-50/30 font-semibold text-emerald-700">100% impenetrable stone barrier against pet claws, vacuum scuffs, and foot kicks.</td>
+                <td className="py-4 px-4 sm:px-6 bg-slate-50/30 text-rose-700">Painted or stained wood end panels are vulnerable to scratches and moisture damage over time.</td>
+              </tr>
+              <tr>
+                <td className="py-4 px-4 sm:px-6 font-bold text-gray-900">Corner Seam Geometry</td>
+                <td className="py-4 px-4 sm:px-6 bg-blue-50/30">Precision 45-degree miter cut with color-matched epoxy adhesive (0.5mm hairline joint).</td>
+                <td className="py-4 px-4 sm:px-6 bg-slate-50/30">Standard polished edge profile (Eased, Demi-Bullnose, Ogee) with 1.5&quot; overhang past cabinet.</td>
+              </tr>
+              <tr>
+                <td className="py-4 px-4 sm:px-6 font-bold text-gray-900">Stone Material Required</td>
+                <td className="py-4 px-4 sm:px-6 bg-blue-50/30 font-bold text-amber-800">Requires 2 to 3 slabs from consecutive lot bundles to ensure continuous grain matching.</td>
+                <td className="py-4 px-4 sm:px-6 bg-slate-50/30">Requires only 1 to 2 slabs depending on overall island length and width.</td>
+              </tr>
+              <tr>
+                <td className="py-4 px-4 sm:px-6 font-bold text-gray-900">Electrical Outlets Placement</td>
+                <td className="py-4 px-4 sm:px-6 bg-blue-50/30">Requires low-profile pop-up countertop grommets or under-counter apron plug strips (Plugmold).</td>
+                <td className="py-4 px-4 sm:px-6 bg-slate-50/30">Standard junction box easily cut into the wood side panel of the cabinet.</td>
+              </tr>
+              <tr>
+                <td className="py-4 px-4 sm:px-6 font-bold text-gray-900">Added Investment</td>
+                <td className="py-4 px-4 sm:px-6 bg-blue-50/30 font-bold text-primary">+$1,200 to +$2,500 per leg (includes material, CNC miter labor, polishing &amp; floor anchoring).</td>
+                <td className="py-4 px-4 sm:px-6 bg-slate-50/30">Standard base pricing with zero additional waterfall fabrication charges.</td>
+              </tr>
+              <tr>
+                <td className="py-4 px-4 sm:px-6 font-bold text-gray-900">Best Architectural Fit</td>
+                <td className="py-4 px-4 sm:px-6 bg-blue-50/30">Modern luxury estates, European transitional, open-concept floorplans in Buckhead &amp; Alpharetta.</td>
+                <td className="py-4 px-4 sm:px-6 bg-slate-50/30">Traditional colonial, craftsman bungalows, classic farmhouse kitchens in Roswell &amp; Marietta.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        {/* Method 1: Precision 45-Degree Miter Joint */}
+        <h2 className="text-2xl sm:text-3xl font-serif text-primary mt-12 mb-6 font-bold pb-2 border-b border-gray-100">
+          Method 1: The Anatomy of a 45-Degree Precision Miter Joint
+        </h2>
+        <p className="text-gray-700 leading-relaxed mb-4">
+          The difference between a luxury, magazine-worthy waterfall island and a botched installation comes down to how the horizontal countertop connects to the vertical side drop:
+        </p>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 my-6">
+          <div className="bg-emerald-50/60 border border-emerald-200 rounded-2xl p-6">
+            <h4 className="font-bold text-emerald-950 text-base mb-3 flex items-center gap-2">
+              <span className="text-emerald-600 font-bold">✓</span> The Master Standard: 45° Miter Joint
+            </h4>
+            <p className="text-xs sm:text-sm text-emerald-900 leading-relaxed mb-3">
+              Both the horizontal countertop slab and the vertical waterfall panel are beveled at an exact 45-degree angle using 5-axis CNC bridge saws. When joined, they form a crisp 90-degree corner with an almost invisible 0.5mm seam.
+            </p>
+            <ul className="space-y-1.5 text-xs text-emerald-900 m-0">
+              <li><strong>Vein Preservation:</strong> The veining cascades uninterrupted over the bevel edge.</li>
+              <li><strong>Color-Matched Epoxy:</strong> Master fabricators hand-tint clear acrylic or knife-grade epoxy to match the background mineral colors.</li>
+              <li><strong>Micro-Chamfer:</strong> The sharp tip is subtly softened with a 1/16&quot; micro-bevel to prevent chipping.</li>
+            </ul>
+          </div>
+
+          <div className="bg-rose-50/60 border border-rose-200 rounded-2xl p-6">
+            <h4 className="font-bold text-rose-950 text-base mb-3 flex items-center gap-2">
+              <span className="text-rose-600 font-bold">✗</span> The Cheap Shortcut: 90° Butt Joint
+            </h4>
+            <p className="text-xs sm:text-sm text-rose-900 leading-relaxed mb-3">
+              Inexperienced fabricators often take a flat slab and butt it directly under the horizontal overhang. This is a telltale sign of cut-rate fabrication that ruins the look of expensive stone.
+            </p>
+            <ul className="space-y-1.5 text-xs text-rose-900 m-0">
+              <li><strong>Disrupted Veins:</strong> Creates an abrupt, disjointed seam line where veins terminate unnaturally.</li>
+              <li><strong>Exposed Edge Profile:</strong> The top edge of the vertical slab is exposed to moisture and dirt.</li>
+              <li><strong>Cheap Resale Perception:</strong> Home inspectors and luxury buyers in Atlanta recognize this as an amateur shortcut.</li>
+            </ul>
+          </div>
+        </div>
+
+        {/* Method 2: Vein Cascading & Bookmatching */}
+        <h2 className="text-2xl sm:text-3xl font-serif text-primary mt-12 mb-6 font-bold pb-2 border-b border-gray-100">
+          Method 2: How We Cascade Veins Across the Island Corner
+        </h2>
+        <p className="text-gray-700 leading-relaxed mb-4">
+          When clients walk into our Duluth showroom and gaze at a Calacatta Gold waterfall island, the most common exclamation is: <em>&quot;How does the vein wrap around the corner like real flowing liquid?&quot;</em>
+        </p>
+
+        <p className="text-gray-700 leading-relaxed mb-4">
+          This effect is achieved through rigorous mathematical layout and digital laser mapping:
+        </p>
+
+        <div className="space-y-4 my-6">
+          <div className="p-5 bg-white border border-gray-200 rounded-2xl shadow-sm flex items-start gap-4">
+            <div className="w-10 h-10 rounded-full bg-secondary/10 flex items-center justify-center text-secondary font-bold shrink-0">
+              01
+            </div>
+            <div>
+              <h4 className="font-bold text-gray-900 text-sm mb-1">Consecutive Bundle Slabs or True Bookmatching</h4>
+              <p className="text-xs text-gray-600 m-0 leading-relaxed">
+                When stone slabs are sliced from a quarry block (like bread in a bakery), they are numbered consecutively. In natural stone (quartzite and marble), slab #12 and slab #13 share near-identical mineral deposits. For engineered quartz, manufacturers create mirror-image &quot;Bookmatched A and B&quot; slabs specifically designed for seamless waterfall applications.
+              </p>
+            </div>
+          </div>
+
+          <div className="p-5 bg-white border border-gray-200 rounded-2xl shadow-sm flex items-start gap-4">
+            <div className="w-10 h-10 rounded-full bg-secondary/10 flex items-center justify-center text-secondary font-bold shrink-0">
+              02
+            </div>
+            <div>
+              <h4 className="font-bold text-gray-900 text-sm mb-1">Single Continuous Slab Cut (When Island Length Permits)</h4>
+              <p className="text-xs text-gray-600 m-0 leading-relaxed">
+                If your island is 8 feet long (96 inches) and our jumbo quartz slab is 130 inches long, we can cut the horizontal top AND the vertical waterfall leg from the <strong>exact same continuous piece of stone</strong>. The saw cuts the 45° angle, and the vertical piece literally folds downward 90 degrees with 100% molecular vein perfection!
+              </p>
+            </div>
+          </div>
+
+          <div className="p-5 bg-white border border-gray-200 rounded-2xl shadow-sm flex items-start gap-4">
+            <div className="w-10 h-10 rounded-full bg-secondary/10 flex items-center justify-center text-secondary font-bold shrink-0">
+              03
+            </div>
+            <div>
+              <h4 className="font-bold text-gray-900 text-sm mb-1">Digital Laser CAD Layout Before Any Saws Touch Stone</h4>
+              <p className="text-xs text-gray-600 m-0 leading-relaxed">
+                At AGS Stones, our laser templaters digitize your island cabinets in your home, then import the 3D DXF model into our Slabsmith visualization software. You can see a photo-realistic 3D rendering of your exact slabs showing how every vein will cascade down the waterfall before a single diamond blade spins.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        {/* Method 3: Sub-Countertop Support & Floor Expansion */}
+        <h2 className="text-2xl sm:text-3xl font-serif text-primary mt-12 mb-6 font-bold pb-2 border-b border-gray-100">
+          Method 3: Sub-Countertop Structural Support &amp; Floor Expansion Gaps
+        </h2>
+        <p className="text-gray-700 leading-relaxed mb-4">
+          A solid 3cm quartz or granite waterfall panel weighs between 180 and 260 pounds. It cannot simply &quot;lean&quot; against the side of a cabinet box.
+        </p>
+
+        <div className="bg-gray-50 border border-gray-200 rounded-2xl p-6 sm:p-8 my-6">
+          <h3 className="text-lg font-bold text-gray-900 mb-4 flex items-center gap-2">
+            <span>🛡️</span> AGS Stones Structural Installation Protocol
+          </h3>
+          <div className="space-y-4 text-sm text-gray-700">
+            <div className="flex items-start gap-4 p-4 bg-white rounded-xl border border-gray-200">
+              <span className="w-8 h-8 rounded-full bg-primary text-white font-bold flex items-center justify-center shrink-0 text-xs">
+                A
+              </span>
+              <div>
+                <h4 className="font-bold text-gray-900 text-sm mb-1">Cabinet Sub-Base Anchoring &amp; Leveling</h4>
+                <p className="text-xs text-gray-600 m-0 leading-relaxed">
+                  Before the vertical stone panel is mounted, our team verifies that the island cabinetry is anchored into the concrete slab or floor joists with zero wobble. A cabinet that shifts even 1/16 of an inch will shear the miter epoxy joint.
+                </p>
+              </div>
+            </div>
+
+            <div className="flex items-start gap-4 p-4 bg-white rounded-xl border border-gray-200">
+              <span className="w-8 h-8 rounded-full bg-primary text-white font-bold flex items-center justify-center shrink-0 text-xs">
+                B
+              </span>
+              <div>
+                <h4 className="font-bold text-gray-900 text-sm mb-1">Concealed 1/4&quot; Structural Steel Corner Brackets</h4>
+                <p className="text-xs text-gray-600 m-0 leading-relaxed">
+                  Inside the cabinet corner, we install heavy-gauge 1/4-inch powder-coated steel L-brackets bolted through the cabinet carcass into the stone backing. This locks the vertical leg and horizontal slab in an indestructible 90-degree mechanical vise.
+                </p>
+              </div>
+            </div>
+
+            <div className="flex items-start gap-4 p-4 bg-white rounded-xl border border-gray-200">
+              <span className="w-8 h-8 rounded-full bg-primary text-white font-bold flex items-center justify-center shrink-0 text-xs">
+                C
+              </span>
+              <div>
+                <h4 className="font-bold text-gray-900 text-sm mb-1">2mm to 3mm Floor Expansion Gap (Never Direct Contact)</h4>
+                <p className="text-xs text-gray-600 m-0 leading-relaxed">
+                  The bottom edge of the waterfall panel must never press directly into tile or hardwood flooring. Our installers place non-compressible composite shims to leave a precise 2mm to 3mm expansion gap, which is sealed with color-matched 100% silicone. This prevents floor moisture from wicking upward and absorbs seasonal subfloor expansion without cracking the stone.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Method 4: Seating Overhangs & Electrical Outlets */}
+        <h2 className="text-2xl sm:text-3xl font-serif text-primary mt-12 mb-6 font-bold pb-2 border-b border-gray-100">
+          Method 4: Integrating Barstool Seating &amp; Outlets with Waterfall Edges
+        </h2>
+        <p className="text-gray-700 leading-relaxed mb-4">
+          Two questions puzzle homeowners most when planning a waterfall island: <em>&quot;Where do people sit?&quot;</em> and <em>&quot;Where do the electrical outlets go to meet Georgia building code?&quot;</em>
+        </p>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 my-6">
+          <div className="bg-white p-6 rounded-2xl border border-gray-200 shadow-sm">
+            <span className="text-2xl mb-2 block">🪑</span>
+            <h4 className="font-bold text-gray-900 text-base mb-2">Barstool Overhang with Waterfall Ends</h4>
+            <p className="text-xs sm:text-sm text-gray-600 leading-relaxed mb-3">
+              You can easily incorporate a 12-to-15-inch seating overhang along the long side of the island. To do this, we extend the waterfall side legs past the cabinet boxes, creating a stunning &quot;framed stone alcove&quot; where barstools tuck away neatly.
+            </p>
+            <p className="text-xs text-amber-900 bg-amber-50 p-3 rounded-xl m-0 font-medium">
+              <strong>Engineering Note:</strong> When an overhang exceeds 10 inches on 3cm stone, we rout and recess flat 1/2-inch structural steel support plates into the top of the cabinet sub-frame, keeping the stone 100% cantilevered without bulky knee-banging wooden corbels.
+            </p>
+          </div>
+
+          <div className="bg-white p-6 rounded-2xl border border-gray-200 shadow-sm">
+            <span className="text-2xl mb-2 block">🔌</span>
+            <h4 className="font-bold text-gray-900 text-base mb-2">Georgia Electrical Code &amp; Outlets</h4>
+            <p className="text-xs sm:text-sm text-gray-600 leading-relaxed mb-3">
+              National and Georgia electrical codes (NEC) require at least one electrical receptacle on a kitchen island. Cutting an ugly plastic outlet faceplate through the center of a gorgeous waterfall stone leg is a huge design mistake!
+            </p>
+            <div className="space-y-2 text-xs text-gray-700">
+              <div className="p-2.5 bg-gray-50 rounded-lg border border-gray-100">
+                <strong>Option 1: Pop-Up Countertop Grommets:</strong> Flush-mounted circular brass or black outlets that pop up when pressed and seal waterproof when retracted.
+              </div>
+              <div className="p-2.5 bg-gray-50 rounded-lg border border-gray-100">
+                <strong>Option 2: Under-Cabinet Plugmold Strips:</strong> Angled multi-outlet strips tucked discreetly beneath the 1.5&quot; overhang on the seating side.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Method 5: Cost Calculation */}
+        <h2 className="text-2xl sm:text-3xl font-serif text-primary mt-12 mb-6 font-bold pb-2 border-b border-gray-100">
+          Method 5: How Much Does a Waterfall Edge Add to Remodel Costs?
+        </h2>
+        <p className="text-gray-700 leading-relaxed mb-4">
+          Because AGS Stones is a factory-direct fabricator with our own CNC machinery in Duluth, our pricing is completely transparent without retail designer commissions:
+        </p>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 my-6 text-center">
+          <div className="bg-white p-6 rounded-2xl border border-gray-200 shadow-sm">
+            <span className="text-xs uppercase font-bold tracking-wider text-gray-400 block mb-1">Stone Material</span>
+            <h4 className="text-lg font-bold text-primary mb-2">Additional Slab Footage</h4>
+            <p className="text-2xl font-serif font-bold text-secondary mb-2">$500 – $1,200</p>
+            <p className="text-xs text-gray-600 m-0">
+              Each 36&quot; x 36&quot; or 36&quot; x 42&quot; waterfall leg uses 10 to 14 sq ft of stone. Often requires purchasing a 2nd or 3rd matching bundle slab.
+            </p>
+          </div>
+
+          <div className="bg-white p-6 rounded-2xl border border-gray-200 shadow-sm">
+            <span className="text-xs uppercase font-bold tracking-wider text-gray-400 block mb-1">CNC Fabrication</span>
+            <h4 className="text-lg font-bold text-primary mb-2">45° Miter &amp; Edge Polish</h4>
+            <p className="text-2xl font-serif font-bold text-secondary mb-2">$500 – $900</p>
+            <p className="text-xs text-gray-600 m-0">
+              Covers 5-axis CNC diamond saw bevel cutting, hand seam grinding, and color-matched epoxy blending by master artisans.
+            </p>
+          </div>
+
+          <div className="bg-white p-6 rounded-2xl border border-gray-200 shadow-sm">
+            <span className="text-xs uppercase font-bold tracking-wider text-gray-400 block mb-1">Installation &amp; Structural</span>
+            <h4 className="text-lg font-bold text-primary mb-2">Floor Anchoring &amp; Leveling</h4>
+            <p className="text-2xl font-serif font-bold text-secondary mb-2">$200 – $400</p>
+            <p className="text-xs text-gray-600 m-0">
+              Includes concealed steel L-brackets, subfloor anchors, composite shims, and anti-vibration silicone expansion seal.
+            </p>
+          </div>
+        </div>
+
+        {/* Method 6: Metro Atlanta Neighborhoods & Showroom */}
+        <h2 className="text-2xl sm:text-3xl font-serif text-primary mt-12 mb-6 font-bold pb-2 border-b border-gray-100">
+          Method 6: See Full-Scale Waterfall Islands in Our Duluth Showroom
+        </h2>
+        <p className="text-gray-700 leading-relaxed mb-6">
+          Photos on social media cannot convey the tactile grandeur of a perfectly mitered stone waterfall. At <Link href="/" className="text-secondary font-semibold hover:underline">AGS Stones &amp; Cabinets</Link>, our showroom at 4579 Abbotts Bridge Rd Suite -10 in Duluth features full-size operating kitchen islands with live waterfall displays:
+        </p>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 my-6">
+          <div className="bg-white p-6 rounded-2xl border border-gray-200 shadow-sm">
+            <span className="text-2xl mb-2 block">🔬</span>
+            <h4 className="font-bold text-gray-900 text-sm mb-2">The Hairline Seam Test</h4>
+            <p className="text-xs text-gray-600 m-0 leading-relaxed">
+              Run your hand directly across our 45-degree miter joints. Experience how our CNC saws and custom epoxy color matching create a joint smoother than a sheet of glass.
+            </p>
+          </div>
+          <div className="bg-white p-6 rounded-2xl border border-gray-200 shadow-sm">
+            <span className="text-2xl mb-2 block">🪨</span>
+            <h4 className="font-bold text-gray-900 text-sm mb-2">Hand-Select Your Jumbo Slabs</h4>
+            <p className="text-xs text-gray-600 m-0 leading-relaxed">
+              Walk our slab gallery to inspect Calacatta quartz, Taj Mahal quartzite, and exotic granites. We will tag consecutive bookmatched slabs reserved specifically for your home.
+            </p>
+          </div>
+          <div className="bg-white p-6 rounded-2xl border border-gray-200 shadow-sm">
+            <span className="text-2xl mb-2 block">⚡</span>
+            <h4 className="font-bold text-gray-900 text-sm mb-2">Guaranteed 5-Day Installation</h4>
+            <p className="text-xs text-gray-600 m-0 leading-relaxed">
+              From our digital laser templating appointment to final delivery and miter assembly in your home, our standard turnaround is just 5 business days!
+            </p>
+          </div>
+        </div>
+
+        {/* Call to action card */}
+        <div className="bg-gradient-to-r from-primary to-slate-900 text-white rounded-3xl p-8 sm:p-10 my-10 shadow-2xl flex flex-col md:flex-row items-center justify-between gap-6">
+          <div className="max-w-xl">
+            <span className="text-secondary font-bold text-xs uppercase tracking-widest block mb-2">AGS Stones &amp; Cabinets • Factory-Direct Fabrication</span>
+            <h4 className="text-2xl font-serif font-bold mb-2">Ready to Design Your Dream Waterfall Island?</h4>
+            <p className="text-gray-300 text-sm mb-0">
+              Visit our Duluth, GA showroom or request an instant free digital laser estimate. Our stone artisans and 3D designers will map out your waterfall island with millimeter precision!
+            </p>
+          </div>
+          <div className="flex flex-col sm:flex-row gap-3 w-full md:w-auto flex-shrink-0">
+            <Link 
+              href="/promo" 
+              className="bg-secondary text-white font-bold text-xs uppercase tracking-wider px-7 py-4 rounded-xl hover:bg-white hover:text-primary transition-all text-center shadow-lg"
+            >
+              Get Free Estimate
+            </Link>
+            <Link 
+              href="/showroom" 
+              className="bg-white/10 hover:bg-white/20 text-white font-bold text-xs uppercase tracking-wider px-6 py-4 rounded-xl transition-all text-center border border-white/20"
+            >
+              Visit Showroom
+            </Link>
+          </div>
+        </div>
+      </>
+    )
   }
 };
+
 
 
 
