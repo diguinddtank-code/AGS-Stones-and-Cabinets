@@ -5178,8 +5178,843 @@ export const blogContent: Record<string, BlogPost> = {
         </div>
       </>
     )
+  },
+  'full-height-slab-backsplash-vs-tile-guide': {
+    slug: 'full-height-slab-backsplash-vs-tile-guide',
+    title: 'Full-Height Slab Backsplash vs. Tile: Quartz Behind Gas Stove Heat, Outlet Cutouts & Cost Guide',
+    badge: 'WIKIHOW & DESIGN GUIDE',
+    badgeType: 'wikihow',
+    category: 'Design & Trends',
+    date: 'November 2, 2026',
+    modifiedDate: 'November 2, 2026',
+    author: 'AGS Stones Fabrication Team',
+    authorRole: 'Master Stone Fabricators & Backsplash Specialists',
+    readTime: '10 min read',
+    image: '/images/blog/full-height-slab-backsplash-vs-tile-guide.jpg',
+    alt: 'Illustrated wikiHow guide comparing full-height quartz slab backsplash vs tile: continuous vertical stone, gas range heat clearance guidelines, CNC waterjet outlet cutouts, and wall adhesive leveling',
+    excerpt: 'Thinking about a continuous full-height quartz or granite slab backsplash instead of subway tile? Learn how solid stone slabs perform behind high-BTU gas stoves, electrical outlet CNC waterjet cutouts, wall leveling requirements, seam matching behind range hoods, and real Atlanta installation costs in this illustrated step-by-step homeowner guide.',
+    keyTakeaways: [
+      'Full-height quartz or granite slab backsplashes run seamlessly from countertop to upper cabinets or ceiling, eliminating 100% of greasy grout lines.',
+      'High-BTU commercial gas ranges (Thermador, Wolf, Viking) generate intense convective heat that can yellow resin in engineered quartz if closer than 10 inches; best practice is installing a 10-inch stainless steel backguard, natural granite/quartzite section, or keeping manufacturer-recommended clearances.',
+      'Electrical outlets require sub-millimeter precision CNC waterjet cutouts and NEC-approved electrical box extenders so switches and receptacles mount completely flush with 2cm or 3cm stone slabs.',
+      'Wall prep requires strict levelness: wavy drywall must be skimmed or planed flat before heavy vertical stone slabs (weighing 10–18 lbs/sqft) are bonded with structural mastic adhesive and color-matched silicone.',
+      'In Metro Atlanta (Buckhead, Alpharetta, Milton, Sandy Springs, Johns Creek), full slab backsplashes cost between $65 and $125 per square foot installed, delivering dramatic luxury resale value compared to traditional ceramic tile.'
+    ],
+    faqs: [
+      {
+        q: 'Can you put an engineered quartz slab backsplash directly behind a gas stove?',
+        a: 'Yes, provided proper heat clearances are maintained. Standard electric or induction cooktops generate zero open flame and are 100% safe with quartz backsplashes. However, high-BTU commercial-style gas burners (Wolf, Thermador, Viking) push intense heat toward the rear wall. If your gas range sits less than 2 to 3 inches from the wall without a rear riser, continuous 400°F+ burner heat can cause thermal yellowing of the polymer resins in quartz. We recommend installing the appliance manufacturer\'s 5-to-10-inch stainless steel backguard riser, selecting natural heat-proof quartzite/granite behind the cooktop, or leaving recommended clearance.'
+      },
+      {
+        q: 'Is 2cm or 3cm stone thickness better for a full-height kitchen backsplash?',
+        a: '2cm (approximately 3/4 inch) is the worldwide industry favorite for full-height wall backsplashes. It weighs about 33% less than 3cm stone (approx. 11 lbs/sqft vs. 17 lbs/sqft), rests flush behind standard window casings and upper cabinet under-light moldings, and places significantly less gravitational strain on drywall studs. However, if your kitchen uses 3cm countertops and there is leftover slab material, 3cm can also be installed with appropriate wall backing support.'
+      },
+      {
+        q: 'How are electrical outlets and light switches cut into a solid stone backsplash?',
+        a: 'Unlike tile where installers snip small notches on-site with hand nippers, a solid slab backsplash requires digital laser templating of every outlet location. In our Duluth fabrication shop, high-pressure 5-axis CNC waterjets slice razor-clean rectangular cutouts through the stone. During installation, licensed electricians or our installers add plastic box extenders (caterpillars or Arlington extenders) so receptacle screws tighten flush against the stone surface.'
+      },
+      {
+        q: 'How much does a full-height quartz slab backsplash cost installed in Atlanta?',
+        a: 'In Metro Atlanta, a full-height stone backsplash ranges from $65 to $125 per square foot fully installed. For an average 30-square-foot backsplash area, expect an investment of $2,000 to $3,800. While this is higher than basic $10–$25/sqft subway tile, it eliminates expensive tile contractor labor, saves 3 to 4 days of multi-step tile setting and grouting, and creates an uninterrupted luxury aesthetic that substantially boosts home appraisal value.'
+      },
+      {
+        q: 'What happens if my kitchen drywall walls are bowed or uneven?',
+        a: 'Unlike tiny 3x6-inch subway tiles that can flex across bumpy drywall, a rigid 9-foot continuous stone slab cannot bend. Before installation, our digital laser scans verify wall plumb. Any severe drywall hollows or high studs are shimmed, planed, or skim-coated flat. This ensures the stone slab bonds uniformly with heavy-duty structural adhesive without air voids or stress points.'
+      }
+    ],
+    content: (
+      <>
+        {/* Intro Banner */}
+        <div className="bg-gradient-to-r from-slate-900 to-primary text-white p-6 sm:p-8 rounded-3xl my-6 shadow-xl border border-white/10">
+          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+            <div>
+              <span className="text-secondary font-bold text-xs uppercase tracking-widest block mb-1">
+                WikiHow Master Stone Backsplash &amp; Wall Cladding Guide
+              </span>
+              <h3 className="text-xl sm:text-2xl font-serif font-bold text-white mb-2">
+                Full-Height Slab Backsplash vs. Tile: The Zero-Grout Luxury Transformation
+              </h3>
+              <p className="text-gray-300 text-xs sm:text-sm leading-relaxed mb-0">
+                In high-end kitchen remodels across Buckhead, Alpharetta, Milton, and Johns Creek, the traditional 4-inch stone strip or subway tile backsplash is rapidly being replaced by <strong>continuous full-height stone slabs</strong>. Carrying your quartz, quartzite, or granite straight up from the countertop to the underside of the upper cabinets or range hood creates a clean, monolithic European look. But before you fabricate, understanding heat clearances, outlet cutouts, and wall prep is essential.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        {/* Quick Decision Infographic Box */}
+        <div className="bg-amber-50 border-2 border-amber-200 rounded-3xl p-6 sm:p-8 my-8 text-amber-950 shadow-sm">
+          <h3 className="text-xl font-bold font-serif text-amber-900 mb-3 flex items-center gap-2">
+            <span>⚡</span> Quick Rule of Thumb for Homeowners
+          </h3>
+          <ul className="space-y-3 text-sm leading-relaxed m-0 list-disc list-inside">
+            <li>
+              <strong>Choose Full-Height Slab Backsplash:</strong> If you despise scrubbing greasy tomato sauce and curry oils out of porous grout lines, love uninterrupted vein matching, and want a dramatic high-end architectural statement.
+            </li>
+            <li>
+              <strong>Pay Attention to High-BTU Gas Ranges:</strong> If your kitchen features a powerful 18,000+ BTU gas cooktop (Wolf, Viking, Thermador), ensure at least 2.5&quot; to 3&quot; of clearance between rear burners and quartz stone, or incorporate a stainless steel heat shield riser to protect engineered resins from thermal shock.
+            </li>
+            <li>
+              <strong>Plan Electrical Locations During Templating:</strong> Because diamond waterjets cut your slab in our Duluth factory, electrical boxes cannot be moved after the stone is cut. Finalize all under-cabinet plug strips or outlet positions before templating day.
+            </li>
+          </ul>
+        </div>
+
+        {/* Comparison Matrix Table */}
+        <h2 className="text-2xl sm:text-3xl font-serif text-primary mt-12 mb-6 font-bold pb-2 border-b border-gray-100">
+          Full-Height Stone Slab vs. Traditional Tile Backsplash: Side-by-Side Breakdown
+        </h2>
+        <p className="text-gray-700 leading-relaxed mb-6">
+          Before deciding between a solid stone slab or traditional ceramic tile, examine how both materials compare across daily maintenance, cooking hygiene, aesthetics, and total project timeline:
+        </p>
+
+        <div className="overflow-x-auto my-6 border border-gray-200 rounded-2xl shadow-sm bg-white">
+          <table className="w-full text-left text-xs sm:text-sm">
+            <thead className="bg-gray-100 text-gray-800 uppercase font-bold text-[11px] tracking-wider border-b border-gray-200">
+              <tr>
+                <th className="py-4 px-4 sm:px-6">Performance Factor</th>
+                <th className="py-4 px-4 sm:px-6 bg-blue-50/70 text-blue-900">1. Full-Height Stone Slab</th>
+                <th className="py-4 px-4 sm:px-6 bg-slate-50 text-slate-900">2. Traditional Ceramic / Subway Tile</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-gray-200 text-gray-700">
+              <tr>
+                <td className="py-4 px-4 sm:px-6 font-bold text-gray-900">Grout Lines &amp; Cleaning</td>
+                <td className="py-4 px-4 sm:px-6 bg-blue-50/30 font-bold text-emerald-700">Zero grout lines. Single swipe with a damp microfiber cloth removes grease splatters instantly.</td>
+                <td className="py-4 px-4 sm:px-6 bg-slate-50/30 text-rose-700">Hundreds of porous grout lines that absorb cooking oil, grease, and smoke stains requiring regular tooth-brush scrubbing and annual sealing.</td>
+              </tr>
+              <tr>
+                <td className="py-4 px-4 sm:px-6 font-bold text-gray-900">Aesthetic Impact</td>
+                <td className="py-4 px-4 sm:px-6 bg-blue-50/30 font-semibold text-emerald-700">Dramatic luxury focal point. Calacatta or Taj Mahal veins climb vertically up the wall behind the range hood.</td>
+                <td className="py-4 px-4 sm:px-6 bg-slate-50/30">Classic, familiar look; can feel visually busy or fragmented in open-concept transitional kitchens.</td>
+              </tr>
+              <tr>
+                <td className="py-4 px-4 sm:px-6 font-bold text-gray-900">High-Heat Tolerance Behind Gas Range</td>
+                <td className="py-4 px-4 sm:px-6 bg-blue-50/30">Granite/Quartzite: 100% heat-proof. Quartz: Requires 10&quot; stainless riser or proper clearance from 18,000+ BTU gas burners.</td>
+                <td className="py-4 px-4 sm:px-6 bg-slate-50/30 font-semibold text-emerald-700">Ceramic and porcelain tiles withstand open heat easily, though grout seams near burners can discolor.</td>
+              </tr>
+              <tr>
+                <td className="py-4 px-4 sm:px-6 font-bold text-gray-900">Installation Turnaround</td>
+                <td className="py-4 px-4 sm:px-6 bg-blue-50/30 font-semibold text-emerald-700">Installed in just 2 to 3 hours alongside countertops by our AGS single-source team. Ready for use next day.</td>
+                <td className="py-4 px-4 sm:px-6 bg-slate-50/30 text-amber-800">Requires separate tile sub-contractor: day 1 setting tile, day 2 drying, day 3 grouting, day 4 caulking and sealing.</td>
+              </tr>
+              <tr>
+                <td className="py-4 px-4 sm:px-6 font-bold text-gray-900">Electrical Outlet Finish</td>
+                <td className="py-4 px-4 sm:px-6 bg-blue-50/30">Precision CNC waterjet cuts in factory; box extenders create perfectly flush luxury switchplates.</td>
+                <td className="py-4 px-4 sm:px-6 bg-slate-50/30">Cut on-site with manual wet tile saw; edges can be jagged or chip behind cover plates.</td>
+              </tr>
+              <tr>
+                <td className="py-4 px-4 sm:px-6 font-bold text-gray-900">Installed Cost Range (Atlanta)</td>
+                <td className="py-4 px-4 sm:px-6 bg-blue-50/30 font-bold text-primary">$65 – $125 / sq ft installed (inclusive of stone slab, CNC cutouts, edge polishing, adhesive &amp; labor).</td>
+                <td className="py-4 px-4 sm:px-6 bg-slate-50/30">$25 – $55 / sq ft total ($10–$20 tile + $15–$35 tile contractor installation &amp; grouting labor).</td>
+              </tr>
+              <tr>
+                <td className="py-4 px-4 sm:px-6 font-bold text-gray-900">Best Architectural Fit</td>
+                <td className="py-4 px-4 sm:px-6 bg-blue-50/30">Modern farmhouse, European transitional, luxury contemporary estates in Buckhead, Milton &amp; Alpharetta.</td>
+                <td className="py-4 px-4 sm:px-6 bg-slate-50/30">Traditional colonial, craftsman cottages, historic bungalow renovations in Decatur &amp; Marietta.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        {/* Method 1: Heat Clearance Behind Gas Stoves */}
+        <h2 className="text-2xl sm:text-3xl font-serif text-primary mt-12 mb-6 font-bold pb-2 border-b border-gray-100">
+          Method 1: The Gas Stove Heat Clearance Rule (Protecting Quartz Resin)
+        </h2>
+        <p className="text-gray-700 leading-relaxed mb-4">
+          The single most critical question homeowners ask when planning a full stone backsplash is: <em>&quot;Will the heat from my gas stove damage a quartz slab backsplash?&quot;</em>
+        </p>
+
+        <p className="text-gray-700 leading-relaxed mb-4">
+          The answer depends entirely on your cooktop technology and stone material:
+        </p>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 my-6">
+          <div className="bg-amber-50/70 border border-amber-300 rounded-2xl p-6">
+            <h4 className="font-bold text-amber-950 text-base mb-3 flex items-center gap-2">
+              <span>🔥</span> Commercial Gas Burners vs. Quartz
+            </h4>
+            <p className="text-xs sm:text-sm text-amber-900 leading-relaxed mb-3">
+              Engineered quartz consists of 90–93% natural crushed quartz stone and 7–10% polymeric resins. While quartz handles normal cooking with ease, heavy-duty commercial gas ranges (such as Thermador, Wolf, BlueStar, or Viking) output up to 20,000 to 25,000 BTUs per burner.
+            </p>
+            <p className="text-xs sm:text-sm text-amber-900 leading-relaxed m-0">
+              When a large stockpot sits on a rear gas burner, convective flames channel concentrated heat directly against the rear wall. Continuous temperatures above 300°F (150°C) can cause polymer resin scorching, micro-cracking, or yellow discoloration.
+            </p>
+          </div>
+
+          <div className="bg-emerald-50/70 border border-emerald-300 rounded-2xl p-6">
+            <h4 className="font-bold text-emerald-950 text-base mb-3 flex items-center gap-2">
+              <span className="text-emerald-600 font-bold">✓</span> 3 Pro Solutions for Gas Stoves
+            </h4>
+            <ul className="space-y-2 text-xs sm:text-sm text-emerald-900 m-0">
+              <li>
+                <strong>1. Stainless Steel Heat Riser Backguard:</strong> Install the range manufacturer&apos;s matching 5&quot; to 10&quot; stainless steel island trim or backguard riser directly behind the burners before the quartz slab begins.
+              </li>
+              <li>
+                <strong>2. Natural Granite or Quartzite:</strong> Unlike engineered quartz, 100% natural stones like Taj Mahal quartzite, Mont Blanc, or Absolute Black granite were formed under volcanic heat and are immune to flame scorching.
+              </li>
+              <li>
+                <strong>3. Induction Cooktops:</strong> Induction ranges generate heat magnetically inside the pan only, producing zero wasted ambient flame heat and making them 100% safe for seamless quartz backsplashes.
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        {/* Method 2: Electrical Outlets Precision Waterjet Cutouts */}
+        <h2 className="text-2xl sm:text-3xl font-serif text-primary mt-12 mb-6 font-bold pb-2 border-b border-gray-100">
+          Method 2: Electrical Outlets &amp; Box Extenders in 2cm/3cm Stone
+        </h2>
+        <p className="text-gray-700 leading-relaxed mb-4">
+          A standard kitchen wall contains 4 to 8 electrical duplex outlets, GFCIs, and under-cabinet light switches. On a tile backsplash, workers use pliers and hand grinders. On a 10-foot solid stone slab, cutting errors cannot be patched!
+        </p>
+
+        <div className="space-y-4 my-6">
+          <div className="p-5 bg-white border border-gray-200 rounded-2xl shadow-sm flex items-start gap-4">
+            <div className="w-10 h-10 rounded-full bg-secondary/10 flex items-center justify-center text-secondary font-bold shrink-0">
+              01
+            </div>
+            <div>
+              <h4 className="font-bold text-gray-900 text-sm mb-1">Sub-Millimeter Digital Laser Templating</h4>
+              <p className="text-xs text-gray-600 m-0 leading-relaxed">
+                During our digital templating appointment in your home, our Proliner laser maps the exact X, Y, and Z coordinates of every electrical rough-in box to within 1/16th of an inch.
+              </p>
+            </div>
+          </div>
+
+          <div className="p-5 bg-white border border-gray-200 rounded-2xl shadow-sm flex items-start gap-4">
+            <div className="w-10 h-10 rounded-full bg-secondary/10 flex items-center justify-center text-secondary font-bold shrink-0">
+              02
+            </div>
+            <div>
+              <h4 className="font-bold text-gray-900 text-sm mb-1">CNC Waterjet Cutting in Our Duluth Factory</h4>
+              <p className="text-xs text-gray-600 m-0 leading-relaxed">
+                Back in our Duluth fabrication shop, our 60,000-PSI abrasive CNC waterjet slices clean, perfectly rectangular rectangular outlet ports with smooth micro-beveled inner edges. Zero hand-chipping, zero jagged edges.
+              </p>
+            </div>
+          </div>
+
+          <div className="p-5 bg-white border border-gray-200 rounded-2xl shadow-sm flex items-start gap-4">
+            <div className="w-10 h-10 rounded-full bg-secondary/10 flex items-center justify-center text-secondary font-bold shrink-0">
+              03
+            </div>
+            <div>
+              <h4 className="font-bold text-gray-900 text-sm mb-1">NEC-Compliant Electrical Box Extenders</h4>
+              <p className="text-xs text-gray-600 m-0 leading-relaxed">
+                National Electrical Code (NEC 314.20) mandates that electrical boxes must not be set back more than 1/4 inch from non-combustible surfaces. Because 2cm or 3cm stone adds 3/4&quot; to 1-1/4&quot; of wall depth, we supply UL-listed box extenders (such as Arlington BE1 or Caterpillar shims). The outlet mounts rock-solid and flush with your finished stone face.
+              </p>
+            </div>
+          </div>
+
+          <div className="p-5 bg-white border border-gray-200 rounded-2xl shadow-sm flex items-start gap-4">
+            <div className="w-10 h-10 rounded-full bg-secondary/10 flex items-center justify-center text-secondary font-bold shrink-0">
+              04
+            </div>
+            <div>
+              <h4 className="font-bold text-gray-900 text-sm mb-1">The Invisible Alternative: Under-Cabinet Plugmold Strips</h4>
+              <p className="text-xs text-gray-600 m-0 leading-relaxed">
+                For the purest architectural look in modern Alpharetta and Buckhead kitchens, we frequently recommend having your electrician wire angled multi-outlet strips (Plugmold) tucked underneath the upper cabinet light valance. This leaves your solid Calacatta quartz wall completely seamless with zero outlet cutouts interrupting the veining!
+              </p>
+            </div>
+          </div>
+        </div>
+
+        {/* Method 3: Wall Preparation & Adhesive Bonding */}
+        <h2 className="text-2xl sm:text-3xl font-serif text-primary mt-12 mb-6 font-bold pb-2 border-b border-gray-100">
+          Method 3: Wall Flatness, Drywall Prep &amp; Structural Bonding
+        </h2>
+        <p className="text-gray-700 leading-relaxed mb-4">
+          A full-height quartz slab measuring 9 feet long by 18 inches tall weighs between 130 and 190 pounds. Installing stone vertically requires rigorous wall preparation:
+        </p>
+
+        <div className="bg-gray-50 border border-gray-200 rounded-2xl p-6 sm:p-8 my-6">
+          <h3 className="text-lg font-bold text-gray-900 mb-4 flex items-center gap-2">
+            <span>📐</span> The AGS Stones Wall Preparation Protocol
+          </h3>
+          <div className="space-y-4 text-sm text-gray-700">
+            <div className="flex items-start gap-4 p-4 bg-white rounded-xl border border-gray-200">
+              <span className="w-8 h-8 rounded-full bg-primary text-white font-bold flex items-center justify-center shrink-0 text-xs">
+                A
+              </span>
+              <div>
+                <h4 className="font-bold text-gray-900 text-sm mb-1">Laser Wall Flatness Inspection</h4>
+                <p className="text-xs text-gray-600 m-0 leading-relaxed">
+                  Walls in Georgia homes are rarely 100% plumb. Drywall mud buildup, warped 2x4 studs, and corner tape can bow outward by 1/4 inch or more. A rigid stone slab will rock or leave unsightly gaps if placed against an uneven wall. Our laser mapping flags all drywall hollows so they can be skimmed or shimmed flat before installation day.
+                </p>
+              </div>
+            </div>
+
+            <div className="flex items-start gap-4 p-4 bg-white rounded-xl border border-gray-200">
+              <span className="w-8 h-8 rounded-full bg-primary text-white font-bold flex items-center justify-center shrink-0 text-xs">
+                B
+              </span>
+              <div>
+                <h4 className="font-bold text-gray-900 text-sm mb-1">Full-Coverage Structural Mastic &amp; Epoxy Dabs</h4>
+                <p className="text-xs text-gray-600 m-0 leading-relaxed">
+                  We apply heavy vertical beads of non-sagging, high-bond polyurethane construction adhesive (like Bostik or Liquid Nails Heavy Duty) spaced 4 to 6 inches apart, combined with fast-setting two-part stone epoxy dabs. This provides immediate mechanical grab while the permanent elastic adhesive cures.
+                </p>
+              </div>
+            </div>
+
+            <div className="flex items-start gap-4 p-4 bg-white rounded-xl border border-gray-200">
+              <span className="w-8 h-8 rounded-full bg-primary text-white font-bold flex items-center justify-center shrink-0 text-xs">
+                C
+              </span>
+              <div>
+                <h4 className="font-bold text-gray-900 text-sm mb-1">Countertop-to-Backsplash Expansion Joint</h4>
+                <p className="text-xs text-gray-600 m-0 leading-relaxed">
+                  Where the horizontal countertop slab meets the vertical backsplash, we leave a micro 1/16-inch expansion gap sealed with 100% neutral-cure silicone color-matched to your stone. This flexible gasket accommodates building settling and seismic vibration without cracking the stone joint.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Method 4: 2cm vs 3cm Slab Thickness for Backsplashes */}
+        <h2 className="text-2xl sm:text-3xl font-serif text-primary mt-12 mb-6 font-bold pb-2 border-b border-gray-100">
+          Method 4: Should You Choose 2cm or 3cm for a Wall Slab?
+        </h2>
+        <p className="text-gray-700 leading-relaxed mb-4">
+          While 3cm (1-1/4&quot;) is the universal standard for kitchen countertops in the Southeastern United States, wall backsplashes have unique dimensional requirements:
+        </p>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 my-6">
+          <div className="bg-white p-6 rounded-2xl border border-gray-200 shadow-sm">
+            <span className="text-xs uppercase font-bold tracking-wider text-secondary block mb-1">The European Wall Standard</span>
+            <h4 className="text-lg font-bold text-primary mb-2">2cm (3/4&quot;) Slab Thickness</h4>
+            <ul className="space-y-2 text-xs text-gray-600 m-0 leading-relaxed">
+              <li><strong>33% Lighter Weight:</strong> Weighs ~11 lbs/sqft compared to ~17 lbs/sqft for 3cm stone, placing minimal stress on drywall fasteners.</li>
+              <li><strong>Slimmer Profile:</strong> Tucks neatly behind standard window trim casings and under-cabinet under-lighting light rails without protruding past cabinet faces.</li>
+              <li><strong>Easier Electrical Integration:</strong> Standard electrical outlet box screws easily reach standard wall boxes.</li>
+            </ul>
+          </div>
+
+          <div className="bg-white p-6 rounded-2xl border border-gray-200 shadow-sm">
+            <span className="text-xs uppercase font-bold tracking-wider text-primary block mb-1">Cost-Saving Remnant Option</span>
+            <h4 className="text-lg font-bold text-primary mb-2">3cm (1-1/4&quot;) Slab Thickness</h4>
+            <ul className="space-y-2 text-xs text-gray-600 m-0 leading-relaxed">
+              <li><strong>Zero Waste from Island/Perimeter Slabs:</strong> If your countertop order has leftover stone footage on a 3cm jumbo slab, using it for the backsplash saves purchasing an entire separate 2cm slab!</li>
+              <li><strong>Identical Edge &amp; Vein Thickness:</strong> Provides a continuous, monolithic look with substantial depth along exposed ends.</li>
+              <li><strong>Requires Deep Window Sills:</strong> May require notch-cutting around window trim or custom end-cap returns.</li>
+            </ul>
+          </div>
+        </div>
+
+        {/* Method 5: Cost Calculation */}
+        <h2 className="text-2xl sm:text-3xl font-serif text-primary mt-12 mb-6 font-bold pb-2 border-b border-gray-100">
+          Method 5: Cost Breakdown — Full Slab Backsplash vs. Tile in Atlanta
+        </h2>
+        <p className="text-gray-700 leading-relaxed mb-4">
+          Because AGS Stones is a factory-direct fabricator with our own CNC waterjets in Duluth, we offer transparent pricing with zero middleman contractor markups:
+        </p>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 my-6 text-center">
+          <div className="bg-white p-6 rounded-2xl border border-gray-200 shadow-sm">
+            <span className="text-xs uppercase font-bold tracking-wider text-gray-400 block mb-1">Material Investment</span>
+            <h4 className="text-lg font-bold text-primary mb-2">Stone Slab Footage</h4>
+            <p className="text-2xl font-serif font-bold text-secondary mb-2">$35 – $65 / sqft</p>
+            <p className="text-xs text-gray-600 m-0">
+              Covers premium Calacatta quartz, Taj Mahal quartzite, or natural granite. Remnants from countertop slabs can drastically lower this cost!
+            </p>
+          </div>
+
+          <div className="bg-white p-6 rounded-2xl border border-gray-200 shadow-sm">
+            <span className="text-xs uppercase font-bold tracking-wider text-gray-400 block mb-1">CNC Fabrication</span>
+            <h4 className="text-lg font-bold text-primary mb-2">Waterjet &amp; Edge Polish</h4>
+            <p className="text-2xl font-serif font-bold text-secondary mb-2">$20 – $35 / sqft</p>
+            <p className="text-xs text-gray-600 m-0">
+              Includes 5-axis CNC waterjet cutting, outlet rectangular ports, range hood seam bookmatching, and polished perimeter edges.
+            </p>
+          </div>
+
+          <div className="bg-white p-6 rounded-2xl border border-gray-200 shadow-sm">
+            <span className="text-xs uppercase font-bold tracking-wider text-gray-400 block mb-1">Single-Source Turnkey</span>
+            <h4 className="text-lg font-bold text-primary mb-2">Vertical Wall Installation</h4>
+            <p className="text-2xl font-serif font-bold text-secondary mb-2">$15 – $25 / sqft</p>
+            <p className="text-xs text-gray-600 m-0">
+              Covers wall laser leveling, high-strength structural mastic bonding, box extender fitting, and silicone expansion joint sealing.
+            </p>
+          </div>
+        </div>
+
+        {/* Method 6: Metro Atlanta Neighborhoods & Showroom */}
+        <h2 className="text-2xl sm:text-3xl font-serif text-primary mt-12 mb-6 font-bold pb-2 border-b border-gray-100">
+          Method 6: See Full-Height Backsplash Displays in Our Duluth Showroom
+        </h2>
+        <p className="text-gray-700 leading-relaxed mb-6">
+          Photos cannot capture how light glances across an uninterrupted 10-foot polished stone wall. At <Link href="/" className="text-secondary font-semibold hover:underline">AGS Stones &amp; Cabinets</Link>, our showroom at 4579 Abbotts Bridge Rd Suite -10 in Duluth features full-size kitchen displays with live full-height slab backsplashes:
+        </p>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 my-6">
+          <div className="bg-white p-6 rounded-2xl border border-gray-200 shadow-sm">
+            <span className="text-2xl mb-2 block">🔍</span>
+            <h4 className="font-bold text-gray-900 text-sm mb-2">Inspect Outlet Precision</h4>
+            <p className="text-xs text-gray-600 m-0 leading-relaxed">
+              Examine our flush-mounted electrical cutouts and see how Plugmold under-cabinet strips keep stone surfaces completely pristine.
+            </p>
+          </div>
+          <div className="bg-white p-6 rounded-2xl border border-gray-200 shadow-sm">
+            <span className="text-2xl mb-2 block">🎨</span>
+            <h4 className="font-bold text-gray-900 text-sm mb-2">Pair with Custom Cabinets</h4>
+            <p className="text-xs text-gray-600 m-0 leading-relaxed">
+              Hold cabinet door samples (white Shaker, fluted oak, or painted navy) directly against full-size quartz slabs to verify tone and contrast.
+            </p>
+          </div>
+          <div className="bg-white p-6 rounded-2xl border border-gray-200 shadow-sm">
+            <span className="text-2xl mb-2 block">⚡</span>
+            <h4 className="font-bold text-gray-900 text-sm mb-2">Fast 5-Day Turnaround</h4>
+            <p className="text-xs text-gray-600 m-0 leading-relaxed">
+              From our digital laser templating appointment to final delivery and installation in your home, our standard turnaround is just 5 business days!
+            </p>
+          </div>
+        </div>
+
+        {/* Call to action card */}
+        <div className="bg-gradient-to-r from-primary to-slate-900 text-white rounded-3xl p-8 sm:p-10 my-10 shadow-2xl flex flex-col md:flex-row items-center justify-between gap-6">
+          <div className="max-w-xl">
+            <span className="text-secondary font-bold text-xs uppercase tracking-widest block mb-2">AGS Stones &amp; Cabinets • Factory-Direct Fabrication</span>
+            <h4 className="text-2xl font-serif font-bold mb-2">Ready to Upgrade to a Seamless Stone Backsplash?</h4>
+            <p className="text-gray-300 text-sm mb-0">
+              Visit our Duluth, GA showroom or request an instant free digital laser estimate. Our stone specialists and 3D designers will map out your countertops and full-height backsplash with sub-millimeter perfection!
+            </p>
+          </div>
+          <div className="flex flex-col sm:flex-row gap-3 w-full md:w-auto flex-shrink-0">
+            <Link 
+              href="/promo" 
+              className="bg-secondary text-white font-bold text-xs uppercase tracking-wider px-7 py-4 rounded-xl hover:bg-white hover:text-primary transition-all text-center shadow-lg"
+            >
+              Get Free Estimate
+            </Link>
+            <Link 
+              href="/showroom" 
+              className="bg-white/10 hover:bg-white/20 text-white font-bold text-xs uppercase tracking-wider px-6 py-4 rounded-xl transition-all text-center border border-white/20"
+            >
+              Visit Showroom
+            </Link>
+          </div>
+        </div>
+      </>
+    )
+  },
+  'best-countertops-for-outdoor-kitchens-guide': {
+    slug: 'best-countertops-for-outdoor-kitchens-guide',
+    title: 'Best Countertops for Outdoor Kitchens: Granite vs. Quartzite vs. Quartz (UV Sunlight, Grill Cutouts & Georgia Climate)',
+    badge: 'WIKIHOW & BUYER\'S GUIDE',
+    badgeType: 'wikihow',
+    category: 'Outdoor & Guides',
+    date: 'November 7, 2026',
+    modifiedDate: 'November 7, 2026',
+    author: 'AGS Stones Outdoor Living Team',
+    authorRole: 'Master Stone Fabricators & BBQ Island Specialists',
+    readTime: '10 min read',
+    image: '/images/blog/best-countertops-for-outdoor-kitchens-guide.jpg',
+    alt: 'Illustrated wikiHow guide to outdoor kitchen countertops: UV resistance of natural granite vs quartz yellowing, built-in gas grill heat jacket cutout, leathered weather-resistant finish, and patio barstool overhang framing',
+    excerpt: 'Designing an outdoor kitchen or patio BBQ island in Metro Atlanta? Discover why indoor quartz fails under Georgia UV sun, why leathered natural granite and quartzite reign supreme, how to properly insulate built-in gas grill cutouts with stainless liners, and real fabrication costs in this illustrated step-by-step homeowner guide.',
+    keyTakeaways: [
+      'Standard indoor engineered quartz should NEVER be installed in an open-air outdoor kitchen; direct Georgia ultraviolet (UV) sunlight degrades and yellows the polymer resins within 12 to 24 months, voiding manufacturer warranties.',
+      'Natural granite and natural quartzite are 100% UV-stable and heat-impervious, having been forged under extreme volcanic heat and subterranean pressure millions of years ago.',
+      'A leathered (textured/brushed) stone finish is the gold standard for outdoor kitchens: it hides Georgia yellow pine pollen, morning dew, fingerprints, and BBQ grease splatters far better than high-gloss polished surfaces.',
+      'Built-in gas grills reaching 800°F+ require an insulated stainless steel jacket (heat liner) and a 1-inch thermal expansion air gap inside the stone cutout to prevent catastrophic thermal stress cracking.',
+      'In Metro Atlanta (Milton, Alpharetta, Suwanee, Johns Creek, Buckhead, Lake Lanier), outdoor granite countertop fabrication costs between $50 and $95 per square foot installed, with heavy-duty exterior penetrating sealers protecting against winter freeze-thaw cycles.'
+    ],
+    faqs: [
+      {
+        q: 'Can you use engineered quartz countertops in an outdoor kitchen in Georgia?',
+        a: 'Standard indoor quartz should never be used outdoors in Georgia. The 7% to 10% polymer acrylic resin binders that give quartz its flexibility are not UV-stable; under intense Southern summer sunlight (UV Index 9+), indoor quartz will turn yellow, fade unevenly, and warp. Only specialized exterior-rated quartz formulas (such as Caesarstone Solaris or Silestone Sunlit Days) are engineered for outdoor use. For 95% of Georgia outdoor kitchens, natural granite or quartzite is more durable and costs 30% less.'
+      },
+      {
+        q: 'What is the best countertop finish for an outdoor patio BBQ kitchen: polished, honed, or leathered?',
+        a: 'Leathered (brushed) finish is by far the top recommendation for outdoor kitchens in Metro Atlanta. Its subtle dimpled texture naturally diffuses harsh sunlight (eliminating blinding glare on sunny afternoons), conceals springtime yellow pine pollen and dust, hides grease splatters from burger grilling, and offers superior slip-resistant grip when setting down wet drinkware.'
+      },
+      {
+        q: 'Do I need an insulated heat jacket for my built-in grill cutout in stone countertops?',
+        a: 'Yes, almost always. While natural granite and quartzite can handle high heat, commercial built-in gas grills (Lynx, Blaze, DCS, Coyote) radiate extreme convective heat downwards and outward (600°F to 900°F+). Without an insulated stainless steel heat jacket and a 1-inch air gap, the thermal shock differential between hot stone beside the firebox and cold stone a foot away can cause catastrophic expansion cracking. Furthermore, building codes require insulated jackets if the underlying framing contains combustible wood.'
+      },
+      {
+        q: 'How do Georgia freezing winter nights and summer humidity affect outdoor stone?',
+        a: 'North Georgia experiences mild winters, but temperatures frequently dip below 25°F in December and January. If moisture penetrates unsealed stone and freezes, water expands by 9%, which can cause microscopic spalling or hairline fissures. AGS Stones treats all outdoor granite installations with a fluoropolymer-based penetrating impregnating sealer that locks out water while allowing internal stone vapor to breathe safely.'
+      },
+      {
+        q: 'How much does an outdoor kitchen countertop cost installed in Metro Atlanta?',
+        a: 'In Metro Atlanta, outdoor granite countertops typically range from $50 to $95 per square foot completely installed, including digital laser templating, CNC grill and sink cutouts, edge profiling, and mechanical anchoring. Exotic natural quartzites range from $85 to $145 per square foot. Buying factory-direct from our Duluth showroom eliminates general contractor markups, saving you 20% to 30% on your outdoor living project.'
+      }
+    ],
+    content: (
+      <>
+        {/* Intro Banner */}
+        <div className="bg-gradient-to-r from-slate-900 to-primary text-white p-6 sm:p-8 rounded-3xl my-6 shadow-xl border border-white/10">
+          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+            <div>
+              <span className="text-secondary font-bold text-xs uppercase tracking-widest block mb-1">
+                WikiHow Master Outdoor Living &amp; BBQ Island Guide
+              </span>
+              <h3 className="text-xl sm:text-2xl font-serif font-bold text-white mb-2">
+                Outdoor Kitchen Countertops: Materials, UV Sun, Heat &amp; Climate
+              </h3>
+              <p className="text-gray-300 text-xs sm:text-sm leading-relaxed mb-0">
+                Outdoor entertaining is a cornerstone of Georgia lifestyle—from poolside summer barbecues in Buckhead and Sandy Springs to covered patio football tailgates in Alpharetta, Milton, and Suwanee. But designing an outdoor kitchen requires a completely different engineering mindset than an indoor remodel. Your countertops must endure 100°F July humidity, direct UV solar radiation, spring pine pollen, and 20°F winter freezes.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        {/* Quick Rule of Thumb Box */}
+        <div className="bg-amber-50 border-2 border-amber-200 rounded-3xl p-6 sm:p-8 my-8 text-amber-950 shadow-sm">
+          <h3 className="text-xl font-bold font-serif text-amber-900 mb-3 flex items-center gap-2">
+            <span>⚡</span> Quick Rule of Thumb for Outdoor Kitchens
+          </h3>
+          <ul className="space-y-3 text-sm leading-relaxed m-0 list-disc list-inside">
+            <li>
+              <strong>Never Use Standard Indoor Quartz Outdoors:</strong> Indoor quartz contains petroleum-based acrylic resins that will yellow, haze, and warp under Georgia&apos;s intense UV Index 9+ sunshine within 1 to 2 seasons.
+            </li>
+            <li>
+              <strong>Natural Granite &amp; Quartzite are King:</strong> Natural igneous and metamorphic stones were formed in subterranean magma and pressure millions of years ago. They are 100% immune to UV fading and will outlast your house.
+            </li>
+            <li>
+              <strong>Always Insulate Your Built-In Grill:</strong> An insulated stainless steel heat jacket prevents 800°F+ burner heat from conducting directly into the cold stone slab, protecting your investment from thermal shock cracking.
+            </li>
+          </ul>
+        </div>
+
+        {/* Comparison Matrix Table */}
+        <h2 className="text-2xl sm:text-3xl font-serif text-primary mt-12 mb-6 font-bold pb-2 border-b border-gray-100">
+          Outdoor Countertop Material Comparison Matrix: Side-by-Side Breakdown
+        </h2>
+        <p className="text-gray-700 leading-relaxed mb-6">
+          Before pouring concrete or ordering stone slabs, compare how the 5 most popular outdoor countertop options perform under Georgia outdoor conditions:
+        </p>
+
+        <div className="overflow-x-auto my-6 border border-gray-200 rounded-2xl shadow-sm bg-white">
+          <table className="w-full text-left text-xs sm:text-sm">
+            <thead className="bg-gray-100 text-gray-800 uppercase font-bold text-[11px] tracking-wider border-b border-gray-200">
+              <tr>
+                <th className="py-4 px-4 sm:px-6">Material</th>
+                <th className="py-4 px-4 sm:px-6 bg-blue-50/70 text-blue-900">UV Solar Resistance</th>
+                <th className="py-4 px-4 sm:px-6 bg-amber-50/70 text-amber-900">Grill Heat Tolerance</th>
+                <th className="py-4 px-4 sm:px-6 bg-slate-50 text-slate-900">Pollen &amp; Stain Defense</th>
+                <th className="py-4 px-4 sm:px-6">Installed Cost / sq ft</th>
+                <th className="py-4 px-4 sm:px-6">AGS Pro Verdict</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-gray-200 text-gray-700">
+              <tr>
+                <td className="py-4 px-4 sm:px-6 font-bold text-gray-900">1. Natural Granite (Leathered)</td>
+                <td className="py-4 px-4 sm:px-6 bg-blue-50/30 font-semibold text-emerald-700">100% Impervious. Will never fade, yellow, or bleach.</td>
+                <td className="py-4 px-4 sm:px-6 bg-amber-50/30 font-semibold text-emerald-700">Exceptional. Handles hot pans and grill ambient heat effortlessly.</td>
+                <td className="py-4 px-4 sm:px-6 bg-slate-50/30 font-semibold text-emerald-700">High when sealed. Leathered texture hides yellow pollen &amp; dust.</td>
+                <td className="py-4 px-4 sm:px-6 font-bold text-primary">$50 – $95</td>
+                <td className="py-4 px-4 sm:px-6 font-bold text-emerald-700">#1 Best Overall for Georgia homes. Unbeatable durability &amp; value.</td>
+              </tr>
+              <tr>
+                <td className="py-4 px-4 sm:px-6 font-bold text-gray-900">2. Natural Quartzite</td>
+                <td className="py-4 px-4 sm:px-6 bg-blue-50/30 font-semibold text-emerald-700">100% UV-Proof. Pure crystalline quartz minerals.</td>
+                <td className="py-4 px-4 sm:px-6 bg-amber-50/30 font-semibold text-emerald-700">Extreme. Harder than glass and granite; withstands high heat.</td>
+                <td className="py-4 px-4 sm:px-6 bg-slate-50/30">Requires annual sealer to protect white porous veins from red wine &amp; grease.</td>
+                <td className="py-4 px-4 sm:px-6 font-bold text-primary">$85 – $145</td>
+                <td className="py-4 px-4 sm:px-6 font-semibold text-primary">Luxury choice for high-end covered cabanas (e.g. Taj Mahal).</td>
+              </tr>
+              <tr>
+                <td className="py-4 px-4 sm:px-6 font-bold text-gray-900">3. Standard Indoor Quartz</td>
+                <td className="py-4 px-4 sm:px-6 bg-blue-50/30 font-bold text-rose-700">FAILS. Resin turns yellow and chalky within 12–24 months.</td>
+                <td className="py-4 px-4 sm:px-6 bg-amber-50/30 text-rose-700">Poor. Thermal shock from grill flames burns resin binder.</td>
+                <td className="py-4 px-4 sm:px-6 bg-slate-50/30">Stain resistant initially, but sun damage ruins surface sheen.</td>
+                <td className="py-4 px-4 sm:px-6 font-bold text-primary">$60 – $110</td>
+                <td className="py-4 px-4 sm:px-6 font-bold text-rose-700">DO NOT USE OUTDOORS. Warranty voided by all manufacturers.</td>
+              </tr>
+              <tr>
+                <td className="py-4 px-4 sm:px-6 font-bold text-gray-900">4. Poured Concrete</td>
+                <td className="py-4 px-4 sm:px-6 bg-blue-50/30">Moderate. UV stable, but colored dyes can fade.</td>
+                <td className="py-4 px-4 sm:px-6 bg-amber-50/30">Good, but unsealed concrete can pop under extreme heat.</td>
+                <td className="py-4 px-4 sm:px-6 bg-slate-50/30 text-rose-700">Very porous. Highly susceptible to BBQ sauce, wine &amp; oil stains.</td>
+                <td className="py-4 px-4 sm:px-6 font-bold text-primary">$80 – $130</td>
+                <td className="py-4 px-4 sm:px-6 text-amber-800">Prone to hairline structural cracks during freeze-thaw cycles.</td>
+              </tr>
+              <tr>
+                <td className="py-4 px-4 sm:px-6 font-bold text-gray-900">5. Exterior Porcelain Slab</td>
+                <td className="py-4 px-4 sm:px-6 bg-blue-50/30 font-semibold text-emerald-700">100% UV-Proof. Zero resin; fired at 2,200°F.</td>
+                <td className="py-4 px-4 sm:px-6 bg-amber-50/30 font-semibold text-emerald-700">100% Fireproof and scorch-proof.</td>
+                <td className="py-4 px-4 sm:px-6 bg-slate-50/30 font-semibold text-emerald-700">Non-porous; wipes clean with soap and water.</td>
+                <td className="py-4 px-4 sm:px-6 font-bold text-primary">$90 – $160</td>
+                <td className="py-4 px-4 sm:px-6">Ultra-modern aesthetic, but edges can chip if struck by cast iron grill grates.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        {/* Method 1: The UV Sun & Resin Reality */}
+        <h2 className="text-2xl sm:text-3xl font-serif text-primary mt-12 mb-6 font-bold pb-2 border-b border-gray-100">
+          Method 1: The UV Sun &amp; Resin Trap (Why Indoor Quartz Fails Outdoors)
+        </h2>
+        <p className="text-gray-700 leading-relaxed mb-4">
+          One of the costliest mistakes homeowners make when remodeling their backyard patio is asking: <em>&quot;I have leftover Calacatta quartz from my indoor kitchen. Can we use it on my outdoor BBQ island?&quot;</em>
+        </p>
+
+        <p className="text-gray-700 leading-relaxed mb-4">
+          The chemistry of stone explains why this fails:
+        </p>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 my-6">
+          <div className="bg-rose-50/70 border border-rose-300 rounded-2xl p-6">
+            <h4 className="font-bold text-rose-950 text-base mb-3 flex items-center gap-2">
+              <span>⚠️</span> Why Indoor Quartz Degrades Outdoors
+            </h4>
+            <p className="text-xs sm:text-sm text-rose-900 leading-relaxed mb-3">
+              Engineered quartz slabs are made of ~93% ground stone held together by 7% polymer acrylic resin. These chemical resins are not engineered with UV-stabilizing additives.
+            </p>
+            <ul className="space-y-1.5 text-xs text-rose-900 m-0">
+              <li><strong>Photochemical Yellowing:</strong> Direct solar radiation breaks down polymer bonds, turning crisp white quartz into an unsightly sickly yellow.</li>
+              <li><strong>Uneven Fading:</strong> Areas shaded by outdoor umbrella stands or pergola beams will remain white, while exposed areas yellow, creating permanent shadow stripes.</li>
+              <li><strong>Surface Delamination:</strong> Extreme temperature swings between 95°F summer days and 65°F nights cause thermal expansion stress, dulling the factory gloss polish.</li>
+            </ul>
+          </div>
+
+          <div className="bg-emerald-50/70 border border-emerald-300 rounded-2xl p-6">
+            <h4 className="font-bold text-emerald-950 text-base mb-3 flex items-center gap-2">
+              <span className="text-emerald-600 font-bold">✓</span> Why Natural Granite &amp; Quartzite Excel
+            </h4>
+            <p className="text-xs sm:text-sm text-emerald-900 leading-relaxed mb-3">
+              Natural granite (like Black Pearl, Steel Grey, Uba Tuba, or Tan Brown) and natural quartzite (like Taj Mahal) are 100% natural geological rock formations.
+            </p>
+            <ul className="space-y-1.5 text-xs text-emerald-900 m-0">
+              <li><strong>Zero Resins:</strong> No synthetic binders to yellow, fade, or break down in the sunlight.</li>
+              <li><strong>Colorfast for Decades:</strong> Mineral colors (quartz, feldspar, mica) are permanent and unaffected by 30+ years of Georgia sunshine.</li>
+              <li><strong>Freeze-Thaw Durability:</strong> Dense crystalline grain structure withstands freezing winter nights without micro-cracking when properly sealed.</li>
+            </ul>
+          </div>
+        </div>
+
+        {/* Method 2: Grill Cutouts & Thermal Heat Jackets */}
+        <h2 className="text-2xl sm:text-3xl font-serif text-primary mt-12 mb-6 font-bold pb-2 border-b border-gray-100">
+          Method 2: Built-In Grill Cutouts &amp; Insulated Heat Jackets
+        </h2>
+        <p className="text-gray-700 leading-relaxed mb-4">
+          A built-in 36-inch or 42-inch gas grill (such as Blaze, Lynx, Coyote, or DCS) produces between 50,000 and 100,000+ BTUs of cooking power. Internal grill firebox temperatures easily climb beyond 750°F to 900°F.
+        </p>
+
+        <div className="space-y-4 my-6">
+          <div className="p-5 bg-white border border-gray-200 rounded-2xl shadow-sm flex items-start gap-4">
+            <div className="w-10 h-10 rounded-full bg-secondary/10 flex items-center justify-center text-secondary font-bold shrink-0">
+              01
+            </div>
+            <div>
+              <h4 className="font-bold text-gray-900 text-sm mb-1">What is an Insulated Grill Jacket?</h4>
+              <p className="text-xs text-gray-600 m-0 leading-relaxed">
+                An insulated jacket is a double-walled stainless steel sleeve that fits into your stone cutout before the grill is dropped in. It features an air cavity lined with ceramic insulation that traps heat inside the firebox, shielding your stone countertops and cabinet structure from direct conductive heat.
+              </p>
+            </div>
+          </div>
+
+          <div className="p-5 bg-white border border-gray-200 rounded-2xl shadow-sm flex items-start gap-4">
+            <div className="w-10 h-10 rounded-full bg-secondary/10 flex items-center justify-center text-secondary font-bold shrink-0">
+              02
+            </div>
+            <div>
+              <h4 className="font-bold text-gray-900 text-sm mb-1">Preventing Catastrophic Thermal Shock Cracks</h4>
+              <p className="text-xs text-gray-600 m-0 leading-relaxed">
+                On an autumn evening in Georgia when ambient outdoor air is 50°F, firing up your grill creates an immediate 700-degree temperature difference between the inner cutout edge and the outer stone surface. Without an insulated jacket and a 1-inch thermal expansion gap, thermal shock causes the stone to snap right along the front cutout rail!
+              </p>
+            </div>
+          </div>
+
+          <div className="p-5 bg-white border border-gray-200 rounded-2xl shadow-sm flex items-start gap-4">
+            <div className="w-10 h-10 rounded-full bg-secondary/10 flex items-center justify-center text-secondary font-bold shrink-0">
+              03
+            </div>
+            <div>
+              <h4 className="font-bold text-gray-900 text-sm mb-1">Digital Laser CNC Precision Cutouts</h4>
+              <p className="text-xs text-gray-600 m-0 leading-relaxed">
+                At AGS Stones, our Duluth fabrication shop cuts outdoor grill openings using high-precision CNC bridge saws and waterjets based on your grill manufacturer&apos;s exact cut-sheet specifications. We radius all internal 90-degree corners with smooth micro-curves, which eliminates internal stress risers where cracks normally start.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        {/* Method 3: Why Leathered Granite is Georgia's Favorite */}
+        <h2 className="text-2xl sm:text-3xl font-serif text-primary mt-12 mb-6 font-bold pb-2 border-b border-gray-100">
+          Method 3: Why Leathered Granite is Georgia&apos;s #1 Outdoor Finish
+        </h2>
+        <p className="text-gray-700 leading-relaxed mb-4">
+          While polished stone dominates indoor kitchens, <strong>leathered (brushed) granite</strong> accounts for over 80% of our outdoor kitchen installations in Milton, Alpharetta, Suwanee, and Lake Lanier.
+        </p>
+
+        <p className="text-gray-700 leading-relaxed mb-4">
+          Here is why outdoor living designers consistently specify leathered stone:
+        </p>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 my-6">
+          <div className="bg-white p-6 rounded-2xl border border-gray-200 shadow-sm">
+            <span className="text-2xl mb-2 block">🌲</span>
+            <h4 className="font-bold text-gray-900 text-sm mb-2">Hides Spring Pine Pollen</h4>
+            <p className="text-xs text-gray-600 m-0 leading-relaxed">
+              Every April, Metro Atlanta is blanketed in thick yellow loblolly pine pollen. On a polished mirror-black countertop, a 2-hour pollen dusting looks dirty immediately. On a leathered Steel Grey or Black Pearl surface, pollen and dust are practically invisible until your weekend hose-down.
+            </p>
+          </div>
+
+          <div className="bg-white p-6 rounded-2xl border border-gray-200 shadow-sm">
+            <span className="text-2xl mb-2 block">☀️</span>
+            <h4 className="font-bold text-gray-900 text-sm mb-2">Zero Sun Glare on Patios</h4>
+            <p className="text-xs text-gray-600 m-0 leading-relaxed">
+              High-gloss polished stone acts like a mirror under open sunshine, reflecting blinding midday glare into your eyes while cooking. A leathered finish scatters light evenly with an elegant, low-sheen satin luster.
+            </p>
+          </div>
+
+          <div className="bg-white p-6 rounded-2xl border border-gray-200 shadow-sm">
+            <span className="text-2xl mb-2 block">🥩</span>
+            <h4 className="font-bold text-gray-900 text-sm mb-2">Hides BBQ Grease &amp; Smudges</h4>
+            <p className="text-xs text-gray-600 m-0 leading-relaxed">
+              Grilling steaks, burgers, and ribs produces smoke splatters and marinades. The micro-textured dimples of leathered granite conceal finger oils, greasy tongs marks, and condensation rings from ice-cold beverage cans.
+            </p>
+          </div>
+        </div>
+
+        {/* Method 4: Outdoor Framing, Substrates & Overhang Supports */}
+        <h2 className="text-2xl sm:text-3xl font-serif text-primary mt-12 mb-6 font-bold pb-2 border-b border-gray-100">
+          Method 4: Outdoor Framing, Substrates &amp; Barstool Overhang Supports
+        </h2>
+        <p className="text-gray-700 leading-relaxed mb-4">
+          An outdoor stone countertop weighs 18 to 22 pounds per square foot (approx. 800 to 1,200 lbs for a complete 10-foot L-shaped island). It requires rigid structural backing:
+        </p>
+
+        <div className="bg-gray-50 border border-gray-200 rounded-2xl p-6 sm:p-8 my-6">
+          <h3 className="text-lg font-bold text-gray-900 mb-4 flex items-center gap-2">
+            <span>🏗️</span> AGS Stones Outdoor Structural Standards
+          </h3>
+          <div className="space-y-4 text-sm text-gray-700">
+            <div className="flex items-start gap-4 p-4 bg-white rounded-xl border border-gray-200">
+              <span className="w-8 h-8 rounded-full bg-primary text-white font-bold flex items-center justify-center shrink-0 text-xs">
+                A
+              </span>
+              <div>
+                <h4 className="font-bold text-gray-900 text-sm mb-1">Galvanized Steel Stud or Concrete Block Framing</h4>
+                <p className="text-xs text-gray-600 m-0 leading-relaxed">
+                  Outdoor kitchen islands should be framed with heavy-gauge 20ga galvanized steel framing studs or concrete cinder blocks (CMU) topped with cementitious backer board (HardieBacker). Avoid un-treated wood framing that rots, warps, or introduces fire hazards near gas burners.
+                </p>
+              </div>
+            </div>
+
+            <div className="flex items-start gap-4 p-4 bg-white rounded-xl border border-gray-200">
+              <span className="w-8 h-8 rounded-full bg-primary text-white font-bold flex items-center justify-center shrink-0 text-xs">
+                B
+              </span>
+              <div>
+                <h4 className="font-bold text-gray-900 text-sm mb-1">Recessed Steel Cantilever Brackets for Barstool Seating</h4>
+                <p className="text-xs text-gray-600 m-0 leading-relaxed">
+                  Most outdoor islands feature a 12-to-15-inch cantilevered overhang where guests can sit on patio barstools. On 3cm stone, any overhang exceeding 10 inches requires structural support. We install 1/2-inch thick powder-coated steel flat bar brackets bolted into the island frame every 20 to 24 inches, keeping the underside clean and knee-friendly.
+                </p>
+              </div>
+            </div>
+
+            <div className="flex items-start gap-4 p-4 bg-white rounded-xl border border-gray-200">
+              <span className="w-8 h-8 rounded-full bg-primary text-white font-bold flex items-center justify-center shrink-0 text-xs">
+                C
+              </span>
+              <div>
+                <h4 className="font-bold text-gray-900 text-sm mb-1">Outdoor Silicone &amp; Sloped Drainage Grade</h4>
+                <p className="text-xs text-gray-600 m-0 leading-relaxed">
+                  We bond outdoor countertops using 100% exterior-grade RTV neutral-cure silicone that remains elastic through 100°F summers and 15°F winter freezes. When leveling the stone, our installers introduce a micro 1/16-inch per foot outward pitch so heavy Georgia thunderstorms drain water naturally off the edge rather than puddling behind the grill.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Method 5: Cost Calculation */}
+        <h2 className="text-2xl sm:text-3xl font-serif text-primary mt-12 mb-6 font-bold pb-2 border-b border-gray-100">
+          Method 5: How Much Do Outdoor Kitchen Countertops Cost in Atlanta?
+        </h2>
+        <p className="text-gray-700 leading-relaxed mb-4">
+          Because AGS Stones operates our own digital fabrication facility in Duluth, GA, homeowners bypass third-party landscape designer markups and buy factory-direct:
+        </p>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 my-6 text-center">
+          <div className="bg-white p-6 rounded-2xl border border-gray-200 shadow-sm">
+            <span className="text-xs uppercase font-bold tracking-wider text-gray-400 block mb-1">Best-Selling Value</span>
+            <h4 className="text-lg font-bold text-primary mb-2">Leathered Granite</h4>
+            <p className="text-2xl font-serif font-bold text-secondary mb-2">$50 – $85 / sqft</p>
+            <p className="text-xs text-gray-600 m-0">
+              Includes Steel Grey, Black Pearl, Tan Brown, or Uba Tuba with complete CNC laser cutouts, edge polishing, and exterior sealing.
+            </p>
+          </div>
+
+          <div className="bg-white p-6 rounded-2xl border border-gray-200 shadow-sm">
+            <span className="text-xs uppercase font-bold tracking-wider text-gray-400 block mb-1">Luxury Architectural</span>
+            <h4 className="text-lg font-bold text-primary mb-2">Natural Quartzite</h4>
+            <p className="text-2xl font-serif font-bold text-secondary mb-2">$85 – $145 / sqft</p>
+            <p className="text-xs text-gray-600 m-0">
+              Includes Taj Mahal, Mont Blanc, or Sea Pearl. Diamond-hard crystalline stone perfect for covered pool pavilions and luxury verandas.
+            </p>
+          </div>
+
+          <div className="bg-white p-6 rounded-2xl border border-gray-200 shadow-sm">
+            <span className="text-xs uppercase font-bold tracking-wider text-gray-400 block mb-1">Full BBQ Turnkey</span>
+            <h4 className="text-lg font-bold text-primary mb-2">Custom Island Package</h4>
+            <p className="text-2xl font-serif font-bold text-secondary mb-2">$2,200 – $4,500</p>
+            <p className="text-xs text-gray-600 m-0">
+              Typical complete 8-to-12 foot outdoor kitchen countertop package including grill cutout, sink opening, bar seating overhang, and 5-day installation.
+            </p>
+          </div>
+        </div>
+
+        {/* Method 6: Metro Atlanta Neighborhoods & Showroom */}
+        <h2 className="text-2xl sm:text-3xl font-serif text-primary mt-12 mb-6 font-bold pb-2 border-b border-gray-100">
+          Method 6: See Full Outdoor BBQ Kitchen Displays in Our Duluth Showroom
+        </h2>
+        <p className="text-gray-700 leading-relaxed mb-6">
+          At <Link href="/" className="text-secondary font-semibold hover:underline">AGS Stones &amp; Cabinets</Link>, our climate-controlled stone showroom and fabrication yard at 4579 Abbotts Bridge Rd Suite -10 in Duluth features real outdoor kitchen displays showcasing built-in grills, outdoor sinks, and leathered granite finishes side-by-side:
+        </p>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 my-6">
+          <div className="bg-white p-6 rounded-2xl border border-gray-200 shadow-sm">
+            <span className="text-2xl mb-2 block">🖐️</span>
+            <h4 className="font-bold text-gray-900 text-sm mb-2">Touch the Leathered Texture</h4>
+            <p className="text-xs text-gray-600 m-0 leading-relaxed">
+              Feel the tactile pebble texture of leathered Black Pearl and Steel Grey granite up close. Test how smoothly drinkware rests on the stone surface.
+            </p>
+          </div>
+          <div className="bg-white p-6 rounded-2xl border border-gray-200 shadow-sm">
+            <span className="text-2xl mb-2 block">🍖</span>
+            <h4 className="font-bold text-gray-900 text-sm mb-2">Bring Your Grill Specs</h4>
+            <p className="text-xs text-gray-600 m-0 leading-relaxed">
+              Bring your built-in grill, smoker, or outdoor beverage fridge model numbers. Our stone engineers will program your cutouts into our CNC saws with sub-millimeter precision.
+            </p>
+          </div>
+          <div className="bg-white p-6 rounded-2xl border border-gray-200 shadow-sm">
+            <span className="text-2xl mb-2 block">⚡</span>
+            <h4 className="font-bold text-gray-900 text-sm mb-2">Turnkey 5-Day Installation</h4>
+            <p className="text-xs text-gray-600 m-0 leading-relaxed">
+              Once your outdoor island framing is ready, our digital laser crew templates your patio and delivers your custom-cut stone in just 5 business days!
+            </p>
+          </div>
+        </div>
+
+        {/* Call to action card */}
+        <div className="bg-gradient-to-r from-primary to-slate-900 text-white rounded-3xl p-8 sm:p-10 my-10 shadow-2xl flex flex-col md:flex-row items-center justify-between gap-6">
+          <div className="max-w-xl">
+            <span className="text-secondary font-bold text-xs uppercase tracking-widest block mb-2">AGS Stones &amp; Cabinets • Factory-Direct Outdoor Living</span>
+            <h4 className="text-2xl font-serif font-bold mb-2">Ready to Build Your Dream Outdoor BBQ Kitchen?</h4>
+            <p className="text-gray-300 text-sm mb-0">
+              Visit our Duluth, GA showroom or request an instant free digital laser estimate. Our outdoor stone specialists will ensure your patio BBQ island is weather-proof, durable, and built to last a lifetime!
+            </p>
+          </div>
+          <div className="flex flex-col sm:flex-row gap-3 w-full md:w-auto flex-shrink-0">
+            <Link 
+              href="/promo" 
+              className="bg-secondary text-white font-bold text-xs uppercase tracking-wider px-7 py-4 rounded-xl hover:bg-white hover:text-primary transition-all text-center shadow-lg"
+            >
+              Get Free Estimate
+            </Link>
+            <Link 
+              href="/showroom" 
+              className="bg-white/10 hover:bg-white/20 text-white font-bold text-xs uppercase tracking-wider px-6 py-4 rounded-xl transition-all text-center border border-white/20"
+            >
+              Visit Showroom
+            </Link>
+          </div>
+        </div>
+      </>
+    )
   }
 };
+
+
 
 
 
