@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { useDeferredHeroVideo, HERO_VIDEO_POSTER } from '@/lib/useDeferredHeroVideo';
+import { useDeferredHeroVideo, HOME_HERO_VIDEO, HOME_HERO_POSTER } from '@/lib/useDeferredHeroVideo';
 import Image from 'next/image';
 import { Star, CheckCircle2, ArrowRight, ShieldCheck, Phone, User, Mail, Layers, MapPin, Loader2 } from 'lucide-react';
 
@@ -7,7 +7,7 @@ const Hero: React.FC = () => {
   const bgRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
-  useDeferredHeroVideo(videoRef);
+  useDeferredHeroVideo(videoRef, HOME_HERO_VIDEO);
   const [formStatus, setFormStatus] = useState<'idle' | 'loading' | 'success'>('idle');
 
   useEffect(() => {
@@ -120,7 +120,7 @@ const Hero: React.FC = () => {
         {/* Optimized Background Image (Poster Replacement) */}
         <div className="absolute inset-0 z-0">
             <Image 
-                src="https://kitchenandbathshop.com/wp-content/uploads/2020/11/5d7ff4ab763f7-scaled.jpg"
+                src={HOME_HERO_POSTER}
                 alt="Granite Countertops Background"
                 fill
                 priority
@@ -129,16 +129,19 @@ const Hero: React.FC = () => {
             />
         </div>
 
-        {/* src is attached after page load (useDeferredHeroVideo) */}
+        {/* src is attached after page load (useDeferredHeroVideo). The video
+            stays transparent over the still image (its first frame) and fades
+            in only once it is actually playing: one smooth crossfade, no
+            second "opening" effect. */}
         <video
             ref={videoRef}
-            className="relative z-10 w-full h-full object-cover animate-in fade-in zoom-in duration-1000"
+            data-hero-video=""
+            className="relative z-10 w-full h-full object-cover"
             autoPlay
             muted
             loop
             playsInline
             preload="none"
-            poster={HERO_VIDEO_POSTER}
         >
             Your browser does not support the video tag.
         </video>

@@ -94,3 +94,11 @@ details > summary::-webkit-details-marker {
 @media (prefers-reduced-motion: reduce) {
   .promo-rise, .promo-nudge { animation: none; }
 }
+
+/* Home hero video: invisible until it is actually playing, then a single
+   crossfade over the still image (see useDeferredHeroVideo). */
+video[data-hero-video] { opacity: 0; transition: opacity 1.2s ease; }
+video[data-hero-video][data-ready] { opacity: 1; }
+@media (prefers-reduced-motion: reduce) {
+  video[data-hero-video] { transition: none; }
+}
