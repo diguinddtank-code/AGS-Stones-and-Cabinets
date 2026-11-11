@@ -6011,8 +6011,400 @@ export const blogContent: Record<string, BlogPost> = {
         </div>
       </>
     )
+  },
+  'custom-cabinets-vs-stock-cabinets-guide': {
+    slug: 'custom-cabinets-vs-stock-cabinets-guide',
+    title: 'Custom Cabinets vs. Stock vs. Semi-Custom: Plywood vs. MDF, Dovetail Joinery & Remodel Cost Guide',
+    badge: 'WIKIHOW & BUYER\'S GUIDE',
+    badgeType: 'wikihow',
+    category: 'Cabinetry & Design',
+    date: 'November 11, 2026',
+    modifiedDate: 'November 11, 2026',
+    author: 'AGS Stones Cabinetry Team',
+    authorRole: 'Master Cabinet Makers & Architectural Millwork Specialists',
+    readTime: '11 min read',
+    image: '/images/blog/custom-cabinets-vs-stock-cabinets-guide.jpg',
+    alt: 'Illustrated wikiHow guide comparing custom cabinets vs stock cabinets: 3/4-inch all-plywood box construction vs particle board, dovetail drawer joinery, concealed soft-close drawer glides, and heavy stone countertop support',
+    excerpt: 'Planning a kitchen remodel in Metro Atlanta and deciding between custom, semi-custom, or stock prefab cabinets? Learn how 3/4-inch furniture-grade plywood compares to particle board, solid wood dovetail joinery vs staples, undermount soft-close glides, supporting heavy 3cm granite/quartz countertops, and real factory-direct pricing in this illustrated homeowner guide.',
+    keyTakeaways: [
+      'Box construction dictates longevity: custom cabinets feature 3/4-inch or 1/2-inch cabinet-grade plywood with solid wood hanging rails that never sag under heavy 3cm stone countertops, while cheap stock cabinets use particle board/MDF that swells permanently when exposed to plumbing leaks.',
+      'Dovetail drawer box joinery with 5/8-inch solid maple or birch sides provides indestructible mechanical locking, whereas stock cabinets use glued butt joints fastened with staples that blow out under heavy pots and cast iron skillets.',
+      'Premium hardware matters: custom cabinetry integrates full-extension concealed undermount soft-close drawer glides (e.g. Blum or DTC heavy-duty) rated for 75,000+ open-close cycles, compared to noisy side-mounted nylon roller wheels in budget cabinets.',
+      'Dimensional freedom: stock cabinets come strictly in 3-inch increments (leaving awkward filler strips in irregular Georgia kitchens), whereas custom cabinets are built to the exact 1/16th of an inch, maximizing storage with floor-to-ceiling pantry pull-outs, appliance garages, and custom spice racks.',
+      'In Metro Atlanta (Buckhead, Alpharetta, Milton, Johns Creek, Duluth), custom kitchen cabinetry installed ranges from $300 to $650 per linear foot factory-direct from AGS Stones—saving 20% to 30% compared to third-party boutique kitchen design showrooms.'
+    ],
+    faqs: [
+      {
+        q: 'What is the biggest structural difference between custom cabinets and stock cabinets?',
+        a: 'The biggest structural difference is in the box materials and joinery. Stock cabinets (from big-box home stores or flat-pack retailers) are mass-produced with 1/2-inch compressed particle board, paper-thin laminated foil, and plastic corner brackets. Custom cabinets from AGS Stones are handcrafted using 3/4-inch furniture-grade solid plywood boxes, solid hardwood face frames (maple, oak, or cherry), and dado-jointed structural back panels designed to last 30+ years without warping.'
+      },
+      {
+        q: 'Why is all-plywood box construction so critical when installing granite or quartz countertops?',
+        a: 'A typical 40-square-foot kitchen countertop in solid 3cm granite or quartz weighs between 700 and 900 pounds. When combined with a 200-pound water-filled farmhouse sink, the downward load on base cabinets is immense. Particle board and low-density MDF compress, sag, and bow under this weight over time, which causes countertop seams to open up and stone to crack. 3/4-inch plywood has cross-laminated grain layers that provide incredible tensile and compressive strength with zero sagging.'
+      },
+      {
+        q: 'Can custom cabinets be built to the ceiling in homes with 9-foot or 10-foot ceilings?',
+        a: 'Yes, absolutely! One of the hallmark luxury features of custom cabinetry is extending stacked cabinets and multi-piece architectural crown molding all the way to 9-foot, 10-foot, or vaulted ceilings. Stock cabinets only come in fixed 30-inch, 36-inch, or 42-inch heights, leaving a 12-to-24-inch empty "dust trap" gap above the cabinets that makes ceilings feel lower.'
+      },
+      {
+        q: 'What are dovetail drawer boxes and why do they matter?',
+        a: 'Dovetail joinery uses interlocking trapezoidal "pins" and "tails" cut into solid hardwood boards (like solid maple or birch). Once glued and pressed together, the mechanical interlock is physically impossible to pull apart from the front, even when loaded with 75 pounds of heavy cast iron skillets or canned goods. Stock cabinets use stapled butt joints that easily separate and break after a few years of daily tugging.'
+      },
+      {
+        q: 'How much do custom kitchen cabinets cost installed in Metro Atlanta?',
+        a: 'In Metro Atlanta, stock prefab cabinets cost $150 to $300 per linear foot (materials only), semi-custom cabinets run $250 to $500 per linear foot, and luxury custom cabinets through boutique showrooms cost $800 to $1,400+ per linear foot. Because AGS Stones owns its fabrication and millwork shop in Duluth, our factory-direct custom cabinets range between $300 and $650 per linear foot fully installed with soft-close Blum hardware, saving homeowners thousands of dollars.'
+      }
+    ],
+    content: (
+      <>
+        {/* Intro Banner */}
+        <div className="bg-gradient-to-r from-slate-900 to-primary text-white p-6 sm:p-8 rounded-3xl my-6 shadow-xl border border-white/10">
+          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+            <div>
+              <span className="text-secondary font-bold text-xs uppercase tracking-widest block mb-1">
+                WikiHow Master Cabinetry Engineering &amp; Buyer&apos;s Guide
+              </span>
+              <h3 className="text-xl sm:text-2xl font-serif font-bold text-white mb-2">
+                Custom vs. Semi-Custom vs. Stock Cabinets: The Construction Truth
+              </h3>
+              <p className="text-gray-300 text-xs sm:text-sm leading-relaxed mb-0">
+                Cabinets represent between 40% and 50% of your total kitchen remodel budget. On the surface, a fresh coat of white paint on a cheap stock cabinet looks deceptively similar to a luxury custom cabinet on day one. But peel back the surface, and the differences in box core materials, drawer joinery, hardware glides, and stone load capacity determine whether your kitchen thrives for 30 years or starts falling apart in 36 months.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        {/* Quick Rule of Thumb Box */}
+        <div className="bg-amber-50 border-2 border-amber-200 rounded-3xl p-6 sm:p-8 my-8 text-amber-950 shadow-sm">
+          <h3 className="text-xl font-bold font-serif text-amber-900 mb-3 flex items-center gap-2">
+            <span>⚡</span> Quick Rule of Thumb for Homeowners
+          </h3>
+          <ul className="space-y-3 text-sm leading-relaxed m-0 list-disc list-inside">
+            <li>
+              <strong>Always Insist on 3/4&quot; All-Plywood Boxes:</strong> Never allow particle board or low-density MDF for kitchen base cabinets—especially under sinks where pipe moisture causes particle board to expand like a wet sponge, ruining the cabinet permanently.
+            </li>
+            <li>
+              <strong>Look for Solid Wood Dovetail Drawers:</strong> If drawer corners are held together with visible metal staples and glue, you are looking at entry-level stock cabinets that will loosen under heavy cookware.
+            </li>
+            <li>
+              <strong>Choose Factory-Direct to Avoid 30% Middleman Markups:</strong> Custom cabinetry does not have to cost $40,000. Working directly with local Duluth cabinetmakers like AGS Stones provides custom millwork precision at semi-custom big-box prices.
+            </li>
+          </ul>
+        </div>
+
+        {/* Comparison Matrix Table */}
+        <h2 className="text-2xl sm:text-3xl font-serif text-primary mt-12 mb-6 font-bold pb-2 border-b border-gray-100">
+          Cabinet Categories Compared: Custom vs. Semi-Custom vs. Stock Prefab
+        </h2>
+        <p className="text-gray-700 leading-relaxed mb-6">
+          To help you weigh the right investment for your home in Alpharetta, Buckhead, Milton, or Johns Creek, examine how the 3 cabinet tiers stack up:
+        </p>
+
+        <div className="overflow-x-auto my-6 border border-gray-200 rounded-2xl shadow-sm bg-white">
+          <table className="w-full text-left text-xs sm:text-sm">
+            <thead className="bg-gray-100 text-gray-800 uppercase font-bold text-[11px] tracking-wider border-b border-gray-200">
+              <tr>
+                <th className="py-4 px-4 sm:px-6">Feature / Specification</th>
+                <th className="py-4 px-4 sm:px-6 bg-blue-50/70 text-blue-900">1. Custom Cabinets (AGS Standard)</th>
+                <th className="py-4 px-4 sm:px-6 bg-amber-50/70 text-amber-900">2. Semi-Custom Cabinets</th>
+                <th className="py-4 px-4 sm:px-6 bg-slate-50 text-slate-900">3. Stock Prefab (Big-Box / Flat-Pack)</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-gray-200 text-gray-700">
+              <tr>
+                <td className="py-4 px-4 sm:px-6 font-bold text-gray-900">Box Construction Material</td>
+                <td className="py-4 px-4 sm:px-6 bg-blue-50/30 font-bold text-emerald-700">3/4&quot; or 1/2&quot; Furniture-Grade Solid Plywood. Maximum moisture and sag resistance.</td>
+                <td className="py-4 px-4 sm:px-6 bg-amber-50/30">1/2&quot; Plywood upgrade or high-density particle board (MDF/furniture board).</td>
+                <td className="py-4 px-4 sm:px-6 bg-slate-50/30 text-rose-700">3/8&quot; to 1/2&quot; compressed particle board with thin melamine paper laminate.</td>
+              </tr>
+              <tr>
+                <td className="py-4 px-4 sm:px-6 font-bold text-gray-900">Drawer Box Joinery</td>
+                <td className="py-4 px-4 sm:px-6 bg-blue-50/30 font-bold text-emerald-700">5/8&quot; Solid Maple or Birch with English Dovetail interlocking joints.</td>
+                <td className="py-4 px-4 sm:px-6 bg-amber-50/30">Dovetail or doweled joints; plywood or solid wood sides.</td>
+                <td className="py-4 px-4 sm:px-6 bg-slate-50/30 text-rose-700">Stapled butt joints or cam-lock screws on MDF drawer sides.</td>
+              </tr>
+              <tr>
+                <td className="py-4 px-4 sm:px-6 font-bold text-gray-900">Drawer Hardware &amp; Glides</td>
+                <td className="py-4 px-4 sm:px-6 bg-blue-50/30 font-semibold text-emerald-700">Heavy-duty concealed undermount soft-close glides (Blum/DTC, 75k cycle rated).</td>
+                <td className="py-4 px-4 sm:px-6 bg-amber-50/30">Undermount soft-close glides standard or optional upgrade.</td>
+                <td className="py-4 px-4 sm:px-6 bg-slate-50/30">Exposed side-mount metal rails with noisy nylon plastic wheels.</td>
+              </tr>
+              <tr>
+                <td className="py-4 px-4 sm:px-6 font-bold text-gray-900">Sizing &amp; Dimensions</td>
+                <td className="py-4 px-4 sm:px-6 bg-blue-50/30 font-bold text-emerald-700">100% Bespoke. Built to the exact 1/16th of an inch. Zero wasted filler strips.</td>
+                <td className="py-4 px-4 sm:px-6 bg-amber-50/30">Available in 3&quot; increments with limited depth and height modifications.</td>
+                <td className="py-4 px-4 sm:px-6 bg-slate-50/30">Strict 3&quot; increments only (12&quot;, 15&quot;, 18&quot;, 24&quot;, 30&quot;, 36&quot;). Requires bulky fillers.</td>
+              </tr>
+              <tr>
+                <td className="py-4 px-4 sm:px-6 font-bold text-gray-900">Stone Countertop Load Capacity</td>
+                <td className="py-4 px-4 sm:px-6 bg-blue-50/30 font-semibold text-emerald-700">Reinforced solid wood hanging rails easily hold 1,000+ lbs of 3cm granite or quartz.</td>
+                <td className="py-4 px-4 sm:px-6 bg-amber-50/30">Adequate for stone tops if ordered with plywood upgrade.</td>
+                <td className="py-4 px-4 sm:px-6 bg-slate-50/30 text-rose-700">Prone to sagging and corner joint separation under heavy 3cm granite islands.</td>
+              </tr>
+              <tr>
+                <td className="py-4 px-4 sm:px-6 font-bold text-gray-900">Finish Options</td>
+                <td className="py-4 px-4 sm:px-6 bg-blue-50/30">Unlimited custom paint matching (Sherwin-Williams, Benjamin Moore), stains &amp; fluted woods.</td>
+                <td className="py-4 px-4 sm:px-6 bg-amber-50/30">Selection of 20 to 50 factory catalog paints and stains.</td>
+                <td className="py-4 px-4 sm:px-6 bg-slate-50/30">3 to 6 stock colors (usually basic white, light grey, espresso).</td>
+              </tr>
+              <tr>
+                <td className="py-4 px-4 sm:px-6 font-bold text-gray-900">Expected Lifespan</td>
+                <td className="py-4 px-4 sm:px-6 bg-blue-50/30 font-bold text-emerald-700">30 to 50+ Years (true heirloom quality).</td>
+                <td className="py-4 px-4 sm:px-6 bg-amber-50/30">15 to 25 Years.</td>
+                <td className="py-4 px-4 sm:px-6 bg-slate-50/30 text-rose-700">5 to 10 Years before delamination and sagging begin.</td>
+              </tr>
+              <tr>
+                <td className="py-4 px-4 sm:px-6 font-bold text-gray-900">Installed Cost / Linear Foot (Atlanta)</td>
+                <td className="py-4 px-4 sm:px-6 bg-blue-50/30 font-bold text-primary">$300 – $650 (Factory-Direct from AGS)</td>
+                <td className="py-4 px-4 sm:px-6 bg-amber-50/30">$250 – $500</td>
+                <td className="py-4 px-4 sm:px-6 bg-slate-50/30">$150 – $300 (Materials only, uninstalled)</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        {/* Method 1: The Plywood vs Particle Board Reality */}
+        <h2 className="text-2xl sm:text-3xl font-serif text-primary mt-12 mb-6 font-bold pb-2 border-b border-gray-100">
+          Method 1: Box Construction — The Plywood vs. Particle Board (MDF) Reality
+        </h2>
+        <p className="text-gray-700 leading-relaxed mb-4">
+          The cabinet box is the hidden skeleton of your kitchen. Once the doors are hung and the quartz countertops are installed, you cannot see the cabinet walls. But their material composition determines whether your kitchen survives a minor plumbing mishap or requires a gut-renovation:
+        </p>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 my-6">
+          <div className="bg-emerald-50/60 border border-emerald-200 rounded-2xl p-6">
+            <h4 className="font-bold text-emerald-950 text-base mb-3 flex items-center gap-2">
+              <span className="text-emerald-600 font-bold">✓</span> 3/4&quot; Furniture-Grade All-Plywood (AGS Standard)
+            </h4>
+            <p className="text-xs sm:text-sm text-emerald-900 leading-relaxed mb-3">
+              Cabinet-grade plywood is made of multiple thin layers of real wood veneer glued together with alternating grain directions (cross-graining).
+            </p>
+            <ul className="space-y-1.5 text-xs text-emerald-900 m-0">
+              <li><strong>Superior Screw Holding:</strong> Screws anchor securely into wood fibers and never strip or wiggle loose under heavy door hinges.</li>
+              <li><strong>Water Resilient:</strong> If a sink trap drips or a dishwasher hose leaks, plywood can absorb temporary moisture and dry out flat without permanently swelling.</li>
+              <li><strong>Extreme Compressive Strength:</strong> Easily supports heavy 3cm granite slabs, cast iron apron sinks, and quartz waterfall edges without structural deformation.</li>
+            </ul>
+          </div>
+
+          <div className="bg-rose-50/60 border border-rose-200 rounded-2xl p-6">
+            <h4 className="font-bold text-rose-950 text-base mb-3 flex items-center gap-2">
+              <span className="text-rose-600 font-bold">✗</span> Particle Board / Compressed MDF (Cheap Stock)
+            </h4>
+            <p className="text-xs sm:text-sm text-rose-900 leading-relaxed mb-3">
+              Particle board (often disguised as &quot;engineered furniture board&quot;) is made of wood sawdust, shavings, and glue compressed under heat.
+            </p>
+            <ul className="space-y-1.5 text-xs text-rose-900 m-0">
+              <li><strong>Moisture Sponge:</strong> When exposed to a minor plumbing leak, particle board swells up to 300% of its thickness and turns into mush that cannot be repaired.</li>
+              <li><strong>Screw Blowout:</strong> Heavy cabinet doors pull screws straight out of the crumbling sawdust core, causing doors to sag and drop out of alignment.</li>
+              <li><strong>Sagging Shelves:</strong> Upper and base shelves bow noticeably in the center under the weight of stacks of ceramic dinner plates or canned goods.</li>
+            </ul>
+          </div>
+        </div>
+
+        {/* Method 2: Drawer Box Construction & Joinery */}
+        <h2 className="text-2xl sm:text-3xl font-serif text-primary mt-12 mb-6 font-bold pb-2 border-b border-gray-100">
+          Method 2: Drawer Construction — Dovetail Joints vs. Stapled Butt Joints
+        </h2>
+        <p className="text-gray-700 leading-relaxed mb-4">
+          Think about how many times a day your family pulls open kitchen drawers. Pots, cast iron skillets, silverware, and pantry staples subject drawer boxes to hundreds of pounds of continuous pulling force.
+        </p>
+
+        <div className="space-y-4 my-6">
+          <div className="p-5 bg-white border border-gray-200 rounded-2xl shadow-sm flex items-start gap-4">
+            <div className="w-10 h-10 rounded-full bg-secondary/10 flex items-center justify-center text-secondary font-bold shrink-0">
+              01
+            </div>
+            <div>
+              <h4 className="font-bold text-gray-900 text-sm mb-1">English Dovetail Interlocking Solid Hardwood</h4>
+              <p className="text-xs text-gray-600 m-0 leading-relaxed">
+                At AGS Stones, all our custom drawers feature 5/8-inch solid birch or maple sides with precision English dovetail corner joints. The interlocking wedge shape creates a mechanical bond: the harder you pull on the drawer front, the tighter the joints squeeze together. The bottom panel is housed in a full dado groove rather than simply tacked to the bottom.
+              </p>
+            </div>
+          </div>
+
+          <div className="p-5 bg-white border border-gray-200 rounded-2xl shadow-sm flex items-start gap-4">
+            <div className="w-10 h-10 rounded-full bg-secondary/10 flex items-center justify-center text-secondary font-bold shrink-0">
+              02
+            </div>
+            <div>
+              <h4 className="font-bold text-gray-900 text-sm mb-1">Stapled Butt Joints in Cheap Stock Drawers</h4>
+              <p className="text-xs text-gray-600 m-0 leading-relaxed">
+                Stock cabinets use thin 1/2-inch particle board or pressed wood nailed together with industrial staples and hot glue at 90-degree butt joints. Over time, the repeated yank of a heavy drawer pulls the front face right off the drawer box, requiring messy DIY bracket repairs.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        {/* Method 3: Hardware Matters - Concealed Undermount Soft-Close */}
+        <h2 className="text-2xl sm:text-3xl font-serif text-primary mt-12 mb-6 font-bold pb-2 border-b border-gray-100">
+          Method 3: Hardware Engineering — Concealed Soft-Close Glides
+        </h2>
+        <p className="text-gray-700 leading-relaxed mb-4">
+          A custom cabinet is only as good as the hardware that moves it. High-grade architectural hardware transforms the daily feel of your kitchen:
+        </p>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 my-6">
+          <div className="bg-white p-6 rounded-2xl border border-gray-200 shadow-sm">
+            <span className="text-xs uppercase font-bold tracking-wider text-secondary block mb-1">Commercial Durability</span>
+            <h4 className="text-lg font-bold text-primary mb-2">Concealed Undermount Soft-Close (Blum / DTC)</h4>
+            <p className="text-xs text-gray-600 leading-relaxed mb-3">
+              Mounted invisibly underneath the drawer box rather than on the sides. Supports up to 100 pounds of dynamic weight with whisper-quiet hydraulic pistons that prevent slamming. Full-extension allows you to reach items tucked all the way in the back corner with zero dead space.
+            </p>
+          </div>
+
+          <div className="bg-white p-6 rounded-2xl border border-gray-200 shadow-sm">
+            <span className="text-xs uppercase font-bold tracking-wider text-rose-600 block mb-1">Budget Stock Hardware</span>
+            <h4 className="text-lg font-bold text-primary mb-2">Exposed Side-Mount Roller Wheels</h4>
+            <p className="text-xs text-gray-600 leading-relaxed mb-3">
+              Cheap white metal tracks screwed to the side of the drawer box with noisy plastic nylon wheels. They take up 1 inch of valuable interior drawer width, rattle loudly when opened, and stop 3 to 4 inches short of the back of the cabinet (partial extension).
+            </p>
+          </div>
+        </div>
+
+        {/* Method 4: Custom Sizing vs. 3-Inch Stock Increments */}
+        <h2 className="text-2xl sm:text-3xl font-serif text-primary mt-12 mb-6 font-bold pb-2 border-b border-gray-100">
+          Method 4: Sizing Freedom — Eliminating Ugly Filler Strips
+        </h2>
+        <p className="text-gray-700 leading-relaxed mb-4">
+          One of the biggest visual giveaways of a cheap kitchen renovation is wide filler strips:
+        </p>
+
+        <div className="space-y-4 my-6">
+          <div className="p-5 bg-white border border-gray-200 rounded-2xl shadow-sm flex items-start gap-4">
+            <div className="w-10 h-10 rounded-full bg-primary text-white font-bold flex items-center justify-center shrink-0 text-sm">
+              A
+            </div>
+            <div>
+              <h4 className="font-bold text-gray-900 text-sm mb-1">The Stock Cabinet 3-Inch Limitation</h4>
+              <p className="text-xs text-gray-600 m-0 leading-relaxed">
+                Mass-produced stock cabinets are only manufactured in standard 3-inch increments (15&quot;, 18&quot;, 21&quot;, 24&quot;, 30&quot;, 36&quot;). If your kitchen wall is 127 inches long, stock cabinets will only fill 120 or 123 inches. The installer must nail in clumsy 4-inch blank wooden filler strips on both sides, wasting valuable storage space.
+              </p>
+            </div>
+          </div>
+
+          <div className="p-5 bg-white border border-gray-200 rounded-2xl shadow-sm flex items-start gap-4">
+            <div className="w-10 h-10 rounded-full bg-primary text-white font-bold flex items-center justify-center shrink-0 text-sm">
+              B
+            </div>
+            <div>
+              <h4 className="font-bold text-gray-900 text-sm mb-1">Custom Digital Laser Scribing (To the 1/16th of an Inch)</h4>
+              <p className="text-xs text-gray-600 m-0 leading-relaxed">
+                With custom cabinetry from AGS Stones, our laser technicians map your exact wall dimensions down to the millimeter. If a wall requires a 34-3/8&quot; cabinet, we build a 34-3/8&quot; cabinet! Your cabinets run wall-to-wall with zero dead space, maximizing functional storage for pull-out spice racks, vertical cookie sheet dividers, and double trash pullouts.
+              </p>
+            </div>
+          </div>
+
+          <div className="p-5 bg-white border border-gray-200 rounded-2xl shadow-sm flex items-start gap-4">
+            <div className="w-10 h-10 rounded-full bg-primary text-white font-bold flex items-center justify-center shrink-0 text-sm">
+              C
+            </div>
+            <div>
+              <h4 className="font-bold text-gray-900 text-sm mb-1">Floor-to-Ceiling 9ft and 10ft Architectural Heights</h4>
+              <p className="text-xs text-gray-600 m-0 leading-relaxed">
+                Homes in Milton, Alpharetta, and Buckhead frequently feature 9-foot or 10-foot ceilings. Stock cabinets top out at 42 inches, leaving an awkward 18-inch ceiling void. Custom cabinets can be built with stacked upper display cabinets with glass doors, integrated LED puck lighting, and seamless multi-step crown molding running flush to the ceiling.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        {/* Method 5: Real Installed Cost Breakdown in Metro Atlanta */}
+        <h2 className="text-2xl sm:text-3xl font-serif text-primary mt-12 mb-6 font-bold pb-2 border-b border-gray-100">
+          Method 5: How Much Do Custom Kitchen Cabinets Cost in Atlanta?
+        </h2>
+        <p className="text-gray-700 leading-relaxed mb-4">
+          Because AGS Stones manufactures cabinets and stone countertops under one roof in Duluth, GA, homeowners eliminate retail designer commissions and buy direct from the craftsmen:
+        </p>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 my-6 text-center">
+          <div className="bg-white p-6 rounded-2xl border border-gray-200 shadow-sm">
+            <span className="text-xs uppercase font-bold tracking-wider text-gray-400 block mb-1">Entry-Level Prefab</span>
+            <h4 className="text-lg font-bold text-primary mb-2">Stock Cabinets</h4>
+            <p className="text-2xl font-serif font-bold text-secondary mb-2">$150 – $300 / LF</p>
+            <p className="text-xs text-gray-600 m-0">
+              Basic particle board, limited fixed sizes, DIY or third-party unvetted installation. Short 5–7 year lifespan before replacement.
+            </p>
+          </div>
+
+          <div className="bg-white p-6 rounded-2xl border border-gray-200 shadow-sm">
+            <span className="text-xs uppercase font-bold tracking-wider text-secondary block mb-1">AGS Factory-Direct</span>
+            <h4 className="text-lg font-bold text-primary mb-2">Custom Solid Wood</h4>
+            <p className="text-2xl font-serif font-bold text-secondary mb-2">$300 – $650 / LF</p>
+            <p className="text-xs text-gray-600 m-0">
+              3/4&quot; furniture-grade plywood, solid maple dovetail drawers, soft-close Blum glides, turnkey laser templating &amp; professional installation.
+            </p>
+          </div>
+
+          <div className="bg-white p-6 rounded-2xl border border-gray-200 shadow-sm">
+            <span className="text-xs uppercase font-bold tracking-wider text-gray-400 block mb-1">Boutique Retail Markup</span>
+            <h4 className="text-lg font-bold text-primary mb-2">Designer Showrooms</h4>
+            <p className="text-2xl font-serif font-bold text-secondary mb-2">$800 – $1,400+ / LF</p>
+            <p className="text-xs text-gray-600 m-0">
+              Identical solid wood construction but marked up 40% to 60% by retail middlemen and independent interior design agencies.
+            </p>
+          </div>
+        </div>
+
+        {/* Method 6: Metro Atlanta Neighborhoods & Showroom */}
+        <h2 className="text-2xl sm:text-3xl font-serif text-primary mt-12 mb-6 font-bold pb-2 border-b border-gray-100">
+          Method 6: See and Feel Full-Scale Kitchen Cabinets in Duluth
+        </h2>
+        <p className="text-gray-700 leading-relaxed mb-6">
+          Online photos and sample swatches cannot substitute for testing the weight, glide, and solidity of custom cabinetry in person. At <Link href="/" className="text-secondary font-semibold hover:underline">AGS Stones &amp; Cabinets</Link>, our showroom at 4579 Abbotts Bridge Rd Suite -10 in Duluth features complete operating kitchen vignettes:
+        </p>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 my-6">
+          <div className="bg-white p-6 rounded-2xl border border-gray-200 shadow-sm">
+            <span className="text-2xl mb-2 block">🚪</span>
+            <h4 className="font-bold text-gray-900 text-sm mb-2">The Door Weight &amp; Slam Test</h4>
+            <p className="text-xs text-gray-600 m-0 leading-relaxed">
+              Open and close our solid maple Shaker, slim-shaker, and fluted white oak cabinet doors. Experience the smooth, silent deceleration of Blum soft-close hinges.
+            </p>
+          </div>
+          <div className="bg-white p-6 rounded-2xl border border-gray-200 shadow-sm">
+            <span className="text-2xl mb-2 block">🎨</span>
+            <h4 className="font-bold text-gray-900 text-sm mb-2">Pair Cabinets with Slabs in 3D</h4>
+            <p className="text-xs text-gray-600 m-0 leading-relaxed">
+              Take cabinet door samples directly into our indoor slab gallery to pair painted navy, sage green, or stained walnut doors with full slabs of Calacatta quartz or Taj Mahal quartzite.
+            </p>
+          </div>
+          <div className="bg-white p-6 rounded-2xl border border-gray-200 shadow-sm">
+            <span className="text-2xl mb-2 block">⚡</span>
+            <h4 className="font-bold text-gray-900 text-sm mb-2">One Unified Turnkey Team</h4>
+            <p className="text-xs text-gray-600 m-0 leading-relaxed">
+              No pointing fingers between separate cabinet makers and countertop installers. AGS Stones designs, builds, templates, and installs your cabinets and stone countertops together with single-source accountability!
+            </p>
+          </div>
+        </div>
+
+        {/* Call to action card */}
+        <div className="bg-gradient-to-r from-primary to-slate-900 text-white rounded-3xl p-8 sm:p-10 my-10 shadow-2xl flex flex-col md:flex-row items-center justify-between gap-6">
+          <div className="max-w-xl">
+            <span className="text-secondary font-bold text-xs uppercase tracking-widest block mb-2">AGS Stones &amp; Cabinets • Factory-Direct Millwork</span>
+            <h4 className="text-2xl font-serif font-bold mb-2">Ready to Upgrade to Real Custom Solid Wood Cabinets?</h4>
+            <p className="text-gray-300 text-sm mb-0">
+              Visit our Duluth, GA showroom or request an instant free in-home 3D design consultation and laser estimate. Save 20% to 30% by cutting out retail middlemen and buy direct from the craftsmen!
+            </p>
+          </div>
+          <div className="flex flex-col sm:flex-row gap-3 w-full md:w-auto flex-shrink-0">
+            <Link 
+              href="/promo" 
+              className="bg-secondary text-white font-bold text-xs uppercase tracking-wider px-7 py-4 rounded-xl hover:bg-white hover:text-primary transition-all text-center shadow-lg"
+            >
+              Get Free Estimate
+            </Link>
+            <Link 
+              href="/showroom" 
+              className="bg-white/10 hover:bg-white/20 text-white font-bold text-xs uppercase tracking-wider px-6 py-4 rounded-xl transition-all text-center border border-white/20"
+            >
+              Visit Showroom
+            </Link>
+          </div>
+        </div>
+      </>
+    )
   }
 };
+
 
 
 
