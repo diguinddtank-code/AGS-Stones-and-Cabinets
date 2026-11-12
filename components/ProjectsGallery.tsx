@@ -1,224 +1,247 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useLayoutEffect, useMemo, useRef, useState } from 'react';
 import Image from 'next/image';
-import { ZoomIn, X } from 'lucide-react';
+import Link from 'next/link';
+import { ArrowUpRight, Box, Images } from 'lucide-react';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { Flip } from 'gsap/Flip';
+import { useGSAP } from '@gsap/react';
 import Header from './Header';
 import Footer from './Footer';
+import ProjectViewer from './portfolio/ProjectViewer';
+import { CATEGORIES, photoById, photos, portfolio, type Category, type Project } from '@/lib/portfolioData';
 
-export interface ProjectImage {
-  id: number;
-  src: string;
-  category: 'Kitchen' | 'Bathroom' | 'Cabinets' | 'Fireplace';
-  title: string;
-  alt: string;
-}
+gsap.registerPlugin(ScrollTrigger, Flip, useGSAP);
 
-export const projects: ProjectImage[] = [
-  // Kitchen - Navy cabinets, white quartz waterfall island
-  { id: 1, category: 'Kitchen', src: '/images/projects/kitchen-navy-cabinets-white-quartz-waterfall-island-atlanta.jpg', title: 'Navy Cabinets & Waterfall Island', alt: 'Navy blue kitchen cabinets with white quartz waterfall island countertop, Atlanta, GA' },
-  { id: 2, category: 'Kitchen', src: '/images/projects/kitchen-island-white-quartz-waterfall-edge-atlanta.jpg', title: 'Waterfall Island Edge Detail', alt: 'White quartz waterfall edge on kitchen island with navy cabinets, Atlanta, GA' },
-  { id: 3, category: 'Kitchen', src: '/images/projects/kitchen-stainless-sink-quartz-countertop-detail-atlanta.jpg', title: 'Undermount Sink Detail', alt: 'Stainless steel undermount sink set in white quartz island countertop, Atlanta, GA' },
-  { id: 4, category: 'Kitchen', src: '/images/projects/kitchen-navy-cabinets-subway-tile-backsplash-range-atlanta.jpg', title: 'Navy Cabinets & Subway Tile', alt: 'Navy kitchen cabinets with subway tile backsplash and gas range, Atlanta, GA' },
-  { id: 5, category: 'Kitchen', src: '/images/projects/kitchen-navy-cabinets-pendant-lighting-island-atlanta.jpg', title: 'Navy Kitchen with Pendant Lighting', alt: 'Navy blue kitchen cabinets and quartz island under pendant lighting, Atlanta, GA' },
+// Kept for the home page's ProjectsShowcase (it picks photos by id).
+export type ProjectImage = (typeof photos)[number];
+export const projects = photos;
 
-  // Kitchen - Honey oak cabinets, black subway tile
-  { id: 6, category: 'Kitchen', src: '/images/projects/kitchen-honey-oak-cabinets-black-subway-tile-backsplash-atlanta.jpg', title: 'Oak Cabinets & Black Subway Tile', alt: 'Honey oak kitchen cabinets with black subway tile backsplash and quartz countertops, Atlanta, GA' },
-  { id: 7, category: 'Kitchen', src: '/images/projects/kitchen-quartz-countertop-stainless-sink-detail-atlanta.jpg', title: 'Quartz Countertop Sink Detail', alt: 'Stainless steel sink set in white quartz countertop with oak cabinets, Atlanta, GA' },
-  { id: 8, category: 'Kitchen', src: '/images/projects/kitchen-oak-cabinets-double-wall-oven-gas-cooktop-atlanta.jpg', title: 'Oak Cabinets & Double Wall Oven', alt: 'Honey oak cabinets with stainless double wall oven and gas cooktop, Atlanta, GA' },
-  { id: 9, category: 'Kitchen', src: '/images/projects/kitchen-oak-island-quartz-countertop-detail-atlanta.jpg', title: 'Oak Island Countertop Detail', alt: 'Quartz countertop detail on honey oak kitchen island, Atlanta, GA' },
-  { id: 10, category: 'Kitchen', src: '/images/projects/kitchen-oak-cabinets-full-view-quartz-countertops-atlanta.jpg', title: 'Oak Kitchen Full View', alt: 'Full view of honey oak kitchen cabinets with quartz countertops, Atlanta, GA' },
+const FEATURED = ['walnut-blue-quartzite-bath', 'navy-white-quartz-kitchen', 'white-waterfall-kitchen'];
 
-  // Kitchen - White cabinets, dark hardwood
-  { id: 11, category: 'Kitchen', src: '/images/projects/kitchen-white-cabinets-dark-hardwood-floor-full-view-atlanta.jpg', title: 'White Kitchen & Dark Hardwood', alt: 'White kitchen cabinets with quartz island over dark hardwood flooring, Atlanta, GA' },
-  { id: 12, category: 'Kitchen', src: '/images/projects/kitchen-white-cabinets-island-quartz-countertop-atlanta.jpg', title: 'White Cabinets & Quartz Island', alt: 'White shaker kitchen cabinets with quartz-top island, Atlanta, GA' },
-  { id: 13, category: 'Kitchen', src: '/images/projects/kitchen-white-cabinets-island-open-concept-living-room-atlanta.jpg', title: 'Open Concept Kitchen Island', alt: 'Quartz kitchen island in open concept living space with white cabinets, Atlanta, GA' },
+export default function ProjectsGallery() {
+  const root = useRef<HTMLDivElement>(null);
+  const flipState = useRef<Flip.FlipState | null>(null);
+  const [filter, setFilter] = useState<'All' | Category>('All');
+  const [open, setOpen] = useState<{ p: Project; i: number } | null>(null);
 
-  // Kitchen - Farmhouse in-progress, vaulted ceiling
-  { id: 14, category: 'Kitchen', src: '/images/projects/kitchen-vaulted-ceiling-wood-beams-quartz-island-atlanta.jpg', title: 'Vaulted Ceiling Kitchen Remodel', alt: 'Kitchen remodel with wood beam vaulted ceiling and quartz island installation, Atlanta, GA' },
-  { id: 15, category: 'Kitchen', src: '/images/projects/kitchen-gas-cooktop-stainless-hood-quartz-backsplash-atlanta.jpg', title: 'Gas Cooktop & Quartz Backsplash', alt: 'Gas cooktop with stainless steel range hood and quartz backsplash, Atlanta, GA' },
+  const featured = FEATURED.map((s) => portfolio.find((p) => p.slug === s)!);
+  const counts = useMemo(() => {
+    const c: Record<string, number> = { All: portfolio.length };
+    portfolio.forEach((p) => { c[p.category] = (c[p.category] ?? 0) + 1; });
+    return c;
+  }, []);
+  const rowA = photos.filter((_, k) => k % 2 === 0);
+  const rowB = photos.filter((_, k) => k % 2 === 1);
 
-  // Kitchen - Black appliance white kitchen
-  { id: 16, category: 'Kitchen', src: '/images/projects/kitchen-white-raised-panel-cabinets-black-appliances-atlanta.jpg', title: 'White Cabinets & Black Appliances', alt: 'White raised-panel kitchen cabinets with black appliances and quartz countertops, Atlanta, GA' },
-  { id: 17, category: 'Kitchen', src: '/images/projects/kitchen-quartz-waterfall-island-black-fixtures-atlanta.jpg', title: 'Quartz Waterfall Island', alt: 'White quartz waterfall island with black faucet and undermount sink, Atlanta, GA' },
-  { id: 18, category: 'Kitchen', src: '/images/projects/kitchen-open-concept-island-black-appliances-staircase-atlanta.jpg', title: 'Open Concept Kitchen with Staircase', alt: 'Quartz kitchen island open to staircase and living area, black appliances, Atlanta, GA' },
-  { id: 19, category: 'Kitchen', src: '/images/projects/kitchen-white-cabinets-pendant-lighting-black-appliances-atlanta.jpg', title: 'White Kitchen with Pendant Lighting', alt: 'White kitchen cabinets under glass pendant lighting with black appliances, Atlanta, GA' },
+  useGSAP(() => {
+    const mm = gsap.matchMedia();
+    mm.add('(prefers-reduced-motion: no-preference)', () => {
+      // hero: title lines rise, filmstrip rows slide in opposite directions with scroll
+      gsap.from('.pf-hero-line', { yPercent: 110, duration: 1.1, stagger: 0.08, ease: 'power4.out', delay: 0.15 });
+      gsap.from('.pf-hero-fade', { y: 20, opacity: 0, duration: 0.9, stagger: 0.08, ease: 'power3.out', delay: 0.45 });
+      gsap.fromTo('.pf-row-a', { xPercent: 0 }, { xPercent: -22, ease: 'none', scrollTrigger: { trigger: '.pf-strip', start: 'top bottom', end: 'bottom top', scrub: true } });
+      gsap.fromTo('.pf-row-b', { xPercent: -22 }, { xPercent: 0, ease: 'none', scrollTrigger: { trigger: '.pf-strip', start: 'top bottom', end: 'bottom top', scrub: true } });
+      // featured: cover opens up, photo settles, copy follows
+      gsap.utils.toArray<HTMLElement>('.pf-feature').forEach((f) => {
+        const tl = gsap.timeline({ scrollTrigger: { trigger: f, start: 'top 75%', once: true } });
+        tl.fromTo(f.querySelector('.pf-cover'), { clipPath: 'inset(12% 8% 12% 8% round 24px)' }, { clipPath: 'inset(0% 0% 0% 0% round 16px)', duration: 1.3, ease: 'expo.out' })
+          .from(f.querySelectorAll('.pf-in'), { y: 30, opacity: 0, duration: 0.8, stagger: 0.07, ease: 'power3.out' }, '-=1');
+        gsap.fromTo(f.querySelector('.pf-cover-img'), { yPercent: -5 }, { yPercent: 5, ease: 'none', scrollTrigger: { trigger: f, start: 'top bottom', end: 'bottom top', scrub: true } });
+      });
+      gsap.from('.pf-card', { y: 50, opacity: 0, duration: 0.9, stagger: 0.06, ease: 'power3.out', scrollTrigger: { trigger: '.pf-grid', start: 'top 85%', once: true } });
+    });
+  }, { scope: root });
 
-  // Bathroom - Navy vanity
-  { id: 20, category: 'Bathroom', src: '/images/projects/bathroom-navy-cabinets-white-quartz-double-vanity-atlanta.jpg', title: 'Navy Double Vanity', alt: 'Navy blue double vanity with white quartz countertop and framed mirror, Atlanta, GA' },
-  { id: 21, category: 'Bathroom', src: '/images/projects/bathroom-white-quartz-undermount-sink-detail-atlanta.jpg', title: 'Quartz Vanity Sink Detail', alt: 'Undermount sink detail in white quartz bathroom vanity countertop, Atlanta, GA' },
-  { id: 22, category: 'Bathroom', src: '/images/projects/bathroom-navy-vanity-sconce-lighting-atlanta.jpg', title: 'Navy Vanity with Sconce Lighting', alt: 'Navy blue bathroom vanity with white quartz counter under sconce lighting, Atlanta, GA' },
-  { id: 23, category: 'Bathroom', src: '/images/projects/bathroom-black-granite-trough-sink-fabrication.jpg', title: 'Custom Black Granite Sink', alt: 'Custom trough sink fabricated from black leathered granite slab' },
+  // animate the grid re-layout when the filter changes
+  const changeFilter = (f: 'All' | Category) => {
+    if (f === filter) return;
+    flipState.current = Flip.getState('.pf-card');
+    setFilter(f);
+  };
+  useLayoutEffect(() => {
+    if (!flipState.current) return;
+    Flip.from(flipState.current, {
+      duration: 0.7,
+      ease: 'power3.inOut',
+      absolute: true,
+      stagger: 0.03,
+      onEnter: (els) => gsap.fromTo(els, { opacity: 0, scale: 0.92 }, { opacity: 1, scale: 1, duration: 0.5, ease: 'power2.out' }),
+      onLeave: (els) => gsap.to(els, { opacity: 0, scale: 0.92, duration: 0.35 }),
+    });
+    flipState.current = null;
+    ScrollTrigger.refresh();
+  }, [filter]);
 
-  // Bathroom - Gray cabinets suite
-  { id: 24, category: 'Bathroom', src: '/images/projects/bathroom-gray-cabinets-quartz-vanity-wood-tile-wall-atlanta.jpg', title: 'Gray Vanity & Wood-Look Tile', alt: 'Gray double vanity with quartz countertop and wood-look wall tile, Atlanta, GA' },
-  { id: 25, category: 'Bathroom', src: '/images/projects/bathroom-kohler-undermount-sink-quartz-countertop-atlanta.jpg', title: 'Kohler Sink & Quartz Countertop', alt: 'Kohler undermount sink set in quartz bathroom vanity countertop, Atlanta, GA' },
-  { id: 26, category: 'Bathroom', src: '/images/projects/bathroom-charcoal-marble-shower-rainfall-head-atlanta.jpg', title: 'Charcoal Marble Shower', alt: 'Walk-in shower with charcoal marble-look tile and rainfall shower head, Atlanta, GA' },
-  { id: 27, category: 'Bathroom', src: '/images/projects/bathroom-built-in-bench-linen-tower-quartz-top-atlanta.jpg', title: 'Built-In Bench & Linen Tower', alt: 'Built-in shower bench with quartz top beside gray linen tower cabinet, Atlanta, GA' },
-  { id: 28, category: 'Bathroom', src: '/images/projects/bathroom-custom-pull-out-laundry-hamper-cabinet-atlanta.jpg', title: 'Pull-Out Laundry Hamper Cabinet', alt: 'Custom pull-out laundry hamper drawers in bathroom vanity cabinetry, Atlanta, GA' },
-
-  // Bathroom - Marble shower
-  { id: 29, category: 'Bathroom', src: '/images/projects/bathroom-calacatta-marble-shower-lighted-niche-atlanta.jpg', title: 'Calacatta Marble Shower Niche', alt: 'Calacatta marble-look shower surround with lighted recessed niche, Atlanta, GA' },
-
-  // Bathroom - Walnut + blue quartzite
-  { id: 30, category: 'Bathroom', src: '/images/projects/bathroom-walnut-vanity-blue-quartzite-backsplash-atlanta.jpg', title: 'Walnut Vanity & Blue Quartzite', alt: 'Walnut double vanity with blue quartzite backsplash and backlit mirrors, Atlanta, GA' },
-  { id: 31, category: 'Bathroom', src: '/images/projects/bathroom-blue-quartzite-countertop-sink-detail-atlanta.jpg', title: 'Blue Quartzite Countertop Detail', alt: 'Undermount sink detail in blue quartzite bathroom countertop, Atlanta, GA' },
-  { id: 32, category: 'Bathroom', src: '/images/projects/bathroom-marble-basketweave-floor-tile-detail-atlanta.jpg', title: 'Basketweave Marble Floor Tile', alt: 'Basketweave marble mosaic floor tile beside walnut vanity legs, Atlanta, GA' },
-  { id: 33, category: 'Bathroom', src: '/images/projects/bathroom-freestanding-tub-glass-shower-walnut-vanity-atlanta.jpg', title: 'Freestanding Tub & Walnut Vanity', alt: 'Freestanding soaking tub and glass shower beside walnut vanity, Atlanta, GA' },
-  { id: 34, category: 'Bathroom', src: '/images/projects/bathroom-freestanding-tub-black-tile-surround-atlanta.jpg', title: 'Freestanding Tub & Black Tile', alt: 'Freestanding soaking tub with black tile surround and backlit niche, Atlanta, GA' },
-  { id: 35, category: 'Bathroom', src: '/images/projects/bathroom-floating-toilet-black-tile-powder-room-atlanta.jpg', title: 'Black Tile Powder Room', alt: 'Wall-hung toilet in black tile powder room with backlit ledge, Atlanta, GA' },
-
-  // Cabinets
-  { id: 36, category: 'Cabinets', src: '/images/projects/cabinets-wet-bar-marble-backsplash-wine-storage-atlanta.jpg', title: 'Wet Bar & Marble Backsplash', alt: 'Custom wet bar cabinetry with marble backsplash, gold fixtures and wine storage, Atlanta, GA' },
-  { id: 37, category: 'Cabinets', src: '/images/projects/cabinets-floating-shelves-wine-fridge-nook-atlanta.jpg', title: 'Floating Shelves & Wine Fridge', alt: 'Built-in cabinetry with floating wood shelves and dual-zone wine fridge, Atlanta, GA' },
-  { id: 38, category: 'Cabinets', src: '/images/projects/cabinets-glass-front-hutch-built-in-atlanta.jpg', title: 'Glass-Front Built-In Hutch', alt: 'Custom glass-front hutch cabinetry with quartz countertop, Atlanta, GA' },
-
-  // Fireplace
-  { id: 39, category: 'Fireplace', src: '/images/projects/fireplace-black-granite-surround-white-mantle-atlanta.jpg', title: 'Black Granite Fireplace Surround', alt: 'Black granite fireplace surround and hearth with white mantle, Atlanta, GA' },
-];
-
-const categories = ['All', 'Kitchen', 'Bathroom', 'Cabinets', 'Fireplace'];
-
-const ProjectsGallery: React.FC = () => {
-  const [filter, setFilter] = useState('All');
-  const [selectedImage, setSelectedImage] = useState<ProjectImage | null>(null);
-
-  const filteredProjects = filter === 'All' ? projects : projects.filter((p) => p.category === filter);
+  const openProject = (p: Project, i = 0) => setOpen({ p, i });
 
   return (
-    <div className="min-h-screen flex flex-col font-sans">
+    <div ref={root} className="flex min-h-screen flex-col font-sans">
       <Header />
-
       <main className="flex-grow">
-        <section className="pt-32 pb-20 md:pt-40 md:pb-32 bg-neutral-900 relative border-b border-neutral-800">
-          {/* Dark Ambient Background */}
-          <div className="absolute inset-0 overflow-hidden pointer-events-none">
-            <div className="absolute top-0 left-1/4 w-[600px] h-[600px] bg-secondary/5 rounded-full blur-[120px] mix-blend-screen"></div>
-            <div className="absolute bottom-0 right-1/4 w-[500px] h-[500px] bg-blue-900/10 rounded-full blur-[100px] mix-blend-screen"></div>
+        {/* ============ HERO ============ */}
+        <section data-no-motion className="relative overflow-hidden bg-[#0d1016] pb-16 pt-32 text-white md:pb-24 md:pt-44">
+          <div className="container mx-auto max-w-7xl px-5 md:px-8">
+            <div className="grid gap-10 lg:grid-cols-12 lg:items-end">
+              <div className="lg:col-span-8">
+                <p className="pf-hero-fade mb-6 flex items-center gap-3 text-[11px] font-bold uppercase tracking-[0.24em] text-secondary">
+                  <span className="h-px w-8 bg-secondary" /> Portfolio · Metro Atlanta
+                </p>
+                <h1 className="font-serif text-[22vw] font-medium leading-[0.86] tracking-tight sm:text-[9rem] lg:text-[11rem]">
+                  <span className="block overflow-hidden pb-[0.06em]"><span className="pf-hero-line block">Our</span></span>
+                  <span className="block overflow-hidden pb-[0.06em]"><span className="pf-hero-line block">Work<span className="text-secondary">.</span></span></span>
+                </h1>
+              </div>
+              <div className="lg:col-span-4 lg:pb-4">
+                <p className="pf-hero-fade max-w-sm text-[15px] leading-relaxed text-white/65 md:text-lg">
+                  Real kitchens, baths and built-ins we templated, fabricated and installed. No stock photos, just finished work.
+                </p>
+                <dl className="pf-hero-fade mt-8 grid grid-cols-3 gap-4 border-t border-white/10 pt-6">
+                  {[[String(portfolio.length), 'Projects'], [String(photos.length), 'Photos'], ['100%', 'Own crews']].map(([v, l]) => (
+                    <div key={l}><dt className="font-serif text-3xl md:text-4xl">{v}</dt><dd className="mt-1 text-[11px] uppercase tracking-[0.16em] text-white/45">{l}</dd></div>
+                  ))}
+                </dl>
+              </div>
+            </div>
           </div>
 
-          <div className="container mx-auto px-4 relative z-10">
-            {/* Header Section */}
-            <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 md:mb-12 gap-6 md:gap-8 border-b border-neutral-800 pb-8">
-              <div className="max-w-xl">
-                <h2 className="text-secondary font-bold tracking-[0.2em] uppercase mb-3 text-xs md:text-sm flex items-center gap-3">
-                  <span className="w-8 h-[1px] bg-secondary"></span>
-                  Our Work
-                </h2>
-                <h1 className="text-4xl md:text-6xl font-serif text-white mb-4">Real Projects, Real Results</h1>
-                <p className="text-neutral-400 text-sm md:text-base font-light leading-relaxed">
-                  Photos from kitchens, bathrooms, and cabinetry we&apos;ve fabricated and installed for
-                  homeowners across Atlanta and Duluth, GA. No stock photos, just finished work.
-                </p>
-              </div>
-
-              {/* Category Filter Tabs */}
-              <div className="flex flex-wrap gap-x-6 gap-y-3 md:justify-end overflow-x-auto pb-2 md:pb-0 scrollbar-hide">
-                {categories.map((cat) => (
-                  <button
-                    key={cat}
-                    onClick={() => setFilter(cat)}
-                    className={`text-sm md:text-base font-medium transition-all duration-300 pb-1 relative group whitespace-nowrap ${
-                      filter === cat ? 'text-white' : 'text-neutral-500 hover:text-neutral-300'
-                    }`}
-                  >
-                    {cat}
-                    <span
-                      className={`absolute bottom-0 left-0 h-[1px] bg-secondary transition-all duration-300 ${
-                        filter === cat ? 'w-full' : 'w-0 group-hover:w-1/2'
-                      }`}
-                    ></span>
-                  </button>
+          {/* filmstrip */}
+          <div className="pf-strip mt-14 space-y-3 md:mt-20 md:space-y-4" aria-hidden="true">
+            {[rowA, rowB].map((row, r) => (
+              <div key={r} className={`flex w-max gap-3 md:gap-4 ${r === 0 ? 'pf-row-a' : 'pf-row-b'}`}>
+                {[...row, ...row.slice(0, 6)].map((p, k) => (
+                  <div key={`${p.id}-${k}`} className="relative h-28 shrink-0 overflow-hidden rounded-xl bg-white/5 sm:h-40 md:h-56" style={{ aspectRatio: `${p.w} / ${p.h}` }}>
+                    <Image src={p.src} alt="" fill sizes="(min-width: 768px) 300px, 160px" className="object-cover opacity-80" />
+                  </div>
                 ))}
               </div>
+            ))}
+          </div>
+        </section>
+
+        {/* ============ FEATURED ============ */}
+        <section className="bg-[#faf8f5] py-16 md:py-28">
+          <div className="container mx-auto max-w-7xl px-5 md:px-8">
+            <div className="mb-12 flex items-end justify-between gap-6 md:mb-20">
+              <div>
+                <p className="mb-4 flex items-center gap-3 text-[11px] font-bold uppercase tracking-[0.24em] text-secondary"><span className="h-px w-8 bg-secondary" /> Featured</p>
+                <h2 className="font-serif text-[2.3rem] font-medium leading-[1.05] text-primary sm:text-5xl lg:text-[3.6rem]">Selected projects</h2>
+              </div>
+              <p className="hidden max-w-xs text-sm leading-relaxed text-stone-500 md:block">Tap any project to walk through every photo.</p>
             </div>
 
-            {/*
-                LAYOUT LOGIC:
-                Mobile: Flexbox with horizontal scroll (overflow-x-auto) + Snap
-                Desktop: Grid (md:grid)
-            */}
-            <div className="flex md:grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-8 overflow-x-auto md:overflow-visible pb-8 md:pb-0 snap-x snap-mandatory scrollbar-hide -mx-4 px-4 md:mx-0 md:px-0">
-              {filteredProjects.map((project) => (
-                <div
-                  key={project.id}
-                  onClick={() => setSelectedImage(project)}
-                  className="group cursor-pointer relative min-w-[85vw] md:min-w-0 snap-center"
-                >
-                  <div className="relative aspect-[3/4] overflow-hidden rounded-xl bg-neutral-800 shadow-2xl transition-all duration-500 group-hover:-translate-y-2 border border-neutral-700/50 group-hover:border-secondary/50">
-                    <Image
-                      src={project.src}
-                      alt={project.alt}
-                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-90 group-hover:opacity-100"
-                      fill
-                      sizes="(max-width: 768px) 85vw, (max-width: 1024px) 50vw, (max-width: 1280px) 33vw, 25vw"
-                    />
-
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-80 group-hover:opacity-60 transition-opacity duration-300"></div>
-
-                    <div className="absolute bottom-0 left-0 w-full p-6 transform transition-transform duration-300">
-                      <div className="translate-y-0 md:translate-y-4 md:group-hover:translate-y-0 transition-transform duration-300">
-                        <span className="inline-block text-secondary text-[10px] font-bold uppercase tracking-widest mb-2 border border-secondary/30 px-2 py-0.5 rounded backdrop-blur-sm">
-                          {project.category}
-                        </span>
-                        <h4 className="text-xl font-serif text-white font-medium">{project.title}</h4>
+            <div className="space-y-20 md:space-y-32">
+              {featured.map((p, k) => {
+                const cover = photoById(p.photoIds[0]);
+                const portrait = cover.h > cover.w;
+                const reverse = k % 2 === 1;
+                return (
+                  <article key={p.slug} data-no-motion className="pf-feature grid items-center gap-8 lg:grid-cols-12 lg:gap-14">
+                    <button onClick={() => openProject(p)} className={`pf-cover group relative block w-full overflow-hidden rounded-2xl bg-stone-200 text-left lg:col-span-7 ${reverse ? 'lg:order-2' : ''} ${portrait ? 'aspect-[4/5] lg:aspect-[4/4.6]' : 'aspect-[4/3]'}`} aria-label={`Open ${p.title}`}>
+                      <Image src={cover.src} alt={cover.alt} fill sizes="(min-width: 1024px) 58vw, 100vw" className="pf-cover-img scale-[1.1] object-cover transition-transform duration-[1.2s] ease-out group-hover:scale-[1.15]" />
+                      <span className="absolute bottom-4 left-4 inline-flex items-center gap-2 rounded-full bg-white/90 px-3.5 py-2 text-xs font-semibold text-primary shadow-lg backdrop-blur">
+                        <Images size={14} className="text-secondary" /> {p.photoIds.length} photos
+                      </span>
+                    </button>
+                    <div className={`lg:col-span-5 ${reverse ? 'lg:order-1' : ''}`}>
+                      <p className="pf-in font-mono text-xs text-stone-400">{String(k + 1).padStart(2, '0')} / {String(featured.length).padStart(2, '0')}</p>
+                      <p className="pf-in mt-4 text-[11px] font-bold uppercase tracking-[0.22em] text-secondary">{p.category} · {p.scope}</p>
+                      <h3 className="pf-in mt-3 font-serif text-[2rem] font-medium leading-[1.08] text-primary md:text-5xl">{p.title}</h3>
+                      <p className="pf-in mt-4 max-w-md text-[15px] leading-relaxed text-stone-600 md:text-base">{p.summary}</p>
+                      <ul className="pf-in mt-5 flex flex-wrap gap-2">
+                        {p.materials.map((m) => <li key={m} className="rounded-full border border-stone-300 px-3 py-1 text-xs text-stone-600">{m}</li>)}
+                      </ul>
+                      <div className="pf-in mt-7 grid grid-cols-3 gap-2.5">
+                        {p.photoIds.slice(1, 4).map((id, j) => {
+                          const t = photoById(id);
+                          return (
+                            <button key={id} onClick={() => openProject(p, j + 1)} className="group relative aspect-square overflow-hidden rounded-lg bg-stone-200" aria-label={`Open photo: ${t.title}`}>
+                              <Image src={t.src} alt={t.alt} fill sizes="140px" className="object-cover transition-transform duration-700 group-hover:scale-110" />
+                            </button>
+                          );
+                        })}
                       </div>
+                      <button onClick={() => openProject(p)} className="pf-in group mt-7 inline-flex items-center gap-3 rounded-full bg-primary py-3 pl-6 pr-3 text-sm font-semibold text-white transition hover:bg-stone-900">
+                        View project
+                        <span className="flex h-8 w-8 items-center justify-center rounded-full bg-secondary transition-transform group-hover:rotate-45"><ArrowUpRight size={16} /></span>
+                      </button>
                     </div>
-
-                    <div className="absolute top-4 right-4 bg-white/10 backdrop-blur-md p-2 rounded-full text-white md:opacity-0 md:group-hover:opacity-100 transition-all duration-300 md:translate-y-[-10px] md:group-hover:translate-y-0">
-                      <ZoomIn size={18} />
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-
-            {/* Mobile Swipe Hint */}
-            <div className="md:hidden flex items-center justify-center gap-2 mt-4 text-neutral-500 text-xs">
-              Swipe to see more projects
+                  </article>
+                );
+              })}
             </div>
           </div>
+        </section>
 
-          {/* Lightbox */}
-          {selectedImage && (
-            <div
-              className="fixed inset-0 z-[100] bg-black/95 backdrop-blur-md flex items-center justify-center p-4 md:p-10 animate-in fade-in duration-300"
-              onClick={() => setSelectedImage(null)}
-            >
-              <button
-                className="absolute top-4 right-4 md:top-8 md:right-8 text-white/50 hover:text-white transition-colors p-2 bg-white/10 rounded-full z-50 hover:rotate-90 duration-300"
-                onClick={() => setSelectedImage(null)}
-                aria-label="Close image"
-              >
-                <X size={24} className="md:w-8 md:h-8" />
-              </button>
-
-              <div
-                className="relative w-full h-full max-w-4xl max-h-[85vh] animate-in zoom-in-95 duration-300"
-                onClick={(e) => e.stopPropagation()}
-              >
-                <Image
-                  src={selectedImage.src}
-                  alt={selectedImage.alt}
-                  className="object-contain"
-                  fill
-                  sizes="90vw"
-                />
-                <div className="absolute -bottom-12 left-0 w-full text-center">
-                  <span className="text-secondary text-xs font-bold uppercase tracking-widest">
-                    {selectedImage.category}
-                  </span>
-                  <h3 className="text-white font-serif text-lg">{selectedImage.title}</h3>
-                </div>
+        {/* ============ INDEX ============ */}
+        <section id="all-projects" className="bg-white py-16 md:py-28">
+          <div className="container mx-auto max-w-7xl px-5 md:px-8">
+            <div className="mb-8 grid gap-6 md:mb-12 lg:grid-cols-12 lg:items-end">
+              <div className="lg:col-span-6">
+                <p className="mb-4 flex items-center gap-3 text-[11px] font-bold uppercase tracking-[0.24em] text-secondary"><span className="h-px w-8 bg-secondary" /> Index</p>
+                <h2 className="font-serif text-[2.3rem] font-medium leading-[1.05] text-primary sm:text-5xl lg:text-[3.6rem]">Every project</h2>
+              </div>
+              <div data-no-motion role="tablist" aria-label="Filter projects" className="-mx-5 flex gap-2 overflow-x-auto px-5 pb-1 [scrollbar-width:none] lg:col-span-6 lg:mx-0 lg:justify-end lg:px-0">
+                {CATEGORIES.map((c) => {
+                  const on = filter === c.id;
+                  return (
+                    <button key={c.id} role="tab" aria-selected={on} onClick={() => changeFilter(c.id)}
+                      className={`flex shrink-0 items-center gap-2 rounded-full px-4 py-2 text-sm font-semibold transition ${on ? 'bg-primary text-white' : 'bg-stone-100 text-stone-600 hover:bg-stone-200'}`}>
+                      {c.label}<span className={`text-[11px] tabular-nums ${on ? 'text-secondary' : 'text-stone-400'}`}>{counts[c.id] ?? 0}</span>
+                    </button>
+                  );
+                })}
               </div>
             </div>
-          )}
+
+            <div data-no-motion className="pf-grid grid grid-flow-dense auto-rows-[150px] grid-cols-2 gap-3 sm:auto-rows-[200px] md:gap-4 lg:auto-rows-[230px] lg:grid-cols-4">
+              {portfolio.map((p) => {
+                const cover = photoById(p.photoIds[0]);
+                const tall = cover.h > cover.w;
+                const hidden = filter !== 'All' && p.category !== filter;
+                return (
+                  <button key={p.slug} data-flip-id={p.slug} onClick={() => openProject(p)}
+                    className={`pf-card group relative overflow-hidden rounded-xl bg-stone-200 text-left ${tall ? 'row-span-2' : ''} ${hidden ? 'hidden' : ''}`}
+                    aria-label={`Open ${p.title}, ${p.photoIds.length} photos`}>
+                    <Image src={cover.src} alt={cover.alt} fill sizes="(min-width: 1024px) 25vw, 50vw" className="object-cover transition-transform duration-[1.1s] ease-out group-hover:scale-110" />
+                    <span className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/10 to-transparent opacity-90 transition-opacity duration-500 group-hover:opacity-100" />
+                    <span className="absolute right-3 top-3 flex h-9 w-9 translate-y-1 items-center justify-center rounded-full bg-white text-primary opacity-0 shadow transition duration-300 group-hover:translate-y-0 group-hover:opacity-100">
+                      <ArrowUpRight size={16} />
+                    </span>
+                    <span className="absolute inset-x-0 bottom-0 p-3 md:p-4">
+                      <span className="block text-[10px] font-bold uppercase tracking-[0.18em] text-secondary">{p.category}</span>
+                      <span className="mt-0.5 block font-serif text-[15px] leading-tight text-white sm:text-lg md:text-xl">{p.title}</span>
+                      <span className="mt-1 block text-[11px] text-white/60">{p.photoIds.length} photo{p.photoIds.length > 1 ? 's' : ''}</span>
+                    </span>
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+        </section>
+
+        {/* ============ CTA ============ */}
+        <section data-expand className="bg-[#10141a] py-20 text-white md:py-28">
+          <div className="container mx-auto max-w-5xl px-5 text-center md:px-8">
+            <p className="mb-5 text-[11px] font-bold uppercase tracking-[0.24em] text-secondary">Your project</p>
+            <h2 className="font-serif text-[2.4rem] font-medium leading-[1.05] sm:text-5xl lg:text-6xl">Your kitchen could be next.</h2>
+            <p className="mx-auto mt-5 max-w-xl text-[15px] leading-relaxed text-white/60 md:text-lg">Pick your slab in our Duluth showroom or start with a design in 3D. Either way, we measure, fabricate and install it ourselves.</p>
+            <div className="mt-9 flex flex-col justify-center gap-3 sm:flex-row">
+              <Link href="/quote" className="group inline-flex items-center justify-center gap-3 rounded-full bg-secondary py-3 pl-6 pr-3 text-sm font-bold text-white transition hover:brightness-110">
+                Get a free estimate
+                <span className="flex h-8 w-8 items-center justify-center rounded-full bg-white/20 transition-transform group-hover:rotate-45"><ArrowUpRight size={16} /></span>
+              </Link>
+              <Link href="/kitchen-design" className="inline-flex items-center justify-center gap-2 rounded-full border border-white/20 px-6 py-3 text-sm font-semibold transition hover:border-white/50">
+                <Box size={16} className="text-secondary" /> Design it in 3D
+              </Link>
+            </div>
+          </div>
         </section>
       </main>
-
       <Footer />
+      <ProjectViewer project={open?.p ?? null} start={open?.i ?? 0} onClose={() => setOpen(null)} />
     </div>
   );
-};
-
-export default ProjectsGallery;
+}
