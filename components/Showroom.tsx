@@ -1,102 +1,126 @@
-import React from 'react';
+'use client';
+
+import React, { useRef } from 'react';
 import Image from 'next/image';
-import { MapPin, Calendar, Clock, ArrowRight } from 'lucide-react';
+import { ArrowUpRight, MapPin, Phone } from 'lucide-react';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { useGSAP } from '@gsap/react';
+
+gsap.registerPlugin(ScrollTrigger, useGSAP);
+
+const expect = [
+  'Personal design consultation',
+  'Full slabs, not 2-inch samples',
+  'Free samples to take home',
+  'Cabinet and hardware displays',
+  'Sink and faucet options',
+];
+
+// Hours and address match the LocalBusiness schema in app/layout.tsx.
+const hours = [
+  { d: 'Mon – Fri', h: '8:00 – 6:00' },
+  { d: 'Saturday', h: '9:00 – 3:00' },
+  { d: 'Sunday', h: 'Closed' },
+];
+
+const MAPS = 'https://maps.google.com/?q=AGS+STONES+%26+CABINETS,+4579+Abbotts+Bridge+Rd+Suite+-10,+Duluth,+GA+30097,+United+States';
 
 const Showroom: React.FC = () => {
+  const root = useRef<HTMLElement>(null);
+
+  useGSAP(() => {
+    gsap.matchMedia().add('(prefers-reduced-motion: no-preference)', () => {
+      // photos drift at different speeds while the section passes
+      gsap.fromTo('.sr-main-img', { yPercent: -6 }, { yPercent: 6, ease: 'none', scrollTrigger: { trigger: root.current, start: 'top bottom', end: 'bottom top', scrub: true } });
+      gsap.fromTo('.sr-slab', { yPercent: 18 }, { yPercent: -12, ease: 'none', scrollTrigger: { trigger: root.current, start: 'top bottom', end: 'bottom top', scrub: true } });
+      gsap.from('.sr-stat', { scale: 0.7, opacity: 0, duration: 0.8, ease: 'back.out(1.8)', scrollTrigger: { trigger: '.sr-stat', start: 'top 88%', once: true } });
+      gsap.from('.sr-li', { y: 18, opacity: 0, duration: 0.7, stagger: 0.07, ease: 'power3.out', scrollTrigger: { trigger: '.sr-list', start: 'top 85%', once: true } });
+      gsap.from('.sr-rule', { scaleX: 0, transformOrigin: 'left', duration: 0.9, stagger: 0.07, ease: 'expo.out', scrollTrigger: { trigger: '.sr-list', start: 'top 85%', once: true } });
+    });
+  }, { scope: root });
+
   return (
-    <section id="showroom" className="relative min-h-[600px] flex items-center justify-center py-20 bg-gray-900 overflow-hidden">
-        {/* Parallax Background */}
-        <div className="absolute inset-0 z-0">
-             <Image 
-                src="https://kitchenandbathshop.com/wp-content/uploads/2020/11/5d7ff4ab763f7-scaled.jpg" 
-                alt="AGS Stone Showroom Gallery" 
-                className="w-full h-full object-cover opacity-40"
+    <section ref={root} id="showroom" data-expand className="relative overflow-hidden bg-[#10141a] py-16 text-white md:py-28">
+      <div className="container mx-auto max-w-7xl px-5 md:px-8">
+        <div className="grid items-center gap-12 lg:grid-cols-12 lg:gap-16">
+          {/* images */}
+          <div data-no-motion className="relative lg:col-span-7">
+            <div className="relative aspect-[4/3] overflow-hidden rounded-2xl sm:aspect-[16/11] lg:aspect-[5/6] xl:aspect-[4/4.4]">
+              <Image
+                src="https://kitchenandbathshop.com/wp-content/uploads/2020/11/5d7ff4ab763f7-scaled.jpg"
+                alt="Full-size stone slabs on display at the AGS Stones showroom in Duluth, GA"
                 fill
-                sizes="100vw"
-             />
-             <div className="absolute inset-0 bg-gradient-to-r from-gray-900 via-gray-900/80 to-transparent"></div>
-        </div>
-
-        <div className="container mx-auto px-4 relative z-10">
-            <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
-                
-                {/* Text Content */}
-                <div className="lg:w-1/2 text-white">
-                    <div className="inline-block bg-secondary/20 text-secondary border border-secondary/50 rounded-full px-4 py-1 text-sm font-bold mb-6 backdrop-blur-md">
-                        Open to the Public
-                    </div>
-                    <h2 className="text-4xl md:text-6xl font-bold mb-6 leading-tight">
-                        Touch & Feel <br/>
-                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-400">Your Future Kitchen</span>
-                    </h2>
-                    <p className="text-gray-300 text-lg mb-8 leading-relaxed max-w-xl">
-                        Photos can't capture the depth and texture of natural stone. Visit our Duluth showroom to browse over 500+ full-size slabs of Granite, Marble, Quartzite, and Quartz.
-                    </p>
-                    
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-8">
-                        <div className="flex items-start gap-4">
-                             <div className="bg-white/10 p-3 rounded-lg">
-                                 <MapPin className="text-secondary" />
-                             </div>
-                             <div>
-                                 <h4 className="font-bold">Easy Access</h4>
-                                 <p className="text-sm text-gray-400">Located conveniently off Abbotts Bridge Rd in Duluth.</p>
-                             </div>
-                        </div>
-                        <div className="flex items-start gap-4">
-                             <div className="bg-white/10 p-3 rounded-lg">
-                                 <Calendar className="text-secondary" />
-                             </div>
-                             <div>
-                                 <h4 className="font-bold">No Appointment?</h4>
-                                 <p className="text-sm text-gray-400">Walk-ins are always welcome during business hours.</p>
-                             </div>
-                        </div>
-                    </div>
-
-                    <a href="/contact" className="inline-flex items-center gap-2 bg-secondary hover:bg-yellow-600 text-white font-bold py-4 px-8 rounded-full transition-all hover:scale-105 shadow-[0_0_20px_rgba(202,138,4,0.3)]">
-                        Get Directions <ArrowRight size={18} />
-                    </a>
-                </div>
-
-                {/* Glassmorphism Card */}
-                <div className="lg:w-1/2 w-full">
-                    <div className="bg-white/10 backdrop-blur-xl border border-white/20 rounded-3xl p-8 shadow-2xl relative overflow-hidden group">
-                         {/* Card Decor */}
-                         <div className="absolute top-0 right-0 w-32 h-32 bg-secondary/30 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2"></div>
-                         
-                         <h3 className="text-2xl font-bold text-white mb-6">What to Expect</h3>
-                         
-                         <div className="space-y-4">
-                             {[
-                                 "Personal Design Consultation",
-                                 "Free Samples to Take Home",
-                                 "Full Slab Viewing (Not tiny samples)",
-                                 "Cabinet Hardware Display",
-                                 "Sink & Faucet Options"
-                             ].map((item, i) => (
-                                 <div key={i} className="flex items-center gap-3 text-gray-200 border-b border-white/5 pb-3 last:border-0 last:pb-0">
-                                     <div className="w-2 h-2 rounded-full bg-secondary shadow-[0_0_10px_rgba(202,138,4,0.8)]"></div>
-                                     {item}
-                                 </div>
-                             ))}
-                         </div>
-
-                         <div className="mt-8 bg-black/40 rounded-xl p-4 flex items-center justify-between">
-                             <div>
-                                 <p className="text-xs text-gray-400 uppercase tracking-widest mb-1">Current Wait Time</p>
-                                 <p className="text-white font-bold flex items-center gap-2">
-                                     <span className="w-3 h-3 bg-green-500 rounded-full animate-pulse"></span>
-                                     Immediate Assistance
-                                 </p>
-                             </div>
-                             <Clock className="text-gray-500" />
-                         </div>
-                    </div>
-                </div>
-
+                sizes="(min-width: 1024px) 55vw, 100vw"
+                className="sr-main-img scale-[1.14] object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#10141a]/50 via-transparent to-transparent" />
             </div>
+            {/* slab sample card */}
+            <div className="sr-slab absolute -bottom-8 right-4 w-[38%] max-w-[230px] overflow-hidden rounded-xl shadow-2xl shadow-black/50 ring-1 ring-white/10 sm:right-8 lg:-right-8 lg:bottom-16">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src="/textures/stones/taj-mahal-swatch.jpg" alt="" className="aspect-[3/4] w-full object-cover" />
+              <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/60 to-transparent p-3">
+                <p className="text-[9px] font-bold uppercase tracking-[0.2em] text-white/70">In stock</p>
+                <p className="font-serif text-sm text-white">Taj Mahal Quartzite</p>
+              </div>
+            </div>
+            {/* stat */}
+            <div className="sr-stat absolute left-4 top-4 rounded-2xl bg-white px-4 py-3 text-primary shadow-xl sm:left-6 sm:top-6 sm:px-5 sm:py-4">
+              <p className="font-serif text-3xl leading-none sm:text-4xl">500<span className="text-secondary">+</span></p>
+              <p className="mt-1 text-[11px] font-semibold uppercase tracking-[0.14em] text-stone-500">Full slabs on site</p>
+            </div>
+          </div>
+
+          {/* copy */}
+          <div className="pt-6 lg:col-span-5 lg:pt-0">
+            <p className="mb-5 flex items-center gap-3 text-[11px] font-bold uppercase tracking-[0.24em] text-secondary">
+              <span className="h-px w-8 bg-secondary" /> Visit the showroom
+            </p>
+            <h2 className="font-serif text-[2.3rem] font-medium leading-[1.05] sm:text-5xl lg:text-[3.3rem]">
+              Touch and feel your future kitchen.
+            </h2>
+            <p className="mt-5 max-w-lg text-[15px] leading-relaxed text-white/65 md:text-lg">
+              Photos can&apos;t capture the depth of natural stone. Walk our Duluth showroom and see granite, marble, quartzite and quartz as full slabs. Walk-ins welcome.
+            </p>
+
+            <ol data-no-motion className="sr-list mt-8">
+              {expect.map((e, i) => (
+                <li key={e} className="sr-li relative flex items-baseline gap-4 py-3">
+                  <span className="sr-rule absolute inset-x-0 top-0 h-px bg-white/10" />
+                  <span className="font-mono text-[11px] text-white/35">{String(i + 1).padStart(2, '0')}</span>
+                  <span className="text-[15px] text-white/85">{e}</span>
+                </li>
+              ))}
+            </ol>
+
+            <div className="mt-8 grid gap-6 rounded-2xl border border-white/10 bg-white/[0.03] p-5 sm:grid-cols-2 sm:p-6">
+              <div>
+                <p className="mb-2 flex items-center gap-2 text-[11px] font-bold uppercase tracking-[0.18em] text-secondary"><MapPin size={13} /> Address</p>
+                <p className="text-sm leading-relaxed text-white/80">4579 Abbotts Bridge Rd Suite -10<br />Duluth, GA 30097</p>
+              </div>
+              <div>
+                <p className="mb-2 text-[11px] font-bold uppercase tracking-[0.18em] text-secondary">Hours</p>
+                <dl className="space-y-1 text-sm">
+                  {hours.map((x) => (
+                    <div key={x.d} className="flex justify-between gap-4"><dt className="text-white/55">{x.d}</dt><dd className="tabular-nums text-white/85">{x.h}</dd></div>
+                  ))}
+                </dl>
+              </div>
+            </div>
+
+            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+              <a href={MAPS} target="_blank" rel="noopener noreferrer" className="group inline-flex items-center justify-center gap-3 rounded-full bg-secondary py-3 pl-6 pr-3 text-sm font-bold text-white transition hover:brightness-110">
+                Get directions
+                <span className="flex h-8 w-8 items-center justify-center rounded-full bg-white/20 transition-transform group-hover:rotate-45"><ArrowUpRight size={16} /></span>
+              </a>
+              <a href="tel:4049524534" className="inline-flex items-center justify-center gap-2 rounded-full border border-white/20 px-6 py-3 text-sm font-semibold text-white transition hover:border-white/50">
+                <Phone size={15} className="text-secondary" /> (404) 952-4534
+              </a>
+            </div>
+          </div>
         </div>
+      </div>
     </section>
   );
 };
