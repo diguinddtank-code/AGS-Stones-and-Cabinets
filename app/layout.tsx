@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import Script from "next/script";
 import { Inter, Playfair_Display } from "next/font/google";
 import "./globals.css";
+import SiteMotion from "../components/motion/SiteMotion";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -296,6 +297,7 @@ export default function RootLayout({
           `}
         </Script>
         {children}
+        <SiteMotion />
       </body>
     </html>
   );

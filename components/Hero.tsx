@@ -174,6 +174,12 @@ const Hero: React.FC = () => {
                    <strong>Full Kitchen & Bath Remodeling</strong>. Factory-direct custom cabinets & premium stones in Duluth.
                 </p>
 
+                <a href="/kitchen-design" className="group mx-auto mb-8 inline-flex items-center gap-2.5 rounded-full border border-white/25 bg-white/10 py-1.5 pl-1.5 pr-4 text-sm font-medium text-white backdrop-blur-md transition hover:bg-white/20 lg:mx-0">
+                  <span className="rounded-full bg-secondary px-2.5 py-1 text-[10px] font-bold uppercase tracking-widest">New</span>
+                  Design your kitchen in 3D
+                  <ArrowRight size={15} className="transition-transform group-hover:translate-x-1" />
+                </a>
+
                 <div className="flex flex-col sm:flex-row gap-4 md:gap-4 mb-8 md:mb-10 lg:hidden px-4 sm:px-0 justify-center lg:justify-start">
                      <a href="/#contact" className="w-full sm:w-auto bg-secondary hover:bg-yellow-600 text-white font-bold py-4 px-6 md:px-8 rounded-xl shadow-lg flex items-center justify-center gap-2 text-base">
                         Get Free Quote <ArrowRight size={18} />

@@ -315,7 +315,7 @@ export default function Configurator() {
   return (
     <section id="studio" className="relative bg-[#f5f3ef] lg:flex lg:h-[calc(100svh-var(--kd-header,96px))] lg:min-h-[640px]">
       {/* ---------------- 3D stage ---------------- */}
-      <div ref={stageRef} className="sticky top-[var(--kd-header,72px)] z-10 h-[56svh] min-h-[320px] w-full overflow-hidden bg-[#ebe7e1] lg:relative lg:top-0 lg:h-full lg:flex-1">
+      <div ref={stageRef} data-lenis-prevent className="sticky top-[var(--kd-header,72px)] z-10 h-[56svh] min-h-[320px] w-full overflow-hidden bg-[#ebe7e1] lg:relative lg:top-0 lg:h-full lg:flex-1">
         <KitchenScene
           config={config} evening={evening} viewId={viewId} viewNonce={viewNonce} showHotspots={hotspots}
           quality={quality} onQuality={setQuality} onInteract={onInteract} handleRef={handleRef}

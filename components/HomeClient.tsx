@@ -12,6 +12,7 @@ import { Loader2 } from 'lucide-react';
 const Services = dynamic(() => import('./Services'));
 const ProcessTimeline = dynamic(() => import('./ProcessTimeline'));
 const WhyChooseUs = dynamic(() => import('./WhyChooseUs'));
+const DesignStudioTeaser = dynamic(() => import('./DesignStudioTeaser'));
 const ProjectsShowcase = dynamic(() => import('./ProjectsShowcase'));
 const StoneGallery = dynamic(() => import('./StoneGallery'));
 const MaterialMatchmaker = dynamic(() => import('./MaterialMatchmaker'));
@@ -47,6 +48,7 @@ function HomeClient() {
         <Hero />
         <TrustBadges overlap />
         <WhyChooseUs />
+        <DesignStudioTeaser />
         <ReviewsMarquee />
         <Services />
         <ProcessTimeline />
