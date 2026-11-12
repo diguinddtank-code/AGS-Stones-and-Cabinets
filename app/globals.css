@@ -17,11 +17,11 @@
 }
 
 body {
-  font-family: 'Inter', sans-serif;
+  font-family: var(--font-inter), 'Inter', system-ui, sans-serif;
 }
 
 h1, h2, h3, h4 {
-  font-family: 'Playfair Display', serif;
+  font-family: var(--font-playfair), 'Playfair Display', Georgia, serif;
 }
 
 html {
@@ -101,4 +101,10 @@ video[data-hero-video] { opacity: 0; transition: opacity 1.2s ease; }
 video[data-hero-video][data-ready] { opacity: 1; }
 @media (prefers-reduced-motion: reduce) {
   video[data-hero-video] { transition: none; }
+}
+
+/* Process section (horizontal pin) on short desktop screens */
+@media (min-width: 1024px) and (max-height: 860px) {
+  .pt-details { display: none; }
+  .pt-num { font-size: 4.25rem; }
 }

@@ -57,7 +57,7 @@ export default function DesignStudioTeaser() {
   }, { scope: root });
 
   return (
-    <section ref={root} className="relative overflow-hidden bg-primary py-20 text-white md:py-28" aria-labelledby="dst-title">
+    <section ref={root} data-expand className="relative overflow-hidden bg-primary py-20 text-white md:py-28" aria-labelledby="dst-title">
       <div className="dst-glow pointer-events-none absolute -right-40 top-10 h-[520px] w-[520px] rounded-full bg-secondary/20 blur-[120px]" />
       <div className="pointer-events-none absolute inset-0 opacity-[0.07]" style={{ backgroundImage: 'linear-gradient(rgba(255,255,255,.6) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.6) 1px, transparent 1px)', backgroundSize: '48px 48px' }} />
 

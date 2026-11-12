@@ -26,11 +26,15 @@ const hydrated = (el: Element) => { for (const k in el) if (k.startsWith('__reac
 const isSkippable = (el: Element) => !!el.closest(OWN_ANIMATION) || el.hasAttribute(DONE);
 const belowFold = (el: Element) => el.getBoundingClientRect().top > window.innerHeight * 0.92;
 
+const safe = <T,>(fn: (el: T) => void) => (el: T) => {
+  try { fn(el); } catch (err) { if (process.env.NODE_ENV !== 'production') console.warn('[SiteMotion]', err, el); }
+};
+
 function setup(root: HTMLElement, ctx: gsap.Context): number {
   let added = 0;
   ctx.add(() => {
     // 1) display headings
-    root.querySelectorAll<HTMLElement>('main h1, main h2, main h3').forEach((h) => {
+    root.querySelectorAll<HTMLElement>('main h1, main h2, main h3').forEach(safe((h) => {
       if (isSkippable(h) || !hydrated(h)) return;
       h.setAttribute(DONE, ''); // evaluated once, animated or not
       const fs = parseFloat(getComputedStyle(h).fontSize);
@@ -56,10 +60,10 @@ function setup(root: HTMLElement, ctx: gsap.Context): number {
         n.setAttribute(DONE, '');
         gsap.from(n, { y: 18, opacity: 0, duration: 0.9, ease: 'power3.out', delay: 0.15, scrollTrigger: { trigger: h, start: 'top 88%', once: true } });
       });
-    });
+    }));
 
     // 2) large images: clip reveal on their rounded wrapper
-    root.querySelectorAll<HTMLImageElement>('main section img').forEach((img) => {
+    root.querySelectorAll<HTMLImageElement>('main section img').forEach(safe((img) => {
       const wrap = img.closest<HTMLElement>('.overflow-hidden');
       if (!wrap || isSkippable(wrap) || !hydrated(wrap) || wrap.closest('[class*="marquee"],[class*="scroll"]') || !belowFold(wrap)) return;
       if (wrap.offsetHeight < 220 || wrap.offsetWidth < 220) return;
@@ -69,28 +73,39 @@ function setup(root: HTMLElement, ctx: gsap.Context): number {
       gsap.fromTo(wrap,
         { clipPath: `inset(10% 6% 10% 6% round ${r})` },
         { clipPath: `inset(0% 0% 0% 0% round ${r})`, duration: 1.3, ease: 'expo.out', clearProps: 'clipPath', scrollTrigger: { trigger: wrap, start: 'top 90%', once: true } });
-    });
+    }));
 
     // 3) opt-in hooks for new sections: data-reveal / data-reveal-stagger / data-parallax
-    root.querySelectorAll<HTMLElement>('[data-reveal]').forEach((el) => {
+    root.querySelectorAll<HTMLElement>('[data-reveal]').forEach(safe((el) => {
       if (el.hasAttribute(DONE) || !hydrated(el)) return;
       el.setAttribute(DONE, '');
       added++;
       gsap.from(el, { y: 36, opacity: 0, duration: 1, ease: 'power3.out', scrollTrigger: { trigger: el, start: 'top 88%', once: true } });
-    });
-    root.querySelectorAll<HTMLElement>('[data-reveal-stagger]').forEach((el) => {
+    }));
+    root.querySelectorAll<HTMLElement>('[data-reveal-stagger]').forEach(safe((el) => {
       if (el.hasAttribute(DONE) || !hydrated(el)) return;
       el.setAttribute(DONE, '');
       added++;
       gsap.from(el.children, { y: 40, opacity: 0, duration: 0.9, ease: 'power3.out', stagger: 0.09, scrollTrigger: { trigger: el, start: 'top 85%', once: true } });
-    });
-    root.querySelectorAll<HTMLElement>('[data-parallax]').forEach((el) => {
+    }));
+    // section transition: a dark section opens out of a rounded frame
+    root.querySelectorAll<HTMLElement>('[data-expand]').forEach(safe((el) => {
+      if (el.hasAttribute(DONE) || !hydrated(el)) return;
+      el.setAttribute(DONE, '');
+      added++;
+      const side = window.innerWidth < 768 ? 3 : 4.5;
+      const radius = window.innerWidth < 768 ? 22 : 40;
+      gsap.fromTo(el,
+        { clipPath: `inset(0% ${side}% 0% ${side}% round ${radius}px)` },
+        { clipPath: 'inset(0% 0% 0% 0% round 0px)', ease: 'none', scrollTrigger: { trigger: el, start: 'top bottom', end: 'top 35%', scrub: true } });
+    }));
+    root.querySelectorAll<HTMLElement>('[data-parallax]').forEach(safe((el) => {
       if (el.hasAttribute(DONE) || !hydrated(el)) return;
       el.setAttribute(DONE, '');
       added++;
       const amt = parseFloat(el.dataset.parallax || '12');
       gsap.fromTo(el, { yPercent: -amt / 2 }, { yPercent: amt / 2, ease: 'none', scrollTrigger: { trigger: el.parentElement ?? el, start: 'top bottom', end: 'bottom top', scrub: true } });
-    });
+    }));
   });
   return added;
 }
@@ -125,7 +140,7 @@ export default function SiteMotion() {
     let t: ReturnType<typeof setTimeout> | undefined;
     let first: ReturnType<typeof setTimeout> | undefined;
     let started = false;
-    const run = () => { if (setup(main, ctx) > 0) ScrollTrigger.refresh(); };
+    const run = () => { if (setup(main, ctx) > 0) { ScrollTrigger.sort(); ScrollTrigger.refresh(); } };
     const schedule = () => { if (!started) return; clearTimeout(t); t = setTimeout(run, 250); };
     // Never touch server-rendered markup before React has hydrated it (lazy
     // Suspense sections hydrate after their chunks arrive). Start once the
@@ -144,7 +159,7 @@ export default function SiteMotion() {
     let last = 0;
     const onScroll = () => { const now = Date.now(); if (started && now - last > 500) { last = now; schedule(); } };
     window.addEventListener('scroll', onScroll, { passive: true });
-    return () => { window.removeEventListener('scroll', onScroll); window.removeEventListener('load', start); clearTimeout(first); clearTimeout(t); mo.disconnect(); ctx.revert(); };
+    return () => { window.removeEventListener('scroll', onScroll); window.removeEventListener('load', start); clearTimeout(first); clearTimeout(t); mo.disconnect(); ctx.revert(); main.querySelectorAll(`[${DONE}]`).forEach((el) => el.removeAttribute(DONE)); };
   }, [pathname]);
 
   return null;

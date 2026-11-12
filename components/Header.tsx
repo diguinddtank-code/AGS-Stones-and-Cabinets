@@ -102,12 +102,12 @@ const Header: React.FC<HeaderProps> = ({ lightNav = false }) => {
             </Link>
   
             {/* Desktop Nav */}
-            <nav className="hidden md:flex items-center gap-8" role="navigation" aria-label="Main Desktop Navigation">
+            <nav className="hidden lg:flex items-center gap-5 xl:gap-8" role="navigation" aria-label="Main Desktop Navigation">
               {navLinks.map((link) => (
                 <Link prefetch={false}
                   key={link.name} 
                   href={link.href} 
-                  className={`font-medium tracking-wide text-sm uppercase transition-all duration-300 hover:-translate-y-0.5 ${
+                  className={`whitespace-nowrap font-medium tracking-wide text-[13px] xl:text-sm uppercase transition-all duration-300 hover:-translate-y-0.5 ${
                     isScrolled || lightNav ? 'text-stone-700 hover:text-secondary' : 'text-white/90 hover:text-white drop-shadow-md'
                   }`}
                 >
@@ -116,7 +116,7 @@ const Header: React.FC<HeaderProps> = ({ lightNav = false }) => {
               ))}
               <a 
                 href="tel:4049524534" 
-                className={`flex items-center gap-2 px-5 py-2.5 rounded-full font-bold text-sm transition-all shadow-md hover:shadow-lg hover:-translate-y-0.5 ${
+                className={`flex items-center gap-2 whitespace-nowrap px-4 xl:px-5 py-2.5 rounded-full font-bold text-sm transition-all shadow-md hover:shadow-lg hover:-translate-y-0.5 ${
                   isScrolled || lightNav
                     ? 'bg-primary text-white hover:bg-stone-900' 
                     : 'bg-white text-primary hover:bg-gray-100'
@@ -130,7 +130,7 @@ const Header: React.FC<HeaderProps> = ({ lightNav = false }) => {
   
             {/* Mobile Menu Toggle Button */}
             <button 
-              className="md:hidden z-50 p-2 cursor-pointer relative rounded-md transition-colors"
+              className="lg:hidden z-50 p-2 cursor-pointer relative rounded-md transition-colors"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
               aria-expanded={mobileMenuOpen}
@@ -158,7 +158,7 @@ const Header: React.FC<HeaderProps> = ({ lightNav = false }) => {
       */}
       <div 
           id="mobile-navigation-drawer"
-          className={`md:hidden fixed inset-0 z-[100] transition-all duration-300 ${mobileMenuOpen ? 'visible' : 'invisible delay-300'}`}
+          className={`lg:hidden fixed inset-0 z-[100] transition-all duration-300 ${mobileMenuOpen ? 'visible' : 'invisible delay-300'}`}
           role="dialog"
           aria-modal="true"
           aria-label="Mobile Navigation"

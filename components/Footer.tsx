@@ -67,7 +67,7 @@ const Footer: React.FC = () => {
                     </div>
                     <div className="flex gap-2">
                          <span className="text-secondary font-bold">Em:</span>
-                         <a href="mailto:agsstonesandcabinets@gmail.com" className="hover:text-white transition-colors">agsstonesandcabinets@gmail.com</a>
+                         <a href="mailto:agsstonesandcabinets@gmail.com" className="min-w-0 break-all hover:text-white transition-colors">agsstonesandcabinets@gmail.com</a>
                     </div>
                 </address>
             </div>

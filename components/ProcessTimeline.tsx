@@ -1,16 +1,22 @@
-import React, { useState, useRef, useEffect } from 'react';
+'use client';
+
+import React, { useRef } from 'react';
 import Image from 'next/image';
-import { MessageSquare, ScanLine, Settings, ShieldCheck, Heart, ChevronRight, X, CheckCircle } from 'lucide-react';
+import { Check, ShieldCheck } from 'lucide-react';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { useGSAP } from '@gsap/react';
+
+gsap.registerPlugin(ScrollTrigger, useGSAP);
 
 interface Step {
   id: number;
   title: string;
   subtitle: string;
   description: string;
-  icon: React.ReactNode;
   image: string;
   badge?: string;
-  details: string[]; // Added for the modal content
+  details: string[];
 }
 
 const steps: Step[] = [
@@ -19,7 +25,6 @@ const steps: Step[] = [
     title: "Consultation",
     subtitle: "Day 1",
     description: "Visit our showroom or schedule an in-home estimate. We help you select the perfect slab and finalize the design details.",
-    icon: <MessageSquare size={20} />,
     image: "https://i.imgur.com/RnEnmeO.png",
     details: [
       "Free design consultation with our stone experts",
@@ -33,7 +38,6 @@ const steps: Step[] = [
     title: "Laser Templating",
     subtitle: "Day 2-3",
     description: "Our technicians visit your home with advanced digital laser systems to measure your cabinets with 1/16\" precision. No manual errors.",
-    icon: <ScanLine size={20} />,
     image: "https://i.imgur.com/2o8eFqx.png",
     details: [
       "Digital Laser Template (LT-2D3D) for exact fit",
@@ -47,7 +51,6 @@ const steps: Step[] = [
     title: "CNC Fabrication",
     subtitle: "Day 4",
     description: "Your stone is cut using waterjet technology at our Duluth facility. We layout the veins perfectly before the first cut is made.",
-    icon: <Settings size={20} />,
     image: "https://i.imgur.com/CpVRozW.png",
     details: [
       "Digital slab layout for vein matching (Flow optimization)",
@@ -61,7 +64,6 @@ const steps: Step[] = [
     title: "Clean Installation",
     subtitle: "Day 5",
     description: "We treat your home with respect. Our team covers your floors and furniture before bringing in a single tool. Installation typically takes just 4-6 hours.",
-    icon: <ShieldCheck size={20} />,
     image: "https://i.imgur.com/oHj79ZL.png",
     badge: "No-Mess Guarantee",
     details: [
@@ -76,7 +78,6 @@ const steps: Step[] = [
     title: "Final Inspection",
     subtitle: "Completion",
     description: "We seal your stone and perform a final walkthrough with you to ensure every detail meets our 5-star standard.",
-    icon: <Heart size={20} />,
     image: "https://i.imgur.com/4MQSwFE.png",
     details: [
       "Application of premium stone sealer (15-year protection)",
@@ -87,244 +88,120 @@ const steps: Step[] = [
   }
 ];
 
+
+// Desktop: the section pins and the five days slide past horizontally.
+// Tablet / phone: a vertical timeline whose rail fills as you scroll.
 const ProcessTimeline: React.FC = () => {
-  const [activeStep, setActiveStep] = useState<number>(1);
-  const [selectedDetail, setSelectedDetail] = useState<Step | null>(null); // State for the modal
-  const scrollContainerRef = useRef<HTMLDivElement>(null);
+  const root = useRef<HTMLElement>(null);
+  const pin = useRef<HTMLDivElement>(null);
+  const track = useRef<HTMLOListElement>(null);
 
-  // Auto-scroll the mobile menu to keep active item in view
-  useEffect(() => {
-    if (scrollContainerRef.current) {
-      const activeElement = scrollContainerRef.current.children[activeStep - 1] as HTMLElement;
-      if (activeElement) {
-        scrollContainerRef.current.scrollTo({
-          left: activeElement.offsetLeft - scrollContainerRef.current.clientWidth / 2 + activeElement.clientWidth / 2,
-          behavior: 'smooth'
-        });
-      }
-    }
-  }, [activeStep]);
-
-  // Scroll Animations for Timeline Steps
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.remove('opacity-0', 'translate-y-8');
-            entry.target.classList.add('opacity-100', 'translate-y-0');
-            observer.unobserve(entry.target);
-          }
-        });
-      },
-      { threshold: 0.2, rootMargin: '0px 0px -50px 0px' }
-    );
-
-    const stepElements = document.querySelectorAll('.timeline-step-anim');
-    stepElements.forEach((el) => observer.observe(el));
-
-    return () => observer.disconnect();
-  }, []);
+  useGSAP(() => {
+    const mm = gsap.matchMedia();
+    mm.add('(min-width: 1024px) and (prefers-reduced-motion: no-preference)', () => {
+      const t = track.current!;
+      const labels = gsap.utils.toArray<HTMLElement>('.pt-label');
+      const dist = () => Math.max(0, t.scrollWidth - window.innerWidth);
+      const slide = gsap.to(t, {
+        x: () => -dist(),
+        ease: 'none',
+        scrollTrigger: {
+          trigger: pin.current,
+          pin: true,
+          scrub: 0.8,
+          start: 'top top',
+          end: () => `+=${dist()}`,
+          invalidateOnRefresh: true,
+          onUpdate: (self) => {
+            gsap.set('.pt-fill', { scaleX: self.progress });
+            const idx = Math.min(steps.length - 1, Math.round(self.progress * (steps.length - 1)));
+            labels.forEach((l, i) => l.toggleAttribute('data-on', i <= idx));
+          },
+        },
+      });
+      // photos drift inside their frames while the track moves
+      gsap.utils.toArray<HTMLElement>('.pt-photo').forEach((img) => {
+        gsap.fromTo(img, { xPercent: -7 }, { xPercent: 7, ease: 'none', scrollTrigger: { trigger: img.parentElement, containerAnimation: slide, start: 'left right', end: 'right left', scrub: true } });
+      });
+      gsap.utils.toArray<HTMLElement>('.pt-copy').forEach((c) => {
+        gsap.from(c.children, { y: 30, opacity: 0, stagger: 0.06, duration: 0.8, ease: 'power3.out', scrollTrigger: { trigger: c, containerAnimation: slide, start: 'left 85%', toggleActions: 'play none none reverse' } });
+      });
+    });
+    mm.add('(max-width: 1023px) and (prefers-reduced-motion: no-preference)', () => {
+      gsap.fromTo('.pt-vfill', { scaleY: 0 }, { scaleY: 1, ease: 'none', scrollTrigger: { trigger: track.current, start: 'top 65%', end: 'bottom 65%', scrub: true } });
+      gsap.utils.toArray<HTMLElement>('.pt-step').forEach((s) => {
+        gsap.from(s.querySelectorAll('.pt-m'), { y: 28, opacity: 0, stagger: 0.07, duration: 0.8, ease: 'power3.out', scrollTrigger: { trigger: s, start: 'top 80%', once: true } });
+      });
+    });
+  }, { scope: root });
 
   return (
-    <section className="py-16 md:py-20 bg-white border-t border-gray-100 overflow-hidden relative">
-      <div className="container mx-auto px-4">
-        <div className="text-center mb-8 md:mb-16">
-          <h2 className="text-secondary font-bold tracking-widest uppercase mb-2 text-xs md:text-sm">Transparent Process</h2>
-          <h3 className="text-2xl md:text-5xl font-bold text-primary mb-3 md:mb-6">Your Journey to a Dream Kitchen</h3>
-          <p className="text-gray-600 max-w-2xl mx-auto text-sm md:text-base px-2">
-            Worried about the mess? Don't be. We've refined our 5-step process over 20 years to be seamless, fast, and remarkably clean.
-          </p>
-        </div>
-
-        {/* Timeline Navigation - Horizontal Scroll on Mobile, Full Width on Desktop */}
-        <div className="relative mb-8 md:mb-12">
-          {/* Desktop Line */}
-          <div className="hidden md:block absolute top-1/2 left-0 w-full h-0.5 bg-gray-200 -translate-y-1/2 z-0"></div>
-          
-          <div 
-            ref={scrollContainerRef}
-            className="flex md:justify-between items-start md:items-center relative z-10 gap-2 md:gap-4 overflow-x-auto pb-4 md:pb-0 scrollbar-hide snap-x snap-mandatory px-4 md:px-0 w-full"
-            style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
-          >
-            {steps.map((step, index) => (
-              <div 
-                key={step.id}
-                className="timeline-step-anim opacity-0 translate-y-8 transition-all duration-700 ease-out flex flex-col items-center cursor-pointer group min-w-[85px] md:min-w-0 snap-center shrink-0 pt-2"
-                style={{ transitionDelay: `${index * 150}ms` }}
-                onClick={() => setActiveStep(step.id)}
-              >
-                {/* Dot/Icon */}
-                <div 
-                  className={`w-10 h-10 md:w-14 md:h-14 rounded-full flex items-center justify-center border-4 transition-all duration-300 shadow-lg shrink-0 ${
-                    activeStep === step.id 
-                      ? 'bg-secondary border-white scale-110 ring-2 ring-secondary/20' 
-                      : activeStep > step.id 
-                        ? 'bg-primary border-primary text-secondary' 
-                        : 'bg-white border-gray-200 text-gray-400'
-                  }`}
-                >
-                  <div className="transform scale-75 md:scale-100 flex items-center justify-center">
-                    {activeStep === step.id ? <span className="text-white">{step.icon}</span> : step.icon}
-                  </div>
-                </div>
-                
-                {/* Text Label */}
-                <div className="mt-2 md:mt-4 text-center w-full">
-                   <h4 className={`font-bold text-[11px] md:text-base leading-tight md:leading-normal transition-colors px-1 ${activeStep === step.id ? 'text-primary' : 'text-gray-400'}`}>
-                     {step.title}
-                   </h4>
-                   <span className="text-[9px] md:text-xs text-secondary font-semibold block mt-1">{step.subtitle}</span>
-                </div>
-              </div>
-            ))}
+    <section ref={root} data-no-motion data-expand className="relative bg-[#10141a] text-white">
+      <div ref={pin} className="relative lg:flex lg:h-[100svh] lg:flex-col lg:overflow-hidden">
+        {/* header */}
+        <div className="container mx-auto max-w-7xl px-5 pt-16 md:px-8 md:pt-24 lg:pt-[max(7rem,14vh)]">
+          <div className="grid gap-6 lg:grid-cols-12 lg:items-end">
+            <div className="lg:col-span-7">
+              <p className="mb-5 flex items-center gap-3 text-[11px] font-bold uppercase tracking-[0.24em] text-secondary">
+                <span className="h-px w-8 bg-secondary" /> Transparent Process
+              </p>
+              <h2 className="font-serif text-[2.3rem] font-medium leading-[1.05] sm:text-5xl lg:text-[3.6rem]">
+                Template to install<br className="hidden sm:block" /> in about five days.
+              </h2>
+            </div>
+            <p className="max-w-md text-[15px] leading-relaxed text-white/60 md:text-lg lg:col-span-5 lg:justify-self-end">
+              Worried about the mess? Don&apos;t be. We&apos;ve refined our 5-step process over 20 years to be seamless, fast, and remarkably clean.
+            </p>
           </div>
-          
-          {/* Mobile Scroll Indicator */}
-          <div className="flex md:hidden justify-center gap-1 mt-1">
-            {steps.map((s) => (
-               <div key={s.id} className={`h-1 rounded-full transition-all ${activeStep === s.id ? 'w-4 bg-secondary' : 'w-1 bg-gray-300'}`} />
-            ))}
+          {/* day rail (desktop) */}
+          <div className="relative mt-10 hidden lg:block">
+            <div className="h-px w-full bg-white/15" />
+            <div className="pt-fill absolute left-0 top-0 h-px w-full origin-left scale-x-0 bg-secondary" />
+            <div className="mt-4 grid grid-cols-5">
+              {steps.map((s, i) => (
+                <span key={s.id} data-on={i === 0 ? '' : undefined} className="pt-label group flex items-center gap-2 text-xs uppercase tracking-[0.18em] text-white/35 transition-colors duration-300 data-[on]:text-white">
+                  <span className="h-1.5 w-1.5 rounded-full bg-white/25 transition-colors group-data-[on]:bg-secondary" />{s.subtitle}
+                </span>
+              ))}
+            </div>
           </div>
         </div>
 
-        {/* Content Display Area */}
-        <div className="bg-gray-50 rounded-2xl md:rounded-3xl p-5 md:p-12 shadow-xl border border-gray-100 transition-all duration-500 min-h-[450px] md:min-h-[400px]">
-          {steps.map((step) => (
-            activeStep === step.id && (
-              <div key={step.id} className="grid md:grid-cols-2 gap-6 md:gap-12 items-center animate-in fade-in slide-in-from-bottom-4 duration-500">
-                
-                {/* Text Content */}
-                <div className="order-2 md:order-1">
-                  <div className="flex items-center gap-3 mb-3 md:mb-4">
-                    <span className="bg-primary text-white w-7 h-7 md:w-8 md:h-8 rounded-full flex items-center justify-center font-bold text-xs md:text-sm shadow-md">
-                      {step.id}
+        {/* steps */}
+        <div className="relative flex-1 lg:flex lg:items-center">
+          <ol ref={track} className="relative mx-auto max-w-7xl px-5 pb-20 pt-10 md:px-8 lg:mx-0 lg:flex lg:w-max lg:max-w-none lg:gap-10 lg:py-8 lg:pl-[max(2rem,calc((100vw-80rem)/2+2rem))] lg:pr-[12vw]">
+            {/* vertical rail (mobile / tablet) */}
+            <span className="absolute bottom-20 left-[calc(1.25rem+11px)] top-12 w-px bg-white/15 md:left-[calc(2rem+11px)] lg:hidden" aria-hidden="true" />
+            <span className="pt-vfill absolute bottom-20 left-[calc(1.25rem+11px)] top-12 w-px origin-top bg-secondary md:left-[calc(2rem+11px)] lg:hidden" aria-hidden="true" />
+            {steps.map((s, i) => (
+              <li key={s.id} className="pt-step relative pb-14 pl-12 last:pb-0 md:pl-16 lg:grid lg:w-[min(74vw,1080px)] lg:shrink-0 lg:grid-cols-[1.15fr_1fr] lg:items-center lg:gap-12 lg:p-0">
+                <span className="absolute left-0 top-1 z-10 flex h-6 w-6 items-center justify-center rounded-full border border-secondary bg-[#10141a] text-[10px] font-bold text-secondary lg:hidden">{i + 1}</span>
+                <div className="pt-m relative aspect-[4/3] overflow-hidden rounded-2xl bg-white/5 lg:max-h-[54svh] lg:w-full">
+                  <Image src={s.image} alt={`${s.title}: ${s.description}`} fill sizes="(min-width:1024px) 40vw, 90vw" className="pt-photo scale-[1.16] object-cover" />
+                  {s.badge && (
+                    <span className="absolute left-4 top-4 inline-flex items-center gap-1.5 rounded-full bg-white px-3 py-1.5 text-[11px] font-bold text-primary shadow-lg">
+                      <ShieldCheck size={14} className="text-secondary" /> {s.badge}
                     </span>
-                    <h4 className="text-xl md:text-3xl font-bold text-primary">{step.title}</h4>
-                  </div>
-                  
-                  <p className="text-gray-600 text-sm md:text-lg leading-relaxed mb-5 md:mb-6">
-                    {step.description}
-                  </p>
-
-                  {step.id === 4 && (
-                    <div className="bg-green-50 border border-green-200 rounded-xl p-3 md:p-4 flex items-start gap-3 animate-pulse mb-4 md:mb-0">
-                       <ShieldCheck className="text-green-600 shrink-0 mt-1 w-5 h-5 md:w-6 md:h-6" />
-                       <div>
-                         <h5 className="font-bold text-green-800 text-sm md:text-base">Our Clean Home Promise</h5>
-                         <p className="text-xs md:text-sm text-green-700 mt-1">We use heavy-duty floor runners and seal off the work area. We leave your home cleaner than we found it.</p>
-                       </div>
-                    </div>
                   )}
-
-                  <div className="mt-4 md:mt-8 flex justify-between items-center">
-                     <button 
-                       onClick={() => setSelectedDetail(step)}
-                       className="text-secondary font-bold hover:underline underline-offset-4 flex items-center gap-1 group/btn text-sm md:text-base"
-                     >
-                       Learn details <ChevronRight size={16} className="group-hover/btn:translate-x-1 transition-transform" />
-                     </button>
-                     
-                     {/* Mobile Next Button */}
-                     {activeStep < 5 && (
-                       <button 
-                         onClick={(e) => { e.stopPropagation(); setActiveStep(activeStep + 1); }}
-                         className="md:hidden bg-white border border-gray-200 px-4 py-2 rounded-full text-xs font-bold text-gray-600 shadow-sm active:bg-gray-100"
-                       >
-                         Next Step
-                       </button>
-                     )}
+                </div>
+                <div className="pt-copy mt-6 lg:mt-0">
+                  <div className="pt-m flex items-baseline gap-4">
+                    <span className="pt-num font-serif text-6xl leading-none text-transparent [-webkit-text-stroke:1px_rgba(255,255,255,.35)] lg:text-8xl">0{i + 1}</span>
+                    <span className="text-xs font-bold uppercase tracking-[0.2em] text-secondary">{s.subtitle}</span>
                   </div>
+                  <h3 className="pt-m mt-4 font-serif text-[1.9rem] font-medium leading-tight lg:text-[2.6rem]">{s.title}</h3>
+                  <p className="pt-m mt-3 max-w-lg text-[15px] leading-relaxed text-white/65 md:text-base">{s.description}</p>
+                  <ul className="pt-m pt-details mt-6 max-w-lg divide-y divide-white/10 border-y border-white/10">
+                    {s.details.map((d) => (
+                      <li key={d} className="flex gap-3 py-2.5 text-[13px] text-white/75 md:text-sm"><Check size={15} className="mt-0.5 shrink-0 text-secondary" />{d}</li>
+                    ))}
+                  </ul>
                 </div>
-
-                {/* Media Content */}
-                <div className="order-1 md:order-2 relative h-48 md:h-96 rounded-xl md:rounded-2xl overflow-hidden shadow-lg group bg-gray-200">
-                   <Image 
-                     src={step.image} 
-                     alt={step.title} 
-                     className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700" 
-                     fill
-                     sizes="(max-width: 768px) 100vw, 50vw"
-                   />
-                   
-                   {step.badge && (
-                     <div className="absolute top-3 right-3 md:top-4 md:right-4 bg-secondary text-white px-2 py-1 md:px-3 md:py-1 rounded-full text-[10px] md:text-sm font-bold shadow-lg">
-                       {step.badge}
-                     </div>
-                   )}
-                </div>
-
-              </div>
-            )
-          ))}
+              </li>
+            ))}
+          </ol>
         </div>
       </div>
-
-      {/* Detail Modal */}
-      {selectedDetail && (
-        <div 
-          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-md animate-in fade-in duration-300"
-          onClick={() => setSelectedDetail(null)}
-        >
-          <div 
-            className="bg-white w-full max-w-2xl rounded-3xl shadow-2xl relative animate-in zoom-in-95 slide-in-from-bottom-8 duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] overflow-hidden max-h-[90vh] flex flex-col"
-            onClick={(e) => e.stopPropagation()}
-          >
-            {/* Header */}
-            <div className="bg-primary p-5 md:p-6 text-white flex justify-between items-start shrink-0">
-               <div>
-                  <div className="flex items-center gap-2 mb-1 md:mb-2 text-secondary">
-                    {selectedDetail.icon}
-                    <span className="font-bold text-xs md:text-sm uppercase tracking-wider">{selectedDetail.subtitle}</span>
-                  </div>
-                  <h3 className="text-xl md:text-2xl font-bold">{selectedDetail.title}</h3>
-               </div>
-               <button 
-                 onClick={() => setSelectedDetail(null)}
-                 className="bg-white/10 hover:bg-white/20 p-2 rounded-full transition-colors text-white"
-               >
-                 <X size={20} />
-               </button>
-            </div>
-
-            {/* Body */}
-            <div className="p-6 md:p-8 overflow-y-auto">
-               <div className="flex flex-col md:flex-row gap-6 md:gap-8">
-                  <div className="md:w-1/2 shrink-0 relative h-40 md:h-48">
-                    <Image 
-                      src={selectedDetail.image} 
-                      alt={selectedDetail.title} 
-                      className="w-full h-full object-cover rounded-xl shadow-md"
-                      fill
-                      sizes="(max-width: 768px) 100vw, 50vw"
-                    />
-                  </div>
-                  <div className="md:w-1/2">
-                    <h4 className="font-bold text-gray-900 mb-3 md:mb-4 text-sm md:text-base">What happens in this step:</h4>
-                    <ul className="space-y-2 md:space-y-3">
-                      {selectedDetail.details.map((detail, idx) => (
-                        <li key={idx} className="flex items-start gap-3 text-xs md:text-sm text-gray-600">
-                          <CheckCircle size={16} className="text-secondary shrink-0 mt-0.5" />
-                          <span>{detail}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-               </div>
-               
-               <div className="mt-6 md:mt-8 pt-4 md:pt-6 border-t border-gray-100 flex justify-end">
-                  <button 
-                    onClick={() => setSelectedDetail(null)}
-                    className="bg-secondary hover:bg-yellow-600 text-white font-bold py-2 px-6 rounded-full transition-colors text-sm md:text-base"
-                  >
-                    Got it
-                  </button>
-               </div>
-            </div>
-          </div>
-        </div>
-      )}
-
     </section>
   );
 };

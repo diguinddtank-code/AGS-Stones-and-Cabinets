@@ -1,102 +1,118 @@
 'use client';
 
-import React, { useEffect, useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { ChevronRight } from 'lucide-react';
+import { ArrowUpRight } from 'lucide-react';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { useGSAP } from '@gsap/react';
 import { services } from '@/lib/servicesData';
 
+gsap.registerPlugin(ScrollTrigger, useGSAP);
+
+// Editorial index of services. On pointer devices a photo of the hovered
+// service follows the cursor; on touch each row carries its own thumbnail.
 const Services: React.FC = () => {
-  const containerRef = useRef<HTMLDivElement>(null);
+  const root = useRef<HTMLElement>(null);
+  const preview = useRef<HTMLDivElement>(null);
+  const [active, setActive] = useState<number | null>(null);
 
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.remove('opacity-0', 'translate-y-12', 'scale-95');
-            entry.target.classList.add('opacity-100', 'translate-y-0', 'scale-100');
-            observer.unobserve(entry.target);
-          }
-        });
-      },
-      { threshold: 0.1, rootMargin: '0px 0px -50px 0px' }
-    );
+  const { contextSafe } = useGSAP(() => {
+    const mm = gsap.matchMedia();
+    mm.add('(prefers-reduced-motion: no-preference)', () => {
+      gsap.utils.toArray<HTMLElement>('.svc-row').forEach((row, i) => {
+        gsap.timeline({ scrollTrigger: { trigger: row, start: 'top 90%', once: true } })
+          .from(row.querySelector('.svc-rule'), { scaleX: 0, transformOrigin: 'left', duration: 1, ease: 'expo.out', delay: (i % 3) * 0.04 })
+          .from(row.querySelectorAll('.svc-in'), { yPercent: 60, opacity: 0, duration: 0.8, stagger: 0.05, ease: 'power3.out' }, '-=0.75');
+      });
+    });
+    mm.add('(pointer: fine) and (min-width: 1024px)', () => {
+      const el = preview.current!;
+      gsap.set(el, { xPercent: -50, yPercent: -50, scale: 0.6, opacity: 0 });
+      // the cursor doesn't move while the page scrolls, so hide the preview
+      const onScroll = () => {
+        if (gsap.getProperty(el, 'opacity') === 0) return;
+        setActive(null);
+        gsap.to(el, { scale: 0.6, opacity: 0, duration: 0.25, overwrite: 'auto' });
+      };
+      window.addEventListener('scroll', onScroll, { passive: true });
+      return () => window.removeEventListener('scroll', onScroll);
+    });
+  }, { scope: root });
 
-    const cards = document.querySelectorAll('.service-card-anim');
-    cards.forEach((card) => observer.observe(card));
-
-    return () => observer.disconnect();
-  }, []);
+  const move = contextSafe((e: React.PointerEvent) => {
+    const el = preview.current;
+    if (!el || !root.current || e.pointerType !== 'mouse') return;
+    const r = root.current.getBoundingClientRect();
+    gsap.to(el, { x: e.clientX - r.left, y: e.clientY - r.top, duration: 0.6, ease: 'power3.out', overwrite: 'auto' });
+  });
+  const enter = contextSafe((i: number, e: React.PointerEvent) => {
+    if (e.pointerType !== 'mouse') return;
+    setActive(i);
+    gsap.to(preview.current, { scale: 1, opacity: 1, rotate: (i % 2 ? 2 : -2), duration: 0.5, ease: 'expo.out' });
+  });
+  const leave = contextSafe(() => {
+    setActive(null);
+    gsap.to(preview.current, { scale: 0.6, opacity: 0, rotate: 0, duration: 0.4, ease: 'power3.in' });
+  });
 
   return (
-    <section id="services" className="py-24 bg-gradient-to-br from-gray-50 via-gray-100 to-gray-200 relative overflow-hidden">
-        <div className="absolute top-0 left-0 w-full h-full pointer-events-none">
-            <div className="absolute top-[10%] left-[-5%] w-96 h-96 bg-gray-200/50 rounded-full blur-3xl mix-blend-multiply"></div>
-            <div className="absolute bottom-[10%] right-[-5%] w-96 h-96 bg-secondary/5 rounded-full blur-3xl mix-blend-multiply"></div>
-        </div>
-
-      <div className="container mx-auto px-4 relative z-10">
-        <div className="text-center mb-20">
-          <h2 className="text-sm font-bold text-secondary uppercase tracking-[0.2em] mb-3">Our Expertise</h2>
-          <h3 className="text-4xl md:text-6xl font-serif font-medium text-primary mb-6">Mastering the Art of Stone</h3>
-          <p className="mt-4 text-gray-500 max-w-2xl mx-auto text-lg font-light leading-relaxed">
-            From precision laser cuts to hand-polished finishes, explore our premium services designed for the discerning homeowner.
+    <section ref={root} id="services" onPointerMove={move} className="relative overflow-hidden bg-white py-16 md:py-28">
+      <div className="container relative z-10 mx-auto max-w-7xl px-5 md:px-8">
+        <div className="mb-10 grid gap-6 md:mb-16 lg:grid-cols-12 lg:items-end">
+          <div className="lg:col-span-7">
+            <p className="mb-5 flex items-center gap-3 text-[11px] font-bold uppercase tracking-[0.24em] text-secondary">
+              <span className="h-px w-8 bg-secondary" /> Our Expertise
+            </p>
+            <h2 className="font-serif text-[2.4rem] font-medium leading-[1.04] text-primary sm:text-5xl lg:text-[4rem]">
+              Mastering the<br className="hidden sm:block" /> art of stone
+            </h2>
+          </div>
+          <p className="max-w-md text-[15px] leading-relaxed text-stone-600 md:text-lg lg:col-span-5 lg:justify-self-end">
+            From precision laser templating to hand-polished edges. Every service is done by our own team, out of our own shop.
           </p>
         </div>
 
-        <div ref={containerRef} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-          {services.map((service, index) => {
-            const isLast = index === services.length - 1;
-            const gridClasses = isLast ? "md:col-span-2 lg:col-span-1 lg:col-start-2" : "";
+        <ul data-no-motion onPointerLeave={leave}>
+          {services.map((s, i) => (
+            <li key={s.slug} className="svc-row relative">
+              <span className="svc-rule absolute inset-x-0 top-0 h-px bg-stone-200" />
+              <Link
+                href={`/services/${s.slug}`}
+                onPointerEnter={(e) => enter(i, e)}
+                aria-label={`${s.title}: ${s.shortDesc}`}
+                className={`group grid grid-cols-[2.2rem_1fr_auto] items-center gap-x-3 py-5 transition-colors duration-300 sm:grid-cols-[3.5rem_1fr_auto] md:py-7 lg:grid-cols-[5rem_minmax(0,1.2fr)_minmax(0,1fr)_auto] ${active !== null && active !== i ? 'lg:text-stone-300' : ''}`}
+              >
+                <span className="svc-in font-mono text-xs text-stone-400 tabular-nums md:text-sm">{String(i + 1).padStart(2, '0')}</span>
+                <span className="svc-in block min-w-0">
+                  <span className={`block pb-1 font-serif text-[1.4rem] leading-[1.15] transition-transform duration-500 ease-[cubic-bezier(.2,.8,.2,1)] sm:text-3xl lg:text-[2.35rem] lg:group-hover:translate-x-3 ${active !== null && active !== i ? 'lg:text-stone-300' : 'text-primary'}`}>
+                    {s.title}
+                  </span>
+                  <span className="mt-1 block text-[13px] text-stone-500 lg:hidden">{s.shortDesc}</span>
+                </span>
+                <span className="svc-in hidden text-[15px] leading-relaxed text-stone-500 lg:block">{s.shortDesc}</span>
+                <span className="svc-in flex items-center gap-3">
+                  {/* touch thumbnail */}
+                  <span className="relative block h-14 w-20 overflow-hidden rounded-lg bg-stone-100 sm:h-16 sm:w-24 lg:hidden">
+                    <Image src={s.image} alt="" fill sizes="96px" className="object-cover" />
+                  </span>
+                  <span className="hidden h-11 w-11 items-center justify-center rounded-full border border-stone-300 text-primary transition-all duration-300 group-hover:rotate-45 group-hover:border-secondary group-hover:bg-secondary group-hover:text-white sm:flex">
+                    <ArrowUpRight size={18} />
+                  </span>
+                </span>
+              </Link>
+            </li>
+          ))}
+          <li className="svc-row relative h-px"><span className="svc-rule absolute inset-x-0 top-0 h-px bg-stone-200" /></li>
+        </ul>
+      </div>
 
-            return (
-                <Link 
-                    href={`/services/${service.slug}`}
-                    key={index} 
-                    className={`service-card-anim ${gridClasses} opacity-0 translate-y-12 scale-95 transition-all duration-1000 ease-[cubic-bezier(0.16,1,0.3,1)] group relative h-[180px] md:h-[400px] block rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl ring-1 ring-black/5`}
-                    style={{ transitionDelay: `${index * 80}ms` }}
-                    aria-label={`View details for ${service.title}`}
-                >
-                    <Image 
-                        src={service.image} 
-                        alt={`${service.title} Services in Atlanta GA`}
-                        className="absolute inset-0 w-full h-full object-cover transform scale-100 group-hover:scale-110 transition-transform duration-[1.5s] ease-out"
-                        fill
-                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                    />
-                    
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent opacity-70 group-hover:opacity-85 transition-opacity duration-500"></div>
-
-                    <div className="absolute inset-0 border-2 border-white/0 group-hover:border-white/10 rounded-3xl transition-colors duration-500 pointer-events-none"></div>
-
-                    <div className="absolute bottom-0 left-0 w-full p-6 md:p-8 flex flex-col justify-end h-full">
-                        
-                        <div className="transform translate-y-2 group-hover:translate-y-0 transition-transform duration-500 delay-75">
-                            <div className="mb-3 text-secondary bg-white/10 backdrop-blur-md w-12 h-12 rounded-xl flex items-center justify-center border border-white/10 shadow-lg">
-                                {service.icon}
-                            </div>
-
-                            <h4 className="text-2xl md:text-3xl font-serif font-bold text-white mb-2 drop-shadow-lg tracking-wide flex items-center gap-2">
-                                {service.title}
-                                <ChevronRight className="w-6 h-6 opacity-0 -translate-x-4 group-hover:translate-x-0 group-hover:opacity-100 transition-all duration-300" />
-                            </h4>
-                        </div>
-
-                        <div className="max-h-0 overflow-hidden group-hover:max-h-24 transition-[max-height] duration-500 ease-in-out">
-                            <p className="text-gray-200 text-sm leading-relaxed opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100 pb-2 border-l-2 border-secondary pl-3 mt-2">
-                                {service.shortDesc}
-                            </p>
-                        </div>
-                        
-                        <div className="w-full h-[3px] bg-white/10 mt-4 relative overflow-hidden rounded-full">
-                            <div className="absolute top-0 left-0 w-full h-full bg-secondary -translate-x-full group-hover:translate-x-0 transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)]"></div>
-                        </div>
-                    </div>
-                </Link>
-            );
-          })}
-        </div>
+      {/* cursor-following preview (desktop) */}
+      <div ref={preview} aria-hidden="true" className="pointer-events-none absolute left-0 top-0 z-20 hidden h-[260px] w-[360px] overflow-hidden rounded-2xl shadow-2xl shadow-black/25 lg:block" style={{ opacity: 0 }}>
+        {services.map((s, i) => (
+          <Image key={s.slug} src={s.image} alt="" fill sizes="360px" className={`object-cover transition-opacity duration-500 ${active === i ? 'opacity-100' : 'opacity-0'}`} />
+        ))}
       </div>
     </section>
   );
