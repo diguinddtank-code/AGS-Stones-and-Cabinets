@@ -21,6 +21,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '/services',
     '/showroom',
     '/projects',
+    '/kitchen-design',
     '/blog',
   ];
 

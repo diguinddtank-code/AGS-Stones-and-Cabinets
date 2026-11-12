@@ -66,6 +66,7 @@ const Header: React.FC<HeaderProps> = ({ lightNav = false }) => {
     { name: 'About Us', href: '/about' },
     { name: 'Services', href: '/services' },
     { name: 'Our Work', href: '/projects' },
+    { name: '3D Design', href: '/kitchen-design' },
     { name: 'Blog', href: '/blog' },
     { name: 'Contact', href: '/contact' },
   ];
