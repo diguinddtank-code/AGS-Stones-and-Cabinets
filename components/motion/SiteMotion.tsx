@@ -44,13 +44,17 @@ function setup(root: HTMLElement, ctx: gsap.Context): number {
         type: 'lines,words',
         mask: 'lines',
         autoSplit: true,
-        onSplit: (self) => gsap.from(self.words, {
-          yPercent: 110,
-          duration: 0.9,
-          ease: 'power4.out',
-          stagger: 0.035,
-          scrollTrigger: { trigger: h, start: 'top 88%', once: true },
-        }),
+        onSplit: (self) => {
+          // line masks clip descenders (g, p, y) on tight leading; give them room
+          (self.masks as HTMLElement[] | undefined)?.forEach((mk) => { mk.style.paddingBottom = '0.14em'; mk.style.marginBottom = '-0.14em'; });
+          return gsap.from(self.words, {
+            yPercent: 110,
+            duration: 0.9,
+            ease: 'power4.out',
+            stagger: 0.035,
+            scrollTrigger: { trigger: h, start: 'top 88%', once: true },
+          });
+        },
       });
       // eyebrow above + paragraph below fade in with the heading
       const near = [h.previousElementSibling, h.nextElementSibling].filter(

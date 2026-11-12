@@ -1,227 +1,187 @@
-import React, { useState } from 'react';
-import { Flame, ShieldAlert, Sparkles, Gem, Droplets, ChevronRight, Check } from 'lucide-react';
+'use client';
 
-type MaterialType = 'quartz' | 'granite' | 'marble' | 'quartzite';
+import React, { useRef, useState } from 'react';
+import Link from 'next/link';
+import { ArrowUpRight, Box } from 'lucide-react';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { useGSAP } from '@gsap/react';
+
+gsap.registerPlugin(ScrollTrigger, useGSAP);
+
+type MaterialType = 'quartz' | 'quartzite' | 'granite' | 'marble';
 
 interface MaterialData {
   id: MaterialType;
   name: string;
   tagline: string;
-  stats: {
-    heat: number;
-    scratch: number;
-    stain: number;
-    maintenance: number;
-  };
+  origin: string;
+  slab: string; // representative slab texture
+  slabName: string;
+  stats: { heat: number; scratch: number; stain: number; maintenance: number };
   pros: string[];
   bestFor: string;
-  icon: React.ReactNode;
 }
 
-const materials: Record<MaterialType, MaterialData> = {
-  quartz: {
-    id: 'quartz',
-    name: 'Quartz',
-    tagline: 'Modern & Zero-Maintenance',
+const materials: MaterialData[] = [
+  {
+    id: 'quartz', name: 'Quartz', tagline: 'Modern and zero-maintenance', origin: 'Engineered stone',
+    slab: '/textures/stones/calacatta-gold.jpg', slabName: 'Calacatta Gold',
     stats: { heat: 60, scratch: 80, stain: 95, maintenance: 100 },
-    pros: ['Non-porous (Never needs sealing)', 'Consistent color & patterns', 'Antibacterial surface', 'Stain resistant', 'Wide variety of modern styles'],
-    bestFor: 'Busy family kitchens & baths',
-    icon: <Sparkles size={20} />
+    pros: ['Non-porous, never needs sealing', 'Consistent color and pattern', 'Antibacterial surface', 'Stain resistant', 'Wide range of modern styles'],
+    bestFor: 'Busy family kitchens and baths',
   },
-  granite: {
-    id: 'granite',
-    name: 'Granite',
-    tagline: 'Indestructible Nature',
-    stats: { heat: 100, scratch: 90, stain: 75, maintenance: 80 },
-    pros: ['100% Heat resistant (Hot pans ok)', 'Unique one-of-a-kind patterns', 'High resale value', 'Scratch resistant', 'UV Resistant (Great for outdoors)'],
-    bestFor: 'High-traffic & Outdoor kitchens',
-    icon: <ShieldAlert size={20} />
-  },
-  marble: {
-    id: 'marble',
-    name: 'Marble',
-    tagline: 'Timeless Luxury',
-    stats: { heat: 90, scratch: 40, stain: 40, maintenance: 40 },
-    pros: ['Unmatched natural beauty', 'Stays cool (Perfect for baking)', 'Classic elegance', 'Premium luxury appeal', 'Unique veining in every slab'],
-    bestFor: 'Master baths & Fireplaces',
-    icon: <Gem size={20} />
-  },
-  quartzite: {
-    id: 'quartzite',
-    name: 'Quartzite',
-    tagline: 'Beauty of Marble, Strength of Granite',
+  {
+    id: 'quartzite', name: 'Quartzite', tagline: 'The beauty of marble, the strength of granite', origin: 'Natural · Brazil',
+    slab: '/textures/stones/taj-mahal.jpg', slabName: 'Taj Mahal',
     stats: { heat: 100, scratch: 95, stain: 70, maintenance: 70 },
-    pros: ['Harder than glass', 'Natural stone look', 'UV resistant', 'Excellent heat resistance', 'Exotic and rare appearance'],
-    bestFor: 'Luxury high-end kitchens',
-    icon: <Flame size={20} />
-  }
+    pros: ['Harder than glass', 'Natural stone movement', 'UV resistant', 'Excellent heat resistance', 'Rare, exotic patterns'],
+    bestFor: 'Luxury, high-end kitchens',
+  },
+  {
+    id: 'granite', name: 'Granite', tagline: 'Built to take anything', origin: 'Natural · Worldwide',
+    slab: '/textures/stones/black-galaxy.jpg', slabName: 'Black Galaxy',
+    stats: { heat: 100, scratch: 90, stain: 75, maintenance: 80 },
+    pros: ['Hot pans are fine', 'One-of-a-kind patterns', 'High resale value', 'Scratch resistant', 'UV resistant, great outdoors'],
+    bestFor: 'High-traffic and outdoor kitchens',
+  },
+  {
+    id: 'marble', name: 'Marble', tagline: 'Timeless luxury', origin: 'Natural · Italy',
+    slab: '/textures/stones/statuario.jpg', slabName: 'Statuario look',
+    stats: { heat: 90, scratch: 40, stain: 40, maintenance: 40 },
+    pros: ['Unmatched natural beauty', 'Stays cool, perfect for baking', 'Classic elegance', 'Unique veining in every slab', 'Premium luxury appeal'],
+    bestFor: 'Primary baths and fireplaces',
+  },
+];
+
+const statRows: { key: keyof MaterialData['stats']; label: string }[] = [
+  { key: 'heat', label: 'Heat' },
+  { key: 'scratch', label: 'Scratch' },
+  { key: 'stain', label: 'Stain' },
+  { key: 'maintenance', label: 'Easy care' },
+];
+
+// 1–5 rating shown as segments, like a spec sheet
+const Rating = ({ value }: { value: number }) => {
+  const filled = Math.max(1, Math.round(value / 20));
+  return (
+    <span className="flex gap-1" aria-label={`${filled} out of 5`}>
+      {Array.from({ length: 5 }).map((_, i) => (
+        <span key={i} className={`mm-seg h-2 w-7 rounded-[2px] sm:w-9 ${i < filled ? 'bg-primary' : 'bg-stone-200'}`} />
+      ))}
+    </span>
+  );
 };
 
 const MaterialMatchmaker: React.FC = () => {
-  const [selected, setSelected] = useState<MaterialType>('quartz');
-  const [isAnimating, setIsAnimating] = useState(false);
+  const root = useRef<HTMLElement>(null);
+  const [idx, setIdx] = useState(0);
+  const [prev, setPrev] = useState<number | null>(null);
+  const m = materials[idx];
 
-  const handleSelect = (key: MaterialType) => {
-    if (key === selected) return;
-    setIsAnimating(true);
-    setTimeout(() => {
-        setSelected(key);
-        setIsAnimating(false);
-    }, 200);
-  };
+  const { contextSafe } = useGSAP(() => {
+    gsap.matchMedia().add('(prefers-reduced-motion: no-preference)', () => {
+      gsap.from('.mm-tab', { yPercent: 100, opacity: 0, duration: 0.8, stagger: 0.06, ease: 'power3.out', scrollTrigger: { trigger: '.mm-tabs', start: 'top 85%', once: true } });
+    });
+  }, { scope: root });
 
-  const currentMaterial = materials[selected];
+  // new slab wipes in over the previous one; copy and ratings re-enter
+  useGSAP(() => {
+    if (prev === null) return;
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reduce) return;
+    gsap.fromTo('.mm-slab-new', { clipPath: 'inset(0% 0% 0% 100%)' }, { clipPath: 'inset(0% 0% 0% 0%)', duration: 0.9, ease: 'expo.inOut' });
+    gsap.fromTo('.mm-slab-new img', { scale: 1.12 }, { scale: 1, duration: 1.4, ease: 'expo.out' });
+    // fromTo with explicit end values so rapid clicks never leave copy half-faded
+    gsap.fromTo('.mm-copy > *', { y: 22, opacity: 0 }, { y: 0, opacity: 1, duration: 0.6, stagger: 0.05, ease: 'power3.out', overwrite: true });
+    gsap.fromTo('.mm-seg', { scaleX: 0 }, { scaleX: 1, transformOrigin: 'left', duration: 0.35, stagger: 0.015, ease: 'power2.out', delay: 0.15, overwrite: true });
+  }, { scope: root, dependencies: [idx] });
+
+  const choose = contextSafe((i: number) => {
+    if (i === idx) return;
+    setPrev(idx);
+    setIdx(i);
+  });
 
   return (
-    // Z-30 ensures it is above decorative backgrounds but below Fixed Nav (z-40)
-    <section className="py-16 md:py-24 bg-white relative z-30 pointer-events-auto">
-      {/* Background decoration */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none -z-10">
-         <div className="absolute top-0 right-0 w-[300px] md:w-[500px] h-[300px] md:h-[500px] bg-gray-50 rounded-full blur-3xl translate-x-1/2 -translate-y-1/2"></div>
-      </div>
-      
-      <div className="container mx-auto px-4 relative">
-        <div className="text-center mb-10 md:mb-16">
-          <h2 className="text-xs md:text-sm font-bold text-secondary uppercase tracking-widest mb-2">Interactive Guide</h2>
-          <h3 className="text-3xl md:text-5xl font-bold text-primary">Find Your Perfect Stone</h3>
-          <p className="mt-4 text-gray-600 max-w-2xl mx-auto text-sm md:text-base">
-            Compare materials side-by-side to find the best fit for your lifestyle.
+    <section ref={root} className="relative z-30 bg-[#faf8f5] py-16 md:py-28">
+      <div className="container mx-auto max-w-7xl px-5 md:px-8">
+        <div className="mb-10 grid gap-6 md:mb-14 lg:grid-cols-12 lg:items-end">
+          <div className="lg:col-span-7">
+            <p className="mb-5 flex items-center gap-3 text-[11px] font-bold uppercase tracking-[0.24em] text-secondary">
+              <span className="h-px w-8 bg-secondary" /> Interactive Guide
+            </p>
+            <h2 className="font-serif text-[2.3rem] font-medium leading-[1.05] text-primary sm:text-5xl lg:text-[3.6rem]">
+              Find your perfect stone
+            </h2>
+          </div>
+          <p className="max-w-md text-[15px] leading-relaxed text-stone-600 md:text-lg lg:col-span-5 lg:justify-self-end">
+            Four materials, compared honestly. Pick one to see how it performs and where it shines.
           </p>
         </div>
 
-        <div className="grid lg:grid-cols-12 gap-6 lg:gap-8 items-start">
-          
-          {/* MOBILE NAV: Horizontal Scrollable Tabs */}
-          <div className="lg:hidden col-span-12 overflow-x-auto pb-6 px-1 flex gap-3 snap-x relative z-40 touch-pan-x scrollbar-hide">
-             {(Object.keys(materials) as MaterialType[]).map((key) => {
-                 const mat = materials[key];
-                 const isActive = selected === key;
-                 return (
-                    <button
-                        key={key}
-                        type="button"
-                        onClick={() => handleSelect(key)}
-                        className={`flex items-center gap-2 px-5 py-3 rounded-full whitespace-nowrap transition-all duration-300 border snap-center cursor-pointer touch-manipulation shadow-sm active:scale-95 ${
-                            isActive 
-                            ? 'bg-primary border-primary text-white shadow-md scale-105 ring-2 ring-primary/20' 
-                            : 'bg-white border-gray-200 text-gray-600 active:bg-gray-100'
-                        }`}
-                    >
-                        {mat.icon}
-                        <span className="font-bold text-sm">{mat.name}</span>
-                    </button>
-                 );
-             })}
+        {/* material selector: big serif words */}
+        <div data-no-motion role="tablist" aria-label="Stone materials" className="mm-tabs -mx-5 mb-8 flex gap-6 overflow-x-auto border-b border-stone-300/70 px-5 [scrollbar-width:none] md:mx-0 md:mb-12 md:gap-10 md:px-0">
+          {materials.map((mat, i) => {
+            const on = i === idx;
+            return (
+              <button key={mat.id} role="tab" aria-selected={on} onClick={() => choose(i)}
+                className="mm-tab group relative shrink-0 pb-4 text-left">
+                <span className="mr-2 align-top font-mono text-[11px] text-stone-400">{String(i + 1).padStart(2, '0')}</span>
+                <span className={`font-serif text-[1.7rem] leading-none transition-colors duration-300 md:text-[2.6rem] ${on ? 'text-primary' : 'text-stone-300 group-hover:text-stone-500'}`}>{mat.name}</span>
+                <span className={`absolute inset-x-0 -bottom-px h-[2px] origin-left bg-secondary transition-transform duration-500 ease-[cubic-bezier(.2,.8,.2,1)] ${on ? 'scale-x-100' : 'scale-x-0'}`} />
+              </button>
+            );
+          })}
+        </div>
+
+        <div data-no-motion role="tabpanel" className="grid gap-8 lg:grid-cols-12 lg:gap-14">
+          {/* slab */}
+          <div className="lg:col-span-6">
+            <div className="relative aspect-[2/1] overflow-hidden rounded-2xl bg-stone-200 shadow-[0_30px_60px_-30px_rgba(15,23,42,.45)] ring-1 ring-black/5 lg:aspect-[4/3]">
+              {prev !== null && (
+                // eslint-disable-next-line @next/next/no-img-element
+                <img src={materials[prev].slab} alt="" className="absolute inset-0 h-full w-full object-cover" />
+              )}
+              <div key={m.id} className="mm-slab-new absolute inset-0">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src={m.slab} alt={`${m.slabName} ${m.name} slab`} className="h-full w-full object-cover" />
+              </div>
+              <div className="absolute bottom-0 left-0 right-0 flex items-end justify-between bg-gradient-to-t from-black/45 to-transparent p-4 text-white md:p-5">
+                <span><span className="block text-[10px] font-bold uppercase tracking-[0.2em] text-white/70">Shown</span><span className="font-serif text-lg">{m.slabName}</span></span>
+                <span className="rounded-full bg-white/15 px-3 py-1 text-[11px] font-semibold backdrop-blur">{m.origin}</span>
+              </div>
+            </div>
           </div>
 
-          {/* DESKTOP NAV: Vertical Sidebar */}
-          <div className="hidden lg:flex lg:col-span-3 flex-col gap-3 relative z-30">
-            <h4 className="text-gray-400 text-xs font-bold uppercase tracking-wider mb-2 ml-2">Select Material</h4>
-            {(Object.keys(materials) as MaterialType[]).map((key) => {
-              const mat = materials[key];
-              const isActive = selected === key;
-              return (
-                <button
-                  key={key}
-                  type="button"
-                  onClick={() => handleSelect(key)}
-                  className={`relative p-4 rounded-xl text-left transition-all duration-200 border-2 group cursor-pointer w-full ${
-                    isActive 
-                      ? 'bg-primary border-primary text-white shadow-xl translate-x-2' 
-                      : 'bg-white border-transparent hover:bg-gray-50 text-gray-500'
-                  }`}
-                >
-                  <div className="flex items-center justify-between pointer-events-none">
-                    <span className="font-bold text-lg flex items-center gap-3">
-                       <span className={`p-2 rounded-lg transition-colors ${isActive ? 'bg-white/20' : 'bg-gray-100 text-gray-400 group-hover:text-secondary'}`}>
-                         {mat.icon}
-                       </span>
-                       {mat.name}
-                    </span>
-                    {isActive && <ChevronRight size={16} />}
-                  </div>
-                </button>
-              );
-            })}
-          </div>
+          {/* spec sheet */}
+          <div className="mm-copy lg:col-span-6">
+            <h3 className="font-serif text-[1.9rem] font-medium leading-tight text-primary md:text-[2.4rem]">{m.tagline}</h3>
+            <p className="mt-2 text-sm text-stone-500">Best for <span className="font-semibold text-stone-700">{m.bestFor}</span></p>
 
-          {/* Display Area (Card) */}
-          <div className="col-span-12 lg:col-span-9 relative z-30">
-            <div className="bg-white rounded-3xl shadow-xl border border-gray-100 overflow-hidden relative flex flex-col min-h-[550px] transition-all duration-500">
-              
-              {/* Card Header */}
-              <div className="bg-gray-900 text-white p-6 md:p-8 relative overflow-hidden shrink-0 transition-colors duration-500">
-                <div 
-                    className={`absolute top-0 right-0 w-64 h-64 rounded-full blur-3xl opacity-30 -translate-y-1/2 translate-x-1/4 transition-colors duration-700 pointer-events-none ${
-                    selected === 'quartz' ? 'bg-blue-400' : 
-                    selected === 'granite' ? 'bg-orange-400' : 
-                    selected === 'marble' ? 'bg-purple-400' : 'bg-emerald-400'
-                }`}></div>
-
-                <div className={`relative z-10 flex flex-col md:flex-row md:items-end justify-between gap-4 transition-opacity duration-300 ${isAnimating ? 'opacity-0' : 'opacity-100'}`}>
-                    <div>
-                        <div className="flex items-center gap-2 mb-2 text-secondary/80 text-sm font-bold uppercase tracking-wider">
-                            {currentMaterial.icon} {currentMaterial.name}
-                        </div>
-                        <h4 className="text-2xl md:text-4xl font-bold leading-tight">
-                            {currentMaterial.tagline}
-                        </h4>
-                    </div>
-                    <div className="hidden md:block bg-white/10 backdrop-blur-md px-4 py-2 rounded-lg border border-white/20 text-right">
-                         <span className="text-xs text-gray-400 uppercase tracking-widest block">Recommended For</span>
-                         <span className="font-medium text-sm text-white">{currentMaterial.bestFor}</span>
-                    </div>
+            <dl className="mt-7 divide-y divide-stone-200 border-y border-stone-200">
+              {statRows.map((r) => (
+                <div key={r.key} className="flex items-center justify-between gap-4 py-3">
+                  <dt className="text-[13px] font-semibold uppercase tracking-[0.14em] text-stone-500">{r.label}</dt>
+                  <dd><Rating value={m.stats[r.key]} /></dd>
                 </div>
-              </div>
+              ))}
+            </dl>
 
-              {/* Card Body */}
-              <div className={`p-5 md:p-8 grid md:grid-cols-2 gap-8 md:gap-12 flex-grow transition-opacity duration-300 ${isAnimating ? 'opacity-50' : 'opacity-100'}`}>
-                
-                {/* Stats */}
-                <div className="space-y-5">
-                   <div className="md:hidden bg-gray-50 p-3 rounded-lg border border-gray-100 mb-4">
-                        <span className="text-xs text-gray-400 uppercase tracking-widest block mb-1">Recommended For</span>
-                        <span className="font-medium text-sm text-gray-800">{currentMaterial.bestFor}</span>
-                   </div>
+            <ul className="mt-6 grid gap-x-6 gap-y-2 sm:grid-cols-2">
+              {m.pros.map((p) => (
+                <li key={p} className="flex gap-2.5 text-[14px] leading-snug text-stone-600"><span className="mt-[7px] h-px w-3 shrink-0 bg-secondary" />{p}</li>
+              ))}
+            </ul>
 
-                   <h5 className="font-bold text-gray-900 text-sm md:text-base border-b border-gray-100 pb-2">Performance Score</h5>
-                   
-                   <StatBar label="Heat Resistance" value={currentMaterial.stats.heat} color="bg-red-500" icon={<Flame size={14} />} />
-                   <StatBar label="Scratch Resistance" value={currentMaterial.stats.scratch} color="bg-slate-600" icon={<ShieldAlert size={14} />} />
-                   <StatBar label="Stain Resistance" value={currentMaterial.stats.stain} color="bg-blue-500" icon={<Droplets size={14} />} />
-                   <StatBar label="Ease of Maintenance" value={currentMaterial.stats.maintenance} color="bg-green-500" icon={<Sparkles size={14} />} />
-                </div>
-
-                {/* Pros */}
-                <div className="flex flex-col justify-between">
-                    <div>
-                        <div className="mb-6">
-                            <h5 className="font-bold text-green-700 mb-3 flex items-center gap-2 text-sm md:text-base">
-                                <div className="w-6 h-6 rounded-full bg-green-100 flex items-center justify-center shrink-0">
-                                    <Check size={14} className="text-green-600"/>
-                                </div> 
-                                Advantages & Benefits
-                            </h5>
-                            <ul className="space-y-3">
-                                {currentMaterial.pros.map((pro, i) => (
-                                    <li key={i} className="flex items-start gap-2 text-sm text-gray-600 ml-2 animate-fade-in" style={{ animationDelay: `${i * 100}ms` }}>
-                                        <span className="w-1.5 h-1.5 bg-green-400 rounded-full mt-1.5 shrink-0"></span> 
-                                        <span className="leading-snug">{pro}</span>
-                                    </li>
-                                ))}
-                            </ul>
-                        </div>
-                    </div>
-
-                    <div className="mt-auto pt-6 border-t border-gray-100">
-                         <a href="/contact" className="flex items-center justify-center w-full text-center bg-secondary hover:bg-yellow-600 text-white font-bold py-3 md:py-4 rounded-xl transition-all shadow-lg hover:shadow-xl hover:-translate-y-1 active:scale-95 cursor-pointer relative z-30 touch-manipulation">
-                             Get Quote for {currentMaterial.name}
-                         </a>
-                    </div>
-                </div>
-
-              </div>
-
+            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+              <a href="#contact" className="group inline-flex items-center justify-center gap-3 rounded-full bg-primary py-3 pl-6 pr-3 text-sm font-semibold text-white transition hover:bg-stone-900">
+                Get a quote for {m.name}
+                <span className="flex h-8 w-8 items-center justify-center rounded-full bg-secondary transition-transform group-hover:rotate-45"><ArrowUpRight size={16} /></span>
+              </a>
+              <Link href="/kitchen-design" className="inline-flex items-center justify-center gap-2 rounded-full border border-stone-300 px-6 py-3 text-sm font-semibold text-primary transition hover:border-primary">
+                <Box size={16} className="text-secondary" /> Try it on a kitchen in 3D
+              </Link>
             </div>
           </div>
         </div>
@@ -229,20 +189,5 @@ const MaterialMatchmaker: React.FC = () => {
     </section>
   );
 };
-
-const StatBar: React.FC<{ label: string; value: number; color: string; icon: React.ReactNode }> = ({ label, value, color, icon }) => (
-    <div>
-        <div className="flex justify-between text-xs font-bold text-gray-500 mb-1.5">
-            <span className="flex items-center gap-1.5">{icon} {label}</span>
-            <span>{value === 100 ? 'Perfect' : `${value}/100`}</span>
-        </div>
-        <div className="h-2.5 bg-gray-100 rounded-full overflow-hidden">
-            <div 
-                className={`h-full ${color} transition-all duration-1000 ease-out`} 
-                style={{ width: `${value}%` }}
-            ></div>
-        </div>
-    </div>
-);
 
 export default MaterialMatchmaker;

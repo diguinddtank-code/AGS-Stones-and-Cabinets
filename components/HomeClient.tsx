@@ -14,9 +14,7 @@ const ProcessTimeline = dynamic(() => import('./ProcessTimeline'));
 const WhyChooseUs = dynamic(() => import('./WhyChooseUs'));
 const DesignStudioTeaser = dynamic(() => import('./DesignStudioTeaser'));
 const ProjectsShowcase = dynamic(() => import('./ProjectsShowcase'));
-const StoneGallery = dynamic(() => import('./StoneGallery'));
 const MaterialMatchmaker = dynamic(() => import('./MaterialMatchmaker'));
-const BeforeAfter = dynamic(() => import('./BeforeAfter'));
 const Showroom = dynamic(() => import('./Showroom'));
 const ReviewsMarquee = dynamic(() => import('./ReviewsMarquee'));
 const Contact = dynamic(() => import('./Contact'));
@@ -52,9 +50,7 @@ function HomeClient() {
         <ReviewsMarquee />
         <Services />
         <ProcessTimeline />
-        <BeforeAfter />
         <ProjectsShowcase />
-        <StoneGallery />
         <MaterialMatchmaker />
         <Showroom />
         <LocalSEOSection />
