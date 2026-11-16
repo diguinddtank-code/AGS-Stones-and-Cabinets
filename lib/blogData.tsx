@@ -6402,8 +6402,387 @@ export const blogContent: Record<string, BlogPost> = {
         </div>
       </>
     )
+  },
+  'bathroom-vanity-countertops-quartz-vs-marble-guide': {
+    slug: 'bathroom-vanity-countertops-quartz-vs-marble-guide',
+    title: 'Bathroom Vanity Countertops Guide: Quartz vs. Marble vs. Granite (Stains, Double-Sink Spacing & Remnant Savings)',
+    badge: 'WIKIHOW & BUYER\'S GUIDE',
+    badgeType: 'wikihow',
+    category: 'Bathroom & Guides',
+    date: 'November 16, 2026',
+    modifiedDate: 'November 16, 2026',
+    author: 'AGS Stones Bathroom & Vanity Team',
+    authorRole: 'Master Stone Fabricators & Bathroom Remodeling Specialists',
+    readTime: '10 min read',
+    image: '/images/blog/bathroom-vanity-countertops-quartz-vs-marble-guide.jpg',
+    alt: 'Illustrated wikiHow guide to bathroom vanity countertops: non-porous quartz vs marble stain and etch resistance, 60-inch double-sink vanity spacing, 4-inch backsplash and side-splash silicone sealing, and undermount vs vessel sink vanity height',
+    excerpt: 'Remodeling a primary bathroom or powder room in Metro Atlanta? Learn whether quartz, Carrara marble, or granite holds up best against hair dye, makeup, and acetone etching, plus minimum double-sink vanity spacing, moisture-proof backsplash sealing, sink height ergonomics, and how Duluth stone remnants save 30–40%.',
+    keyTakeaways: [
+      'Non-porous engineered quartz is the #1 bathroom vanity material for busy master baths: it resists foundation makeup, hair dye, whitening toothpaste, and acetone nail polish remover without requiring annual sealing.',
+      'Natural marble (like Carrara and Calacatta) offers timeless spa elegance for guest powder rooms, but its calcium carbonate composition chemically etches on contact with acidic skincare serums, citrus cleansers, and acetone.',
+      'Double-sink bathroom vanities (60" to 72" wide) require a minimum of 30 inches center-to-center between faucets and at least 15 inches from basin center to side walls so two adults can brush teeth comfortably.',
+      'Always install matching 4-inch stone backsplashes and side-splashes (where vanities touch alcove drywall) sealed with 100% mildew-resistant silicone to prevent bathroom water wicking and behind-the-wall mold.',
+      'Save 30% to 40% on small vanity tops (24" to 60") across Buckhead, Alpharetta, Milton, Johns Creek, Sandy Springs, and Marietta by hand-selecting full-thickness 3cm stone remnants directly from our Duluth slab yard.'
+    ],
+    faqs: [
+      {
+        q: 'Is quartz or marble better for a master bathroom vanity countertop?',
+        a: 'For an everyday master bathroom, engineered quartz is significantly more practical than natural marble. Marble is composed of soft calcium carbonate that permanently etches (leaving dull cloudy rings) when exposed to hairspray, acidic Vitamin C skincare serums, mouthwash, or toilet bowl cleaners. Quartz delivers the exact same crisp white Carrara veining with zero etching and zero sealing required.'
+      },
+      {
+        q: 'How wide does a bathroom vanity need to be for two sinks?',
+        a: 'The strict minimum width for a double-sink vanity is 60 inches (5 feet), though 72 inches is the gold standard for luxury primary suites in Alpharetta, Milton, and Buckhead. To meet residential comfort guidelines, sink drains and faucets should be spaced at least 30 inches center-to-center, with at least 15 inches of clearance from the sink center to any adjacent wall.'
+      },
+      {
+        q: 'Can I save money on bathroom vanity tops using stone remnants?',
+        a: 'Yes! Because a typical bathroom vanity measures only 22 inches deep by 36 to 72 inches long (roughly 6 to 12 square feet), you do not need to buy a full 55-square-foot kitchen slab. At our Duluth fabrication facility, homeowners can hand-pick leftover 3cm quartz, quartzite, and granite remnants from major kitchen jobs, saving 30% to 40% while still receiving CNC cutting, undermount sink cutouts, and 5-day installation.'
+      },
+      {
+        q: 'What is the ideal height for a bathroom vanity with an undermount sink vs. a vessel sink?',
+        a: 'Comfort-height vanities for standard undermount porcelain sinks finish at 34 to 36 inches tall (measured to the top of the stone). However, if you choose an above-counter vessel bowl sink (typically 5 to 6 inches tall), you must lower the cabinet and countertop deck height to 29 to 30 inches so the final rim stays comfortable for washing your hands.'
+      },
+      {
+        q: 'Do I need a 4-inch backsplash and side-splash on a bathroom vanity?',
+        a: 'Yes, unless you are tiling the entire wall behind the vanity from floor to ceiling. A 4-inch stone backsplash—plus a matching 4-inch side-splash wherever the vanity sits flush against drywall—creates a watertight barrier sealed with 100% silicone. Without it, wet hand splashes soak into painted drywall, causing bubbling paint and black mold.'
+      }
+    ],
+    content: (
+      <>
+        {/* Intro Banner */}
+        <div className="bg-gradient-to-r from-slate-900 to-primary text-white p-6 sm:p-8 rounded-3xl my-6 shadow-xl border border-white/10">
+          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+            <div>
+              <span className="text-secondary font-bold text-xs uppercase tracking-widest block mb-1">
+                WikiHow Master Bathroom Vanity &amp; Stone Guide
+              </span>
+              <h3 className="text-xl sm:text-2xl font-serif font-bold text-white mb-2">
+                Bathroom Vanity Countertops: Quartz vs. Marble, Spacing &amp; Remnants
+              </h3>
+              <p className="text-gray-300 text-xs sm:text-sm leading-relaxed mb-0">
+                Bathroom countertops face a harsher chemical environment than kitchen islands. Every morning and night, vanity tops encounter boiling curling irons, foundation makeup, purple hair toner, acidic skincare serums, acetone nail polish remover, and standing soapy water. Whether you are updating a primary suite in Buckhead, a guest bath in Johns Creek, or a jack-and-jill kids&apos; bathroom in Suwanee and East Cobb, choosing the right stone, spacing, and moisture seal makes all the difference.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        {/* Quick Rule of Thumb Box */}
+        <div className="bg-amber-50 border-2 border-amber-200 rounded-3xl p-6 sm:p-8 my-8 text-amber-950 shadow-sm">
+          <h3 className="text-xl font-bold font-serif text-amber-900 mb-3 flex items-center gap-2">
+            <span>⚡</span> Quick Rule of Thumb for Bathroom Remodels
+          </h3>
+          <ul className="space-y-3 text-sm leading-relaxed m-0 list-disc list-inside">
+            <li>
+              <strong>Primary &amp; Kids&apos; Bathrooms = Choose Quartz or Granite:</strong> Non-porous quartz shrugs off toothpaste, makeup, and hair products without etching or sealing, while granite shrugs off 450°F flat irons placed straight onto the counter.
+            </li>
+            <li>
+              <strong>Powder Rooms = Safe Space for Real Marble:</strong> Guest half-baths rarely see hair dye, harsh chemicals, or standing water puddles—making them the ideal showcase for authentic Carrara or Calacatta marble elegance.
+            </li>
+            <li>
+              <strong>Check Remnant Inventory Before Ordering Full Slabs:</strong> Most vanity tops under 72 inches wide can be cut from a discounted 3cm stone remnant at our Duluth yard, cutting material costs by 30% to 40%.
+            </li>
+          </ul>
+        </div>
+
+        {/* Comparison Matrix Table */}
+        <h2 className="text-2xl sm:text-3xl font-serif text-primary mt-12 mb-6 font-bold pb-2 border-b border-gray-100">
+          Bathroom Vanity Materials Compared: Quartz vs. Marble vs. Granite vs. Quartzite
+        </h2>
+        <p className="text-gray-700 leading-relaxed mb-6">
+          Before selecting a slab for your <Link href="/services/bathroom-remodeling" className="text-secondary font-semibold hover:underline">bathroom remodeling project</Link>, compare how the 4 most popular vanity stones handle real daily toiletries and Metro Atlanta hard water:
+        </p>
+
+        <div className="overflow-x-auto my-6 border border-gray-200 rounded-2xl shadow-sm bg-white">
+          <table className="w-full text-left text-xs sm:text-sm">
+            <thead className="bg-gray-100 text-gray-800 uppercase font-bold text-[11px] tracking-wider border-b border-gray-200">
+              <tr>
+                <th className="py-4 px-4 sm:px-6">Bathroom Factor</th>
+                <th className="py-4 px-4 sm:px-6 bg-blue-50/70 text-blue-900">1. Engineered Quartz</th>
+                <th className="py-4 px-4 sm:px-6 bg-rose-50/70 text-rose-900">2. Natural Marble</th>
+                <th className="py-4 px-4 sm:px-6 bg-emerald-50/70 text-emerald-900">3. Natural Granite</th>
+                <th className="py-4 px-4 sm:px-6 bg-amber-50/70 text-amber-900">4. Natural Quartzite</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-gray-200 text-gray-700">
+              <tr>
+                <td className="py-4 px-4 sm:px-6 font-bold text-gray-900">Makeup, Hair Dye &amp; Soap Stains</td>
+                <td className="py-4 px-4 sm:px-6 bg-blue-50/30 font-bold text-emerald-700">Virtually 100% stain-proof (non-porous resin matrix).</td>
+                <td className="py-4 px-4 sm:px-6 bg-rose-50/30 text-rose-700">Absorbs oils, mascara, and hair toner quickly if sealer wears thin.</td>
+                <td className="py-4 px-4 sm:px-6 bg-emerald-50/30 font-semibold text-emerald-700">Highly stain-resistant when sealed annually.</td>
+                <td className="py-4 px-4 sm:px-6 bg-amber-50/30">High resistance when sealed every 12 months.</td>
+              </tr>
+              <tr>
+                <td className="py-4 px-4 sm:px-6 font-bold text-gray-900">Acidic Etching (Serums &amp; Cleaners)</td>
+                <td className="py-4 px-4 sm:px-6 bg-blue-50/30 font-semibold text-emerald-700">Immune to toothpaste, facial acids, and soap scum.</td>
+                <td className="py-4 px-4 sm:px-6 bg-rose-50/30 font-bold text-rose-700">Etches easily! Leaves dull white rings from bathroom cleaners.</td>
+                <td className="py-4 px-4 sm:px-6 bg-emerald-50/30 font-semibold text-emerald-700">Zero etching from household cosmetics or mild acids.</td>
+                <td className="py-4 px-4 sm:px-6 bg-amber-50/30 font-semibold text-emerald-700">True quartzite does not etch like marble.</td>
+              </tr>
+              <tr>
+                <td className="py-4 px-4 sm:px-6 font-bold text-gray-900">Hot Curling &amp; Flat Irons</td>
+                <td className="py-4 px-4 sm:px-6 bg-blue-50/30 text-amber-800">Use a silicone mat for 400°F+ irons to protect polymer resins.</td>
+                <td className="py-4 px-4 sm:px-6 bg-rose-50/30">Heat resistant, though thermal shock can stress veins.</td>
+                <td className="py-4 px-4 sm:px-6 bg-emerald-50/30 font-bold text-emerald-700">100% Heat-proof. Direct curling irons will not scorch.</td>
+                <td className="py-4 px-4 sm:px-6 bg-amber-50/30 font-bold text-emerald-700">100% Heat-proof volcanic crystalline structure.</td>
+              </tr>
+              <tr>
+                <td className="py-4 px-4 sm:px-6 font-bold text-gray-900">Sealing Maintenance</td>
+                <td className="py-4 px-4 sm:px-6 bg-blue-50/30 font-bold text-emerald-700">Never needs sealing. Zero upkeep.</td>
+                <td className="py-4 px-4 sm:px-6 bg-rose-50/30 text-rose-700">Every 6 to 12 months required.</td>
+                <td className="py-4 px-4 sm:px-6 bg-emerald-50/30">Every 12 to 24 months (or 15-yr AGS sealer).</td>
+                <td className="py-4 px-4 sm:px-6 bg-amber-50/30">Once per year with penetrating sealer.</td>
+              </tr>
+              <tr>
+                <td className="py-4 px-4 sm:px-6 font-bold text-gray-900">Best Room Application</td>
+                <td className="py-4 px-4 sm:px-6 bg-blue-50/30">Master baths, kids&apos; jack-and-jill baths, busy family homes.</td>
+                <td className="py-4 px-4 sm:px-6 bg-rose-50/30">Formal powder rooms, low-traffic guest suites.</td>
+                <td className="py-4 px-4 sm:px-6 bg-emerald-50/30">Rental renovations, teen baths, classic estates.</td>
+                <td className="py-4 px-4 sm:px-6 bg-amber-50/30">Luxury Buckhead &amp; Milton spa master suites.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        {/* Method 1: Stain & Etch Reality */}
+        <h2 className="text-2xl sm:text-3xl font-serif text-primary mt-12 mb-6 font-bold pb-2 border-b border-gray-100">
+          Method 1: Preventing Cosmetic Stains, Hair Dye &amp; Etch Rings
+        </h2>
+        <p className="text-gray-700 leading-relaxed mb-4">
+          One of the most frequent regrets homeowners in Sandy Springs and Roswell bring to our showroom happens when a builder installs unsealed Carrara marble in a master bathroom. Within months, a wet bottle of toner, mouthwash, or retinol serum leaves a permanent matte circle—called an <strong>acid etch</strong>.
+        </p>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 my-6">
+          <div className="bg-emerald-50/60 border border-emerald-200 rounded-2xl p-6">
+            <h4 className="font-bold text-emerald-950 text-base mb-3 flex items-center gap-2">
+              <span className="text-emerald-600 font-bold">✓</span> Why Non-Porous Quartz Wins Everyday Bathrooms
+            </h4>
+            <ul className="space-y-2 text-xs sm:text-sm text-emerald-900 m-0">
+              <li><strong>Zero Porosity:</strong> Liquid foundation, mascara, and toothpaste sit strictly on top of the surface without seeping inside stone pores.</li>
+              <li><strong>True Marble Look without Anxiety:</strong> Modern Calacatta and Carrara-inspired quartz slabs mirror natural Italian veining without chemical vulnerability.</li>
+              <li><strong>Silicone Mat Pro Tip:</strong> Because quartz contains resin, always place a stylish silicone pad under heated hair straighteners or curling wands exceeding 350°F.</li>
+            </ul>
+          </div>
+
+          <div className="bg-rose-50/60 border border-rose-200 rounded-2xl p-6">
+            <h4 className="font-bold text-rose-950 text-base mb-3 flex items-center gap-2">
+              <span className="text-rose-600 font-bold">✗</span> Care Realities if You Choose Natural Marble
+            </h4>
+            <ul className="space-y-2 text-xs sm:text-sm text-rose-900 m-0">
+              <li><strong>Etching Is Not a Stain:</strong> Acidic toiletries actually dissolve a microscopic layer of calcium calcite. Sealer slows staining, but <em>cannot</em> stop acid etching.</li>
+              <li><strong>Honed vs. Polished Marble:</strong> If you adore genuine Italian marble for a powder room, choose a <strong>honed (matte) finish</strong> so minor etch marks blend in rather than dulling a mirror gloss.</li>
+              <li><strong>Avoid Abrasive Toilet &amp; Tile Sprays:</strong> Overspray from standard shower cleaners will immediately cloud natural marble vanity decks.</li>
+            </ul>
+          </div>
+        </div>
+
+        {/* Method 2: Double-Sink Vanity Spacing Blueprint */}
+        <h2 className="text-2xl sm:text-3xl font-serif text-primary mt-12 mb-6 font-bold pb-2 border-b border-gray-100">
+          Method 2: Double-Sink Vanity Spacing &amp; Plumbing Clearances
+        </h2>
+        <p className="text-gray-700 leading-relaxed mb-4">
+          Upgrading from a single bowl to a dual-sink vanity is the #1 request we receive for primary bathroom renovations across Alpharetta, Johns Creek, and East Cobb. However, squeezing two bowls onto too narrow a cabinet ruins elbow room and leaves zero space for soap or toothbrushes.
+        </p>
+
+        <div className="space-y-4 my-6">
+          <div className="p-5 bg-white border border-gray-200 rounded-2xl shadow-sm flex items-start gap-4">
+            <div className="w-10 h-10 rounded-full bg-secondary/10 flex items-center justify-center text-secondary font-bold shrink-0">
+              01
+            </div>
+            <div>
+              <h4 className="font-bold text-gray-900 text-sm mb-1">The 60-Inch Minimum Rule (and 72-Inch Ideal)</h4>
+              <p className="text-xs text-gray-600 m-0 leading-relaxed">
+                A double-sink vanity must be at least <strong>60 inches wide</strong>. On a 60-inch cabinet, position each sink centerline 15 inches inward from the left and right outer edges—giving you exactly <strong>30 inches center-to-center</strong> between faucets. If your bathroom alcove allows 72 inches, you gain a generous bank of center storage drawers between the bowls.
+              </p>
+            </div>
+          </div>
+
+          <div className="p-5 bg-white border border-gray-200 rounded-2xl shadow-sm flex items-start gap-4">
+            <div className="w-10 h-10 rounded-full bg-secondary/10 flex items-center justify-center text-secondary font-bold shrink-0">
+              02
+            </div>
+            <div>
+              <h4 className="font-bold text-gray-900 text-sm mb-1">Standard 22-Inch Depth vs. Kitchen 25.5-Inch Depth</h4>
+              <p className="text-xs text-gray-600 m-0 leading-relaxed">
+                Kitchen cabinets measure 24 inches deep (25.5&quot; countertop), whereas bathroom vanity cabinets measure 21 inches deep (finishing at a <strong>22-inch stone countertop depth</strong>). Always confirm faucet spout reach and undermount oval vs. rectangular bowl depth so your faucet handles do not hit the 4-inch stone backsplash behind the sink.
+              </p>
+            </div>
+          </div>
+
+          <div className="p-5 bg-white border border-gray-200 rounded-2xl shadow-sm flex items-start gap-4">
+            <div className="w-10 h-10 rounded-full bg-secondary/10 flex items-center justify-center text-secondary font-bold shrink-0">
+              03
+            </div>
+            <div>
+              <h4 className="font-bold text-gray-900 text-sm mb-1">8-Inch Widespread vs. Single-Hole Faucet Drilling</h4>
+              <p className="text-xs text-gray-600 m-0 leading-relaxed">
+                Our installation team core-drills faucet holes through 3cm vanity tops using diamond water-cooled bits right on site. Whether you prefer sleek single-hole waterfall faucets or classic 8-inch 3-piece widespread fixtures, have your physical faucets ready on installation day so spout spacing is guaranteed.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        {/* Method 3: Backsplash & Side-Splash Moisture Protection */}
+        <h2 className="text-2xl sm:text-3xl font-serif text-primary mt-12 mb-6 font-bold pb-2 border-b border-gray-100">
+          Method 3: 4-Inch Backsplashes, Side-Splashes &amp; Mold Prevention
+        </h2>
+        <p className="text-gray-700 leading-relaxed mb-4">
+          In minimalist kitchen designs, homeowners often skip the 4-inch stone backsplash in favor of full tile. In bathrooms, omitting splashes without full wall tile is a recipe for drywall rot:
+        </p>
+
+        <div className="bg-gray-50 border border-gray-200 rounded-2xl p-6 sm:p-8 my-6">
+          <h3 className="text-lg font-bold text-gray-900 mb-4 flex items-center gap-2">
+            <span>💧</span> Waterproof Sealing Standards in Georgia Bathrooms
+          </h3>
+          <div className="space-y-4 text-sm text-gray-700">
+            <div className="flex items-start gap-4 p-4 bg-white rounded-xl border border-gray-200">
+              <span className="w-8 h-8 rounded-full bg-primary text-white font-bold flex items-center justify-center shrink-0 text-xs">
+                1
+              </span>
+              <div>
+                <h4 className="font-bold text-gray-900 text-sm mb-1">Always Include a Side-Splash Against Alcove Drywall</h4>
+                <p className="text-xs text-gray-600 m-0 leading-relaxed">
+                  Whenever your vanity sits tucked against a side wall (such as beside a shower glass enclosure or corner wall), request a matching <strong>4-inch stone side-splash</strong>. Turning on a faucet splashes water laterally onto drywall every single day; stone protects that drywall seam permanently.
+                </p>
+              </div>
+            </div>
+
+            <div className="flex items-start gap-4 p-4 bg-white rounded-xl border border-gray-200">
+              <span className="w-8 h-8 rounded-full bg-primary text-white font-bold flex items-center justify-center shrink-0 text-xs">
+                2
+              </span>
+              <div>
+                <h4 className="font-bold text-gray-900 text-sm mb-1">100% Mildew-Resistant Silicone vs. Latex Caulk</h4>
+                <p className="text-xs text-gray-600 m-0 leading-relaxed">
+                  Never allow painters or handymen to caulk the stone-to-backsplash seam with water-soluble painter&apos;s caulk. Painters&apos; caulk cracks, turns yellow, and peels in steamy bathrooms. Our crews seal every vanity splash perimeter using 100% neutral-cure translucent or color-matched silicone.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Method 4: Undermount vs Vessel Sink Height */}
+        <h2 className="text-2xl sm:text-3xl font-serif text-primary mt-12 mb-6 font-bold pb-2 border-b border-gray-100">
+          Method 4: Undermount vs. Vessel Sinks — Get Your Vanity Height Right
+        </h2>
+        <p className="text-gray-700 leading-relaxed mb-4">
+          Modern <Link href="/services/custom-cabinets" className="text-secondary font-semibold hover:underline">custom bathroom vanity cabinets</Link> are built at &quot;Comfort Height&quot; (34.5 to 36 inches finished countertop height), replacing outdated 30-inch 1980s builders-grade cabinets that force adults to stoop forward.
+        </p>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 my-6">
+          <div className="bg-white p-6 rounded-2xl border border-gray-200 shadow-sm">
+            <span className="text-2xl mb-2 block">🧼</span>
+            <h4 className="font-bold text-gray-900 text-base mb-2">Undermount Porcelain Basin (34&quot;–36&quot; Deck)</h4>
+            <p className="text-xs sm:text-sm text-gray-600 leading-relaxed mb-0">
+              The overwhelming favorite across Metro Atlanta homes. The porcelain basin mounts beneath your 3cm stone top, letting you wipe water drops directly from the stone into the drain with zero rim obstacles. Pairs ideally with comfort-height 34.5&quot; cabinets for a clean 36&quot; final surface height.
+            </p>
+          </div>
+
+          <div className="bg-white p-6 rounded-2xl border border-gray-200 shadow-sm">
+            <span className="text-2xl mb-2 block">🥣</span>
+            <h4 className="font-bold text-gray-900 text-base mb-2">Above-Counter Vessel Bowl (29&quot;–30&quot; Deck)</h4>
+            <p className="text-xs sm:text-sm text-gray-600 leading-relaxed mb-0">
+              Vessel bowls sit on top of the stone deck, adding 5 to 6 inches of vertical height. If you drop a vessel bowl onto a standard 36-inch vanity, the rim sits at an awkward 42 inches (chest height!). Always order a lowered <strong>29-to-30-inch vanity cabinet</strong> when planning a vessel sink remodel.
+            </p>
+          </div>
+        </div>
+
+        {/* Method 5: Duluth Slab Remnant Savings */}
+        <h2 className="text-2xl sm:text-3xl font-serif text-primary mt-12 mb-6 font-bold pb-2 border-b border-gray-100">
+          Method 5: Save 30%–40% with Duluth Stone Remnants &amp; Factory Pricing
+        </h2>
+        <p className="text-gray-700 leading-relaxed mb-4">
+          Because AGS Stones fabricates dozens of full-size kitchen islands every week at our Duluth facility, our indoor yard houses hundreds of pristine full-thickness 3cm remnants in Calacatta quartz, Taj Mahal quartzite, and exotic granite—ideal for bathroom vanities, wet bars, and fireplace hearths.
+        </p>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 my-6 text-center">
+          <div className="bg-white p-6 rounded-2xl border border-gray-200 shadow-sm">
+            <span className="text-xs uppercase font-bold tracking-wider text-gray-400 block mb-1">Powder Room / Guest Bath</span>
+            <h4 className="text-lg font-bold text-primary mb-2">Single Vanity (24&quot;–48&quot;)</h4>
+            <p className="text-2xl font-serif font-bold text-secondary mb-2">$450 – $950</p>
+            <p className="text-xs text-gray-600 m-0">
+              Installed using factory-direct 3cm stone remnants including CNC undermount sink cutout, faucet drilling, and 4&quot; backsplash.
+            </p>
+          </div>
+
+          <div className="bg-white p-6 rounded-2xl border border-gray-200 shadow-sm">
+            <span className="text-xs uppercase font-bold tracking-wider text-secondary block mb-1">Primary Suite Most Popular</span>
+            <h4 className="text-lg font-bold text-primary mb-2">Double Vanity (60&quot;–72&quot;)</h4>
+            <p className="text-2xl font-serif font-bold text-secondary mb-2">$950 – $1,850</p>
+            <p className="text-xs text-gray-600 m-0">
+              Covers premium 3cm quartz or granite remnant, dual porcelain sink cutouts, 2 widespread faucet drillings, splashes, and laser install.
+            </p>
+          </div>
+
+          <div className="bg-white p-6 rounded-2xl border border-gray-200 shadow-sm">
+            <span className="text-xs uppercase font-bold tracking-wider text-gray-400 block mb-1">Turnkey Bath Suite</span>
+            <h4 className="text-lg font-bold text-primary mb-2">Custom Vanity + Stone Top</h4>
+            <p className="text-2xl font-serif font-bold text-secondary mb-2">Save 20%–30%</p>
+            <p className="text-xs text-gray-600 m-0">
+              Bundle all-plywood custom bathroom cabinetry with your stone vanity top and porcelain sinks under one unified AGS contract.
+            </p>
+          </div>
+        </div>
+
+        {/* Method 6: Metro Atlanta Neighborhoods & Showroom */}
+        <h2 className="text-2xl sm:text-3xl font-serif text-primary mt-12 mb-6 font-bold pb-2 border-b border-gray-100">
+          Method 6: Hand-Pick Your Vanity Stone Remnant in Duluth, GA
+        </h2>
+        <p className="text-gray-700 leading-relaxed mb-6">
+          Homeowners from Buckhead, Alpharetta, Milton, Johns Creek, Sandy Springs, Roswell, and Marietta visit <Link href="/" className="text-secondary font-semibold hover:underline">AGS Stones &amp; Cabinets</Link> at 4579 Abbotts Bridge Rd Suite -10 in Duluth every day to walk our remnant yard in person:
+        </p>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 my-6">
+          <div className="bg-white p-6 rounded-2xl border border-gray-200 shadow-sm">
+            <span className="text-2xl mb-2 block">🏷️</span>
+            <h4 className="font-bold text-gray-900 text-sm mb-2">Walk Our Remnant Racks</h4>
+            <p className="text-xs text-gray-600 m-0 leading-relaxed">
+              Tag your exact piece of Calacatta Gold quartz, Taj Mahal quartzite, or Carrara marble directly in our yard so you know the exact veining going into your bathroom.
+            </p>
+          </div>
+          <div className="bg-white p-6 rounded-2xl border border-gray-200 shadow-sm">
+            <span className="text-2xl mb-2 block">🚰</span>
+            <h4 className="font-bold text-gray-900 text-sm mb-2">Porcelain Undermount Sinks in Stock</h4>
+            <p className="text-xs text-gray-600 m-0 leading-relaxed">
+              Choose crisp rectangular or classic oval glazed white porcelain vanity basins right in our showroom—eliminating shipping delays.
+            </p>
+          </div>
+          <div className="bg-white p-6 rounded-2xl border border-gray-200 shadow-sm">
+            <span className="text-2xl mb-2 block">⚡</span>
+            <h4 className="font-bold text-gray-900 text-sm mb-2">5-Day Digital Laser Installation</h4>
+            <p className="text-xs text-gray-600 m-0 leading-relaxed">
+              Our Proliner laser crew templates your vanity walls for crooked corners and delivers your finished vanity deck and splashes in just 5 business days!
+            </p>
+          </div>
+        </div>
+
+        {/* Call to action card */}
+        <div className="bg-gradient-to-r from-primary to-slate-900 text-white rounded-3xl p-8 sm:p-10 my-10 shadow-2xl flex flex-col md:flex-row items-center justify-between gap-6">
+          <div className="max-w-xl">
+            <span className="text-secondary font-bold text-xs uppercase tracking-widest block mb-2">AGS Stones &amp; Cabinets • Bathroom Vanity &amp; Remnant Studio</span>
+            <h4 className="text-2xl font-serif font-bold mb-2">Ready to Upgrade Your Bathroom Vanity Countertops?</h4>
+            <p className="text-gray-300 text-sm mb-0">
+              Visit our Duluth, GA showroom to browse discounted 3cm remnants or claim your free in-home digital laser estimate. Save up to 30–40% factory-direct on bathroom quartz, marble, granite, and custom vanities!
+            </p>
+          </div>
+          <div className="flex flex-col sm:flex-row gap-3 w-full md:w-auto flex-shrink-0">
+            <Link 
+              href="/promo" 
+              className="bg-secondary text-white font-bold text-xs uppercase tracking-wider px-7 py-4 rounded-xl hover:bg-white hover:text-primary transition-all text-center shadow-lg"
+            >
+              Get Free Estimate
+            </Link>
+            <Link 
+              href="/showroom" 
+              className="bg-white/10 hover:bg-white/20 text-white font-bold text-xs uppercase tracking-wider px-6 py-4 rounded-xl transition-all text-center border border-white/20"
+            >
+              Visit Showroom
+            </Link>
+          </div>
+        </div>
+      </>
+    )
   }
 };
+
 
 
 
