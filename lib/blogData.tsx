@@ -6780,8 +6780,375 @@ export const blogContent: Record<string, BlogPost> = {
         </div>
       </>
     )
+  },
+  'replace-countertops-without-replacing-cabinets-guide': {
+    slug: 'replace-countertops-without-replacing-cabinets-guide',
+    title: 'Can You Replace Countertops Without Replacing Cabinets? Weight, Painting Order, Backsplash & Cost Guide',
+    badge: 'WIKIHOW & REMODEL GUIDE',
+    badgeType: 'wikihow',
+    category: 'Installation & Guides',
+    date: 'November 21, 2026',
+    modifiedDate: 'November 21, 2026',
+    author: 'AGS Stones Installation Team',
+    authorRole: 'Master Stone Fabricators & Countertop Replacement Specialists',
+    readTime: '10 min read',
+    image: '/images/blog/replace-countertops-without-replacing-cabinets-guide.jpg',
+    alt: 'Illustrated wikiHow guide to replacing kitchen countertops without replacing cabinets: checking 1/8 inch cabinet level tolerance, painting cabinets first, protecting drywall during tear-out, and 5-day digital laser templating and 3cm stone install',
+    excerpt: 'Want gorgeous new quartz or granite countertops without spending $25,000 tearing out your existing kitchen cabinets? Learn how to check if old cabinets can hold heavy 3cm stone, whether to paint cabinets before or after stone install, how tear-out affects tile backsplashes, and real Atlanta replacement costs in this illustrated homeowner guide.',
+    keyTakeaways: [
+      'Yes—over 70% of Metro Atlanta homeowners keep their structurally sound existing cabinet boxes and replace ONLY the countertops, transforming the entire kitchen for a fraction of a full gut remodel.',
+      'Your existing base cabinets must be level within 1/8 inch across 10 feet and built with solid sidewalls (plywood or sturdy framing); severely bowed particle board under leaky sinks may require simple reinforcement blocks before stone rests on top.',
+      'Always paint or reface existing cabinets BEFORE installing new stone countertops (allowing 5 to 7 days for enamel cure) so masking tape and rollers never drip paint onto porous marble edges or freshly honed stone.',
+      'You do NOT lose your kitchen sink for weeks: our Proliner laser templates right over your existing countertops, and we perform old-top tear-out and brand-new 3cm stone installation on the exact same day.',
+      'Replacing countertops alone in Roswell, Marietta, Alpharetta, Johns Creek, Sandy Springs, and Duluth typically costs $2,500 to $5,800 factory-direct with AGS Stones and finishes in just 5 business days.'
+    ],
+    faqs: [
+      {
+        q: 'Can existing builder-grade cabinets support heavy 3cm granite or quartz countertops?',
+        a: 'Yes, in the vast majority of homes. Even though 3cm stone weighs approximately 18 pounds per square foot (roughly 700 to 900 lbs across an entire kitchen), that load spreads evenly across dozens of linear feet of vertical cabinet walls—similar to two adults standing gently along a counter. As long as your cabinet boxes are plumb, free of active water rot, and level within 1/8 inch across 10 feet, they will support solid 3cm granite, quartz, or quartzite effortlessly.'
+      },
+      {
+        q: 'Should I paint my kitchen cabinets before or after replacing countertops?',
+        a: 'Always paint your cabinets FIRST and let the catalyzed enamel cure for 5 to 7 days before your new quartz or granite is installed. Painting first prevents accidental brush marks, roller spray, or acidic primer drips from touching brand-new stone seams, and avoids trapping damp paint tape over fresh 100% silicone perimeter caulk. If your old laminate counter is still in place while painting, you can even use it as a convenient work surface!'
+      },
+      {
+        q: 'Will removing my old countertop damage my existing tile backsplash?',
+        a: 'If you have a standard 4-inch laminate or Formica backsplash strip glued to drywall, careful scoring and prying preserves most drywall (with minor touch-up spackle needed only if replacing a 4-inch strip with paint). If you already have ceramic subway tile running all the way down onto the old countertop surface, sliding out an old thick top can occasionally crack the very bottom row of tile—especially if the original installer grouted directly to the counter instead of caulking. Our demo team scores every seam slowly to minimize wall disruption.'
+      },
+      {
+        q: 'Can I switch from an old drop-in sink to a large undermount sink without replacing my cabinet?',
+        a: 'Usually yes, as long as your sink base cabinet is wide enough. An undermount sink sits inside the cabinet interior rather than resting on top, so its total exterior bowl width must fit cleanly inside your cabinet walls with at least 1.5 to 2 inches of clearance on each side for mechanical support harness straps. For example, a standard 36-inch sink base cabinet easily holds a 32-inch single-bowl undermount stainless or quartz composite sink.'
+      },
+      {
+        q: 'How long will my kitchen be out of service when replacing only the countertops?',
+        a: 'Less than 24 hours! Because AGS Stones uses digital Proliner laser templating directly over your existing countertops (no cardboard templates needed), your old sink and counters stay usable while we CNC-cut your slabs in Duluth. On installation day—just 5 business days later—our crew tears out the old top, sets your new 3cm stone, and mounts your new undermount sink in 3 to 5 hours. Your plumber reconnects drains the very next morning once silicone cures.'
+      }
+    ],
+    content: (
+      <>
+        {/* Intro Banner */}
+        <div className="bg-gradient-to-r from-slate-900 to-primary text-white p-6 sm:p-8 rounded-3xl my-6 shadow-xl border border-white/10">
+          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+            <div>
+              <span className="text-secondary font-bold text-xs uppercase tracking-widest block mb-1">
+                WikiHow Smart Kitchen Upgrade &amp; Retrofit Guide
+              </span>
+              <h3 className="text-xl sm:text-2xl font-serif font-bold text-white mb-2">
+                Replacing Countertops Without Replacing Cabinets: Is It Worth It?
+              </h3>
+              <p className="text-gray-300 text-xs sm:text-sm leading-relaxed mb-0">
+                Walking into classic homes across Roswell, East Cobb, Marietta, Johns Creek, and Lawrenceville, we see the exact same scenario every week: rock-solid 1990s or 2000s hardwood oak or maple cabinet boxes paired with dated laminate, chipped Formica, speckled Corian, or yellowed ceramic tile countertops. Good news: if your cabinet layout already flows well, you do <strong>not</strong> need a $35,000 gut renovation. Swapping only the countertops delivers 80% of the visual impact for 25% of the cost—in just 5 days.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        {/* Quick Rule of Thumb Box */}
+        <div className="bg-amber-50 border-2 border-amber-200 rounded-3xl p-6 sm:p-8 my-8 text-amber-950 shadow-sm">
+          <h3 className="text-xl font-bold font-serif text-amber-900 mb-3 flex items-center gap-2">
+            <span>⚡</span> Quick Rule of Thumb for Countertop-Only Upgrades
+          </h3>
+          <ul className="space-y-3 text-sm leading-relaxed m-0 list-disc list-inside">
+            <li>
+              <strong>Keep Existing Cabinets If Boxes Are Solid:</strong> If doors hang straight, drawers glide smoothly, and there is zero swelling or rot under the sink pipe, your existing cabinets can safely support 3cm quartz, granite, or quartzite for another 25+ years.
+            </li>
+            <li>
+              <strong>Replace Cabinets If Layout Is Broken or Water-Damaged:</strong> If your sink cabinet floor is crumbling from past plumbing leaks, or you want to delete an awkward peninsula for a huge open island, replace cabinetry first via <Link href="/services/cabinets" className="text-amber-900 underline font-semibold">custom millwork</Link> so you never pay twice to cut stone.
+            </li>
+            <li>
+              <strong>Sequence Matters (Paint → Demo → Stone → Backsplash):</strong> Finish cabinet painting 1 week before laser installation day, and save brand-new tile backsplashes until <em>after</em> your new stone rests permanently in place.
+            </li>
+          </ul>
+        </div>
+
+        {/* Decision Comparison Table */}
+        <h2 className="text-2xl sm:text-3xl font-serif text-primary mt-12 mb-6 font-bold pb-2 border-b border-gray-100">
+          Countertop-Only Replacement vs. Full Kitchen Remodel: Side-by-Side Breakdown
+        </h2>
+        <p className="text-gray-700 leading-relaxed mb-6">
+          Before committing your remodel budget in Buckhead, Alpharetta, Sandy Springs, or Suwanee, weigh the financial, structural, and timeline trade-offs between keeping your cabinets versus starting fresh:
+        </p>
+
+        <div className="overflow-x-auto my-6 border border-gray-200 rounded-2xl shadow-sm bg-white">
+          <table className="w-full text-left text-xs sm:text-sm">
+            <thead className="bg-gray-100 text-gray-800 uppercase font-bold text-[11px] tracking-wider border-b border-gray-200">
+              <tr>
+                <th className="py-4 px-4 sm:px-6">Remodel Factor</th>
+                <th className="py-4 px-4 sm:px-6 bg-blue-50/70 text-blue-900">1. Countertop-Only Replacement</th>
+                <th className="py-4 px-4 sm:px-6 bg-amber-50/70 text-amber-900">2. Full Cabinet + Countertop Remodel</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-gray-200 text-gray-700">
+              <tr>
+                <td className="py-4 px-4 sm:px-6 font-bold text-gray-900">Typical Atlanta Investment</td>
+                <td className="py-4 px-4 sm:px-6 bg-blue-50/30 font-bold text-emerald-700">$2,500 – $5,800 (factory-direct stone, sink cutout, old top demo &amp; 5-day install).</td>
+                <td className="py-4 px-4 sm:px-6 bg-amber-50/30 font-bold text-primary">$18,000 – $45,000+ (custom plywood cabinets, stone, plumbing, lighting &amp; flooring).</td>
+              </tr>
+              <tr>
+                <td className="py-4 px-4 sm:px-6 font-bold text-gray-900">Kitchen Downtime</td>
+                <td className="py-4 px-4 sm:px-6 bg-blue-50/30 font-bold text-emerald-700">Under 24 hours without running water (same-day tear-out and stone placement).</td>
+                <td className="py-4 px-4 sm:px-6 bg-amber-50/30 text-amber-800">3 to 6 weeks of active construction and temporary microwave cooking.</td>
+              </tr>
+              <tr>
+                <td className="py-4 px-4 sm:px-6 font-bold text-gray-900">Layout Flexibility</td>
+                <td className="py-4 px-4 sm:px-6 bg-blue-50/30">Locks existing sink, stove, and dishwasher footprint (can widen bar overhangs up to 12&quot;–15&quot; with steel brackets).</td>
+                <td className="py-4 px-4 sm:px-6 bg-amber-50/30 font-semibold text-emerald-700">100% layout freedom: move walls, convert raised bars to single-level islands, add apron sinks.</td>
+              </tr>
+              <tr>
+                <td className="py-4 px-4 sm:px-6 font-bold text-gray-900">Cabinet Door &amp; Color Refresh</td>
+                <td className="py-4 px-4 sm:px-6 bg-blue-50/30">Pair with professional cabinet painting or new Shaker door refacing before stone arrives.</td>
+                <td className="py-4 px-4 sm:px-6 bg-amber-50/30">Factory-sprayed 3/4&quot; all-plywood boxes with Blum soft-close dovetail drawers.</td>
+              </tr>
+              <tr>
+                <td className="py-4 px-4 sm:px-6 font-bold text-gray-900">Best Property Fit</td>
+                <td className="py-4 px-4 sm:px-6 bg-blue-50/30">2000s homes with solid maple/cherry wood boxes, quick pre-sale ROI flips, or budget upgrades.</td>
+                <td className="py-4 px-4 sm:px-6 bg-amber-50/30">1970s–1980s particle board kitchens, water-damaged boxes, or forever dream estates.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        {/* Step 1: 4-Point Cabinet Structural Inspection */}
+        <h2 className="text-2xl sm:text-3xl font-serif text-primary mt-12 mb-6 font-bold pb-2 border-b border-gray-100">
+          Step 1: The 4-Point Structural Check for Existing Cabinets
+        </h2>
+        <p className="text-gray-700 leading-relaxed mb-4">
+          Before ordering <Link href="/services/countertops" className="text-secondary font-semibold hover:underline">custom granite or quartz countertops</Link>, run this quick 5-minute physical check inside your base cabinets:
+        </p>
+
+        <div className="space-y-4 my-6">
+          <div className="p-5 bg-white border border-gray-200 rounded-2xl shadow-sm flex items-start gap-4">
+            <div className="w-10 h-10 rounded-full bg-secondary/10 flex items-center justify-center text-secondary font-bold shrink-0">
+              01
+            </div>
+            <div>
+              <h4 className="font-bold text-gray-900 text-sm mb-1">Check Levelness Within 1/8 Inch Across 10 Feet</h4>
+              <p className="text-xs text-gray-600 m-0 leading-relaxed">
+                Natural stone and quartz do not bend like laminate. If your floor has settled and base cabinets dip more than 1/8&quot; to 1/4&quot; over a 10-foot run, our installers shim the cabinet tops during installation—or if severe, your cabinet boxes should be re-leveled from the toe-kick base first so gaps do not show above drawers.
+              </p>
+            </div>
+          </div>
+
+          <div className="p-5 bg-white border border-gray-200 rounded-2xl shadow-sm flex items-start gap-4">
+            <div className="w-10 h-10 rounded-full bg-secondary/10 flex items-center justify-center text-secondary font-bold shrink-0">
+              02
+            </div>
+            <div>
+              <h4 className="font-bold text-gray-900 text-sm mb-1">Inspect Under the Sink for Moisture Rot</h4>
+              <p className="text-xs text-gray-600 m-0 leading-relaxed">
+                Open your sink base doors and press firmly on the cabinet sidewalls and corner glue blocks. If old particle board feels spongy or swollen from past P-trap drips, adding 2x4 cleats or 3/4&quot; plywood corner gussets restores full load-bearing strength for a heavy undermount sink.
+              </p>
+            </div>
+          </div>
+
+          <div className="p-5 bg-white border border-gray-200 rounded-2xl shadow-sm flex items-start gap-4">
+            <div className="w-10 h-10 rounded-full bg-secondary/10 flex items-center justify-center text-secondary font-bold shrink-0">
+              03
+            </div>
+            <div>
+              <h4 className="font-bold text-gray-900 text-sm mb-1">Check Interior Sink Base Width for Undermount Upgrades</h4>
+              <p className="text-xs text-gray-600 m-0 leading-relaxed">
+                Measure the inside-to-inside width between the left and right panels of your sink cabinet. To mount an undermount sink with heavy steel harness brackets, your cabinet&apos;s clear interior width must be at least <strong>3 inches wider</strong> than the exterior bowl width (e.g. a 36&quot; sink base fits up to a 32&quot;–33&quot; sink).
+              </p>
+            </div>
+          </div>
+
+          <div className="p-5 bg-white border border-gray-200 rounded-2xl shadow-sm flex items-start gap-4">
+            <div className="w-10 h-10 rounded-full bg-secondary/10 flex items-center justify-center text-secondary font-bold shrink-0">
+              04
+            </div>
+            <div>
+              <h4 className="font-bold text-gray-900 text-sm mb-1">Confirm Dishwasher Mounting Brackets</h4>
+              <p className="text-xs text-gray-600 m-0 leading-relaxed">
+                Old laminate tops allowed dishwashers to screw directly upward into particle board. Since wood screws cannot penetrate solid granite or quartz, our installers adhere hidden steel under-counter dishwasher mounting brackets (or side-mount your unit into adjacent cabinet frames) cleanly on install day.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        {/* Step 2: What Happens During Tear-Out & Backsplashes */}
+        <h2 className="text-2xl sm:text-3xl font-serif text-primary mt-12 mb-6 font-bold pb-2 border-b border-gray-100">
+          Step 2: What Happens to Your Old Laminate Top &amp; Backsplash During Tear-Out?
+        </h2>
+        <p className="text-gray-700 leading-relaxed mb-4">
+          One of the biggest questions homeowners in Milton and Brookhaven ask is: <em>&quot;Will ripping off my old countertop destroy my kitchen wall or tile backsplash?&quot;</em>
+        </p>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 my-6">
+          <div className="bg-emerald-50/60 border border-emerald-200 rounded-2xl p-6">
+            <h4 className="font-bold text-emerald-950 text-base mb-3 flex items-center gap-2">
+              <span className="text-emerald-600 font-bold">✓</span> Removing Old Laminate or Corian (4&quot; Lip)
+            </h4>
+            <p className="text-xs sm:text-sm text-emerald-900 leading-relaxed mb-3">
+              Old Formica/laminate countertops usually feature an integrated or separate 4-inch backsplash glued to drywall.
+            </p>
+            <ul className="space-y-1.5 text-xs text-emerald-900 m-0">
+              <li><strong>Clean Match Coverage:</strong> When we install your new quartz or granite countertop with a matching 4-inch stone backsplash, it cleanly covers the old caulk scar!</li>
+              <li><strong>Going Full-Height Tile?</strong> If you prefer full ceramic tile or a <Link href="/blog/full-height-slab-backsplash-vs-tile-guide" className="text-emerald-950 underline font-semibold">full-height quartz slab backsplash</Link>, skip the 4&quot; stone strip and tile cleanly straight down onto the new stone surface.</li>
+            </ul>
+          </div>
+
+          <div className="bg-amber-50/70 border border-amber-200 rounded-2xl p-6">
+            <h4 className="font-bold text-amber-950 text-base mb-3 flex items-center gap-2">
+              <span>⚠️</span> Keeping an Existing Tile Backsplash
+            </h4>
+            <p className="text-xs sm:text-sm text-amber-900 leading-relaxed mb-3">
+              Already love your existing subway or travertine backsplash? You can often save it—with two critical thickness checks:
+            </p>
+            <ul className="space-y-1.5 text-xs text-amber-900 m-0">
+              <li><strong>Laminate Thickness Check (1.5&quot; vs. 1.25&quot;):</strong> Standard laminate builds up to 1.5&quot; thick, whereas solid 3cm stone measures ~1.25&quot; (30mm). That 1/4&quot; drop leaves a small shadow gap under existing tile unless filled with clean trim or neat silicone.</li>
+              <li><strong>2cm Subtop Match:</strong> Old tiled countertops or built-up Corian tops sometimes sit even higher—our laser templaters measure the exact clearance underneath your bottom tile row before cutting!</li>
+            </ul>
+          </div>
+        </div>
+
+        {/* Step 3: Correct Order of Remodel Operations */}
+        <h2 className="text-2xl sm:text-3xl font-serif text-primary mt-12 mb-6 font-bold pb-2 border-b border-gray-100">
+          Step 3: The Golden Order of Operations (Paint, Demo, Laser, Stone)
+        </h2>
+        <p className="text-gray-700 leading-relaxed mb-4">
+          Follow this proven sequence used by top <Link href="/services/kitchen-remodeling" className="text-secondary font-semibold hover:underline">Metro Atlanta kitchen remodelers</Link> to avoid costly rework or damaged finishes:
+        </p>
+
+        <div className="bg-gray-50 border border-gray-200 rounded-2xl p-6 sm:p-8 my-6">
+          <div className="space-y-4 text-sm text-gray-700">
+            <div className="flex items-start gap-4 p-4 bg-white rounded-xl border border-gray-200">
+              <span className="w-8 h-8 rounded-full bg-primary text-white font-bold flex items-center justify-center shrink-0 text-xs">
+                1
+              </span>
+              <div>
+                <h4 className="font-bold text-gray-900 text-sm mb-1">Paint or Reface Cabinets First (+ Allow 5–7 Days Cure)</h4>
+                <p className="text-xs text-gray-600 m-0 leading-relaxed">
+                  Spray your existing oak or maple frames with Sherwin-Williams or Benjamin Moore cabinet enamel while your old countertops act as a protective drop cloth. Wait 5 to 7 days so paint is rock-hard before stone crews lean slabs across cabinet openings.
+                </p>
+              </div>
+            </div>
+
+            <div className="flex items-start gap-4 p-4 bg-white rounded-xl border border-gray-200">
+              <span className="w-8 h-8 rounded-full bg-primary text-white font-bold flex items-center justify-center shrink-0 text-xs">
+                2
+              </span>
+              <div>
+                <h4 className="font-bold text-gray-900 text-sm mb-1">Digital Laser Templating Over Existing Counters</h4>
+                <p className="text-xs text-gray-600 m-0 leading-relaxed">
+                  Keep your old sink hooked up and kitchen 100% functional! Our Proliner digital laser technician maps your walls, cabinet faces, out-of-square drywall bows, and new sink specifications without ripping out your old counters yet.
+                </p>
+              </div>
+            </div>
+
+            <div className="flex items-start gap-4 p-4 bg-white rounded-xl border border-gray-200">
+              <span className="w-8 h-8 rounded-full bg-primary text-white font-bold flex items-center justify-center shrink-0 text-xs">
+                3
+              </span>
+              <div>
+                <h4 className="font-bold text-gray-900 text-sm mb-1">Same-Day Tear-Out &amp; 3cm Stone Installation (Day 5)</h4>
+                <p className="text-xs text-gray-600 m-0 leading-relaxed">
+                  Have a plumber disconnect your sink lines the evening prior (or morning of). Our crew cleanly removes your old laminate or tile countertops, checks levelness, seats your new precision CNC-cut 3cm quartz or granite slabs, anchors your undermount sink with steel straps, and core-drills faucet holes all in one afternoon.
+                </p>
+              </div>
+            </div>
+
+            <div className="flex items-start gap-4 p-4 bg-white rounded-xl border border-gray-200">
+              <span className="w-8 h-8 rounded-full bg-primary text-white font-bold flex items-center justify-center shrink-0 text-xs">
+                4
+              </span>
+              <div>
+                <h4 className="font-bold text-gray-900 text-sm mb-1">Reconnect Plumbing &amp; Install New Backsplash Tile</h4>
+                <p className="text-xs text-gray-600 m-0 leading-relaxed">
+                  Wait 24 hours for undermount silicone sealant to cure, then reconnect your faucet, disposal, and drain lines. Finally, if adding subway or zellige tile, install your backsplash cleanly right on top of your new level stone!
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Step 4: Converting Two-Tier Bars to Single-Level Islands */}
+        <h2 className="text-2xl sm:text-3xl font-serif text-primary mt-12 mb-6 font-bold pb-2 border-b border-gray-100">
+          Bonus Pro Upgrade: Can You Cut Down a Raised Bar Top Without New Cabinets?
+        </h2>
+        <p className="text-gray-700 leading-relaxed mb-4">
+          Countless 1990s–2000s homes in Alpharetta, Suwanee, Johns Creek, and Duluth have a two-tier &quot;raised pony wall&quot; behind the kitchen sink bar. Wait—can you flatten that raised bar into one gorgeous, spacious 42-inch island surface without replacing cabinets?
+        </p>
+        <div className="bg-white p-6 rounded-2xl border border-gray-200 shadow-sm my-6">
+          <p className="text-sm text-gray-700 leading-relaxed m-0">
+            <strong>Yes!</strong> As long as electrical outlets inside that 6-inch knee wall are relocated downward into the side of the base cabinet (below countertop height) and the drywall pony wall is trimmed flat flush with your lower 34.5-inch base cabinets, you can install a single uninterrupted slab of Calacatta quartz or Taj Mahal quartzite with recessed steel overhang brackets. It instantly opens up sightlines between your kitchen and family room!
+          </p>
+        </div>
+
+        {/* Step 5: Cost Breakdown */}
+        <h2 className="text-2xl sm:text-3xl font-serif text-primary mt-12 mb-6 font-bold pb-2 border-b border-gray-100">
+          Real Atlanta Costs: Countertop Replacement Only (Factory-Direct)
+        </h2>
+        <p className="text-gray-700 leading-relaxed mb-4">
+          When buying factory-direct from our Duluth fabrication shop, homeowners save 20% to 30% compared to big-box home improvement stores that subcontract labor:
+        </p>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 my-6 text-center">
+          <div className="bg-white p-6 rounded-2xl border border-gray-200 shadow-sm">
+            <span className="text-xs uppercase font-bold tracking-wider text-gray-400 block mb-1">Condos &amp; Compact Kitchens</span>
+            <h4 className="text-lg font-bold text-primary mb-2">30–40 Sq Ft Upgrade</h4>
+            <p className="text-2xl font-serif font-bold text-secondary mb-2">$2,200 – $3,400</p>
+            <p className="text-xs text-gray-600 m-0">
+              Includes 3cm Level 1/2 granite or quartz, CNC undermount sink cutout, eased edge polish, and 5-day laser installation.
+            </p>
+          </div>
+
+          <div className="bg-white p-6 rounded-2xl border border-gray-200 shadow-sm">
+            <span className="text-xs uppercase font-bold tracking-wider text-secondary block mb-1">Most Popular Suburban Home</span>
+            <h4 className="text-lg font-bold text-primary mb-2">45–60 Sq Ft + Island</h4>
+            <p className="text-2xl font-serif font-bold text-secondary mb-2">$3,400 – $5,600</p>
+            <p className="text-xs text-gray-600 m-0">
+              Covers popular Calacatta veined quartz or natural granite, stainless undermount sink, old-top removal, and steel bar brackets.
+            </p>
+          </div>
+
+          <div className="bg-white p-6 rounded-2xl border border-gray-200 shadow-sm">
+            <span className="text-xs uppercase font-bold tracking-wider text-gray-400 block mb-1">Luxury Estate Kitchens</span>
+            <h4 className="text-lg font-bold text-primary mb-2">65+ Sq Ft Natural Quartzite</h4>
+            <p className="text-2xl font-serif font-bold text-secondary mb-2">$5,800 – $9,500+</p>
+            <p className="text-xs text-gray-600 m-0">
+              Covers exotic Taj Mahal or Mont Blanc quartzite slabs, waterfall edges, apron sink scribing, and 15-year penetrating sealer.
+            </p>
+          </div>
+        </div>
+
+        {/* Step 6: Showroom */}
+        <h2 className="text-2xl sm:text-3xl font-serif text-primary mt-12 mb-6 font-bold pb-2 border-b border-gray-100">
+          Bring a Cabinet Door to Our Duluth Showroom to Match Slabs Today
+        </h2>
+        <p className="text-gray-700 leading-relaxed mb-6">
+          Keeping your existing cabinets? Simply unscrew one cabinet door (just 2 screws!) and bring it with you to <Link href="/" className="text-secondary font-semibold hover:underline">AGS Stones &amp; Cabinets</Link> at 4579 Abbotts Bridge Rd Suite -10 in Duluth, GA. Under natural showroom daylight, you can hold your exact wood finish or fresh paint color directly against hundreds of full slabs!
+        </p>
+
+        {/* Call to action card */}
+        <div className="bg-gradient-to-r from-primary to-slate-900 text-white rounded-3xl p-8 sm:p-10 my-10 shadow-2xl flex flex-col md:flex-row items-center justify-between gap-6">
+          <div className="max-w-xl">
+            <span className="text-secondary font-bold text-xs uppercase tracking-widest block mb-2">AGS Stones &amp; Cabinets • 5-Day Turnaround</span>
+            <h4 className="text-2xl font-serif font-bold mb-2">Ready to Swap Old Countertops for 3cm Quartz or Granite?</h4>
+            <p className="text-gray-300 text-sm mb-0">
+              Visit our Duluth showroom or request a free in-home digital laser estimate anywhere in Metro Atlanta. Same-day tear-out, factory-direct pricing, and zero cabinet replacement required!
+            </p>
+          </div>
+          <div className="flex flex-col sm:flex-row gap-3 w-full md:w-auto flex-shrink-0">
+            <Link 
+              href="/promo" 
+              className="bg-secondary text-white font-bold text-xs uppercase tracking-wider px-7 py-4 rounded-xl hover:bg-white hover:text-primary transition-all text-center shadow-lg"
+            >
+              Get Free Estimate
+            </Link>
+            <Link 
+              href="/showroom" 
+              className="bg-white/10 hover:bg-white/20 text-white font-bold text-xs uppercase tracking-wider px-6 py-4 rounded-xl transition-all text-center border border-white/20"
+            >
+              Visit Showroom
+            </Link>
+          </div>
+        </div>
+      </>
+    )
   }
 };
+
 
 
 
